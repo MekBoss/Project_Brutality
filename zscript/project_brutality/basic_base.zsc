@@ -1,0 +1,130 @@
+class pb_monster_base : actor
+{
+eventhandler spawning_event;
+//pointer to event which store pointers to cvar which control monsters ability
+//like knight leap or revenant jetpack
+
+double head_mul, head_pos, legs_pos;
+//head position is height on which "body" of monster should become "head"
+
+Property headshot_multiplier : head_mul;
+Property head_starting_position : head_pos;
+//I recomend to set head_starting_position approx. to "monster heght" - "monster height / 10"
+//because golden ratio and it dont looks stupid in game
+Property legs_height_max : legs_pos;
+//for legs, height where legs lost it preciese name and turns into body
+default
+{
+	pb_monster_base.headshot_multiplier 1;
+	pb_monster_base.head_starting_position -1;//so that if someone forgot to define this number monster don get headshot from every attack
+	pb_monster_base.legs_height_max -1;//same for legs
+	monster;
+}
+
+override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
+{
+	if(!(flags & DMG_EXPLOSION) )
+	{//explosion cant inflict headshot...at least in gzdoom
+		int new_damage = super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+		//to handle cases when actor vulnerable/invulnerable to some damage type
+		//before apply headshot multiplicator
+		
+		vector3 relat_pos = (0, 0, 0);
+		if(inflictor != null){ relat_pos = self.vec3to(inflictor); }
+		//find relative position of inflictor
+		
+		if(pb_monster_base(self).head_pos > -1 && relat_pos.z >= pb_monster_base(self).head_pos)
+		{//if head variable valid
+			new_damage *= self.head_mul;
+			return super.DamageMobj(inflictor, source, new_damage, 'headshot', flags ,angle);
+		}
+
+		if(pb_monster_base(self).legs_pos > -1 && relat_pos.z <= pb_monster_base(self).legs_pos)
+		{//check for arrow in the knee
+			return new_damage;
+			//do nothing, since I dont understand what it must do in decorate
+		}
+		return new_damage;
+	}
+
+	else{return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);}
+}
+
+states
+{
+	Death.Massacre:
+	stop;
+}
+
+}
+
+class pb_projectile_base : fastprojectile
+{}
+
+class pb_dismembered_monster_base : actor
+{}
+
+class pb_gore_base : actor
+{}
+
+class pb_special_effect_base : actor
+{
+default
+{+nointeraction; +noclip; +NOTONAUTOMAP;}
+
+}
+
+
+
+//for testing
+class pimp_my_imp : pb_monster_base
+{
+int sten; bool tum;
+default
+{
+	radius 20;
+	height 56;
+	health 80000;
+
+	pb_monster_base.headshot_multiplier 800;
+	pb_monster_base.head_starting_position 50;
+	pb_monster_base.legs_height_max 10;
+}
+
+override void tick()
+{
+	super.tick();
+	sten += 32;
+	if(sten > 256256256) {sten = 0;}
+	console.printf("%i", sten);
+}
+states
+{
+	Spawn:
+		TROO AB 10 nodelay
+		{//STYLE_Shaded STYLE_Stencil STYLE_TranslucentStencil STYLE_AddStencil STYLE_AddShaded
+			A_SetRenderStyle(1, STYLE_Shaded);
+			SetShade(sten);
+		}
+	Loop;
+	
+	pain:
+	goto spawn;
+	
+	death:
+		TROO I 8;
+		TROO J 8 A_Scream;
+		TROO K 6;
+		TROO L 6 A_NoBlocking;
+		TROO M -1;
+	Stop;
+}
+
+}
+
+
+
+
+
+
+

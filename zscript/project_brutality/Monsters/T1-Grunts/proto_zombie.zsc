@@ -1,0 +1,12 @@
+class proto_zombieman_class : pb_monster_base
+{
+default
+{
+	Height 54; //44+18
+
+	pb_monster_base.headshot_multiplier 3;
+	pb_monster_base.head_starting_position 48;
+	pb_monster_base.legs_height_max 10;
+}
+
+}

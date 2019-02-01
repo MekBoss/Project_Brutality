@@ -1,0 +1,2 @@
+class proto_pinky : pb_monster_base
+{}

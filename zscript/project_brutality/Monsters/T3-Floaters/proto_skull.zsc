@@ -1,0 +1,2 @@
+class proto_skull : pb_monster_base
+{}

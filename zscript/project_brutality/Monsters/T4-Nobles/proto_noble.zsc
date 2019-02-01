@@ -1,0 +1,24 @@
+class proto_noble_class : pb_monster_base
+{
+
+default
+{
+	Radius 24;
+	Height 88;
+	
+	pb_monster_base.headshot_multiplier 3;
+	pb_monster_base.head_starting_position 80;
+	pb_monster_base.legs_height_max -1;//nobles cant have an arrow in the knee
+}
+
+states
+{
+	Death.Blackhole://exluding belphegors
+		TNT1 A 0 {A_Scream(); A_NoBlocking(); A_PlaySound("redburn",6,1,1);}
+		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		ID55 AABCDEFGHIJK 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+	Stop;
+}
+
+}

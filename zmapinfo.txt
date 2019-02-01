@@ -1,5 +1,4 @@
-
-GameInfo
+gameinfo
 {
-	AddEventHandlers = "MBlurHandler"
+	addeventhandlers="monster_handle_event", "MBlurHandler"
 }

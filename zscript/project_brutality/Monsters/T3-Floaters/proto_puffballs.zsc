@@ -1,0 +1,5 @@
+class proto_head : pb_monster_base
+{}
+
+class proto_pain : proto_head
+{}

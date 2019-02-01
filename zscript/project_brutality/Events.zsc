@@ -1,0 +1,293 @@
+//master branch zscript
+class PB_EventHandler : StaticEventHandler
+{
+	override void WorldThingDied(WorldEvent e)
+	{
+		if (e.thing && e.thing.target
+		&& e.thing.target.player
+		&& e.thing.bCOUNTKILL
+		&& e.thing.bISMONSTER)
+		{
+			//e.thing.target.player.mo.A_SetBlend("RoyalBlue",0.1,17);
+		}
+	}
+}
+
+// Optional Motion Blur by Pixel Eater
+class MBlurHandler : StaticEventHandler
+{
+	int			pitch, yaw ;
+	double		xtravel, ytravel ;
+	
+	override void PlayerEntered( PlayerEvent e )
+	{
+		PlayerInfo plr = players[ consoleplayer ];
+		if( plr )
+		{	
+			xtravel = 0 ;
+			ytravel = 0 ;
+		}
+	}
+	
+	override void WorldTick()
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr && plr.health > 0 && Cvar.GetCVar( "mblur", plr ).GetBool() )
+		{
+			yaw		= plr.mo.GetPlayerInput( ModInput_Yaw );
+			pitch	= -plr.mo.GetPlayerInput( ModInput_Pitch );
+		}
+	}
+	
+	override void NetworkProcess( ConsoleEvent e )
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr && e.Name == "liveupdate" )
+		{
+			double pitchdimin	= 1. - abs( plr.mo.pitch * 1. / 90 );
+			double decay		= 1. - Cvar.GetCVar( "mblur_recovery", plr ).GetFloat() * .01 ;
+			double amount		= Cvar.GetCVar( "mblur_strength", plr ).GetFloat() * 10. / 32767 * sqrt( pitchdimin );
+			xtravel				= xtravel * decay + yaw * amount * .625 ;
+			ytravel				= ytravel * decay + pitch * amount ;
+			
+			if( Cvar.GetCVar( "mblur_autostop", plr ).GetBool() )
+			{
+				double threshold = Cvar.GetCVar( "mblur_threshold", plr ).GetFloat() * 30 ;
+				double recovery2 = 1 - Cvar.GetCVar( "mblur_recovery2", plr ).GetFloat() * .01 ;
+				if( abs( yaw )		<= threshold ) xtravel *= recovery2 ;
+				if( abs( pitch )	<= threshold ) ytravel *= recovery2 ;
+			}
+		}
+	}
+	
+	override void UiTick()
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr )
+		{
+			if( plr.health > 0 && Cvar.GetCVar( "mblur", plr ).GetBool() )//&& yaw && pitch )
+			{
+				EventHandler.SendNetworkEvent( "liveupdate" );
+				
+				int copies			= 1 + Cvar.GetCVar( "mblur_samples", plr ).GetInt() ;
+				double increment	= 1. / copies ;
+				vector2 travel		= ( xtravel, ytravel ) / screen.getheight() ;
+				
+				Shader.SetUniform2f( plr, "MBlur", "steps", travel * increment );
+				Shader.SetUniform1f( plr, "MBlur", "samples", copies );
+				Shader.SetUniform1f( plr, "MBlur", "increment", increment );
+				Shader.SetUniform1f( plr, "MBlur", "blendmode", Cvar.GetCVar( "mblur_blendmode", plr ).GetInt() );
+					
+				Shader.SetEnabled( plr, "MBlur", true );
+			}
+			else
+			{
+				Shader.SetEnabled( plr, "MBlur", false );
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*okay, spawning system need to wait for its hero which rewrite it
+	so for now it use default randpom replace script
+	case 666:
+			switch (LevelNumber)
+			{
+				case 1:
+				case 5:
+					SetActorState(0,"EarlyLevelMob",true);
+					break;
+				case 2:
+				case 6:
+					SetActorState(0,"LowLevelMob",true);
+					break;
+				case 3:
+				case 7:
+					SetActorState(0,"MidLevelMob",true);
+					break;
+				case 4:
+				case 8:
+					SetActorState(0, "HighLevelMob",true);
+					break;
+				default:
+					if (LevelNumber > 8) SetActorState(0, "HighLevelMob",true);
+					else SetActorState(0,"LowLevelMob",true);
+					Break;
+			}
+			break;
+	case 667:
+			Tier1
+	case 668:
+			Tier2
+	case 669:
+			Tier3;
+	case 670
+			Tier4
+	case 671:
+			switch (LevelNumber)
+			{
+				case 1:
+				case 5:
+					SetActorState(0,"DiceTier1",true);
+					break;
+				case 2:
+				case 6:
+					SetActorState(0,"DiceTier2",true);
+					break;
+				case 3:
+				case 7:
+					SetActorState(0,"DiceTier3",true);
+					break;
+				case 4:
+				case 8:
+					SetActorState(0, "DiceTier4",true);
+					break;
+				default:
+					if (LevelNumber > 8) SetActorState(0, "DiceTier4",true);
+					else SetActorState(0,"DiceTier2",true);
+					Break;
+			}
+			break;
+		case 672:
+			DeathWish
+		case 663:
+			Random
+		case 674:
+			PistolStart
+		case 675:
+			ReplaceBrutalOnly*/
+
+
+class monster_handle_event : eventhandler
+{
+transient cvar vanilla_cvar, spawn_balance,
+//transient means "dont store pointer in savegame
+//needs to add more pointers here for grenade zomdie and such
+	
+	//archvile cvars
+	Archvile_Heal, Archvile_Summon,
+	//revenant
+	jet_Revenant;
+
+string return_random_replacement(string base_class)
+{//return one random names of monsters inherited from base_class
+	int sz = allactorclasses.size();
+	array<string> names; names.clear();
+	for(int i; i < sz; i++)
+	{
+		if(allactorclasses[i] is base_class && !(allactorclasses[i].getclassname() == base_class) )
+		{names.push(allactorclasses[i].getclassname() ); }
+	}
+	sz = names.size();
+	
+	return names[random(0, sz - 1)];
+}
+
+override void onregister()
+{//store pointer to all monster related cvars here
+	vanilla_cvar = cvar.findcvar("bd_classicmonsters");
+	spawn_balance = cvar.findcvar("Brutalspawnbalance");
+	
+	archvile_Heal = cvar.findcvar("bd_NoArchvileHeal");
+	Archvile_Summon = cvar.findcvar("bd_NoArchvileSummon");
+	
+	jet_Revenant = cvar.findcvar("bd_GroundRevenant");
+	
+	//must be filled with more lines
+}
+
+override void worldthingspawned(worldevent e)
+{
+	if(e.thing is "pb_monster_base") {pb_monster_base(e.thing).spawning_event = self;}
+}
+
+override void CheckReplacement(ReplaceEvent e)
+{//spawn custom monsters using this event
+	//in this example it replaces all doom imps to medikits
+//	if(e.Replacee is "doomimp")
+//	{
+//		e.IsFinal = true;
+		//means "nothing can override this replacement...except another such event"
+		//mostly used to prevent zscript/decorate replacing by "class name : actor replaces name" way
+//		e.Replacement = "medikit"; 
+//	}
+	//add more monster here
+	if(e.Replacee is "fatso")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_fat");
+	}
+	
+	if(e.Replacee is "arachnotron")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_spider");
+	}
+
+	if(e.Replacee is "painelemental")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_pain");
+	}
+	
+	if(e.Replacee is "cacodemon")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_head");
+	}
+
+	if(e.Replacee is "revenant")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_rev_class");
+	}
+
+	if(e.Replacee is "hellknight")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_noble_class");
+	}
+
+	if(e.Replacee is "baronofhell")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_noble_class");
+	}
+
+	if(e.Replacee is "archvile")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_arch_vile");
+	}
+
+	if(e.Replacee is "Cyberdemon")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_cyberdemon");
+	}
+	
+	if(e.Replacee is "spidermastermind")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_spider_mind");
+	}
+}
+
+}
