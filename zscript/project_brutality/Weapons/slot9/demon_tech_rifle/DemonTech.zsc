@@ -1,0 +1,386 @@
+// --------------------------------------------------------------------------
+//
+// DemonTech Rifle
+//
+// --------------------------------------------------------------------------
+
+CLASS digimon_tech_rifle : weapon_slot_9_proto_class
+{
+enum enum_fire_mode
+{
+	incinerate_mode = 0,
+	acid_mode = 1,
+};
+//can be used int insted, but recomended to use enum name
+enum_fire_mode actual_fire_mode;
+
+int acid_charge;
+
+Default
+{
+	Weapon.SlotNumber 9;
+	Weapon.SelectionOrder 1;
+	Weapon.slotpriority 1;
+	Weapon.AmmoType1 "Demon_powder";
+	Weapon.AmmoType2 "Hell_Ammo";
+
+	Weapon.BobRangeX 0.3;
+	Weapon.BobRangeY 0.5;
+	Weapon.BobStyle "InverseSmooth";
+	Weapon.BobSpeed 2.4;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoGive1 20;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive2 0;
+
+	+FLOORCLIP;
+	+DONTGIB;
+	+WEAPON.NOAUTOAIM;
+
+	Inventory.PickupSound "HRPickup";
+	Obituary "%o was set ablaze by %k's hellish rifle.";
+	Tag "New demon-Tech Rifle";
+	Inventory.PickupMessage "You got the Demon Tech Rifle! (Slot 9)";
+}
+
+override bool, bool weapon_dual_and_special()
+{return false, true; }
+
+override void activate_special()
+{
+	owner.player.SetPSprite(PSP_WEAPON, self.FindState("Switch_to_acid") );
+}
+
+override void AttachToOwner (Actor other)
+{
+	super.AttachToOwner(other);
+	other.giveinventory(self.AmmoType2.getclassname(), 0);
+}
+
+States
+{
+	Spawn:
+		HRPU A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 AAAAAAAA 1 A_Raise(30);
+	wait;
+
+	Ready:
+		TNT1 A 0 A_PlaySound("HRReady");
+		HRRA ABC 1;
+	pre_loop:
+		TNT1 A 0
+		{
+			if(invoker.actual_fire_mode == acid_mode) {Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HR1D");}
+			else{Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HRID");}
+		}
+	Ready_loop:
+		"####" ABCDE 2
+		{
+			A_PlaySound("DTCHHUM", 1, 1,1);
+			A_WeaponReady(WRF_ALLOWRELOAD);
+			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+	loop;
+	
+	HRID qwertyuiopasdfghjklzxcvbnm 0;
+	HR1D qwertyuiopasdfghjklzxcvbnm 0;
+
+	Steady:
+		TNT1 A 1;
+	Goto pre_loop;
+	
+	Switch_to_acid:
+		TNT1 A 0 
+		{
+			if(invoker.actual_fire_mode == acid_mode)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("Switch_to_Fire") ); return;}
+			invoker.actual_fire_mode = acid_mode;
+			a_Print("Firemode: Caustic");
+		}
+		TNT1 A 0 A_PlaySound("HRSwitch", 4);
+		HRID A 4 A_PlaySound("Hellclip", 1);
+		HR2D ABCDE 4;
+		TNT1 A 0 A_PlaySound("HRSteam", 2);
+		HR3X ABCDEF 1;
+	Goto pre_loop;
+	Switch_to_Fire:
+		HR1D A 4
+		{
+			invoker.actual_fire_mode = incinerate_mode;
+			A_PlaySound("DSBOWREL", 2, 3);
+			A_Print("Firemode: Inferno");
+			A_PlaySound("HRSwitch", 4);
+			A_PlaySound("Hellclip", 1);
+		}
+		HR2D EDCBA 4;
+		TNT1 A 0 A_PlaySound("HRSteam", 2);
+		HREX ABCDEF 1;
+	Goto pre_loop;
+
+	Prompt1://Disabled for now
+		TNT1 A 0 A_Print("50 Demon Souls Needed to Morph!");
+		TNT1 A 0 A_PlaySound("HRCharge", 6);
+	Goto pre_loop;
+
+	Fire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 A_JumpIfInventory("Hell_Ammo",1,1);
+	Goto Reload;
+		TNT1 AA 0;
+		TNT1 A 0
+		{
+			if(invoker.actual_fire_mode == acid_mode) {Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HRF1");}
+			else{Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HRFI");}
+			A_PlaySound("HRFire");
+		}
+		"####" C 1 BRIGHT
+		{
+			if(invoker.actual_fire_mode == incinerate_mode){A_FireProjectile("incenirate_bull_et", true, frandom(-3,3), pitch:frandom(-1,1) ); A_Takeinventory("Hell_Ammo", 1);}
+			if(invoker.actual_fire_mode == acid_mode){A_FireProjectile("acid_bull_et", true, frandom(-3,3), pitch:frandom(-1,1) );}
+			A_SetPitch(pitch - 0.2);
+			A_SetAngle(angle - frandom(-0.15,-0.25));
+		}
+		"####" ABC 1 BRIGHT;
+		"####" A 0 A_ReFire;
+		"####" A 0 A_PlaySound("HRSteam");
+		null a 0
+		{
+			if(invoker.actual_fire_mode == acid_mode) {Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HR3X");}
+			else{Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HREX");}
+		}
+		"####" ABCDEF 1;
+	Goto pre_loop;
+
+
+	AltFire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 
+		{
+			if(invoker.actual_fire_mode == acid_mode) {return resolvestate("acid_alt");}
+			return resolvestate(null);
+		}
+		TNT1 A 0 A_JumpIfInventory("Hell_Ammo",25,1);
+	Goto Reload;
+		TNT1 AA 0;
+		TNT1 A 0 A_PlaySound("HRCharge");
+		HRFI CBA 4 BRIGHT;
+		TNT1 A 0 A_FireProjectile("RedFlareSpawn");
+		HRFI A 2 BRIGHT
+		{
+			A_Recoil(3);
+			A_FireProjectile("PossessionGhost");
+			A_Takeinventory("Hell_Ammo",25);
+			a_playsound("HRPickup");
+			A_PlaySound("HRSteam");
+		}
+		HREX ABCDEF 2;
+		TNT1 A 0 A_JumpIfInventory("Hell_Ammo",1,1);
+	Goto Reload;
+		TNT1 AA 0;
+	Goto pre_loop;
+		
+	acid_alt:
+		TNT1 A 0 A_JumpIfInventory("Hell_Ammo",5,1);
+	Goto Reload;
+	CausticCharging:
+		TNT1 A 0 A_PlaySound("CNTCTBM", 6);
+		TNT1 A 0 A_PlaySound("Weapons/StachanovCharge",5,1.0,1);
+		HR3X ABCDA 1 BRIGHT
+		{
+			invoker.acid_charge ++;
+			A_Takeinventory("Hell_Ammo", 1);
+		}
+		HR3X BCDABCDABCD 1 BRIGHT;
+		TNT1 A 0 
+		{
+			A_PlaySound("HRCharge",3);
+			A_SetBlend("Green", invoker.acid_charge,16);
+			if(invoker.acid_charge >= 25) {return resolvestate("charged_blast"); }
+			return resolvestate(null);
+		}
+		TNT1 A 0 A_Refire("CausticCharging");		
+	charged_blast:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_AlertMonsters();
+		HRF1 B 0 A_FireProjectile("GreenFlareSpawn");
+		HRF1 C 1 BRIGHT A_FireProjectile("ShrinkBeam");
+		HRF1 ABC 1 BRIGHT;
+		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
+		TNT1 A 0 A_FireProjectile("SmokeSpawner");
+		HRF1 B 2 BRIGHT A_ZoomFactor(0.9);
+		TNT1 A 0 A_FireProjectile("RedFlare");
+		HRF1 C 2 BRIGHT A_ZoomFactor(0.95);
+		HRF1 D 2 A_ZoomFactor(0.99);
+		HRF1 E 1 A_ZoomFactor(1.0);
+		HRF1 FGH 1;
+		TNT1 A 0 A_PlaySound("MicrowaveLoop", 1,0.5,6);
+	goto pre_loop;
+
+
+	H4RL a 0;
+	HRRL a 0;
+	Reload:
+	//H4RL acid, HRRL fire
+		tnt1 a 0
+		{
+			if(invoker.actual_fire_mode == acid_mode) {Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("H4RL");}
+			else{Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("HRRL");}		
+		}
+		"####" A 0 A_JumpIfInventory("Hell_Ammo",50,"pre_loop");
+		"####" A 0 A_JumpIfInventory("Demon_powder",1,1);
+	Goto pre_loop;
+		"####" A 0 A_PlaySound("PLSCOOL");
+		"####" BCDE 2;
+		"####" A 0 a_playsound("Hellclip");
+		"####" FGHIJK 2;
+		"####" LMN 3;
+		"####" A 0 {A_PlaySound("HRReady"); A_PlaySound("CBOXPKUP",3); invoker.reload_weapon_magazine("Hell_Ammo", "Demon_powder");}
+		"####" OPQRS 2;
+	Goto pre_loop;
+
+	Deselect:
+		TNT1 A 0 A_StopSound(1);
+		HRRA CBA 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+
+
+
+
+//////////////////////////
+//	technicaal stuff
+//////////////////////////
+	Flash:
+		TNT1 A 4;
+		Goto LightDone;
+
+	FlashKicking:
+		//TNT1 A 0 A_JumpIfInventory("FireModeAcidGun",1,"FlashKickingAcid");
+		HRID V 1;
+		HRID W 1;
+		HRID X 1;
+		HRID Y 3;
+		HRID Z 3;
+		HRID Y 3;
+		HRID X 1;
+		HRID W 1;
+		HRID V 1;
+		HRID ABC 1;
+		Stop;
+		
+	FlashKickingAcid:
+		HR1D V 1;
+		HR1D W 1;
+		HR1D X 1;
+		HR1D Y 3;
+		HR1D Z 3;
+		HR1D Y 3;
+		HR1D X 1;
+		HR1D W 1;
+		HR1D V 1;
+		HR1D ABC 1;
+		Stop;
+		
+	FlashAirKicking:
+		//TNT1 A 0 A_JumpIfInventory("FireModeAcidGun",1,"FlashAirKickingAcid");
+		HRID V 1;
+		HRID W 1;
+		HRID X 1;
+		HRID Y 3;
+		HRID Z 3;
+		HRID Y 3;
+		HRID X 1;
+		HRID W 1;
+		HRID V 1;
+		HRID ABCD 1 ;
+		Stop;
+		
+	FlashAirKickingAcid:
+		HR1D V 1;
+		HR1D W 1;
+		HR1D X 1;
+		HR1D Y 3;
+		HR1D Z 3;
+		HR1D Y 3;
+		HR1D X 1;
+		HR1D W 1;
+		HR1D V 1;
+		HR1D ABCD 1 ;
+		Stop;
+		
+	FlashSlideKicking:
+		//TNT1 A 0 A_JumpIfInventory("FireModeAcidGun",1,"FlashSlideKickingAcid");
+		HRID V 2;
+		HRID W 2;
+		HRID XXXYYYZZZZY 2 ;
+		Stop;
+		
+	FlashSlideKickingAcid:
+		HR1D V 2;
+		HR1D W 2;
+		HR1D XXXYYYZZZZY 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0 A_JumpIfInventory("FireModeAcidGun",1,"FlashSlideKickingStopAcid");
+		HRID X 1;
+		HRID W 1;
+		HRID VAB 1;
+		HRID C 1;
+		Stop;
+		
+	FlashSlideKickingStopAcid:
+		HR1D X 1;
+		HR1D W 1;
+		HR1D VAB 1;
+		HR1D C 1;
+		Stop;
+		
+	FlashPunching:
+		//TNT1 A 0 A_JumpIfInventory("FireModeAcidGun",1,"FlashPunchingAcid");
+		HRID V 1;
+		HRID W 1;
+		HRID X 1;
+		HRID Y 3;
+		HRID Z 3;
+		HRID Y 3;
+		HRID X 1;
+		HRID W 1;
+		HRID V 1;
+		HRID ABC 1;
+		Stop;
+		
+	FlashPunchingAcid:
+		HR1D V 1;
+		HR1D W 1;
+		HR1D X 1;
+		HR1D Y 3;
+		HR1D Z 3;
+		HR1D Y 3;
+		HR1D X 1;
+		HR1D W 1;
+		HR1D V 1;
+		HR1D ABC 1;
+		Stop;
+	}
+}
+
+CLASS Hell_Ammo : Ammo
+{ 
+	Default
+	{
+		Inventory.Amount 0;
+		Inventory.MaxAmount 50;
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 50;
+		Inventory.Icon "HRPUA0";
+	}
+}

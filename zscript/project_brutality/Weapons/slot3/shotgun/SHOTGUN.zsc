@@ -1,0 +1,909 @@
+/*---------------------------------------------------------------------------
+   12 Gauge Pump Shotgun
+-----------------------------------------------------------------------------*/
+
+CLASS boom_stick : weapon_slot_3_proto_class
+{
+
+enum shotgun_ammo_type
+{
+	buckshot = 0,
+	slug = 1,
+	dragon = 2
+};
+
+shotgun_ammo_type actual_shotgun_ammo_type;
+
+bool iron_sight, dragon_upgrade;
+
+override bool, bool weapon_dual_and_special()
+{return false, true; }
+
+override void activate_special()
+{
+	self.set_weapon_state("change_shell_type");
+}
+
+
+Default
+{
+	Weapon.SlotNumber 3;
+	Weapon.SelectionOrder 5;
+	Weapon.slotpriority 0.5;
+
+	+FLOORCLIP;
+	+DONTGIB;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive1 4;
+	Weapon.AmmoGive2 0;
+	Weapon.AmmoType1 "pb_Shells";
+	Weapon.AmmoType2 "ShotgunAmmo";
+	Inventory.PickupMessage "You got the Pump Shotgun! (Slot 3)";
+	Inventory.PickupSound "SHOTPICK";
+	Obituary "%o sucked %k's Shotgun";
+	AttackSound "None";
+	Tag "boom stick";
+	+WEAPON.NOALERT;
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOAUTOFIRE;
+	Scale 1.15;
+}
+
+States
+{
+	Spawn:
+		SHTC A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 0 A_Raise(80);
+	Wait;
+
+	Ready:
+		SHSS ABCD 1;
+		TNT1 A 0 A_PlaySound("weapons/sgmvpump");
+	ready_loop:
+		TNT1 A 0;
+		SHTG A 1
+		{
+			a_weaponready(wrf_allowreload);
+			A_SetCrosshair(0);
+			if(invoker.iron_sight == true)
+			{
+				if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHT6"); }
+				if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHT4"); }
+				invoker.change_weapon_PSprite("SHT8"); return;
+			}
+			
+			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+		}
+	Loop;
+
+/*	Ready2:
+		TNT1 A 0;
+		SHT8 A 1
+		{
+//		if (CountInv("HasSlugs") >= 1 ) { A_SetWeaponSprite("SHT6"); }
+//		if (CountInv("HasDragonBreath") >= 1 ) { A_SetWeaponSprite("SHT4"); }
+		A_Weaponready();
+	}
+	Loop;*/
+
+
+
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("ShotgunAmmo", 1, 1);
+	Goto Reload;
+		TNT1 A 0
+		{
+			A_TakeInventory("ShotgunAmmo", 1);
+			if(invoker.iron_sight == true) {invoker.set_weapon_state("iron_sight_fire"); }
+			A_AlertMonsters();
+			a_fireprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+			a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
+		}
+		SHTF AB 1 BRIGHT;
+		TNT1 A 0
+		{
+			switch (invoker.actual_shotgun_ammo_type)
+			{
+				case buckshot :
+					A_PlaySound("weapons/sg", 5);
+					A_FireBullets(3.65, 1.85,9,16,"ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-2);
+				break;
+				
+				case slug :
+					A_PlaySound("SlugShot", 5);
+					A_FireBullets(1.5, 0.5, 1, 144, "ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-1);;
+				break;
+
+				case dragon :
+					A_PlaySound("DRBTFIRE", 5);
+					for(int i = 0; i < 5; i++ )
+					{
+						a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
+						a_fireprojectile("DragonsBreathTracer", Random(-5, 5), 0, -1, Random(-5, 5));
+					}
+				break;
+			}
+
+			A_ZoomFactor(0.97);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch - 2 + force);
+			A_SetAngle(angle - 2 + force);
+
+			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
+			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
+			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
+			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		}
+		TNT1 A 0
+		{
+			A_ZoomFactor(0.98);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch - 2 + force);
+			A_SetAngle(angle - 2 + force);
+		}
+		SHTF C 1
+		{
+			A_ZoomFactor(0.99);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch + 2 - force);
+			A_SetAngle(angle + 2 - force);
+		}
+		SHTF D 1
+		{
+			A_ZoomFactor(1);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch + 2 - force);
+			A_SetAngle(angle + 2 - force);
+		}
+
+//	push pump
+
+		SHTG BCDEFG 1;
+		SHTG HI 1
+		{
+			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+		}
+		SHTG J 1
+		{
+			A_PlaySound("weapons/sgpump", 1);
+
+			if (invoker.actual_shotgun_ammo_type == slug )
+			{ a_fireprojectile("ShotCaseSpawn2",0,0,-4,-4); return; }
+			if (invoker.actual_shotgun_ammo_type == dragon)
+			{ a_fireprojectile("ShotCaseSpawn3",0,0,-4,-4); return; }
+			a_fireprojectile("ShotCaseSpawn",0,0,-4,-4);
+		}
+		SHTG KLMMLK 1;
+		SHTG J 1 A_PlaySound("weapons/sgpump", 1);
+		SHTG IH 1
+		{
+			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+		}
+		SHTG GFEDCB 1;
+		SHTG A 1
+		{
+			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			A_WeaponReady(WRF_ALLOWRELOAD);
+			A_ReFire("fire");
+		}
+	Goto ready_loop;
+
+	iron_sight_fire:
+		TNT1 A 0
+		{
+			A_AlertMonsters();
+			a_fireprojectile("YellowFlareSpawn", 0, 0, 0, 0);;
+		}
+		tnt1 a 0
+		{
+			switch (invoker.actual_shotgun_ammo_type)
+			{
+				case buckshot :
+					invoker.change_weapon_PSprite("SHT8");
+					A_PlaySound("weapons/sg", 5);
+					A_FireBullets(3.25, 1.35, 9, 8, "ShotgunPuff");
+
+					a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
+					a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
+					a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
+					a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
+					a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
+
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+
+					a_fireprojectile("GunFireSmoke", 0, 0, 0, 2, 0, 0);
+					a_fireprojectile("GunFireSmoke", 0, 0, 0, 2, 0, 0);
+
+					A_SetPitch(-10.0 + pitch);
+				break;
+				
+				case slug :
+					invoker.change_weapon_PSprite("SHT6");
+					A_PlaySound("SlugShot", 5);
+					A_FireBullets(1.5, 0.5, 1, 144, "ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-1);;
+					A_FireBullets(1.1, 0.25, 1, 67, "ShotgunPuff",0,0,"none",-2);
+					a_fireprojectile("Tracer");
+
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+
+					a_fireprojectile("GunFireSmoke", 0, 0, 0, 2, 0, 0);
+					a_fireprojectile("GunFireSmoke", 0, 0, 0, 2, 0, 0);
+
+					A_SetPitch(-11.0 + pitch);
+				break;
+
+				case dragon :
+					invoker.change_weapon_PSprite("SHT4");
+					A_PlaySound("DRBTFIRE", 5);
+					for(int i = 0; i < 5; i++ )
+					{
+						a_fireprojectile("DragonsBreathTracer", Random(-5, 5), 0, -1, Random(-5, 5));
+					}
+					a_fireprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+					a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+
+					a_fireprojectile("GunFireSmoke", 0, 0, 0, 2, 0, 0);
+					a_fireprojectile("GunFireSmoke", 0, 0, 0, 2, 0, 0);
+
+					A_SetPitch(-8.0 + pitch);
+				break;
+			}
+		}
+		"####" F 2 BRIGHT A_SetPitch(+2.25 + pitch);
+		"####" GHI 1 A_SetPitch(+2.25 + pitch);
+
+//AltFirejerk_pump:
+
+		"####" A 0 A_PlaySound("weapons/sgmvpump");
+		"####" JKLMNOPP 1{}
+		"####" A 0
+		{//crutch
+			if (invoker.actual_shotgun_ammo_type == slug ) { a_fireprojectile("ShotCaseSpawn2",0,0,-4,-4); return; }
+			if (invoker.actual_shotgun_ammo_type == dragon) { a_fireprojectile("ShotCaseSpawn3",0,0,-4,-4); return; }
+			a_fireprojectile("ShotCaseSpawn",0,0,-4,-4);
+		}
+		"####" A 0 A_PlaySound("weapons/sgpump");
+		"####" ONMLKJ 1{}
+		"####" A 5
+		{
+			A_WeaponReady(WRF_ALLOWRELOAD);
+			A_ReFire();
+		}
+	Goto ready_loop;
+
+	SHT6 qwertyuiopasdfghjklzxcvbnm 0;
+	SHT4 qwertyuiopasdfghjklzxcvbnm 0;
+	
+	AltFire:
+	aim_up:
+		TNT1 A 0
+		{
+			A_WeaponOffset(0,32);
+			if(invoker.iron_sight == true) {invoker.set_weapon_state("normal_sight");}
+			invoker.iron_sight = true;
+			A_PlaySound("IronSights", 0);
+			A_ZoomFactor(1.2);
+			A_SetCrosshair(5);
+		}
+		SHT8 E 2;
+		SHT8 DK 1;
+	Goto ready_loop;
+	normal_sight:
+		TNT1 AAAAAAAAAAAAA 0;
+		SHT8 KD 1;
+		SHT8 E 2;
+		TNT1 A 0
+		{
+			invoker.iron_sight = false;
+			A_ZoomFactor(1.0);
+			A_SetCrosshair(0);
+		}
+	Goto ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Reload:
+		SHTG A 1
+		{
+			A_ZoomFactor(1.0);
+			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			A_WeaponReady();
+		}
+		//TNT1 A 0 A_JumpIfInventory("ShotgunAmmo",9,"OkToFire");
+		//TNT1 A 0 A_JumpIfInventory("ShotgunAmmo", 1, "ReloadNormally");
+	ReloadNormally:
+		TNT1 A 0 A_JumpIfInventory("pb_Shells",1,1);
+	Goto NoAmmo;
+		SHTG B 1;
+		SHTG CDE 1;
+	ReloadInsertShell:
+		TNT1 A 0;
+	ShellChecker:
+		TNT1 A 0 A_JumpIfInventory("pb_Shells",1,1);
+	Goto ReloadFinished;
+		TNT1 A 0 A_JumpIfInventory("ShotgunAmmo",9,"ReloadFinished");
+		TNT1 A 0
+		{
+			A_Giveinventory("ShotgunAmmo",1);
+			A_Takeinventory("pb_Shells",1);
+		}
+		SSHR A 1;
+		SSHR BC 1
+		{
+			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+		}
+		SSHR D 1 A_PlaySound("insertshell");
+		SSHR EFGHIJ 1 A_WeaponReady(WRF_NOBOB);
+		SSHR A 0 A_Refire;
+	Goto ShellChecker;
+	
+	ReloadFinished:
+		//TNT1 A 0 A_JumpIfInventory("PBPumpShotgunWasEmpty", 1, "SideLoadShellChecker");
+		SHTG FEDCBA 1 A_WeaponReady();
+		TNT1 A 0 A_Refire();
+	Goto ready_loop;
+		
+	SideLoadShellChecker:
+		TNT1 A 0;
+	SideLoadShellInsert:
+		SSHR A 1;
+		SSHQ CDE 2;
+		SSHQ F 1  A_WeaponReady(WRF_NOBOB);
+	//	TNT1 A 0 A_JumpIfInventory("HasSlugs",1,"SlugSideLoadShell");
+	//	TNT1 A 0 A_JumpIfInventory("HasDragonBreath",1,"DragonSideLoadShell");
+		SSHQ GH 2;
+	EndOfLSI:
+		SSHQ I 1 A_PlaySound("insertshell");
+		SSHQ JK 1 A_WeaponReady(WRF_NOBOB);
+		SSHR A 0 A_Refire;
+		SHTG FEDCBA 1 A_WeaponReady;
+		TNT1 A 0 A_Refire;
+	Goto ready_loop;
+		
+	SlugSideLoadShell:
+		SSHQ LM 2;
+	Goto EndofLSI;
+		
+	DragonSideLoadShell:
+		SSHQ NO 2;
+	Goto EndofLSI;
+		
+
+	change_shell_type:
+		TNT1 A 0 
+		{
+			switch (invoker.actual_shotgun_ammo_type)
+			{
+				case buckshot :
+					invoker.set_weapon_state("pick_slug_shells");
+				break;
+
+				case slug :
+					invoker.set_weapon_state("pick_dragon_shells");
+				break;
+
+				case dragon :
+					invoker.set_weapon_state("pick_buckshot_shells");
+				break;
+			}
+		}
+
+	pick_slug_shells:
+		TNT1 A 0
+		{
+			A_Print("Slug Shells Loaded");
+			invoker.actual_shotgun_ammo_type = slug;
+		}
+		SHZA A 1;
+		SHTZ ZYXTSRQPONMLK 1;
+		SHTZ A 1;
+		SHZA BCDEFGHIJKLM 1;
+		SHTS A 1;
+	Goto ready_loop;
+	
+	pick_dragon_shells:
+		TNT1 A 0
+		{ 
+			A_Print("Dragon's Breath Shells Loaded");;
+			invoker.actual_shotgun_ammo_type = dragon;
+		}
+		TNT1 A 0;
+		SHZA MLK 1;
+		SHTZ X 1;
+		SHZA IHGFEDB 1;
+		SHTZ A 1;
+	DBAltEquip:
+		TNT1 A 0;
+		SHZA NOPQRSTUVWXY 1;
+		SHTD A 1;
+	Goto ready_loop;
+	
+	pick_buckshot_shells:
+		TNT1 A 0
+		{
+			A_Print("Buckshot Shells Loaded");
+			invoker.actual_shotgun_ammo_type = buckshot;
+		}
+		TNT1 A 0;
+		SHZA YXW 1;
+		SHTZ X 1;
+		SHZA UTSRQPON 1;
+		SHTZ A 1;
+	ReequipBuckShot:
+		TNT1 A 0;
+		SHTZ KLMNOPQRSTWXYZ 1;
+		SHTG A 1;
+	Goto ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+		TNT1 A 0 {A_ZoomFactor(1.0);}
+		SHSS DCBA 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	NoAmmo:
+		TNT1 A 0
+		{
+			A_PlaySound("weapons/empty");
+			A_ZoomFactor(1.0);
+	}
+	Goto ready_loop;
+
+		
+
+
+	
+
+	
+
+
+		
+		/*Pump2: // Old 7+1 Pump, Replaced with an 8+1 shell insert. Never Used./
+			TNT1 A 0 A_GiveInventory ("Pumping", 1)
+			TNT1 A 0 A_TakeInventory("Reloading", 1)
+			    TNT1 A 0 A_Takeinventory("Zoomed",1)
+		        TNT1 A 0 A_ZoomFactor(1.0)
+			SHTG I 1 A_PlaySound("weapons/sgmvpump", 1)
+			    SHTG JKLMLKJI 1
+			SHTG I 1 A_PlaySound("weapons/sgpump", 1)
+			SHTG FEDCB 1 A_JumpIfInventory("Kicking", 1, "DoKick")
+			TNT1 A 0 A_Takeinventory("PBPumpShotgunWasEmpty",1)
+			Goto ReadyToFireAgain*/
+		
+		
+	ReadyToFireAgain:
+		//SHTG A 6 <-- Old frame
+		SHTG A 1 Offset(10,36);// <-- New frames
+		SHTG A 1 Offset(9,40);//
+		SHTG A 1 Offset(4,40);//
+		SHTG A 1 Offset(0,32);//
+		SHTG A 0 A_Refire;
+		SHTG A 0;
+		Goto ready_loop;
+		
+		
+
+		//////////////////////////////////////
+		
+	OkToFire:
+		SHTG A 1 A_WeaponReady;
+		Goto ready_loop;
+		
+		// Replaced. Currently Not Used.
+		/*FakeReload:
+			    TNT1 A 0 
+			TNT1 A 0 A_TakeInventory("Zoomed", 1)
+		        TNT1 A 0 A_ZoomFactor(1.0)
+			SHTG A 1 A_WeaponReady
+		        TNT1 AAAA 0
+			SHTG B 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			TNT1 A 0 A_GiveInventory("IsCocking", 1)
+			SHTG CDEF 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			TNT1 AAAAAAAA 0
+		        TNT1 AAAAA 0
+			TNT1 A 0 A_GiveInventory("IsCocking", 1)
+		        TNT1 A 0
+		        TNT1 A 0 A_JumpIfInventory("HasSlugs", 1, "SlugsFakeReload")
+			TNT1 A 0 A_JumpIfInventory("HasDragonBreath",1,"DragonsbreathFakeReload")
+			SSHR ABCDEF 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			SSHR G 1 A_PlaySound("insertshell")
+		    EndOfFakeReload:
+			SSHR A 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+		        TNT1 A 0 A_JumpIfInventory("Kicking", 1, "DoKick")
+			TNT1 AAAAA 0
+			TNT1 A 0 A_TakeInventory("Reloading", 1)
+			SHTG GGGGGGGGGGGGGG 0
+			SHTG I 1 A_PlaySound("weapons/sgmvpump", 1)
+			SHTG JKLMLKJI 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+		        SHTG I 1 A_PlaySound("weapons/sgpump", 1)
+			SHTG FEDCB 1 A_JumpIfInventory("Kicking", 1, "DoKick")
+			TNT1 A 0 A_TakeInventory("Reloading", 1)
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0
+			Goto Ready+23
+			
+			SlugsFakeReload:
+			SSHR A 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+		        SSHS BCD 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			SSHR EFG 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			Goto EndOfFakeReload
+			
+			DragonsBreathFakeReload:
+			SSHR A 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+		        SSHD BCD 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			SSHR EFG 1 A_JumpIfInventory("GoWeaponSpecialAbility", 1, "WeaponSpecial")
+			Goto EndOfFakeReload*/
+		
+	Unload:
+		SHTG A 1;
+		TNT1 A 0 A_ZoomFactor(1.0);
+		TNT1 A 0 A_JumpIfInventory("ShotgunAmmo",1,3);
+	Goto OkToFire;
+		TNT1 AAA 0;
+		SHTG ABCDEFG 1;
+		
+	RemoveBullets:
+		TNT1 AAAA 0;
+		TNT1 A 0 A_JumpIfInventory("ShotgunAmmo",1,3);
+		Goto FinishUnload;
+		TNT1 AAAAAA 0;
+		TNT1 A 0 A_Takeinventory("ShotgunAmmo",1);
+		TNT1 A 0 A_Giveinventory("pb_Shells",1);
+		
+		//TNT1 A 0 A_JumpIfInventory("HasSlugs", 1, "SlugUnload");
+		//TNT1 A 0 A_JumpIfInventory("HasDragonBreath",1,"DBUnload");
+		SHTG I 1 A_PlaySound("weapons/sgmvpump", 1);
+	ActuallyUnload:
+		SHTG JKLM 1;
+		SHTG MLKJ 1;
+		//TNT1 A 0 A_JumpIfInventory("HasSlugs", 1, "SlugUnload");
+		//TNT1 A 0 A_JumpIfInventory("HasDragonBreath",1,"DBUnload");
+		SHTG I 1 A_PlaySound("weapons/sgpump", 2);
+	ActuallyUnload2:
+		SHTG GFED 1 ;
+		TNT1 A 0;
+		Goto RemoveBullets;
+		
+	SlugUnload:
+		SHTG O 1 A_PlaySound("weapons/sgmvpump", 1);
+		Goto ActuallyUnload;
+		
+	SlugUnload2:
+		SHTG O 1 A_PlaySound("weapons/sgmvpump", 1);
+		Goto ActuallyUnload2;
+		
+	DBUnload:
+		SHTG Q 1 A_PlaySound("weapons/sgmvpump", 2);
+		Goto ActuallyUnload;
+		
+	DBUnload2:
+		SHTG Q 1 A_PlaySound("weapons/sgmvpump", 2);
+		Goto ActuallyUnload2;
+		
+	FInishUnload:
+		SHTG EDCBA 1;
+		Goto OkToFire;
+
+
+		
+		
+	FlashKicking:
+		//TNT1 A 0 A_JumpIfInventory("PBPumpShotgunHasUnloaded", 1, 2)
+		SHTG B 1;
+		SHTG C 1;
+		SHTG D 1;
+		SHTG E 1;
+		SHTG F 1;
+		SHTG G 6;
+		SHTG F 1;
+		SHTG E 1;
+		SHTG D 1;
+		SHTG C 1;
+		SHTG B 1;
+		Stop;
+		
+	FlashAirKicking:
+		//TNT1 A 0 A_JumpIfInventory("PBPumpShotgunHasUnloaded", 1, 2)
+		SHTG B 1;
+		SHTG C 1;
+		SHTG D 1;
+		SHTG E 1;
+		SHTG F 1;
+		SHTG G 6;
+		SHTG F 1;
+		SHTG E 1;
+		SHTG D 1;
+		SHTG C 1;
+		SHTG B 1;
+		Stop;
+		
+	FlashSlideKicking:
+		//TNT1 A 0 A_JumpIfInventory("PBPumpShotgunHasUnloaded", 1, 2)
+		SHTG BC 2;
+		SHTG DEEFGGGFFEE 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0 A_JumpIfInventory("PBPumpShotgunHasUnloaded", 1, 2)
+		SHTG EDCBA 1;
+		SHTG A 1;
+		Stop;
+		
+	FlashPunching:
+		//TNT1 A 0 A_JumpIfInventory("PBPumpShotgunHasUnloaded", 1, 2)
+		SHTG B 1;
+		SHTG C 1;
+		SHTG D 1;
+		SHTG E 1;
+		SHTG F 1;
+		SHTG G 6;
+		SHTG F 1;
+		SHTG E 1;
+		SHTG D 1;
+		SHTG C 1;
+		SHTG B 1;
+		Stop;
+	}
+}
+
+CLASS ShotgunAmmo : Ammo { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 9;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 9;
+	Inventory.Icon "SHTCA1";
+	}
+}
+
+CLASS DragonBreathShellsUpgrade: Custominventory { 
+	Default {
+	
+	Height 24;
+	//-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP;
+	+COUNTITEM;
+	Inventory.Pickupsound "misc/shellbox_PickUp";
+	Inventory.PickupMessage "You got the Dragon's Breath Shell Upgrade!!!";
+	}
+	States
+	{
+	Spawn:
+		DHEL ABCDEDCB 2 BRIGHT Light("WeaponUpgradeSpawner");
+		Loop;
+		
+	Pickup:
+		TNT1 A 0
+		{
+			A_GiveInventory("pb_Shells", 20);
+		}
+	Stop;
+	}
+}
+
+CLASS DragonBreath : pb_projectile_base
+{ 
+	Default {
+	
+	Projectile;
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	+RIPPER;
+	+NOEXTREMEDEATH;
+	damage 5;
+	radius 1;
+	height 1;
+	speed 40;
+	renderstyle "Add";
+	alpha 0.9;
+	scale .15;
+	DamageType "Fire";
+	SeeSound "Afrit/Hellfire";
+	Decal "SmallerScorch";
+	}
+	states
+	{
+	Spawn:
+		TNT1 A 0 A_Playsound("Afrit/Hellfire");
+		TNT1 A 0 A_Explode(21, 66, 0);
+		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItemEx ("ExplosionParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL AAAAAAAAAAA 0 a_spawnprojectile ("ShotgunParticles", 6, 0, random (0, 360), 2, random (0, 90));//ShotgunParticles
+		TNT1 A 0 A_Jump(76, 2, 3);
+		TNT1 A 0 A_SpawnItemEx("DragonsBreathPiece1", random (-15, 15), random (-15, 15));
+		TNT1 A 0 A_SpawnItemEx("DragonsBreathPiece2", random (-35, 35), random (-35, 35));
+		TNT1 A 0 A_SpawnItemEx("DragonsBreathPiece3", random (-45, 45), random (-45, 35));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("SparkX", 2, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		Stop;
+	Death:
+		Stop;
+	XDeath:
+		TNT1 A 0;
+		Stop;
+	}
+}
+
+CLASS DragonsBreathTracer: pb_projectile_base
+{ 
+	Default {
+	
+	Projectile;
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	+DONTSPLASH;
+	+NOEXTREMEDEATH;
+	Damagetype "Shotgun";
+	Damage 7;
+	PoisonDamageType "Fire";
+	PoisonDamage 7;
+	+ADDITIVEPOISONDURATION;
+	radius 2;
+	height 2;
+	speed 80;
+	Gravity 0.4;
+	renderstyle "Add";
+	alpha 0.95;
+	scale 0.45;
+	Decal "SmallerScorch";
+	}
+	states
+	{
+	Spawn:
+		DBAC A 3 BRIGHT;
+		TNT1 A 0 A_SpawnItemEx("ShotgunParticles", random(8,-8), random(8,-8), random(8,-8), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionParticleVerySlow", random(8,-8), random(8,-8), random(19,-19), 0, 0, 0, 0, 128, 0);
+		Loop;
+	Death:
+	XDeath:
+		TNT1 A 0
+		{
+			A_Explode(5, 30, 0);
+			A_Playsound("ricochet/hit");
+			A_SpawnItemEx ("DragonBreath",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	}
+	Stop;
+	}
+}

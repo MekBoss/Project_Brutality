@@ -1,0 +1,90 @@
+//base class for all projectile in pb
+class pb_projectile_base : fastprojectile
+{
+//storing interpolation data for effect event
+vector3 prev_pos;
+
+override void tick()
+{
+	super.tick();
+	prev_pos = prev;
+}
+
+}
+//base for weapons attack hich use continuos ray
+class pb_in_line_attack : pb_projectile_base
+{
+vector3 start_pos;
+}
+
+
+//body base
+class pb_dismembered_monster_base : actor
+{}
+
+//gore and blood base, obvious
+class pb_blood_and_gore_base : actor
+{
+//function which check if floor teture name match with function arguments
+//return true if something match
+static bool check_floor_texture(actor caller = null,
+string one = "", string two = "", string three = "", string four = "", string five = "")
+{
+	if(caller == null) {return false;}
+	if(one == "") {return false;}
+	
+	string test = TexMan.GetName(caller.floorpic);
+	test.ToUpper();
+
+	int number = -1;	
+	one.ToUpper();
+	number = test.indexof(one);
+	if(number > -1) {return true;}
+
+	two.ToUpper();
+	number = test.indexof(two);
+	if(number > -1) {return true;}
+
+	three.ToUpper();
+	number = test.indexof(three);
+	if(number > -1) {return true;}
+
+	four.ToUpper();
+	number = test.indexof(four);
+	if(number > -1) {return true;}
+
+	five.ToUpper();
+	number = test.indexof(five);
+	if(number > -1) {return true;}
+
+	return false;
+}
+
+}
+
+//base class for reusing effects in effect event
+class pb_special_effect_base : actor
+{
+bool show_something;
+
+default
+{+nointeraction; +noclip; +NOTONAUTOMAP;}
+
+states
+{
+	spawn:
+	off:
+		tnt1 a -1;
+	stop;
+	
+	reset_self_condition:
+		tnt1 a 1{self.scale = (1, 1); self.vel = (0, 0, 0); show_something = false;}
+	goto off;
+}
+
+}
+
+class pb_monsters_effect_base : pb_special_effect_base {}
+
+class pb_decoration_base : actor
+{}

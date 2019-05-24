@@ -1,0 +1,76 @@
+//торч, хех
+//another place where zscript arrays won against silly acs
+//broken, for now, because I dont wish dive into "sprites" folder
+
+class pb_torch_base : pb_decoration_base
+{
+//array which contains all "burning" torch fire
+array<pb_special_effect_base> fire;
+//exactly what it names
+actor find_free_fire(actor caller = null)
+{
+	if(caller == null || !(caller is "pb_torch_base") ) {return null;}
+
+	for(int i = 0; i <= pb_torch_base(caller).fire.size(); i++)
+	{
+		if(i == pb_torch_base(caller).fire.size() )
+		{
+			actor ttt = spawn("torch_fire", pos: pb_torch_base(caller).pos);
+			pb_torch_base(caller).fire.push( (pb_special_effect_base)(ttt) );
+			return ttt;
+		}
+		
+		if(pb_special_effect_base(pb_torch_base(caller).fire[i]).show_something == false)
+		{return pb_torch_base(caller).fire[i];}
+	}
+	return null;
+}
+
+enum torch_color
+{
+	red = 0,
+	green,
+	blue
+};
+
+void burn_torch(actor torch = null, torch_color rgb = red)
+{
+	if(torch == null || !(torch is "pb_torch_base") ) {return;}
+
+	actor burn = find_free_fire(torch);
+
+
+}
+
+}
+
+
+CLASS torch_fire : pb_special_effect_base { 
+
+Default
+{		
+	Alpha 1.0;
+	Renderstyle "Add";
+	YScale 1.2;
+	XScale 1.6;
+}
+
+States
+{
+	red_torch:
+		tnt1 a 0 {show_something = true;}
+		FRFX ABABABAB 2 BRIGHT;
+	goto reset_self_condition;
+
+	blue_torch:
+		tnt1 a 0 {show_something = true;}
+		FRPB JKJKJKJKJK 2 BRIGHT;
+	goto reset_self_condition;
+
+	green_torch:
+		tnt1 a 0 {show_something = true;}
+		FRPG JKJKJKJKJK 2 BRIGHT;
+	goto reset_self_condition;
+}
+
+}

@@ -1,0 +1,86 @@
+class low_caliber_bullets : pb_ammo_proto_class 
+{
+default
+{
+	Inventory.Amount 10;
+	Inventory.MaxAmount 200;
+	Ammo.BackpackAmount 50;
+	Ammo.BackpackMaxAmount 400;
+
+	Scale 0.58;
+	+FLOORCLIP
+	+DONTGIB
+
+	Inventory.PickUpSound "cboxpkup";
+	Inventory.Icon "MBLKA0";
+	Tag "$TAG_CLIPOFBULLETS";
+	Inventory.PickupMessage "Picked up a Small Caliber Magazine";
+}
+
+States
+{
+	Spawn:
+		MBLK A -1;
+	Stop;
+}
+
+}
+
+CLASS BulletCartridge : low_caliber_bullets
+{
+Default
+{
+	Inventory.Amount 20;
+	Inventory.PickupMessage "Picked up a Small Caliber Cartridge.";
+}
+
+States
+{
+	Spawn:
+		MBLK A -1;
+	Stop;
+}
+
+}
+
+CLASS NormalBulletKit : low_caliber_bullets
+{ 
+Default
+{
+	Scale 1.15;
+	Inventory.PickupMessage "Picked up a Box of Low Caliber rounds.";
+	Inventory.PickupSound "misc/clip_PickUp";
+	Inventory.Amount 50;
+	+DONTGIB;
+	+FLOORCLIP;
+}
+
+States
+{
+	Spawn:
+		AMOK A -1;
+	Stop;
+}
+
+}
+
+CLASS NormalBulletKitBig : low_caliber_bullets
+{ 
+Default
+{
+	Scale 1.15;
+	Inventory.PickupMessage "Picked up a Large Case of Low Caliber rounds.";
+	Inventory.PickupSound "misc/clip_PickUp";
+	Inventory.Amount 100;
+	+DONTGIB;
+	+FLOORCLIP;
+}
+
+States
+{
+	Spawn:
+		4M0K A -1;
+	Stop;
+}
+
+}

@@ -1,0 +1,168 @@
+//original zscript playerpawn need to be revorked
+class PlayerPawnBase : PB_player_pawn_base
+{
+/*	bool IsTank;
+	Property IsTank : IsTank;
+	int tankdeathcounter;
+	override void Die(Actor source, Actor inflictor, int dmgflags)
+	{
+		A_TakeInventory("CameraRunner",1);
+		Super.Die(source, inflictor, dmgflags);
+	}
+	bool CheckForCamera(class<Actor> classname,int tidnum)
+	{
+		ActorIterator at = ActorIterator.Create(tidnum);
+		Actor a = at.Next();
+		if (a != NULL && a.GetClassName() == classname) return true;
+		return false;
+	}
+	Actor CheckForCameraActor(class<Actor> classname,int tidnum)
+	{
+		ActorIterator at = ActorIterator.Create(tidnum);
+		Actor a = at.Next();
+		if (a != NULL && a.GetClassName() == classname) return a;
+		return null;
+	}
+	void SetActorAngle(int tidnum, double angle)
+	{
+		ActorIterator at = ActorIterator.Create(tidnum);
+		Actor a = at.Next();
+		if (a != NULL) a.angle = angle;
+	}
+	void SetActorPitch(int tidnum, double pitch)
+	{
+		ActorIterator at = ActorIterator.Create(tidnum);
+		Actor a = at.Next();
+		if (a != NULL) a.pitch = pitch;
+	}
+	void SetActorRoll(int tidnum, double roll)
+	{
+		ActorIterator at = ActorIterator.Create(tidnum);
+		Actor a = at.Next();
+		if (a != NULL) a.roll = roll;
+	}
+	bool, Actor ExtSpawn(class<Actor> classname,Vector3 pos,int tid,double angle)
+	{
+		Actor a = Spawn(classname,pos,ALLOW_REPLACE);
+		if (a != NULL)
+		{
+			a.ChangeTid(tid);
+			a.angle = angle;
+			return true, a;
+		}
+		return false, null;
+	}
+	bool SetActorPosition(int tidnum, Vector3 pos)
+	{
+		Actor a = CheckForCameraActor("ChaseCam2",tidnum);
+		if (a != NULL)
+		{
+			a.SetOrigin(pos,true);
+			if (a.pos == pos) return true;
+		}
+		return false;
+	}
+	void TerminateCamera()
+	{
+		SetCamera(null);
+		Actor a = CheckForCameraActor("ChaseCam2",C_TID + PlayerNumber());
+		if (a != NULL) a.Destroy();
+	}
+	Vector3, double, double ReturnCamPos()
+	{
+		Actor linepuff = LineAttack(angle - 180,128 + (radius*2),-pitch,0,'None',"InvisiblePuffAlways",LAF_NOINTERACT|LAF_NORANDOMPUFFZ,null,-(height/2) + player.viewheight);
+		if (linepuff)
+		{
+			let vec3 = linepuff.pos;
+			let anglevalue = linepuff.angle;
+			let pitchvalue = linepuff.pitch;
+			linepuff.Destroy();
+			return vec3, anglevalue, pitchvalue;
+		}
+		return pos, angle, pitch;
+	}
+	void RunCameraNew()
+	{
+		Double anglevalue;
+		Double pitchvalue;
+		Vector3 campos;
+		[campos,anglevalue, pitchvalue] = ReturnCamPos();
+		if (!CheckForCamera("ChaseCam2",C_TID + playernumber()))
+		{
+			Actor cameraactor;
+			bool cameraspawned;
+			[cameraspawned, cameraactor] = ExtSpawn ("ChaseCam2", campos, C_TID+playernumber(), angle);
+			if (CheckForCamera ("ChaseCam2", C_TID + playernumber()))
+			ACS_NamedExecuteAlways('ChangeCamera',0,C_TID + playernumber());
+			else
+			{
+				//camera_mode[p_num] = OFF;
+				Console.MidPrint ("INDEXFONT_DOOM","Camera script failed to initialize.");
+				return;
+			}
+		}
+		else
+		{
+			while (!SetActorPosition(C_TID + PlayerNumber(),campos))
+			{
+			}
+			SetActorAngle (C_TID + PlayerNumber(), anglevalue);
+			SetActorPitch (C_TID + PlayerNumber(), clamp(pitch,-88,88));
+			SetActorRoll  (C_TID + PlayerNumber(), roll);
+		}
+	}
+	override void Tick()
+	{
+		if (!level.IsJumpingAllowed() || (player && player.mo && player.mo.JumpZ == 0)) {GiveInventory("DoNotJump",1);}
+		if (IsTank && !(health <= 0))
+		{
+			if (health < 500)
+			{
+				A_SpawnProjectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
+				A_SpawnProjectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
+			}
+			if (health < 350)
+			{
+				A_SpawnProjectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
+				A_SpawnProjectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
+			}
+			if (Health < 200)
+			{
+				A_SpawnProjectile ("BigBlackSmoke", 40, 0, random (0, 360), 2, -random (40, 160));
+			}
+			if (health < 30)
+			{
+				A_SpawnProjectile ("FlameThrowerFireParticles", 0, 0, random (0, 360), 2, -random (0, 360));
+				A_Playsound("BDFireplace2", 1, 1, 1);
+				tankdeathcounter += 1;
+				if (tankdeathcounter >= (35 * 5))
+				{
+					tankdeathcounter = 0;
+					A_Die();
+				}
+			}
+		}
+		Super.Tick();
+	}*/
+}
+
+class CameraRunner : Inventory
+{
+/*	override void DoEffect()
+	{
+		let p = PlayerPawnBase(owner);
+		if (p)
+		{
+			p.RunCameraNew();
+		}
+	}
+	override void OnDestroy()
+	{
+		let p = PlayerPawnBase(owner);
+		if (p)
+		{
+			p.TerminateCamera();
+		}
+		Super.OnDestroy();
+	}*/
+}

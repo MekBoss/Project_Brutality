@@ -1,4 +1,16 @@
-#include "BMAP/Shields.txt"
+//Motion Blur by Pixel Eater
+HardwareShader PostProcess beforebloom
+{
+	Name "MBlur"
+	Shader "shaders/MBlur.fp" 330
+	Uniform vec2 steps
+	Uniform int samples
+	Uniform float increment
+	Uniform int blendmode
+}
+
+
+/*#include "BMAP/Shields.txt"
 #include "BMAP/Ammo.txt"
 #include "BMAP/Armor.txt"
 #include "BMAP/Weapons.txt"
@@ -25,16 +37,7 @@
 #include "BMAP/VoidSpectre.txt"
 
 
-//Motion Blur by Pixel Eater
-HardwareShader PostProcess beforebloom
-{
-	Name "MBlur"
-	Shader "MBlur.fp" 330
-	Uniform vec2 steps
-	Uniform int samples
-	Uniform float increment
-	Uniform int blendmode
-}
+
 
 //Siphon Effect Lights
 pulselight SiphonLight
@@ -4530,3 +4533,4 @@ pointlight BDECOrangeLightShaft
 	offset 0 0 -64
 }
 
+*/

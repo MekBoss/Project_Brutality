@@ -1,0 +1,11 @@
+//LOAD command responsible for loading all reasources
+//CAUTION, if you create another gameinfo lump, and place it AFTER this one
+// gzdoom would ignore this lump and use thouse
+//which means "resources would not be load at all"
+LOAD = "resources/Project_Brutality_resources.pbres",
+"resources/models.pbres",
+"resources/sounds.pbres",
+"resources/textures.pbres"
+
+STARTUPTITLE = "Project Brutality 3.0 Test Zscript Edition"
+STARTUPCOLORS = "FF9D00", "000000"

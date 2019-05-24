@@ -1,0 +1,104 @@
+CLASS ArmorShard : pb_armor_bonus_base
+{
+Default
+{
+	Radius 20;
+	Height 16;
+	Inventory.Pickupmessage "$GOTARMBONUS";
+	Inventory.Icon "HELBh0";
+	Armor.Savepercent 33.335;
+	Armor.Saveamount 2;
+	Armor.Maxsaveamount 9999;
+	+COUNTITEM;
+	+FLOORCLIP;
+	+DONTGIB;
+	+INVENTORY.ALWAYSPICKUP;
+	Inventory.PickUpSound "misc/bonus_PickUp";
+	}
+	States
+	{
+	spawn: 
+		TNT1 A 0;
+		HELB ABCDEFGHGFEDCB 3;
+	loop;
+}
+
+}
+
+CLASS StrongArmorShard : pb_armor_bonus_base { 
+Default
+{
+	Radius 20;
+	Height 16;
+	Armor.Savepercent 35;
+	Armor.Saveamount 5;
+	Armor.Maxsaveamount 9999;
+	+COUNTITEM;
+	+FLOORCLIP;
+	+DONTGIB;
+	+INVENTORY.ALWAYSPICKUP;
+	Inventory.PickupMessage "Picked up a Strong Armor Shard.";
+	Inventory.PickupSound "items/strongarmorbonus";
+	Inventory.Icon "BON4A0";
+}
+
+States
+{
+	Spawn:
+		BON4 ABCDCB 6;
+	loop;
+}
+
+}
+
+CLASS SuperArmorBonus : pb_armor_bonus_base { 
+Default
+{
+	Armor.Savepercent 38;
+	Armor.Saveamount 10;
+	Armor.Maxsaveamount 9999;
+	+COUNTITEM;
+	+FLOORCLIP;
+	+DONTGIB;
+	+INVENTORY.ALWAYSPICKUP;
+	Inventory.Pickupmessage "Picked up a Super Srmor Bonus.";
+	Inventory.PickupSound "items/superarmorbonus";
+	Inventory.Icon "BON6A0";
+}
+
+States
+{
+	Spawn:
+		BON6 ABCDCB 6;
+	Loop;
+}
+
+}
+
+// Zombie bonus --------------------------------------------------------------
+CLASS ZombieHelmet : pb_armor_bonus_base { 
+Default
+{
+	Radius 20;
+	Height 16;
+	Inventory.Pickupmessage "$GOTARMBONUS";
+	Inventory.Icon "DGVBA0";
+	Armor.Savepercent 33.335;
+	Armor.Saveamount 1;
+	Armor.Maxsaveamount 9999;
+	+COUNTITEM;
+	+FLOORCLIP;
+	+DONTGIB;
+	+INVENTORY.ALWAYSPICKUP;
+	Inventory.PickUpSound "misc/bonus_PickUp";
+}
+
+States
+{
+	spawn: 
+		TNT1 A 0;
+		DGVB ABCDCB 3;
+	loop;
+}
+
+}

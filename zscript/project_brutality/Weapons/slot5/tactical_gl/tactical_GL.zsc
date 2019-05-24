@@ -1,0 +1,2101 @@
+// --------------------------------------------------------------------------
+// Super Grenade Launcher
+// --------------------------------------------------------------------------
+CLASS tactical_Grenade_Launcher : weapon_slot_5_proto_class
+{ 
+enum tactical_grenade_type
+{
+	impact = 0,
+	sticky = 1,
+	fire = 2,
+	cryo = 3,
+	acid = 4
+};
+
+tactical_grenade_type loaded_tactical_grenade_type;
+
+array<pb_projectile_base> shot_grenades;
+Default
+{
+	Weapon.SlotNumber 5;
+	Weapon.SelectionOrder 7;
+	Weapon.slotpriority 184;
+
+	Speed 20;
+	Damage 20;
+	Scale .74;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive2 0;
+	Weapon.AmmoGive1 6;
+	Weapon.AmmoType1 "SpecialGrenadeRounds";
+	Weapon.AmmoType2 "GrenadeRounds";
+	Inventory.PickupSound "misc/rockboxa";
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.EXPLOSIVE;
+	+WEAPON.NOALERT;
+	+FLOORCLIP;
+	//+DONTGIB
+	Inventory.PickupMessage "You got the UAC-MGL tactical grenade launcher! (Slot 5)";
+	Tag "Tactical Grenade Launcher";
+}
+
+override bool, bool weapon_dual_and_special()
+{return false, true;}
+
+override void activate_special()
+{ self.set_weapon_state("change_grenade_type"); }
+
+States
+{
+	Spawn:
+		MGLN A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0;
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 1 A_Raise(90);
+	Wait;
+		
+	Ready:
+		TNT1 A 0 A_PlaySound("RLANDRAW");
+		MGLS ABCD 1;
+	Ready_loop:
+		MGLG A 1 a_weaponready(wrf_allowreload);
+	loop;
+
+	Fire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 A_JumpIfInventory("GrenadeRounds",1,1);
+	Goto Reload;
+	//impact
+		MGLF A 1 BRIGHT
+		{
+			switch(invoker.loaded_tactical_grenade_type)
+			{
+				case impact:
+					invoker.shot_grenades.push((pb_projectile_base)(a_fireprojectile("ImpactGrenade", 0, False, 0, 0, 0, 0) ) );
+				break;
+
+				case sticky:
+					invoker.shot_grenades.push((pb_projectile_base)(a_fireprojectile("sticky_grenade", 0, False, 0, 0, 0, 0) ) );
+				break;
+
+				case fire:
+					invoker.shot_grenades.push((pb_projectile_base)(a_fireprojectile("IncendiaryGrenade", 0, False, 0, 0, 0, 0) ) );
+				break;
+
+				case cryo:
+					a_fireprojectile("BlueFlareSpawn",-5,0,0,0);
+					invoker.shot_grenades.push((pb_projectile_base)(a_fireprojectile("CryoGrenade", 0, False, 0, 0, 0, 0) ) );
+				break;
+
+				case acid:
+					a_fireprojectile("GreenFlareSpawn",-5,0,0,0);
+					invoker.shot_grenades.push((pb_projectile_base)(a_fireprojectile("AcidGrenade", 0, False, 0, 0, 0, 0) ) );
+				break;
+			}
+			a_fireprojectile("RedFlareSpawn",-5,0,0,0);
+			A_PlaySound ("weapons/firegrenade", 18);
+			A_AlertMonsters();
+			a_fireprojectile("Alerter");
+			A_TakeInventory("GrenadeRounds",1);
+			a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
+			a_fireprojectile("GrenadeCaseSpawn",5,0,-10,-5);
+		}
+		MGLF BCD 1 BRIGHT;
+		MGLF E 1;
+		MGLG BCD 2 A_WeaponReady(WRF_NOPRIMARY);
+		MGLG EF 1 A_WeaponReady(WRF_NOPRIMARY);
+		TNT1 A 0 A_PlaySound("RLCYCLE2", 5);
+		MGLG A 1 A_WeaponReady(WRF_NOPRIMARY);
+		TNT1 A 0 A_ReFire("fire");
+	Goto Ready_loop;
+
+	AltFire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		MGLG A 1;
+		DETO B 0 A_PlaySound("weapons/pbarm", 1);
+		MGLG G 2
+		{
+			int size = invoker.shot_grenades.size();
+			
+			if(size > 0)
+			{
+				console.printf("size %i", size);
+				for(int i = 0; i <= size; i++)
+				{
+					console.printf("try check %i element", i);
+					if( i >= size) {invoker.shot_grenades.clear(); break;}
+					
+					if(invoker.shot_grenades[i] != null)
+					{
+						invoker.shot_grenades[i].setstatelabel("death");
+					}
+				}
+			}
+		}
+	Goto Ready_loop;
+
+	Reload:
+		TNT1 A 0 A_JumpIfInventory("GrenadeRounds",6,"ready_loop");
+		TNT1 A 0 A_JumpIfInventory("SpecialGrenadeRounds",1,1);
+	Goto Ready+12;
+		TNT1 A 0 A_PlaySound("5OCKLOAD", 3);
+		MGLR ABCDE 2;
+		TNT1 A 0 a_fireprojectile("RocketCaseSpawn",-30,0,-4,-4);
+		MGLR EFGHIJKLMNNN 2;
+		TNT1 A 0 A_PlaySound("5OCKSLAP", 4);
+		MGLR OPQS 2;
+		MGLG A 10;
+		MGLG D 2;
+		MGLG E 2 A_PlaySound("RLCYCLE2", 2);
+		MGLG F 2 {invoker.reload_weapon_magazine("GrenadeRounds", "SpecialGrenadeRounds"); }
+		TNT1 A 0 A_PlaySound("weapons/pbarm", 5);
+		MGLG A 1 A_Refire;
+	Goto Ready_loop;
+
+	change_grenade_type:
+		tnt1 a 0
+		{
+			switch(invoker.loaded_tactical_grenade_type)
+			{
+				case impact:
+					invoker.loaded_tactical_grenade_type = sticky;
+					A_Print("Grenade Type: Sticky");
+				break;
+
+				case sticky:
+					invoker.loaded_tactical_grenade_type = fire;
+					A_Print("Grenade Type: Incendiary");
+				break;
+
+				case fire:
+					invoker.loaded_tactical_grenade_type = cryo;
+					A_Print("Grenade Type: Cryogenic");
+				break;
+
+				case cryo:
+					invoker.loaded_tactical_grenade_type = acid;
+					A_Print("Grenade Type: Acid");
+				break;
+
+				case acid:
+					invoker.loaded_tactical_grenade_type = impact;
+					A_Print("Grenade Type: Impact");
+				break;
+			}
+
+			A_PlaySound("5OCKLOAD", 3);
+		}
+		MGLR ABCDE 1;
+		MGLR EFGHIJKLMNNN 1;
+		TNT1 A 0 A_PlaySound("5OCKSLAP", 4);
+		TNT1 AAAAA 0;
+		MGLR OPQ 2;
+	Goto Ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+		//TNT1 A 0 ACS_NamedExecuteAlways("ToggleSuperGLUpgraded",0);//For people who want this weapon to replace another
+		MGLS DCBA 1;
+		TNT1 A 0 A_Lower(90);
+	Wait;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Steady:
+		TNT1 A 1;
+		Goto Ready;
+		
+		
+	
+
+		
+
+		
+
+		
+
+		
+		
+	FlashKicking:
+		MGLS D 1;
+		MGLS D 1;
+		MGLS C 1;
+		MGLS B 3;
+		MGLS B 3;
+		MGLS C 3;
+		MGLS C 1;
+		MGLS D 1;
+		MGLG A 1;
+		MGLG AAA 1;
+		Stop;
+		
+	FlashAirKicking:
+		MGLS D 1;
+		MGLS D 1;
+		MGLS C 1;
+		MGLS B 3;
+		MGLS B 3;
+		MGLS C 3;
+		MGLS C 1;
+		MGLS D 1;
+		MGLG A 1;
+		MGLG AAAA 1;
+		Stop;
+		
+	FlashSlideKicking:
+		MGLS DC 2;
+		MGLS CCCCBBBBCCC 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0
+		MGLS CDD 1;
+		MGLG AA 1;
+		Stop;
+		
+	FlashPunching:
+		MGLS D 1;
+		MGLS D 1;
+		MGLS C 1;
+		MGLS B 3;
+		MGLS B 3;
+		MGLS C 3;
+		MGLS C 1;
+		MGLS D 1;
+		MGLG A 1;
+		MGLG AAA 1;
+		Stop;
+	}
+}
+
+CLASS ImpactGrenade : ACTOR { 
+	Default {
+	
+	Radius 2;
+	Height 2;
+	speed 47;
+	Damage 30;
+	DamageType "Explosive";
+	+MISSILE;
+	+BLOODSPLATTER;
+	+EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	+CANBOUNCEWATER;
+	Scale .35;
+	Gravity .68;
+	Decal "Scorch";
+	SeeSound "weapon/grenade";
+	DeathSound "Explosion";
+	Obituary "$OB_MPROCKET";
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		Loop;
+		
+	SpawnUnderwater:
+		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 a_spawnprojectile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180));
+		Goto Spawn;
+		
+	Death:
+	XDeath:
+		TNT1 A 0 A_PlaySound("Explosion",4);
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		TNT1 A 0;
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("ImpactGrenadeExplosion_sg",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))      ;
+		
+		Stop;
+	}
+}
+
+CLASS ImpactGrenadeExplode : ACTOR
+{ 
+	Default {
+	
+	SeeSound "Explosion";
+	Radius 1;
+	Height 2;
+	Speed 0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+NOCLIP;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		Goto Death;
+	Death:
+		TNT1 A 0 A_PlaySound("Explosion",4);
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		TNT1 A 0;
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("ImpactGrenadeExplosion_sg",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))      ;
+		
+		Stop;
+	}
+}
+
+CLASS sticky_grenade: pb_projectile_base {//So many flags...
+	Default {
+	
+	//+DOOMBOUNCE
+	-EXPLODEONWATER;
+	-NOEXTREMEDEATH;
+	+CANBOUNCEWATER;
+	+SOLID;
+	+BOUNCEONWALLS;
+	+SEEKERMISSILE;
+	+BOUNCEONFLOORS;
+	+BOUNCEONCEILINGS;
+	+MOVEWITHSECTOR;
+	+USEBOUNCESTATE;
+	Projectile;
+	+SHOOTABLE;
+	+SEEKERMISSILE;
+	-SCREENSEEKER;
+	+DONTSPLASH;
+	+DONTFALL;
+	-NOGRAVITY;
+	+PAINLESS;
+	Damage 0;
+	BounceFactor 0.1;
+	Radius 2;
+	Height 2;
+	Damagetype "ExplosiveImpact";
+	SeeSound "weapon/grenade";
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);
+	loop;
+
+		TNT1 AAAA 0;
+		
+		//TNT1 A 0 A_Stop
+		TNT1 A 0 {self.bNOEXTREMEDEATH = false;}
+		TNT1 A 0 {self.bEXTREMEDEATH = true;}
+		
+		
+		TNT1 A 0 {self.bTHRUACTORS = true;}
+		
+		TNT1 A 0 {self.bUSEBOUNCESTATE = false;}
+		TNT1 A 0 {self.bCANBOUNCEWATER = false;}
+		TNT1 A 0 {self.bBOUNCEONFLOORS = false;}
+		TNT1 A 0 {self.bBOUNCEONCEILINGS = false;}
+		//TNT1 A 0 {self.bDOOMBOUNCE = false;}
+		TNT1 A 0 {self.bALLOWBOUNCEONACTORS = false;}
+		TNT1 A 0 {self.bSOLID = false;}
+		TNT1 A 0 {self.bNOGRAVITY = true;}
+		TNT1 A 0 {self.bBOUNCEONWALLS = false;}
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		//TNT1 A 0 ThrustThingZ (0, 100, 1, 0)
+		TNT1 A 0;
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		//TNT1 A 0 A_Stop
+		GRNP A 1 Bright A_Fire(33);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_Stop;
+		GRNP A 1 Bright A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		//	TNT1 A 0 A_Stop
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Fire(33);
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 0 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 bright A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(33);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_Fire(31);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 A_Fire(31);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 A_Fire(31);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 A_Fire(31);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 A_Fire(31);
+		
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_PRECISE||SMF_LOOK ,256,0);
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1 A_Fire(31);
+		Goto StickyBombOnEnemy;
+		
+	StickyBombOnEnemy:
+		TNT1 A 0 A_AlertMonsters;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		
+		TNT1 A 0 A_Playsound("excavator/explode", 0);
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360)) ;
+		Stop;
+		
+	SpawnUnderwater:
+		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 a_spawnprojectile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180));
+		Goto Spawn;
+		
+	Bounce.Floor:
+	Bounce.Wall:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		TNT1 A 0 A_NoGravity;
+		TNT1 A 0 A_ScaleVelocity(0);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 0 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 BRIGHT A_Fire(22);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		goto Explode;
+		
+	Explode:
+		TNT1 A 0 A_PlaySound("Explosion",4);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Playsound("excavator/explode", 1);
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360)) ;
+		Stop;
+		
+	Bounce.Ceiling:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		EXPL A 0 A_SpawnItemEx("CeilingStickyBomb", 0, 0, -4);
+		stop;
+		
+	XDeath:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		//Bounce.Actor:
+		//Bounce.Actor.Creature:
+		GRNP A 1 {self.bTHRUACTORS = true;}
+		GRNP A 1 {self.bSolid = true;}
+		GRNP A 0 A_Stop;
+		GRNP A 1 {self.bTHRUACTORS = false;}
+		GRNP A 1 {self.bSolid = false;}
+		Goto Spawn+7;
+		
+	Death:
+	Crash:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		EXPL A 0 a_spawnprojectile ("StickyBomb", 0, 0, random (0, 360), 2, random (0, 360));
+		stop;
+	}
+}
+
+CLASS CeilingStickyBomb : ACTOR
+{ 
+	Default {
+	
+	PROJECTILE;
+	// +SHOOTABLE //So alt fire works.
+	// +SEEKERMISSILE //So A_Fire works.
+	//  +DONTSPLASH
+	//  +FORCERADIUSDMG
+	//+THRUGHOST
+	//+DONTFALL //Stops it from falling after sticking to targets.
+	+NOGRAVITY;
+	+MOVEWITHSECTOR;
+	Speed 1;
+	FastSpeed 1;
+	Mass 1;
+	Damagetype "Cutless";
+	Health 10000;
+	Radius 4;
+	Height 4;
+	Scale .45;
+}
+
+States
+{
+	
+	Spawn:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+	Death:
+	XDeath:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		TNT1 A 0;////A_SeekerMissile (90,90)
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 0 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0;////A_SeekerMissile (90,90)
+		GRNP AAAAAA 6 BRIGHT A_Fire(22);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1 BRIGHT A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("Explosion",5);
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Playsound("excavator/explode", 1);
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))  ;
+		Stop;
+		
+	}
+}
+
+CLASS StickyBomb : ACTOR
+{ 
+Default
+{
+	
+	PROJECTILE;
+	// +SHOOTABLE //So alt fire works.
+	// +SEEKERMISSILE //So A_Fire works.
+	//  +DONTSPLASH
+	//  +FORCERADIUSDMG
+	//+THRUGHOST
+	//+DONTFALL //Stops it from falling after sticking to targets.
+	+NOGRAVITY;
+	+MOVEWITHSECTOR;
+	Speed 12;
+	FastSpeed 15;
+	Mass 9999;
+	Damagetype "Cutless";
+	Health 10000;
+	Radius 4;
+	Height 4;
+	Scale .45;
+	}
+	States
+	{
+	
+	Spawn:
+		TNT1 A 0 Thing_ChangeTid(223,2000);
+	Death:
+	XDeath:
+		TNT1 A 0 Thing_ChangeTid(223,2000);
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 0;////A_SeekerMissile (90,90)
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 0 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0;////A_SeekerMissile (90,90)
+		GRNP AAAAAA 6 BRIGHT A_Fire(22);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP A 1;
+		
+		GRNP AAAAAA 6 bright A_Fire(22);
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1;
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1;
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1;
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0 A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 A_PlaySound("BEPBEP", 4);
+		GRNP AAAA 1;
+		
+		TNT1 A 0;//A_SeekerMissile (90,90)
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("Explosion",5);
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Playsound("excavator/explode", 1);
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))  ;
+		Stop;
+		
+	}
+}
+
+CLASS StickyGrenadeExplosion : ACTOR
+{ 
+Default
+{
+	SeeSound "Explosion";
+	Radius 2;
+	Height 1;
+	Speed 0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+NOCLIP;
+	+Thruactors;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	+DOOMBOUNCE;
+	-EXPLODEONWATER;
+	-NOEXTREMEDEATH;
+	+CANBOUNCEWATER;
+	+SOLID;
+	+NOSECTOR;
+	+BOUNCEONWALLS;
+	+SEEKERMISSILE;
+	+BOUNCEONFLOORS;
+	+BOUNCEONCEILINGS;
+	+USEBOUNCESTATE;
+	}
+	States
+	{
+	Spawn:
+	Crash:
+	Death:
+	XDeath:
+	Bounce.Ceiling:
+	Bounce.Wall:
+	Bounce.Actor:
+		TNT1 A 1;
+		TNT1 A 0 A_SpawnItemEx ("StickyGrenadeExplosionReal",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 1;
+		Stop;
+	}
+}
+
+CLASS StickyGrenadeExplosionReal : ACTOR
+{ 
+	Default {
+	
+	SeeSound "Explosion";
+	Radius 2;
+	Height 1;
+	Speed 0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+NOCLIP;
+	+Thruactors;
+	+BLOODSPLATTER;
+	+DOOMBOUNCE;
+	-EXPLODEONWATER;
+	-NOEXTREMEDEATH;
+	+CANBOUNCEWATER;
+	+SOLID;
+	+NOSECTOR;
+	+BOUNCEONWALLS;
+	+SEEKERMISSILE;
+	+BOUNCEONFLOORS;
+	+BOUNCEONCEILINGS;
+	+USEBOUNCESTATE;
+	}
+	States
+	{
+	Spawn:
+	Death:
+	XDeath:
+	Crash:
+	Bounce.Ceiling:
+	Bounce.Walls:
+		TNT1 A 0 A_PlaySound("Explosion",5);
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Playsound("excavator/explode", 1);
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		Stop;
+		/*
+			Death:
+		         
+			Stop*/
+	}
+}
+
+CLASS StickyGrenadeExplosionCeiling : ACTOR { 
+	Default {
+	
+	SeeSound "Explosion";
+
+	Radius 2;
+	Height 1;
+	Speed 2;
+	Gravity 1.0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+NOCLIP;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	+NOGRAVITY;
+	+DOOMBOUNCE;
+	-EXPLODEONWATER;
+	-NOEXTREMEDEATH;
+	+CANBOUNCEWATER;
+	+SOLID;
+	+NOSECTOR;
+	+Thruactors;
+	+BOUNCEONWALLS;
+	+SEEKERMISSILE;
+	+BOUNCEONFLOORS;
+	+BOUNCEONCEILINGS;
+	+USEBOUNCESTATE;
+	}
+	States
+	{
+	Spawn:
+	Crash:
+	Death:
+	XDeath:
+	Bounce.Ceiling:
+	Bounce.Wall:
+	Bounce.Actor:
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 1;
+		TNT1 A 0 A_SpawnItemEx ("StickyGrenadeExplosionCeilingReal",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 1;
+		Stop;
+	}
+}
+
+CLASS StickyGrenadeExplosionCeilingReal : ACTOR { 
+	Default {
+	
+	SeeSound "Explosion";
+
+	Radius 2;
+	Height 1;
+	Speed 2;
+	Gravity 2.0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+NOCLIP;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	+NOGRAVITY;
+	+DOOMBOUNCE;
+	-EXPLODEONWATER;
+	-NOEXTREMEDEATH;
+	+CANBOUNCEWATER;
+	+SOLID;
+	+NOSECTOR;
+	+Thruactors;
+	+BOUNCEONWALLS;
+	+SEEKERMISSILE;
+	+BOUNCEONFLOORS;
+	+BOUNCEONCEILINGS;
+	+USEBOUNCESTATE;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 2;
+		Goto Death;
+	Crash:
+	Death:
+	XDeath:
+	Bounce.Ceiling:
+	Bounce.Wall:
+	Bounce.Actor:
+		TNT1 A 0 A_PlaySound("Explosion",5);
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		EXPL AAA 0 a_spawnprojectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 1;
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Playsound("excavator/explode", 1);
+		TNT1 A 0 A_PlaySound("FAREXPL",3);
+		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360)) ;
+		Stop;
+	}
+}
+
+CLASS IncendiaryGrenade : ACTOR { 
+	Default {
+	
+	Radius 2;
+	Height 2;
+	speed 47;
+	Damage 12;
+	DamageType "Fire";
+	+MISSILE;
+	+BLOODSPLATTER;
+	-EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	+CANBOUNCEWATER;
+	Gravity 0.97;
+	Scale .35;
+	Decal "BigScorch";
+	SeeSound "weapon/grenade";
+	DeathSound "Afrit/Hellfire";
+	Obituary "$OB_MPROCKET";
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
+		TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52Moving", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);
+		Loop;
+		
+	SpawnUnderwater:
+		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);
+		TNT1 A 0 a_spawnprojectile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180));
+		Goto Spawn;
+		
+	Death:
+		TNT1 A 0 A_Explode;
+		TNT1 A 0 A_PlaySound("Afrit/Hellfire", 8);
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType2", 64, 0, random (0, 360), 2, random (30, 60));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		FRFX ZZZ 0 BRIGHT a_spawnprojectile ("BigNeoSmoke", 2, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuel", 12, 0, 90, 2, random (50, 130));
+		EXPL AAA 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuel", 12, 0, 270, 2, random (50, 130));
+		EXPL AAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL AA 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random (-25, 25), random (-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random (-45, 45), random (-45, 35));
+		EXPL AA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (10, 90));
+		
+		Stop;
+	}
+}
+
+CLASS IncendiaryGrenadeExplosionLethal : ACTOR
+{
+	Default {
+	
+	SeeSound "";
+	Radius 2;
+	Height 1;
+	Speed 0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		Goto Death;
+	Death:
+		TNT1 A 0 A_Explode();
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("Afrit/Hellfire", 8);
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType2", 64, 0, random (0, 360), 2, random (30, 60));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		FRFX ZZZ 0 BRIGHT a_spawnprojectile ("BigNeoSmoke", 2, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAA 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL AAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+	Stop;
+	}
+}
+
+CLASS IncendiaryGrenadeExplosion : ACTOR
+{
+	Default {
+	
+	SeeSound "";
+	Radius 2;
+	Height 1;
+	Speed 0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		Goto Death;
+	Death:
+		TNT1 A 0;//A_Explode
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("Afrit/Hellfire", 8);
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType2", 64, 0, random (0, 360), 2, random (30, 60));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		FRFX ZZZ 0 BRIGHT a_spawnprojectile ("BigNeoSmoke", 2, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL AAAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAA 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		EXPL AAAA 0 a_spawnprojectile ("FireballExplosionFlamesBig", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL A 0 a_spawnprojectile ("FlyingBurningFuelSmall", 12, 0, random (0, 360), 2, random (50, 130));
+		
+		Stop;
+	}
+}
+
+CLASS CryoGrenade: ImpactGrenade { 
+	Default {
+	
+	DamageType "Freeze";
+	SeeSound "weapon/grenade";
+	DeathSound "Weapons/FreezerRecharge";
+	}
+	States{
+	Death:
+	XDeath:
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		BXPL A 0 Bright A_StopSound(CHAN_BODY);
+		TNT1 A 0 A_PlaySound("Weapons/FreezerRecharge", 12);
+		TNT1 A 0 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		//BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		//BXPL A 0 Bright {self.bICEDAMAGE = true;}
+		BXPL A 0 Bright {self.bNODAMAGETHRUST = false;}
+		BXPL A 0 Bright A_Explode(30*random(2,3),128, 0);
+		BXPL A 0 Bright A_Explode(40, 256, 0);// Freezy radius damage. (was 128)
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+		BXPL AAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
+		//BXPL ABCDEFGH 1 Bright
+		//BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop;
+	}
+}
+
+CLASS CryoGrenadeExplosion : ACTOR { 
+	Default {
+	
+	SeeSound "Explosion";
+
+	Radius 2;
+	Height 1;
+	Speed 0;
+	DamageType "ExplosiveImpact";
+	+NOBLOCKMAP;
+	+EXTREMEDEATH;
+	+BLOODSPLATTER;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		Goto Death;
+	Death:
+		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
+		BXPL A 0 Bright A_StopSound(CHAN_BODY);
+		TNT1 A 0 A_PlaySound("Weapons/FreezerRecharge", 12);
+		TNT1 A 0 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		//BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		//BXPL A 0 Bright {self.bICEDAMAGE = true;}
+		BXPL A 0 Bright {self.bNODAMAGETHRUST = false;}
+		BXPL A 0 Bright A_Explode(30*random(2,3),128, 0);
+		BXPL A 0 Bright A_Explode(40, 256, 0);// Freezy radius damage. (was 128)
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+		BXPL AAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
+		//BXPL ABCDEFGH 1 Bright
+		//BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop;
+	}
+}
+
+CLASS AcidGrenade : ACTOR { 
+	Default {
+	
+	Radius 4;
+	Height 4;
+	speed 47;
+	Damage 15;
+	DamageType "Desintegrate";
+	+MISSILE;
+	+BLOODSPLATTER;
+	+NOEXTREMEDEATH;
+	-EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	//	+DOOMBOUNCE
+	-EXPLODEONWATER;
+	//+CANBOUNCEWATER
+	+DONTSPLASH;
+	// BounceFactor 0.05
+	Gravity 0.97;
+	Scale .35;
+	Decal "Scorch";
+	SeeSound "weapons/cryobowhit";
+	DeathSound "barrelb/pain";
+	Obituary "$OB_MPROCKET";
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 Thing_ChangeTid(0,1999);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
+		TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", 0, 0, 0, random(-2, 2), random(-2, 2), random(-2, 2), 0, 128);
+		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		GRNP A 2 Bright A_SpawnItem("GreenFlare",0,0);
+		Loop;
+		
+	SpawnUnderwater:
+		GRNP A 2 Bright A_SpawnItem("GreenFlare",0,0);
+		TNT1 A 0 a_spawnprojectile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180));
+		Goto Spawn;
+		
+	Death:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0;//A_PlaySound ("barlp1",3)
+		TNT1 A 0 A_SpawnItem("BFGAltShockWave_grenade",0,0);
+		TNT1 A 0 A_SpawnItem("ACIDFOG", 0, 0);
+		TNT1 A 19 a_spawnprojectile("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		Stop;
+	}
+	
+}
+
+
+
+CLASS ACIDFOG : ACTOR { 
+	Default {
+	
+	Radius 2;
+	Height 1;
+	//Alpha .8
+	Decal "Scorch";
+	//RenderStyle "Translucent"
+	Damage 1;
+	DamageType "Desintegrate";
+	Scale 1.32;
+	Speed 0;
+	Gravity 0;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	+NOEXTREMEDEATH;
+	-EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	+ALLOWPARTICLES;
+	+CLIENTSIDEONLY;
+	+DONTSPLASH;
+	+PAINLESS;
+	-CAUSEPAIN;
+	-FORCEPAIN;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 6, 6, 6, 0, 128);
+		TNT1 A 0 A_Explode ( 50, 190 );
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("GreenCloudLarge", random(3,-3), random(3,-3), random(3,-3), random(1,-1), random(1,-1), 0, 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("GreenCloudMedium", random(3,-3), random(3,-3), random(3,-3), random(1,-1), random(1,-1), 0, 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("GreenCloudSmall", random(3,-3), random(3,-3), random(3,-3), random(1,-1), random(1,-1), 0, 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+		
+		TNT1 A 0 A_SpawnItem("NewAcidExplosionSmoke", 0, 0);
+		TNT1 AAAA 2 BRIGHT Light("BARONBALL") A_SpawnItem("GreenFlare",0,20);
+		Goto Death;
+		
+	Death:
+		TNT1 A 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 6, 6, 6, 0, 128);
+		Stop;
+	}
+}
+
+CLASS AcidGrenadeExplosion : ACTOR { 
+	Default {
+	
+	SeeSound "Explosion";
+
+
+	Radius 2;
+	Height 1;
+	Speed 0;
+	+NOBLOCKMAP;
+	+EXTREMEDEATH;
+	-BLOODSPLATTER;
+	+DONTSPLASH;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		Goto Death;
+	Death:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_PlaySound ("barlp1",3);
+		TNT1 A 0 A_SpawnItem("BFGAltShockWave_grenade",0,0);
+		TNT1 A 0 A_SpawnItem("ACIDFOG", 0, 0);
+		TNT1 A 19 a_spawnprojectile("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		Stop;
+	}
+}
+
+
+
+CLASS ShitCloudSmall  : ACTOR { 
+	Default {
+	
+	PROJECTILE;
+	-ACTIVATEIMPACT;
+	-ACTIVATEPCROSS;
+	+NODAMAGETHRUST;
+	+ADDITIVEPOISONDAMAGE;
+	+BLOODLESSIMPACT;
+	+NOTELEPORT;
+	+RIPPER;
+	+NOBLOOD;
+	+NOEXTREMEDEATH;
+	-EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	-ALLOWPARTICLES;
+	+DONTSPLASH;
+	+PAINLESS;
+	-CAUSEPAIN;
+	-FORCEPAIN;
+	-SOLID;
+	Radius 0;
+	Height 0;
+	DamageType "Desintegrate";
+	PoisonDamage 1;
+	PoisonDamageType "Desintegrate";
+	Speed 1;
+	Alpha 0.6;
+	RenderStyle "Add";
+	Seesound "redburn";
+	}
+	States
+	{
+	Spawn:
+		BTXS ABCDE 4;
+		BTXS A 0 A_Explode ( 7, 32 );
+		Loop;
+	}
+}
+
+CLASS ShitCloudMedium : ShitCloudSmall { 
+	Default {
+	
+	}
+	States
+	{
+	Spawn:
+		BTXM ABCDE 4 A_SpawnItem("GreenFlare",0,0);
+		BTXM A 0 A_Explode ( 10, 64 );
+		Loop;
+	}
+}
+
+CLASS ShitCloudLarge : ShitCloudSmall { 
+	Default {
+	
+	}
+	States
+	{
+	Spawn:
+		BTXL A 0 A_Jump( 90, "SpawnNew" );
+		BTXL ABCDE 4 A_SpawnItem("GreenFlare",0,0);
+		BTXL A 0 A_Explode ( 12, 96 );
+		Loop;
+	SpawnNew:
+		TNT1 A 0 a_spawnprojectile( "ShitCloudMissile", 12, 0, random( 0, 359 ), 2 );
+		Goto Spawn+1;
+	}
+}
+
+CLASS ShitCloudMissile : ACTOR { 
+	Default {
+	
+	
+	+MISSILE;
+	+NoGravity;
+	-SHOOTABLE;
+	+NOBLOOD;
+	+RIPPER;
+	+BLOODLESSIMPACT;
+	+NODAMAGETHRUST;
+	+THRUACTORS;
+	Speed 1;
+	Damage 0;
+	//DamageType PoisonDamage
+	Alpha 0.5;
+	RenderStyle "Add";
+	}
+	States
+	{
+	Spawn:
+		BTXS ABCDE 4 A_FadeIn( 0.12 );
+		BTXS A 0 A_Explode ( 8, 24 );
+		BTXS ABCDE 4 A_SpawnItem("GreenFlare",0,0);
+		BTXS A 0 A_Explode ( 6, 20 );
+		BTXS ABCDE 4 A_SpawnItem("GreenFlare",0,0);
+		BTXS A 0 A_Explode ( 7, 16 );
+		BTXS ABCDE 4 A_SpawnItem("GreenFlare",0,0);
+		BTXS A 0 A_Explode ( 5, 12 );
+		BTXS ABCDE 4 A_FadeOut( 0.06 );
+		BTXS A 0 A_Explode ( 3, 8 );
+		BTXS ABCDE 4 A_FadeOut( 0.06 );
+		Stop;
+	Death:
+		BTXS ABCDE 4 A_FadeOut( 0.06 );
+		BTXS A 0 A_Explode ( 5, 8 );
+		BTXS ABCDE 4 A_FadeOut( 0.06 );
+		Stop;
+	}
+}
+
+CLASS AcidCounter : Inventory { 
+	Default {
+	
+	Inventory.MaxAmount 400;
+	}
+}
+
+CLASS GreenCloudSmall : ShitCloudSmall { 
+	Default {
+	
+	Scale 1.05;
+	Translation "0:255=%[0,0,0]:[0,1,0]";
+	DamageType "Desintegrate";
+	}
+	States
+	{
+	
+	Spawn:
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 6, 100 );
+	GTXL ABCDEFGHIJ 1  A_FadeOut( 0.10);
+	Stop;
+}
+}
+
+CLASS GreenCloudMedium : ShitCloudSmall { 
+	Default {
+	
+	Scale 1.3;
+Translation "0:255=%[0,0,0]:[0,1,0]";
+	DamageType "Desintegrate";
+	}
+	States
+	{
+Spawn:
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL ABCDEFGHIJ 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL JIHGFEDCBA 1;
+	TNT1 A 0 A_Explode ( 8, 100 );
+	GTXL ABCDEFGHIJ 1  A_FadeOut( 0.10);
+	Stop;
+}
+}
+
+CLASS GreenCloudLarge : ShitCloudSmall { 
+	Default {
+ 
+	Scale 1.55;
+	Translation "0:255=%[0,0,0]:[0,1,0]";
+	DamageType "Desintegrate";
+	}
+	States
+	{
+	
+	Spawn:
+	GTXL ABCDEFGHIJ 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL JIHGFEDCBA 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL ABCDEFGHIJ 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL JIHGFEDCBA 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL ABCDEFGHIJ 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL JIHGFEDCBA 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL ABCDEFGHIJ 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL JIHGFEDCBA 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL ABCDEFGHIJ 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL JIHGFEDCBA 1 ;
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 10, 100 );
+	GTXL ABCDEFGHIJ 1  A_FadeOut( 0.10);
+	Stop;
+	}
+}
+
+CLASS GreenCloudMissile : ShitCloudMissile { 
+	Default {
+ 
+	DamageType "Desintegrate";
+	Speed 12;
+	Scale 0.25;
+	Alpha 0.7;
+	Translation "0:255=%[0,0,0]:[0,1,0]";
+	Seesound "redburn";
+	}
+	States
+	{
+	Spawn:
+	GTXL ABCDEFGHIJ 1 BRIGHT Light("BARONBALL") A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+	TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 20, 100, 0);
+	GTXL JIHGFEDCBA 1 BRIGHT Light("BARONBALL") A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 20, 100, 0 );
+	GTXL ABCDEFGHIJ 1 BRIGHT A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+	TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 20, 100, 0);
+	GTXL JIHGFEDCBA 1 BRIGHT A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+	TNT1 A 0 A_Explode ( 20, 100, 0 );
+	TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 20, 100, 0 );
+	Death:
+	TNT1 A 0 A_Playsound("SZZLL", 3);
+	TNT1 A 0 A_Explode ( 20, 100, 0 );
+	TNT1 A 0 A_SpawnItem("MediumNewAcidExplosionSmoke_NoSound", 0, 0);
+	GTXL JIHGFEDCBA 1 A_FadeOut( 0.05);
+	TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	TNT1 A 0 A_Explode ( 20, 100, 0 );
+	GTXL ABCDEFGHIJ 1  A_FadeOut( 0.05);
+	Stop;
+	}
+}
+
+CLASS GreenCloudMissile_Enemy : GreenCloudMissile { 
+	Default {
+ 
+	DamageType "Desintegrate";
+	Speed 10;
+	Scale 0.15;
+	Alpha 0.3;
+	Translation "0:255=%[0,0,0]:[0,1,0]";
+	Seesound "redburn";
+	-RIPPER
+	-SOLID
+	+thrUACTORS
+	}
+	States
+	{
+	Spawn:
+		GTXL ABCDEFGHIJ 1 BRIGHT Light("BARONBALL") A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+		TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 A 0 A_Explode ( 2, 100, 0);
+		GTXL JIHGFEDCBA 1 BRIGHT Light("BARONBALL") A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+		TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 A 0 A_Explode ( 2, 100, 0 );
+		GTXL ABCDEFGHIJ 1 BRIGHT A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+		TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 A 0 A_Explode ( 2, 100, 0);
+		GTXL JIHGFEDCBA 1 BRIGHT A_SetScale(Scale.x+0.05, Scale.Y+0.05);
+		TNT1 A 0 A_Explode ( 2, 100, 0 );
+		TNT1 AA 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 A 0 A_Explode ( 2, 100, 0 );
+		GTXL JIHGFEDCBA 1 A_FadeOut( 0.05);
+		TNT1 A 0 A_SpawnItemEx("GreenTrailSparks_grenade", random(10,-10), random(10,-10), random(10,-10), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+		TNT1 A 0 A_Explode ( 2, 100, 0 );
+		Goto Death;
+	Death:
+		TNT1 A 0 A_Playsound("SZZLL", 3);
+		TNT1 A 0 A_Explode ( 8, 100, 0 );
+		TNT1 A 0 A_SpawnItem("SmallNewAcidExplosionSmoke", 0, 0);
+		GTXL ABCDEFGHIJ 1  A_FadeOut( 0.05);
+		Stop;
+	}
+}
+
+
+CLASS FlakShell: ImpactGrenade { 
+	Default {
+	
+	Radius 2;
+	Height 2;
+	Speed 30;
+	Scale 0.40;
+	DamageFunction (random(11,12));
+	DamageType "Massacre";
+	+MISSILE;
+	+Friendly;
+	+RANDOMIZE;
+	+BLOODSPLATTER;
+	+EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	+CANBOUNCEWATER;
+	+DOOMBOUNCE;
+	-EXPLODEONWATER;
+	+CANBOUNCEWATER;
+	BounceFactor 0.75;
+	Gravity 0.55;
+	Decal "Scorch";
+	SeeSound "";
+	DeathSound "weapons/chainwiz";
+	Obituary "%o was shredded by shrapnel";
+	alpha 0.25;
+	
+	}
+	States
+	{
+	Spawn:
+		JNK3 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("SubFlakShell", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AA 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		JNK1 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		TNT1 AA 0 a_spawnprojectile ("SubFlakShell", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AA 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		JNK2 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("SubFlakShell", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AA 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		JNK1 ABCD 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		goto Death;
+	Death:
+	XDeath:
+		EXPL A 0 A_Explode (4, 55, 0);
+		TNT1 A 1 A_SpawnItem("HitPuff");
+		TNT1 AAA 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("SubFlakShell", 0, 0, random (0, 360), 2, random (0, 360));
+		Stop;
+	}
+}
+
+CLASS SubFlakShell: ImpactGrenade { 
+	Default {
+	
+	Radius 1;
+	Height 1;
+	Speed 35;
+	Scale 0.20;
+	Damagefunction (random(10,11));
+	DamageType "Massacre";
+	+MISSILE;
+	+Friendly;
+	+RANDOMIZE;
+	+BLOODSPLATTER;
+	+EXTREMEDEATH;
+	+FORCEXYBILLBOARD;
+	+CANBOUNCEWATER;
+	+DOOMBOUNCE;
+	-EXPLODEONWATER;
+	+CANBOUNCEWATER;
+	Gravity 0.8;
+	Bouncefactor 0.4;
+	Decal "Scorch";
+	SeeSound "weapons/chainwiz";
+	Obituary "%o was shredded by shrapnel";
+	DeathSound "";
+	alpha 0.40;
+	
+	}
+	States
+	{
+	Spawn:
+		JNK2 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		EXPL A 0 A_Explode (random(4,5), 45, 0);
+		TNT1 A 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		JNK2 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		EXPL A 0 A_Explode (random(4,5), 45, 0);
+		TNT1 A 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		JNK1 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		EXPL A 0 A_Explode (random(4,5), 45, 0);
+		TNT1 A 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		JNK3 ABCDEFGH 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
+		EXPL A 0 A_Explode (random(4,5), 45, 0);
+		TNT1 A 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		goto Death;
+	Death:
+	XDeath:
+		TNT1 A 0;
+		EXPL A 0 A_Explode (random(5,6), 55, 1);
+		TNT1 AA 0 a_spawnprojectile ("FlackTracer", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 1 A_SpawnItem("HitPuff");
+		Stop;
+	}
+}
+
+CLASS GrenadeRounds : Ammo { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 6;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 6;
+	Inventory.Icon "MGLNA1";
+	}
+}
+
+class StickyExplosion : actor
+{
+states
+{
+	spawn:
+		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
+	stop;
+}
+
+}
+
+class BFGAltShockWave_grenade : actor
+{
+states
+{
+	spawn:
+		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
+	stop;
+}
+
+}
+
+class GreenTrailSparks_grenade : actor
+{
+states
+{
+	spawn:
+		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
+	stop;
+}
+
+}
+
+class NewRocketExploFX_grenade : GreenTrailSparks_grenade {}
+
+class ImpactGrenadeExplosion_sg : GreenTrailSparks_grenade {}

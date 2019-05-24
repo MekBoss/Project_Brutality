@@ -1,0 +1,58 @@
+//here must be placed all overrided virtual functions
+class PB_player_pawn_base : PlayerPawn
+{
+//technical data
+bool hold_jump;
+private bool second_jump;
+private int amount_of_jumps;
+const max_jumps = 2;
+
+default {Player.StartItem "zscript_Axe", 1;}
+
+//----------------------------------------------------------------------------
+//	PROC P_CheckJump
+//	clightly changed copy paste from gzdoom pack
+//----------------------------------------------------------------------------
+override void CheckJump()
+{
+	if(hold_jump == true)
+	{
+		hold_jump = false;
+		amount_of_jumps ++;
+		if(amount_of_jumps > max_jumps) {return;}
+		if(amount_of_jumps == 1) {super.checkjump();}
+		
+		if(amount_of_jumps > 1)
+		{
+				double jumpvelz = 10;
+				double jumpfac = 0;
+
+				for (let p = Inv; p != null; p = p.Inv)
+				{
+					let pp = PowerHighJump(p);
+					if (pp)
+					{
+						double f = pp.Strength;
+						if (f > jumpfac) jumpfac = f;
+					}
+				}
+				if (jumpfac > 0) jumpvelz *= jumpfac;
+
+				Vel.Z = jumpvelz;
+				bOnMobj = false;
+				player.jumpTics = -1;
+				if (!(player.cheats & CF_PREDICTING)) A_PlaySound("*jump", CHAN_BODY);
+				return;
+		}
+	}
+}
+
+
+override void playerthink()
+{
+	super.playerthink();
+
+	if (player.jumpTics == 0) {amount_of_jumps = 0;}
+}
+
+}

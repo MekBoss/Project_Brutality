@@ -1,0 +1,46 @@
+class player_movement_event : eventhandler
+{
+//technical variables starts here
+//cooldown between 
+private int jump_cooldown;
+private bool jump_pressed;
+
+//tech ends here
+override bool inputprocess(inputevent e)
+{
+	if (e.type == inputevent.type_keydown)
+	{//press key
+		//keys definition store in gzdoom guts as integers
+		//use double int because any action can be binded to two keys
+		int key1, key2;
+		[key1, key2] = Bindings.GetKeysForCommand("+jump");
+		if ( (key1 && key1 == e.KeyScan) || (key2 && key2 == e.KeyScan) )
+		{
+			SendNetworkEvent("hold_jump", true);
+		}
+	}
+
+	if (e.type == inputevent.type_keyup)
+	{//release key
+		int key1, key2;
+		[key1, key2] = Bindings.GetKeysForCommand("+jump");
+		if ( (key1 && key1 == e.KeyScan) || (key2 && key2 == e.KeyScan) )
+		{
+			SendNetworkEvent("hold_jump", false);
+		}
+	}
+	return false;
+}
+
+override void NetworkProcess(ConsoleEvent e)
+{
+	if (e.Name == "hold_jump")   
+	{
+		//jump_pressed = e.args[0];
+		let plr = players[e.player].mo;
+		PB_player_pawn_base(plr).hold_jump = e.args[0];
+	}
+}
+
+
+}

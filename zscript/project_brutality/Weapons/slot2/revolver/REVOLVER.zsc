@@ -1,0 +1,430 @@
+//// --------------------------------------------------------------------------
+//
+// Revolver
+//
+// --------------------------------------------------------------------------
+
+CLASS colt : weapon_slot_2_proto_class
+{
+Default
+{
+	Weapon.SelectionOrder 2;
+	Weapon.SlotNumber 2;
+	Weapon.slotpriority 2;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoGive1 6;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive2 0;
+	Weapon.AmmoType1 "low_caliber_bullets";
+	Weapon.AmmoType2 "revolverAmmo";
+
+	//Weapon.Kickback 100
+	+FLOORCLIP;
+	+DONTGIB;
+	Obituary "%o was shot down by %k's revolver.";
+	AttackSound "None";
+	Inventory.PickupSound "REVOUP";
+	Inventory.Pickupmessage "You got the UAC .500 Magnum! (Slot 2)";
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOALERT;
+	+WEAPON.NOAUTOFIRE;
+
+	//+WEAPON.NO_AUTO_SWITCH
+	Tag "Colt";
+	Scale 0.9;
+}
+
+States
+{  
+	Spawn:
+		RVIC A -1;
+	Stop;
+		
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 1 A_Raise(80);
+	Wait;
+
+	Ready:
+		TNT1 A 0;
+/*		TNT1 A 0 A_JumpIfInventory("RespectRevolver", 1, "SelectAnimation");
+	WeaponRespect:
+		TNT1 A 0
+		{
+			A_PlaySound("REVOUP", 0);
+			A_SetCrosshair(5);
+		}
+		R2V1 ABCDEFGHIJ 1{
+			a_weaponready();
+			A_SetRoll(roll+0.1);
+		}
+		R2V1 KLMNOPQRST 1 {
+			a_weaponready();
+			A_SetRoll(roll-0.1);
+		}
+		R2V1 U 1 a_weaponready();
+		R2V1 VWXYZ 1 {
+			a_weaponready();
+			A_SetRoll(roll+0.2);
+		}
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Open", 0);
+		R2V2 AB 1 {
+			a_weaponready();
+			A_SetRoll(roll+0.2);
+		}
+		R2V2 CDEFGHI 1{
+			a_weaponready();
+			A_SetRoll(roll-0.2);
+		}
+		R2V2 JKLMNOPQRSTUVWXYZ 1 a_weaponready();
+		R2V3 ABCDEFGH 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Click1");
+		R2V3 IJK 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Click1");
+		R2V3 LMNOPQRSTUVWXYZ 1 a_weaponready();
+		R2V4 ABCDEFGHIJKL 1 a_weaponready();
+		TNT1 A 0 A_Playsound("CYLNSPIN");
+		R2V4 MNOPQRSTUVWXYZ 1 a_weaponready();
+		R2V5 ABCDEFGHIJKL 1 a_weaponready();
+		R2V5 MNOP 1 {
+			a_weaponready();
+			A_SetRoll(roll-0.4);
+		}
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Close");
+		R2V5 QRSTUVWX 1 {
+			a_weaponready();
+			A_SetRoll(roll+0.2);
+		}
+		R2V5 YZ 1 a_weaponready();
+		R2V6 ABCDEFGHIJKLM 1 a_weaponready();
+		TNT1 A 0 A_SetRoll(0);
+	Goto ready_loop;*/
+
+		TNT1 A 0 A_PlaySound("REVOUP");
+		R1V1 ABCD 1;
+		TNT1 A 0 {
+			A_SetRoll(0);
+			A_SetCrosshair(0);
+		}
+	ready_loop:
+		R1V1 E 1 a_weaponready(WRF_ALLOWRELOAD);
+	Loop;
+
+	Fire:
+		TNT1 A 0 {
+			A_WeaponOffset(0,32);
+			A_SetCrosshair(0);
+		}
+		TNT1 A 0 A_JumpIfInventory("RevolverAmmo",1,1);
+	Goto Reload;
+		R4V1 A 1 BRIGHT
+		{
+			A_PlaySound("revolver/fire", 4);
+			A_FireBullets (0.1, 0.1, -1, 65, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_AlertMonsters();
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			A_Takeinventory("RevolverAmmo",1);
+			A_ZoomFactor(0.96);
+			
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.13 * (1 + force) );
+		}
+		R4V1 B 1 BRIGHT {
+			A_ZoomFactor(0.98);
+
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.13 * (1 + force) );
+		}
+		R4V1 C 1 {
+			A_ZoomFactor(1.0);
+
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.13 * (1 + force) );
+		}
+		R4V1 DEFGH 1;
+		TNT1 A 0 A_ZoomFactor(1.0);
+		R1V1 EE 1 A_WeaponReady(WRF_ALLOWRELOAD);
+		TNT1 A 0 A_Refire;
+	Goto ready_loop;
+
+	AltFire:
+		TNT1 A 0 {
+			A_WeaponOffset(0,32);
+			A_SetCrosshair(0);
+		}
+		TNT1 A 0 A_JumpIfInventory("RevolverAmmo",1,1);
+	Goto Reload;
+		R5V1 A 1 BRIGHT {
+			A_Playsound("revolver/fire",4);
+			A_FireBullets (0.1, 0.1, -1, 65, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_AlertMonsters();
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			A_Takeinventory("RevolverAmmo",1);
+			A_ZoomFactor(0.96);
+
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.17 * (1 + force) );
+		}
+		R5V1 B 1 BRIGHT {
+			A_ZoomFactor(0.98);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.17 * (1 + force) );
+		}
+		R5V1 C 1 {
+			A_ZoomFactor(1.0);
+			A_Playsound("Weapons/Revolver/Click1",0);
+
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.17 * (1 + force) );
+		}
+		R5V1 DEFG 1;
+		TNT1 A 0 A_ZoomFactor(1.0);
+		TNT1 A 0 A_Refire("AltHold");
+		R5V1 UVWX 1;
+	Goto ready_loop;
+
+	AltHold:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 A_JumpIfInventory("RevolverAmmo",1,1);
+	Goto Reload;
+		R5V1 I 1 BRIGHT {
+			A_Playsound("revolver/fire",4);
+			A_FireBullets (0.1, 0.1, -1, 65, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_AlertMonsters();
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			A_Takeinventory("RevolverAmmo",1);
+			A_ZoomFactor(0.96);
+
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.18 * (1 + force) );
+		}
+		R5V1 J 1 BRIGHT {
+			A_ZoomFactor(0.98);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.17 * (1 + force) );
+		}
+		R5V1 K 1 {
+			A_ZoomFactor(1.0);
+			A_Playsound("Weapons/Revolver/Click1",4);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch- 0.57 * (1 + force) );
+			A_SetAngle(angle-0.17 * (1 + force) );
+		}
+		R5V1 LMNO 1;
+		TNT1 A 0 A_Refire("AltHold");
+		R5V1 UVWX 1;
+	Goto ready_loop;
+
+
+	Reload: 
+		TNT1 A 0 A_JumpIfInventory("RevolverAmmo",6,"ready_loop");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets",2,1);
+	Goto NoAmmo;
+		TNT1 A 0 A_PlaySound("Ironsights");
+		R6V1 ABCDDE 1 A_SetRoll(roll+0.2);
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Open", 0);
+		R6V1 FGHI 1 A_SetRoll(roll-0.3);
+		R6V1 J 1;
+		R6V1 KLMNO 1;
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Click2", 4);
+		R6V1 PQRS 1 A_SetRoll(roll+0.5);
+		TNT1 AAAAAA 0 a_fireprojectile("RifleCaseSpawn",-5,0,0,-30);
+		R6V1 T 1;
+		R6V1 U 1 A_SetRoll(roll+0.5);
+	ReloadEmpty:
+		R6V1 VWXYZ 1 A_SetRoll(roll-0.5);
+		R6V2 A 1 A_PlaySound("Weapons/Revolver/Load", 4);
+		R6V2 BCDEFF 1 A_SetRoll(roll+0.5);
+		TNT1 A 0 A_PlaySound("CYLNSPIN", 4);
+		R6V2 GHI 1 A_SetRoll(roll+0.5);
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Close", 4);
+		R6V2 JKLMNOPQQ 1 A_SetRoll(roll-0.5);
+		TNT1 A 0 {A_SetRoll(0); invoker.reload_weapon_magazine("RevolverAmmo", "low_caliber_bullets"); }
+	Goto ready_loop;
+	
+	AlreadyUnloaded:
+		Goto ready_loop;
+	Unload:
+		TNT1 A 0 A_JumpIfInventory("RevolverAmmo",1,1);
+	Goto NoAmmo;
+		TNT1 A 0 A_PlaySound("Ironsights");
+		R7V1 ABCDDE 1 A_SetRoll(roll+0.2);
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Open", 0);
+		R7V1 FGHI 1 A_SetRoll(roll-0.3);
+		R7V1 J 1;
+		R7V1 KLMNO 1;
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Click2", 0);
+		R7V1 PQRST 1 A_SetRoll(roll+0.5);
+		R7V1 U 1;
+		R7V1 VWXYZ 1 A_SetRoll(roll-0.5);
+		R7V2 ABCCDE 1 A_SetRoll(roll+0.5);
+		TNT1 A 0 A_PlaySound("Weapons/Revolver/Close", 0);
+		R7V2 EFGHII 1 A_SetRoll(roll-0.5);
+		TNT1 A 0 A_SetRoll(0);
+	RemoveBullets:
+		TNT1 A 0 A_JumpIfInventory("RevolverAmmo",1,1);
+		Goto FinishUnload;
+		TNT1 A 0 {
+			A_Takeinventory("RevolverAmmo",1);
+			A_Giveinventory("low_caliber_bullets",2);
+	}
+	Goto RemoveBullets;
+	FInishUnload:
+		Goto ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+		TNT1 A 0 A_ZoomFactor(1.0);
+		R1V1 FGHI 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Steady:
+		TNT1 A 0;
+		Goto Ready;
+		
+	FastSwitchFromDualWield2:
+
+
+		R3V2 ABCD 1 A_SetRoll(roll-.8);
+		R3V2 E 1;
+		R3V2 FGHI 1 A_SetRoll(roll+.8);
+		Goto ready_loop;
+		
+
+	
+		
+	DualWieldBaby:
+	WeaponSpecial:
+		TNT1 AAAAA 0;
+
+		TNT1 A 0 A_Print("You need two revolvers to dual wield!");
+
+		Goto ready_loop;
+	SwitchToDualWield:
+
+
+		Goto Select;
+		
+
+		
+
+	
+	NoAmmo:
+		R1V1 E 1 A_PlaySound("weapons/empty");
+	Goto ready_loop;
+
+
+		
+		
+	FlashKicking:
+	FlashAirKicking:
+		R8V1 ABCDEFGHIJKLMNNN 1;
+		Stop;
+	FlashPunching:
+		R0V1 ABCDEFGHIJKLMN 1;
+		Stop;
+	FlashSlideKicking:
+		R9V1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1;
+		Stop;
+	FlashSlideKickingStop:
+		R9V1 TUVWX 1;
+		Stop;
+	}
+}
+
+CLASS revolverAmmo : Ammo
+{ 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 6;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 6;
+	Inventory.Icon "RVICA0";
+	}
+}

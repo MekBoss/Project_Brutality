@@ -1,0 +1,17 @@
+CLASS Gas : Ammo { 
+	Default {
+	
+	Inventory.Amount 500;
+	Inventory.MaxAmount 999;
+	Ammo.BackpackAmount 500;
+	Ammo.BackpackMaxAmount 999;
+	Inventory.Icon "GSLNA0";
+	Inventory.PickupMessage "You got Gasoline.";
+	}
+	States
+	{
+	Spawn:
+		GSLN A -1;
+		Stop;
+	}
+}

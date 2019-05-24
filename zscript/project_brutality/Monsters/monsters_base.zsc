@@ -1,0 +1,101 @@
+class pb_monster_base : actor
+{
+//pointer to event which store pointers to cvar which control monsters ability
+//like knight leap or revenant jetpack
+eventhandler spawning_event;
+//link to event which control effects
+eventhandler effects_monster;
+//unsed because now, version 4.0 and hogher, gzdoom allow check cvars directly
+//like if( 'cvar name' true/ > 10/ == 148/ etc)
+
+//head position is height on which "body" of monster should become "head"
+//I recomend to set head_starting_position approx. to "monster heght" - "monster height / 10"
+//because golden ratio and it dont looks stupid in game
+double head_mul, head_pos, legs_pos;
+
+Property headshot_multiplier : head_mul;
+Property head_starting_position : head_pos;
+//for legs, height where legs lost it preciese name and turns into ass
+Property legs_height_max : legs_pos;
+
+//references to gore event so it can decide what blood and how much spawn
+//blood color obvious, blood size is amount of a blood/gore it must spawn
+string blood_color, blood_size;
+//blood color for translation, by default are red, can be or green or blue
+Property blood_color : blood_color;
+Property blood_size : blood_size;
+
+default
+{
+	pb_monster_base.headshot_multiplier 1;
+	pb_monster_base.head_starting_position -1;//so that if someone forgot to define this number monster dont get headshot from every attack
+	pb_monster_base.legs_height_max -1;//same for legs
+	monster;
+	
+	pb_monster_base.blood_color "";//by default it "null", empty string
+	pb_monster_base.blood_size "";//same for size
+}
+
+enum blood_colors
+{
+	normal = 0,
+	blue = 1,
+	green = 2
+};
+
+//since all green/blue blood sprites ARE translated default blood sprites
+//this function handle it wihtout copypaste blood definition three times with new translate field
+actor pb_spawn_blood_color(
+blood_colors collor = 0, string actor_type = "Unknown", double height = 0, double angle = 0, double pitch = 0)
+{
+	actor qqqq = a_spawnprojectile(actor_type, height, 0, angle, 2, pitch);
+	switch(collor)
+	{
+		case blue: qqqq.A_SetTranslation("blood_to_Blue"); break;
+		case green: qqqq.A_SetTranslation("blood_to_Green"); break;
+		default: break;
+	}
+	return qqqq;
+}
+
+
+override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
+{
+	if(!(flags & DMG_EXPLOSION) )
+	{//explosion cant inflict headshot...at least in gzdoom
+		int new_damage = super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+		//to handle cases when actor vulnerable/invulnerable to some damage type
+		//before apply headshot multiplicator
+		
+		vector3 relat_pos = (0, 0, 0);
+		if(inflictor != null){ relat_pos = self.vec3to(inflictor); }
+		//find relative position of inflictor
+		
+		if(pb_monster_base(self).head_pos > -1 && relat_pos.z >= pb_monster_base(self).head_pos)
+		{//if head variable valid
+			new_damage *= self.head_mul;
+			return super.DamageMobj(inflictor, source, new_damage, 'headshot', flags ,angle);
+		}
+
+		if(pb_monster_base(self).legs_pos > -1 && relat_pos.z <= pb_monster_base(self).legs_pos)
+		{//check for arrow in the knee
+			return super.DamageMobj(inflictor, source, new_damage, 'leg', flags ,angle);
+		}
+		return new_damage;
+	}
+
+	if( (inflictor is "PB_player_pawn_base" || source is "PB_player_pawn_base") && self.target == null)
+	{
+		console.printf("here, probably, must shows some fatality");
+		//fatality placeholder
+	}
+	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+}
+
+states
+{
+	Death.Massacre:
+	stop;
+}
+
+}

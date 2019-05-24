@@ -1,0 +1,84 @@
+class pb_Shells : Ammo
+{
+default
+{
+	Inventory.PickUpSound "misc/shell_PickUp";
+	Inventory.PickupMessage "Picked up some Shotgun Shells.";
+	+FLOORCLIP
+	+DONTGIB
+
+	Inventory.Amount 4;
+	Inventory.MaxAmount 50;
+	Ammo.BackpackAmount 20;
+	Ammo.BackpackMaxAmount 100;
+}
+
+States
+{
+	Spawn:
+		SHEL A -1;
+	Stop;
+}
+
+}
+
+CLASS NormalShellBox : pb_Shells
+{ 
+Default
+{
+	Inventory.PickUpSound "misc/shellbox_PickUp";
+	Inventory.PickupMessage "Picked up a box of Shotgun Shells.";
+	Inventory.Amount 10;
+}
+
+States
+{
+	Spawn:
+		SB0X A -1;
+	Stop;
+}
+
+}
+
+
+CLASS two_Shells : pb_Shells
+{
+Default
+{
+	Scale .6;
+	Inventory.PickupMessage "Picked up a pair of Shotgun Shells.";
+	Inventory.PickupSound "misc/shell_PickUp";
+	Inventory.Amount 2;
+	+DONTGIB;
+	+FLOORCLIP;
+}
+
+States
+{
+	Spawn:
+		SH3L A -1 {self.frame = random(0, 6); }
+	Stop;
+}
+
+}
+
+CLASS NormalShellBoxBig : pb_Shells
+{
+Default
+{
+	Scale .8;
+	Inventory.PickupMessage "Picked up a Large Case of Shells.";
+	Inventory.PickupSound "misc/shellbox_PickUp";
+	Inventory.Amount 25;
+	+DONTGIB;
+	+FLOORCLIP;
+}
+
+States
+{
+	Spawn:
+		LSBX A -1;
+	Stop;
+}
+
+}

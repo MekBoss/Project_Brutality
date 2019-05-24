@@ -1979,7 +1979,7 @@ ACTOR LiquidAcidTrail: Brutal_FlyingBlood
     }
 }
 
-Actor LiquidAcid: FlamethrowerMissile
+Actor LiquidAcid: actor
 {
   -NOCLIP
   -NOBLOCKMAP

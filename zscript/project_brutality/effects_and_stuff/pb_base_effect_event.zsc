@@ -1,0 +1,182 @@
+//event which controll all effects smoke/particle/etc
+class pb_effect_event : eventhandler
+{
+enum effect_type
+{
+	sprite,
+	particle
+};
+//arrays for storing pointers to sprite a particle actors
+array<sprite_effect> sprite_actors;
+array<particle_effect> particle_actors;
+//here contains all projectiles which must have trails
+//happens in this event world tick virtual
+array<pb_projectile_base> canonballs;
+//special array type which contains thinkers which handle case of contaniou rays
+//like beam bfg
+array<thinker> continious_ray_handlers;
+
+override void worldthingspawned(worldevent e)
+{	//give pointers to this event to monsters and weapons
+	//so they can use functions of that event
+	//wirhout bothering event tick function with 2-3 tick long effect spawning
+	if(e.thing is "pb_weapon_base")
+	{pb_weapon_base(e.thing).effects_weapon = self;}
+	if(e.thing is "pb_monster_base")
+	{pb_monster_base(e.thing).effects_monster = self;}
+/*/
+	if(e.thing is "pb_projectile_base")
+	{ canonballs.push( (pb_projectile_base)(e.thing) );}
+	/*/
+}
+//find bored thinker to say it "draw some line, cmon"
+thinker find_free_line_handler()
+{
+	int dd = self.continious_ray_handlers.size();
+
+	for(int i = 0; i <= dd; i++)
+	{
+		if(i == dd)
+		{
+			thinker ss = new("constant_line_handler");
+			self.continious_ray_handlers.push(ss);
+			constant_line_handler(ss).effect = self;
+			return ss; break;
+		}
+		if(self.continious_ray_handlers[i])
+		{
+			if(constant_line_handler(self.continious_ray_handlers[i]).busy == false)
+			{
+				return self.continious_ray_handlers[i]; break; 
+			}
+		}
+	}
+	return null;
+}
+//find free sprite or particle effect actor
+actor find_free_effect_actor(effect_type what_effect = sprite)
+{
+	if(what_effect == sprite)
+	{
+		int dd = self.sprite_actors.size();
+
+		for(int i = 0; i <= dd; i++)
+		{
+			if(i == dd)
+			{
+				actor ss = actor.spawn("sprite_effect", pos:(0, 0, 0) );
+				sprite_actors.push( (sprite_effect)(ss) );
+				//since zscript compiler is stupid as fuck, it just bytecod interpreter
+				//all previous checks and actor type just too complicated for it
+				//so we need to ensure it that pushed actor match with array type
+				//to do so use (actor type)(pointer to actor)
+				//CAUTION space between )( break it
+				return ss; break;
+			}
+			if(self.sprite_actors[i])
+			{
+				if(sprite_effect(self.sprite_actors[i]).show_something == false)
+				{
+					return self.sprite_actors[i]; break; 
+				}
+			}
+		}
+	}
+
+	if(what_effect == particle)
+	{
+		int dd = self.particle_actors.size();
+
+		for(int i = 0; i <= dd; i++)
+		{
+			if(i == dd)
+			{
+				actor ss = actor.spawn("particle_effect", pos:(0, 0, 0) );
+				particle_actors.push( (particle_effect)(ss) );
+				return ss; break;
+			}
+			if(self.particle_actors[i])
+			{
+				if(particle_effect(self.particle_actors[i]).show_something == false)
+				{
+					return self.particle_actors[i]; break; 
+				}
+			}
+		}
+	}
+	return null;
+}
+//simple function all sense of it check state and say into console if there are no such state
+void approve_state(actor subject = null, statelabel state_name = null)
+{
+	if(subject == null) {console.printf("there are no actor to change state"); return;}
+	if(state_name == null) {console.printf("there are no state to search"); return;}
+
+	let stt_lnk = subject.findstate(state_name);
+
+	if(stt_lnk == null) {console.printf("actor %s dont have state %s", subject.getclassname(), state_name); return;}
+
+	subject.setstate(stt_lnk);
+}
+//function which draw smoke line between two points in space
+//note, before using vector as argument in while block copy it to new vector
+//because all manipulations with it would chage original vector
+//and this is not always safe and harmless
+void smoke_between_points(vector3 primus = (0, 0, 0), vector3 secundum = (0, 0, 0), effect_type type = sprite, statelabel what_state = null)
+{
+	if(primus == secundum) {return;}
+
+	vector3 dir = level.vec3diff(secundum, primus);
+	vector3 stepping_stone = primus;
+	//hardcoded value 10, probably need to be replaced to cvar
+	vector3 fuck = dir / 100;
+	console.printf("try show something");
+	for(int i = 0; i < 100; i++)//while(stepping_stone.x < secundum.x || stepping_stone.y < secundum.y || stepping_stone.z < secundum.z)
+	{
+//		console.printf("show something");
+		//if(stepping_stone.x < secundum.x || stepping_stone.y < secundum.y || stepping_stone.z < secundum.z) {break;}
+		actor ret = find_free_effect_actor(type);
+		if(ret == null) {return;}
+//	console.printf("effect actor exist");
+		ret.setorigin(stepping_stone, false);
+		approve_state(ret, what_state);
+		stepping_stone -= fuck;
+	}
+}
+//function for actors/weapons which try to show some mikle bay explosions
+actor show_some_effect(actor caller = null, statelabel effect_state = null, effect_type effect_type = sprite)
+{
+	if(caller == null) {return null;}
+	actor lin = find_free_effect_actor(effect_type);
+	approve_state(lin, effect_state);
+	lin.setorigin(caller.pos, false);
+	return lin;
+}
+
+override void worldtick()
+{	//if there are any projectiles in array...
+	if(canonballs.size() > 0)
+	{
+		for(int i = 0; i < canonballs.size(); i++)
+		{//...draw smoke trail behind each
+			console.printf("size %i", canonballs.size());
+			if(canonballs[i])
+			{
+				self.smoke_between_points(pb_projectile_base(canonballs[i]).prev_pos, canonballs[i].pos, what_state: "test_state");
+			}
+			else
+			{
+				canonballs.delete(i);
+				i--;
+			}
+		}
+	}
+}
+
+}
+
+//dummy class which serve only to combine all effects under one base
+class actual_effect_base : pb_special_effect_base {}
+
+class sprite_effect : actual_effect_base {}
+class particle_effect : actual_effect_base {}

@@ -1,0 +1,499 @@
+CLASS Un_marker : weapon_slot_9_proto_class
+{
+enum maker_fire_mode
+{
+	incenireation_mode = 0,
+	inferno_mode = 1
+};
+maker_fire_mode actual_fire_mode;
+
+override bool, bool weapon_dual_and_special()
+{return false, true; }
+
+override void activate_special()
+{
+	owner.player.SetPSprite(PSP_WEAPON, self.FindState("Switch_fire_mode") );
+}
+
+Default
+{
+	Weapon.SlotNumber 9;
+	Weapon.SelectionOrder 2;
+	Weapon.slotpriority 0.5;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive1 200;
+	Weapon.AmmoGive2 200;
+	Weapon.AmmoType1 "Gas";
+	Weapon.AmmoType2 "Demon_powder";
+	Inventory.PickupSound "UNMPCK";
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOAUTOFIRE;
+//	+WEAPON.CHEATNOTWEAPON;
+	
+	tag "Ohh...you touch my tralala";
+	Inventory.PickupMessage "You got the sinister Unmaker, the penultimate wrath of Hell itself. (Slot 9)";
+}
+
+States
+{
+	Spawn:
+		UNHD ABCDEDCBA 2 BRIGHT Light("WeaponUpgradeSpawner");
+	Loop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 0 A_Raise(130);
+	wait;
+
+	Ready:
+		TNT1 A 0 A_Playsound("UNMUP");
+		UNHS DCBA 1;
+	Ready_loop:
+		TNT1 A 0 A_PlaySound("UNMIDL", 6,1,1);
+		UNHG AABBCCDDEE 2
+		{
+			A_WeaponReady();
+			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+	loop;
+
+	Steady:
+		TNT1 A 1;
+	Goto Ready_loop;
+
+	Switch_fire_mode:
+		TNT1 A 0
+		{
+			A_Playsound("UNMSWTC");
+			if(invoker.actual_fire_mode == inferno_mode)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("Switch_to_inceniration") ); return;}
+		}
+		TNT1 A 0 {invoker.actual_fire_mode = inferno_mode; A_Print("Inferno Mode");}
+		UNHF ABCD 2;
+		TNT1 AAAAA 0 A_FireProjectile("GunFireSmoke", random(-5,5), 0, random(-3,3),random(1,3));
+		//TNT1 A 0 A_FireProjectile("MancubusSwitchModeEffect", 0, 0, 0, random(1,3));
+		TNT1 AAAAA 0 A_FireProjectile("ShotgunParticles", random(-5,5), 0, random(-3,3),random(1,3));
+		UNHF EE 1 BRIGHT;
+		UNHF DCBA 2;
+	Goto Ready_loop;
+		
+	Switch_to_inceniration:
+		TNT1 A 0 {A_Print("Incineration Mode"); invoker.actual_fire_mode = incenireation_mode;}
+		UNHF ABCD 2;
+		UNHF E 1 BRIGHT
+		{
+			A_FireProjectile("UnmakerSwitchModeEffect", 0, 0, 0, random(1,3));
+			A_Playsound("UNMSWT2",3);
+		}
+		UNHF FGHIJKLM 1 BRIGHT;
+		UNHF EDCBA 1;
+	Goto Ready_loop;
+
+	Fire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 
+		{
+			if(invoker.actual_fire_mode == incenireation_mode)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("FireFlameBall") ); return;}
+		}
+		TNT1 A 0 A_JumpIfInventory("Demon_powder",4,1);
+	Goto Ready_loop;
+		UNHF ABCD 1;
+		TNT1 A 0 A_PlaySOund("UNMCHG", 1);
+		UNHF EFGHIJKLM 2 BRIGHT;
+		TNT1 A 0 A_ZoomFactor(0.95);
+		TNT1 A 0 A_PlaySOund("UNMSTA", 3);
+	Hold:
+		TNT1 A 0 A_JumpIfInventory("Demon_powder",4,1);
+	Goto StopPrimary;
+		UNHF NOPQ 1 BRIGHT
+		{
+			 A_PlaySound("UNMLOP", 6);
+			A_FireProjectile("UnmakerLaser", 0, 0, 0, 0, 0, 0);
+			A_TakeInventory("Demon_powder", 1);
+			A_RailAttack(1, 0, 0, "none", "red", RGF_NOPIERCING | RGF_SILENT | RGF_CENTERZ | RGF_FULLBRIGHT, 0, "hitpuff", 0, 0, 9999, 1);
+			A_SetAngle(frandom(-0.5, 0.5) + angle);
+			A_SetPitch(frandom(-0.3, 0.3) + pitch);
+		}
+		TNT1 A 0 A_Refire("hold");
+	StopPrimary:
+		TNT1 A 0 A_ZoomFactor(1.0);
+		TNT1 A 0 A_StopSOund(1);
+		TNT1 A 0 A_StopSOund(6);
+		TNT1 A 0 A_PlaySOund("UNMRLS", 3);
+		UNHF J 1 BRIGHT;
+		TNT1 A 0 A_PlaySOund("UNMSTO", 1);
+		UNHF IHGF 1 BRIGHT;
+		UNHF DCBA 1;
+	Goto Ready_loop;
+		
+	FireFlameBall:
+		TNT1 A 0 A_JumpIfInventory("Gas",15,1);
+	Goto Ready_loop;
+		UNHF ABCDE 1;
+		TNT1 A 0 A_ZoomFactor(0.97);
+		UNHF R 1 BRIGHT A_FireProjectile("BigFireBallWithGravity", 0, 0, 0, 0);
+		TNT1 A 0 A_TakeInventory("Gas", 15);
+		TNT1 A 0 A_FireProjectile("ShakeYourAssDouble", 0, 0, 0, 0);
+		TNT1 AAAAA 0 BRIGHT A_FireProjectile("ShotgunParticles", random(-17,17), 0, -1, random(-12,12));
+		UNHF STUV 1 BRIGHT;
+		TNT1 A 0 A_ZoomFactor(1.0);
+		UNHF EBCB 1;
+		UNHF A 0 A_Refire("FireFlameBall");
+	Goto Ready_loop;
+		
+	Altfire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 
+		{
+			if(invoker.actual_fire_mode == incenireation_mode)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("FireFlameThrower") ); return;}
+		}
+		TNT1 A 0 A_JumpIfInventory("Demon_powder",4,1);
+	Goto Ready_loop;
+		UNHF ABCD 1;
+		TNT1 A 0 A_PlaySOund("UNMCHG2", 1);
+		UNHF EFGHIJKLM 1 BRIGHT;
+	Althold:
+	alt_alt:
+		TNT1 A 0 A_JumpIfInventory("Demon_powder",4,1);
+	Goto StopDoomSeeker;
+		TNT1 A 0;
+		UNHF N 1 BRIGHT A_FireProjectile("UnmakerDoomSeeker", 0, 0, 0, 0, 0, 0);
+		TNT1 A 0 A_TakeInventory("Demon_powder", 4);
+		UNHF Q 1 BRIGHT;
+		TNT1 A 0 A_SetAngle(frandom(-1, 1) + angle);
+		TNT1 A 0 A_SetPitch(-0.5 + pitch);
+		UNHF JIHGF 1 BRIGHT;
+		TNT1 A 0 A_Refire("alt_alt");
+	StopDoomSeeker:
+		UNHF E 1 BRIGHT;
+		UNHF DCBA 1;
+	Goto Ready_loop;
+
+	FireFlameThrower:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfInventory("Gas",4,1);
+	Goto Ready_loop;
+		TNT1 A 0;
+		TNT1 A 0 A_Playsound("FlmrStr", 3);
+		TNT1 A 0 A_ZoomFactor(0.925);
+		UNHF ABCDE 1 A_FireProjectile("MancubusSwitchModeEffect", 0, 0, 0, random(1,3));
+		TNT1 A 0 A_Playsound("FLAMER2", 6, 1, 1);
+		UNHF F 1 BRIGHT;
+	FlamethrowerHold:
+		TNT1 A 0 A_JumpIfInventory("Gas",4,1);
+	Goto StopFlamer;
+		TNT1 A 0 A_AlertMonsters;
+		UNHF W 1 BRIGHT A_SetAngle(random(1, -1) + angle);
+		TNT1 AAA 0 BRIGHT A_FireProjectile("ShotgunParticles", random(-17,17), 0, -1, random(-12,9));
+		TNT1 A 0 A_FireProjectile("FlamethrowerMissile", 0, 1, 0, -1);
+		TNT1 A 0 A_TakeInventory("Gas", 4);
+		UNHF X 1 BRIGHT A_SetPitch(random(1, -1) + pitch);
+		TNT1 AAA 0 BRIGHT A_FireProjectile("ShotgunParticles", random(-17,17), 0, -1, random(-12,9));
+		TNT1 A 0 A_FireProjectile("FlamethrowerMissile", 0, 1, 0, -1);
+		TNT1 A 0 A_TakeInventory("Gas", 4);
+		UNHF W 1 BRIGHT A_SetPitch(random(1, -1) + pitch);
+		TNT1 AAA 0 BRIGHT A_FireProjectile("ShotgunParticles", random(-17,17), 0, -1, random(-12,9));
+		TNT1 A 0 A_FireProjectile("FlamethrowerMissile", 0, 1, 0, -1);
+		TNT1 A 0 A_TakeInventory("Gas", 4);
+		UNHF Y 1 BRIGHT;
+		TNT1 A 0 A_Refire("FlamethrowerHold");
+	StopFlamer:
+		TNT1 A 0 A_StopSound(2);
+		TNT1 A 0 A_StopSound(6);
+		UNHF EDCBA 1;
+	Goto Ready_loop;
+
+	Deselect:
+		TNT1 A 0 A_StopSOund(1);
+		TNT1 A 0 A_StopSOund(6);
+		UNHS ABCD 1;
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_Lower;
+	Wait;
+		
+
+
+		
+
+		
+	FlashKicking:
+		UNHS A 1;
+		UNHS B 1;
+		UNHS C 1;
+		UNHS D 3;
+		UNHS E 3;
+		UNHS E 3;
+		UNHS D 1;
+		UNHS C 1;
+		UNHS B 1;
+		UNHG AAA 1;
+		Stop;
+		
+	FlashAirKicking:
+		UNHS A 1;
+		UNHS B 1;
+		UNHS C 1;
+		UNHS D 3;
+		UNHS E 3;
+		UNHS E 3;
+		UNHS D 1;
+		UNHS C 1;
+		UNHS B 1;
+		UNHG AAAA 1;
+		Stop;
+		
+	FlashSlideKicking:
+		UNHS ABCD 2;
+		UNHS EFFFFFFEE 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		UNHS EDCBA 1;
+		UNHG A 1;
+		Stop;
+		
+	FlashPunching:
+		UNHS A 1;
+		UNHS B 1;
+		UNHS C 1;
+		UNHS D 3;
+		UNHS E 3;
+		UNHS E 3;
+		UNHS D 1;
+		UNHS C 1;
+		UNHS B 1;
+		UNHG AAA 1;
+		Stop;
+	}
+}
+
+
+CLASS UnmakerLaser: pb_projectile_base { 
+	Default {
+	
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	+DONTSPLASH;
+	-BLOODSPLATTER;
+	damagefunction (random(45, 50));
+	radius 1;
+	height 1;
+	speed 500;
+	renderstyle "Add";
+	alpha 0.9;
+	scale .15;
+	decal "scorch";
+	damagetype "Fire";
+	missiletype "UnmakerLaserTrail";
+	}
+	states
+	{
+	Spawn:
+		PBAL HI 1 BRIGHT;
+		Loop;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_CheckFloor("XDeath");
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItem("UnmakerPuff");
+		TNT1 A 0 BRIGHT A_SpawnItem("RedLightningTrial",0);
+		TNT1 A 0 BRIGHT A_SpawnItem("RedFlareLarge1X",0);
+		TNT1 AA 0 A_SpawnItemEx("BurningEmberParticlesFloating_Bigger", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 AAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_explode(20, 100);
+		//TNT1 AAA 20 a_spawnprojectile ("BigBlackSmoke", 0, 0, random (0, 360), 2, random (40, 160))
+		Stop;
+		
+	XDeath:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItem("UnmakerPuff");
+		TNT1 A 0 BRIGHT A_SpawnItem("RedLightningTrial",0);
+		TNT1 A 0 BRIGHT A_SpawnItem("RedFlareLarge1X",0);
+		TNT1 AA 0 A_SpawnItemEx("BurningEmberParticlesFloating_Bigger", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 AAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15),0, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35),0, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random (-45, 45), random (-45, 35), 0, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_explode(20, 100);
+		//TNT1 AAA 20 a_spawnprojectile ("BigBlackSmoke", 0, 0, random (0, 360), 2, random (40, 160))
+		Stop;
+	}
+}
+	
+	
+CLASS UnmakerLaserTrail : ACTOR { 
+	Default {
+	
+	+FORCEXYBILLBOARD;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+SHADOW;
+	+NOTELEPORT;
+	+CANNOTPUSH;
+	+NODAMAGETHRUST;
+	renderstyle "Add";
+	alpha 0.9;
+	scale .15;
+	}
+	states
+	{
+	Spawn:
+		LEYS R 0;
+		LEYS R 1 BRIGHT;
+		Stop;
+	}
+}	
+	
+	
+CLASS UnmakerDoomSeeker : ACTOR { 
+	Default {
+	
+	+NOGRAVITY;
+	+SEEKERMISSILE;
+	+RANDOMIZE;
+	+SCREENSEEKER;
+	PROJECTILE;
+	SeeSound "";
+	Height 4;
+	Radius 4;
+	DeathSound "unmbal";
+	SeeSound "unmalt";
+	RenderStyle "Add";
+	DamageType "Fire";
+	Scale 0.60;
+	Speed 20;
+	Decal "Scorch";
+	Obituary "%o was tainted by %k's Unmaker!";
+	Damage 75;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_Playsound("UNMFLY1", 1, 1, 1);
+	Fly:
+		S4BA A 1 BRIGHT A_Weave(5, 5, 0.5, 0.5);
+		TNT1 A 0 A_SeekerMissile(0,2,SMF_LOOK);
+		NULL A 0 A_SpawnItem("RedLightningTrial_Small", 5);
+		NULL A 0 A_SpawnItem("RedFlare",5,0,0);
+		S4BA B 1 BRIGHT A_Weave(5, 5, 0.5, 0.5);
+		TNT1 A 0 A_SeekerMissile(0,2,SMF_LOOK);
+		NULL A 0 A_SpawnItem("RedLightningTrial_Small", 5);
+		NULL A 0 A_SpawnItem("RedFlare",5,0,0);
+		S4BA A 1 BRIGHT A_Weave(5, 5, 0.5, 0.5);
+		TNT1 A 0 A_SeekerMissile(0,2,SMF_LOOK);
+		NULL A 0 A_SpawnItem("RedLightningTrial_Small", 5);
+		NULL A 0 A_SpawnItem("RedFlare",5,0,0);
+		S4BA B 1 BRIGHT A_Weave(5, 5, 0.5, 0.5);
+		TNT1 A 0 A_SeekerMissile(0,2,SMF_LOOK);
+		NULL A 0 A_SpawnItem("RedLightningTrial_Small", 5);
+		TNT1 A 0 A_SpawnItemEx("ObeliskTrailSpark", random(-1, 1), random(-1, 1), random(-1,1), 0, 0, 0, 0, 128, 0);
+		NULL A 0 A_SpawnItem("RedFlare",5,0,0);
+		Loop;
+		
+	Death:
+		TNT1 A 0 A_StopSound(1);
+		TNT1 A 0 A_SpawnItem("HellRifle_Puff2",0);
+		TNT1 A 0 BRIGHT A_SpawnItem("RedFlare",0);
+		TNT1 A 0 A_explode(35, 60);
+		TNT1 AAA 0 A_SpawnItemEx("ExplosionParticleVerySlow", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
+		TNT1 AA 0 A_SpawnItemEx("BurningEmberParticlesFloating_Bigger", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 AAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
+		TNT1 A 4;
+		TNT2 AAAAA 4 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		Stop;
+	}
+}
+
+CLASS RedLightningTrial : ACTOR { 
+	Default {
+	
+	renderstyle "Add";
+	Damage 0;
+	Scale 0.95;
+	+NOGRAVITY;
+	+THRUACTORS;
+	Translation "0:255=%[1,0,0]:[1,0,0]";
+	}
+	States
+	{
+	Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump (256, "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10");
+	DLI1 ABCDEFGHIJK 1 bright;
+	Stop;
+	Spawn2:
+	TNT1 A 0;
+	DLI2 ABCDEFGHIJK 1 bright;
+	Stop;
+	Spawn2:
+	TNT1 A 0;
+	DLI3 ABCDEFGHIJK 1 bright;
+	Stop;
+	Spawn3:
+	TNT1 A 0;
+	DLI3 ABCDEFGHIJK 1 bright;
+	Stop;
+	Spawn4:
+	TNT1 A 0;
+	DLI4 ABCDEFGHIJK 1 bright;
+	Stop;
+	Spawn5:
+	TNT1 A 0;
+	DLI5 ABCDEFGHIJK 1 bright;
+	Stop;
+	Spawn6:
+	TNT1 A 0;
+	DLI2 LMNOPQRSTUV 1 bright;
+	Stop;
+	Spawn7:
+	TNT1 A 0;
+	DLI3 LMNOPQRSTUV 1 bright;
+	Stop;
+	Spawn8:
+	TNT1 A 0;
+	DLI3 LMNOPQRSTUV 1 bright;
+	Stop;
+	Spawn9:
+	TNT1 A 0;
+	DLI4 LMNOPQRSTUV 1 bright;
+	Stop;
+	Spawn10:
+	TNT1 A 0;
+	DLI5 LMNOPQRSTUV 1 bright;
+	Stop;
+}
+}
+
+CLASS RedLightning_Small : RedLightningTrial { 
+	Default {Scale 0.2;} 
+}
+
+
+CLASS UnmakerSwitchModeEffect  : ACTOR { 
+	Default {
+	
+	Speed 8;
+	}
+	States
+	{
+	Spawn:
+		TNT1 AAAA 0 A_SpawnItemEx("RedLightningTrial_Small", random(5,6),random(-1,1),random(-12,-6),8,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 AAAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(5,6),random(-1,1),random(-12,-6),8,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+CLASS RedLightningTrial_Small : RedLightningTrial { 
+	Default
+{ Scale 0.12; }
+}

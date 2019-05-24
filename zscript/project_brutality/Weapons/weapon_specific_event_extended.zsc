@@ -1,0 +1,95 @@
+//base for all weapons effects like shots or bullets smoke trail
+class weapon_related_fancy_actor : pb_special_effect_base
+{}
+
+//struct which contain arrys of particle and smoke actors
+struct pb_wepon_effects play
+{
+transient cvar low_res_mode;
+
+array <actor> sprite_effect_actors;
+array <actor> particle_effect_actors;
+
+enum effect_type
+{
+	sprite = 0,
+	particle = 1
+};
+
+//function which must return free effects actor
+actor return_free_actor(effect_type type = sprite)
+{
+	pb_wepon_effects n;
+		
+	if(type == sprite)
+	{
+		int size = n.sprite_effect_actors.size();
+		if(size < 1)
+		{ console.printf("something fuckup, there is no actors in sprite array...at all"); return null;}
+		
+		for(int i = 0; i <= size; i++)
+		{
+			if(i == size)
+			{//if not enough actors, make some new
+				actor ss = actor.spawn("weapon_related_fancy_actor", pos:(0, 0, 0));
+				n.sprite_effect_actors.push(ss);
+				return ss; break;
+			}
+
+			if(n.sprite_effect_actors[i])
+			{
+				if(n.sprite_effect_actors[i].instatesequence(n.sprite_effect_actors[i].curstate, n.sprite_effect_actors[i].findstate("off") ) )
+				{
+					return n.sprite_effect_actors[i]; break; 
+				}
+			}
+		}
+	}
+	//absolutelly same as above, but with use of particle array
+	if(type == particle)
+	{
+		int size = n.particle_effect_actors.size();
+		if(size < 1) 
+		{ console.printf("something fuckup, there is no actors in particle array...at all"); return null;}
+		
+		for(int i = 0; i <= size; i++)
+		{
+			if(i == size)
+			{//if not enough actors, make some new
+				actor ss = actor.spawn("weapon_related_fancy_actor", pos:(0, 0, 0));
+				n.particle_effect_actors.push(ss);
+				return ss; break;
+			}
+
+			if(n.particle_effect_actors[i])
+			{
+				if(n.particle_effect_actors[i].instatesequence(n.particle_effect_actors[i].curstate, n.particle_effect_actors[i].findstate("off") ) )
+				{
+					return n.particle_effect_actors[i]; break; 
+				}
+			}
+		}
+	}
+
+	return null;
+}
+
+actor show_something(actor caller = null, statelabel state_name = null, effect_type what_show = sprite)
+{
+	if(state_name == null) {console.printf("effect 'name' dont defined"); return null;}
+	if(caller == null) {console.printf("effect 'caller' dont exist"); return null;}
+
+	actor eff = return_free_actor(what_show);
+	if(eff == null) {console.printf("how did you manage to null-ing defnitely existing actor?"); return null;}
+
+	state firework = eff.findstate(state_name);
+	if(firework == null) {console.printf("effect %s dont defined"); return null;}
+	eff.setstate(firework);
+
+	eff.setorigin(caller.pos, false);
+	
+	return eff;
+}
+
+}
+

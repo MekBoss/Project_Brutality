@@ -1,0 +1,767 @@
+CLASS Carbide : weapon_slot_4_proto_class
+{
+enum carbine_fire_mode
+{
+	automatic = 0,
+	burst = 1,
+	single = 2
+};
+
+carbine_fire_mode actual_carbine_fire_mode;
+
+bool iron_sight;
+
+Default
+{	
+	Weapon.SlotNumber 4;
+	Weapon.SelectionOrder 1;
+	Weapon.slotpriority 0.5;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoGive1 20;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive2 0;
+	Weapon.AmmoType1 "pb_clip";
+	Weapon.AmmoType2 "XRifleAmmo";
+	
+	+FLOORCLIP;
+	+DONTGIB;
+	Obituary "%o was shot down by %k's Combat Rifle.";
+	AttackSound "None";
+	Inventory.PickupSound "CLIPIN";
+	Inventory.Pickupmessage "You got the UAC41 Carbine! (Slot 4)";
+	Tag "UAC-41 Carbine";
+	+WEAPON.WIMPY_WEAPON;
+	//+WEAPON.NO_AUTO_SWITCH
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOALERT;
+	+WEAPON.NOAUTOFIRE;
+	Scale 0.9;
+}
+
+override bool, bool weapon_dual_and_special()
+{return false, true;}
+
+override void activate_special()
+{
+	self.set_weapon_state("change_operating_mode");
+}
+
+States
+{
+	Spawn:
+		4AFL A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		//TNT1 A 0 A_SelectWeapon("LMG");
+		TNT1 A 1 A_Raise(80);
+	Wait;
+
+	Ready:
+/*	tnt1 a 0
+	{ if(cvar show long weapon select animations == true && weapon selected for the first time )
+	{self.Player.SetPSprite(PSP_WEAPON, self.FindState("select_carbine_first_time") ); return;}} }
+	
+	select_carbine_first_time:
+		TNT1 A 0
+		{
+			A_SetCrosshair(5);
+			A_PlaySound("weapons/carbine/up", 0);
+		}
+		4A11 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 a_weaponready();
+		4A12 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 a_weaponready();
+		4A13 ABCDEFGHIJ 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("weapons/carbine/magout", 0);
+		4A13 KLMNOPQRSTUVWXYZ 1 a_weaponready();
+		4A14 ABCDEFGHIJKL 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("IronSights", 0);
+		4A14 MNOPQRSTUVWXYZ 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("LIGHTON", 0);
+		4A15 ABCDEFGHIJ 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("LIGHTON", 0);
+		4A15 KLMNOPQRSTU 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("LIGHTON", 0);
+		4A15 VWXYZ 1 a_weaponready();
+		4A16 ABCDE 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("IronSights", 0);
+		4A16 FGHIJKLMNOPQ 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("weapons/carbine/fancybutton", 0);
+		4A16 RSTUVWXYZ 1 a_weaponready();
+		4A17 ABCDEFGHIJKLMNOPQRSTU 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("weapons/carbine/magin", 0);
+		4A17 VWXYZ 1 a_weaponready();
+		4A18 AB 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("weapons/riflemagslap", 0);
+		4A18 CDEFGHIJKLMNOP 1 a_weaponready();
+		TNT1 A 0 A_PlaySound("weapons/carbine/down", 0);
+		4A18 QRSTUVWX 1 a_weaponready();
+	Goto ready_loop;*/
+	
+	SelectAnimation:
+		TNT1 A 0 A_PlaySound("weapons/carbine/up", 0);
+		4A1S ABCDE 1 A_SetCrosshair(0);
+
+	ready_loop:
+	//4AFG normal sprite 4A2G ironsight
+		4AFG A 1
+		{
+			a_weaponready(WRF_ALLOWRELOAD);
+			if(invoker.iron_sight == true) {self.player.findPsprite(psp_weapon).sprite = getspriteindex("4A2F"); }
+			else {self.player.findPsprite(psp_weapon).sprite = getspriteindex("4AFG"); }
+		}
+	Loop;
+
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+		TNT1 A 0 
+		{
+			A_WeaponOffset(0,32);
+			if(invoker.iron_sight == true)
+			{self.player.setpsprite(psp_weapon, invoker.findstate("iron_sight_fire") ); return;}
+			A_SetCrosshair(0);
+		}
+		4AFF A 1
+		{
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+			A_Takeinventory("XRifleAmmo",1);
+			A_PlaySound("Weapons/Rifle/SFire", 0);
+			A_AlertMonsters();
+			A_ZoomFactor(0.98);
+			
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch - 0.48 / (1 + force) );
+			A_SetAngle(angle - 0.18 / (1 + force) );
+		}
+		4AFF B 1 {
+			A_ZoomFactor(0.99);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch - 0.48 / (1 + force) );
+			A_SetAngle(angle - 0.18 / (1 + force) );
+		}
+		4AFF C 1 {A_ZoomFactor(1.0);}
+		TNT1 A 0 A_ReFire();
+	Goto ready_loop;
+
+	iron_sight_fire:
+		TNT1 A 0 {
+			A_WeaponOffset(0,32);
+			A_SetCrosshair(5);
+		}
+		4A2F A 1 BRIGHT {
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+			A_Takeinventory("XRifleAmmo",1);
+			A_PlaySound("Weapons/Rifle/SFire", 0);
+			A_AlertMonsters();
+			A_ZoomFactor(1.485);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch - 0.30 / (1 + force) );
+			A_SetAngle(angle - 0.12 / (1 + force) );
+		}
+		4A2F B 1 BRIGHT {
+			A_ZoomFactor(1.495);
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch - 0.30 / (1 + force) );
+			A_SetAngle(angle - 0.12 / (1 + force) );
+		}
+		4A2F C 1 {A_ZoomFactor(1.5);}
+		TNT1 A 0 A_Refire("iron_sight_fire");
+	Goto ready_loop;
+
+
+	AltFire:
+		TNT1 A 0
+		{
+			A_WeaponOffset(0,32);
+			A_PlaySound("Ironsights", 0);
+			if(invoker.iron_sight == true)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("ZoomOut") ); return; }
+		}
+	ZoomIn:
+		TNT1 A 0
+		{
+			A_SetCrosshair(5);
+			A_ZoomFactor(1.5);
+			invoker.iron_sight = true;
+		}
+		4AFZ ABCDE 1;
+	Goto ready_loop;
+	ZoomOut:
+		TNT1 A 0
+		{
+			invoker.iron_sight = false;
+			A_ZoomFactor(1.0);
+			A_SetCrosshair(0);
+		}
+		4AFZ EDCBA 1;
+	Goto ready_loop;
+
+	Reload:
+		TNT1 A 0
+		{
+			A_ZoomFactor(1.0);
+		}
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",41,"ready_loop");
+		TNT1 A 0 A_JumpIfInventory("pb_clip",1,1);
+	Goto NoAmmo;
+		TNT1 A 0
+		{
+			A_SetCrosshair(5);
+			A_PlaySound("Ironsights", 0);
+		}
+		4AFR ABCDE 1;
+		4AFR FGHIJ 1 A_SetRoll(roll+0.8);
+		TNT1 A 0 A_PlaySound("weapons/carbine/magout", 0);
+		4AFR KLMNO 1 A_SetRoll(roll-0.8);
+		
+		4AFR PPQRST 1 A_SetRoll(roll-0.9);
+		TNT1 A 0 a_fireprojectile("EmptyClipSpawn",-5,0,8,-4);
+		4AFA AAA 1 A_SetRoll(roll+1.8);
+	ReloadFromEmpty:
+		4AFA A 2;
+		4AFA BCD 1 A_SetRoll(roll+0.3);
+		TNT1 A 0 A_PlaySound("weapons/carbine/magin", 0);
+		4AFA EFG 1 A_SetRoll(roll+0.3);
+		4AFA G 1;
+		4AFA HI 1 A_SetRoll(roll-0.9);
+		4AFA J 1;
+		4AFA JKL 1 A_SetRoll(roll+1.0);
+		TNT1 A 0 A_PlaySound("weapons/riflemagslap", 0);
+		4AFA M 1 A_SetRoll(roll+1.0);
+		4AFA NOPQ 1 A_SetRoll(roll-1.0);
+		4AFR EDCBA 1;
+		TNT1 A 0 A_SetCrosshair(0);
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,"insert_extra_bullet");//30+1 effect
+		tnt1 a 0 {invoker.reload_weapon_magazine("XRifleAmmo", "pb_clip" ); }
+	Goto ready_loop;
+	
+	insert_extra_bullet:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",41,"ready_loop");
+		TNT1 A 0 A_JumpIfInventory("pb_clip",1,1);
+	Goto ready_loop;
+		TNT1 A 0 {
+			A_Giveinventory("XRifleAmmo",1);
+			A_Takeinventory("pb_clip",1);
+	}
+	Goto insert_extra_bullet;
+	
+	LoadChamber:
+		TNT1 A 0 A_SetCrosshair(5);
+		TNT1 A 0 A_PlaySound("weapons/magpull", 0);
+		4AFA RSTTU 1 A_SetRoll(roll-0.6);
+		4AFR BA 1 A_SetRoll(roll+1.5);
+		TNT1 A 0 A_SetCrosshair(0);
+	Goto ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	change_operating_mode:
+		TNT1 A 0
+		{
+			A_ZoomFactor(1.0);
+			switch (invoker.actual_carbine_fire_mode)
+			{
+				case automatic:
+					invoker.actual_carbine_fire_mode = burst;
+					A_Print("Automatic Fire Selected");
+				break;
+
+				case burst:
+					invoker.actual_carbine_fire_mode = single;
+				A_Print("Burst Fire Selected");
+				break;
+
+				case single:
+					invoker.actual_carbine_fire_mode = automatic;
+					A_Print("Semi Fire Selected");
+				break;
+			}
+		}
+		4A1W ABCDEF 1 A_Setroll(roll+0.8);
+		TNT1 A 0 A_PlaySound("LIGHTON");
+		4A1W FEDCBA 1 A_Setroll(roll-0.8);
+	Goto ready_loop;
+
+
+
+
+	Deselect:
+		TNT1 A 0 {A_ZoomFactor(1.0); a_setroll(0);}
+		4A1S EDCBA 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		
+	
+	// 	DualWieldBaby:
+	// 	TNT1 A 0 A_SetCrosshair(0)
+	// 	TNT1 A 0 A_JumpIfInventory("DualCarbineChecker", 2,"SwitchToDualWield")
+	// 	TNT1 A 0 A_Print("You need two carbines to dual wield!")
+	// 	TNT1 A 0 A_Takeinventory("GoWeaponSpecialAbility",1)
+	// 	Goto Ready+9
+	
+	// 	SwitchToDualWield:
+	// 	TNT1 A 0 A_SelectWeapon("DualCarbines")
+	// 	Goto Select
+	
+
+
+	
+
+		
+
+
+
+
+	FireSemi:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+		Goto Reload;
+		4AFF A 1 {
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+			A_Takeinventory("XRifleAmmo",1);
+			A_PlaySound("Weapons/Rifle/SFire", 0);
+			A_AlertMonsters();
+			A_ZoomFactor(0.98);
+			if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	4AFF B 1 {
+		A_ZoomFactor(0.99);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	4AFF C 1 {
+		A_ZoomFactor(1.0);
+	}
+	Goto ready_loop;
+	
+	FireBurst:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+		Goto Reload;
+		4AFF A 1 {
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+			A_Takeinventory("XRifleAmmo",1);
+
+			A_PlaySound("Weapons/Rifle/SFire", 0);
+			A_AlertMonsters();
+			A_ZoomFactor(0.98);
+			if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	4AFF B 1 {
+		A_ZoomFactor(0.99);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+	4AFF A 1 {
+		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+		A_Takeinventory("XRifleAmmo",1);
+
+		A_PlaySound("Weapons/Rifle/SFire", 0);
+		A_AlertMonsters();
+		A_ZoomFactor(0.98);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	4AFF B 1 {
+		A_ZoomFactor(0.99);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+	4AFF A 1 {
+		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+		A_Takeinventory("XRifleAmmo",1);
+
+		A_PlaySound("Weapons/Rifle/SFire", 0);
+		A_AlertMonsters();
+		A_ZoomFactor(0.98);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	4AFF B 1 {
+		A_ZoomFactor(0.99);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.24);
+			A_SetAngle(angle-0.09);
+		}
+		else {
+			A_SetPitch(pitch-0.48);
+			A_SetAngle(angle-0.18);
+		}
+	}
+	TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+	4AFF C 1 {
+		A_ZoomFactor(1.0);
+	}
+	Goto ready_loop;
+	
+
+	
+	Fire2Semi:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+		Goto Reload;
+		TNT1 A 0 {invoker.bNOAUTOFIRE = true;}
+		4A2F A 1 BRIGHT {
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+			A_Takeinventory("XRifleAmmo",1);
+
+			A_PlaySound("Weapons/Rifle/SFire", 0);
+			A_AlertMonsters();
+			A_ZoomFactor(1.485);
+			if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	4A2F B 1 BRIGHT {
+		A_ZoomFactor(1.495);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	4A2F C 1 {
+		A_ZoomFactor(1.5);
+	}
+	TNT1 A 0 {invoker.bNOAUTOFIRE = false;}
+	Goto ready_loop;
+	
+	Fire2Burst:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+		Goto Reload;
+		4A2F A 1 BRIGHT {
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+			A_Takeinventory("XRifleAmmo",1);
+
+			A_PlaySound("Weapons/Rifle/SFire", 0);
+			A_AlertMonsters();
+			A_ZoomFactor(1.485);
+			if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	4A2F B 1 BRIGHT {
+		A_ZoomFactor(1.495);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+	4A2F A 1 BRIGHT {
+		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+		A_Takeinventory("XRifleAmmo",1);
+
+		A_PlaySound("Weapons/Rifle/SFire", 0);
+		A_AlertMonsters();
+		A_ZoomFactor(1.485);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	4A2F B 1 BRIGHT {
+		A_ZoomFactor(1.495);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+	4A2F A 1 BRIGHT {
+		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+		A_Takeinventory("XRifleAmmo",1);
+
+		A_PlaySound("Weapons/Rifle/SFire", 0);
+		A_AlertMonsters();
+		A_ZoomFactor(1.485);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	4A2F B 1 BRIGHT {
+		A_ZoomFactor(1.495);
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.15);
+			A_SetAngle(angle-0.06);
+		}
+		else {
+			A_SetPitch(pitch-0.30);
+			A_SetAngle(angle-0.12);
+		}
+	}
+	TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto Reload;
+	4A2F C 1 {
+		A_ZoomFactor(1.5);
+	}
+	Goto ready_loop;
+	
+	
+	NoAmmo:
+		4AFG A 1 {
+			A_ZoomFactor(1.0);
+			A_PlaySound("weapons/empty", 0);
+
+
+	}
+	Goto ready_loop;
+	
+
+		
+	AlreadyUnloaded:
+
+		Goto ready_loop;
+		
+	Unload:
+
+		TNT1 A 0 {
+			A_ZoomFactor(1.0);
+
+
+
+		}
+		//TNT1 A 0 A_JumpIfInventory("CarbineHasUnloaded", 1, "AlreadyUnloaded");
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+	Goto NoAmmo;
+
+		TNT1 A 0 A_SetCrosshair(5);
+		TNT1 A 0 A_PlaySound("Ironsights", 0);
+		4AFR ABCDE 1;
+		4AFR FGHIJ 1 A_SetRoll(roll+0.8);
+		TNT1 A 0 A_PlaySound("weapons/carbine/magout", 0);
+		4AFR KLMNO 1 A_SetRoll(roll-0.8);
+		4AFR PPQRST 1 A_SetRoll(roll-0.9);
+		4AFA AAA 1 A_SetRoll(roll+1.8);
+	RemoveBullets:
+		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
+		Goto FinishUnload;
+		TNT1 A 0 {
+			A_Takeinventory("XRifleAmmo",1);
+
+			A_Giveinventory("pb_clip",1);
+	}
+	Goto RemoveBullets;
+	
+	FInishUnload:
+		4AFR CBA 1;
+
+
+		Goto ready_loop;
+		
+		
+		
+	FlashKicking:
+	FlashAirKicking:
+		4A1K ABCDEFGHIJKLMNNN 1;
+		Stop;
+	FlashSlideKicking:
+		4A1K ABCDEFGPQRSTUTSRQGHIJKLMNNN 1;
+		Stop;
+	FlashSlideKickingStop:
+		4A1K HIJKLM 1;
+		Stop;
+	FlashPunching:
+		4AFG A 1;
+		4AFG B 1;
+		4AFG BB 1;
+		4AFG C 2;
+		4AFG D 3;
+		4AFG C 2;
+		4AFG BB 1;
+		4AFG B 1;
+		4AFG A 1;
+		4AFG A 1;
+		Stop;
+	}
+}
+
+CLASS XRifleAmmo : Ammo { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 41;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 40;
+	Inventory.Icon "4AFLA0";
+	}
+}

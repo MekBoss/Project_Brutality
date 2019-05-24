@@ -392,7 +392,7 @@ ACTOR RicoChet
 	
 	SpawnFloor:
 	TNT1 A 0
-	TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0)//Check if is under a liquid
+	TNT1 A 0 //acs_executealways(373, 0, 0, 0, 0)//Check if is under a liquid
 	TNT1 A 2
 	TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "SpawnWater")
 	TNT1 A 0 A_JumpIfInventory("IsOverSludge", 1, "SpawnSludge")
@@ -542,7 +542,7 @@ Height 0
   {
   Spawn:
     TNT1 A 0
-	TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0)//Check if is under a liquid
+	TNT1 A 0 //acs_executealways(373, 0, 0, 0, 0)//Check if is under a liquid
 	TNT1 A 2
 	TNT1 A 0 A_JumpIfInventory("IsOverBlood", 1, "SpawnBlood")
 	TNT1 A 0 A_JumpIfInventory("IsOverSlime", 1, "SpawnSlime")
@@ -655,7 +655,7 @@ ACTOR BigRicoChet
 	
 	SpawnFloor:
 	TNT1 A 0
-	TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0)//Check if is under a liquid
+	TNT1 A 0 //acs_executealways(373, 0, 0, 0, 0)//Check if is under a liquid
 	TNT1 A 2
 	//TNT1 A 0 A_JumpIfInventory("IsOverGrass", 1, "SpawnGrass")
 	TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "SpawnWater")
@@ -764,7 +764,7 @@ ACTOR ExplosionSplashSpawner : BigRicoChet
   Spawn:
   Death:
     TNT1 A 0
-	TNT1 A 0 Acs_executealways(375, 0, 0, 0, 0)//Check if is under grass/dirt
+	TNT1 A 0 //acs_executealways(375, 0, 0, 0, 0)//Check if is under grass/dirt
 	TNT1 A 0 ThrustThingZ(0,-30,0,1)
 	TNT1 A 3
 	TNT1 A 0 A_CheckFloor("Spawn2")

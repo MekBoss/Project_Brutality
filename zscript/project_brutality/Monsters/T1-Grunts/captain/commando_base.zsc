@@ -1,0 +1,10 @@
+class commando_base : proto_zombieman_class
+{
+bool is_firing;
+
+default
+{
+	proto_zombieman_class.max_magazine_size 20;
+}
+
+}

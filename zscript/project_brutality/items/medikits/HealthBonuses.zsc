@@ -1,0 +1,69 @@
+CLASS HealthPlus : pb_health_bonus_base
+{ 
+	Default {
+		+COUNTITEM;
+		+FLOORCLIP;
+		+DONTGIB;
+		+INVENTORY.ALWAYSPICKUP;
+		Inventory.Amount 2;
+		Inventory.MaxAmount 9999;
+		Inventory.PickupMessage "$GOTHTHBONUS";
+		Inventory.PickUpSound "misc/bonus_PickUp";
+		Health.LowMessage 25, "That's not enough health to manage.";
+	}
+	states
+	{
+		spawn:
+			BONU ABCDEFGFEDCB 3;
+			loop;
+	}
+}
+
+CLASS StrongHealthPlus : Health { 
+	Default {
+		+COUNTITEM;
+		+FLOORCLIP;
+		+DONTGIB;
+		+INVENTORY.ALWAYSPICKUP;
+		Inventory.Amount 4;
+		Inventory.MaxAmount 9999;
+		Inventory.PickupMessage "Picked up a strong health bonus.";
+		Inventory.PickUpSound "items/stronghealthbonus";
+		Health.LowMessage 25, "That amount of health won't cut it.";
+	}
+	States
+	{
+		Spawn:
+			SBON ABCDEFGFEDCB 3;
+			loop;
+	}
+}
+
+CLASS SuperHealthPlus : Health { 
+	Default {
+		+COUNTITEM;
+		+FLOORCLIP;
+		+DONTGIB;
+		+INVENTORY.ALWAYSPICKUP;
+		Inventory.Amount 6;
+		Inventory.MaxAmount 9999;
+		Inventory.PickupMessage "Picked up a super health bonus.";
+		Inventory.PickUpSound "items/superhealthbonus";
+		Health.LowMessage 25, "Some good health, but not good enough.";
+	}
+	States
+	{
+		Spawn:
+			SBNU ABCDEFGFEDCB 3;
+			loop;
+	}
+}
+
+CLASS HealthInfusionT1 : Health { 
+	Default {
+		
+		Inventory.Amount 5;
+		Inventory.MaxAmount 9999;
+		Health.LowMessage 25, "Desparate times call for desperate measures. Get some Health!";
+	}
+}

@@ -1,0 +1,691 @@
+class SOF_SMG : weapon_slot_2_proto_class
+{
+bool iron_sight, akimbo;
+
+Default
+{
+	Weapon.SelectionOrder 3;
+	Weapon.SlotNumber 2;
+	Weapon.slotpriority 3;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoGive1 50;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive2 0;
+	Weapon.AmmoType1 "low_caliber_bullets";
+	Weapon.AmmoType2 "SMGAmmo";
+
+	+FLOORCLIP;
+	+DONTGIB;
+	Obituary "%o was shot down by %k's UAC17 Compact Sub-Machine Gun.";
+	Inventory.PickupSound "CLIPIN";
+	Inventory.Pickupmessage "You found the UAC Compact Sub-Machine Gun! (Slot 2)";
+	Tag "SOF SMG";
+
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOALERT;
+	+WEAPON.NOAUTOFIRE;
+
+	Scale 0.9;
+}
+
+States
+{
+	Spawn:
+		ATFL A -1;
+	Stop;
+	
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 1 A_Raise(90);
+	Wait;
+
+	Ready:
+		TNT1 A 0;
+/*	WeaponRespect:
+		TNT1 A 0 {
+			A_PlaySound("weapons/smg_up", 0);
+			A_SetCrosshair(5);
+		}
+		A1F5 ABCDEFGHIJKKKKKKLMNOPQ 1 a_weaponready;
+		TNT1 A 0 A_PlaySound("weapons/smg_click", 0);
+		A1F5 RSTTUVWXYYY 1 a_weaponready;
+		TNT1 A 0 A_PlaySound("weapons/smg_magfly1", 0);
+		A1F5 Z 1 a_weaponready;
+		A1F6 ABCDEF 1 a_weaponready;
+		TNT1 A 0 A_PlaySound("weapons/smg_magfly2", 0);
+		A1F6 GHIJ 1 a_weaponready;
+		TNT1 A 0 A_PlaySound("IronSights", 0);
+		A1F6 KLMNOPQRS 1 a_weaponready;
+		TNT1 A 0 A_PlaySound("weapons/smg_in", 0);
+		A1F6 TTUV 1 a_weaponready;
+		TNT1 A 0 A_PlaySound("IronSights", 0);
+		A1F6 WXYZ 1 a_weaponready;
+		A1F7 AB 1 a_weaponready;
+	Goto ready_loop;*/
+	SelectAnimation:
+		//TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "SelectAnimationDualWield");
+		TNT1 A 0 A_PlaySound("weapons/smg_up", 0);
+		A1F1 ABCD 1;
+		TNT1 A 0 {
+			A_SetRoll(0);
+			if(invoker.iron_sight == true) {A_SetCrosshair(5); return;}
+			else {A_SetCrosshair(0); }
+		}
+	ready_loop:
+//		TNT1 A 0 A_JumpIfInventory("UACSMGWasEmpty", 1, "LoadChamber");
+//		TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "ReadyDualWield");
+//		TNT1 A 0 A_JumpIfInventory("UACSMGHasUnloaded", 1, "UnloadedReady");
+		A1F1 E 1 
+		{
+			a_weaponready(WRF_allowreload);
+			if(invoker.iron_sight == true) {invoker.change_weapon_PSprite("A1F3");}
+		}
+	Loop;
+
+	ready_zoomed:
+		TNT1 A 0 {
+			A_SetRoll(0);
+			A_SetCrosshair(5);
+		}
+	ReadyTofire_zoomed:
+		A1F3 D 1 a_weaponready;
+	Loop;
+
+
+
+
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("SMGAmmo",1,1);
+	Goto Reload;
+//		TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "FireDualWield");
+		TNT1 A 0 {
+			if(invoker.iron_sight == true) {invoker.set_weapon_state("fire_zoomed"); return;;}
+			A_WeaponOffset(0,32);
+			A_SetCrosshair(0);
+		}
+		A1F1 F 1 BRIGHT {
+			A_AlertMonsters();
+			A_PlaySound("ZSpecOps/MGun", 4);
+			A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			a_fireprojectile("Mp40CaseSpawnRight",5,0,0,-9);
+			A_Takeinventory("SMGAmmo",1);
+			A_ZoomFactor(0.985);
+		
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch-0.12 * (1 + force) );
+			A_SetAngle(angle+0.11 * (1 + force) );
+		}
+		A1F1 G 1 {
+			A_ZoomFactor(0.99);
+
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch-0.12 * (1 + force) );
+			A_SetAngle(angle+0.11 * (1 + force) );
+		}
+		A1F1 H 1 A_ZoomFactor(1.0);
+		TNT1 A 0 A_Refire("fire");
+	Goto ready_loop;
+
+	fire_zoomed:
+		TNT1 A 0 {
+			A_WeaponOffset(0,32);
+			A_SetCrosshair(5);
+		}
+		A1F3 E 1 BRIGHT {
+			A_AlertMonsters();
+			A_PlaySound("ZSpecOps/MGun", 4);
+			A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 3, 0, 0);
+			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			a_fireprojectile("Mp40CaseSpawnRight",-2,0,2,0);
+			A_Takeinventory("SMGAmmo",1);
+			A_ZoomFactor(1.19);
+		
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch-0.1 * (1 + force) );
+			A_SetAngle(angle+0.09 * (1 + force) );
+		}
+		A1F3 F 1 {
+			A_ZoomFactor(1.195);
+		
+			int force = CountInv("PowerStrength");
+			A_SetPitch(pitch-0.1 * (1 + force) );
+			A_SetAngle(angle+0.09 * (1 + force) );
+		}
+		A1F3 G 1 A_ZoomFactor(1.2);
+		A1F3 G 0 A_Refire("fire_zoomed");
+	Goto ready_zoomed;
+
+
+	AltFire:
+	zoom_in:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 A_PlaySound("IronSights", 0);
+		TNT1 A 0
+		{
+			if(invoker.iron_sight == true) {invoker.set_weapon_state("zoom_out"); return;;}
+			invoker.iron_sight = true;
+			A_SetCrosshair(5);
+			A_ZoomFactor(1.2);
+		}
+		A1F3 ABC 1;
+	Goto ready_zoomed;
+	
+	zoom_out:
+		A1F3 CBA 1;
+		TNT1 A 0 {
+			invoker.iron_sight = false;
+			A_ZoomFactor(1.0);
+			A_SetCrosshair(0);
+		}
+	Goto ready_loop;
+
+
+	Reload:
+		TNT1 A 0 { A_ZoomFactor(1.0); invoker.iron_sight = false;}
+		TNT1 A 0 A_JumpIfInventory("SMGAmmo",51,"ready_loop");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets",1,1);
+	Goto NoAmmo;
+		TNT1 A 0 { A_SetCrosshair(5); }
+		TNT1 A 0 A_PlaySound("weapons/smg_up", 0);
+//		TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "ReloadDualWield");
+//		TNT1 A 0 A_JumpIfInventory("UACSMGHasUnloaded", 1, "ReloadUnloaded");
+		A1F4 ABC 1;
+		TNT1 A 0 A_PlaySound("weapons/smg_out", 0);
+		A1F4 DEFGHI 1 A_SetRoll(roll+0.4);
+		TNT1 A 0 a_fireprojectile("EmptyClipMP40",5,0,12,-4);
+	ReloadUnloaded:
+		A1F4 J 1;
+		A1F4 KLMNNN 1 A_SetRoll(roll-0.4);
+		A1F4 OPQRS 1 A_SetRoll(roll-0.5);
+		TNT1 A 0 {A_PlaySound("weapons/smg_in", 0); }
+		A1F4 T 1 Offset(0,32);
+		A1F4 T 1 Offset(2,34);
+		A1F4 T 1 Offset(4,36);
+		A1F4 T 1 Offset(5,40);
+		A1F4 UV 1;
+		A1F4 WXYZ 1 A_SetRoll(roll+0.5);
+//		TNT1 A 0 A_JumpIfInventory("SMGAmmo",1,"InsertBullets2");//30+1 effect
+		tnt1 a 0 {invoker.reload_weapon_magazine("SMGAmmo", "low_caliber_bullets"); }
+	Goto ready_loop;
+
+
+	InsertBullets2:
+		A1F4 CBA 1;
+	InsertBullets2Loop:
+		TNT1 A 0 A_JumpIfInventory("SMGAmmo",51,"ready_loop");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets",1,1);
+	Goto ready_loop;
+		TNT1 A 0 {
+			A_Giveinventory("SMGAmmo",1);
+			A_Takeinventory("low_caliber_bullets",1);
+		}
+	Loop;
+		
+	LoadChamber:
+		TNT1 A 0 {
+			A_ZoomFactor(1.0);
+			A_PlaySound("IronSights", 0);
+		}
+		A2F4 NMLKJ 1;
+		A2F4 ABCDEF 1 A_SetRoll(roll+0.2);
+		TNT1 A 0 A_PlaySound("weapons/smg_click", 0);
+		A2F4 GH 1;
+		A2F4 IJKLMN 1 A_SetRoll(roll-0.2);
+	Goto ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+		TNT1 A 0 A_Overlay(-9, "Null");
+		TNT1 A 0 A_ZoomFactor(1.0);
+		A1F1 DCBA 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+	DeselectDualWield:
+		A2F3 ABCDEFG 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Steady:
+		TNT1 A 1;
+	Goto Ready;
+	
+	LaserOverlay:
+	TNT1 A 1
+	{
+//		if (CountInv("LaserSightActivated")==1 && CountInv("KeepLaserDeactivated") != 1);
+//		{
+	}
+	Loop;
+	
+
+
+	
+	
+	UnloadedReady:
+	A1F1 Z 1 a_weaponready;
+	Loop;
+	
+	SelectAnimationDualWield:
+	TNT1 A 0 A_PlaySound("weapons/smg_up", 0);
+	A2F3 GFEDCBA 1;
+	TNT1 A 0 A_PlaySound("weapons/smg_up", 0);
+	ReadyDualWield:
+	TNT1 A 0 {
+		A_SetRoll(0);
+		A_SetCrosshair(0);
+	}
+	ReadyToFireDualWield:
+	A2F1 G 1 a_weaponready;
+	Loop;
+	
+	UnloadedReadyDualWield:
+	A2F3 Z 1 a_weaponready;
+	Loop;
+	
+	WeaponSpecial:
+	TNT1 A 0 {
+		A_SetCrosshair(0);
+		A_ZoomFactor(1.0);
+	}
+	//TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "StopDualWield");
+	TNT1 A 0 {
+	A_PlaySound("weapons/smg_up", 0);
+	}
+	A1F2 ABCDEF 1 A_Setroll(roll-0.5);
+	A1F2 GHI 1 A_Setroll(roll+1.0);
+	Goto ReadyDualWield;
+	StopDualWield:
+	TNT1 A 0 {
+		//A_TakeInventory("DualWieldingSMGs", 1);
+		A_PlaySound("weapons/smg_up", 0);
+	}
+	A1F2 IHGFED 1 A_Setroll(roll+0.5);
+	A1F2 CBA 1 A_Setroll(roll-1.0);
+	Goto ready_loop;
+	
+
+	
+
+	
+
+	
+	FireDualWield:
+	TNT1 A 0 {
+		A_WeaponOffset(0,32);
+		A_SetCrosshair(0);
+	}
+	TNT1 A 0 A_JumpIfInventory("SMGAmmo",1,1);
+	Goto Reload;
+	FireRight:
+	//TNT1 A 0 A_JumpIfInventory("PB_SMGFireAnimation1", 1, "FireLeft");
+	A2F1 A 1 BRIGHT {
+		A_AlertMonsters();
+		A_PlaySound("ZSpecOps/MGun", 6);
+		A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
+		a_fireprojectile("YellowFlareSpawn",0,0,4,0);
+		a_fireprojectile("GunFireSmoke", 0, 0, 4, 0, 0, 0);;
+		a_fireprojectile("Mp40CaseSpawnRight",5,0,8,2);
+		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+		A_Takeinventory("SMGAmmo",1);
+
+		A_ZoomFactor(0.985);
+		
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.55);
+			A_SetAngle(angle-0.38);
+	}
+	else {
+		A_SetPitch(pitch-1.1);
+		A_SetAngle(angle-0.76);
+	}
+	}
+	A2F1 B 1 {
+	A_ZoomFactor(0.99);
+	if (CountInv("PowerStrength") >= 1 ) {
+		A_SetPitch(pitch-0.55);
+		A_SetAngle(angle+0.38);//Not a typo, recoil pattern should pull heavily to the left
+	}
+	else {
+		A_SetPitch(pitch-1.1);
+		A_SetAngle(angle+0.76);//Not a typo, recoil pattern should pull heavily to the left
+	}
+	}
+	TNT1 A 0 A_Refire;
+	A2F1 G 1 A_ZoomFactor(1.0);
+	Goto ReadyToFireDualWield;
+	FireLeft:
+	A2F1 C 1 BRIGHT {
+		A_AlertMonsters();
+		A_PlaySound("ZSpecOps/MGun", 7);
+		A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
+		a_fireprojectile("YellowFlareSpawn",0,0,-4,0);
+		a_fireprojectile("GunFireSmoke", 0, 0, -4, 0, 0, 0);;
+		a_fireprojectile("Mp40CaseSpawnRight",5,0,-8,2);
+		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+
+		A_ZoomFactor(0.985);
+		
+		if (CountInv("PowerStrength") >= 1 ) {
+			A_SetPitch(pitch-0.55);
+			A_SetAngle(angle+0.38);
+	}
+	else {
+		A_SetPitch(pitch-1.1);
+		A_SetAngle(angle+0.76);
+	}
+	}
+	A2F1 D 1 {
+	A_ZoomFactor(0.99);
+	if (CountInv("PowerStrength") >= 1 ) {
+		A_SetPitch(pitch-0.55);
+		A_SetAngle(angle+0.38);
+	}
+	else {
+		A_SetPitch(pitch-1.1);
+		A_SetAngle(angle+0.76);
+	}
+	}
+	TNT1 A 0 A_Refire;
+	A2F1 G 1 A_ZoomFactor(1.0);
+	Goto ReadyToFireDualWield;
+	
+
+	
+	NoAmmo:
+	A1F1 E 1 A_PlaySound("weapons/empty", 4);
+	Goto ready_loop;
+	
+
+	
+	ReloadDualWield:
+	A3F4 A 1 A_PlaySound("weapons/smg_out", 0);
+	A3F4 B 1;
+	A3F4 C 1 A_PlaySound("weapons/smg_out", 0);
+	A3F4 DEFGHI 1;
+	
+	// Normal Reload Frames
+	A1F4 J 1;
+	A1F4 KLMNNN 1;
+	A1F4 OPQRS 1;
+	TNT1 A 0 {
+		A_PlaySound("weapons/smg_in", 0);
+
+	}
+	A1F4 T 1 Offset(0,32);
+	A1F4 T 1 Offset(2,34);
+	A1F4 T 1 Offset(4,36);
+	A1F4 T 1 Offset(5,40);
+	A1F4 UV 1;
+	A1F4 WXYZ 1;
+	// Normal Reload Frames
+	
+	A3F4 JKLMN 1;
+	TNT1 A 3;
+	TNT1 A 0 A_PlaySound("weapons/smg_up", 0);
+	A3F4 NMLOPQ 1;
+	
+	
+	// Normal Reload Frames
+	A1F4 J 1;
+	A1F4 KLMNNN 1;
+	A1F4 OPQRS 1;
+	TNT1 A 0 {
+	A_PlaySound("weapons/smg_in", 0);
+
+	}
+	A1F4 T 1 Offset(0,32);
+	A1F4 T 1 Offset(2,34);
+	A1F4 T 1 Offset(4,36);
+	A1F4 T 1 Offset(5,40);
+	A1F4 UV 1;
+	A1F4 WXYZ 1;
+	// Normal Reload Frames
+	A1F2 EFGHI 1;
+	InsertBullets3:
+	TNT1 A 0 A_JumpIfInventory("SMGAmmo",51,"ReadyDualWield");
+	TNT1 A 0 A_JumpIfInventory("low_caliber_bullets",1,1);
+	Goto ReadyDualWield;
+	TNT1 A 0 {
+		A_Giveinventory("SMGAmmo",1);
+		A_Takeinventory("low_caliber_bullets",1);
+	}
+	Loop;
+	
+	Unload:
+
+	//TNT1 A 0 A_JumpIfInventory("UACSMGHasUnloaded", 1, "ready_loop");
+	TNT1 A 0 A_JumpIfInventory("SMGAmmo",1,1);
+	Goto ready_loop;
+	TNT1 A 0 {
+		A_ZoomFactor(1.0);
+		A_SetCrosshair(5);
+
+
+
+		A_PlaySound("weapons/smg_up", 0);
+	}
+	A1F4 ZYXWVUTS 1;
+	A1F4 R 1 A_PlaySound("weapons/smg_out", 0);
+	A1F4 QPONMLKJ 1;
+	A2F4 OPQ 1;
+	RemoveBullets:
+	TNT1 A 0 A_JumpIfInventory("SMGAmmo",1,1);
+	Goto FinishUnload;
+	TNT1 A 0 {
+		A_Takeinventory("SMGAmmo",1);
+		A_Giveinventory("low_caliber_bullets",1);
+	}
+	Loop;
+	
+	FInishUnload:
+	TNT1 A 0 {
+
+
+	}
+	Goto ready_loop;
+	
+	//////////////////////////////////////////Unloading
+	
+	
+	FlashPunching:
+	FlashKicking:
+	//TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "FlashKickingDW");
+	A1F7 ABCDEFGHIJKLMNO 1;
+	Stop;
+	
+	FlashAirKicking:
+	//TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "FlashAirKickingDW");
+	A1F7 ABCDEFGHIJKLMNOOO 1;
+	Stop;
+	
+	FlashKickingDW:
+	A2F3 ABCDEFGGGFEDCBA 1;
+	Stop;
+	
+	FlashAirKickingDW:
+	A2F3 ABCDEFGGGFEDCBAAA 1;
+	Stop;
+	
+	
+	FlashSlideKicking:
+	//TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "FlashSlideKickingDW");
+	A1F8 ABCDEFGHIJKLMLKJIHGFEDCBA 1;
+	A1F1 E 1;
+	Stop;
+	
+	FlashSlideKickingDW:
+	A2F3 ABCDEFGGGGGGGGGGGGGFEDCBA 1;
+	A2F3 A 1;
+	Stop;
+	
+	FlashSlideKickingStop:
+	//TNT1 A 0 A_JumpIfInventory("DualWieldingSMGs", 1, "FlashSlideKickingStopDW");
+	A1F8 FEDCA 1;
+	A1F1 E 1;
+	Stop;
+	
+	FlashSlideKickingStopDW:
+	A2F3 FEDCA 1;
+	A2F3 A 1;
+	Stop;
+}
+}
+
+CLASS SMGAmmo : Ammo { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 51;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 51;
+	Inventory.Icon "ATFLA0";
+	}
+}
+
+CLASS Laserdot: BulletPuff { 
+	Default {
+	
+	Decal "None";
+	Mass 0;
+	Scale 0.10;
+	Radius 1;
+	Height 2;
+	Projectile;
+	VSpeed 0;
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+BLOODLESSIMPACT;
+	+ALWAYSPUFF;
+	+FIXMAPTHINGPOS;
+	+PUFFONACTORS;
+	+DONTSPLASH;
+	+FORCEXYBILLBOARD;
+	-ALLOWPARTICLES;
+	Renderstyle "Add";
+	Alpha 0.75;
+	}
+	States
+	{
+	Melee:
+	Spawn:
+		LEYS R 1 BRIGHT;//A_AlertMonsters(500)
+	Death:
+	XDeath:
+	Crash:
+		LEYS R 1;
+		TNT1 A 0 A_SpawnItemEx("LaserAlertNearbyMonsters",0,0,0,0,0,0,0,288);
+		LEYS R 1 BRIGHT;
+		Stop;
+	}
+}
+
+CLASS LaserDotPerma : LaserDot { 
+	Default {
+	
+	}
+	States
+	{
+	Melee:
+	Spawn:
+		LEYS R 2 BRIGHT;
+		TNT1 A 0 A_SpawnItemEx("LaserAlertNearbyMonsters",0,0,0,0,0,0,0,288);
+		Loop;
+	}
+}
+CLASS LaserAlertNearbyMonsters : CustomInventory { 
+	Default {
+	
+	Radius 600;
+	+DONTSPLASH;
+	+INVENTORY.QUIET;
+	Inventory.MaxAmount 1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_ALERTMONSTERS(750);
+		TNT1 A 5;
+		Stop;
+	Pickup:
+		TNT1 A 0 A_ALERTMONSTERS(750);
+		TNT1 A 0 A_TakeInventory("LaserAlertNearbyMonsters", 1);
+		Stop;
+	}
+}
+CLASS KeepLaserDeactivated : Inventory {} 
+	

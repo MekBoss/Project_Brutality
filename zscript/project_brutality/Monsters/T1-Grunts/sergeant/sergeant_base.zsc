@@ -1,0 +1,26 @@
+class sergeant_base : proto_zombieman_class
+{
+default
+{
+	proto_zombieman_class.max_magazine_size 6;
+}
+//function for shield gut and chemical "flamethrower guy" division members
+//return angle relative to actor angle, left or right from actor in other words
+double pb_angle_to_inflictor(vector3 tor = (0,0,0) , double actor_angle = 0)
+{
+	if(tor == (0, 0, 0) ) {return 0;}
+	
+	vector2 face_vector = (cos(actor_angle), sin(actor_angle) );
+	//move origin to the position of calling actor
+	vector2 vector_to_inflictor = (
+	(tor.x * face_vector.x) + (tor.y * face_vector.y),
+	-(tor.x * face_vector.y) + (tor.y * face_vector.x) );
+
+	double vector_length = vector_to_inflictor.length();
+	double angle = acos(vector_to_inflictor.x / vector_length);
+	//if y < 0 angle negative
+	if(vector_to_inflictor.y < 0) {angle *= -1;}
+	return angle;
+}
+
+}

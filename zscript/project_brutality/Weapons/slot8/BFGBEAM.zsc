@@ -1,0 +1,354 @@
+CLASS beans_bfg : weapon_slot_8_proto_class
+{
+actor end_of_line;
+//thinker which draw smooth and continuos line
+thinker line_drawer;
+
+Default
+{
+	obituary "%o was vapourised by %k's plasma beam.";
+	radius 20;
+	height 16;
+	Weapon.AmmoUse 1;
+	Weapon.AmmoGive 40;
+	Weapon.AmmoType1 "Cell";
+
+	Weapon.SlotNumber 8;
+	Weapon.SelectionOrder 3;
+	Weapon.slotpriority 0.2;
+	
+	DamageType "Desintegrate";
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.BFG;
+	+FLOORCLIP;
+	+DONTGIB;
+	Inventory.PickupSound "BFGPICK";
+	Tag "Beam Gun 11K Prototype";
+	inventory.pickupmessage "You got the BFG Prototype Beam 11K! (Slot 8)";
+}
+states
+{
+	Spawn:
+		8BGP A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 AA 1 A_Raise(130);
+	wait;
+
+	Ready:
+		8BGG GFE 1;
+		TNT1 A 0 A_PlaySound("GENREADY");
+	ready_loop:
+		8BGG A 1 A_weaponready();
+	loop;
+
+	Fire:
+		tnt1 a 0 {A_WeaponOffset(0,32);}
+		tnt1 a 0 A_JumpIfInventory("Cell", 2, 2);
+		tnt1 a 0  A_PlaySound("Seeker", 1);
+	Goto ready_loop;
+		TNT1 A 0 A_PlaySound("Weapons/BFSG/Charge", 6, 0.8);
+		TNT1 A 0 A_PlaySound("Weapons/BFGG/Up", 5, 0.8);
+		8BGG AB 2;
+		8BGG C 2 A_PlaySound("BMCHARG", 9);
+		8BGG D 2;
+		8BGG ABCDABCD 2;
+		tnt1 a 0  A_PlaySound("Seeker", 1);
+		8BGG ABCDABCDABC 1;// A_FireProjectile("BFGLightningTrial_Small",0,0);//A_FireProjectile("BFGLightningTrial_Small",0,0)
+		8BGG D 1 A_PlaySound("SUPERBFG", 7);
+		TNT1 A 0 A_PlaySound("Weapons/BFSG/Fire", 3);
+		TNT1 A 0 A_FireProjectile("GreenFlareSpawn",0,0,0,0);
+	Hold:
+		8BGF ABCD 1 BRIGHT
+		{
+			//A_FireProjectile ("Leech_Beam", 0, 0, 0, -8, 0,0);
+			FLineTraceData bean_bfg_attack;
+			LineTrace(self.player.mo.angle, 2 ** 30, self.player.mo.pitch,
+			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: bean_bfg_attack);
+			
+			if(bean_bfg_attack.hittype == TRACE_HitNone){return;}
+
+			if(bean_bfg_attack.hitactor != null)
+			{
+				int dam = random(55, 90);
+				bean_bfg_attack.hitactor.damagemobj(self, self, dam, 'desintegrate', 0, 0);
+			}
+			
+//			if(bean_bfg_attack.hittype == TRACE_HitFloor || bean_bfg_attack.hittype == TRACE_HitCeiling
+//			|| bean_bfg_attack.hittype == TRACE_HitWall)
+//			{
+//				spawn("Axe_Attack", pos:bean_bfg_attack.HitLocation);
+//			}
+			
+			if(invoker.end_of_line == null) {invoker.end_of_line = spawn("Leech_Beam", pos:bean_bfg_attack.HitLocation);}
+			invoker.end_of_line.setorigin(bean_bfg_attack.HitLocation, true);
+			Leech_Beam(invoker.end_of_line).start_pos = (self.player.mo.pos + (0, 0, self.player.mo.attackzoffset) );
+			
+			A_SetAngle(frandom(-1.5, 1.5) + angle);
+			A_SetPitch(frandom(-1, 1) + pitch);
+			//A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+			//A_Takeinventory("Cell",2);
+			//A_FireProjectile("GreenFlareSpawn",0,0,0,0);
+			A_PlaySound("Leech/Fire", 7, 1);
+		}
+		TNT1 A 0 A_ReFire("hold");
+		TNT1 A 0 A_StopSound(7);
+		TNT1 A 0 A_PlaySound("Weapons/BFGG/Down");
+		tnt1 q 0 {if(invoker.end_of_line != null) {invoker.end_of_line.destroy();} }
+	Goto Cooldown;
+		
+	AltFire:
+		tnt1 a 0 {A_WeaponOffset(0,32);}
+		TNT1 A 0 A_JumpIfInventory("Cell", 2, 2);
+		tnt1 a 0  A_PlaySound("Seeker", 1);
+	Goto ready_loop;
+		TNT1 A 0 A_PlaySound("Weapons/BFGG/Up", 5);
+		8BGG A 3 A_PlaySound("BMCHARG", 9);
+		8BGG BCD 3;
+		8BGG ABCD 2;
+		tnt1 a 0 A_PlaySound("Seeker", 1);
+		8BGG ABCDABCD 1;// A_FireProjectile("BFGLightningTrial_Small",0,0);		
+	AltHold:
+		TNT1 A 0 A_JumpIfInventory("Cell", 2, 3);
+		BFGG A 0 A_PlaySound("Seeker", 1);
+	Goto ready_loop;
+		TNT1 A 0 A_PlaySound("mbfgsh", 3, 1.0);
+		TNT1 A 0 BRIGHT A_FireProjectile("Mini_bfg_sphere", random(-4,4), 1, 0, 0, 0, random(-1,1));
+		8BGF ABCD 1 BRIGHT;
+		tnt1 a 0
+		{
+			A_Takeinventory("Cell",2);
+			A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+			A_SetAngle(frandom(-1, 1) + angle);
+			A_FireProjectile("GreenFlareSpawn",0,0,0,0);
+			A_PlaySound("mbfgsh", 3, 1.0);
+			A_FireProjectile("Mini_bfg_sphere", frandom(-4,4), 1, 0, 0, 0, random(-1,1));
+		}
+		8BGF ABCD 1 BRIGHT;
+		tnt1 a 0
+		{
+			A_Takeinventory("Cell",2);
+			A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+			A_SetAngle(frandom(-1, 1) + angle);
+			A_FireProjectile("GreenFlareSpawn",0,0,0,0);
+			A_PlaySound("mbfgsh", 3, 1.0);
+			A_FireProjectile("Mini_bfg_sphere", frandom(-4,4), 1, 0, 0, 0, random(-1,1));
+		}
+		TNT1 A 0 A_ReFire("AltHold");
+		TNT1 A 0 A_PlaySound("Weapons/BFGG/Down");
+		TNT1 A 0 A_PlaySound("DSREPSTM", 5);
+		TNT1 A 0 A_FireProjectile("SmokeSpawner11",0,0,0,0);
+		8BGG ABCDABCD 1;
+		8BGG ABCDABCD 2;
+		8BGG ABCDA 3;
+	Goto ready_loop;
+		
+	Cooldown:
+		TNT1 A 0 A_FireProjectile("SmokeSpawner11",0,0,0,0);
+		8BGG ABCDABCD 1;
+		8BGG ABCDABCD 2;
+		8BGG ABCDA 3;
+		TNT1 A 0 A_PlaySound("DSREPSTM",3);
+	goto ready_loop;
+
+	Deselect:
+		8BGG A 0 A_StopSound(7);
+		8BGG EFG 1;
+		TNT1 A 0 A_Lower(130);
+	Wait;
+
+
+
+
+
+		
+	FlashKicking:
+		8BGG A 1;
+		8BGG E 1;
+		8BGG E 1;
+		8BGG F 3;
+		8BGG G 3;
+		8BGG F 3;
+		8BGG E 1;
+		8BGG E 1;
+		8BGG A 1;
+		8BGG AAA 1;
+		Stop;
+		
+	FlashAirKicking:
+		8BGG A 1;
+		8BGG E 1;
+		8BGG E 1;
+		8BGG F 3;
+		8BGG G 3;
+		8BGG F 3;
+		8BGG E 1;
+		8BGG E 1;
+		8BGG A 1;
+		8BGG AAAA 1;
+		Stop;
+		
+	FlashSlideKicking:
+		8BGG AE 2;
+		8BGG EEFFGGHHGGGG 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0
+		8BGG GFFEEA 1;
+		8BGG A 1;
+		Stop;
+	FlashPunching:
+		8BGG A 1;
+		8BGG E 1;
+		8BGG E 1;
+		8BGG F 3;
+		8BGG G 3;
+		8BGG F 3;
+		8BGG E 1;
+		8BGG E 1;
+		8BGG A 1;
+		8BGG AAA 1;
+		Stop;
+	}
+}
+
+CLASS Leech_Beam : pb_in_line_attack//pb_projectile_base//MageWandMissile
+{ 
+Default
+{
+	Speed 0;
+	Radius 13;
+	Height 8;
+	Damage 5;
+	Decal "none";
+	damagetype "Desintegrate";
+	RenderStyle "Add";
+	Alpha .85;
+	Translation "0:255=%[0,0,0]:[0,1,0]";
+	+RIPPER;
+	+NOBOSSRIP;
+	-CANNOTPUSH;
+	-NODAMAGETHRUST;
+	+BLOODLESSIMPACT;
+	+FORCERADIUSDMG;
+	-BLOODSPLATTER;
+	+DONTHARMCLASS;
+	Species "Marine";
+//	missiletype "Beam_Trail";
+}
+
+states
+{
+	Death:
+		TNT1 B 0 A_Explode(55,100,0);
+		//tnt1 a 0 A_SpawnItem("GreenFlare",0,0);
+		//TNT1 A 0 A_SpawnItemEx("SmallGreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+		//TNT1 A 0 A_SpawnItem("BFGAltShockWave",0,0);
+		//TNT1 A 0 A_SpawnItemEx("BFGLightningTrial", 0, random(-1,1), random(4,6));
+		//TNT1 A 0 A_SpawnItemEx("NewBFGTrailGreen", 0, random(8,-8), random(8,-8), 0, 0, 0, 0, 128, 0);
+		//TNT1 A 0 A_SpawnItemEx("BFGFOG", 0, 0);
+		HSPL ABCDEFGHIJ 1 bright;// A_SetScale(scale.x -0.1, scale.y -0.1);
+		//TNT1 AAAAA 11 a_spawnprojectile("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160))
+	loop;
+}
+}
+
+CLASS Beam_Trail : pb_special_effect_base//MageWandSmoke replaces MageWandSmoke
+{ 
+	Default {
+	
+	RenderStyle "Add";
+	Alpha .25;
+	Scale 0.75;
+	DeathSound "";
+	SeeSound "None";
+	Decal "";
+	damagetype "Desintegrate";
+	+BLOODLESSIMPACT;
+	Translation "0:255=%[0,0,0]:[0,1,0]";
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5");
+	Spawn1:
+		HSPL ABFGAFDJ 1 BRIGHT A_SetScale(scale.x -0.09, scale.y -0.09);
+	stop;
+	Spawn2:
+		HSPL JDHFEBEC 1 BRIGHT A_SetScale(scale.x -0.09, scale.y -0.09);
+	stop;
+	Spawn3:
+		HSPL DJFEBAFE 1 BRIGHT A_SetScale(scale.x -0.09, scale.y -0.09);
+	stop;
+	Spawn4:
+		HSPL HIBECCGH 1 BRIGHT A_SetScale(scale.x -0.09, scale.y -0.09);
+	stop;
+	Spawn5:
+		HSPL CGAFHCDA 1 BRIGHT A_SetScale(scale.x -0.09, scale.y -0.09);
+	stop;
+}
+
+}
+
+CLASS Mini_bfg_sphere : pb_projectile_base { 
+	Default {
+ 
+	Radius 8;
+	Height 6;
+	Speed 30;
+	FastSpeed 35;
+	DamageType "GreenFire";
+	Projectile;
+	+RANDOMIZE
+	+FORCEXYBILLBOARD
+	-THRUGHOST
+  +FORCERADIUSDMG
+    Damage 50;
+	RenderStyle "Add";
+	Alpha 1;
+	Scale 0.25;	
+	DeathSound "9KEXPL";
+	SeeSound "None";
+	Decal "Scorch";
+	}
+	States
+	{
+	Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Playsound("BGFLMBL", 6, 1, 1);
+	   Fly:
+	   DB57 AB 1 BRIGHT A_SpawnItem("GreenFlareSmall",0,0);
+	   //TNT1 A 0 A_SpawnItemEx("BFGLightningTrial_Small", 20, 0, 0, 0, 0, 0, 0, 128);
+	   TNT1 A 0 A_SpawnItemEx("SmallGreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+	   //TNT1 A 0 A_SpawnItemEx("BFGAltTrail", Random(-13, 13), Random(-13, 13), Random(0, 18), Random(1, 3), 0, (0.1)*Random(-10, 10), Random(-20, 20), 128);
+	   DB57 C 1 BRIGHT A_SpawnItem("GreenFlareSmall",0,0);
+	   Loop;
+	Death:
+	TNT1 A 0 A_StopSound(6);
+	   TNT1 AAA 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 6, 6, 6, 0, 128);
+	   //TNT1 A 0 A_SpawnItem("BFGAltShockWave",0,0);
+	   TNT1 A 0 A_Explode(random(12,15),80,1);
+	   EXPG ABCDEFG 2 BRIGHT A_SpawnItem("GreenFlare",0,0);
+	   TNT1 AAAAA 19 a_spawnprojectile("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	   Stop;
+	XDeath:
+	TNT1 A 0 A_StopSound(6);
+	   TNT1 AAA 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+	   //TNT1 A 0 A_SpawnItem("BFGAltShockWave",0,0);
+	   TNT1 A 0 A_Explode(20,80,1);
+	   EXPG ABCDEFG 2 A_SpawnItem("GreenFlare",0,0);
+	   Stop;
+	Crash:
+	   TNT1 A 0 A_StopSound(6);
+	   TNT1 AAA 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 6, 6, 6, 0, 128);
+	   //TNT1 A 0 A_SpawnItem("BFGAltShockWave",0,0);
+	   TNT1 A 0 A_Explode(20,80,1);
+	   FRPG ABCDEFGH 2 BRIGHT A_SpawnItem("GreenFlare",0,0);
+	   TNT1 AAAAA 19 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	   Stop;
+	}
+}
+

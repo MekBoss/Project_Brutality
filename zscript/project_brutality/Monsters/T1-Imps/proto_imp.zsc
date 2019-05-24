@@ -1,0 +1,109 @@
+class proto_imp_class : pb_monster_base
+{
+bool on_floor, ceiling_jump, on_ceiling, attack_jump, first_seeing;
+
+default
+{
+	height 54;
+	radius 18;
+	
+	pb_monster_base.headshot_multiplier 2;
+	pb_monster_base.head_starting_position 48;
+	pb_monster_base.legs_height_max 10;
+}
+
+sector prev_sector;
+//to check current and previous actor sectors for ceiling imps
+
+protected bool pb_check_for_ceiling()
+{
+	if(curSector.GetTexture(curSector.ceiling) == skyflatnum)//there are sky at the ceiling
+	{return false;}
+	
+	return true;
+}
+	
+protected void pb_change_flags_for_jump()
+{
+	if(self is "proto_imp_class")
+	{
+		if(proto_imp_class(self).on_ceiling == true && proto_imp_class(self).on_floor == false)
+		{
+			bNOGRAVITY = true;
+			bTHRUSPECIES = true;
+			bNOVERTICALMELEERANGE = true;
+		}
+		
+		if(proto_imp_class(self).on_ceiling == false && proto_imp_class(self).on_floor == true)
+		{
+			bNOGRAVITY = false;
+			bTHRUSPECIES = false;
+			bNOVERTICALMELEERANGE = false;
+		}
+	}
+}
+
+protected bool pb_imp_ceiling_jump()
+{
+	if(ceiling_jump == true) {return false;}
+	if(pb_check_for_ceiling() == false) {return false;}
+	if(self.ceilingz - self.floorz > 300) {return false;}
+
+	double jump_vel = sqrt(self.getgravity() * 2 * self.ceilingz);
+
+	if(jump_vel > 0) {self.vel.z = jump_vel; ceiling_jump = true;}
+	return true;
+}
+
+override void tick()
+{
+	super.tick();
+	
+	if(ceiling_jump == true)
+	{
+		if( (self.pos.z + self.height >= self.ceilingz) )
+		{ceiling_jump = false; return;}
+
+		if(self.pos.z == self.floorz) {ceiling_jump = false; return;}
+	}
+	
+}
+
+states
+{
+	Death.Blackhole:
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("redburn",6,1,1);
+		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 27, 0, 0, 0, 0, 128);
+		ID52 ABCDEFGHIJ 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 0, 6, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+	stop;
+	
+	Death.Desintegrate:
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		//TNT1 A 0 A_SpawnItem("DesintegratedHuman");
+		TNT1 A 0 A_PlaySound("desintegratedflesh", 3);
+		TNT1 A 0 A_PlaySound("MELT",6);
+		TNT1 AAAAA 0 a_spawnprojectile("BloodMistExtraBig", 22, 0, random (0, 360), 2, random (0, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("BloodmistBig", 37, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("BloodmistSmall", 30, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 37, 0, random (0, 360), 2, random (10, 50));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 30, 0, random (0, 360), 2, random (0, 90));
+		TNT1 A 0 a_spawnprojectile("SuperGoreSpawner2", 30, 0, random (0, 360), 2, random (10, 90));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		
+		TNT1 A 0 A_Jump(128, "desintegrate_2");
+		ID50 AAABBBCCCDDDEEEFFFGGGGGGGGGGGGGGGGGGG 2 a_spawnprojectile("Brutal_LiquidBlood3", 18, 0, random (0, 360), 2, random (0, 40));
+		ID50 G -1;
+	stop;
+		
+	desintegrate_2:
+       M31T CCCCCDDDDDEEEEEFFFFGGGGHHHHIIIIJJJJKKKKKKKKKKKKK 2 a_spawnprojectile("Brutal_LiquidBlood3", 15, 0, random (0, 360), 2, random (0, 40));
+       M31T K -1;
+	Stop;
+}
+
+}

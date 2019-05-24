@@ -1,0 +1,561 @@
+// --------------------------------------------------------------------------
+//
+// Light Machine Gun
+//	
+// --------------------------------------------------------------------------
+CLASS HMG : weapon_slot_4_proto_class
+{
+bool belt_feed, iron_sight;
+
+Default
+{
+	Weapon.SlotNumber 4;
+	Weapon.SelectionOrder 3;
+	Weapon.slotpriority 0.2;
+
+	Weapon.AmmoType1 "pb_clip";
+	Weapon.AmmoType2 "LMGAmmo";
+	Weapon.AmmoGive 45;
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoUse2 0;
+	+FLOORCLIP;
+	+DONTGIB;
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOAUTOFIRE;
+	+WEAPON.NOALERT;
+	Inventory.PickupSound "LMGPKP";
+	Inventory.PickupMessage "You got the UAC-349 Light Machine Gun UPGRADE!!!";
+	Tag "Heawy Manual Gun";
+	Obituary "%o was became a leaking piece of meat by %k's light machine gun";
+	AttackSound "none";
+	+COUNTITEM;
+}
+States
+{
+	Spawn:
+		LMGL ABBCCDDEEDDCCBB 1 BRIGHT Light("WeaponUpgradeSpawner");
+	Loop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 1 A_Raise(80);
+	Wait;
+
+	Ready:
+		TNT1 A 0 A_Playsound("LMGUP");
+		LMGS ABCD 1;
+	ready_loop:
+		//LMGG default sprite "LM2G A" belt feeded "LM2G Z" iron sight
+		LMGG A 1
+		{
+			if(invoker.belt_feed == true)
+			{self.Player.findPSprite(PSP_WEAPON).sprite = getspriteindex("LM2G"); }
+			
+			if(invoker.iron_sight == true)
+			{self.Player.findPSprite(PSP_WEAPON).sprite = getspriteindex("LM2G");
+			self.Player.findPSprite(PSP_WEAPON).frame = 25;}//frames is a numbers, a = 1, b = 2...z = 25
+			
+			A_WeaponReady(WRF_ALLOWRELOAD);
+			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+	loop;
+
+	BeltReadyUp:
+		LM2S ZYXWV 1;
+	BeltReady:
+		TNT1 A 0 A_SetCrosshair(0);
+		LM2G A 1
+		{
+			A_WeaponReady();
+			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+	Loop;
+
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("LMGAmmo",1,1);
+	Goto Reload;
+		TNT1 A 0
+		{
+			A_WeaponOffset(0,32);
+			if(invoker.belt_feed == true)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("belt_fire") ); return; }	
+
+			if(invoker.iron_sight == true)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("iron_sight_fire") ); return; }
+			A_PlaySound("LMGFIRE");
+		}
+		LMGF A 1 BRIGHT
+		{
+			A_FireBullets (1.45, 1.45, -1, random(13,14), "MachineGunBulletPuff");
+			A_FireProjectile("Tracer", random(-1,1), 0, -1, 0);
+			A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			A_FireProjectile("YellowFlareSpawn",0,0,0,0);
+			A_FireProjectile("GunFireSmoke", 0, 0, 0, 1, 0, 0);
+			A_SetAngle(frandom(0.61, -0.57) + angle);
+			A_ZoomFactor(0.982);
+			A_FireProjectile("YellowFlareSpawn",0,0,0,0);
+			A_AlertMonsters();
+		}
+		LMGF B 1
+		{
+			A_ZoomFactor(0.990);
+			A_SetPitch(-1.25 + pitch);
+			A_Takeinventory("LMGAmmo",1);
+			A_SetPitch(+0.78 + pitch);
+		}
+		LMGF C 1
+		{
+			A_FireProjectile("RifleCaseSpawn",5,0,8,-9);
+			A_ZoomFactor(0.995);
+		}
+		LMGF A 1
+		{
+			A_SetPitch(+0.2 + pitch);
+			A_ZoomFactor(1.0);
+		}
+		LMGG A 1 A_ReFire;
+	Goto Ready_loop;
+	iron_sight_fire:
+		LM2F A 1 BRIGHT
+		{
+			A_PlaySound("LMGFIRE", 1);
+			A_FireBullets (1.20, 1.20, -1, random(13,14), "MachineGunBulletPuff");
+			A_FireProjectile("Tracer", random(-1,1), 0, -1, 0);
+			A_FireProjectile("GunFireSmoke", 0, 0, 0, 3, 0, 0);
+			A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			A_FireProjectile("YellowFlareSpawn",0,0,0,0);
+			A_SetAngle(frandom(0.85, -0.44) + angle);
+			A_ZoomFactor(1.982);
+			A_FireProjectile("YellowFlareSpawn",0,0,0,0);
+			A_AlertMonsters();
+		}
+		LM2F B 1
+		{
+			A_ZoomFactor(1.990);
+			A_SetPitch(-0.25 + pitch);
+			A_Takeinventory("LMGAmmo",1);
+			A_SetPitch(-0.85 + pitch);
+		}
+		LM2F C 1{A_FireProjectile("RifleCaseSpawn",5,0,8,-9);}
+		LM2F A 1 A_SetPitch(+0.95 + pitch);
+		LM2G Z 1 A_ReFire("iron_sight_fire");
+		TNT1 A 0 A_ZoomFactor(2.0);
+	Goto Ready_loop;
+
+
+	AltFire:
+	iron_sight_on:
+	TNT1 A 0
+		{
+			if(invoker.iron_sight == true)
+			{self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("back_to_normal_sight") ); return; }	
+			A_WeaponOffset(0,32);
+			invoker.iron_sight = true;
+			A_PlaySound("IronSights", 0);
+			A_PlaySound("RAIL_ZM", 1);
+			A_SetCrosshair(5);
+			A_ZoomFactor(2.0);
+		}
+		LM2Z ABC 1;
+	Goto Ready_loop;
+	back_to_normal_sight:
+		LM2Z CBA 1;
+		tnt1 a 0
+		{
+			invoker.iron_sight = false;
+			A_SetCrosshair(0);
+			A_ZoomFactor(1.0);
+		}
+	Goto Ready_loop;
+		
+	Reload:
+		tnt1 A 0
+		{
+			A_StopSound(6);
+			A_ZoomFactor(1.0);
+		}
+		tnt1 a 0 A_JumpIfInventory("LMGAmmo",61,"ready_loop");
+		tnt1 a 0 A_JumpIfInventory("pb_clip",1,1);
+	Goto ready_loop;
+		TNT1 A 0 A_PlaySound("LMGOUT", 1);
+		TNT1 A 0 A_FireProjectile("EmptyLMGMag",-5,0,8,-4);
+		LMGR ABCDEF 1;
+		LMGR G 4 {A_PlaySound("IronSights", 2); }
+		LMGR HIJKLM 2;
+		TNT1 A 0 A_PlaySound("LMGIN", 3);
+		LMGR M 2{invoker.reload_weapon_magazine("LMGAmmo", "pb_clip");}
+		TNT1 A 0 A_PlaySound("IronSights", 4);
+		LMGR NOPQ 2;
+	Goto Ready_loop;
+
+	LoadChamber:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("IronSights", 1);
+		TNT1 A 0 A_PlaySound("LMGCLK", 2);
+		LMGR RSTU 2;
+		LMGR VV 1;
+		LMGG A 1;
+	Goto Ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(4);
+		LMGS DCBA 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+	Steady:
+		TNT1 A 1;
+		Goto Ready;
+		
+
+	
+	
+	BeltUnloaded:
+		TNT1 A 0 A_SetCrosshair(0);
+		LM2G B 1
+		{
+			A_WeaponReady();
+			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+	Loop;
+	
+	
+	ReadyUnloaded:
+		LMGG Z 1
+		{
+			A_WeaponReady(WRF_ALLOWRELOAD);
+			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+	}
+	Goto ReadyUnloaded+11;
+	
+		
+		
+	NoAmmo:
+		//TNT1 A 0 A_StopSound(4)
+		LMGG A 0 A_PlaySound("weapons/empty");
+		Goto Ready+6;
+		
+		
+	BeltNoAmmo:
+		//TNT1 A 0 A_StopSound(4)
+		LM2G B 1 A_PlaySound("weapons/empty");
+		Goto Ready+6;
+
+
+
+		
+
+				
+	BeltFire:
+		TNT1 A 0 A_JumpIfInventory("pb_clip",1,2);
+	Goto BeltNoAmmo;
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("LMGFIRE");
+		LM3F A 1 BRIGHT A_FireBullets (3.4, 3.4, -1, random(13,14), "MachineGunBulletPuff");
+		TNT1 A 0 A_FireProjectile("Tracer", random(-1,1), 0, -1, 0);
+		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		TNT1 A 0 A_FireProjectile("GunFireSmoke", 0, 0, 1, 1, 0, 0);
+		TNT1 A 0 A_FireProjectile("YellowFlareSpawn",0,0,1,0);
+		TNT1 A 0 A_SetAngle(frandom(2.95, -2.8) + angle);
+		TNT1 A 0 A_ZoomFactor(0.982);
+		TNT1 A 0 A_FireProjectile("YellowFlareSpawn",0,0,0,0);
+		TNT1 A 0 A_AlertMonsters;
+		LM3F B 1;
+		TNT1 A 0 A_ZoomFactor(0.990);
+		TNT1 A 0 A_SetPitch(-1.15 + pitch);
+		TNT1 A 0 A_Takeinventory("pb_clip",1);
+		TNT1 A 0 A_SetPitch(+0.88 + pitch);
+		LM3F C 1 A_FireProjectile("RifleCaseSpawn",5,0,20,-12);
+		TNT1 A 0 A_FireProjectile("MiniBeltPieceSpawn2",5,0,20,-12);
+		TNT1 A 0 A_ZoomFactor(0.995);
+		LM3F D 1 A_SetPitch(+0.3 + pitch);
+		LM2G A 1 A_ReFire;
+		TNT1 A 0 A_ZoomFactor(1.0);
+	Goto BeltReady+6;
+		
+
+		
+		
+
+		
+
+		
+
+		
+		
+
+		
+		
+		////////////////////////////////////////Unloading	
+		
+	AlreadyUnloaded:
+
+		Goto Ready+6;
+		
+	Unload:
+
+		LMGG A 1 A_WeaponReady;
+		TNT1 A 0 A_ZoomFactor(1.0);
+
+
+
+		TNT1 A 0 A_JumpIfInventory("LMGAmmo",1,3);
+		Goto NoAmmo;
+		TNT1 AAA 0;
+
+		TNT1 A 0 A_PlaySound("IronSights", 1);
+		LMGR QPON 1;
+		TNT1 A 0 A_PlaySound("LMGOUT", 2);
+		LMGR MLKJIH 2;
+		TNT1 A 0 A_PlaySound("IronSights", 3);
+		LMGR G 3;
+		LMGR NOPQ 1;
+
+
+		
+	RemoveBullets:
+		TNT1 AAAA 0;
+		TNT1 A 0 A_JumpIfInventory("LMGAmmo",1,3);
+	Goto FinishUnload;
+		TNT1 AAAAAA 0;
+		TNT1 A 0 A_Takeinventory("LMGAmmo",1);
+		TNT1 A 0 A_Giveinventory("pb_clip",1);
+	Goto RemoveBullets;
+		
+	FInishUnload:
+		LMGG G 1;
+		TNT1 A 0 A_PlaySound("DryFire");
+
+
+	Goto ReadyUnloaded+6;
+		
+		//////////////////////////////////////////Unloading
+		
+		
+	WeaponSpecial:
+		TNT1 A 0 A_SetCrosshair(0);
+
+		TNT1 A 0 A_ZoomFactor(1.0);
+
+
+
+
+		//TNT1 A 0 A_JumpIfInventory("LMGAmmoBelt", 1, "SwitchToDrumMag");
+
+		TNT1 A 0 A_Print("Switching to Ammmo Belt");
+		LMGR QPON 1;
+		TNT1 A 0 A_PlaySound("LMGOUT", 2);
+		LMGR MLKJIH 2;
+		TNT1 A 0 A_PlaySound("CBOXPKUP");
+		LM2S ABCDEFG 2;
+	DistributeAmmo:
+		TNT1 AAAA 0;
+		TNT1 A 0 A_JumpIfInventory("LMGAmmo",1,3);
+	Goto BeltReady;
+		TNT1 AAAAAA 0;
+
+
+	Goto DistributeAmmo;
+		
+	SwitchToDrumMag:
+		TNT1 A 0 A_Print("Switching to Drum Mag");
+
+
+
+		TNT1 A 0 A_PlaySound("CBOXPKUP", 2);
+		LM2S GFEDCBA 2;
+	Goto Reload;
+		
+	FlashKicking:
+		//TNT1 A 0 A_JumpIfInventory("LMGAmmoBelt", 1, "BeltFlashKicking");
+		LMGG B 1;
+		LMGG C 1;
+		LMGG D 1;
+		LMGG D 3;
+		LMGG E 3;
+		LMGG D 3;
+		LMGG C 1;
+		LMGG B 1;
+		LMGG AAAA 1;
+		Stop;
+		
+	BeltFlashKicking:
+		LM2S V 1;
+		LM2S W 1;
+		LM2S X 1;
+		LM2S Y 3;
+		LM2S Z 3;
+		LM2S Y 3;
+		LM2S X 1;
+		LM2S WV 1;
+		LM2G AAA 1;
+		Stop;
+		
+	FlashAirKicking:
+		//TNT1 A 0 A_JumpIfInventory("LMGAmmoBelt", 1, "BeltAirFlashKicking");
+		LMGG B 1;
+		LMGG C 1;
+		LMGG D 1;
+		LMGG D 3;
+		LMGG E 3;
+		LMGG D 3;
+		LMGG C 1;
+		LMGG B 1;
+		LMGG AAAA 1;
+		Stop;
+		
+	BeltAirFlashKicking:
+		LM2S V 1;
+		LM2S W 1;
+		LM2S X 1;
+		LM2S Y 3;
+		LM2S Z 3;
+		LM2S Y 3;
+		LM2S X 1;
+		LM2S WV 1;
+		LM2G AAAA 1;
+		Stop;
+		
+	FlashSlideKicking:
+		//TNT1 A 0 A_JumpIfInventory("LMGAmmoBelt", 1, "BeltFlashSlideKicking");
+		LMGG BC 2;
+		LMGG CCCDDEEDDCC 2 ;
+		Stop;
+		
+	BeltFlashSlideKicking:
+		LM2S VW 2;
+		LM2S XXXYYZZYYXX 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0 A_JumpIfInventory("LMGAmmoBelt", 1, "BeltFlashSlideKickingStop");
+		LMGG EDCBB 1;
+		LMGG A 1;
+		Stop;
+		
+	BeltFlashSlideKickingStop:
+		LM2S ZYXWV 1;
+		LM2G A 1;
+		Stop;
+		
+	FlashPunching:
+		//TNT1 A 0 A_JumpIfInventory("LMGAmmoBelt", 1, "BeltAirFlashPunching");
+		LMGG B 1;
+		LMGG C 1;
+		LMGG D 1;
+		LMGG D 3;
+		LMGG E 3;
+		LMGG D 3;
+		LMGG C 1;
+		LMGG B 1;
+		LMGG AAAA 1;
+		Stop;
+		
+	BeltAirFlashPunching:
+		TNT1 A 1;
+		TNT1 A 1;
+		TNT1 A 1;
+		TNT1 A 3;
+		TNT1 A 3;
+		TNT1 A 3;
+		TNT1 A 1;
+		TNT1 AA 1;
+		TNT1 AAAA 1;
+		Stop;
+	}
+}
+
+
+CLASS LaserdotGreen: pb_projectile_base
+{ 
+Default
+{
+	Decal "None";
+	Mass 0;
+	Scale 0.09;
+	Radius 1;
+	Height 2;
+	Projectile;
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+BLOODLESSIMPACT;
+	+ALWAYSPUFF;
+	+PUFFONACTORS;
+	+DONTSPLASH;
+	+FORCEXYBILLBOARD;
+	Renderstyle "Add";
+	Alpha 0.80;
+}
+
+States
+{
+	Spawn:
+		LEYS G 1 BRIGHT;//A_AlertMonsters(500)
+	Death:
+	XDeath:
+	Crash:
+		LEYS G 1;
+		//TNT1 A 0 A_SpawnItemEx("LaserAlertNearbyMonsters",0,0,0,0,0,0,0,288);
+		LEYS G 1 BRIGHT;
+	Stop;
+}
+
+}
+
+CLASS LMGAmmo : Ammo { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 61;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 61;
+	Inventory.Icon "LMGLZ0";
+	}
+}

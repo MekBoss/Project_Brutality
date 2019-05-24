@@ -1,0 +1,135 @@
+class proto_cyberdemon : pb_monster_base
+{
+bool nuts, rage;
+
+object l_t;
+
+default
+{
+	Radius 45;
+	Height 130;
+
+	pb_monster_base.headshot_multiplier 1;
+	pb_monster_base.head_starting_position 110;
+}
+//he he he
+override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
+{
+	if(nuts == false)
+	{
+		vector3 relat_pos = (0, 0, 0);
+		if(inflictor != null){ relat_pos = self.vec3to(inflictor); }
+			//console.printf("%f", self.angleto(inflictor) );
+		if(relat_pos.z >= 55 && relat_pos.z <= 65 && self.angleto(inflictor) < 15 )
+		{//nice shoot :-*
+			nuts = true;
+			double an_sin = sin(angle);
+			double an_cos = cos(angle);
+
+			actor prj = spawn("UltraGoreSPawner", pos:self.pos + (an_cos * radius, an_sin * radius, 50) );
+				
+			//prj.bthruactors = true;
+			//prj.angle = self.angle;
+			//prj.vel = (frandom(0, 10) * an_sin, frandom(0, 10) * an_cos, frandom(-3, 7) );
+			
+			self.MinMissileChance = 0;
+			self.SetStateLabel("Pain.Taunt");
+		}
+	}
+	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+}
+
+
+override void tick()
+{
+	super.tick();
+	if(health <= 0 || target == null || target.health <= 0) {return;}
+	
+	if(self.instatesequence(self.curstate, findstate("Pain.Taunt") ) || 
+	self.instatesequence(self.curstate, findstate("SpecialAttack") ) ||
+	self.instatesequence(self.curstate, findstate("stomp") )
+	) {return;}//if in pain, special attack or stomp state dont do anything
+
+	if(target && (level.time % 3) == 0)
+	{
+		vector3 square = self.vec3to(target);
+		
+		double dis = (square.x * square.x) + (square.y * square.y) + (square.z * square.z);
+		if(dis < 180 ** 2) {self.SetStateLabel("stomp"); }
+	}
+
+	if(self.instatesequence(curstate, findstate("stomp") ) )
+	{return;}//try to stomp player, return if yes
+
+	if(nuts == true)
+	{
+		if(l_t == null) {l_t = new("cyber_tracer_target_check");}
+		
+		if(target)
+		{
+			vector3 startPos = self.pos + (0, 0, height/2);
+			vector3 direction = self.vec3to(target);
+			direction.z -= (height/2);
+			direction.z += (target.height/2);
+			
+			cyber_tracer_target_check(l_t).trg = self.target;
+			cyber_tracer_target_check(l_t).src = self;
+			
+			cyber_tracer_target_check(l_t).Trace(startPos, CurSector, direction, 8192.0, TRACE_NoSky);
+
+			if(cyber_tracer_target_check(l_t).Results.hitactor == self.target)
+			{
+				self.SetStateLabel("SpecialAttack");
+			}
+		}
+	}
+}
+
+}
+
+class cyber_tracer_target_check : LineTracer
+{
+actor trg, src;
+
+override ETraceStatus TraceCallback()
+{
+	if (Results.HitType == TRACE_HitActor)
+	{
+		if(Results.HitActor == trg) {return trace_stop;}
+		if(Results.HitActor == src) {return TRACE_Skip;}
+		return TRACE_Skip;
+	}
+	
+	if (Results.HitType == TRACE_HitWall)
+	{
+		if (Results.HitLine.Flags & Line.ML_TWOSIDED > 0 && Results.Tier == TIER_Middle)
+		{
+			return TRACE_skip;
+		}
+		return TRACE_stop;
+	}
+	return TRACE_Stop;
+}
+
+}
+
+class proto_spider_mind : pb_monster_base
+{
+default
+{
+	Radius 90;
+	Height 150;
+}
+
+override void tick()
+{
+	super.tick();
+
+	if(BlockingMobj != null)
+	{//BlockingMobj is internal pointer to actor which was blocks last monster move
+		BlockingMobj.damagemobj(self, self, random(50,170), 'stomp', DMG_THRUSTLESS, 0);
+		self.a_chase(null, null);
+	}
+}
+
+}

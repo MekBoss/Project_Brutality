@@ -1,0 +1,966 @@
+// --------------------------------------------------------------------------
+// MiniGun and Deathdealer
+// --------------------------------------------------------------------------
+
+CLASS Maxi_Gun : weapon_slot_4_proto_class
+{
+bool upgrade, barrel_spins, choose_upgraded_version;
+
+int temperature;
+
+Default
+{
+	Weapon.SlotNumber 4;
+	Weapon.SelectionOrder 1;
+	Weapon.slotpriority 0.5;
+
+	Weapon.AmmoType1 "pb_clip";
+	Weapon.AmmoGive1 50;
+	Weapon.AmmoUse1 1;
+
+	Inventory.PickupSound "CBOXPKUP";
+	Inventory.PickupMessage "You got the UAC Mach-3 Minigun! (Slot 4)";
+	Obituary "%o became Swiss Cheese by %k's Gatling Gun";
+	AttackSound "none";
+	Tag "POWEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+}
+
+override void doeffect()
+{
+	super.doeffect();
+	
+	if(self.temperature > 0)
+	{
+		self.temperature --;
+		if(self.choose_upgraded_version == true)
+		{
+			if(self.barrel_spins == true)
+			{
+				owner.player.SetPsprite(PSP_FLASH, self.FindState("glow") );
+			}
+		}
+		
+		if(barrel_spins == true)
+		{
+			owner.player.SetPsprite(PSP_FLASH, self.FindState("glow") );
+		}
+	}
+}
+States
+{
+	Spawn:
+		MGUN A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 0 A_ZoomFactor(1.0);
+		//TNT1 A 0 A_GunFlash("Glow");
+		TNT1 A 0 A_Raise(80);
+	Wait;
+
+	Ready:
+		tnt1 A 0
+		{
+			A_StopSound(6);
+			A_StopSound(1);
+		}
+		CHGS ABCD 1;
+		TNT1 A 0 A_PlaySound("CHGNPKUP");
+	ready_loop:
+		TNT1 A 0
+		{
+			A_StopSound(6);
+			A_StopSound(1);
+			//A_GunFlash("Glow");
+			if(invoker.barrel_spins == true) {self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("spins_barrels") ); }
+		}
+		CHAG A 1 a_weaponready();
+	loop;
+
+	spins_barrels:
+		CHAG ABCD 1
+		{
+			A_GunFlash("AltfireGlow");
+			A_Weaponready();
+		}
+		TNT1 A 0 A_PlaySound("CHAINSPI", 2);
+	loop;
+
+	Fire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 A_PlaySound("CHAINSTA");
+		TNT1 A 0 BRIGHT a_fireprojectile("Alerter", 0, 0, 0, 0);
+		TNT1 A 0 A_GunFlash("PreGlow");
+		CHAG B 1 A_ZoomFactor(0.995);
+		CHAG B 1 A_ZoomFactor(0.990);
+		CHAG C 1 A_ZoomFactor(0.985);
+		CHAG C 1 A_ZoomFactor(0.980);
+		CHAG D 1 A_ZoomFactor(0.978);
+	Hold:
+		CHAF A 1 BRIGHT
+		{
+		
+			A_GunFlash("FireGlow");
+			A_PlaySound("CHAINSPI", 6,1,1);
+			A_PlaySound("weapons/minigunfire", 1, 1, 1);
+			A_Recoil(0.1);
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			A_FireBullets(4, 4, 1, 10, "MachineGunBulletPuff", 1);
+			invoker.temperature+= 3;
+			a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+			a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		}
+		CHAF B 1
+		{
+			A_SetAngle(frandom(1.2, -1.2) + angle);
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		}
+		CHAF C 1 BRIGHT
+		{
+			A_FireBullets(4, 4, 1, 10, "MachineGunBulletPuff", 1);
+			invoker.temperature+= 3;
+			a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+			a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+			a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		}
+		CHAF D 1
+		{
+			A_SetAngle(frandom(1.2, -1.2) + angle);
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		}
+		CHAF E 1 BRIGHT
+		{
+			A_FireBullets(4, 4, 1, 10, "MachineGunBulletPuff", 1);
+			invoker.temperature+= 3;
+			a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+			a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		}
+		CHAF F 1
+		{
+			A_SetAngle(frandom(1.2, -1.2) + angle);
+			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		}
+		CHAF G 1 BRIGHT
+		{
+			A_FireBullets(4, 4, 1, 10, "MachineGunBulletPuff", 1);
+			invoker.temperature+= 3;
+			a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+			a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+			a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		}
+		CHAF H 1{A_SetAngle(frandom(1.2, -1.2) + angle);}
+		MNGG B 0 A_ReFire("hold");
+		null A 0
+		{
+			A_StopSound(6);
+			A_StopSound(3);
+			A_StopSound(1);
+			A_PlaySound("CHAINSTO");
+			A_WeaponReady();
+			A_GunFlash("PostGlow");
+		}
+		CHAG ABCD 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_GunFlash("PostGlow");
+		CHAG ABCD 1
+		{
+			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			A_Refire("hold");
+			A_GunFlash("PostGlow");
+		}
+		CHAG A 2
+		{
+			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			A_ZoomFactor(0.980);
+		}
+		CHAG B 2
+		{
+			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			A_ZoomFactor(0.990);
+			A_GunFlash("PostGlow");
+		}
+		CHAG C 2
+		{
+			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			A_ZoomFactor(0.995);
+		}
+		CHAG D 2
+		{
+			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			A_ZoomFactor(1.0);
+			A_PlaySound("CHAINCLI", 8);
+		}
+	goto Ready_loop;
+
+	AltFire:
+	spin:
+		null A 0
+		{
+			A_WeaponOffset(0,32);
+			if(invoker.barrel_spins == true) {self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("unspin") ); return;}
+			A_StopSound(6);
+			A_PlaySound("CHAINSTA", 5);
+			//A_GunFlash("AltfireGlow");
+			invoker.barrel_spins = true;
+		}
+		CHAG A 4 A_ZoomFactor(0.995);
+		CHAG B 4 A_ZoomFactor(0.990);
+		CHAG C 4 A_ZoomFactor(0.985);
+		CHAG D 4 A_ZoomFactor(0.980);
+		CHAG ABCD 3;
+		CHAG ABCD 2;
+	Goto spins_barrels;
+
+	unspin:
+		null A 0
+		{
+			invoker.barrel_spins = false;
+			A_PlaySound("CHAINSTO");
+		}
+		CHAG ABCD 2;
+		CHAG ABCD 3;
+		null A 0 A_PlaySound("CHAINCLI", 8);
+		CHAG A 4 A_ZoomFactor(0.995);
+		CHAG B 4 A_ZoomFactor(0.990);
+		CHAG C 4 A_ZoomFactor(0.985);
+		CHAG D 4 A_ZoomFactor(0.980);
+	goto Ready_loop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+		TNT1 A 0
+		{
+			A_ZoomFactor(1.0);
+			A_GunFlash("Null");
+			A_StopSound(6);
+			A_StopSound(1);
+			A_StopSound(2);
+			SetPlayerProperty(0,0,0);
+			A_PlaySound("weapons/changing", 1);
+		}
+		CHGS DCBA 1;
+		TNT1 A 0 A_Lower(80);
+	Wait;
+
+
+
+	Steady:
+		TNT1 A 1;
+		////TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 5, "ReadyDeathDealer");
+		Goto Ready;
+		
+	PreGlow:
+		TNT1 A 0;
+		/*TNT1 A 0 A_JumpIfInventory("OverHeating",90, 17);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",75, 14);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",60, 11);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",45, 8);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",35, 5);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",20, 2);
+		TNT1 A 0 A_Jump(256, 13);
+		TNT1 A 0 A_Jump(256, "PreGlow1");
+		TNT1 A 0 A_Jump(256, 11);
+		TNT1 A 0 A_Jump(256, "PreGlow2");
+		TNT1 A 0 A_Jump(256, 9);
+		TNT1 A 0 A_Jump(256, "PreGlow3");
+		TNT1 A 0 A_Jump(256, 7);
+		TNT1 A 0 A_Jump(256, "PreGlow4");
+		TNT1 A 0 A_Jump(256, 5);
+		TNT1 A 0 A_Jump(256, "PreGlow5");
+		TNT1 A 0 A_Jump(256, 3);
+		TNT1 A 0 A_Jump(256, "PreGlow6");
+		TNT1 AAAAAAA 0;
+		Stop;
+	PostGlow:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfInventory("OverHeating",90, 17);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",75, 14);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",60, 11);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",45, 8);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",35, 5);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",20, 2);
+		TNT1 A 0 A_Jump(256, 13);
+		TNT1 A 0 A_Jump(256, "PostGlow1");
+		TNT1 A 0 A_Jump(256, 11);
+		TNT1 A 0 A_Jump(256, "PostGlow2");
+		TNT1 A 0 A_Jump(256, 9);
+		TNT1 A 0 A_Jump(256, "PostGlow3");
+		TNT1 A 0 A_Jump(256, 7);
+		TNT1 A 0 A_Jump(256, "PostGlow4");
+		TNT1 A 0 A_Jump(256, 5);
+		TNT1 A 0 A_Jump(256, "PostGlow5");
+		TNT1 A 0 A_Jump(256, 3);
+		TNT1 A 0 A_Jump(256, "PostGlow6");
+		TNT1 AAAAAAA 0;
+		Stop;
+	FireGlow:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfInventory("OverHeating",90, 17);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",75, 14);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",60, 11);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",45, 8);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",35, 5);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",20, 2);
+		TNT1 A 0 A_Jump(256, 13);
+		TNT1 A 0 A_Jump(256, "FireGlow1");
+		TNT1 A 0 A_Jump(256, 11);
+		TNT1 A 0 A_Jump(256, "FireGlow2");
+		TNT1 A 0 A_Jump(256, 9);
+		TNT1 A 0 A_Jump(256, "FireGlow3");
+		TNT1 A 0 A_Jump(256, 7);
+		TNT1 A 0 A_Jump(256, "FIreGlow4");
+		TNT1 A 0 A_Jump(256, 5);
+		TNT1 A 0 A_Jump(256, "FireGlow5");
+		TNT1 A 0 A_Jump(256, 3);
+		TNT1 A 0 A_Jump(256, "FireGlow6");
+		TNT1 AAAAAAA 0;
+		Stop;
+	Glow:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfInventory("OverHeating",90, 17);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",75, 14);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",60, 11);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",45, 8);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",35, 5);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",20, 2);
+		TNT1 A 0 A_Jump(256, 13);
+		TNT1 A 0 A_Jump(256, "Glow1");
+		TNT1 A 0 A_Jump(256, 11);
+		TNT1 A 0 A_Jump(256, "Glow2");
+		TNT1 A 0 A_Jump(256, 9);
+		TNT1 A 0 A_Jump(256, "Glow3");
+		TNT1 A 0 A_Jump(256, 7);
+		TNT1 A 0 A_Jump(256, "Glow4");
+		TNT1 A 0 A_Jump(256, 5);
+		TNT1 A 0 A_Jump(256, "Glow5");
+		TNT1 A 0 A_Jump(256, 3);
+		TNT1 A 0 A_Jump(256, "Glow6");
+		TNT1 AAAAAAA 0;
+		Stop;
+	Glow1:
+		G10W A 2;//BRIGHT
+		Stop;
+		
+	Glow2:
+		G10W B 2;//BRIGHT
+		Stop;
+		
+	Glow3:
+		G10W C 2 BRIGHT;
+		Stop;
+		
+	Glow4:
+		G10W D 2 BRIGHT;
+		Stop;
+		
+	Glow5:
+		G10W E 2 BRIGHT;
+		Stop;
+		
+	Glow6:
+		G10W F 2 BRIGHT;
+		Stop;
+	AltFireGlow:
+		TNT1 A 0 A_JumpIfInventory("OverHeating",90, 17);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",75, 14);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",60, 11);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",45, 8);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",35, 5);
+		TNT1 A 0 A_JumpIfInventory("OverHeating",20, 2);
+		TNT1 A 0 A_Jump(256, 13);
+		TNT1 A 0 A_Jump(256, "AltfireGlow1");
+		TNT1 A 0 A_Jump(256, 11);
+		TNT1 A 0 A_Jump(256, "AltfireGlow2");
+		TNT1 A 0 A_Jump(256, 9);
+		TNT1 A 0 A_Jump(256, "AltfireGlow3");
+		TNT1 A 0 A_Jump(256, 7);
+		TNT1 A 0 A_Jump(256, "AltfireGlow4");
+		TNT1 A 0 A_Jump(256, 5);
+		TNT1 A 0 A_Jump(256, "AltfireGlow5");
+		TNT1 A 0 A_Jump(256, 3);
+		TNT1 A 0 A_Jump(256, "AltfireGlow6");
+		TNT1 AAAAAA 0;*/
+		Stop;
+		
+
+		
+
+	
+	ReadyDeathDealer:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(1);
+		8HWS ABCD 1;
+		TNT1 A 0 A_PlaySound("CHGNPKUP");
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(1);
+		TNT1 A 0 A_GunFlash("Null");
+		8HAG A 1
+		{
+			A_WeaponReady();
+			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+	Goto ReadyDeathDealer+13;
+	
+	
+	ReadyDeathDealer2:
+		8HAG ABCD 1
+		{
+			A_WeaponReady();
+			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+		}
+		TNT1 A 0 A_PlaySound("CHAINSPI",2);
+		TNT1 A 0 A_PlaySound("DTHDRSN",3);
+	Loop;
+		
+		
+	Prompt1:
+		TNT1 A 0 A_Print("You need a Minigun Upgrade!");
+		Goto Ready+13;
+	WeaponSpecial:
+		//TNT1 A 0 A_JumpIfInventory("AdvancedBackpackCounter", 1, "ContinueSpecial");
+		Goto Prompt1;
+	ContinueSpecial:
+		TNT1 AAAA 0;
+		//TNT1 A 0 A_JumpIfInventory("MinigunCounter", 5, "SwitchToDeathDealer");
+		TNT1 A 0 A_Print("You need 3 Miniguns!");
+		Goto Ready+13;
+	SwitchToDeathDealer:
+		////TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "SwitchToMinigun");
+		TNT1 A 0 A_Print("Triple Rotary Mode Activated");
+		//TNT1 A 0 A_GiveInventory("EquipDeathDealer", 1);
+		TNT1 A 0 A_PlaySound("8HAINSW1", 3);
+		DDSW AABBCCDDD 1;
+		DDSW EFG 2;
+		TNT1 A 0 A_PlaySound("8HAINSW2", 5);
+		DDSW JIII 2;
+		8HWS AABCD 1;
+		Goto ReadyDeathDealer+10;
+	SwitchToMinigun:
+		TNT1 A 0 A_Print("Single Rotary Mode Activated");
+		//TNT1 A 0 A_TakeInventory("EquipDeathDealer", 1);
+		TNT1 A 0 A_PlaySound("8HAINSW1", 3);
+		8HWS DDCCBBAAA 1;
+		DDSW IJGFED 2;
+		TNT1 A 0 A_PlaySound("8HAINSW3", 5);
+		DDSW DDCBA 1;
+		Goto Ready+10;
+		
+		
+	GrabEnemy:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("weapons/fistwhoosh");
+		PKUP ABCDEF 1;
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 A_Lower;
+		Wait;
+	GrabBarrel:
+		TNT1 A 0;
+
+
+
+		TNT1 A 0 A_ZoomFactor(1.0);
+		TNT1 A 0 A_PlaySound("weapons/fistwhoosh");
+
+
+		PKUP ABCDEF 1;
+		//TNT1 A 0 A_SelectWeapon("BarrelThrower");
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 A_Lower;
+	Wait;
+		
+	DeselectDeathDealer:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(1);
+		TNT1 A 0 A_StopSound(2);
+		TNT1 A 0 A_PlaySound("weapons/changing", 1);
+		8HWS DCBA 1;
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_Lower;
+		Wait;
+		
+
+		
+		
+	NoAmmo:
+		////TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "NoAmmoDeathDealer");
+
+		TNT1 A 0 A_ZoomFactor(1.0);
+
+		TNT1 A 0 A_StopSound(1);
+		CHAG ABCCBA 1;
+		CHAG A 1 A_WeaponReady;
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAA 0 a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+		Stop;
+		
+	NoAmmoDeathDealer:
+		8HAG ABCCBA 1;
+		8HAG A 1 A_WeaponReady;
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAA 0 a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
+		Stop;
+		
+
+		
+		
+	FireDeathDealer:
+		TNT1 A 0;
+		////TNT1 A 0 A_JumpIfInventory("DeathDealerSpin",1,"DeathDealerFire2");
+		TNT1 A 0 A_PlaySound("CHAINSTA",4);
+		TNT1 A 0 A_PlaySound("DTHDLRST",5);
+		TNT1 A 0 BRIGHT a_fireprojectile("Alerter", 0, 0, 0, 0);
+		8HAG B 1 A_ZoomFactor(0.995);
+		8HAG B 1 A_ZoomFactor(0.990);
+		8HAG C 1 A_ZoomFactor(0.985);
+		8HAG C 1 A_ZoomFactor(0.980);
+		8HAG D 1 A_ZoomFactor(0.978);
+		TNT1 A 0;
+	HoldDeathDealer:
+		////TNT1 A 0 A_JumpIfInventory("DeathDealerSpin",1,"DeathDealerFire2");
+		
+		TNT1 A 0 A_PlaySound("CHAINSPI", 6, 1,1);
+		TNT1 A 0 A_PlaySound("8HAINFIR", 2, 1,1);
+		TNT1 A 0 A_Recoil(0.1);
+		
+		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
+		RIFF A 0 a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		8HAF A 1 BRIGHT A_FireBullets(7, 7, 3, 9, "MachineGunBulletPuff", 1);
+		TNT1 A 0 A_TakeInventory("pb_clip", 2);
+		8HAF AAA 0 BRIGHT a_fireprojectile("MinigunTracer", random(-6,6), 0, -1, random(-4,4));
+		TNT1 AAA 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		TNT1 A 0 a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		8HAF BC 1;
+		TNT1 A 0 A_SetAngle(frandom(2.35, -2.45) + angle);
+		TNT1 A 0 A_SetPitch(-1.2 + pitch);
+		
+		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
+		TNT1 A 0 A_Recoil(0.1);
+		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		8HAF D 1 BRIGHT A_FireBullets(7, 7, 3, 9, "MachineGunBulletPuff", 1);
+		TNT1 A 0 A_TakeInventory("pb_clip", 2);
+		8HAF AAA 0 BRIGHT a_fireprojectile("MinigunTracer", random(-6,6), 0, -1, random(-4,4));
+		TNT1 AAA 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		8HAF EF 1;
+		TNT1 A 0 A_SetAngle(frandom(1.85, -1.85) + angle);
+		
+		
+		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		8HAF G 1 BRIGHT A_FireBullets(7, 7, 3, 9, "MachineGunBulletPuff", 1);
+		TNT1 A 0 A_TakeInventory("pb_clip", 2);
+		8HAF AAA 0 BRIGHT a_fireprojectile("MinigunTracer", random(-6,6), 0, -1, random(-4,4));
+		TNT1 AAA 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		TNT1 A 0 a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		8HAF H 1;
+		TNT1 A 0 A_SetAngle(random(1, -1) + angle);
+		
+		MNGG B 0 A_ReFire("HoldDeathDealer");
+		TNT1 A 0 A_StopSound(2);
+		TNT1 A 0 A_StopSound(6);
+		////TNT1 A 0 A_JumpIfInventory("DeathDealerSpin",1,"ReadyDeathDealer2");
+		TNT1 A 0 A_PlaySound("CHAINSTO", 5);
+		TNT1 A 0 A_PlaySound("DTHDLRSP", 4);
+		TNT1 A 0 A_WeaponReady;
+		8HAG A 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_ZoomFactor(0.980);
+		8HAG B 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_ZoomFactor(0.990);
+		8HAG C 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_ZoomFactor(0.995);
+		8HAG D 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_ZoomFactor(1.0);
+		8HAG ABCD 2 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_Refire("HoldDeathDealer");
+		8HAG ABCD 2 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG ABCD 3 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		TNT1 A 0 A_PlaySound("CHAINCLI", 8);
+		goto ReadyDeathDealer+13;
+		
+	Fire2:
+		TNT1 A 0 A_PlaySound("CHAINSPI", 6,1,1);
+		TNT1 A 0 A_PlaySound("weapons/minigunfirefast", 1, 1, 1);
+		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		
+		TNT1 A 0 A_SetAngle(frandom(2.15, -2.2) + angle);
+		TNT1 A 0 A_SetPitch(-1 + pitch);
+		
+		TNT1 A 0 A_GunFlash("PostGlow");
+		TNT1 A 0;
+		
+		CHAF A 1 BRIGHT A_FireBullets(4, 3, -1, 10, "MachineGunBulletPuff", 1);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		TNT1 A 0 BRIGHT a_fireprojectile("MinigunTracer", random(-6,6), 0, -1, random(-6,6));
+
+		TNT1 A 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		CHAF C 1 BRIGHT A_FireBullets(4, 3, -1, 10, "MachineGunBulletPuff", 1);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		TNT1 A 0 BRIGHT a_fireprojectile("MinigunTracer", random(-6,6), 0, -1, random(-6,6));
+
+		TNT1 A 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		TNT1 A 0 a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		
+		TNT1 A 0 A_SetAngle(frandom(1.5, -1.5) + angle);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		CHAF D 1 BRIGHT A_FireBullets(3, 3, -1, 10, "MachineGunBulletPuff", 1);
+		TNT1 A 0 BRIGHT a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+
+		TNT1 A 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		CHAF F 1 BRIGHT A_FireBullets(3, 3, -1, 10, "MachineGunBulletPuff", 1);
+		TNT1 A 0 BRIGHT a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+
+		TNT1 A 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		TNT1 A 0 a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		
+		TNT1 A 0 A_SetAngle(frandom(1.5, -1.5) + angle);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		CHAF G 1 BRIGHT A_FireBullets(3, 3, -1, 10, "MachineGunBulletPuff", 1);
+		TNT1 A 0 BRIGHT a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+
+		TNT1 A 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		CHAF H 1 BRIGHT A_FireBullets(3, 3, -1, 10, "MachineGunBulletPuff", 1);
+		TNT1 A 0 BRIGHT a_fireprojectile("MinigunTracer", random(-3,3), 0, -1, random(-3,3));
+
+		TNT1 A 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		
+		TNT1 A 0 A_ReFire("Fire2");
+		
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(1);
+		
+		TNT1 A 0 A_GunFlash("PostGlow");
+		
+		CHAG A 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		CHAG B 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		CHAG C 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		CHAG D 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+
+		
+		goto spins_barrels+1;
+		
+	DeathDealerFire2:
+		TNT1 A 0 A_PlaySound("CHAINSPI", 6, 1,1);
+		TNT1 A 0 A_PlaySound("8HAINFIR", 2, 1,1);
+		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
+		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		
+		TNT1 A 0 A_SetAngle(frandom(2.85, -2.94) + angle);
+		TNT1 A 0 A_SetPitch(-1.42 + pitch);
+		
+		8HAF A 1 BRIGHT A_FireBullets(9, 9, 3, 9, "MachineGunBulletPuff", 1);
+		RIFF A 0 a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+		TNT1 A 0 A_TakeInventory("pb_clip", 2);
+		8HAF AAA 0 BRIGHT a_fireprojectile("MinigunTracer", random(-8,8), 0, -1, random(-7,7));
+		TNT1 AAA 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		TNT1 A 0 a_fireprojectile("MiniBeltPieceSpawn",0,0,-12,-18);
+		8HAF B 1;
+		
+		TNT1 A 0 A_SetAngle(frandom(2.52, -3) + angle);
+		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
+		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
+		8HAF G 1 BRIGHT A_FireBullets(9, 9, 3, 9, "MachineGunBulletPuff", 1);
+		TNT1 A 0 A_TakeInventory("pb_clip", 2);
+		8HAF BBB 0 BRIGHT a_fireprojectile("MinigunTracer", random(-8,8), 0, -1, random(-7,7));
+		TNT1 AAA 0 a_fireprojectile("50CaseSpawn",0,0,-12,-18);
+		8HAF H 1;
+		
+		TNT1 A 0 A_ReFire("DeathDealerFire2");
+		
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(2);
+		8HAG A 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		8HAG B 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		8HAG C 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		8HAG D 1 A_WeaponReady;
+		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		
+		goto ReadyDeathDealer2;
+		
+
+		
+	DeathDealerAltFire:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(2);
+		//TNT1 A 0 A_JumpIfInventory("DeathDealerSpin",1,"DeathDealerStopAlt");
+		TNT1 A 0 A_PlaySound("CHAINSTA", 5);
+		TNT1 A 0 A_PlaySound("DTHDLRST", 4);
+		8HAG ABCD 4;
+		8HAG ABCD 3;
+		8HAG ABCD 2;
+		TNT1 A 0;
+		Goto ReadyDeathDealer2;
+		
+	DeathDealerStopAlt:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(3);
+		TNT1 A 0 A_PlaySound("CHAINSTO", 6);
+		TNT1 A 0 A_PlaySound("DTHDLRSP", 4);
+		8HAG ABCD 1;
+		8HAG ABCD 2;
+		8HAG ABCD 3;
+		8HAG AB 3;
+		8HAG CD 4;
+		TNT1 A 0 A_PlaySound("CHAINCLI", 8);
+		TNT1 A 0;
+		Goto ReadyDeathDealer+13;
+		
+	StopAlt:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 A 0 A_StopSound(2);
+
+		TNT1 A 0 A_PlaySound("CHAINSTO");
+		
+		TNT1 A 0 A_GunFlash("PostGlow");
+		
+		CHAG A 1 A_ZoomFactor(0.980);
+		CHAG B 1 A_ZoomFactor(0.985);
+		CHAG C 1 A_ZoomFactor(0.990);
+		CHAG D 1 A_ZoomFactor(0.995);
+		TNT1 A 0 A_ZoomFactor(1.0);
+		TNT1 A 0 A_GunFlash("PostGlow");
+		CHAG AB 2;
+		TNT1 A 0 A_GunFlash("PostGlow");
+		CHAG CD 2;
+		TNT1 A 0 A_PlaySound("CHAINCLI", 8);
+		TNT1 A 0;
+		Goto Ready+13;
+	Ready3:
+		////TNT1 A 0 A_JumpIfInventory("EquipDeathDealer",1,1);
+		Goto ready_loop;
+		TNT1 AA 0;
+		Goto ReadyDeathDealer+13;
+	FlashKicking:
+		////TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "FlashKickingDD");
+		CHAG E 1;
+		CHAG E 1;
+		CHAG F 1;
+		CHAG G 3;
+		CHAG H 3;
+		CHAG G 3;
+		CHAG E 1;
+		CHAG F 1;
+		CHAG AAAAA 1;
+		Stop;
+		
+	FlashKickingDD:
+		8HAG E 1;
+		8HAG E 1;
+		8HAG F 1;
+		8HAG G 3;
+		8HAG H 3;
+		8HAG G 3;
+		8HAG E 1;
+		8HAG F 1;
+		8HAG AAAAA 1;
+		Stop;
+		
+	FlashAirKicking:
+		////TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "FlashAirKickingDD");
+		CHAG E 1;
+		CHAG E 1;
+		CHAG F 1;
+		CHAG G 3;
+		CHAG H 3;
+		CHAG G 3;
+		CHAG F 1;
+		CHAG E 1;
+		CHAG AAAA 1;
+		Stop;
+		
+	FlashAirKickingDD:
+		8HAG E 1;
+		8HAG E 1;
+		8HAG F 1;
+		8HAG G 3;
+		8HAG H 3;
+		8HAG G 3;
+		8HAG F 1;
+		8HAG E 1;
+		8HAG AAAA 1;
+		Stop;
+		
+	FlashSlideKicking:
+		//TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "FlashSlideKickingDD");
+		CHAG EF 2;
+		CHAG GGGGHHHGGGG 2 ;
+		Stop;
+		
+	FlashSlideKickingDD:
+		8HAG EF 2;
+		8HAG GGGGHHHGGGG 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "FlashSlideKickingStopDD");
+		CHAG GFEEA 1;
+		CHAG A 1;
+		Stop;
+		
+	FlashSlideKickingStopDD:
+		8HAG GFEEA 1;
+		8HAG A 1;
+		Stop;
+		
+	FlashPunching:
+		//TNT1 A 0 A_JumpIfInventory("EquipDeathDealer", 1, "FlashPunchingDD");
+		CHAG E 1;
+		CHAG E 1;
+		CHAG F 1;
+		CHAG G 3;
+		CHAG H 3;
+		CHAG G 3;
+		CHAG E 1;
+		CHAG F 1;
+		CHAG AAAAA 1;
+		Stop;
+		
+	FlashPunchingDD:
+		8HAG E 1;
+		8HAG E 1;
+		8HAG F 1;
+		8HAG G 3;
+		8HAG H 3;
+		8HAG G 3;
+		8HAG E 1;
+		8HAG F 1;
+		8HAG AAAAA 1;
+		Stop;
+		
+	PreGlow1:
+		G10W B 5;//BRIGHT
+		Stop;
+	PreGlow2:
+		G10W B 5;//BRIGHT
+		Stop;
+		
+	PreGlow3:
+		G10W C 5;//BRIGHT
+		Stop;
+		
+	PreGlow4:
+		G10W D 5;//BRIGHT
+		Stop;
+		
+	PreGlow5:
+		G10W E 5;//BRIGHT
+		Stop;
+		
+	PreGlow6:
+		G10W F 5;//BRIGHT
+		Stop;
+		
+	FireGlow1:
+		G11W A 9 BRIGHT;
+		Stop;
+		
+	FireGlow2:
+		G11W B 9 BRIGHT;
+		Stop;
+		
+	FireGlow3:
+		G11W C 9 BRIGHT;
+		Stop;
+		
+	FireGlow4:
+		G11W D 9 BRIGHT;
+		Stop;
+		
+	FireGlow5:
+		G11W E 9 BRIGHT;
+		Stop;
+		
+	FireGlow6:
+		G11W F 9 BRIGHT;
+		Stop;
+		
+	PostGlow1:
+		G10W A 4 BRIGHT;
+		Stop;
+		
+	PostGlow2:
+		G10W B 4 BRIGHT;
+		Stop;
+		
+	PostGlow3:
+		G10W C 4 BRIGHT;
+		Stop;
+		
+	PostGlow4:
+		G10W D 4 BRIGHT;
+		Stop;
+		
+	PostGlow5:
+		G10W E 4 BRIGHT;
+		Stop;
+		
+	PostGlow6:
+		G10W F 4 BRIGHT;
+		Stop;
+		
+	AltFireGlow1:
+		G10W B 36 BRIGHT;
+		Stop;
+		
+	AltFireGlow2:
+		G10W B 36 BRIGHT;
+		Stop;
+		
+	AltFireGlow3:
+		G10W C 36 BRIGHT;
+		Stop;
+		
+	AltFireGlow4:
+		G10W D 36 BRIGHT;
+		Stop;
+		
+	AltFireGlow5:
+		G10W E 36 BRIGHT;
+		Stop;
+		
+	AltFireGlow6:
+		G10W F 36 BRIGHT;
+		Stop;
+		
+	}
+}

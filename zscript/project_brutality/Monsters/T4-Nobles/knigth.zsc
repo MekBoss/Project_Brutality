@@ -1,0 +1,1737 @@
+CLASS pb_Hell_Knight : proto_noble_class// Replaces HellKnight
+{
+	//SpawnID 2210;
+Default
+{
+	Scale 1.0;
+	Speed 10;
+	Health 575;
+	//Height 56;
+	GibHealth 30;
+	Mass 2000;
+	MaxStepHeight 24;
+	MaxDropOffHeight 32;
+	MeleeDamage 5;
+	-BOSSDEATH;
+	+DONTHARMSPECIES;
+	+NOBLOODDECALS;
+
+
+	PainChance 20;
+	PainChance "Kick", 255;
+	PainChance "ExtremePunches", 255;
+	PainChance "Explosive", 255;
+	PainChance "Stun", 255;
+	PainChance "Head", 150;
+	PainChance "Saw", 100;
+	PainChance "Cut", 100;
+	
+	damagefactor "Crush", 10.0;
+	damagefactor "SSG", 0.95;
+	damagefactor "Head", 0.8;
+	damagefactor "Avoid", 0.0; damagefactor "killme", 0.0; damagefactor "TeleportRemover", 0.0;
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
+	DamageFactor "CauseObjectsToSplash", 0.0; damagefactor "GibRemoving", 0.0;
+
+	BloodType "Green_Blood", "GreenBloodSplat", "Green_Blood";
+	BloodColor "DarkGreen";
+	Obituary "%o was slain by a Hell Knight.";
+	DamageType "HKFT";
+	Species "Noble";
+	PainSound "PSXDPN";
+	
+	//DropItem "DemonStrengthRune", 3;
+	//DropItem "Demonpickup2", 50;
+	//DropItem "Demonpickup", 196;
+}
+
+States
+{
+	Spawn:
+		BOS2 B 1 A_Look();
+	Stand:
+		BOS2 B 10 A_Look();
+	Loop;
+
+	See: 
+		TNT1 A 0;
+		TNT1 A 0 A_CheckSight("SeeNeverSeen");
+	Goto Rage;
+
+	See2:
+		TNT1 A 0;
+		TNT1 A 0 A_TakeInventory("EnemyMemory", 15);
+		tnt1 a 0
+		{
+			if(target is "proto_cyberdemon" || target is "proto_spider_mind")
+			{setstatelabel("CheckRetreat");}
+		}			
+	See3:
+		TNT1 A 0 A_CheckSight("SeeNeverSeen");
+	SeeContinue:
+		//TNT1 A 0 A_SpawnItemEx("FootSep", 0, 0, 20, 0, 0)
+		TNT1 A 0 A_JumpIfInventory("EnemyMemory", 20, "ForgetTarget");
+		TNT1 A 0 A_GiveInventory("EnemyMemory", 1);
+		BOS2 AA 2 A_Chase();
+		BOS2 AA 2 A_Chase();
+		TNT1 A 0 A_PlaySound("knight/step",4);
+
+		BOS2 BBBBCCCC 2 A_Chase();		
+		TNT1 A 0 A_PlaySound("knight/step",4);
+		BOS2 DDDD 2 A_Chase();
+	Loop;
+
+	Melee:
+		BOS2 E 6 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("weapons/gswing");
+		BOS2 F 6 A_FaceTarget();
+		BOS2 G 6 A_SpawnProjectile("Knight_Attack",10,0,0,0);
+	Goto seecontinue;
+
+	Idle:
+	LookingForPlayer:
+		BOS2 BBBB 10 A_Look();
+		TNT1 A 0 {self.angle -= 40;}
+		BOS2 BBB 10 A_Look();
+		TNT1 A 0 {self.angle += 40;}
+
+		BOS2 BBB 10 A_Look();			
+		BOS2 A 0 A_Wander();
+		BOS2 AA 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+		BOS2 B 0 A_Wander();
+		BOS2 BB 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+
+		BOS2 C 0 A_Wander();
+		BOS2 CC 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+
+		BOS2 D 0 A_Wander();
+		BOS2 DD 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+
+		TNT1 A 0 A_jump(128, "LookingForPlayer");
+
+		BOS2 A 0 A_Wander();
+		BOS2 AA 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+
+		BOS2 B 0 A_Wander();
+		BOS2 BB 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+
+		BOS2 C 0 A_Wander();
+		BOS2 CC 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+
+		BOS2 D 0 A_Wander();
+		BOS2 DD 2 A_Look();
+		TNT1 A 0 A_Recoil(-2);
+	Goto LookingForPlayer;
+			
+	ForgetTarget:
+		TNT1 A 0 A_ClearTarget();
+		TNT1 A 0 A_TakeInventory("EnemyMemory", 25);
+	Goto LookingForPlayer;
+			
+			
+	SeeNeverSeen:
+		BOS2 AAAABBBBCCCCDDDD 2 A_Chase();			
+	Loop;
+			
+	RAGE:
+		TNT1 A 0;
+		TNT1 A 0 A_CheckSight("See2");
+		BTS2 ABC 2;
+		BTS2 DEDF 3;
+		BTS2 DEDF 3;
+		BTS2 CBA 2 A_FaceTarget();
+		TNT1 A 0 HealThing(200);
+		TNT1 A 0 A_Jump(96, "MissileInRage");
+	Goto seecontinue;
+			
+	Melee2:
+		BOS2 EF 8 A_FaceTarget();
+		BOS2 G 8 A_SpawnProjectile("Knight_Attack",10,0,0,0);
+	Goto seecontinue;
+			
+	Missile:
+		TNT1 A 0 
+		{
+			vector3 vec_to = self.vec3to(target);
+			if((vec_to.x ** 2 + vec_to.y ** 2 + vec_to.z ** 2)  > 902500/*950 ^ 2*/ && random(0, 256) > 215 )
+			{self.setstatelabel('CHARGE');}
+		}
+
+	JustMissile:
+		TNT1 A 0
+		{
+			if(target is "proto_cyberdemon" || target is "proto_spider_mind")
+			{setstatelabel("CheckRetreat");}
+		}
+		//TNT1 A 0 A_TakeInventory("CantFire", 1);
+		TNT1 A 0 A_JumpIfCloser(900, 3);
+		//TNT1 A 0 A_SpawnProjectile("MonsterTargetCheck", 34, 0, 0, 0);
+		//TNT1 A 0 A_SpawnProjectile("MonsterTargetCheckFaster", 34, 0, 0, 0);
+		BOS2 F 2 A_FaceTarget();
+		//TNT1 A 0 A_JumpIfInventory("CantFire",1, "SeeContinue");
+		BOS2 E 2 A_FaceTarget();
+		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
+		BOS2 E 2 A_FaceTarget();
+		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
+		BOS2 E 2 A_FaceTarget();
+		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
+		BOS2 E 2 A_FaceTarget();
+
+		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
+		BOS2 E 2 A_FaceTarget();
+		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
+		BOS2 E 2 A_FaceTarget();
+		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
+		BOS2 E 2;
+		BOS2 F 8 A_FaceTarget();
+		BOS2 G 8 A_SpawnProjectile("BaronBall", 36, 0, 0, 1);
+	Goto seecontinue;
+			
+	CHARGE:
+		TNT1 A 0 A_Recoil(-4);
+		BSCG A 4 A_FaceTarget();
+	//	TNT1 A 0 A_JumpIf(vel.x == 0 || vel.y == 0, "JustMissile")
+		TNT1 A 0 A_Recoil(-4);
+
+		TNT1 A 0 A_PlaySound("knight/step",4);
+		BSCG B 4 A_FaceTarget();
+	//	TNT1 A 0 A_JumpIf(vel.x == 0 || vel.y == 0, "JustMissile")
+		TNT1 A 0 A_Recoil(-4);
+
+		TNT1 A 0 A_JumpIfCloser(250, "POUNCE");
+		BSCG C 4 A_FaceTarget();
+		TNT1 A 0 A_JumpIf(vel.x == 0 || vel.y == 0, "JustMissile");
+		TNT1 A 0 A_Recoil(-4);
+		TNT1 A 0 A_PlaySound("knight/step",5);
+
+		BSCG D 4 A_FaceTarget();
+		TNT1 A 0 A_Recoil(-4);
+
+		TNT1 A 0 A_JumpIfCloser(250, "POUNCE");
+		//TNT1 A 0 A_JumpIf(vel.x == 0 || vel.y == 0, "JustMissile");
+	loop;
+			
+	POUNCE:
+		TNT1 A 0 A_Recoil(-8);
+		TNT1 A 0 {self.vel.z += 17; }//ThrustThingZ(0,17,0,1);
+		TNT1 A 0 A_PlaySound("weapons/fistwhoosh", 1);
+		BSPC AB 3 A_FaceTarget();
+		BSPC CCC 3;
+		TNT1 A 0 A_PlaySound("CLAP", 2);
+		TNT1 A 0 A_SpawnProjectile("CyberStep",10,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Knight_Slam",10,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("BigRicoChet");
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
+		TNT1 A 0 A_SpawnItemEx("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
+		BSPC D 25;
+	Goto seecontinue;
+			
+	MissileInRage:
+		BOS2 EF 6 A_FaceTarget();
+		BOS2 G 6 A_SpawnProjectile("BaronBall", 36, 0, 0, 1);
+		BAS2 EF 6 A_FaceTarget();
+		BAS2 G 6 A_SpawnProjectile("BaronBall", 36, 0, 0, 1);
+		BOS2 EF 6 A_FaceTarget();
+		BOS2 G 6 A_SpawnProjectile("BaronBall", 36, 0, 0, 1);
+	Goto seecontinue;
+			
+	CheckRetreat:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfCloser(500, "Retreat");
+	Goto JustMissile+5;
+			
+	Retreat:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("FootStep", 0, 0);
+		TNT1 A 0 A_FaceTarget();
+
+		BOS2 DDDDCCCCBBBBAAAA 2 {A_Recoil(2); A_FaceTarget();}
+	Goto JustMissile+5;
+			
+	Pain:
+		TNT1 A 0 A_TakeInventory("StopKickingMyBallsMotherFucker", 1);
+		BOS2 H 3;
+		BOS2 H 3 A_Pain();
+	Goto seecontinue;
+			
+	Possession:
+		TNT1 A 0 {self.binvulnerable = true;}
+		BOS2 H 3;
+		BOS2 H 3 A_Pain();
+		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
+		TNT1 A 0 {self.binvulnerable = false;}
+	Goto See;
+			
+	Pain.Stun:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
+		BOS2 H 1 A_Pain();
+		BOS2 HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		BOS2 H 1 A_Pain();
+		BOS2 HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		BOS2 H 1 A_Pain();
+		BOS2 HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		BOS2 H 1 A_Pain();
+		BOS2 HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		BOS2 H 1 A_Pain();
+		BOS2 HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		BOS2 H 1 A_Pain();
+	Goto See;
+			
+	Pain.Kick:
+	Pain.ExtremePunches:
+		TNT1 A 0 {self.bMISSILEMORE = true; self.bMISSILEEVENMORE = true;}
+		//TNT1 A 0 A_JumpIfInventory("StopKickingMyBallsMotherFucker", 1, "MissileInRage");
+		//TNT1 A 0 A_GiveInventory("StopKickingMyBallsMotherFucker", 1);
+		TNT1 A 0;
+		TNT1 A 0 {self.bNOPAIN = true; }
+		KNRJ ABCD 4;
+		TNT1 A 0 A_Pain();
+		KNRJ ABCD 4;
+		TNT1 A 0 A_Pain();
+		KNRJ ABCD 4 ;
+		TNT1 A 0 A_Pain();
+		KNRJ ABCD 4;
+		TNT1 A 0 {self.bNOPAIN = false;}
+	Goto Missile;
+
+	Death.Desintegrate:
+		TNT1 A 0;
+		TNT1 A 0 A_BossDeath();
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "SuperWallBlood", 32, random(170, 190), random(0, 40) ); //A_ SpawnProjectile("SuperWallGreenBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "BloodMistBig", 40, random(0, 360), random(30, 90) );
+		TNT1 AAAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "SuperWallBlood", 32, random(170, 190), random(0, 40) );
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "SuperWallBlood", 46, random(170, 190), 2, random(0, 40));
+		BRUD LM 5 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		BRUD NOP 5 ;//pb_spawn_blood_color(green, "muchblood", 62, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 15, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 A_SpawnProjectile("RevenantDust2", 30, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		BRUD QRS 5 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		BRUD TUV 5;
+		BRUD WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 8 A_SpawnProjectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		BRUD W -1;
+	STOP;
+
+	Death.Shotgun:
+		TNT1 A 0 A_JumpIfCloser(120, "Death.Blast");
+	Goto Death;
+			
+	Death.Stomach:
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 AAAAAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "pb_blood", 30, random(0, 360), random(0, 160) );
+		TNT1 A 0 A_SpawnItem("Dying_Hell_Knight");
+	Stop;
+			
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128, "Death2", "Death3", "Death4");
+		TNT1 A 0 A_Jump(64, "Death.Arm", "DeathArm2");
+		HKDD A  10;
+		HKDD B  10 A_Scream();
+		HKDD C  10;
+		HKDD D  10 A_NoBlocking();
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("dead_knight");
+	Stop;
+			
+	Death4:
+		TNT1 A 0;
+		TNT1 AA 0 ;//A_SpawnProjectile("Green_Instestin", 28, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 28, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "XDeath1", 32, random(150, 210), 2, random(0, 40));
+		HKDD I  10;
+		HKDD J  10 A_Scream();
+		HKDD K  10;
+		HKDD L  10 A_NoBlocking();
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("dead_knightHKDDL");
+	Stop;
+
+	Death2_Big:
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 32, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 26, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2Green", 31, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "pb_blood", 30, random(0, 360), random(0, 160) );
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		BTN7 AAAA  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		BTN7 B  6 A_Scream();
+		BTN7 CCC  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		BTN7 D  6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BTN7 EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");//;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHellKnight3");
+	Stop;
+
+	Death.Nailgun:
+		TNT1 A 0 A_FaceTarget();
+		TNT1 A 0 A_Jump(96, "Death.Blast");
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 32, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 26, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2Green", 31, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnProjectile("Pinned_Hell_Knight_Torso", 49, 0, 180, 2, random(-2, 2));
+		KSA6 FFFFFF  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		KSA6 G  6 A_Scream();
+		KSA6 HHH  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		KSA6 I  6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		KSA6 JJJJJJJJJJ 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("Dead_HellKnightKSA6J");
+	Stop;
+
+	Death.Blast:
+		TNT1 A 0 A_Jump(128, "DeathBlast2");
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 32, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 26, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2Green", 31, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		KSA5 AAAAA  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		KSA5 D  6 A_Scream();
+		KSA5 EEE  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		KSA5 F  6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		KSA5 GGGGGGGGGGGG 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHellKnightKSA5G");
+	Stop;
+			
+	DeathBlast2:
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 32, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 26, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2Green", 31, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		KSA6 FFFFF  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		KSA6 G  6 A_Scream();
+		KSA6 HHH  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		KSA6 I  6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		KSA6 JJJJJJJJJJ 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("Dead_HellKnightKSA6J");
+	Stop;
+			
+	Death2:
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		BTN6 AAA  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		BTN6 B 6 A_Scream();
+		BTN6 CCC  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		BTN6 D 6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHell_Knight");
+	Stop;
+		
+	Death3:
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		HKDD EEE  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		HKDD F 6 A_Scream();
+		HKDD GGG  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		HKDD H 6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHellKnightHKDDH");
+	Stop;
+		
+	DeathArm2:
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		KSA2 AAA  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		KSA2 D 6 A_Scream();
+		KSA2 E  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		KSA2 F 6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHellKnightKSA2G");
+	Stop;
+			
+	Death.Arm:
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 A_Fall();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("Dying_Hell_Knight");
+	Stop;
+		
+	DeathBrutalized:
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 48, random(150, 210), 2, random(0, 40));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 A_Fall();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("Brutalized_HellKnight1");
+	Stop;
+		
+	XDeath:
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnProjectile("KnightXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+
+	Death.SSG:
+		TNT1 A 0 A_Jump(110, "Death.Saw");
+		TNT1 A 0 A_XScream();
+		TNT1 AA 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightHead", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 32, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 26, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2Green", 31, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 28, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		KSA6 AAAAA  2 ;//A_SpawnProjectile("Green_LiquidBlood", 37, 0, random(0, 360), 2, random(30, 60));
+		KSA6 B  6;
+		KSA6 CCC  2 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		KSA6 D  6 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		KSA6 EEEEEEEEE 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHellKnightKSA6E");
+	Stop;
+	
+	Death.Railgun:
+	Death.Cut:
+	Death.Saw:
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 15, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHalfHK", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathStomachGreen", 40, 0, random(0, 360), 2, random(0, 160));
+		BBO1 AAAAAAAAAABBBBBCCCCC 2 ;//A_SpawnProjectile("Green_LiquidBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BBO1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("dead_knightHalfDown", 1);
+	Stop;
+			
+	Death.Tear:
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 15, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2bGreen", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath3bGreen", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathStomachGreen", 60, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//A_SpawnProjectile("XdeathBrain1", 60, 0, random(0, 360), 2, random(0, 160));
+		B0S2 PQRSTU 6;
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		B0S2 VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV 1 ;//A_SpawnProjectile("Green_LiquidBlood", 20, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("DeadHellKnightB0S2", 1);
+	Stop;
+			
+	Death.CutLess:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(160, "DeathBrutalized");
+		TNT1 A 0 A_Jump(120, "Death.Arm");
+		TNT1 A 0 A_Jump(64, "Death.Stomach", "Death2_Big");
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHalfHK", 24, 0, random(0, 360), 2, random(0, 160));
+		BBO1 AAAAAAAAAABBBBBCCCCC 2 ;//A_SpawnProjectile("Green_LiquidBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BBO1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("dead_knightHalfDown", 1);
+	Stop;
+			
+	Death.head:
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasPlasmaWeapon", 1, "Death.Plasma");
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasCutingWeapon", 1, "Death.decaptate");
+		TNT1 A 0 A_JumpIfHealthLower(-80, "Death.HeadExplode");
+		TNT1 A 0 A_Jump(98, "Death.HeadExplode");
+		TNT1 A 0 A_Playsound("MinorHeadshot", 0);
+		TNT1 A 0 A_SpawnItem("HellKnightHeadExplodeHalf", 0, 62);
+		TNT1 A 0 A_Fall();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("Dying_Hell_Knight");
+	Stop;
+	
+	Death.HeadExplode:
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasPlasmaWeapon", 1, "Death.Plasma");
+		TNT1 A 0 A_Jump(120, "Death.HeadExplode2", "Death.HeadExplode3");
+		TNT1 A 0 A_SpawnItem("HellKnightHeadExplode", 0, 62);
+		BTN2 AAAAAAAAAAA 2 ;//A_SpawnProjectile("Green_LiquidBlood", 62, 0, random(0, 360), 2, random(30, 110));
+		BTN2 BBBBB 2 ;//A_SpawnProjectile("Green_LiquidBlood", 50, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_NoBlocking();
+		BTN2 CCCCC 2 ;//A_SpawnProjectile("Green_LiquidBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BTN2 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("dead_knightNoHead");
+	Stop;
+			
+	Death.HeadExplode2:
+		TNT1 A 0 A_SpawnItem("HellKnightHeadExplode", 0, 62);
+		BOH2 A 10 A_Scream();
+		TNT1 A 0 A_PlaySound("misc/xdeath");
+		BOH2 B 10 A_NoBlocking();
+		BOH2 C 10;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BOH2 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadHellKnightBOH2");
+	Stop;
+		
+	Death.HeadExplode3:
+		TNT1 A 0 A_SpawnItem("HellKnightHeadExplode", 0, 62);
+		BOH2 E 10 A_Scream();
+		TNT1 A 0 A_PlaySound("misc/xdeath");
+		BOH2 F 10 A_NoBlocking();
+		BOH2 G 10;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BOH2 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("Dead_HellKnightBOH2H");
+	Stop;
+			
+	Death.decaptate:
+		TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 62, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightHead", 62, 0, random(0, 360), 2, random(50, 130));
+		BTN2 AAAAAAAAAAA 2 ;//A_SpawnProjectile("Green_LiquidBlood", 62, 0, random(0, 360), 2, random(30, 110));
+		BTN2 BBBBB 2 ;//A_SpawnProjectile("Green_LiquidBlood", 50, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_NoBlocking();
+		BTN2 CCCCC 2 ;//A_SpawnProjectile("Green_LiquidBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BTN2 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 ;//A_SpawnProjectile("Green_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("dead_knightNoHead");
+	Stop;
+			
+	Death.SuperPlasma:
+	Death.Plasma: Death.Plasma2:
+		TNT1 A 0;
+		TNT1 A 0 A_BossDeath();
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		BOSB ABC 7 A_SpawnProjectile("PlasmaSmoke", 28, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		BOSB D 7 A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 180), 2, random(0, 180));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 A_SpawnProjectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		BOSB E -1;
+	Stop;
+		
+	Death.GreenFire:
+		TNT1 A 0;
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "pb_blood", 30, random(0, 360), random(0, 160) );
+		TNT1 AA 0 ;//A_SpawnProjectile("XdeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("XdeathBurnedMeat2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("XdeathBurnedMeat3", 32, 0, random(0, 360), 2, random(0, 160));
+		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
+		XBRN AAAA 2 BRIGHT A_SpawnItem("GreenFlare",0,43);
+	Stop;
+		
+	Death.ExplosiveImpact:
+	Death.ExtremePunches:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,35,0,1);
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 62, random(0, 360), random(0, 160));
+		TNT1 AAA 0 ;//pb_spawn_blood_color(green, "muchblood", 62, random(0, 360), random(0, 160));
+		TNT1 A 0 A_Jump(255, "Death.ExplosiveImpact1", "Death.ExplosiveImpact2");
+	Death.ExplosiveImpact1:
+		BAH3 A  8 A_Scream();
+		BAH3 B  8 A_NoBlocking();
+		BAH3 CCCCCC  8 A_CheckFloor("Land1");
+	Goto Land1;
+
+	Land1:
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		TNT1 A 0 A_SpawnItem("dead_knightExplosiveImpact1", 1);
+	Stop;
+
+	Death.ExplosiveImpact2:
+		BAH3 E  8 A_Scream();
+		BAH3 F  8 A_NoBlocking();
+		BAH3 GGGGGG  8 A_CheckFloor("Land2");
+	Goto Land2;
+
+	Land2:
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		TNT1 A 0 A_SpawnItem("dead_knightExplosiveImpact2", 1);
+	Stop;
+
+	Raise:
+		BOS2 O 8;
+		BOS2 NMLKJI 8;
+	Goto seecontinue;
+
+	Death.Incinerate:
+		TNT1 A 0;
+		TNT1 A 0 A_Stop;
+		TNT1 A 0 A_Playsound("MELT");
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAA 0 A_SpawnProjectile("ExplosionParticleHeavy", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAA 0 A_SpawnProjectile("ExplosionParticleVeryFast", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random(-45, 45), random(-45, 35));
+		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),40,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD AAAA 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("BurningEmberParticlesFloating_Bigger", 36, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD BBBB 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("BurningEmberParticlesFloating_Bigger", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD CCCCC 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("BurningEmberParticlesFloating_Bigger", 28, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Playsound("SZZLL", 3);
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),24,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD DDDDD 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("BurningEmberParticlesFloating_Bigger", 20, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),16,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD EEEEE 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("BurningEmberParticlesFloating_Bigger", 12, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),12,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD FFFFF 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("BurningEmberParticlesFloating_Bigger", 10, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		B4UD GGGG 2 BRIGHT Light("IncinerationGlow");
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD HHGGHHGGHHGGHHGG 2 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD HHGGHHGGHHGGHHGG 2 Light("IncinerationGlow") A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD HHGGHHGGHHGGHHGG 2;
+		B4UD IIIIIII 12 A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		B4UD I -1;
+	Stop;
+
+	Death.fire:
+	Death.Flames:
+	Death.Burn:
+		TNT1 A 0;
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0;
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("BurningKnight", 0, 10);
+	Stop;
+
+	CurbstompMarine:
+		TNT1 A 0 {self.bInvulnerable = true;}
+		KTFP AAA 3;
+		KTFP BCDE 3;
+		TNT1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
+		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
+		TNT1 A 0 A_PlaySound("CLAP", 2);
+		KTFP E 5;
+		KTFP F 14;
+		KTFP MGGGG 3;
+		KTFP H 2;
+		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
+		TNT1 AAA 0 A_SpawnProjectile("Brains1", 11, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnProjectile("Brains2", 11, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnProjectile("Brains3", 11, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnProjectile("Brains4", 11, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnProjectile("Brains5", 11, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//A_SpawnProjectile("Xdeath1", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_SpawnProjectile("muchblood", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 A_SpawnProjectile("BloodMistBig", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("SplatteredSmall", 0);
+		KTFP IJ 2;
+		KTFP KLLLLL 3;
+		//TNT1 A 0 A_TakeInventory("Curbstomp_Marine",1);
+		TNT1 A 0 {self.bInvulnerable = false;}
+		//TNT1 A 0 A_SpawnItem("CurbstompedMarine", 1);
+	Goto seecontinue;
+			
+	Death.Shrink:
+		TNT1 A 1 A_PlaySound("Shrink", 3);
+/*		TNT1 A 0 A_SpawnItemEx("HellKnightShrinkFX1", 0, 0,  5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX2", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX3", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX4", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX5", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX6", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX7", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("LilHellKnight", 1);*/
+	stop;
+
+	Death.Fatality:
+		TNT1 A 0 A_Pain();
+		//TNT1 A 0 A_JumpIfIntargetInventory("FistsSelected", 1, 1);
+	Goto Death.ExplosiveImpact;
+
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		TNT1 A 0 A_Jump(128, "Death.Fatality3", "Death.Fatality4");
+		//TNT1 A 0 A_GiveToTarget("HKFatality", 1);
+		TNT1 A 1 A_NoBlocking();
+		TNT1 A 0 A_BossDeath();
+	Stop;
+
+	Death.Fatality3:
+		//TNT1 A 0 A_GiveToTarget("HKFatality3", 1);
+		TNT1 A 1 A_NoBlocking();
+		TNT1 A 0 A_BossDeath();
+	Stop;
+
+	Death.Fatality4:
+		//TNT1 A 0 A_GiveToTarget("HKFatality4", 1);
+		TNT1 A 1 A_NoBlocking();
+		TNT1 A 0 A_BossDeath();
+	Stop;
+
+	Pain.KillMe:
+	Pain.Taunt:
+		TNT1 A 0;
+	Goto Missile;
+
+	Death.KillMe:
+	Death.Taunt:
+		TNT1 A 0 {self.bSOLID = false;}//A_ChangeFlag("SOLID", 0);
+		TNT1 A 0 A_SpawnItem("HellKnight");
+	Stop;
+		
+	Death.Ice:
+	Death.Freeze:
+	Death.Frost:
+		tnt1 a 0 {self.bshootable = self.bsolid = false;}
+		//TNT1 A 0 A_SpawnItem("FrozenHellKnight");
+	Stop;
+		
+	Death.Massacre:
+	Goto Death;
+		
+	Crush:
+	Death.Stomp:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//A_SpawnProjectile("Green_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAA 0 bright A_SpawnProjectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AAAAAA 0 bright ;//pb_spawn_blood_color(green, "XDeath1", 5, random(0, 360), random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath2Green", 55, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath3Green", 55, 0, random(0, 360), 2, random(30, 180));
+		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("CrushedRemains");
+		TNT1 A 1;
+		TNT1 A 1 A_XScream();
+		TNT1 A 1 A_NoBlocking();
+	Stop;
+}
+
+}  
+
+CLASS GreenPlasmaBall: BaronBall// Replaces BaronBall 
+{ 
+Default 
+{
+	Radius 10;
+	Height 16;
+	Speed 18;
+	FastSpeed 21;
+	DamageType "GreenFire";
+	Projectile;
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	+THRUGHOST;
+	Damagefunction(random(25,35));
+	RenderStyle "Add";
+	//Alpha 1
+	Scale 0.29;
+	SeeSound "BaronFire";
+	DeathSound "BaronFireImpact";
+	Decal "Scorch";	
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0
+		{
+			A_Playsound("DarkImpFireLoop", 1, 1);
+			if( cvar.GetCvar("bd_lowgraphicsmode").getint() == 1 || cvar.GetCvar("zdoombrutaljanitor").getint() == 1)
+			{
+				resolvestate("SpawnCheap");
+			}
+			resolvestate(null);
+		}
+		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
+		//TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "SpawnCheap");
+	Spawn1:
+		DB57 AB 1 BRIGHT A_SpawnItem("GreenFlareSmall",0,0);
+		TNT1 A 0 A_SpawnItemEx("SmallGreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+		DB57 C 1 BRIGHT A_SpawnItem("GreenFlareSmall",0,0);
+	Loop;
+		
+	SpawnCheap:
+		TNT1 A 0 A_SpawnItemEx("SmallGreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+		DB57 ABC 1 BRIGHT;
+	Loop;
+		
+	Death:
+		TNT1 A 0 A_StopSound(1);
+		//    TNT1 A 0 A_Playsound("BaronFireImpact", 0)
+		TNT1 A 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		//EXPL AAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 0, 0, random(0, 360), 2, random(0, 360))
+		TNT1 A 0 A_SpawnItemEx("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("GreenPlasma_Puff", 0, 0, 0);
+		TNT1 A 0 A_SpawnItemEx("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		FRPG ABCDEFGH 1 BRIGHT  A_SpawnItem("GreenFlare",0,0);
+		TNT1 AAAAA 19 A_SpawnProjectile("PlasmaSmoke", 1, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+
+	XDeath:
+		TNT1 A 0 A_StopSound(1);
+		// TNT1 A 0 A_Playsound("BaronFireImpact", 0)
+		TNT1 A 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		//EXPL AAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 0, 0, random(0, 360), 2, random(0, 360))
+		FRPG ABCDEFGH 2  A_SpawnItem("GreenFlare",0,0);
+	Stop;
+}
+
+}
+
+CLASS dead_knight : actor//urbstompedMarine
+{ 
+Default
+{
+	Radius 24;
+	Height 12;
+	Scale 1.0;
+	+SHOOTABLE;
+	+NOTELEPORT;
+	+MOVEWITHSECTOR;
+	+CORPSE;
+	+FLOORCLIP;
+	-SOLID;
+	+THRUACTORS;
+	damagefactor "Crusher", 50.0;
+	Mass 1000;
+	Health 200;
+	damagefactor "Blood", 0.0;
+	damagefactor "Trample", 0.0;
+	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+}
+
+States
+{
+	Spawn:
+		HKDD D -1;
+	Stop;
+
+	Raise:
+		TNT1 A 2 A_SpawnProjectile("RealFlameTrailsSmall", 6, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnItem("PentagramSpawner", 0, 60);
+		TNT1 A 2 A_SpawnProjectile("RealFlameTrailsSmall", 6, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnItem("PentagramSpawner", 0, 60);
+		TNT1 A 0 A_SpawnItem("TeleportFog");
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("pb_Hell_Knight", 3);
+	Stop;
+
+	Death.Plasma: Death.Plasma2:
+	Death.Flames:
+	Death.Burn:
+		TNT1 A 0;
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		EXPL AAAAA 0 A_SpawnProjectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+		BOSB ABCDE 9 A_SpawnProjectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 A_SpawnProjectile("PlasmaSmoke", 16, 0, random(0, 180), 2, random(0, 180));
+		BOSB E -1;
+	Stop;
+	
+	Death:
+		TNT1 A 0 A_SpawnItemEx("Dead_HellKnightKSA6O",-3,-3);
+		TNT1 AAAA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 9, 0, random(0, 360), 2, random(30, 90));
+		//TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath2Green", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath4Green", 5, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+}
+
+}
+		 
+CLASS Dead_HellKnightBOH2H : dead_knight
+{ 
+States
+{
+	Spawn:
+		BOH2 H 1;
+		BOH2 H -1;
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightHKDDH: dead_knight
+{ 
+States
+{
+	Spawn:  
+		HKDD H 1;
+		HKDD H -1;
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightKSA6E: dead_knight
+{ 
+States
+{
+	Spawn:  
+		KSA6 E 1;
+		KSA6 E -1;
+	Stop;
+}
+
+}
+
+CLASS Dead_HellKnightKSA6J: dead_knight 
+{ 
+States
+{
+	Spawn:  
+		KSA6 J 1;
+		KSA6 J -1;
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightKSA5G: dead_knight
+ { 
+States
+{
+	Spawn:  
+		KSA5 G 1;
+		KSA5 G -1;
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightKSA2G: dead_knight 
+{ 
+States
+{
+	Spawn:  
+		KSA2 G 1;
+		KSA2 G -1;
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightKSA3G: dead_knight
+ { 
+States
+{
+	Spawn:  
+		KSA3 G 1;
+		KSA3 G -1;
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightKSA4G: dead_knight
+{
+States
+{
+Spawn:  
+KSA4 G 1;
+KSA4 G -1;
+Stop;
+}}
+CLASS Dead_HellKnightKSA6O: dead_knight
+{ 
+States
+{
+	Spawn:  
+		KSA6 O 1;
+		KSA6 O -1;
+	Stop;
+
+	Death:
+		TNT1 AAAA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 9, 0, random(0, 360), 2, random(30, 90));
+		//TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green");
+	Stop;
+}
+
+}
+
+CLASS DeadHellKnightBOH2: dead_knight 
+{ 
+States
+{
+	Spawn:  
+		BOH2 D 1;
+		BOH2 D -1;
+	Stop;
+}}
+
+
+CLASS DeadHellKnightB0S2: dead_knight
+{ 
+States
+{
+	Spawn:  
+		B0S2 V 1;     
+		B0S2 V -1;        
+	Stop;
+}}
+
+CLASS DeadHell_Knight: dead_knight
+ { 
+States
+{
+	Spawn:  
+		BTN6 E 1; 
+		BTN6 E -1;        
+	Stop;
+}}
+
+CLASS DeadHellKnight3: dead_knight
+{ 
+States
+{
+	Spawn:  
+		BTN7 E 1;
+		BTN7 E -1;
+	Stop;
+}}
+
+CLASS dead_knightHalfDown: dead_knight
+ { 
+States
+{
+	Spawn:
+		BBO1 D -1 ;       
+	Stop;
+}
+
+}
+
+CLASS dead_knightHalfUp: dead_knight
+{ 
+States
+{
+	Spawn:
+		BTO1 D -1;
+	Stop;
+	
+	Death:
+		//TNT1 AAAAAA 0 bright ;//pb_spawn_blood_color(green, "XDeath1", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath2Green", 55, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath3Green", 55, 0, random(0, 360), 2, random(30, 180));
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green",0,0,0,1);
+	Stop;
+}
+
+}
+
+CLASS dead_knightNoHead: dead_knight
+{ 
+States
+{
+	Spawn:
+		BTN2 D -1 ;      
+	Stop;
+}
+
+}
+
+CLASS RapedHK: dead_knight { 
+States{Spawn:        HKF1 I -1  ;      
+Stop;}}
+
+
+CLASS dead_knightExplosiveImpact2: dead_knight { 
+States{Spawn:        BAH3 H -1;        
+Stop;}}
+
+CLASS dead_knightExplosiveImpact1: dead_knight { 
+States{Spawn:        BAH3 D -1;        
+Stop;}}
+
+CLASS OmgSoDeadHK: dead_knight { 
+States{Spawn:        HKF2 O -1;        
+Stop;}}
+
+CLASS NoArmNoHeadFatalizedHK: dead_knight { 
+States{Spawn:  
+HKF3 JKLM 5;       
+HKF3 N -1;        
+Stop;}}
+
+CLASS DeadHellKnightNoArm: dead_knight { 
+States{Spawn:  
+BTN3 D 1;       
+BTN3 D -1;        
+Stop;}}
+
+CLASS DeadHellKnightNoArmNoHead: dead_knight { 
+States{Spawn:  
+BTN4 D 1;       
+BTN4 D -1;       
+Stop;}}
+
+CLASS dead_knightBTN5F: dead_knight
+{ 
+States
+{
+	Spawn:
+		BTN5 F -1;
+	Stop;
+}
+
+}
+
+//
+CLASS dead_knightHKDDL: dead_knight
+{ 
+
+    States
+    {
+    Spawn:
+		HKDD L -1;
+       Stop;    }}
+
+
+
+CLASS XDeathHalfHK : ACTOR
+{ 
+Default
+{
+	+FLOORCLIP;
+    Radius 0;
+    Height 8;
+    Speed 10;
+	Mass 8;
+	BounceFactor 0.3;
+	+DOOMBOUNCE;
+	+NOBLOCKMAP;
+	+MISSILE;
+	+NOTELEPORT;
+	+DONTSPLASH;
+	+MOVEWITHSECTOR;
+	DeathSound "misc/XDeath1";
+}
+
+States
+{
+	Spawn:
+	Goto Death;
+
+	Death:
+		BTO1 AABBCC 4 ;//A_SpawnProjectile("Green_Blood",0,0,180,2);
+		TNT1 A 0 A_Jump(128, "Crawl");
+		HPLA A 0 A_SpawnItem("dead_knightHalfUp",0,0,0,1);
+	Stop;
+
+	Crawl:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("Dying_Hell_Knight");
+		TNT1 A 0;
+	Stop;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS Dying_Hell_Knight : ACTOR
+{ 
+Default
+{
+	Radius 16;
+	Height 30;
+	Speed 9;
+	Health 70;
+	PainSound "PSXDPN";
+	DeathSound "knight/death";
+	damagefactor "Kick", 0.1;
+	damagefactor "Crush", 2.0;
+	damagefactor "Fatality", 20.1;
+	PainChance "Kick", 255;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+LOOKALLAROUND;
+	+FRIGHTENED;
+	+FLOORCLIP;
+	-SOLID;
+	+THRUACTORS;
+	+NOBLOODDECALS;
+	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+}
+
+States
+{
+	Pain.Kick:
+		TNT1 A 0 A_SpawnProjectile("Teeth", 30, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 30, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnProjectile("TeethNoBounce", 30, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 A_SpawnItem("CrueltyBonus1health");
+		TNT1 A 0 A_Pain();
+		TNT1 A 0 A_FaceTarget();
+		BTCK ABA 3;
+		BTC1 B 20;
+	Goto See;
+			
+	Death.Kick:
+	Death.Fatality:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		TNT1 A 0 A_NoBlocking();
+		//TNT1 A 0 A_GiveToTarget("HKFatality2", 1);
+	Stop;
+			
+	Spawn:
+		tnt1 a 0 {self.bsolid = true; self.bthruactors = false;}
+		/*TNT1 A 0 A_ChangeFlag("SOLID", 1);
+		TNT1 A 0 A_ChangeFlag("THRUACTORS", 0);*/
+		BTC1 A 1 A_Look();
+	See:
+		BTC1 ABC 10 A_Chase();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 0, 0, 10, 0, 0);
+		BTC1 D 10 A_Pain();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 0, 0, 10, 0, 0);
+			
+		BTC1 ABC 10 A_Chase();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 0, 0, 10, 0, 0);
+		BTC1 D 10 A_Pain();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_Instestin", 0, 0, 5, 0, 0);
+			
+		TNT1 A 0 A_GiveInventory("DeathTimer1", 1);
+		TNT1 A 0 A_JumpIfInventory("DeathTimer1", 8, "GotoDeath");
+	Loop;
+			
+	GotoDeath:
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking();
+	Goto Death;
+
+	Death:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Pain();
+		TNT1 A 0 A_SpawnItem("dead_knightHalfUp");
+	Stop;
+			
+			
+	Death.Stomp:
+	Death.SSG:
+	XDeath:
+		//TNT1 AAAAAA 0 bright ;//pb_spawn_blood_color(green, "XDeath1", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath2Green", 55, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath3Green", 55, 0, random(0, 360), 2, random(30, 180));
+		TNT1 A 1;
+		TNT1 A 1 A_XScream();
+		TNT1 A 1 A_NoBlocking();
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green",0,0,0,1);
+		TNT1 AAA 0 A_SpawnItem("CrueltyBonus5Health");
+	Stop;
+}
+
+}
+
+
+CLASS Dead_HellKnightFatality4 : dead_knight
+{ 
+States
+{
+	Spawn:
+		KAD1 FFFFFFFFFFFFFFFFFFF 15;//A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16))
+		KAD1 FFFFF 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+		KAD1 F -1;
+	Stop;
+}
+
+}
+
+
+
+CLASS StopKickingMyBallsMotherFucker : Inventory
+{ 
+Default {inventory.maxamount 1;}
+}
+
+CLASS Gib_PinnedHellKnightTorso: dead_knight
+{ 
+States{	
+	Spawn:
+		BTO1 E -1;
+	Stop;
+		
+	Death:
+		//TNT1 AAAAAA 0 bright ;//pb_spawn_blood_color(green, "XDeath1", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath2Green", 55, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 bright ;//A_SpawnProjectile("Xdeath3Green", 55, 0, random(0, 360), 2, random(30, 180));
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green",0,0,0,1);
+	Stop;
+}
+
+}
+
+CLASS Pinned_Hell_Knight_Torso : ACTOR
+{ 
+Default
+{
+	Radius 4;
+	Height 4;
+	Speed 20;
+	Scale 1.1;
+	Mass 15;
+	+NOBLOCKMAP;
+	+MISSILE;
+	+NOTELEPORT;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+RIPPER;
+	+BLOODLESSIMPACT;
+	-DONTSPLASH;
+	+THRUGHOST;
+	+THRUACTORS;
+	+FLOORCLIP;
+	+NOGRAVITY;
+	damagetype "Blood";
+	SeeSound "misc/xdeath4";
+	DeathSound "misc/xdeath1";
+	Decal "GreenBloodSplat";
+	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0 A_FaceTarget();
+		BTO1 E 4 ;//A_SpawnProjectile("Green_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_JumpIf((vel.Y == 0), "PinToWall");
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+	Loop;
+		
+	Death:
+	PinToWall:
+		BTO1 F 3 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0;
+		BTO1 F 3 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+		BTO1 F 3 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+		BTO1 F 3 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+		BTO1 F 3 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+		BTO1 F 3 ;//A_SpawnProjectile("Green_LiquidBlood", 19, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+	Pinned:
+		TNT1 A 0 A_Recoil(6);
+		BTO1 F 4;
+		TNT1 A 0 A_CheckFloor("HitTheFloor");
+		TNT1 A 0 A_JumpIf(vel.x < 0, "HitTheFloor");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "HitTheFloor");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "HitTheFloor");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "HitTheFloor");
+	Loop;
+		
+	HitTheFloor:
+		TNT1 A 0 A_SetFloorClip;
+		TNT1 A 0 A_SpawnItem("Gib_PinnedHellKnightTorso",0,0,0,1);
+	Stop;
+}
+
+}
+
+
+
+CLASS Brutalized_HellKnight1 : ACTOR
+{ 
+Default
+{	
+	Radius 18;
+	Height 54;
+	Speed 9;
+	Health 110;
+	PainSound "PSXDPN";
+	DeathSound "knight/death";
+	damagefactor "Kick", 0.1;
+	damagefactor "Crush", 2.0;
+	damagefactor "Fatality", 20.1;
+	PainChance "Kick", 255;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+LOOKALLAROUND;
+	+FRIGHTENED;
+	+FLOORCLIP;
+	-SOLID;
+	+THRUACTORS;
+	+NOBLOODDECALS;
+	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+}
+
+States
+{
+	Spawn:
+		tnt1 a 0 {self.bsolid = true; self.bthruactors = false;}
+		/*TNT1 A 0 A_ChangeFlag("SOLID", 1);
+		TNT1 A 0 A_ChangeFlag("THRUACTORS", 0);*/
+		KSA2 A 1 A_Look();
+	See:
+		KSA2 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 C 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_Pain();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 B 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_Pain();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 C 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA2 B 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+
+	Die:
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Scream();
+		KSA2 DEF 7;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		KSA2 G 1 A_SpawnItem("DeadHellKnightKSA2G");
+	Stop;
+		
+	Death:
+		TNT1 A 0 A_FaceTarget();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Pain();
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 38, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnProjectile("XdeathHellKnightArm", 55, 10, random(0, 360), 2, random(0, 160));
+		KSA3 A 1 A_SpawnItem("BrutalizedHellKnight");
+	Stop;
+		
+		
+	Death.Stomp:
+	Death.SSG:
+	XDeath:
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green",0,0,0,1);
+		TNT1 A 0 A_SpawnProjectile("KnightXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItem("CrueltyBonus5Health");
+	Stop;
+}
+
+}
+
+
+CLASS BrutalizedHellKnight : Brutalized_HellKnight1
+{ 
+States
+{	
+	Spawn:
+		tnt1 a 0 {self.bsolid = true; self.bthruactors = false;}
+		/*TNT1 A 0 A_ChangeFlag("SOLID", 1);
+		TNT1 A 0 A_ChangeFlag("THRUACTORS", 0);*/
+		KSA3 A 1 A_Look();
+	See:
+		KSA3 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 C 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_Pain();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 B 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_Pain();
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 C 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA3 B 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+	Die:
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Scream();
+		KSA3 DEF 7;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		KSA3 G 1 A_SpawnItem("DeadHellKnightKSA3G");
+	Stop;
+		
+	Death:
+		TNT1 A 0 A_FaceTarget();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_PlaySound("gore/headshot", 2);
+		TNT1 A 0 A_SpawnItem("HellKnightHeadExplode", 0, 62);
+		TNT1 AA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 55, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 38, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AA 0 ;//pb_spawn_blood_color(green, "XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		KSA3 A 1 A_SpawnItem("BrutalizedHellKnight3");
+	Stop;
+		
+		
+	Death.Stomp:
+	Death.SSG:
+	XDeath:
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green",0,0,0,1);
+		TNT1 A 0 A_SpawnProjectile("KnightXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItem("CrueltyBonus5Health");
+	Stop;
+}
+
+}
+
+
+CLASS BrutalizedHellKnight3 : Brutalized_HellKnight1
+{ 
+States
+{	
+	Spawn:
+		TNT1 A 0 nodelay {self.BSOLID = true; self.bTHRUACTORS = false;}
+		KSA4 A 1 A_Look();
+	See:
+		KSA4 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 C 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0;
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 B 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0;
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 C 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 A 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+		KSA4 B 7 ;//A_SpawnProjectile("Green_LiquidBlood", 35, -15, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 ;//A_SpawnItemEx("Green_FlyingBlood", 40, -10, 10, 0, 0);
+	Die:
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking();
+		KSA4 DEF 7;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		KSA4 G 1 A_SpawnItem("DeadHellKnightKSA4G");
+	Stop;
+		
+	Death:
+		TNT1 A 0 A_FaceTarget();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_XScream();
+		//TNT1 AAA 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 AAAA 0 ;//A_SpawnProjectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AAAAA 0 ;//pb_spawn_blood_color(green, "XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("Xdeath2Green", 39, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Xdeath3Green", 46, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "FlyingBlood", 48, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "muchblood", 55, random(0, 360), random(0, 160) );
+		KSA6 AAAAA 2 ;//A_SpawnProjectile("Green_LiquidBlood", 55, 0, random(0, 360), 2, random(30, 60));
+		//TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
+		KSA6 BCDE 6 ;//A_SpawnProjectile("Green_LiquidBlood", 25, -4, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_SpawnItem("DeadHellKnightKSA6E");
+	Stop;
+		
+	Death.Stomp:
+	Death.SSG:
+	XDeath:
+		//TNT1 A 0 A_SpawnItem("GibsZ_Green",0,0,0,1);
+		TNT1 A 0 A_SpawnProjectile("KnightXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AA 0 A_SpawnItem("CrueltyBonus5Health");
+	Stop;
+}
+
+}

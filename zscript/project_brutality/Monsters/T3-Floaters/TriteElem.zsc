@@ -1,0 +1,424 @@
+CLASS pb_Traite_Elemental : proto_pain//replaces PainElemental
+{ 
+Default
+{
+	Health 375;
+	Speed 14;
+	Radius 31;
+	Height 56;
+	PainChance 128;
+	Mass 400;
+	Scale 1.05;
+	MONSTER;
+	+NOGRAVITY;
+	+FLOAT;
+	+DROPOFF;
+	+NoInfighting;
+	DamageFactor "Avoid", 0.0;
+	
+	PainChance "Stun", 255;
+	damagefactor "killme", 0.0;
+	SeeSound "Pain/Sight";
+	PainSound "Pain/Pain";
+	DeathSound "Pain/Death";
+	ActiveSound "Pain/Active";
+	bloodtype "Brutal_Blood";
+	PainChance "Kick", 255;
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+	
+	DropItem "DemonStrengthRune", 5;
+	DropItem "DemonStrengthRune", 7;
+	DropItem "RageSphere", 6;
+	DropItem "DoubleSphere", 5;
+	DropItem "ShieldSphere", 4;
+	DropItem "Demonpickup", 148;
+	
+	damagetype "Flames";
+	Obituary "%o was nested by a Trite Elemental.";
+	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+	
+	Species "FlyingBalls";
+	+DONTHARMSPECIES;
+	-MissileMore;
+	-MissileEvenMore;
+}
+States 
+{
+	Spawn:
+		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
+		//TNT1 AAA 0;
+	watch:
+		TORT A 10 A_Look;
+	loop;
+
+	See:
+	Advance:
+		TORT AABBCC 3 A_Chase;
+		Loop;
+	Missile: 
+		TORT D 3 A_FaceTarget;
+		TNT1 AAA 0;
+		TORT D 1 A_Checksight("Advance");
+		TORT D 1 A_JumpIfCloser(1500, 2);
+	Goto Advance;
+		TNT1 AA 0;
+		TORT Z 5 A_FaceTarget;
+		TORT Z 1 A_FaceTarget;
+		TNT1 A 0 BRIGHT A_SpawnItem("GreenFlareMedium",0,0);
+		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-20, 20), 0, random(-10, 10));
+		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-16, 16), 0, random(-7, 7));
+		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-20, 20), 0, random(-7, 7));
+		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-16, 16), 0, random(-12, 12));
+	Goto See;
+
+	Pain:
+		TORT G 3;
+		TORT G 6 A_Pain;
+	Goto See;
+
+	Possession:
+		TNT1 A 0 A_SetInvulnerable;
+		TORT G 3;
+		TORT G 3 A_Pain;
+		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
+		TNT1 A 0 A_UnSetInvulnerable;
+	Goto See;
+		
+	Pain.Stun:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx ("StunElectrocute", random (-4, 4), random (-4, 4),  random (16, 32), 0, 0);
+		TORT G 1 A_Pain;
+		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT G 1 A_Pain;
+		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT G 1 A_Pain;
+		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT G 1 A_Pain;
+		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT G 1 A_Pain;
+		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT G 1 A_Pain;
+	Goto See ;
+		
+	Death:
+		TNT1 A 0;
+		TORT H 6 A_Pain;
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TORT I 6 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
+		TORT J 6;
+		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile ("XDeath2", 40, 0, random (0, 360), 2, random (0, 160));
+		TORT K 6;
+		TNT1 AA 0 a_spawnprojectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
+		TORT L 5 A_Pain;
+		TNT1 AAAAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
+		TORT M 6;
+		TNT1 A 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TORT M -1;
+	Stop;
+		
+	Death.Ice:
+	Death.Freeze:
+	Death.Frost:
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		TNT1 A 0 {self.bSOLID = false;}
+		//TNT1 A 0 A_SpawnItem("FrozenTriteElemental");
+	Stop;
+		
+	Death.Fatality:
+		TNT1 A 0 A_Pain;
+		//TNT1 A 0 A_JumpIfIntargetInventory("FistsSelected", 1, 1);
+		Goto Death;
+		TNT1 A 0 A_NoBlocking;
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("TriteElementalFatality", 1);
+	Stop;
+}
+
+}
+
+CLASS TriteEgg: pb_monster_base
+{ 
+	Default {
+	//SpawnID 126
+	Radius 6;
+	Height 6;
+	Speed 15;
+	Mass 15;
+	FastSpeed 17;
+	Scale .50;
+	DamageFunction (random(3,5));
+	+RANDOMIZE;
+	+THRUGHOST;
+	+FORCEXYBILLBOARD;
+	Gravity .5;
+	damagetype "Desintegrate";
+	SeeSound "misc/xdeath2";
+	DeathSound "fleshimpact";
+	translation "168:191=112:127","16:47=120:127";
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0 A_PlaySound("misc/xdeath2");
+		flob ABC 1;
+	Loop;
+	Death:
+	XDeath:
+		flob FGHDE 1;
+		//TNT1 AA 0 a_spawnprojectile ("XDeath1Green", 32, 0, random (0, 360), 2, random (50, 130));
+		//TNT1 A 0 A_SpawnItem ("GreenBloodTrails");
+		TNT1 A 0 A_SpawnItem("Trite");
+	Stop;
+}
+
+}
+
+CLASS FatalizedTriteElemental : pb_blood_and_gore_base { 
+	Default {
+ 
+    Radius 12;
+    Height 18;
+    Scale 1.0;
+    +SHOOTABLE
+    -SOLID
+    +NOTELEPORT
+    +MOVEWITHSECTOR
+    +CORPSE
+    Mass 1000;
+    Health 200;
+	Damagefactor "Blood", 0.0;
+	damagefactor "Trample", 0.0;
+	}
+	States
+	{
+	Spawn:
+		TA1F I -1;
+		Stop;
+	Death:
+		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeath4", 5, 0, random (0, 360), 2, random (0, 160));
+	Stop;
+}}
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//					Trite
+//
+//////////////////////////////////////////////////////////////////////////////
+
+CLASS Trite : ACTOR { 
+	Default {
+	
+	HitObituary "%o was nipped by a Trite";
+	Health 15;
+	Radius 19;
+	Height 23;
+	Mass 100;
+	Speed 6;
+	Scale .5;
+	//-TELESTOMP
+	//-NOTELEFRAG
+	//	+NOTELESTOMP
+	//+TELESTOMP
+	bloodtype "GreenBloodTrails";
+	PainChance 192;
+	BloodColor "DarkGreen";
+	PainSound "Trite/Pain";
+	DamageFactor "Stun", 100.0;
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+	damagefactor "killme", 0.0;
+	damagefactor "Avoid", 0.0;
+	SeeSound "Trite/Sight";
+	DeathSound "Trite/Death";
+	ActiveSound "Trite/Active";
+	MeleeSound "Trite/MeleeHit";
+	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+	MeleeDamage 2;
+	MeleeThreshold 64;
+	MaxTargetRange 160;
+	MinMissileChance 10;
+	Damage 2;
+	Monster;
+	+FloorClip;
+	
+	+NOBLOCKMONST;
+	+THRUSPECIES;
+	+NoTarget;
+	}
+	States
+	{
+	Spawn:
+		TRIT A 1 A_Look;
+		Loop;
+	See:
+		TRIT A 2 A_Chase(null, null, 0);
+		TRIT A 2 A_Chase;
+		TRIT A 0 A_PlaySound("Trite/Step");
+		TRIT BB 2 A_Chase("Melee", "Missile", 2);
+		TRIT B 0 A_PlaySound("Trite/Step");
+		TRIT CC 2 A_Chase;
+		TRIT C 0 A_PlaySound("Trite/Step");
+		TRIT DD 2 A_Chase("Melee", "Missile", 2);
+		TRIT D 0 A_PlaySound("Trite/Step");
+		Loop;
+	Melee:
+		TRIT A 6 A_FaceTarget;
+		TRIT A 0 A_Jump(192, 2);
+		TRIT A 0 A_PlaySound("Trite/Attack");
+		TRIT E 6 a_spawnprojectile("TriteAttack2",10,0,0,0);
+	Goto See;
+
+	Missile:
+		TRIT A 0 A_Jump(128, "See");
+		TRIT AAA 3 A_FaceTarget;
+		TRIT F 0 A_PlaySound("Trite/Attack");
+		TRIT F 0 A_SkullAttack;
+		TRIT F 10 ThrustThingZ(0, 6, 0, 1);
+		TRIT F 0 a_spawnprojectile("TriteAttack2",10,0,0,0);
+		TRIT E 8 A_Stop;
+	Goto See;
+
+	FatalityMarine:
+		TNT1 A 0 A_SetInvulnerable;
+		TNT1 A 0 A_PlaySound("Trite/Sight");
+		TNT1 A 0 A_PlaySound("DSFDTHE");
+		TRFA ABC 6 A_SetScale(1.0);
+		TNT1 AA 0 a_spawnprojectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 A_PlaySound("XDeath1");
+		TRFA D 7 A_SetScale(1.0);
+		TNT1 A 0 a_spawnprojectile ("XDeath2", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
+		TRFA E 6 A_SetScale(1.0);
+		TNT1 AA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAAAAA 0 a_spawnprojectile ("BrainBlood", 50, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 A_SpawnItem ("BigBloodSpot");
+		EXPL A 0 Radius_Quake (2, 24, 0, 15, 0);
+		TNT1 A 0 A_PlaySound("Trite/Splat");
+		TNT1 AAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 25, 0, random (0, 360), 2, random (0, 160));
+		XPL4 BCDEF 5 A_SetScale(1.0);
+		TNT1 A 0 a_spawnprojectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
+		XPL4 G -1 A_SetScale(1.0);
+		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("TriteMarineFatalized");
+		TNT1 A 0 A_UnSetInvulnerable;
+	Stop;
+
+	Web:
+		TRIT F 0;
+		TRIT F 0 {self.bNoDamage = true;}
+		TRIT F 0 {self.bNoPain = true;}
+		TRIT F 0 A_PlaySound("Trite/WebStart");
+		TRIT F 1 A_CheckFloor(1);
+	Goto Web+5;
+		TRIT A 0 {self.bNoDamage = false;}
+		TRIT A 0 {self.bNoPain = false;}
+		TRIT A 12 A_PlaySound("Trite/WebEnd");
+	Goto Spawn;
+
+	Pain:
+		TRIT E 3;
+		TRIT E 3 A_Pain;
+	Goto See;
+		
+	Death:
+		TRIT G 5 A_Scream;
+		TNT1 A 0 A_PlaySound("misc/xdeath2");
+		//TNT1 AA 0 a_spawnprojectile ("GreenBloodTrails", 35, 0, random (0, 360), 2, random (0, 160));
+		//TNT1 A 0 a_spawnprojectile ("XDeath1Green", 35, 0, random (0, 360), 2, random (0, 160))
+		TRIT H 0 A_PlaySound("Trite/Splat");
+		TRIT H 5 A_NoBlocking;
+		TRIT IJK 5;
+	Stop;
+}
+
+}
+
+CLASS TriteAttack1 : ACTOR { 
+	Default {
+	
+	Radius 10;
+	Height 18;
+	DamageType "Arm";
+	Projectile;
+	+RANDOMIZE;
+	Damage 2;
+	+FORCEXYBILLBOARD;
+	+THRUGHOST;
+	+MTHRUSPECIES;
+	+THRUSPECIES;
+	+BLOODSPLATTER;
+	RenderStyle "Add";
+	Alpha 0.6;
+	HitObituary "$OB_IMPHIT";
+	Obituary "$OB_IMPHIT";
+	+DONTHARMCLASS;
+	SeeSound "None";
+	DeathSound "none";
+	Decal "none";
+	Speed 20;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 4 BRIGHT;
+		Stop;
+	Death:
+		TNT1 A 0 A_PlaySound("Trite/MeleeHit");
+		TNT1 A 0 BRIGHT;
+		Stop;
+}
+	
+}
+
+
+
+CLASS TriteAttack2: TriteAttack1 { 
+Default
+{
+	+THRUGHOST;
+	+THRUSPECIES;
+	+MTHRUSPECIES;
+	+DONTHARMCLASS;
+	DamageType "ImpFatalityMarine";
+	Damage 1;
+	}
+}
+
+CLASS TriteMarineFatalized: pb_blood_and_gore_base { 
+	States
+	{
+	Spawn:
+		XPL4 G 9100;
+Loop;}}
+
+//not applyable to zscript version, left here as reminder of former luxury
+
+//==========Mapper Notes
+
+//The Web state is activated through the ACS fuction SetActorState
+//and is used to lower the Trite to the floor as though it was on a web.
+//(Note that this only really helps if it's spawned above the floor.)
+
+
+//==========Credits
+//Decorate: Ghastly_dragon
+//Sprites: Monolith, Id Software
+//Sprite Edit: Captain Toenail
+//Sounds: Id Software

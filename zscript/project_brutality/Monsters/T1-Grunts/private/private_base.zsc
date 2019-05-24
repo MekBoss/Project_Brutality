@@ -1,0 +1,8 @@
+class private_base : proto_zombieman_class
+{
+default
+{
+	proto_zombieman_class.max_magazine_size 20;
+}
+
+}

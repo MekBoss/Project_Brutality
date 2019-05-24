@@ -1,7 +1,7 @@
-ACTOR BossBrainReplacer : BossBrainBase Replaces BossBrain
+ACTOR BossBrainReplacer : actor/*BossBrainBase*/ Replaces BossBrain
 {
   Health 250
-  Mass 10000000
+  Mass 10000000 
   PainChance 255
   +SOLID
   +SHOOTABLE

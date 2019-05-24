@@ -1,0 +1,42 @@
+class pb_cell : pb_ammo_proto_class 
+{
+default
+{
+	Inventory.Amount 20;
+    Inventory.MaxAmount 300;
+    Ammo.BackpackAmount 100;
+    Ammo.BackpackMaxAmount 800;
+	Inventory.PickUpMessage "Picked up some cells";
+
+	Inventory.PickUpSound "misc/cell_PickUp";
+	+FLOORCLIP;
+	+DONTGIB;
+}
+
+States
+{
+	Spawn:
+		CELL ABCDE 2;
+	Loop;
+	}
+}
+
+CLASS NormalCellPack : pb_cell
+{ 
+Default
+{		
+	Inventory.PickupMessage "Picked up an Energy Cell Pack.";
+	Inventory.PickupSound "misc/bulkcell_PickUp";
+	Inventory.Amount 100;
+	+DONTGIB;
+	+FLOORCLIP;
+}
+
+States
+{
+	Spawn:
+		YELP ABCD 2;
+	Loop;
+}
+
+}

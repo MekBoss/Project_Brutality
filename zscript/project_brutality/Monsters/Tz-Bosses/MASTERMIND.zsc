@@ -1,0 +1,648 @@
+//===========================================================================
+//
+// Spider boss
+//
+//===========================================================================
+CLASS pb_Spider_Master_mind : proto_spider_mind //Replaces SpiderMastermind
+{ 
+Default
+{
+	//SpawnID 7;
+	//SpawnID 2420;
+	//what, two spawn id?
+	damagefactor "Crush", 30.0;
+	damagefactor "Explosive", 1.5;
+	damagefactor "Decaptate", 0.95;
+	DamageFactor "Plasma", 0.75;
+	DamageFactor "SSG", .75;
+	damagefactor "Head", 0.75;
+	DamageFactor "Cut", .75;
+	DamageFactor "Blast", .75;
+	damagefactor "BFG", 0.38;
+	DamageFactor "GreenFire", .38;
+	DamageFactor "Desintegrate", .38;
+	DamageFactor "Freeze", .25;
+	DamageFactor "Ice", .25;
+	DamageFactor "Frost", .25;
+	damagefactor "HKFT", 0.05;
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	damagefactor "Stomp", 0.0;
+	damagefactor "GibRemoving", 0.0;
+	damagefactor "Trample", 0.0;
+	damagefactor "TeleportRemover", 0.0;
+	DamageFactor "CauseObjectsToSplash", 0.0;
+	
+	Health 4000;
+	Scale 1.4;
+	Mass 500000;
+	Speed 18;
+	FastSpeed 20;
+	PainChance 30;
+	MaxStepHeight 24;
+	MaxDropOffHeight 32;
+	
+	//MinMissileChance 200
+	Monster;
+	+NOICEDEATH;
+	+BOSS;
+	+FLOORCLIP;
+	+DONTRIP;
+	+DONTMORPH;
+	+BOSSDEATH;
+	+NORADIUSDMG;
+	+NOBLOOD;
+	+MISSILEMORE;
+	+SOLID;
+	+MISSILEEVENMORE;
+	+SHOOTABLE;
+
+	SeeSound "spider/sight";
+	AttackSound "spider/attack";
+	PainSound "spider/pain";
+	DeathSound "spider/death";
+	ActiveSound "spider/active";
+	obituary "$OB_SPIDER";
+	damagefactor "Blood", 0.0;
+	
+	DropItem "DemonStrengthRune", 25;
+	DropItem "Demonpickup2", 255;
+	DropItem "Demonpickup2", 255;
+	DropItem "Demonpickup2", 255;
+	DropItem "Demonpickup2", 255;
+	DropItem "Demonpickup2", 255;
+	DropItem "Demonpickup2", 255;
+	DropItem "DemonMorphRune", 25;
+	Species "MasterMind";
+}
+
+States
+{
+	Spawn:
+		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
+		TNT1 AAA 0;
+		SPID A 10 A_Look();
+	loop;
+
+	See:
+		SPID A 2 A_PlaySound("master/walk", 5);
+		SPID A 2 A_Chase();
+		SPID B 2 A_Chase();
+		SPID B 2 A_Chase();
+		SPID C 2 A_Chase();
+		SPID C 2 A_Chase();
+		TNT1 A 0 A_SpawnItemEx("MasterMindStep", 90, 90);
+		TNT1 A 0 A_SpawnItemEx("MasterMindStep", -90, 90);
+		SPID D 2 A_Chase();
+		SPID D 2 A_PlaySound("master/walk", 5);
+		SPID E 2 A_Chase();
+		SPID E 2 A_Chase();
+		SPID F 2 A_Chase();
+		TNT1 A 0 A_SpawnItemEx("MasterMindStep", 90, -90);
+		TNT1 A 0 A_SpawnItemEx("MasterMindStep", -90, -90);
+	Loop;
+
+	Missile:
+		SPID A 4 A_FaceTarget();
+		SPID A 4 A_FaceTarget();
+		SPID A 4 A_FaceTarget();
+		SPID H 4 A_FaceTarget();
+		TNT1 AAAAAAAAAAAAAAAAA 0;
+		TNT1 A 0 A_PlaySound("Mastermind/Chaingun", 5, 1, 1);
+	Firing:
+		SPID G 2 A_FaceTarget();
+		TNT1 A 0 A_JumpIfCloser(200, "StopFiring");
+		SPID H 2 BRIGHT a_spawnprojectile("MastermindTracer", 72, 0, random(-7, 7), 1, random(-4, 2));
+		TNT1 A 0 A_SpawnItem("MasterMindCaseSpawn", 0, 60,0);
+		TNT1 A 0 A_JumpIf(random(0, 100) > 80, "StopFiring");
+		SPID G 0 A_SpidRefire();
+		TNT1 A 0 A_StopSound(5);
+	Goto Missile+20;
+		
+	StopFiring:
+		TNT1 A 0 A_StopSound(5);
+		SPID A 6 A_FaceTarget();
+	Goto See;
+		
+	Avoid:
+		tnt1 a 0 A_FaceTarget();
+		SPID A 6 A_FastChase();
+		tnt1 a 0 A_FaceTarget();
+		SPID B 6 A_FastChase();
+		tnt1 a 0 A_FaceTarget();
+		SPID C 6 A_FastChase();
+		tnt1 a 0 A_FaceTarget();
+		SPID D 6 A_FastChase();
+	Goto Missile;
+
+	Pain:
+		TNT1 A 0 A_StopSound(5);
+		SPID I 4 A_Pain();
+	Goto See;
+
+	Death:
+		TNT1 A 0 A_Jump(255, "DeathRare");
+		TNT1 A 0 A_StopSound(5);
+		SPID J 20 A_Scream();
+		EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
+		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		SPID K 10 A_NoBlocking();
+		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		SPID L 5;
+		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+		//SPID MNOPQR 5
+		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
+		TNT1 A 0 a_spawnprojectile("SpiderPart1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("SpiderPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathSpiderPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathSpiderPart3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathSpiderPart5", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathSpiderPart6", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathSpiderPart4", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		SPID MNOPQR 5;
+	Goto Burns;
+	
+	Burns:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIf(random(0, 50) > 35, "Rest");
+		SPID SS 2 A_SpawnItem("YellowFlare",0,50);
+		ID22 F 0 a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(70, 110));
+		SPID SS 2 A_SpawnItem("YellowFlare",0,50);
+		ID22 F 0 a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(70, 110));
+		ID22 F 0 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));
+	Loop;
+	
+	Smokes:
+		TNT1 A 0 A_BossDeath();	
+		TNT1 A 0 A_JumpIf(random(0, 100) > 85, "Rest");
+		SPID S 5 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));
+	Loop;
+	
+	Rest:
+		SPID S -1;
+	Stop;
+
+	DeathRare:
+		TNT1 A 0;
+		TNT1 AAAAAAA 0 a_spawnprojectile("ExplosionFlames", 60, -19, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 60, 19, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 60, -19, random(0, 360), 2, random(0, 180));
+		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel1", 60, 19, random(0, 360), 2, random(30, 160));
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel2", 60, -19, random(0, 360), 2, random(30, 160));
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel3", 80, 25, random(0, 360), 2, random(30, 160));
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel4", 80, -25, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 {A_PlaySound("Explosion", 2); A_NoBlocking();  A_SpawnItem("BarrelExplosionSmokeColumn");}
+		SPID J 10 A_PlaySound("FAREXPL", 3);
+		SPID K 10 A_Pain();
+		SPID L 10
+		{
+			A_PlaySound("master/walk", 5);
+			A_BossDeath();
+			A_SpawnItemEx("DyingSpiderMastermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		}
+	Stop;
+		
+	Death.Telefrag:
+		SPID J 20 A_Scream();
+		tnt1 a 0 A_FaceTarget();
+		EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
+		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		SPID K 10 A_NoBlocking();
+		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		SPID L 5;
+		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", random(30, 100), 0, random(0, 360), 2, random(70, 90));
+		//SPID MNOPQR 5
+		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
+		TNT1 A 0 a_spawnprojectile("MastermindLeg", 30, 0, 0, 2, 65);
+		//TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160))
+		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		TNT1 A 300;
+		TNT1 A 1 A_BossDeath();
+		TNT1 A -1;
+	Stop;
+
+	Crush:
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		CRS3 A 5;
+		CRS3 A -1;
+	Stop;	
+}
+
+}
+
+
+CLASS XSpiderMastermindCuttedBrain : ACTOR
+{
+Default
+{	
+	Radius 8;
+	Height 8;
+	Speed 10;
+	Scale 1.2;
+	Mass 1;
+	+NOBLOCKMAP;
+	+MISSILE;
+	+NOTELEPORT;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+RIPPER;
+	+BLOODLESSIMPACT;
+	-DONTSPLASH;
+	+THRUGHOST;
+	damagetype "Blood";
+	SeeSound "misc/xdeath4";
+	DeathSound "misc/xdeath1";
+	Decal "BrutalBloodSplat";
+	Mass 1;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
+		SPIP ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	Loop;
+
+	Death:
+		TNT1 A 0 A_SpawnItem("pb_blood_spot",0,0,0,1);
+		SPIP I 1;
+		SPIP I -1;
+	Stop;
+
+	Splash:
+		TNT1 A 0;
+	Stop;
+}
+
+}
+
+
+CLASS CyberStomp : ACTOR
+{ 
+Default
+{
+	Radius 12;
+	Height 8;
+	+MISSILE;
+	Speed 15;
+	Damage 50;
+	renderstyle "Translucent";
+	alpha 0.75;
+	DamageType "Stomp";
+	MeleeDamage 0;
+	Gravity 2.0;
+	Decal "Cracks";
+	-NOGRAVITY;
+	+EXTREMEDEATH;
+	Health 5;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 10;
+	Stop;
+
+	Death:
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 150);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -150);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -30);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 30);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -60);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 60);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -90);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 90);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -120);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 120);
+		TNT1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
+		TNT1 A 0 A_PlaySound("CLAP");
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("HugeWallChunk",0,0,random(0,360),2,random(-40,40));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("BigWallChunk",0,0,random(0,360),2,random(-40,40));
+		EXPL AAA 0 a_spawnprojectile("BigSmokes", 0, 0, random(0, 360), 2, random(0, 360));
+		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+		
+		EXPL A 0 A_Explode();
+		MNSM ABCDEFGHIJKLMNOPQ 1 bright;
+	Stop;
+}
+
+}
+
+
+
+
+
+
+CLASS MastermindStep : ACTOR
+{ 
+Default
+{
+	Radius 32;
+	Height 32;
+	Speed 0;
+	Damage 50;
+	renderstyle "Translucent";
+	alpha 0.75;
+	DamageType "Stomp";
+	MeleeDamage 0;
+	Gravity 2.0;
+	Scale 0.4;
+	Decal "Cracks";
+	-NOGRAVITY;
+	+EXTREMEDEATH;
+	//MONSTER
+	//-COUNTKILL
+	//+SHOOTABLE
+	//+NOBLOOD
+	//Health 50000
+	Obituary "%o has stepped by a Mastermind.";
+	Health 5;
+}
+
+States
+{
+	Spawn:
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 150);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -150);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -30);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 30);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -60);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 60);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -90);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 90);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -120);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 120);
+		TNT1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
+		EXPL AAA 0 a_spawnprojectile("ExplosionSMoke", 0, 0, random(0, 360), 2, random(0, 360));
+		
+		EXPL A 0 A_Explode(300, 50, 0);
+		TNT1 A 4;
+		MNSM ABCDEFGHIJKLMNOPQ 0;
+	Stop;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS MastermindLeg : ACTOR
+{ 
+Default
+{
+	Radius 8;
+	Height 8;
+	Speed 24;
+	Scale 1.3;
+	Gravity 0.8;
+	Mass 1;
+	+NOBLOCKMAP;
+	+MISSILE;
+	+NOTELEPORT;
+	+MOVEWITHSECTOR;
+	+THRUACTORS;
+	+FLOORCLIP;
+	-NOGRAVITY;
+	+FORCERADIUSDMG;
+	+SKYEXPLODE;
+	damagetype "Stomp";
+	SeeSound "misc/xdeath4";
+	DeathSound "misc/xdeath1";
+	Decal "BrutalBloodSplat";
+	Mass 1;
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater");
+		SPP4 ABCDEFGH 5;
+	Loop;
+
+	Death:
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		TNT1 A 0 A_Explode(300, 100);
+		EXPL AAAAAAA 0 a_spawnprojectile("ExplosionSMoke", 0, 0, random(0, 360), 2, random(0, 360));
+	Goto KeepRotating;
+
+	KeepRotating:
+		SPP4 AB 2;
+		SPP4 CDEFGH 2 A_CheckFloor("Rest");
+	Loop;
+
+	Rest:
+		SPP4 A 1;
+		TNT1 A 0 A_Explode(50, 100);
+		EXPL AAAAAAA 0 a_spawnprojectile("ExplosionSMoke", 0, 0, random(0, 360), 2, random(0, 360));
+		SPP4 A -1;
+	Stop;
+		
+	Underwater:
+	Splash:
+		SPP4 A 4;
+	Loop;
+}
+
+}
+
+
+CLASS DyingSpiderMastermind : ACTOR
+{ 
+Default
+{
+	Radius 60;
+	Height 68;
+	Mass 9999999;
+	Speed 0;
+	Health 200;
+	Scale 1.35;
+	PainSound "spider/pain";
+	DeathSound "spider/death";
+	damagefactor "Fatality", 6.0;
+	damagefactor "trample", 2.0;
+	DamageFactor "CauseObjectsToSplash", 0.0;
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+SOLID;
+	+DONTSPLASH;
+	MONSTER;
+	+FRIENDLY;
+	-COUNTKILL;
+}
+States
+{
+	Death.Fatality:
+		TNT1 A 0 A_NoBlocking();
+		//TNT1 A 0 A_GiveToTarget("SpiderMastermindFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+	Stop;
+
+	Death:
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 A 0 A_SpawnItem("BrutalizedSpidermastermind");
+	Stop;
+
+	Spawn:
+		SPFD ABC 4;
+		TNT1 A 0 A_Pain();
+		SPFD BAABCBAABC 4;
+
+		TNT1 A 0 A_Pain();
+		SPFD BAABCBAABC 4;
+
+		TNT1 A 0 A_Pain();
+		SPFD BAABCBAABC 4;
+
+		TNT1 A 0 A_Pain();
+		SPFD BAABCBAABC 4;
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+
+		SPID L 5 { A_NoBlocking(); A_Scream();}
+	ExplosionDeath:
+		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+
+		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
+		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		SPID MNOPQR 4;
+	Burns:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIf(random(0, 50) > 35, "Rest");
+		SPID SS 2 A_SpawnItem("YellowFlare",0,50);
+		ID22 F 0 a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(70, 110));
+		SPID SS 2 A_SpawnItem("YellowFlare",0,50);
+		ID22 F 0 a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(70, 110));
+		ID22 F 0 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));
+	Loop;
+
+	Smokes:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIf(random(0, 100) > 85, "Rest");
+		SPID S 5 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));
+	Loop;
+
+	Rest:
+		SPID S -1;
+	Stop;
+}
+
+}
+
+CLASS BrutalizedSpidermastermind : ACTOR
+{ 
+Default
+{
+	Radius 90;
+	Height 68;
+	Mass 999999;
+	-SHOOTABLE;
+	+NORADIUSDMG;
+	+FLOORCLIP;
+	+DONTSPLASH;
+	+noclip
+	+nointeraction
+	DeathSound "spider/death";
+	Scale 1.3;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0;
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 30, 0, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 30, -20, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 35, -25, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 40, -15, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 30, -20, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 35, -25, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 40, -15, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 30, -20, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 35, -25, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 40, -15, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 30, -20, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 35, -25, random(0, 360), 2, random(10, 90));
+		SPFD NOPO 4 a_spawnprojectile("Brutal_LiquidBlood2", 40, -15, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+	DieNow:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Scream();
+	ExplosionDeath:
+		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
+		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		SPID NOPQR 4;
+	Burns:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIf(random(0, 50) > 40, "Smokes");
+		SPID SS 2 A_SpawnItem("YellowFlare",0,50);
+		ID22 F 0 a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(70, 110));
+		SPID SS 2 A_SpawnItem("YellowFlare",0,50);
+		ID22 F 0 a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(70, 110));
+		ID22 F 0 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));
+	Loop;
+
+	Smokes:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIf(random(0, 100) > 85, "Rest");
+		SPID S 5 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));
+	Loop;
+
+	Rest:
+		SPID S -1;
+	Stop;
+}
+
+}

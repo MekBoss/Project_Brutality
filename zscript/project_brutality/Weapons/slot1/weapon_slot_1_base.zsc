@@ -1,0 +1,1 @@
+class weapon_slot_1_proto_class : PB_Weapon_base {}

@@ -82,7 +82,6 @@ ACTOR Shot_Mag : PB_Weapon
 	Weapon.BobRangeY 0.5
 	Weapon.BobStyle InverseSmooth
 	Weapon.BobSpeed 2.4
-	+POWERED_UP
 	+INVENTORY.ALWAYSPICKUP
 	+COUNTITEM
 	+FLOORCLIP
@@ -99,12 +98,10 @@ ACTOR Shot_Mag : PB_Weapon
     Inventory.PickupSound "SHOTPICK"
 	Obituary "%o sucked %k's Shotgun"
     AttackSound "None"
-	Tag "Shotgun"
-	Weapon.SisterWeapon "Shot_Gun"
+	Tag "ShotgunMagUpgrade"
     +WEAPON.NOALERT
     +WEAPON.NOAUTOAIM
 	+WEAPON.NOAUTOFIRE
-	PB_WeaponBase.UnloaderToken "PBPumpShotgunHasUnloaded"
 	States
 	{
 	
@@ -123,7 +120,7 @@ ACTOR Shot_Mag : PB_Weapon
 			    if (CountInv("HasSlugs") >= 1 ) { A_SetWeaponSprite("SHTS"); }
 				if (CountInv("HasDragonBreath") >= 1 ) { A_SetWeaponSprite("SHTD"); }
 				A_SetCrosshair(0);
-				return A_DoPBWeaponAction(WRF_ALLOWRELOAD, CheckUnloaded("PBPumpShotgunHasUnloaded"));
+				return A_DoPBWeaponAction;
 			}
 		Loop
 		
@@ -133,7 +130,7 @@ ACTOR Shot_Mag : PB_Weapon
 			{
 				if (CountInv("HasSlugs") >= 1 ) { A_SetWeaponSprite("SHT6"); }
 				if (CountInv("HasDragonBreath") >= 1 ) { A_SetWeaponSprite("SHT4"); }
-				return A_DoPBWeaponAction(WRF_ALLOWRELOAD, CheckUnloaded("PBPumpShotgunHasUnloaded"));
+				return A_DoPBWeaponAction;
 			}
 		Loop
 	
@@ -480,7 +477,7 @@ ACTOR Shot_Mag : PB_Weapon
 		 {A_SetWeaponSprite("SHMD");} 
 		 return state("");
 		 }
-		SHMG GFEDCB 1
+		SHTG GFEDCB 1
 		{
 		  if (CountInv("Kicking") == 1) { return state("DoKick"); }
 		  if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }

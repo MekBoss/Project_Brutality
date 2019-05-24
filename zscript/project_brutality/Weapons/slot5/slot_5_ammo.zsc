@@ -1,0 +1,163 @@
+CLASS SpecialGrenadeRounds : pb_Ammo_proto_class
+{ 
+	Default {
+		
+		+FLOORCLIP;
+		+DONTGIB;
+		Inventory.Amount 4;
+		Inventory.MaxAmount 50;
+		Ammo.BackpackAmount 4;
+		Ammo.BackpackMaxAmount 100;
+		Inventory.Icon "LPHGA0";
+		Tag "$TAG_PHGRENADES";
+		Inventory.PickUpSound "misc/rockboxa";
+		Inventory.PickupMessage "$You found Special Grenade Rounds";
+	}
+	States
+	{
+		Spawn:
+			LPHG A -1;
+			Stop;
+	}
+}
+
+CLASS HighExplosiveGrenadeRounds : pb_Ammo_proto_class  { 
+	Default {
+		
+		+FLOORCLIP;
+		+DONTGIB;
+		Inventory.Amount 6;
+		Inventory.MaxAmount 25;
+		Ammo.BackpackAmount 6;
+		Ammo.BackpackMaxAmount 50;
+		Inventory.Icon "LHEGA0";
+		Inventory.PickUpSound "misc/rockboxa";
+		Tag "$TAG_HEGRENADES";
+		Inventory.PickupMessage "You found High Explosive Grenade Rounds";
+	}
+	States
+	{
+		Spawn:
+			LHEG A -1;
+			Stop;
+	}
+}
+
+CLASS SingleSpecialGrenade : SpecialGrenadeRounds { 
+	Default {
+		
+		Scale 0.75;
+		Inventory.Amount 1;
+		Inventory.MaxAmount 100;
+		Inventory.PickUpMessage "Picked up a Special Grenade.";
+		Inventory.PickUpSound "misc/rocket_PickUp";
+		+DONTGIB;
+		+FLOORCLIP;
+	}
+	States
+	{
+		Spawn:
+			SUHG A -1;
+			Stop;
+	}
+}
+
+CLASS NormalSpecialGrenadeBox : SpecialGrenadeRounds { 
+	Default {
+		
+		+DONTGIB;
+		+FLOORCLIP;
+		Scale 0.75;
+		Inventory.PickupMessage "Picked up a Case of Special Grenades.";
+		Inventory.PickupSound "misc/rockboxa";
+		Inventory.Amount 7;
+		Inventory.MaxAmount 60;
+	}
+	States
+	{
+		Spawn:
+			LPHG A -1;
+			Stop;
+	}
+}
+
+CLASS NewRocketAmmo : pb_ammo_proto_class
+{ 
+	Default {
+		Inventory.Amount 1;
+		Inventory.MaxAmount 50;
+		Ammo.BackpackAmount 5;
+		Ammo.BackpackMaxAmount 100;
+
+		Inventory.PickUpSound "misc/rocket_PickUp";
+		+FLOORCLIP;
+		+DONTGIB;
+	}
+}
+
+CLASS NormalRocketBox : NewRocketAmmo { 
+	Default {
+		
+		Inventory.PickupMessage "Picked up a Box of Rockets.";
+		Inventory.PickupSound "misc/rockboxa";
+		Inventory.Amount 5;
+		+DONTGIB;
+		+FLOORCLIP;
+	}
+	States
+	{
+		Spawn:
+			BROK A -1;
+		Stop;
+	}
+}
+
+CLASS SingleExcavatorCharge : pb_ammo_proto_class { 
+	Default {
+		
+		Scale 0.75;
+		Inventory.Amount 1;
+		Inventory.MaxAmount 50;
+		Inventory.PickUpMessage "Picked up a Single Excavator Charge.";
+		Inventory.PickUpSound "misc/rocket_PickUp";
+		+DONTGIB;
+		+FLOORCLIP;
+	}
+	States
+	{
+		Spawn:
+			XCR9 A -1;
+			Stop;
+	}
+}
+
+CLASS NormalExcavatorChargeBox1 : SingleExcavatorCharge {// 19321
+	Default {
+		
+		Inventory.Amount 5;
+		Inventory.PickupMessage "Picked up a box of Excavator Charges";
+		Scale 0.75;
+	}
+	States
+	{
+		Spawn:
+			LH3G A -1;
+			Stop;
+	}
+}
+
+CLASS NormalExcavatorChargeBox : SingleExcavatorCharge {// 19321
+	Default {
+		
+		Inventory.Amount 5;
+		Inventory.MaxAmount 50;
+		Inventory.PickupMessage "Picked up a box of Excavator Charges";
+		Scale 0.75;
+	}
+	States
+	{
+		Spawn:
+			LHEG A -1;
+			Stop;
+	}
+}

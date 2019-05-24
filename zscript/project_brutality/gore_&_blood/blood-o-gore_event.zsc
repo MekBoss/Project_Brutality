@@ -1,0 +1,24 @@
+class pb_blood_and_gore_event : eventhandler
+{
+/*
+    Actor Thing who damaged
+    Actor Inflictor from who
+    int Damage
+    Actor DamageSource what actor damaging (projectile, puff)
+    Name DamageType
+    EDmgFlags DamageFlags same as for damagemobj virtual
+    double DamageAngle angle to inflictor
+*/
+//called after thing was damaged, so you cant negate damage at all in this event
+override void worldthingdamaged(worldevent e)
+{
+	if(e.thing) {}
+
+}
+//called BEFORE thing actually die (before entering death state)
+override void worldthingdied(worldevent e)
+{
+	if(e.thing) {}
+}
+
+}

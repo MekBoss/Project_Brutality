@@ -1,0 +1,193 @@
+/*okay, spawning system need to wait for its hero which rewrite it
+	so for now it use default random replace script
+	case 666:
+			switch (LevelNumber)
+			{
+				case 1:
+				case 5:
+					SetActorState(0,"EarlyLevelMob",true);
+					break;
+				case 2:
+				case 6:
+					SetActorState(0,"LowLevelMob",true);
+					break;
+				case 3:
+				case 7:
+					SetActorState(0,"MidLevelMob",true);
+					break;
+				case 4:
+				case 8:
+					SetActorState(0, "HighLevelMob",true);
+					break;
+				default:
+					if (LevelNumber > 8) SetActorState(0, "HighLevelMob",true);
+					else SetActorState(0,"LowLevelMob",true);
+					Break;
+			}
+			break;
+	case 667:
+			Tier1
+	case 668:
+			Tier2
+	case 669:
+			Tier3;
+	case 670
+			Tier4
+	case 671:
+			switch (LevelNumber)
+			{
+				case 1:
+				case 5:
+					SetActorState(0,"DiceTier1",true);
+					break;
+				case 2:
+				case 6:
+					SetActorState(0,"DiceTier2",true);
+					break;
+				case 3:
+				case 7:
+					SetActorState(0,"DiceTier3",true);
+					break;
+				case 4:
+				case 8:
+					SetActorState(0, "DiceTier4",true);
+					break;
+				default:
+					if (LevelNumber > 8) SetActorState(0, "DiceTier4",true);
+					else SetActorState(0,"DiceTier2",true);
+					Break;
+			}
+			break;
+		case 672:
+			DeathWish
+		case 663:
+			Random
+		case 674:
+			PistolStart
+		case 675:
+			ReplaceBrutalOnly*/
+class monster_handle_event : eventhandler
+{
+transient cvar vanilla_cvar, spawn_balance,
+//transient means "dont store pointer in savegame
+//needs to add more pointers here for grenade zomdie and such
+
+//archvile cvars
+Archvile_Heal, Archvile_Summon,
+//revenant
+jet_Revenant;
+
+//return one random names of monsters inherited from base_class
+string return_random_replacement(string base_class = "")
+{
+	if(base_class == "") {console.printf("base class for spawning is not defined at all"); return "Unknown";}
+	
+	int sz = allactorclasses.size();
+	array<string> names; names.clear();
+	for(int i; i < sz; i++)
+	{
+		if(allactorclasses[i] is base_class && !(allactorclasses[i].getclassname() == base_class) )
+		{names.push(allactorclasses[i].getclassname() ); }
+	}
+	sz = names.size();
+	
+	if(sz <= 0) {console.printf("actor base %s dont exist", base_class); return "Unknown";}
+	if(sz > 1) {return names[random(0, sz - 1)];}
+	if(sz == 1) {return names[0];}
+	
+	return "Unknown";
+}
+
+//store pointer to all monster related cvars here
+override void onregister()
+{
+	vanilla_cvar = cvar.findcvar("bd_classicmonsters");
+	spawn_balance = cvar.findcvar("Brutalspawnbalance");
+	
+	archvile_Heal = cvar.findcvar("bd_NoArchvileHeal");
+	Archvile_Summon = cvar.findcvar("bd_NoArchvileSummon");
+	
+	jet_Revenant = cvar.findcvar("bd_GroundRevenant");
+	
+	//must be filled with more lines
+}
+
+override void worldthingspawned(worldevent e)
+{
+	if(e.thing is "pb_monster_base") {pb_monster_base(e.thing).spawning_event = self;}
+}
+
+override void CheckReplacement(ReplaceEvent e)
+{
+/*	spawn custom monsters using this event
+/in this example it replaces all doom imps to medikits
+	if(e.Replacee is "doomimp")
+	{
+		e.IsFinal = true;
+		means "nothing can override this replacement...except another such event"
+		mostly used to prevent zscript/decorate replacing by "class name : actor replaces another_name" way
+		e.Replacement = "medikit"; 
+	}*/
+	//add more monster here
+	if(e.Replacee is "fatso")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_fat");
+	}
+	
+	if(e.Replacee is "arachnotron")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_spider");
+	}
+
+	if(e.Replacee is "painelemental")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_pain");
+	}
+	
+	if(e.Replacee is "cacodemon")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_head");
+	}
+
+	if(e.Replacee is "revenant")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_rev_class");
+	}
+
+	if(e.Replacee is "hellknight")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_noble_class");
+	}
+
+	if(e.Replacee is "baronofhell")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_noble_class");
+	}
+
+	if(e.Replacee is "archvile")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_arch_vile");
+	}
+
+	if(e.Replacee is "Cyberdemon")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_cyberdemon");
+	}
+	
+	if(e.Replacee is "spidermastermind")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_spider_mind");
+	}
+}
+
+}

@@ -1,0 +1,396 @@
+version "3.6"
+const C_TID	= 1000;	//Default camera tid
+const  MAX_R	= 56+32;	//Maximum radius (or distance from the player)
+const  ADJUST_R = 8;	//Amount to adjust the camera by
+const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
+
+//base class definition file must be in first lines before loading actors which inherit from it
+//since gzdoom load actors definition in order it placed here, in root zscript file
+//in other case, it breaks with error "unknows class/states can be defined only for actors/etc."
+#include "zscript/project_brutality/pb_basic_base.zsc"
+//all blood/gore stuff and event which spawn them
+#include "zscript/project_brutality/gore_&_blood/blood-o-gore_event.zsc"
+#include "zscript/project_brutality/gore_&_blood/blood.zsc"
+#include "zscript/project_brutality/gore_&_blood/sticky_blood.zsc"
+#include "zscript/project_brutality/gore_&_blood/gore.zsc"
+#include "zscript/project_brutality/gore_&_blood/monsters_spare_parts.zsc"
+
+
+
+//base inventory items begins here
+#include "zscript/project_brutality/items/items_base.zsc"
+//armors
+#include "zscript/project_brutality/items/armor/armor_shards.zsc"
+#include "zscript/project_brutality/items/armor/full_armor.zsc"
+//health pakcs
+#include "zscript/project_brutality/items/medikits/healthbonuses.zsc"
+#include "zscript/project_brutality/items/medikits/stimkit.zsc"
+#include "zscript/project_brutality/items/medikits/stimkitbox.zsc"
+#include "zscript/project_brutality/items/medikits/stimpack.zsc"
+//#include "zscript/project_brutality/items/medikits/healthbackpacks.zsc"
+#include "zscript/project_brutality/items/medikits/medikit.zsc"
+#include "zscript/project_brutality/items/medikits/medipack.zsc"
+//#include "zscript/project_brutality/items/medikits/generichealth.zsc"
+//backpack, obvious
+#include "zscript/project_brutality/items/backpacks/backpacks.zsc"
+
+
+
+//defenition of effects and environment
+#include "zscript/project_brutality/effects_and_stuff/pb_base_effect_event.zsc"
+#include "zscript/project_brutality/effects_and_stuff/additional_stuff.zsc"
+
+#include "zscript/project_brutality/effects_and_stuff/fire.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torch_base.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torches.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/lamps.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/corpses.zsc"
+
+
+
+#include "zscript/project_brutality/events.zsc"
+
+
+///players definition starts here
+#include "zscript/project_brutality/player/player_events.zsc"
+#include "zscript/project_brutality/player/new_player_base.zsc"
+#include "zscript/project_brutality/player/pb_orig_player_base.zsc"
+#include "zscript/project_brutality/player/doomer_player.zsc"
+#include "zscript/project_brutality/player/pb_player.zsc"
+
+//wepons at ready, it is time
+#include "zscript/project_brutality/weapons/new_weapon_base.zsc"
+#include "zscript/project_brutality/weapons/weapon_specific_event_extended.zsc"
+#include "zscript/project_brutality/weapons/weapon_effect_actors.zsc"
+//-----------------------------------------------------------------------
+
+#include "zscript/project_brutality/weapons/slot1/weapon_slot_1_base.zsc"
+#include "zscript/project_brutality/weapons/slot1/axe.zsc"
+//#include "zscript/project_brutality/weapons/slot1/MELEE.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot2/slot_2_ammo.zsc"
+#include "zscript/project_brutality/weapons/slot2/weapon_slot_2_base.zsc"
+#include "zscript/project_brutality/weapons/slot2/pistol/pbpistol.zsc"
+#include "zscript/project_brutality/weapons/slot2/revolver/revolver.zsc"
+#include "zscript/project_brutality/weapons/slot2/submachinegun/UACSMG.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot3/slot_3_ammo.zsc"
+#include "zscript/project_brutality/weapons/slot3/weapon_slot_3_base.zsc"
+#include "zscript/project_brutality/weapons/slot3/shotgun/SHOTGUN.zsc"
+#include "zscript/project_brutality/weapons/slot3/double_shotgun/SSG.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot4/slot_4_ammo.zsc"
+#include "zscript/project_brutality/weapons/slot4/weapon_slot_4_base.zsc"
+#include "zscript/project_brutality/weapons/slot4/nailgun/nailgun.zsc"
+#include "zscript/project_brutality/weapons/slot4/nailgun/nailgun_extra.zsc"
+#include "zscript/project_brutality/weapons/slot4/lmg/LMG.zsc"
+#include "zscript/project_brutality/weapons/slot4/carbine/Carbine.zsc"
+#include "zscript/project_brutality/weapons/slot4/minigun/MINIGUN.zsc"
+#include "zscript/project_brutality/weapons/slot4/rifle/PBRIFLE.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot5/slot_5_ammo.zsc"
+#include "zscript/project_brutality/weapons/slot5/weapon_slot_5_base.zsc"
+#include "zscript/project_brutality/weapons/slot5/tactical_gl/tactical_GL.zsc"
+#include "zscript/project_brutality/weapons/slot5/excavator/excavator.zsc"
+#include "zscript/project_brutality/weapons/slot5/excavator/excavator_stuff.zsc"
+//#include "zscript/project_brutality/weapons/slot5/simple_gl/simple_GL.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot6/slot_6_ammo.zsc"
+//ammo from slot 6 also uses for slot 7 abd 8
+//unless I make special cvar which switch ammo type of weapons to correspindig type
+//i.e. black matter cells for blackhole, bfg cells for bfg, etc.
+#include "zscript/project_brutality/weapons/slot6/weapon_slot_6_base.zsc"
+#include "zscript/project_brutality/weapons/slot6/plasma_m2/M2PLASMA.zsc"
+#include "zscript/project_brutality/weapons/slot6/plasma/PLASMA.zsc"
+#include "zscript/project_brutality/weapons/slot6/pulse/PulseCannon.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot7/freezer.zsc"
+//#include "zscript/project_brutality/weapons/slot7/STRAILGUN.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot8/weapon_slot_8_base.zsc"
+#include "zscript/project_brutality/weapons/slot8/BFGBEAM.zsc"
+#include "zscript/project_brutality/weapons/slot8/BLACKHOLE.zsc"
+#include "zscript/project_brutality/weapons/slot8/BFGMKIV.zsc"
+#include "zscript/project_brutality/weapons/slot8/VORTEX.zsc"
+//-----------------------------------------------------------------------
+#include "zscript/project_brutality/weapons/slot9/slot_9_ammo.zsc"
+#include "zscript/project_brutality/weapons/slot9/weapon_slot_9_base.zsc"
+#include "zscript/project_brutality/weapons/slot9/demon_tech_rifle/DemonTech.zsc"
+#include "zscript/project_brutality/weapons/slot9/demon_tech_rifle/projectiles_and_etc.zsc"
+//#include "zscript/project_brutality/weapons/slot9/Unmaker/Unmaker.zsc"
+//-----------------------------------------------------------------------
+
+
+
+
+
+
+//monster girl quest
+#include "zscript/project_brutality/monsters/monsters_base.zsc"
+#include "zscript/project_brutality/monsters/monsters_event.zsc"
+
+//zombies base class
+#include "zscript/project_brutality/monsters/T1-Grunts/proto_zombie.zsc"
+//I still dont know where put this monster, so they be here
+//since they too different from ordinary replacements
+#include "zscript/project_brutality/monsters/T1-Grunts/Kamikaze.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/DemonTechTroop.zsc"
+//privates
+#include "zscript/project_brutality/monsters/T1-Grunts/private/private_base.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/zombiemen.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/ZombiemanVariants.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/CarbineZombie.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/MinigunGuy.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/ZombieScientist.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/ChainsawZombie.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/ZSpecOps.zsc"
+//sergeants base class
+#include "zscript/project_brutality/monsters/T1-Grunts/sergeant/sergeant_base.zsc"
+//sibling of base class
+#include "zscript/project_brutality/monsters/T1-Grunts/sergeant/shotgun_guy.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/sergeant/QuadSGGuy.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/sergeant/sergeantvariant.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/sergeant/rocketzombie.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/sergeant/AutoShottyGuy.zsc"
+//captain base
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/commando_base.zsc"
+//RAMBO CO LTD
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/commando.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/HMGMajor.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/plasmazombie.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/ClassicCommando.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/RifleCommando.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/captain/helmetCommando.zsc"
+
+//pimp my imp
+#include "zscript/project_brutality/monsters/T1-Imps/proto_imp.zsc"
+//pimped imps
+#include "zscript/project_brutality/monsters/T1-Imps/imp.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/impvariants.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/impvariant1.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/impvariant2.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/savageimp.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/darkimpnami.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/darkimpnether.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/darkimpST.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/darkimpvoid.zsc"
+
+//pinky base
+#include "zscript/project_brutality/monsters/T2-Pinkies/proto_pinky.zsc"
+///
+#include "zscript/project_brutality/monsters/T2-Pinkies/BULL_DEMON.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/spectre.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/meandemon.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/mechdemon.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/voidspectre.zsc"
+
+//SPOOKY SCARY SKELETON
+#include "zscript/project_brutality/monsters/T3-Revies/proto_skeleton.zsc"
+//AND SHIVERS DOWN YOU SPINE
+#include "zscript/project_brutality/monsters/T3-Revies/REVENANT.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/BeamRev.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/Draugr.zsc"
+
+//all flying monsters base (pain, caco, FLYING SKULLS MAN DAMN ITS CREEPY SHIT)
+#include "zscript/project_brutality/monsters/T3-Floaters/proto_puffballs.zsc"
+//cacodemons
+#include "zscript/project_brutality/monsters/T3-Floaters/CACODEMON.zsc"
+//watcher goes first, because mag caco can spawn them if watchers goes after mag caco
+// compiler wont see them and throw error "unknow class watcher"
+#include "zscript/project_brutality/monsters/T3-Floaters/Watcher.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/InfernalCaco.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/Afrit.zsc"
+//skulls first, because of above reason
+#include "zscript/project_brutality/monsters/T3-Floaters/LOSTSOUL.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/Phantasm.zsc"
+//did you know about band with name PAIN? check them, they...he are good
+#include "zscript/project_brutality/monsters/T3-Floaters/PAIN.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/TriteElem.zsc"//trite include in trite elemntal definition
+#include "zscript/project_brutality/monsters/T3-Floaters/SufferingElemental.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/Overlord.zsc"
+
+
+//fatso base
+#include "zscript/project_brutality/monsters/T3-Fats/proto_fat.zsc"
+//
+#include "zscript/project_brutality/monsters/T3-Fats/MANCUBUS.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/Daedabus.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/Volcabus.zsc"
+
+//arachnotron base
+#include "zscript/project_brutality/monsters/T3-Arachnos/proto_spider.zsc"
+//spiders....why does it have to be spiders
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnotron.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Aracnorb.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/InfernalArachnotron.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnophyte.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/EliteArachnotron.zsc"
+
+//barons and knight base
+#include "zscript/project_brutality/monsters/t4-nobles/proto_noble.zsc"
+//I, THE SUN OV MAN, THE OFFSPRING OF THE STELLAR RACE...and so on
+#include "zscript/project_brutality/monsters/T4-Nobles/BELPHEGOR.zsc"
+//knights
+#include "zscript/project_brutality/monsters/t4-nobles/knigth.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/CyberKnight.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/CyberPaladin.zsc"
+//barons
+#include "zscript/project_brutality/monsters/T4-Nobles/BARON.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/CyberBaron.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/Infernus.zsc"
+
+//archvile base
+#include "zscript/project_brutality/monsters/T4-Viles/proto_arch.zsc"
+////archviles
+#include "zscript/project_brutality/monsters/T4-Viles/ARCHVILE.zsc"
+#include "zscript/project_brutality/monsters/T4-Viles/Hellion.zsc"
+#include "zscript/project_brutality/monsters/T4-Viles/FleshWizard.zsc"
+#include "zscript/project_brutality/monsters/T4-Viles/icevile.zsc"
+
+//all bosses base
+#include "zscript/project_brutality/monsters/Tz-Bosses/proto_bosses.zsc"
+//cyrebdemons
+#include "zscript/project_brutality/monsters/Tz-Bosses/CYBERDEMON.zsc"
+#include "zscript/project_brutality/monsters/Tz-Bosses/ANNIHILATOR.zsc"
+//minds
+#include "zscript/project_brutality/monsters/Tz-Bosses/MASTERMIND.zsc"
+#include "zscript/project_brutality/monsters/Tz-Bosses/Demolisher.zsc"
+#include "zscript/project_brutality/monsters/Tz-Bosses/JUGGERNAUT.zsc"
+/*#include "zscript/project_brutality/monsters/Tz-Bosses/BossBrain.zsc"
+#include "zscript/project_brutality/monsters/Tz-Bosses/Abomination.zsc"
+#include "zscript/project_brutality/monsters/Tz-Bosses/Motherdemon.zsc"
+
+
+
+
+/*
+//converted to zscript but most bugs left in place, need to polish before actually use
+//ST Monsters
+#include "zscript/project_brutality/monsters/T0-Marines/MARINESPAWNER.zsc"
+
+////////////////////////////////////////////////////////////////////////////
+/*
+//New Death System
+#include "zscript/project_brutality/monsters/T1-Grunts/ZOMBIEMEN_DeathAnim.zsc"
+
+//Lil Guys!
+#include "zscript/project_brutality/monsters/Tz-Shrinks/ZombieShrinks.zsc"
+#include "zscript/project_brutality/monsters/Tz-Shrinks/SergeantShrinks.zsc"
+#include "zscript/project_brutality/monsters/Tz-Shrinks/CommandoShrinks.zsc"
+#include "zscript/project_brutality/monsters/Tz-Shrinks/ImpShrinks.zsc"
+#include "zscript/project_brutality/monsters/Tz-Shrinks/DemonShrinks.zsc"
+#include "zscript/project_brutality/monsters/Tz-Shrinks/NoblesShrinks.zsc"
+#include "zscript/project_brutality/monsters/Tz-Shrinks/MancubusShrinks.zsc"
+
+#include "zscript/project_brutality/monsters/T0-Marines/CapturedMarine.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-AutoShotgun.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-BFG.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-Chaingun.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-Plasmagun.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-PulseCannon.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-RocketLauncher.zsc"
+#include "zscript/project_brutality/monsters/T0-Marines/Marine-Shotgun.zsc"
+
+
+#include "zscript/project_brutality/monsters/T1-Grunts/DyingGuys.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/DyingNewGuys.zsc"
+
+#include "zscript/project_brutality/monsters/T1-Grunts/LastStandMonsters.zsc"
+
+#include "zscript/project_brutality/monsters/T1-Grunts/NAZIS.zsc"
+
+#include "zscript/project_brutality/monsters/T1-Imps/DyingDarkImps.zsc"
+
+#include "zscript/project_brutality/monsters/Tz-Bosses/SpecialDoom1Bosses.zsc"
+
+#include "zscript/project_brutality/monsters/Frozen.zsc"
+#include "zscript/project_brutality/monsters/realm667monsters.zsc"
+#include "zscript/project_brutality/monsters/StealthMonsters.zsc"
+#include "zscript/project_brutality/monsters/UnderwaterMonsters.zsc"
+
+//Special Monsters
+#include "zscript/project_brutality/monsters/Tz-Special/EVIL.zsc"
+#include "zscript/project_brutality/monsters/Tz-Special/Epic2Sstuff.zsc"
+*/
+
+//all classes must be moved from here to specific zscript files
+//much of this are just a plug for gzdoom zscript compile
+//to shut down it "Unknown base class!!! ERROR STOP Ex000000000000000000"
+
+
+
+class GotAPack_h : inventory {}
+class GotAPack : inventory {}
+
+
+class BossBrainBase : Actor
+{
+	void RemoveCubes()
+	{
+		ThinkerIterator ti = ThinkerIterator.Create("Actor");
+		Actor a;
+		while (a = Actor(ti.Next()))
+		{
+			if (a is "SpawnShot" || a is "BossEye") a.Destroy();
+			if (a.bISMONSTER && a.bCOUNTKILL) a.A_Die("Massacre");
+		}
+	}
+}
+
+class InvisiblePuff : BulletPuff
+{
+	Default
+	{
+		-ALLOWPARTICLES
+	}
+}
+class InvisiblePuffAlways : InvisiblePuff
+{
+	Default
+	{
+		+ALWAYSPUFF
+		+THRUACTORS
+		+ALLOWTHRUFLAGS
+	}
+}
+
+////zone of crutches
+class CurbstompedMarine : actor {}
+class ObeliskTrailSpark : actor
+{states {spawn: tnt1 a 10 {console.printf("quick crutch");} stop; } }
+class ObeliskExplode : ObeliskTrailSpark {}
+class GreenExplosionFire : ObeliskTrailSpark {}
+class BFGAltExplosion : ObeliskTrailSpark{}
+class MancubusSwitchModeEffect : ObeliskTrailSpark{}
+class BFGAltShockWave : ObeliskTrailSpark{}
+class ExcavatorExploFX : ObeliskTrailSpark{}
+class HellishMissileLauncher : ObeliskTrailSpark{}
+class DaedabusSwitchModeEffect : ObeliskTrailSpark{}
+class WhiteShockwave : ObeliskTrailSpark{}
+class ThrowedBarrel : ObeliskTrailSpark{}
+class CyberBalls : ObeliskTrailSpark{}
+class FreezerTrailSparksSmall : ObeliskTrailSpark{}
+class NewRocketExploFX : ObeliskTrailSpark{}
+class ThrowedSergeantPiece : ObeliskTrailSpark{}
+class PurpleTrailSparks : ObeliskTrailSpark{}
+class PurpleTrailSparkssmall : ObeliskTrailSpark{}
+class ThrowedZombieMan2 : ObeliskTrailSpark{}
+class ThrowedSergeant2 : ObeliskTrailSpark{}
+class ThrowedImp2 : ObeliskTrailSpark{}
+class NewRocketExploFX_Small : ObeliskTrailSpark{}
+class RedLightningTrial_Small : ObeliskTrailSpark{}
+class GreenTrailSparks : ObeliskTrailSpark{}
+class BFGAltTrail : ObeliskTrailSpark{}
+class WhiteShockwaveBig : ObeliskTrailSpark{}
+class DeadKnight : ObeliskTrailSpark{}
+
+class HasIncendiaryWeapon : inventory
+{states {spawn: tnt1 a 10 {console.printf("quick crutch");} stop; } }
+class HasPlasmaWeapon : HasIncendiaryWeapon {}
+class  HasCutingWeapon  : HasIncendiaryWeapon {}
+class  PhantasmFatality  : HasIncendiaryWeapon {}
+class  ArachnoGun  : HasIncendiaryWeapon {}
+class CasingsJanitor : HasIncendiaryWeapon {}
+class CrueltyBonus5Health : HasIncendiaryWeapon {}
+class DeathTimer1 : HasIncendiaryWeapon {}
+class PLOFT2 : HasIncendiaryWeapon {}

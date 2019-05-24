@@ -1,0 +1,420 @@
+CLASS PB_Pistol : weapon_slot_2_proto_class
+{
+bool dual, silencer, two_pistol;
+
+Default
+{
+	inventory.maxamount 2;
+
+	Weapon.SelectionOrder 1;
+	Weapon.SlotNumber 2;
+	Weapon.slotpriority 1;
+
+	Weapon.AmmoUse1 0;
+	Weapon.AmmoGive1 5;
+	Weapon.AmmoUse2 0;
+	Weapon.AmmoGive2 0;
+	Weapon.AmmoType1 "low_caliber_bullets";
+	Weapon.AmmoType2 "PrimaryPistolAmmo";
+	Scale 0.80;
+
+	+FLOORCLIP;
+	+DONTGIB;
+	Obituary "%o was shot down by %k's Pistol";
+	AttackSound "None";
+	Tag "UAC .45 Pistol";
+	Inventory.PickupSound "weapons/pistolup";
+	Inventory.Pickupmessage "You got the UAC .45 Pistol! (Slot 2)";
+
+	+WEAPON.WIMPY_WEAPON;
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOAUTOFIRE;
+	+WEAPON.NOALERT;
+	+WEAPON.NO_AUTO_SWITCH;
+}
+
+override bool, bool weapon_dual_and_special()
+{return true, true; }//silencer and dual in this case
+
+override void activate_special()
+{
+	owner.player.SetPSprite(PSP_WEAPON, self.FindState("silencer_check") );
+}
+
+override void activate_dual()
+{
+	owner.player.SetPSprite(PSP_WEAPON, self.FindState("dual_wield") );
+}
+
+States
+{
+	Spawn:
+		DEGT A -1;
+	Stop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		//"replace pistol to S&W" script
+		//TNT1 A 0 ACS_NamedExecuteAlways("ToggleRevolverUpgraded",0);
+		TNT1 A 1 A_Raise(80);
+	Wait;
+
+	Ready:
+	ready_no_silencer:
+		TNT1 A 0
+		{
+			A_SetRoll(0);
+			if(invoker.silencer == true)
+			{
+				self.player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("ready_silencer") );
+			}
+		}
+		DEGG E 1 A_PlaySound("weapons/pistolup");
+		DEGG DCB 1;
+	Goto Ready_To_Fire;
+	ready_silencer:
+		D3GG E 1 A_PlaySound("weapons/pistolup"); 
+		D3GG DCB 1;
+	Goto Ready_To_Fire;
+
+	Ready_To_Fire:
+		"####" a 0//hack
+		{
+			if(invoker.silencer == true)
+			{
+				Player.GetPSprite(PSP_WEAPON).sprite=GetSpriteIndex("D3GG");
+			}
+			else {Player.GetPSprite(PSP_WEAPON).sprite=GetSpriteIndex("DEGG");}
+		}
+	ready_loop:
+		"####" A 1 A_WeaponReady(WRF_ALLOWRELOAD);
+	loop;
+
+	//attach detach silencer cycle start
+	silencer_check:
+		TNT1 A 0
+		{
+			A_WeaponOffset(0,32);
+			if(invoker.silencer == true)
+			{
+				self.player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("Detach_Silencer") );
+			}
+		}
+		D5GA ABCDEFFFGHIJKLM 1 A_SetRoll(roll+.2);
+		TNT1 A 0 A_PlaySound("weapons/pistolsuppressor_on");
+		D5GA NNNOPOPOQRRRSSS 1 A_SetRoll(roll-.2);
+		TNT1 A 0 A_PlaySound("weapons/pistolup");
+		D5GA TUVWXY 1;
+		D3GG A 0 {A_SetRoll(0); A_Print("Silencer Attached"); invoker.silencer = true;}
+	goto Ready_To_Fire;
+	Detach_Silencer:
+		D5GF ABCDEFG 1 A_SetRoll(roll+.2);
+		TNT1 A 0 A_PlaySound("weapons/pistolsuppressor_off");
+		D5GF FHIJJKKLLMMNOP 1 A_SetRoll(roll-.1);
+		D5GF QRSTUUUVWXYZ 1;
+		D5GG AB 1;
+		DEGG A 0 {A_SetRoll(0); A_Print("Silencer Detached"); invoker.silencer = false;}
+	Goto Ready_To_Fire;
+	//attach detach silencer cycle end
+
+	Fire:
+		"####" A 0 A_WeaponOffset(0,32);
+		"####" A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,1);
+	Goto Reload;
+		"####" A 1 BRIGHT
+		{
+			A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_ZoomFactor(0.985);
+			A_AlertMonsters();
+			a_spawnprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
+			a_spawnprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			A_Takeinventory("PrimaryPistolAmmo",1);
+			a_spawnprojectile("Mp40CaseSpawn", 0,0,-1,-2);
+			
+			if(invoker.silencer == false) {A_PlaySound("weapons/pistol");}
+			else {A_PlaySound("weapons/suppressedpistol");}
+			
+			a_spawnprojectile("YellowFlareSpawn",0,0,0,0);
+			if (CountInv("PowerStrength") >= 1 )
+			{
+				A_SetPitch(pitch-0.09);
+				A_SetAngle(angle-0.04);
+			}
+			else
+			{
+				A_SetPitch(pitch-0.18);
+				A_SetAngle(angle-0.08);
+			}
+		}
+		"####" a 1
+		{
+			A_ZoomFactor(0.99);
+			if (CountInv("PowerStrength") >= 1 )
+			{
+				A_SetPitch(pitch-0.09);
+				A_SetAngle(angle-0.04);
+			}
+			else
+			{
+				A_SetPitch(pitch-0.18);
+				A_SetAngle(angle-0.08);
+			}
+		}
+		"####" a 1
+		{
+			A_ZoomFactor(1.0);
+			if (CountInv("PowerStrength") >= 1 )
+			{
+				A_SetPitch(pitch-0.09);
+				A_SetAngle(angle-0.04);
+			}
+			else
+			{
+				A_SetPitch(pitch-0.18);
+				A_SetAngle(angle-0.08);
+			}
+		}
+		"####" A 5 A_WeaponReady(WRF_ALLOWRELOAD);
+		"####" A 0 A_Refire();
+	Goto Ready_To_Fire;
+
+	Reload:
+		////TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"ReloadSilencer");
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",16,"Ready_To_Fire");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets",1,1);
+	Goto ready_loop;
+		TNT1 A 0 A_PlaySound("PSRLOUT");
+		D5GB A 1 A_SetRoll(roll+.5);
+		//TNT1 A 0 A_JumpIfInventory("PBPistolHasUnloaded", 1, 11);
+		TNT1 A 0 a_spawnprojectile("EmptyClipMP40",5,0,8,-4);
+		D5GB BCD 1 A_SetRoll(roll+.5);
+		D5GB EFGHI 1 A_SetRoll(roll-.5);
+		TNT1 A 0 A_PlaySound("PSRLIN");
+		D5GB KKLMNOPQRS 1 A_SetRoll(roll-.1);
+		D5GB TUVWX 1 A_SetRoll(roll+0.2);
+		D5GB Y 1 A_SetRoll(0);
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,"InsertBulletsNoChamber");//16+1 effect
+	InsertBulletsChamber:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",16, "Ready_To_Fire");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets", 1, 1);
+	Goto Ready_To_Fire;
+		TNT1 A 0
+		{
+			A_Giveinventory("PrimaryPistolAmmo",1);
+			A_Takeinventory("low_caliber_bullets",1);
+		}
+	Loop;
+
+	InsertBulletsNoChamber:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",16, "Ready_To_Fire");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets", 1, 1);
+	Goto Ready_To_Fire;
+		TNT1 A 0
+		{
+			A_Giveinventory("PrimaryPistolAmmo",1);
+			A_Takeinventory("low_caliber_bullets",1);
+		}
+	Loop;
+
+	LoadChamber:
+		TNT1 A 0 A_PlaySound("PSRLFIN");
+		D5GC CDEF 1 A_SetRoll(roll+.3);
+		D5GC GGHH 1 A_SetRoll(roll+.3);
+		D5GC I 1;
+		D5GC JKLMNOPQ 1 A_SetRoll(roll-.3);
+	Goto Ready_To_Fire;
+		
+	ReloadSilencer:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",16,"Ready_To_Fire");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets",1,1);
+	Goto ready_loop;
+
+		TNT1 A 0 A_PlaySound("PSRLOUT");
+		D5GD A 1 A_SetRoll(roll+.5);
+		//TNT1 A 0 A_JumpIfInventory("PBPistolHasUnloaded", 1, 11);
+		TNT1 A 0 a_spawnprojectile("EmptyClipMP40",5,0,8,-4);
+		D5GD BCD 1 A_SetRoll(roll+.5);
+		D5GD EFGHI 1 A_SetRoll(roll-.5);
+		TNT1 A 0 A_PlaySound("PSRLIN");
+		D5GD KKLMNOPQRS 1 A_SetRoll(roll-.1);
+		D5GD TUVWX 1 A_SetRoll(roll+0.2);
+		D5GD Y 1 A_SetRoll(0);
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,"InsertBulletsNoChamber");//16+1 effect
+	InsertBulletsSilencerChamber:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",16, "Ready_To_Fire");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets", 1, 1);
+	Goto Ready_To_Fire;
+		TNT1 A 0
+		{
+			A_Giveinventory("PrimaryPistolAmmo",1);
+			A_Takeinventory("low_caliber_bullets",1);
+		}
+	Loop;
+	
+	InsertBulletsSilencerNoChamber:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",16, "Ready_To_Fire");
+		TNT1 A 0 A_JumpIfInventory("low_caliber_bullets", 1, 1);
+		Goto Ready_To_Fire;
+		TNT1 A 0
+		{
+			A_Giveinventory("PrimaryPistolAmmo",1);
+			A_Takeinventory("low_caliber_bullets",1);
+		}
+	Loop;
+	
+	LoadChamberSilencer:
+		TNT1 A 0 A_PlaySound("PSRLFIN");
+		D5GE CDEF 1 A_SetRoll(roll+.3);
+		D5GE GGHH 1 A_SetRoll(roll+.3);
+		D5GE I 1;
+		D5GE JKLMNOPQ 1 A_SetRoll(roll-.3);
+	Goto Ready_To_Fire;
+		
+		// Unloading States
+		
+	AlreadyUnloaded:
+	Goto Ready_To_Fire;
+		
+	Unload:
+		////TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"UnloadSilencer");
+		//TNT1 A 0 A_JumpIfInventory("PBPistolHasUnloaded", 1, "AlreadyUnloaded");
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,1);
+	Goto ready_loop;
+		D5GB A 1;
+		TNT1 A 0 A_PlaySound("PSRLOUT", 1);
+		D5GB BCDEFGHIJKDCBA 1;
+	RemoveBullets:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,1);
+	Goto FinishUnload;
+		TNT1 A 0 {
+			A_Takeinventory("PrimaryPistolAmmo",1);
+			A_Giveinventory("low_caliber_bullets",1);
+		}
+	Loop;
+	FinishUnload:
+		TNT1 A 0 A_PlaySound("DryFire");
+	Goto Ready_To_Fire;
+		
+	UnloadSilencer:
+		//TNT1 A 0 A_JumpIfInventory("PBPistolHasUnloaded", 1, "AlreadyUnloaded");
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,1);
+	Goto ready_loop;
+		D5GD A 1;
+		TNT1 A 0 A_PlaySound("PSRLOUT", 1);
+		D5GD BCDEFGHIJKDCBA 1;
+		Goto RemoveBulletsSilencer;
+		
+	RemoveBulletsSilencer:
+		TNT1 A 0 A_JumpIfInventory("PrimaryPistolAmmo",1,1);
+		Goto FinishUnloadSilencer;
+		TNT1 A 0 {
+			A_Takeinventory("PrimaryPistolAmmo",1);
+			A_Giveinventory("low_caliber_bullets",1);
+	}
+	Goto RemoveBulletsSilencer;
+	
+	FinishUnloadSilencer:
+		TNT1 A 0 A_PlaySound("DryFire");
+	Goto Ready_To_Fire;
+
+
+
+
+
+
+
+
+
+	dual_wield:
+		TNT1 A 0
+		{ 
+			A_Print("You need two pistols to dual wield!");
+		}
+//		TNT1 A 0 A_SelectWeapon("Handgun");
+	Goto Ready_To_Fire;
+
+
+
+
+
+
+
+
+	Deselect:    
+		//TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,6);
+		//TNT1 A 0 A_JumpIfInventory("SwitchingToDualWieldPistols", 1, 11);
+		DEGG BCDE 1;
+		TNT1 A 0 A_Jump(256, 5);
+		D3GG BCDE 1;
+		TNT1 A 0;
+		TNT1 a 0 A_Lower(120);
+	Wait;
+		
+		// Flash States
+		
+	FlashKicking:
+		//TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"FlashKickingSilencer");
+		D5GU ABCDEFGHIJKLMN 1;
+		DEGG AAAA 1;// Pause?
+		Stop;
+		
+	FlashKickingSilencer:
+		D5GV ABCDEFGHIJKLMN 1;
+		D3GG AAAA 1;// Pause?
+		Stop;
+		
+	FlashAirKicking:
+		//TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"FlashAirKickingSilencer");
+		D5GU ABCDEFGHIJKLMN 1;
+		DEGG AAAA 1;// Pause?
+		Stop;
+		
+	FlashAirKickingSilencer:
+		D5GV ABCDEFGHIJKLMN 1;
+		D3GG AAAA 1;// Pause?
+		Stop;
+		
+	FlashSlideKicking:
+		//TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"FlashSlideKickingSilencer");
+		D5GY ABCDEFGHIJKLMNOPQRSTUV 1;
+		Stop;
+		
+	FlashSlideKickingSilencer:
+		D5GZ ABCDEFGHIJKLMNOPQRSTUV 1;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"FlashSlideKickingStopSilencer");
+		D5GY WXYZ 1;
+		DEGS A 1;
+		Stop;
+		
+	FlashSlideKickingStopSilencer:
+		D5GZ WXYZ 1;
+		D3GG A 1;
+		Stop;
+		
+	FlashPunching:
+		//TNT1 A 0 A_JumpIfInventory("SilencerEquipped",1,"FlashPunchingSilencer");
+		D5GS ABCDEFGHIJKLMN 1;
+		DEGG AAAA 1;// Pause?
+		Stop;
+		
+	FlashPunchingSilencer:
+		D5GT ABCDEFGHIJKLMN 1;
+		D3GG AAAA 1;// Pause?
+		Stop;
+}
+
+}
+
+CLASS PrimaryPistolAmmo: Ammo { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 16;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 16;
+	Inventory.Icon "DEGTA0";
+	}
+}

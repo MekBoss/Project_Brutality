@@ -1,0 +1,1148 @@
+//PhasicKnightX from X-Weapon Hellsturm, BRUTALIZED!//Translation "16:47=112:127", "192:207=80:111", "168:191=64:79"
+CLASS pb_Phasic_Knight_X: proto_noble_class// Replaces HellKnight
+{
+Default
+{	
+	Health 740;
+	//SpawnID 2220;
+	//Radius 24;
+	//Height 64;
+	Mass 1000;
+	Speed 8;
+	FastSpeed 10;
+	Scale 1.1;
+	MeleeDamage 15;
+
+	PainChance "Kick", 255;
+	PainChance "Stun", 255;
+	PainChance "Extremepunches", 255;
+	PainChance "Explosive", 255;
+	PainChance 25;
+	PainChance "Saw", 100;
+	PainChance "Cut", 100;
+
+	damagefactor "Crush", 10.0;
+	damagefactor "GibRemoving", 0.0;
+	DamageFactor "CauseObjectsToSplash", 0.0;
+	damagefactor "SSG", 0.75;
+	damagefactor "Head", 0.9;
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	damagefactor "TeleportRemover", 0.0;
+	PainSound "PSXDPN";
+	
+	Height 56;
+	GibHealth 30;
+	-BOSSDEATH;
+	MaxStepHeight 24;
+	MaxDropOffHeight 32;
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	Obituary "%o was slain by a Cyber Hell Knight.";
+	
+	MeleeDamage 5;
+	Species "Noble";
+	+DONTHARMSPECIES;
+	+MissileEvenMore;	
+
+/*	DropItem "DemonStrengthRune", 3;
+	DropItem "DemonStrengthRune", 7;
+	DropItem "RageSphere", 6;
+	DropItem "DoubleSphere", 5;
+	DropItem "ShieldSphere", 4;
+	DropItem "Demonpickup2", 90;
+	DropItem "Demonpickup", 196;*/
+
+	SeeSound "monster/bruSit";
+	PainSound "baron/pain";
+	DeathSound "monster/brudth";
+	MeleeSound "baron/melee";
+}
+
+States 
+{ 		
+	Death.Shrink:
+		TNT1 A 1 A_PlaySound("Shrink", 3);
+/*		TNT1 A 0 A_SpawnItemEx("PhasicKnightShrinkFX1", 0, 0,  5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("PhasicKnightShrinkFX2", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("PhasicKnightShrinkFX3", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("PhasicKnightShrinkFX4", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("PhasicKnightShrinkFX5", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("PhasicKnightShrinkFX6", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("PhasicKnightShrinkFX7", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("LilPhasicKnight", 1);*/
+	stop;
+		
+	Spawn:
+		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
+		TNT1 A 0;
+		CYUS AB 10 A_Look;
+	Stand:
+		TNT1 A 0;
+		CYUS B 5 A_Look;
+	loop;
+
+	See:
+		TNT1 A 0 A_StopSound(5);
+		CYUS A 1 A_Playsound("monster/bruwlk",7);
+		CYUS AABB 2 A_Chase;
+		CYUS C 1 A_Playsound("monster/bruwlk",7);
+		CYUS CCDD 2 A_Chase;
+	loop;
+
+	See2:
+		TNT1 A 0 A_StopSound(5);
+		CYUS A 1 A_Playsound("monster/bruwlk",7);
+		CYUS AABB 2 A_Chase;
+		CYUS C 1 A_Playsound("monster/bruwlk",7);
+		CYUS CCDD 2 A_Chase;
+	loop;
+
+	Missile:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_FaceTarget;
+		CYUS E 2 A_Playsound("REILAIM");
+		CYUS E 1 A_Jump(120, "ChaingunStart");
+		CYUS E 0 A_Jump(24, "Freezer");
+		CYUS E 1 A_JumpIfCloser(290, "Freezer");
+		CYUS E 4 A_FaceTarget;
+		TNT1 A 0 A_Jump(42, "MissileSomeMore");
+		TNT1 A 0 A_PlaySound("DSRFIRE");
+		TNT1 A 0 a_spawnprojectile("RedFlareSpawn", 38, 15, random(-2,2), CMF_OFFSETPITCH);
+		CYUS F 4 Bright a_spawnprojectile("CyberKnightMissile", 38, 15, random(-2,2), CMF_OFFSETPITCH);
+		CYUS E 8 ;
+	goto See;
+		
+	MissileSomeMore:
+	MissileInRage:
+		CYUS E 6 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("DSRFIRE");
+		CYUS F 3 Bright a_spawnprojectile("CyberKnightMissile", 38, 15, random(-3,3), CMF_OFFSETPITCH);
+		CYUS E 6 A_FaceTarget;
+		CYUS F 0 A_PlaySound("DSRFIRE");
+		CYUS F 3 Bright a_spawnprojectile("CyberKnightMissile", 38, 15, random(-2,2), CMF_OFFSETPITCH, random(-4,4));
+		CYUS E 6 A_FaceTarget;
+		CYUS F 0 A_PlaySound("DSRFIRE");
+		CYUS F 3 Bright a_spawnprojectile("CyberKnightMissile", 38, 15, random(-2, 2), CMF_OFFSETPITCH, random(-4,4));
+		CYUS E 8;
+	goto See;
+		
+	Freezer:
+		TNT1 A 0 A_StopSound(5);
+		CYUS E 6 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("Weapons/FreezerFire");
+		TNT1 A 0 a_spawnprojectile("BlueFlareSpawn", 38, 15, random(-1,1), CMF_OFFSETPITCH);
+		BRUR A 5 Bright a_spawnprojectile("CyberKnightFreezer", 38, 15, random(-3,3), CMF_OFFSETPITCH);
+		CYUS E 6 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("Weapons/FreezerFire");
+		TNT1 A 0 a_spawnprojectile("BlueFlareSpawn", 38, 15, random(-1,2), CMF_OFFSETPITCH);
+		BRUR A 5 Bright a_spawnprojectile("CyberKnightFreezer", 38, 15, random(-3,3), CMF_OFFSETPITCH);
+		CYUS E 6 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("Weapons/FreezerFire");
+		TNT1 A 0 a_spawnprojectile("BlueFlareSpawn", 38, 15, random(-2,1), CMF_OFFSETPITCH);
+		BRUR A 5 Bright a_spawnprojectile("CyberKnightFreezer", 38, 15, random(-3,3), CMF_OFFSETPITCH);
+		CYUS E 8;
+	goto See;
+		
+	ChaingunStart:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_PlaySound("weapons/chagan/start", 4);
+		CYUS EE 8 A_FaceTarget;
+
+	Chaingun:
+		CYUS E 2 A_FaceTarget;
+		TNT1 A 0 A_Playsound("Weapons/NailMGFire");
+		CYUS F 2 Bright a_spawnprojectile("EnemyNail", 38, 15, random(-3,3), CMF_OFFSETPITCH, random(-1,1));
+		CYUS E 4 A_FaceTarget;
+		TNT1 A 0 A_Playsound("Weapons/NailMGFire");
+		CYUS F 2 Bright a_spawnprojectile("EnemyNail", 38, 15, random(-1,1), CMF_OFFSETPITCH, random(-1,1));
+		CYUS E 4 A_FaceTarget;
+		TNT1 A 0 A_Playsound("Weapons/NailMGFire");
+		CYUS F 2 Bright a_spawnprojectile("EnemyNail", 38, 15, random(-1,1), CMF_OFFSETPITCH, random(-1,1));
+		CYUS E 4 A_FaceTarget;
+		TNT1 A 0 A_Playsound("Weapons/NailMGFire");
+		CYUS F 2 Bright a_spawnprojectile("EnemyNail", 38, 15, random(-1,1), CMF_OFFSETPITCH, random(-1,1));
+		CYUS E 8 A_FaceTarget;
+	goto See;
+		
+		
+	Melee:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_PlaySound("weapons/gswing");
+		CYUS GH 8 A_FaceTarget;
+		CYUS I 8 a_spawnprojectile("CyberFistAttack",10,0,0,0);
+	goto See;
+		
+	Melee2:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_PlaySound("weapons/gswing");
+		CYUS GH 8 A_FaceTarget;
+		CYUS I 8 a_spawnprojectile("CyberFistAttack",10,10,0,0);
+	goto See;
+		
+	CurbstompMarine:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 {self.binvulnerable = true;}
+		CYFA AA 3;
+		CYFA BCCC 3;
+		CYFA D 2;
+		CYFA I 3;
+		TNT1 A 0 {self.binvulnerable = false;}
+		TNT1 A 0 A_PlaySound("weapons/gswing");
+		TNT1 A 0 a_spawnprojectile("ThrowedMarine",10,0,0,0);
+	goto See2;
+
+	Death.Incinerate:
+		TNT1 A 0;
+		TNT1 A 0 A_Stop;
+		TNT1 A 0 A_Playsound("MELT");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticleVeryFast", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random(-45, 45), random(-45, 35));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),40,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD AAAA 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("BurningEmberParticlesFloating_Bigger", 36, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD BBBB 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("BurningEmberParticlesFloating_Bigger", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD CCCCC 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("BurningEmberParticlesFloating_Bigger", 28, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Playsound("SZZLL", 3);
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),24,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD DDDDD 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("BurningEmberParticlesFloating_Bigger", 20, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),16,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD EEEEE 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("BurningEmberParticlesFloating_Bigger", 12, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),12,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD FFFFF 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("BurningEmberParticlesFloating_Bigger", 10, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		B4UD GGGG 2 BRIGHT Light("IncinerationGlow");
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD HHGGHHGGHHGGHHGG 2 BRIGHT Light("IncinerationGlow") a_spawnprojectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD HHGGHHGGHHGGHHGG 2 Light("IncinerationGlow") a_spawnprojectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		B4UD HHGGHHGGHHGGHHGG 2;
+		B4UD IIIIIII 12 a_spawnprojectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		B4UD I -1;
+	stop;
+
+	Death.fire:
+	Death.Flames:
+	Death.Burn:
+		TNT1 A 0;
+		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0;
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("BurningKnight", 0, 10);
+	stop;
+		
+	Pain: 
+		TNT1 A 0 A_StopSound(5);
+		CYUS J 6 A_Pain;
+		CYUS J 0;
+	goto See;
+		
+	Possession:
+		TNT1 A 0 A_SetInvulnerable;
+		CYUS J 3;
+		CYUS J 3 A_Pain;
+		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
+		TNT1 A 0 A_UnSetInvulnerable;
+	goto See;
+		
+	Pain.Stun:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
+		CYUS J 1 A_Pain;
+		CYUS JJJJJJJJJJ 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		CYUS J 1 A_Pain;
+		CYUS JJJJJJJJJJ 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		CYUS J 1 A_Pain;
+		CYUS JJJJJJJJJJ 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		CYUS J 1 A_Pain;
+		CYUS JJJJJJJJJJ 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		CYUS J 1 A_Pain;
+		CYUS JJJJJJJJJJ 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		CYUS J 1 A_Pain;
+	goto See;
+		
+	Pain.ExtremePunches:
+	Pain.Kick:
+		TNT1 A 0;
+		TNT1 A 0 {self.bMISSILEMORE = true; self.bMISSILEEVENMORE = true;}
+		//TNT1 A 0 A_JumpIfInventory("StopKickingMyBallsMotherFucker", 1, "MissileInRage");
+		//TNT1 A 0 A_GiveInventory("StopKickingMyBallsMotherFucker", 1);
+		TNT1 A 0 ThrustThingZ(0,25,0,1);
+		TNT1 A 0 {self.bNOPAIN = true;}
+		CNRJ ABCD 4 ;
+		TNT1 A 0 A_Pain;
+		CNRJ ABCD 5 ;
+		TNT1 A 0 A_Pain;
+		CNRJ ABCD 4 ;
+		TNT1 A 0 A_Pain;
+		CNRJ ABCD 4 ;
+		TNT1 A 0 {self.bNOPAIN = false;}
+	goto Missile;
+
+	Death.Saw:
+	Death.Cut:
+	Death.Tear:
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightRipped", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 57, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("MuchBlood", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Instestin", 35, 0, random(150, 210), 2, random(0, 40));
+		TNT1 A 0 a_spawnprojectile("XDeathStomach", 39, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Xdeath3", 52, 0, random(0, 360), 2, random(0, 160));
+		CP5L EEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 45, 2, random(0, 360), 2, random(60, 120));
+		CP5L FGH 6;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		CP5L H -1;
+	stop;
+		
+	Death.SuperPlasma:
+	Death.Plasma:
+	Death.Plasma2:
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 a_spawnprojectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce",0,0,45,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("ShoqueAzul",0,0,45,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 39, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("MuchBlood", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Scream;
+		CP7L AAA 1 a_spawnprojectile("Brutal_LiquidBlood2", 45, 2, random(0, 360), 2, random(60, 120));
+		CP7L BBB 2 a_spawnprojectile("Brutal_LiquidBlood2", 40, 2, random(0, 360), 2, random(60, 120));
+		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce",0,0,25,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("ShoqueAzul",0,0,25,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		CP7L CCC 2 a_spawnprojectile("Brutal_LiquidBlood2", 33, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		CP7L DDD 2 a_spawnprojectile("Brutal_LiquidBlood2", 25, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_NoBlocking;
+		CP7L EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		CP7L E -1;
+	stop;
+		
+	Death.Arm:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_Jump(32, "Death.Alt2");
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("DyingCyberKnight3", 1);
+	stop;
+		
+	Death.Alt2:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("xdeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		C95D A 6 A_Scream;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_PlaySound("master/walk", 9);
+		C95D BBB 3 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodMuchFaster", 22, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("Instestin", 22, 0, random(150, 210), 2, random(0, 40));
+		C95D CDE 6;
+		TNT1 A 0 A_PlaySound("master/walk", 9);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		C95D F -1;
+	stop;
+		
+	Death.Shotgun:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_JumpIfCloser(200, "Death.Blast");
+	goto Death;
+		
+	Death.Blast:
+		TNT1 A 0 A_Jump(96, "Death.Arm");
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightTorso", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Xdeath3", 52, 0, random(0, 360), 2, random(0, 160));
+		CP5L EEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 45, 2, random(0, 360), 2, random(60, 120));
+		CP5L FGH 6;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		CP5L H -1;
+	stop;
+		
+		
+	Death.Landmine:
+	Death.SuperKick:
+	Death.ExplosiveImpact:
+	Death.ExtremePunches:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 ThrustThingZ(0,35,0,1);
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("xdeath3", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Jump(255, "Death.ExplosiveImpact1");
+	Death.ExplosiveImpact1:
+		TNT1 A 0 A_StopSound(5);
+		C97D A  8 A_Scream;
+		C97D B  8 A_NoBlocking;
+		C97D CCCCCC  8 A_CheckFloor("Land1");
+	goto Land1;
+		
+	Land1:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_PlaySound("master/walk", 9);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		C97D D -1;
+	stop;
+		
+	Death:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 A_Jump(128, "Death.Alt2");
+		TNT1 A 0 A_Jump(96, "Death.Alt3");
+		TNT1 A 0 A_Jump(128, "Death.Alt");
+		TNT1 A 0 A_JumpIfCloser(150, "Death.Alt2");
+	Death.Explosive:
+	XDeath:
+		//TNT1 A 0 A_JumpIfInTargetInventory("SSGSelected", 1, "Death.SSG");
+		TNT1 A 0 A_StopSound(5);
+		CYUS K 3 Bright A_Scream;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		CYUS L 3 Bright;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		CYUS M 3 a_spawnprojectile("XDeathCyberKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightTorso", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathCyberKnightLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		CYUS N 3;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		CYUS O 3 Bright;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAAAAAA 3 a_spawnprojectile("HeavyExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+		CYUS QR 2 Bright;
+		CYUS S 2;
+		CYUS TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 4 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CYUS T -1;
+	stop;
+		
+		
+	Death.SSG:
+	Death.QuadBlast:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Jump(12, "Death.Blast");
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightTorso", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Xdeath3", 52, 0, random(0, 360), 2, random(0, 160));
+		C92D AAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 45, 2, random(0, 360), 2, random(60, 120));
+		C92D BCD 6;
+		C92D D -1;
+	stop;
+		
+	Death.Head:
+	Death.Decapitate:
+		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0 A_PlaySound("misc/gibbed", 3);
+		TNT1 AAAA 0 a_spawnprojectile("Xdeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Brains1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Brains2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Brains3", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Brains6", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Brains7", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Teeth", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3b", 62, 0, random(0, 360), 2, random(50, 80));
+		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(55, 59), random(5, -5), random(170, 190), 2, random(-10, 10));
+		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 58, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 A_Jump(162, 3);
+		TNT1 A 0 A_SpawnItem("DyingCyberKnight1", 1);
+	stop;
+		TNT1 A 0;
+		CP8L A 6;
+		CP8L BC 6;
+		CP8L D 6;
+		TNT1 A 0 A_PlaySound("master/walk", 9);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_NoBlocking;
+		CP8L D -1;
+	stop;
+		
+	Death.Alt:
+		TNT1 A 0 A_StopSound(5);
+		C91D A 6 A_Scream;
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		C91D B 6 A_BossDeath;
+		C91D C 6;
+		C91D D 6 A_NoBlocking;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 A 0 A_PlaySound("master/walk", 9);
+		C91D DDDDDD 11;
+		TNT1 AAAAA 0 A_SpawnItem("Spark_UpOnce");
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul");
+		C91D DDDDD 11;
+		TNT1 AAA 0 A_SpawnItem("Spark_UpOnce");
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul");
+		C91D DDDD 11;
+		TNT1 AAAA 0 A_SpawnItem("Spark_UpOnce");
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		TNT1 AAA 0 A_SpawnItem("ShoqueAzul");
+		C91D DDDD 11;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		C91D E 4;
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		C91D FG 5;
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAAAAAA 3 a_spawnprojectile("HeavyExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("xdeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("xdeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		C91D HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 8 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		C91D H -1;
+	stop;
+		
+	Death.Alt3:
+		TNT1 A 0 A_StopSound(5);
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 52, 0, random(0, 360), 2, random(0, 160));
+		C96D A 6 A_Scream;
+		C96D BC 6;
+		C96D D 6 A_BossDeath;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_NoBlocking;
+		C96D D -1;
+	stop;
+		
+	Death.Fatality:
+		TNT1 A 0 A_Jump(256, "Fatality1", "Fatality2");
+	Fatality1:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("CyberKnightFatality1", 1);
+		TNT1 A 1 A_BossDeath;
+	stop;
+	Fatality2:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("CyberKnightFatality2", 1);
+		TNT1 A 1 A_BossDeath;
+	stop;
+		
+	Death.Ice:
+	Death.Freeze:
+	Death.Frost:
+		TNT1 A 0 {self.bSHOOTABLE = false; self.bSOLID = false;}
+		//TNT1 A 0 A_SpawnItem("FrozenCyberKnight");
+	stop;
+	} 
+}
+
+CLASS CyberFistAttack: BaronBall
+{ 
+Default
+{	
+	Radius 24;
+	Height 16;
+	DamageType "CYFT";
+	Projectile;
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	+THRUGHOST;
+	RenderStyle "Add";
+	Alpha 0.6;
+	DamageFunction(random(50,60));
+	Speed 28;
+	SeeSound "none";
+	DeathSound "none";
+	Decal "none";
+}
+States
+{
+	Spawn:
+		TNT1 A 2 BRIGHT;
+		TNT1 A 2;
+	goto Death;
+	Death:
+		TNT1 A 0 BRIGHT;
+	stop;
+	}
+}
+
+CLASS ThrowedMarine : ACTOR
+{ 
+Default
+{
+	Radius 20;
+	Height 20;
+	Speed 8;
+	Fastspeed 8;
+	Damage 0;
+	+MISSILE;
+	Scale 1.0;
+	+FORCEXYBILLBOARD;
+	+BLOODSPLATTER;
+	+THRUACTORS;
+	+THRUGHOST;
+	-NOGRAVITY;
+	+NOEXTREMEDEATH;
+	Gravity 0.2;
+	DamageType "ExplosiveImpact";
+	Decal "BrutalBloodSuper";
+}
+States
+{
+	Spawn:		
+		XPL6 A 4;
+		TNT1 A 0 A_PlaySound("DSFDTHE");
+		TNT1 A 0 ThrustThing(0,30,0,1);
+		TNT1 A 0 A_NoBlocking;
+		XPL6 BCDE 4;
+	loop;
+		
+	Death:
+		TNT1 A 0 A_StopSound(6);
+		TNT1 AAAAAA 0 A_SpawnItem("MuchBlood2");		
+		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
+		//TNT1 A 0 A_GiveInventory("PowerBloodOnVisor",1);
+		//TNT1 A 0 ACS_Execute(533, 0, 0, 0, 0);
+		EXPL A 0 Radius_Quake(2, 16, 0, 15, 0);
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0;// ACS_Execute(533, 0, 0, 0, 0);
+		XPL6 F -1;
+		TNT1 AAAAAAAAAA 0;// ACS_Execute(533, 0, 0, 0, 0);
+		TNT1 A 0;
+	stop;
+	}
+}
+
+CLASS FatalizedCyberKnight : ACTOR { 
+	States{
+	Spawn:
+		TNT1 A 0 A_PlaySound("caco/ballloop", 2);
+		CYUS KK 12 Bright A_Scream;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//	TNT1 AAA 0 a_spawnprojectile("ShoqueAzul", 3, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AA 0 ;//a_spawnprojectile("LongExplosionSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_PlaySound("caco/ballloop");
+		CYUS KK 12 Bright A_Scream;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//	TNT1 AAA 0 a_spawnprojectile("ShoqueAzul", 3, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		
+		CYUS KK 11 Bright A_Scream;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AA 0 ;//a_spawnprojectile("LongExplosionSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 25);
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		TNT1 A 0 A_PlaySound("Explosion", 4);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		//	TNT1 AAA 0 a_spawnprojectile("ShoqueAzul", 3, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		
+		CYUS KK 11 Bright A_Scream;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 35);
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		TNT1 A 0 A_PlaySound("Explosion", 4);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		//TNT1 AAA 0 a_spawnprojectile("ShoqueAzul", 3, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 28);
+		
+		CYUS K 11 Bright A_Scream;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 AAA 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		TNT1 A 0 A_PlaySound("Explosion", 4);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		//	TNT1 AAA 0 a_spawnprojectile("ShoqueAzul", 3, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItem("Spark_UpOnce");
+	goto Death;
+		
+	Death:
+		TNT1 A 0 A_StopSound(2);
+		CYUS K 3 Bright A_Scream;
+		TNT1 A 0 A_SpawnItem("ShoqueAzul");
+		CYUS K 3 Bright A_Scream;
+		TNT1 A 0 A_SpawnItem("ShoqueAzul");
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		CYUS L 3 Bright;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		CYUS M 3 a_spawnprojectile("XDeathCyberKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		CYUS N 3;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		CYUS O 3 Bright;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAAAAAA 3 a_spawnprojectile("HeavyExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+		CYUS QR 2 Bright;
+		CYUS S 2;
+		CYUS TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 4 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CYUS T -1;
+	stop;
+}
+
+}
+
+CLASS DyingCyberKnight1 : ACTOR { 
+	Default {
+	
+	
+	Radius 16;
+	Height 60;
+	Health 250;
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+	DamageFactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	DamageFactor "Shrapnel", 0.0;
+	DamageFactor "KillMe", 0.0;
+	DamageFactor "Cutless", 0.6;
+	Mass 0x7FFFFFFF;
+	-SOLID;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+NOPAIN;
+	Scale 1.05;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0;//A_SetInvulnerable
+		C94D A 1;
+		C94D AB 6;//misc/xdeath4
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D CB 6;
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		C94D AB 6;
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D CB 6;
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D AB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D CB 6;
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D AB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D CB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D AB 6;
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D CB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D AB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		C94D CB 6;
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D AB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		C94D CB 6;
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		C94D AB 7;
+		TNT1 A 0 A_NoBlocking;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 A 0 A_PlaySound("caco/shotx",2);
+		TNT1 AAAA 0 a_spawnprojectile("XDeathBurnedMeat3", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("CyberNobleXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0;//A_Scream
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0;
+	stop;
+		
+	Death:
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/gibbed");
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("DyingCyberKnight2");
+	stop;
+		
+	Death.SSG:
+	Death.Blast:
+	Death.Cut:
+	Death.Explosive:
+	XDeath:
+	Death.QuadBlast:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_PlaySound("misc/gibbed");
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		C93D DDD 8 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		C92D BCD 7;
+		TNT1 A 0 A_PlaySound("master/walk", 5);
+		C92D D -1;
+	stop;
+		
+}}
+
+CLASS FuckedHardCyberKnight: pb_blood_and_gore_base { 
+	States
+	{
+	Spawn:
+		C92D AA 6 a_spawnprojectile("MuchBlood", 42, 0, random(0, 360), 2, random(0, 160));
+		C92D BCD 6 a_spawnprojectile("MuchBlood", 32, 0, random(0, 360), 2, random(0, 160));
+		C92D D -1;
+Stop;    }}
+
+
+CLASS DyingCyberKnight2 : ACTOR { 
+	Default {
+	
+	
+	Radius 16;
+	Height 60;
+	Health 225;
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+	DamageFactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	DamageFactor "Shrapnel", 0.0;
+	DamageFactor "KillMe", 0.0;
+	DamageFactor "Cutless", 0.6;
+	Mass 0x7FFFFFFF;
+	-SOLID;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+NOPAIN;
+	Scale 1.2;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		C93D CCCCCCCCCCCCCC 6 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		C93D CC 6 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_NoBlocking;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		//TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightTorso", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		CYUS TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 4 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CYUS T -1;
+	stop;
+		
+	Death:
+		TNT1 A 0 A_PlaySound("misc/gibbed");
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		C93D DDD 8 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		C92D BCD 7;
+		TNT1 A 0 A_PlaySound("master/walk", 5);
+		C92D D -1;
+	stop;
+		
+}}
+
+CLASS DyingCyberKnight3 : ACTOR { 
+	Default {
+	
+	
+	Radius 16;
+	Height 60;
+	Health 100;
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+	DamageFactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	DamageFactor "Shrapnel", 0.0;
+	DamageFactor "KillMe", 0.0;
+	DamageFactor "Cutless", 0.6;
+	Mass 0x7FFFFFFF;
+	-SOLID;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+NOPAIN;
+	Scale 1.2;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		C93D AB 6 a_spawnprojectile("Brutal_LiquidBlood2", 60, 2, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 60, 1, random(0, 360), 2, random(60, 120));
+		TNT1 A 0 A_PlaySound("cbaron/death");
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		C93D AB 12;
+		TNT1 A 0 A_NoBlocking;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		////TNT1 A 0;// A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathCyberKnightTorso", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		CYUS TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 4 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CYUS T -1;
+	stop;
+		
+	Death.Head:
+		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/gibbed");
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Brains1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Brains2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Brains3", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Brains6", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Brains7", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("DyingCyberKnight2");
+	stop;
+		
+	Death.Fatality:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("CyberKnightFatality1Part2", 1);
+		TNT1 A 1 A_BossDeath;
+	stop;
+		
+	Death.SSG:
+	Death.Blast:
+	Death.Cut:
+	Death:
+	Death.Explosive:
+	XDeath:
+	Death.QuadBlast:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_PlaySound("misc/gibbed");
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		C93D DDD 8 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		C92D BCD 7;
+		TNT1 A 0 A_PlaySound("master/walk", 5);
+		C92D D -1;
+	stop;
+		
+}}
+
+
+CLASS FriendlyCyberKnight: pb_Phasic_Knight_X
+{ 
+Default {
+	Translation "16:47=112:127", "192:207=80:111", "168:191=64:79";
+	+Friendly;
+}
+
+States 
+{ 
+	Spawn: 
+		TNT1 A 0 {self.bSOLID = false;}
+		TNT1 A 0 A_PlaySound("PLSC_1", 1);
+		CYUS J 8;
+		TNT1 A 0 A_PlaySound("PLSC_2", 2);
+		CYUS J 6 ;
+		TNT1 A 0 A_PlaySound("PLSC_3", 3);
+		CYUS J 4 ;
+		TNT1 A 0 A_PlaySound("PLSC_4", 4);
+		CYUS J 2 A_Look;
+		TNT1 A 0 {self.bSOLID = true;}
+	Goto See;
+
+	Death.Fatality:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("CyberKnightFatality1", 1);
+		TNT1 A 1 A_BossDeath;
+	stop;
+}
+
+}
+
+CLASS CyberKnightMissile : ACTOR { 
+	Default {
+ 
+	Radius 4;
+	Height 4;
+	Speed 32;
+	FastSpeed 32;
+	Damage 0;
+	PROJECTILE;
+	Scale 0.75;
+    damagetype "ExplosiveImpact";
+	SeeSound "RLSHOT2";
+	DeathSound "Explosion";
+	}
+	States
+	{
+	Spawn:
+	TNT1 A 0 A_PlaySound("weapons/rocketloop",6,1,1);
+	Fly:
+	C1MS A 1 BRIGHT A_SpawnItem("YellowFlareSmall",0,0);
+	C1MS B 1 BRIGHT A_SpawnItem("RocketFlare",0,0);
+	//TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 A 0 A_SpawnItem("OldschoolRocketSmokeTrail2");
+	TNT1 A 0 a_spawnprojectile("OldschoolRocketSmokeTrail2", 2, 0, random(160, 210), 2, random(-30, 30));
+	Loop;
+	Death:
+	TNT1 A 0 A_StopSound(6);
+	    EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 A 0 A_SpawnItemEx("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	    EXPL A 0 Radius_Quake(2, 54, 0, 15, 0);
+	BFE1 A 0 Bright A_Explode(40, 120, 1);
+	TNT1 A 0 A_SpawnItemEx("NewRocketExploFX", 0, 0, 0);
+        TNT1 A 0 A_SpawnItemEx("ExplosionParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+	TNT1 A 0 A_SpawnItemEx("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 A 0 A_SpawnItemEx("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+        TNT1 AAAA 0 a_spawnprojectile("SmallExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 A 0 A_PlaySound("FAREXPL", 3);
+	TNT1 A 10;
+	Stop;
+	}
+}
+
+CLASS CyberKnightFreezer: pb_projectile_base
+{ 
+	Default {
+ 
+	Radius 10;
+	Height 10;
+	Speed 32;
+	Damage 5;
+    DamageType "Freeze";
+	Decal "IceScorch";
+	Projectile;
+	//+RANDOMIZE
+	renderstyle "Add";
+	alpha 0.90;
+	Scale 0.25;
+	DeathSound "weapons/cryobowhit";
+    SeeSound "None";
+	Obituary "$OB_MPPLASMARIFLE";
+	}
+	States
+	{
+	Spawn:
+	FRPJ ABC 1 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), 0, 0, 0, 0, 128, 0) ;
+	TNT1 A 0 a_spawnprojectile("BlueFlareSpawn",0,0,0,0);
+	TNT1 A 0 a_spawnprojectile("Icetracer", 0, 0, random(0, 360), 2, random(0, 360));
+	Loop;
+
+	Xdeath:
+	Death:
+	BXPL A 0 Bright A_Explode(15, 16, 0);
+	TNT1 A 0 a_spawnprojectile("BlueFlareSpawn",0,0,0,0);
+	BXPL AAA 0 Bright A_SpawnItemEx("MiniCryoSmoke1", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+	BXPL AA 0 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
+	BXPL A 0 Bright A_SpawnItemEx("MiniCryoSmoke1", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
+	BXPL ABC 1 Bright;
+	BXPL DEFGHIJKLM 1 Bright A_FadeOut(0.1);
+	Stop;
+	
+}
+}

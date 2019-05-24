@@ -1,0 +1,876 @@
+//base weapon class from which must inherit all other PB weapons
+//note, weapon have statnumber 106, and ammo 105, so that replacing event
+//can correctly replace ammo around weapon spawning spot on map
+//corresponding to weapon placing on spawning spot
+//(around pistol/SSG low caliber bullets, grenade launcher grenades, etc)
+//mostly to fix situations when around grenade launcher spawns rockets
+class PB_weapon_base : weapon
+{
+//pointer to effect handler event
+eventhandler effects_weapon;
+//base bools for check weapons special state conditions
+bool fatality, grab_ledge, knife_combo, kick,
+	taunt, salute, Grabbed_Barrel, unload_gun, grenade_out,
+//not sure what this must do
+Use_Equipment, Toggle_Equipment;
+//toogle to prevent trying to quick puch/kick/etc. in the same moment
+bool in_specific_state;
+
+default
+{
+	Weapon.BobRangeX 0.3;
+	Weapon.BobRangeY 0.5;
+	Weapon.BobSpeed 2.4;
+	Weapon.BobStyle "InverseSmooth";
+
+	+FLOORCLIP;
+	+DONTGIB;
+	Weapon.UpSound "";
+	Weapon.Kickback 100;
+	-WEAPON.MELEEWEAPON;
+}
+
+override void beginplay()
+{
+	super.beginplay();
+	changestatnum(106);
+}
+
+//weapon special check fro event, first one for dual check, second for special
+virtual bool, bool weapon_dual_and_special()
+{return false, false; }
+//weapon special function prototype
+virtual void activate_special()
+{}
+//weapon akimbo function prototype
+virtual void activate_dual()
+{}
+
+//base function for reloading magazine based weapon
+protected void reload_weapon_magazine(string weapon_pool = "", string main_pool = "")
+{
+	if(weapon_pool == "" || main_pool == "") {return;}
+
+	inventory actual_ammo = owner.findinventory(weapon_pool);
+
+	if(actual_ammo == null)
+	{console.printf("there is no %s ammo in player inventory", weapon_pool); return;}
+
+	inventory main_ammo = owner.findinventory(main_pool);
+	
+	if(main_ammo == null)
+	{console.printf("there is no %s ammo in player inventory", main_pool); return;}
+
+	while( (actual_ammo).amount < (actual_ammo).maxamount && (main_ammo).amount > 0)
+	{
+		actual_ammo.amount ++;
+		main_ammo.amount --;
+	}
+}
+
+//function which hceck and set weapon state to defined
+protected void set_weapon_state(statelabel state_name = null)
+{
+	let player = owner.player;
+	if(player == null) {console.printf("player dont exist, function 'set weapon', weapon %s", self.getclassname() ); return;}
+
+	weapon wepon = player.ReadyWeapon;
+	if(wepon == null)
+	{console.printf("ready weapons dont exist, how do you managed to do this?"); return;}
+
+	if(player.findPsprite(psp_weapon) == null)
+	{ console.printf("%s PSprite dont exist", player.ReadyWeapon.getclassname() ); return; }
+
+	state new_state = wepon.findstate(state_name);
+	if(new_state == null)
+	{ console.printf("there is no some state in %s weapon", player.ReadyWeapon.getclassname() ); return; }
+
+	Player.SetPSprite(PSP_WEAPON, new_state);
+}
+
+//same but for overlays
+protected void set_overlay_layer(int overlay_number = 0, statelabel state_name = null)
+{
+	if(overlay_number >= -2 && overlay_number <= 2)
+	{ console.printf("unsafe overlay number %i", overlay_number); return;}
+	
+	let player = owner.player;
+	if(player == null) {console.printf("player dont exist, function 'set layer', weapon %s", self.getclassname() ); return;}
+	
+	weapon wepon = player.ReadyWeapon;
+	if(wepon == null)
+	{console.printf("ready weapons dont exist, how do you managed to do this?"); return;}
+
+	state new_state = wepon.findstate(state_name);
+	if(new_state == null)
+	{ console.printf("there no %s state in this weapon", state_name); return; }
+
+	if(player.findPsprite(psp_weapon) == null)
+	{ console.printf("%s PSprite dont exist", player.ReadyWeapon.getclassname() ); return; }
+
+	Player.SetPSprite(overlay_number, new_state);
+}
+
+//change weapons player sprite on screen
+protected void change_weapon_PSprite(string sprite_name = "")
+{
+	let player = owner.player;
+	if(player == null) {console.printf("player dont exist, function 'change sprite', weapon %s", self.getclassname() ); return;}
+	
+	int sprite_number = getspriteindex(sprite_name);
+	if(sprite_number <= 0)
+	{console.printf("sprite %s dont exist, weapon %s", sprite_name, player.ReadyWeapon.getclassname() ); return;}
+	
+	Psprite gun = player.findPsprite(psp_weapon);
+	if(gun == null)
+	{ console.printf("%s PSprite dont exist", player.ReadyWeapon.getclassname() ); return; }
+
+	gun.sprite = sprite_number;
+}
+
+
+override void doeffect()
+{//check for special actions here, like kick or grenade throws
+	
+	if(owner.player.readyweapon == self)
+	{
+		if(self.in_specific_state == false)
+		{
+			if(owner.player.findPsprite(psp_weapon) != null )//<-- null check, without it gzdoom crush after player death
+			{
+				if(self.instatesequence(owner.player.findPsprite(psp_weapon).curstate, self.findstate("ready_loop") ) )
+				{
+					if(self.grab_ledge == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("Ledge_Climb") ); return;}
+					if(self.grenade_out == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("Throw_Grenade") ); return;}
+					if(self.kick == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("weapon_kick") ); return;}
+					if(self.knife_combo == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("quick_melee") ); return;}
+			//		if(self.fatality == true) {self.setstatelabel(); return;}
+			//		if(self.taunt == true) {self.setstatelabel(); return;}
+			//		if(self.salute == true) {self.setstatelabel(); return;}
+			//		if(self.Grabbed_Barrel == true) {self.setstatelabel(); return;}
+			//		if(self.unload_gun == true) {self.setstatelabel(); return;}
+				}
+			}
+		}
+	}
+}
+
+states
+{
+	bug:
+		tnt1 a 1 {console.printf("Something fuckup, tell to unique_user_name that %s weapon break", invoker.getclassname() );}
+		tnt1 a 0 {invoker.destroy(); return;}
+	stop;
+
+	//note, it is important to use "get p(layer) sprite" function to switch state back to normal
+	//if not used, and used "goto ready;" instead, weapon try to jump to state
+	//defined in this base class, which is not defined
+	//this lead to inf. loop cycle, preventing from switching or droping such weapon
+	Throw_Grenade:
+		TNT1 A 0 {A_StopSound(6); A_ZoomFactor(1.0); invoker.in_specific_state = true;}
+		TNT1 A 0
+		{
+			if(countinv("HandGrenadeAmmo") < 1)
+			{
+				A_Print("No Grenades left");
+				invoker.grenade_out = false; invoker.in_specific_state = false; 
+				player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+			}
+		}
+		HNDF ABCDEFGHI 1 A_SetRoll(roll+0.5);
+		TNT1 A 0 A_PlaySound("OPNGRN", 0);
+		HNDF JKLMNOPQR 1 A_SetRoll(roll+0.5);
+		TNT1 A 1;
+		HND1 I 1 {A_PlaySound("THRGRN", 0); A_TakeInventory("HandGrenadeAmmo", 1);}
+		HND1 J 1 a_fireprojectile("ThrownGrenade30");
+		HND1 KLMNOPQ 1 A_SetRoll(roll-1.5);
+		TNT1 A 0
+		{
+			A_SetRoll(0);
+			invoker.grenade_out = false; invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+	Goto bug;
+
+
+////////////////////////////////////////////////////////////////////////////
+//			knife combo begins
+	quick_melee:
+		TNT1 A 0
+		{
+			invoker.in_specific_state = true;
+			A_Overlay(-10, "FirstPersonLegsHide");
+			A_GunFlash("FlashPunching");
+			A_PlaySound("KNIFUP", 0);
+			A_ZoomFactor(1.0);
+		}
+		tnt1 a 4;
+		tnt1 a 0
+		{
+			A_PlaySound("KNIFSWNG", 1);
+			A_ZoomFactor(1.015);
+		}
+		MC3S AB 1;
+		MC3S C 1 {A_ZoomFactor(1.03);A_SetPitch(+2 + pitch);}
+		MC3S D 1 {A_ZoomFactor(1.045); A_SetPitch(-3 + pitch);}
+		TNT1 A 0 
+		{
+			A_ZoomFactor(1.055);
+			
+			FLineTraceData knife_swing;
+			LineTrace(self.player.mo.angle, 50, self.player.mo.pitch,
+			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: knife_swing);
+			
+			if(knife_swing.hittype == TRACE_HitNone){return;}
+
+			if(knife_swing.hitactor != null)
+			{
+				int dam = random(11, 33) * (1 + countinv("PowerStrength") );
+				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
+				A_PlaySound("Machete/Yum", 3);
+			}
+
+			if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
+			|| knife_swing.hittype == TRACE_HitWall)
+			{
+				spawn("SSawPuff3", pos:knife_swing.HitLocation);
+			}
+		}
+		MC3S EF 1 A_SetPitch(+1 + pitch);
+		TNT1 A 0 A_ZoomFactor(1.025);
+		MC3S GHIJ 1;
+		TNT1 A 0 {A_ZoomFactor(1.0); invoker.knife_combo = false;}
+		tnt1 aaaaaaa 1//a little pause to check whish player continue combo or no
+		{
+			if(invoker.knife_combo == true)
+			{
+				player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("quick_melee_1") );
+			}
+		}
+		tnt1 a 0
+		{
+			invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+	Goto bug;
+
+	quick_melee_1:
+		pun4 ABCDE 1;
+		TNT1 A 0 A_PlaySound("weapons/fistwhoosh", 5);
+		pun4 F 1
+		{
+			FLineTraceData knife_swing;
+			LineTrace(self.player.mo.angle + frandom(-0.5, 0.5), 50, self.player.mo.pitch,
+			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: knife_swing);
+			
+			if(knife_swing.hittype == TRACE_HitNone){return;}
+
+			if(knife_swing.hitactor != null)
+			{
+				int dam = random(11, 33) * (1 + countinv("PowerStrength") );
+				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
+				A_PlaySound("Machete/Yum", 3);
+			}
+
+			if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
+			|| knife_swing.hittype == TRACE_HitWall)
+			{
+				spawn("SSawPuff3", pos:knife_swing.HitLocation);
+			}
+		}
+		pun4 GHI 1;
+		pun4 JKL 1;// A_JumpIfInventory("Kicking",1,"KickLeft");
+		TNT1 A 0 {A_ZoomFactor(1.0); invoker.knife_combo = false;}
+		tnt1 aaaaaaa 1//a little pause to check whish player continue combo or no
+		{
+			if(invoker.knife_combo == true)
+			{
+				player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("quick_melee_2") );
+			}
+		}
+		tnt1 a 0
+		{
+			invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+	Goto bug;
+		
+	quick_melee_2:
+		TNT1 A 0 {A_PlaySound("KNIFUP", 0); A_ZoomFactor(1.015);}
+		MC1S AB 1;
+		TNT1 A 0 {A_PlaySound("KNIFSWNG", 1); A_ZoomFactor(1.03);}
+		MC1S C 1 {A_SetPitch(+2 + pitch); A_ZoomFactor(1.045);}
+		MC1S D 1
+		{
+			A_SetPitch(-3 + pitch); A_ZoomFactor(1.055);
+			
+			FLineTraceData knife_swing;
+			LineTrace(self.player.mo.angle + frandom(-0.5, 0.5), 50, self.player.mo.pitch,
+			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: knife_swing);
+			
+			if(knife_swing.hittype == TRACE_HitNone){return;}
+
+			if(knife_swing.hitactor != null)
+			{
+				int dam = random(11, 33) * (1 + countinv("PowerStrength") );
+				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
+				A_PlaySound("Machete/Yum", 3);
+			}
+
+			if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
+			|| knife_swing.hittype == TRACE_HitWall)
+			{
+				spawn("SSawPuff3", pos:knife_swing.HitLocation);
+			}
+		}
+		MC1S EF 1 A_SetPitch(+1 + pitch);
+		TNT1 A 0 A_ZoomFactor(1.025);
+		MC1S GHIJ 1;
+		TNT1 A 0 {A_ZoomFactor(1.0); invoker.knife_combo = false;}
+		tnt1 aaaaaaa 1//a little pause to check whish player continue combo or no
+		{
+			if(invoker.knife_combo == true)
+			{
+				player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("quick_melee_3") );
+			}
+		}
+		tnt1 a 0
+		{
+			invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+		//TNT1 A 0 A_JumpIfInventory("Kicking",1,"KickRight");
+	Goto bug;
+		
+	quick_melee_3:
+		TNT1 A 0 A_ZoomFactor(1.015);
+		TNT1 A 0 A_PlaySound("weapons/ultrwhoosh");
+		P0NC AB 1;
+		TNT1 A 0 A_ZoomFactor(1.03);
+		P0NC C 1 {A_SetPitch(+2 + pitch);  A_ZoomFactor(1.045); }
+		P0NC D 1 {A_SetPitch(-3 + pitch); A_ZoomFactor(1.055); }
+		P0NG AAAA 0 a_fireprojectile("MeleeStrike1", 0, 0, 0, 0);
+		P0NC E 1 
+		{
+			A_SetPitch(+1 + pitch);
+			A_ZoomFactor(1.025);
+		}
+		P0NR BCD 1;
+		TNT1 A 0 {A_ZoomFactor(1.0); invoker.knife_combo = false;}
+		tnt1 aaaaaaa 1//a little pause to check whish player continue combo or no
+		{
+			if(invoker.knife_combo == true)
+			{
+				player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("quick_melee_4") );
+			}
+		}
+		tnt1 a 0
+		{
+			invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+		//TNT1 A 0 A_JumpIfInventory("Kicking",1,"KickLeft");
+	Goto bug;
+
+	quick_melee_4:
+		TNT1 A 0 A_PlaySound("KNIFUP", 0);
+		TNT1 A 0 A_ZoomFactor(1.015);
+		MC6S AB 1; 
+		TNT1 A 0 A_PlaySound("KNIFSWNG", 1);
+		TNT1 A 0 A_ZoomFactor(1.03);
+		MC6S C 1 A_SetPitch(+2 + pitch);
+		TNT1 A 0 A_ZoomFactor(1.045);
+		MC6S D 1 A_SetPitch(-3 + pitch);
+		TNT1 A 0 A_ZoomFactor(1.055);
+		TNT1 A 0 a_fireprojectile("KnifeSwing", 0, 0, 0, 0);
+		MC6S EF 1 A_SetPitch(+1 + pitch);
+		TNT1 A 0 A_ZoomFactor(1.025);
+		MC6S GHIJ 1;
+		TNT1 A 0 {A_ZoomFactor(1.0); invoker.knife_combo = false;}
+		tnt1 aaaaaaa 1//a little pause to check whish player continue combo or no
+		{
+			if(invoker.knife_combo == true)
+			{
+				player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.findstate("quick_melee") );
+			}
+		}
+		tnt1 a 0
+		{
+			invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+		//TNT1 A 0 A_JumpIfInventory("Kicking",1,"KickRight");
+	Goto bug;
+////////////////////////////////////////////////////////////////////////////
+//			knife combo ends
+
+
+
+
+	weapon_kick:
+		tnt1 a 0
+		{
+			invoker.in_specific_state = true;
+			A_Overlay(-10, "FirstPersonLegsHide");
+			A_ZoomFactor(1.0);
+		//tnt1 a 0 A_JumpIf (momZ > 0, "AirKick");
+		//tnt1 a 0 A_JumpIf (momZ < 0, "AirKick");
+		//tnt1 a 0 A_JumpIf(Height < 54, "SlideKick");
+			A_PlaySound("KICK", 6);
+			SetPlayerProperty(0,1,0);
+			A_GunFlash("FlashKicking");
+			A_SetAngle(-0.5 + angle);
+			A_SetPitch(+0.5 + pitch);
+			A_SetAngle(-0.5 + angle);
+		}
+		KIC1 A 1
+		{
+			A_SetPitch(+0.5 + pitch);
+			A_ZoomFactor(0.985);
+			A_SetRoll(roll-1);
+		}
+		KIC1 B 1
+		{
+			A_SetPitch(+0.5 + pitch);
+			A_SetAngle(-0.5 + angle);
+			A_ZoomFactor(0.970);
+			A_SetRoll(roll-1);
+		}
+		KIC1 C 1
+		{
+			A_SetAngle(-0.5 + angle);
+			A_ZoomFactor(0.965);
+			A_SetAngle(+0.5 + angle);
+			A_SetRoll(roll-1);
+		}
+		KIC1 D 1 {A_SetPitch(+1.25 + pitch); A_ZoomFactor(0.950);}
+		KIC1 EF 1;
+		//TNT1 A 0 a_fireprojectile("KickAttack", 0, 0, 0, -7);
+		tnt1 a 0
+		{
+			FLineTraceData try_kick;
+			LineTrace(self.player.mo.angle + frandom(-0.5, 0.5), 80, self.player.mo.pitch,
+			offsetz: (self.player.viewz - self.player.mo.Pos.Z) / 2, data: try_kick);
+			
+			if(try_kick.hittype == TRACE_HitNone){return;}
+
+			if(try_kick.hitactor != null)
+			{
+				int dam = random(55, 90) * (1 + (2 * countinv("PowerStrength") ) );
+				try_kick.hitactor.damagemobj(self, self, dam, 'kcik', 0, 0);
+				try_kick.hitactor.vel = (sin(self.angle) * 5, cos(self.angle) * 5, 5);
+				return;
+			}
+			
+			if(try_kick.hittype == TRACE_HitFloor || try_kick.hittype == TRACE_HitCeiling
+			|| try_kick.hittype == TRACE_HitWall)
+			{
+				spawn("Axe_Attack", pos:try_kick.HitLocation);
+			}
+		}
+		KIC1 GG 1;
+		TNT1 A 0 {A_ZoomFactor(0.965); A_SetAngle(+1 + angle); A_Recoil(-1);}
+		KIC1 I 1
+		{
+			A_ZoomFactor(0.970);
+			A_SetAngle(+1 + angle);
+		}
+		KIC1 H 1
+		{
+			A_SetPitch(-0.5 + pitch);
+			A_SetRoll(roll+1);
+			A_ZoomFactor(0.985);
+		}
+		KIC1 J 1
+		{
+			A_SetPitch(-0.5 + pitch);
+			A_SetRoll(roll+1);
+			A_ZoomFactor(0.998);
+			A_SetAngle(+0.5 + angle);
+		}
+		KIC1 K 1
+		{
+			A_SetPitch(-0.5 + pitch);
+			A_SetRoll(roll+1);
+			A_ZoomFactor(0.999);
+			A_SetAngle(+0.5 + angle);
+		}
+		KIC1 L 1
+		{
+			A_SetAngle(+0.5 + angle);
+			A_ZoomFactor(1.0);
+			A_SetPitch(-0.5 + pitch);
+		}
+		KIC1 A 1
+		{
+			A_SetAngle(-0.5 + angle);
+			A_SetPitch(-1.25 + pitch);
+			SetPlayerProperty(0,0,0);
+			invoker.kick = false;
+			invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+	Goto bug;
+
+
+
+
+
+
+	Ledge_Climb:
+		TNT1 A 0 {A_PlaySound("IronSights",0); A_GunFlash("DontFlashClimbing"); invoker.in_specific_state = true;}
+		CL1M A 1 A_SetPitch(-20);
+		CL1M B 1 A_SetPitch(-20);
+		CL1M C 1 A_SetPitch(-24);
+		CL1M D 1 {A_SetPitch(-28); A_Playsound("Ledge_Climb");}
+		TNT1 A 0 a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		CL1M E 1 A_SetPitch(-20);
+		CL1M F 1 A_SetPitch(-16);
+		CL1M G 1 A_SetPitch(-12);
+		CL1M H 1 A_SetPitch(-8);
+		CL1M I 1 A_SetPitch(-4);
+		CL1M J 1 A_SetPitch(4);
+		CL1M K 1 A_SetPitch(8);
+		CL1M L 1 A_SetPitch(12);
+		CL1M M 1 A_SetPitch(16);
+		TNT1 A 0
+		{
+			A_SetPitch(0); invoker.grab_ledge = false; invoker.in_specific_state = false;
+			player.GetPSprite(PSP_WEAPON).SetState(player.ReadyWeapon.GetReadyState() );
+		}
+	Goto bug;
+}
+
+}
+
+//event which detect special key press and if its true set wepon state to defined state
+//like kick or throw grenade
+//also support all other weapon related stuff like replacing weapons and ammo
+class weapon_specific_event : eventhandler
+{
+override void NetworkProcess(ConsoleEvent e)
+{
+	if (e.Name == 'throw_grenade')
+	{
+		if(players[e.Player].readyweapon is "PB_weapon_base")
+		{
+			PB_weapon_base(players[e.Player].readyweapon).grenade_out = true;
+		}
+	}
+	
+	if (e.Name == 'do_kick')
+	{
+		if(players[e.Player].readyweapon is "PB_weapon_base")
+		{
+			PB_weapon_base(players[e.Player].readyweapon).kick = true;
+		}
+	}
+
+	if (e.Name == 'swing_knife')
+	{
+		if(players[e.Player].readyweapon is "PB_weapon_base")
+		{
+			PB_weapon_base(players[e.Player].readyweapon).knife_combo = true;
+		}
+	}
+
+	if (e.Name == 'weapon_dual')
+	{
+		if(players[e.Player].readyweapon is "PB_weapon_base")
+		{
+			bool  b1, b2;
+			[b1, b2] = PB_weapon_base(players[e.Player].readyweapon).weapon_dual_and_special();
+			
+			if(b1 == true)//means weapon have dual
+			{
+				PB_weapon_base(players[e.Player].readyweapon).activate_dual();
+			}
+		}
+	}
+	
+	if (e.Name == 'weapon_special')
+	{
+		if(players[e.Player].readyweapon is "PB_weapon_base")
+		{
+			bool  b1, b2;
+			[b1, b2] = PB_weapon_base(players[e.Player].readyweapon).weapon_dual_and_special();
+			
+			if(b2 == true)//means weapon have special
+			{
+				PB_weapon_base(players[e.Player].readyweapon).activate_special();
+			}
+		}
+	}
+}
+
+//replce ammo around weapon spawning spot to more or less correspinded to that weapon
+override void worldthingspawned(worldevent e)
+{
+	if(level.time <= 3 && e.thing is "pb_weapon_base")
+	{
+		ThinkerIterator ammo_checker = ThinkerIterator.Create("pb_ammo_proto_class", 105);
+		
+		pb_ammo_proto_class something;
+		while (something = pb_ammo_proto_class(ammo_checker.Next() ) )
+		{
+			if(e.thing.distance2dsquared(something) <= 200**2)
+			{
+				class<ammo> ammo_type = weapon(e.thing).default.ammotype1;
+				
+				if(something.getclass() == ammo_type) {return;}
+				//ammo dont match, so dotn check it here
+				if( random(0,100) <= 70)
+				{
+					actor.spawn(ammo_type.getclassname(), pos: e.thing.pos);
+					e.thing.destroy();
+				}
+			}
+		}
+	}	
+}
+
+
+string return_random_weapon_related_replacement(string base_class = "")
+{
+	if(base_class == "") {console.printf("base class for spawning is not defined at all"); return "unknown";}
+	
+	int sz = allactorclasses.size();
+	array<string> names; names.clear();
+	for(int i; i < sz; i++)
+	{
+		if(allactorclasses[i] is base_class && !(allactorclasses[i].getclassname() == base_class) )
+		{names.push(allactorclasses[i].getclassname() ); }
+	}
+	sz = names.size();
+
+	if(sz <= 0) {console.printf("actor base %s dont exist", base_class); return "unknown";}
+	if(sz > 1) {return names[random(0, sz - 1)];}
+/*	if(sz == 1) {return names[0];}
+	*/
+	return "unknown";
+}
+
+
+override void CheckReplacement(ReplaceEvent e)
+{
+	if(e.Replacee is "DoomWeapon")
+	{
+		bool vanila_weapon = false;
+		switch( name(e.Replacee.getclassname() ) )
+		{
+			case 'chainsaw' :
+				vanila_weapon = true;
+				e.isfinal = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_1_proto_class");
+			break;
+
+			case 'pistol' :
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_2_proto_class");
+				e.isfinal = true;
+			break;
+
+			case 'shotgun' :
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_3_proto_class");
+				e.isfinal = true;
+			break;
+
+			case 'supershotgun':
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_3_proto_class");
+				e.isfinal = true;
+			break;
+
+			case 'chaingun' :
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_4_proto_class");
+				e.isfinal = true;
+			break;
+
+			case 'rocketlauncher' : 
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_5_proto_class");
+				e.isfinal = true;
+			break;
+
+			case 'plasmarifle' :
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_6_proto_class");
+				e.isfinal = true;
+			break;
+
+			case 'bfg9000' :
+				vanila_weapon = true;
+				e.replacement = return_random_weapon_related_replacement("weapon_slot_8_proto_class");
+				e.isfinal = true;
+			break;
+		}
+		if(vanila_weapon == true) {return;}
+	}
+
+
+	if(e.Replacee is "ammo" && !(e.Replacee is "pb_ammo_proto_class") )
+	{//replace all doom related instances of ammo with pb equvalents
+	//probably this nned to be redone in future, to replace ALL ammo on map, even custom
+	//but that probably can break map scripts
+		switch( name(e.Replacee.getclassname() ) )
+		{//all pb ammo defenition contains in dedicated file inside slot 'x' folder
+			case 'clip' : 
+				if(random(0,100) > 70)
+				{
+					e.Replacement = return_random_weapon_related_replacement("pb_clip");
+					e.isfinal = true;
+				}
+				else
+				{
+					e.replacement = return_random_weapon_related_replacement("low_caliber_bullets");
+					e.isfinal = true;
+				}
+			break;
+
+			case 'ClipBox' :
+				if(random(0,100) > 70)
+				{
+					e.replacement = return_random_weapon_related_replacement("low_caliber_bullets");
+					e.isfinal = true;
+				}
+				else
+				{
+					e.replacement = return_random_weapon_related_replacement("pb_clip");
+					e.isfinal = true;
+				}
+			break;
+
+			case 'Shell' :
+				e.replacement = return_random_weapon_related_replacement("pb_Shells");
+				e.isfinal = true;
+			break;
+
+			case 'ShellBox' :
+				e.replacement = return_random_weapon_related_replacement("pb_Shells");
+				e.isfinal = true;
+			break;
+
+			case 'RocketAmmo' :
+				e.replacement = return_random_weapon_related_replacement("SpecialGrenadeRounds");
+				e.isfinal = true;
+				//SpecialGrenadeRounds
+			break;
+
+			case 'RocketBox' :
+				e.replacement = return_random_weapon_related_replacement("SpecialGrenadeRounds");
+				e.isfinal = true;
+				//SpecialGrenadeRounds
+			break;
+
+			case 'Cell' :
+				e.replacement = return_random_weapon_related_replacement("pb_cell");
+				e.isfinal = true;
+				//pb_cell
+			break;
+
+			case 'CellPack' :
+				e.replacement = return_random_weapon_related_replacement("pb_cell");
+				e.isfinal = true;
+				//pb_cell
+			break;
+			
+			default:
+				console.printf("detected custom ammo %s", e.Replacee.getclassname() );
+			break;
+		}
+	}
+}
+
+}
+
+
+
+
+class HandGrenadeAmmo : ammo {}
+class ThrownGrenade30 : inventory {}
+class MeleeStrike1 : inventory{}
+class KnifeSwing : inventory {}
+class KickAttack : inventory {}
+
+class pb_ammo_proto_class : ammo
+{
+int surplus;
+
+default
+{
+	radius 20;
+	height 20;
+	Scale 0.58;
+	+FLOORCLIP
+	+DONTGIB
+}
+
+override void beginplay()
+{
+	super.beginplay();
+	changestatnum(105);
+}
+
+override bool HandlePickup (Inventory item)
+{
+	let ammoitem = Ammo(item);
+	if (ammoitem != null && ammoitem.GetParentAmmo() == GetClass())
+	{
+		if (Amount < MaxAmount || sv_unlimited_pickup)
+		{
+			int receiving = item.Amount;
+
+			if (!item.bIgnoreSkill)
+			{ // extra ammo in baby mode and nightmare mode
+				receiving = int(receiving * G_SkillPropertyFloat(SKILLP_AmmoFactor));
+			}
+			int oldamount = Amount;
+
+			if (Amount > 0 && Amount + receiving < 0)
+			{
+				Amount = 0x7fffffff;
+			}
+			else
+			{
+			   Amount += receiving;
+			}
+			// NEW BEHAVIOR HERE
+			if (Amount > MaxAmount && !sv_unlimited_pickup)
+			{
+			   item.Amount -= MaxAmount - oldamount;
+			   Amount = MaxAmount;
+			}
+			else
+			{
+			   item.bPickupGood = true;
+			}
+			// END OF NEW BEHAVIOR
+
+			// If the player previously had this ammo but ran out, possibly switch
+			// to a weapon that uses it, but only if the player doesn't already
+			// have a weapon pending.
+			if (oldamount == 0 && Owner != null && Owner.player != null)
+			{
+			   PlayerPawn(Owner).CheckWeaponSwitch(GetClass());
+			}
+		 }
+		return true;
+	}
+	return false;
+}
+
+//find first non pb_ammo_base inherited actor and make it acceptable ammo type
+override Class<Ammo> GetParentAmmo ()
+{
+	class<Object> type = GetClass();
+
+	while (type.GetParentClass() != "pb_ammo_proto_class" && type.GetParentClass() != NULL)
+	{
+		type = type.GetParentClass();
+	}
+	return (class<Ammo>)(type);
+}
+
+}

@@ -1,0 +1,18 @@
+//base particle and sprite actors
+//empty, because its more practical to extend their states 
+//in corresponded weapon definition, IMO
+class weapon_related_sprite : weapon_related_fancy_actor {}
+
+
+
+
+
+
+class weapon_related_particle : weapon_related_fancy_actor
+{
+default
+{
+	RenderStyle "add";
+}
+
+}
