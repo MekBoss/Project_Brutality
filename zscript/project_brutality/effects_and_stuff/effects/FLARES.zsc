@@ -693,7 +693,7 @@ CLASS GreenFlareSpawnEvenSmaller : ACTOR {
 	States
 	{
 		Spawn:
-			TNT1 AA 1 A_CustomMissile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
+			TNT1 AA 1 a_spawnprojectile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
 			Stop;
 	}
 }
@@ -709,7 +709,7 @@ CLASS GreenFlareSpawnJustSmaller : ACTOR {
 	States
 	{
 		Spawn:
-			TNT1 AA 1 A_CustomMissile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
+			TNT1 AA 1 a_spawnprojectile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
 			Stop;
 	}
 }
@@ -725,7 +725,7 @@ CLASS GreenFlareSpawnSmallClose : ACTOR {
 	States
 	{
 		Spawn:
-			TNT1 AA 1 A_CustomMissile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
+			TNT1 AA 1 a_spawnprojectile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
 			Stop;
 	}
 }
@@ -749,8 +749,7 @@ CLASS YellowFlare : Flare_General {
 
 CLASS PurpleFlareMedium : YellowFlare { 
 	Default {
-		
-	Translation "0:255=%[0,0,0]:[1,0,1]"
+	Translation "0:255=%[0,0,0]:[1,0,1]";
 		scale 0.20;
 	}
 }
@@ -1046,7 +1045,7 @@ CLASS RedFlareSpawn : ACTOR {
 	States
 	{
 	Spawn:
-		TNT1 AA 1 A_CustomMissile("RedFlareSmall2",-5,0,-85,0,random(-10,10));
+		TNT1 AA 1 a_spawnprojectile("RedFlareSmall2",-5,0,-85,0,random(-10,10));
 		Stop;
 }
 }
@@ -1064,7 +1063,7 @@ CLASS PLasmaFlareSpawn : ACTOR {
 	{
 	Spawn:
 		TNT1 A 0;
-		TNT1 A 1 A_CustomMissile("PlasmaFlare",-5,0,-85,0,random(-10,10));
+		TNT1 A 1 a_spawnprojectile("PlasmaFlare",-5,0,-85,0,random(-10,10));
 		Stop;
 }
 }
@@ -1083,7 +1082,7 @@ CLASS PLasmaFlareSpawner : ACTOR {
 	{
 	Spawn:
 		TNT1 A 0;
-		PBAL C 1 A_CustomMissile("PlasmaFlare",0,0,-85,0,random(-10,10));
+		PBAL C 1 a_spawnprojectile("PlasmaFlare",0,0,-85,0,random(-10,10));
 		Stop;
 }
 }
@@ -1100,8 +1099,8 @@ CLASS YellowFlareSpawn : ACTOR {
 	States
 	{
 	Spawn:
-		TNT1 AA 1 A_CustomMissile("YellowFlareSmallB",-5,0,-85,0,random(-10,10));
-		//TNT1 AA 0 A_CustomMissile("OrangeLensFlareAlt",2,0,0,0,0)
+		TNT1 AA 1 a_spawnprojectile("YellowFlareSmallB",-5,0,-85,0,random(-10,10));
+		//TNT1 AA 0 a_spawnprojectile("OrangeLensFlareAlt",2,0,0,0,0)
 		Stop;
 }
 }
@@ -1189,7 +1188,7 @@ CLASS BlueFlareSpawn : ACTOR {
 	States
 	{
 	Spawn:
-		TNT1 AA 1 A_CustomMissile("BlueFlareSmall",-5,0,-85,0,random(-10,10));
+		TNT1 AA 1 a_spawnprojectile("BlueFlareSmall",-5,0,-85,0,random(-10,10));
 		Stop;
 }
 }
@@ -1204,7 +1203,7 @@ CLASS GreenFlareSpawn : ACTOR {
 	States
 	{
 	Spawn:
-		TNT1 AA 1 A_CustomMissile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
+		TNT1 AA 1 a_spawnprojectile("GreenFlareSmall",-5,0,-85,0,random(-10,10));
 		Stop;
 }
 }
@@ -1456,7 +1455,7 @@ CLASS SmallFleshTrails: FlameTrails {
 	{
 	Spawn:
 		TNT1 A 2 A_SpawnItem("RedFlare",0,0);
-		HSMX ABCDEFGHIJKL 3 BRIGHT A_CustomMissile ("Brutal_LiquidBlood3", 46, 0, random (170, 190), 2, random (0, 40));
+		HSMX ABCDEFGHIJKL 3 BRIGHT a_spawnprojectile ("Brutal_LiquidBlood3", 46, 0, random (170, 190), 2, random (0, 40));
 		Stop;
 }
 }

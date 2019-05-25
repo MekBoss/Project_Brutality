@@ -10,7 +10,7 @@ CLASS Mp40CaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyBrassMP40",-5,0,random(80, 100),2,random(45,80));
+			TNT1 A 1 a_spawnprojectile("EmptyBrassMP40",-5,0,random(80, 100),2,random(45,80));
 			Stop;
 	}
 }
@@ -27,7 +27,7 @@ CLASS Mp40CaseSpawnRight : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyBrassMP40",-5,4,random(-80, -100),2,random(45,80));
+			TNT1 A 1 a_spawnprojectile("EmptyBrassMP40",-5,4,random(-80, -100),2,random(45,80));
 			Stop;
 	}
 }
@@ -44,7 +44,7 @@ CLASS RifleCaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyBrass",-5,0,random(-80,-100),2,random(45,80));
+			TNT1 A 1 a_spawnprojectile("EmptyBrass",-5,0,random(-80,-100),2,random(45,80));
 			Stop;
 	}
 }
@@ -57,7 +57,7 @@ CLASS ShotCaseSpawn : RifleCaseSpawn {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("ShotgunCasing",0,0,random(-80,-100),2,random(40,60));
+			TNT1 A 1 a_spawnprojectile("ShotgunCasing",0,0,random(-80,-100),2,random(40,60));
 			Stop;
 	}
 } 
@@ -70,7 +70,7 @@ CLASS ShotCaseSpawn2 : RifleCaseSpawn  {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("ShotgunCasing2",0,0,random(-80,-100),2,random(40,60));
+			TNT1 A 1 a_spawnprojectile("ShotgunCasing2",0,0,random(-80,-100),2,random(40,60));
 			Stop;
 	}
 }
@@ -83,7 +83,7 @@ CLASS ShotCaseSpawn3 : RifleCaseSpawn {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("ShotgunCasing3",0,0,random(-80,-100),2,random(40,60));
+			TNT1 A 1 a_spawnprojectile("ShotgunCasing3",0,0,random(-80,-100),2,random(40,60));
 			Stop;
 	}
 }
@@ -97,17 +97,17 @@ CLASS SSGCaseSpawner : RifleCaseSpawn {
 		Spawn:
 			TNT1 A 0;
 			TNT1 A 0 Thing_ChangeTID(0,390);
-			TNT1 A 1 A_CustomMissile("ShotgunCasingSSG",0,0,random(80,100),2,random(50,70));
+			TNT1 A 1 a_spawnprojectile("ShotgunCasingSSG",0,0,random(80,100),2,random(50,70));
 			Stop;
 			/*Goto Death
 					Death:
-							TNT1 A 0 A_CustomMissile("ShotgunCasingSSG",0,0,random(80,100),2,random(50,70))
+							TNT1 A 0 a_spawnprojectile("ShotgunCasingSSG",0,0,random(80,100),2,random(50,70))
 							Stop*/
 	}
 }
 
 
-CLASS 50CaseSpawn : ACTOR { 
+CLASS CaseSpawn_50_ : ACTOR { 
 	Default {
 		
 		Speed 20;
@@ -119,13 +119,13 @@ CLASS 50CaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyBrassMinigun",-2,0,random(80,100),2,random(40,80));
+			TNT1 A 1 a_spawnprojectile("EmptyBrassMinigun",-2,0,random(80,100),2,random(40,80));
 			Stop;
 	}
 }
 
 
-CLASS 50CaseSpawn2: 50CaseSpawn { 
+CLASS CaseSpawn_50_2: CaseSpawn_50_ { 
 	Default {
 		
 	}
@@ -133,8 +133,8 @@ CLASS 50CaseSpawn2: 50CaseSpawn {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyBrassMinigun",-2,0,random(-80,-100),2,random(40,80));
-			TNT1 A 1 A_CustomMissile("MinigunBeltPiece",-4,0,random(-80,-100),2,random(40,80));
+			TNT1 A 1 a_spawnprojectile("EmptyBrassMinigun",-2,0,random(-80,-100),2,random(40,80));
+			TNT1 A 1 a_spawnprojectile("MinigunBeltPiece",-4,0,random(-80,-100),2,random(40,80));
 			Stop;
 	}
 }
@@ -151,7 +151,7 @@ CLASS GrenadeCaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyGrenadeBrass",-2,0,random(80,100),2,random(40,80));
+			TNT1 A 1 a_spawnprojectile("EmptyGrenadeBrass",-2,0,random(80,100),2,random(40,80));
 			Stop;
 	}
 }
@@ -168,7 +168,7 @@ CLASS BigEmptyCaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("BigEmptyBrass",-5,0,random(-80,-100),2,random(45,80));
+			TNT1 A 1 a_spawnprojectile("BigEmptyBrass",-5,0,random(-80,-100),2,random(45,80));
 			Stop;
 	}
 }
@@ -185,7 +185,7 @@ CLASS MastermindCaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("GiantEmptyBrass",-5,0,random(-80,-100),2,random(45,80));
+			TNT1 A 1 a_spawnprojectile("GiantEmptyBrass",-5,0,random(-80,-100),2,random(45,80));
 			Stop;
 	}
 }
@@ -897,7 +897,7 @@ CLASS EmptyRocketChamber : ACTOR {
 			TNT1 A 0;
 			TNT1 A 0 ACS_ExecuteAlways(7798, 0, 0, 0, 0);//Check Effects
 		Exist:
-			TNT1 A 7 A_PlaySound("NULL");
+			TNT1 A 7 A_PlaySound("tnt1");
 			RCSE ABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH 4;
 			Stop;
 		Death:
@@ -938,7 +938,7 @@ CLASS EmptyLMGMag : ACTOR {
 			TNT1 A 0;
 			TNT1 A 0 ACS_ExecuteAlways(7798, 0, 0, 0, 0);//Check Effects
 		Exist:
-			TNT1 A 7 A_PlaySound("NULL");
+			TNT1 A 7 A_PlaySound("tnt1");
 			DRM9 ABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH 4;
 			Stop;
 		Death:
@@ -979,7 +979,7 @@ CLASS EmptyASGDrum : ACTOR {
 			TNT1 A 0;
 			TNT1 A 0 ACS_ExecuteAlways(7798, 0, 0, 0, 0);//Check Effects
 		Exist:
-			TNT1 A 7 A_PlaySound("NULL");
+			TNT1 A 7 A_PlaySound("tnt1");
 			DRM8 ABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH 4;
 			Stop;
 		Death:
@@ -1020,7 +1020,7 @@ CLASS EmptyHMGDrum : ACTOR {
 			TNT1 A 0;
 			TNT1 A 0 ACS_ExecuteAlways(7798, 0, 0, 0, 0);//Check Effects
 		Exist:
-			TNT1 A 7 A_PlaySound("NULL");
+			TNT1 A 7 A_PlaySound("tnt1");
 			DRM7 ABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH 4;
 			Stop;
 		Death:
@@ -1068,7 +1068,7 @@ CLASS EmptyCell : ACTOR {
 			TNT1 A 0;
 			TNT1 A 0 ACS_ExecuteAlways(7798, 0, 0, 0, 0);//Check Effects
 		Exist:
-			TNT1 A 7 A_PlaySound("NULL");
+			TNT1 A 7 A_PlaySound("tnt1");
 			ECEL ABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH 4;
 			Stop;
 		Death:
@@ -1095,7 +1095,7 @@ CLASS RocketCaseSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyRocketChamber",0,0,random(-80,-100),2,random(40,60));
+			TNT1 A 1 a_spawnprojectile("EmptyRocketChamber",0,0,random(-80,-100),2,random(40,60));
 			Stop;
 	}
 } 
@@ -1108,7 +1108,7 @@ CLASS PlasmaCaseSpawn : RifleCaseSpawn {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("EmptyCell",0,0,random(-80,-100),2,random(40,60));
+			TNT1 A 1 a_spawnprojectile("EmptyCell",0,0,random(-80,-100),2,random(40,60));
 			Stop;
 	}
 }
@@ -1187,7 +1187,7 @@ CLASS MiniBeltPieceSpawn : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("MinigunBeltPiece",-2,0,random(80,100),2,random(40,80));
+			TNT1 A 1 a_spawnprojectile("MinigunBeltPiece",-2,0,random(80,100),2,random(40,80));
 			Stop;
 	}
 }
@@ -1205,7 +1205,7 @@ CLASS MiniBeltPieceSpawn2 : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 1 A_CustomMissile("MinigunBeltPiece",-2,0,-random(80,100),2,random(40,80));
+			TNT1 A 1 a_spawnprojectile("MinigunBeltPiece",-2,0,-random(80,100),2,random(40,80));
 			Stop;
 	}
 }

@@ -8,12 +8,44 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //since gzdoom load actors definition in order it placed here, in root zscript file
 //in other case, it breaks with error "unknows class/states can be defined only for actors/etc."
 #include "zscript/project_brutality/pb_basic_base.zsc"
+
+
+
 //all blood/gore stuff and event which spawn them
 #include "zscript/project_brutality/gore_&_blood/blood-o-gore_event.zsc"
 #include "zscript/project_brutality/gore_&_blood/blood.zsc"
 #include "zscript/project_brutality/gore_&_blood/sticky_blood.zsc"
 #include "zscript/project_brutality/gore_&_blood/gore.zsc"
 #include "zscript/project_brutality/gore_&_blood/monsters_spare_parts.zsc"
+
+//defenition of effects and environment
+#include "zscript/project_brutality/effects_and_stuff/pb_base_effect_event.zsc"
+#include "zscript/project_brutality/effects_and_stuff/additional_stuff.zsc"
+//converted decorate effect
+#include "zscript/project_brutality/effects_and_stuff/effects/casing.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/flares.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/flatdecals.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/puff.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/smoke.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/sparks.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/splashes.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/teleports.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/tracers.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/particles.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/fireworks.zsc"
+//ready zscript effects
+#include "zscript/project_brutality/effects_and_stuff/fire.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torch_base.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torches.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/lamps.zsc"
+#include "zscript/project_brutality/effects_and_stuff/room_decor/corpses.zsc"
+
+
+
+
+
+
+
 
 
 
@@ -44,15 +76,6 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 
 
-//defenition of effects and environment
-#include "zscript/project_brutality/effects_and_stuff/pb_base_effect_event.zsc"
-#include "zscript/project_brutality/effects_and_stuff/additional_stuff.zsc"
-
-#include "zscript/project_brutality/effects_and_stuff/fire.zsc"
-#include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torch_base.zsc"
-#include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torches.zsc"
-#include "zscript/project_brutality/effects_and_stuff/room_decor/lamps.zsc"
-#include "zscript/project_brutality/effects_and_stuff/room_decor/corpses.zsc"
 
 
 
