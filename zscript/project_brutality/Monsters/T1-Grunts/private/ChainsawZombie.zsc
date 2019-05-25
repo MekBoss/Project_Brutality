@@ -1009,8 +1009,7 @@ States
 }
 
 CLASS ZombieChainsawAttack : ACTOR { 
-	Default {
-	
+Default {
 	Radius 10;
 	Height 18;
 	Projectile;

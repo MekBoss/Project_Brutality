@@ -6,10 +6,10 @@ Default
 	//SpawnID 1490;
 	Health 130;
 	Radius 18;
-	Height 48;
 	Speed 10;
 	Mass 100;
 	GibHealth 35;
+
 	PainChance 200;
 	PainChance "Stun", 255;
 	PainChance "Avoid", 35;
@@ -18,19 +18,21 @@ Default
 	PainChance "Kick", 255;
 	PainChance "ExtremePunches", 255;
 	PainChance "Melee", 255;
+	PainChance "ExplosiveImpact", 255;
 	PainChance "Fatality", 255;
+
 	damagefactor "TeleportRemover", 0.0;
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 	damagefactor "GibRemoving", 0.0;
 	//PainChance "Avoid", 100
-	PainChance "ExplosiveImpact", 255;
 	damagefactor "Avoid", 0.0;
 	damagefactor "killme", 0.0;
 	damagefactor "Trample", 1.5;
 	damagefactor "SSG", 5.0;
 	damagefactor "Crush", 10.0;
 	DamageFactor "CauseObjectsToSplash", 0.0;
+
 	Monster;
-	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 	BloodType "pb_blood", "BloodSPlatterReplacer", "SawBlood";
 	damagefactor "Shrapnel", 0.3;
 	+FLOORCLIP;
@@ -44,7 +46,7 @@ Default
 	MaxStepHeight 24;
 	MaxDropOffHeight 32;
 	//+MISSILEMORE
-	+DONTHURTSPECIES;
+	+DONTHARMCLASS;
 	+SLIDESONWALLS;
 	PainChance "Trample", 255;
 	Species "Imp";
@@ -53,8 +55,6 @@ Default
 	MissileType "DarkNormal";
 	MeleeDamage 3;
 	MeleeRange 64;
-	MaxStepHeight 24;
-	MaxDropOffHeight 32;
 
 	//DropItem "DemonStrengthRune", 1;
 	//DropItem "Demonpickup", 225;
@@ -1072,8 +1072,7 @@ States
 }
 
 CLASS DarkStrong : ACTOR { 
-	Default {
-	
+Default {
 	Radius 8;
 	Height 6;
 	Speed 9;

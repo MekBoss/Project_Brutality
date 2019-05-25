@@ -7,11 +7,11 @@ Default
 	//SpawnID 1450;
 	Health 110;
 	Radius 18;
-	Height 48;
 	Mass 100;
 	GibHealth 35;
 	Speed 14;
 	FastSpeed 15;
+
 	PainChance 200;
 	PainChance "Stun", 255;
 	PainChance "Avoid", 35;
@@ -21,17 +21,19 @@ Default
 	PainChance "ExtremePunches", 255;
 	PainChance "Melee", 255;
 	PainChance "Fatality", 255;
+	PainChance "ExplosiveImpact", 255;
+
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 	damagefactor "TeleportRemover", 0.0;
 	damagefactor "GibRemoving", 0.0;
-	PainChance "ExplosiveImpact", 255;
 	damagefactor "Avoid", 1.0;
 	damagefactor "Trample", 1.5;
 	damagefactor "SSG", 5.0;
 	damagefactor "Crush", 10.0;
 	DamageFactor "CauseObjectsToSplash", 0.0;
 	damagefactor "killme", 0.0;
+
 	Monster;
-	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 	BloodType "pb_blood", "BloodSPlatterReplacer", "SawBlood";
 	damagefactor "Shrapnel", 0.3;
 	+FLOORCLIP;
@@ -46,13 +48,12 @@ Default
 	MaxStepHeight 24;
 	MaxDropOffHeight 32;
 	Species "Imp";
-	+DONTHURTSPECIES;
+	+DONTHARMCLASS;
 	+SLIDESONWALLS;
 	PainChance "Trample", 255;
 	
-	DropItem "Demonpickup", 60;
-	
-	}
+	//DropItem "Demonpickup", 60;
+}
 	States
 	{
 	Death.Shrink:
@@ -70,7 +71,7 @@ Default
 	Pain.Avoid:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(255, "AvoidLeft", "AvoidRight");
-		Goto AvoidLeft;
+	Goto AvoidLeft;
 		
 	AvoidLeft:
 		1ROO E 1 A_FaceTarget();
@@ -1630,8 +1631,7 @@ Default
 }
 
 CLASS SavageImpFireBallTrail : pb_blood_and_gore_base { 
-	Default {
-	
+Default {
 	Radius 3;
 	Height 3;
 	Scale 1;
@@ -1713,8 +1713,7 @@ Default
 }
 
 CLASS SavageImpTorso : pb_blood_and_gore_base { 
-	Default {
- 
+Default {
     Radius 0;
     Height 16;
     Scale 1.12;
@@ -1763,8 +1762,7 @@ CLASS SavageImpTorso : pb_blood_and_gore_base {
 }
 
 CLASS DeadSavageImp1: pb_blood_and_gore_base { 
-	Default {
-	
+Default {
 	Radius 12;
 	Height 12;
 	+SHOOTABLE;
@@ -2094,11 +2092,10 @@ CLASS DeadSavageImpJustLegsAreLeft: pb_blood_and_gore_base {
         Stop;}}
 
 CLASS DeadSavageImp_Slumped: ZombiemanTorso { 
-	Default {
- 
-+NOPAIN;
-Health 200;
-damageFactor "Head", 15.0;
+Default {
+	+NOPAIN;
+	Health 200;
+	damageFactor "Head", 15.0;
 	Height 22;
 	Radius 8;
 	}
@@ -2146,8 +2143,7 @@ damageFactor "Head", 15.0;
 	
 	
 CLASS DeadSavageImp_Slumped_NoHead: ZombiemanTorso { 
-	Default {
-	
+Default {
 	+NOPAIN;
 	Height 22;
 	}

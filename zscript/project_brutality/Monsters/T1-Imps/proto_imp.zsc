@@ -6,7 +6,7 @@ default
 {
 	height 54;
 	radius 18;
-	
+
 	pb_monster_base.headshot_multiplier 2;
 	pb_monster_base.head_starting_position 48;
 	pb_monster_base.legs_height_max 10;

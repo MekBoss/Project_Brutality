@@ -1473,11 +1473,10 @@ States
 	
 	
 CLASS DeadImpVar1_Slumped_NoHead: pb_blood_and_gore_base { 
-	Default {
-	
+Default {
 	+NOPAIN;
 	Height 22;
-	}
+}
 States
 {
 	Spawn:
@@ -1544,9 +1543,8 @@ States
 
 
 CLASS DyingImpVar1 : SwitchableDecoration { 
-	Default
-	{
-	
+Default
+{
 	Radius 16;
 	Height 22;
 	Health 60;
@@ -1738,9 +1736,7 @@ CLASS DyingImpVar1 : SwitchableDecoration {
 
 
 CLASS BrutalizedImpVar1 : SwitchableDecoration { 
-	Default {
-	
-
+Default {
 	Radius 16;
 	Height 50;
 	Health 20;
@@ -2004,9 +2000,7 @@ States
 
 
 CLASS DyingImpVar1NoArm : SwitchableDecoration { 
-	Default {
-	
-
+Default {
 	Radius 16;
 	Height 32;
 	Health 50;
@@ -2142,9 +2136,7 @@ CLASS DyingImpVar1NoArm : SwitchableDecoration {
 
 
 CLASS DyingImpVar1NoLeg : SwitchableDecoration { 
-	Default {
-	
-
+Default {
 	Radius 16;
 	Height 25;
 	Health 50;
@@ -2379,8 +2371,7 @@ States
 }
 
 CLASS DyingImpVar12 : SwitchableDecoration { 
-	Default {
-	
+Default {
 	Radius 16;
 	Height 32;
 	Health 50;

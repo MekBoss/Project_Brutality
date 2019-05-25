@@ -18,7 +18,7 @@ Default
 	//+NOTELESTOMP
 	//	+TELESTOMP
 	//+LongMeleeRange
-	+DontHurtSpecies;
+	+DONTHARMCLASS;
 	damagefactor "Crush", 10.0;
 	Obituary "%o was mauled by a Ugly Mean Demon.";
 	SeeSound "Monster/sg2sit";

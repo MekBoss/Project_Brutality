@@ -2,11 +2,8 @@ CLASS pb_Shotgun_Guy : sergeant_base// Replaces ShotgunGuy
 { 
 Default
 {	
-	//SpawnID 1;
-//	SpawnID 1200;
 	Health 50;
 	Radius 16;
-	//Height 44;
 	Mass 100;
 	Speed 6;
 	FastSpeed 12;
@@ -1544,8 +1541,7 @@ CLASS DeadShotgunguyJustLegsAreLeft: pb_blood_and_gore_base {
         Stop;}}
 
 CLASS DeadShotgunguy_Slumped: ZombiemanTorso { 
-	Default {
- 
+Default {
 	+NOPAIN;
 	Health 200;
 	DamageFactor "Head", 15.0;
@@ -1602,7 +1598,6 @@ States
 	
 CLASS DeadShotgunguy_Slumped_NoHead: ZombiemanTorso { 
 	Default {
-	
 	+NOPAIN;
 	Height 22;
 	}
@@ -1636,7 +1631,6 @@ States{Spawn:
 
 CLASS BrutalizedSergeant1 : SwitchableDecoration { 
 	Default {
-	
 	Radius 16;
 	Height 44;
 	Health 20;
@@ -2046,7 +2040,6 @@ States{Spawn:
 
 CLASS Shotgun_Guy_Pinned: ZombiemanTorso { 
 	Default {
- 
 	+NOPAIN
 	+NOGRAVITY
 	Health 200;

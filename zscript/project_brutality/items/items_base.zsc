@@ -14,7 +14,7 @@ class pb_health_bonus_base : healthbonus
 //backpack base starts in this itp paragraph
 class pb_backpack_base : BackpackItem
 {
-//slightly changed copypaste from gzdoom pack 
+//slightly changed copypaste from gzdoom pack so it would give only PB related ammos
 override Inventory CreateCopy (Actor other)
 {
 	// Find every unique type of ammoitem. Give it to the player if
@@ -47,7 +47,7 @@ override Inventory CreateCopy (Actor other)
 				{
 					ammoitem.Amount = ammoitem.MaxAmount;
 				}
-				ammoitem.AttachToOwner (other);
+				ammoitem.AttachToOwner(other);
 			}
 			else
 			{ // The player had the ammoitem. Give some more.

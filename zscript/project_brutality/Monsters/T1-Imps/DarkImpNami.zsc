@@ -1,4 +1,4 @@
-CLASS NamiDarkImp : proto_imp_class// Replaces DoomImp
+CLASS pb_NamiDarkImp : proto_imp_class// Replaces DoomImp
 { 
 Default
 {
@@ -6,10 +6,10 @@ Default
 	//SpawnID 1460;
 	Health 125;
 	Radius 18;
-	Height 48;
 	Speed 12;
 	Mass 100;
 	GibHealth 35;
+
 	PainChance 200;
 	PainChance "Stun", 255;
 	PainChance "Avoid", 35;
@@ -47,7 +47,7 @@ Default
 	MaxDropOffHeight 32;
 
 	//+MISSILEMORE
-	+DONTHURTSPECIES;
+	+DONTHARMCLASS;
 	+SLIDESONWALLS;
 	PainChance "Trample", 255;
 	Species "Imp";
@@ -56,10 +56,8 @@ Default
 	MissileType "DarkSeeker";
 	MeleeDamage 3;
 	MeleeRange 64;
-	MaxStepHeight 24;
-	MaxDropOffHeight 32;
-	DropItem "DemonStrengthRune", 1;
-	DropItem "Demonpickup", 225;
+//	DropItem "DemonStrengthRune", 1;
+//	DropItem "Demonpickup", 225;
 }
 
 States

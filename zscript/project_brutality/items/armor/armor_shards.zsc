@@ -1,4 +1,4 @@
-CLASS ArmorShard : pb_armor_bonus_base
+CLASS pb_Armor_Shard : pb_armor_bonus_base
 {
 Default
 {
@@ -25,7 +25,7 @@ Default
 
 }
 
-CLASS StrongArmorShard : pb_armor_bonus_base { 
+CLASS pb_Strong_Armor_Shard : pb_armor_bonus_base { 
 Default
 {
 	Radius 20;
@@ -51,7 +51,7 @@ States
 
 }
 
-CLASS SuperArmorBonus : pb_armor_bonus_base { 
+CLASS pb_Super_Armor_Bonus : pb_armor_bonus_base { 
 Default
 {
 	Armor.Savepercent 38;
@@ -76,7 +76,7 @@ States
 }
 
 // Zombie bonus --------------------------------------------------------------
-CLASS ZombieHelmet : pb_armor_bonus_base { 
+CLASS pb_Zombie_Helmet : pb_armor_bonus_base { 
 Default
 {
 	Radius 20;

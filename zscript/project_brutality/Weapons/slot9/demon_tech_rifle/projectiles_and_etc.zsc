@@ -272,7 +272,7 @@ CLASS Demonpickup: CustomInventory {
 		
 	Pickup:
 		TNT1 A 0 A_GiveInventory("Demon_powder",10);
-		TNT1 A 0 A_GiveInventory("Armorshard", 1);
+		TNT1 A 0 A_GiveInventory("pb_Armor_shard", 1);
 		//  TNT1 A 0 A_GiveInventory("Healthplus", 1) - too easy!
 		Stop;
 	}
@@ -295,7 +295,7 @@ Default
 		
 	Pickup:
 		TNT1 A 0 A_GiveInventory("Large_Demon_powder",30);
-		TNT1 A 0 A_GiveInventory("Armorshard", 2);
+		TNT1 A 0 A_GiveInventory("pb_Armor_shard", 2);
 		TNT1 A 0 A_GiveInventory("Healthplus", 2);
 		Stop;
 	}

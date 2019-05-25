@@ -1,4 +1,4 @@
-CLASS pb_Baron_of_Hell : proto_noble_class
+CLASS pb_Baron_of_Hell : baron_base
 { 
 Default
 {	

@@ -1,5 +1,5 @@
 // Green armor
-CLASS LightArmor : BasicArmorPickup
+CLASS pb_Light_Armor : BasicArmorPickup
 { 
 Default {
 	Scale 1.0;
@@ -29,39 +29,8 @@ States
 
 }
 
-// Blue armor 
-CLASS HeavyArmor : BasicArmorPickup
-{
-Default
-{
-	Radius 20;
-	Height 20;
-	Scale 1.0;
-	Inventory.Pickupmessage "Picked up the Heavy Combat Armor.";
-	Inventory.Icon "4RM2A0";
-	Armor.Savepercent 70.01;
-	Armor.Saveamount 200;
-	Inventory.PickupSound "items/blue_armor";
-	+DONTGIB;
-}
-
-States
-{
-	Spawn:
-		TNT1 A 0 A_CheckSight ("Spawn2");
-		4RM2 AA 6 bright;
-		4RM2 BBCCBB 3;
-		TNT1 A 0 A_SpawnItem("BlueFlareMedium3",0,10);
-	loop;
-	Spawn2:
-		4RM2 ABC 10;
-		Goto Spawn;
-}
-
-}
-
 //Yellow Armor
-CLASS MediumArmor : BasicArmorPickup
+CLASS pb_Medium_Armor : BasicArmorPickup
 {
 Default
 {	
@@ -92,8 +61,40 @@ States
 
 }
 
+// Blue armor 
+CLASS pb_Heavy_Armor : BasicArmorPickup
+{
+Default
+{
+	Radius 20;
+	Height 20;
+	Scale 1.0;
+	Inventory.Pickupmessage "Picked up the Heavy Combat Armor.";
+	Inventory.Icon "4RM2A0";
+	Armor.Savepercent 70.01;
+	Armor.Saveamount 200;
+	Inventory.PickupSound "items/blue_armor";
+	+DONTGIB;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0 A_CheckSight ("Spawn2");
+		4RM2 AA 6 bright;
+		4RM2 BBCCBB 3;
+		TNT1 A 0 A_SpawnItem("BlueFlareMedium3",0,10);
+	loop;
+	Spawn2:
+		4RM2 ABC 10;
+		Goto Spawn;
+}
+
+}
+
+
 //Red Armor 
-CLASS EliteArmor : BasicArmorPickup
+CLASS pb_Elite_Armor : BasicArmorPickup
 { 
 Default
 {

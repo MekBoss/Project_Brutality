@@ -606,7 +606,6 @@ Default
 	Speed 6;
 	Scale 1.0;
 	Radius 16;
-	Height 46;
 
 	PainChance "Kick", 255;
 	PainChance "SuperKick", 255;
@@ -2330,7 +2329,6 @@ CLASS ZombieMarineDude: pb_Zombie_Man// Replaces ZombieMan
 	Speed 7;
 	Scale 1.0;
 	Radius 16;
-	Height 46;
 	DropItem "CarbineDrop", 64;
 	}
     States

@@ -954,7 +954,7 @@ States
 }
 
 CLASS BrutalizedRifleCommando : ACTOR { 
-	Default {
+Default {
 	Radius 16;
 	Height 50;
 	Health 30;

@@ -688,9 +688,7 @@ CLASS BrutalizedChaingunMajor11 : ACTOR {
 }}
 
 CLASS BrutalizedChaingunMajor22 : ACTOR { 
-	Default {
-	
-	
+Default {
 	Radius 16;
 	Height 50;
 	Health 40;
@@ -879,7 +877,7 @@ CLASS ChaingunMajorMessyCorpse5: DeadZombieman1 {
 
 
 CLASS DyingChaingunMajorNoArm : SwitchableDecoration { 
-	Default {
+Default {
  	Radius 16;
 	Height 28;
 	Health 50;
@@ -1087,9 +1085,7 @@ Stop;}}
 //////////////////////
 
 CLASS BrutalizedChaingunMajor1 : SwitchableDecoration { 
-	Default {
-	
-	
+Default {
 	Radius 16;
 	Height 50;
 	Health 20;

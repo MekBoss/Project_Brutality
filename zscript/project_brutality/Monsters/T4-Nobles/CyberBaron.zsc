@@ -1,5 +1,5 @@
 // Cyber Baron created by Ben2k9/Virtue
-CLASS pb_Cyber_Baron : proto_noble_class
+CLASS pb_Cyber_Baron : baron_base
 { 
 Default
 {

@@ -1,4 +1,4 @@
-CLASS pb_Cyber_Paladin : proto_noble_class// replaces Hellknight
+CLASS pb_Cyber_Paladin : knight_base// replaces Hellknight
 { 
 Default
 {

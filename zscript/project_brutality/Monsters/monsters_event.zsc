@@ -98,25 +98,6 @@ string return_random_replacement(string base_class = "")
 	return "Unknown";
 }
 
-//store pointer to all monster related cvars here
-override void onregister()
-{
-	vanilla_cvar = cvar.findcvar("bd_classicmonsters");
-	spawn_balance = cvar.findcvar("Brutalspawnbalance");
-	
-	archvile_Heal = cvar.findcvar("bd_NoArchvileHeal");
-	Archvile_Summon = cvar.findcvar("bd_NoArchvileSummon");
-	
-	jet_Revenant = cvar.findcvar("bd_GroundRevenant");
-	
-	//must be filled with more lines
-}
-
-override void worldthingspawned(worldevent e)
-{
-	if(e.thing is "pb_monster_base") {pb_monster_base(e.thing).spawning_event = self;}
-}
-
 override void CheckReplacement(ReplaceEvent e)
 {
 /*	spawn custom monsters using this event
@@ -125,22 +106,53 @@ override void CheckReplacement(ReplaceEvent e)
 	{
 		e.IsFinal = true;
 		means "nothing can override this replacement...except another such event"
-		mostly used to prevent zscript/decorate replacing by "class name : actor replaces another_name" way
-		e.Replacement = "medikit"; 
+		mostly used to prevent zscript/decorate replacing by "class name : actor replaces another_name" and acs
+		e.Replacement = "medikit";
 	}*/
 	//add more monster here
-	if(e.Replacee is "fatso")
+
+	if(e.Replacee is "zombieman")
 	{
 		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_fat");
+		e.Replacement = return_random_replacement("private_base");
 	}
-	
+
+	if(e.Replacee is "shotgunguy")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("sergeant_base");
+	}
+
+	if(e.Replacee is "chaingunguy")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("commando_base");
+	}
+
+	if(e.Replacee is "doomimp")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_imp_class");
+	}
+
+	if(e.Replacee is "demon")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_pinky");
+	}
+
 	if(e.Replacee is "arachnotron")
 	{
 		e.IsFinal = true;
 		e.Replacement = return_random_replacement("proto_spider");
 	}
 
+	if(e.Replacee is "fatso")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_fat");
+	}
+	
 	if(e.Replacee is "painelemental")
 	{
 		e.IsFinal = true;
@@ -153,6 +165,12 @@ override void CheckReplacement(ReplaceEvent e)
 		e.Replacement = return_random_replacement("proto_head");
 	}
 
+	if(e.Replacee is "lostsoul")
+	{
+		e.IsFinal = true;
+		e.Replacement = return_random_replacement("proto_skull");
+	}
+
 	if(e.Replacee is "revenant")
 	{
 		e.IsFinal = true;
@@ -162,13 +180,13 @@ override void CheckReplacement(ReplaceEvent e)
 	if(e.Replacee is "hellknight")
 	{
 		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_noble_class");
+		e.Replacement = return_random_replacement("knight_base");
 	}
 
 	if(e.Replacee is "baronofhell")
 	{
 		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_noble_class");
+		e.Replacement = return_random_replacement("baron_base");
 	}
 
 	if(e.Replacee is "archvile")

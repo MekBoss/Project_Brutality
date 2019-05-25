@@ -2,7 +2,7 @@
 //CAUTION, if you create another gameinfo lump, and place it AFTER this one
 // gzdoom would ignore this lump and use thouse
 //which means "resources would not be load at all"
-LOAD = "resources/Project_Brutality_resources.pbres",
+LOAD = "resources/sprites.pbres",
 "resources/models.pbres",
 "resources/sounds.pbres",
 "resources/textures.pbres"

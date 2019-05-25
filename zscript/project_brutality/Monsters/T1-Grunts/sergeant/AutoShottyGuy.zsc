@@ -4,8 +4,6 @@ Default
 {
 	Health 65;
 	Radius 18;
-	Height 48;
-	Height 48;
 	Speed 11;
 	PainChance 200;
 	Scale .99;
@@ -1211,8 +1209,7 @@ CLASS BrutalizedASGGuyLeg: BrutalizedSergeant1 {
 }}
 	 
 CLASS DyingASGGuyNoLeg : SwitchableDecoration { 
-	Default {
- 
+Default {
     Radius 12;
     Height 16;
     Speed 9;
@@ -1377,8 +1374,7 @@ CLASS DeadASGGuy_NoLeg: DeadShotgunGuy_NoArm {
 Stop;}}
 	 
 CLASS DyingASGGuyLegBlewedOff: DyingASGGuyNoLeg { 
-	Default {
-	
+Default {
 	Radius 16;
 	Height 28;
 	Health 50;
@@ -1518,8 +1514,7 @@ Death.SSG:
 }
 
 CLASS DeadASGGuy1MeleeDeath : ACTOR { 
-	Default {
- 
+Default {
     Radius 20;
     Height 16;
     +SHOOTABLE
@@ -1744,7 +1739,7 @@ CLASS BrutalizedASGGuy3: BrutalizedSergeant1 {
 }}
 
 CLASS BrutalizedASGGuy_alt1 : SwitchableDecoration { 
-	Default {
+Default {
 	Radius 16;
 	Height 50;
 	Health 20;

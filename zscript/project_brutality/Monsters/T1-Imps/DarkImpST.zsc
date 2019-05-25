@@ -1,4 +1,4 @@
-CLASS STDarkImp : proto_imp_class// Replaces DoomImp 
+CLASS pb_STDarkImp : proto_imp_class// Replaces DoomImp 
 { 
 Default
 {
@@ -6,10 +6,10 @@ Default
 	//SpawnID 1480;
 	Health 115;
 	Radius 18;
-	Height 48;
 	Speed 13;
 	Mass 100;
 	GibHealth 35;
+
 	PainChance 200;
 	PainChance "Stun", 255;
 	PainChance "Avoid", 35;
@@ -19,9 +19,12 @@ Default
 	PainChance "ExtremePunches", 255;
 	PainChance "Melee", 255;
 	PainChance "Fatality", 255;
+	//PainChance "Avoid", 100
+
+	damagefactor "Shrapnel", 0.3;
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 	damagefactor "TeleportRemover", 0.0;
 	damagefactor "GibRemoving", 0.0;
-	//PainChance "Avoid", 100
 	PainChance "ExplosiveImpact", 255;
 	damagefactor "Avoid", 0.0;
 	damagefactor "killme", 0.0;
@@ -29,22 +32,21 @@ Default
 	damagefactor "SSG", 5.0;
 	damagefactor "Crush", 10.0;
 	DamageFactor "CauseObjectsToSplash", 0.0;
+	damagefactor "Kick", 0.5;
+	damagefactor "SSG", 5.0;
+	damagefactor "explosiveimpact", 2.0;
+
 	Monster;
-	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 	BloodType "pb_blood", "BloodSPlatterReplacer", "SawBlood";
-	damagefactor "Shrapnel", 0.3;
 	+FLOORCLIP;
 	SeeSound "dimp/see";
 	PainSound "dimp/pain";
 	DeathSound "dimp/death";
 	ActiveSound "dimp/active";
-	damagefactor "Kick", 0.5;
-	damagefactor "SSG", 5.0;
-	damagefactor "explosiveimpact", 2.0;
 	MaxStepHeight 24;
 	MaxDropOffHeight 32;
 	//+MISSILEMORE
-	+DONTHURTSPECIES;
+	+DONTHARMCLASS;
 	+SLIDESONWALLS;
 	PainChance "Trample", 255;
 	Species "Imp";
@@ -53,8 +55,6 @@ Default
 	MissileType "DarkFast";
 	MeleeDamage 3;
 	MeleeRange 64;
-	MaxStepHeight 24;
-	MaxDropOffHeight 32;
 
 	//DropItem "DemonStrengthRune", 1;
 	//DropItem "Demonpickup", 225;
@@ -1022,8 +1022,7 @@ States
 }
 
 CLASS DarkFast : ACTOR { 
-	Default {
-	
+Default {
 	Radius 8;
 	Height 6;
 	Speed 23;

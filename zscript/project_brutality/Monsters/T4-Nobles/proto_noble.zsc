@@ -23,7 +23,8 @@ states
 
 }
 
-
+class knight_base : proto_noble_class {}
+class baron_base : proto_noble_class {}
 
 //stuff for DELETION
 CLASS Knight_Attack : pb_projectile_base

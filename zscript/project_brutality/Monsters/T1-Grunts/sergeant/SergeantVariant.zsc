@@ -10,7 +10,8 @@ Default
 //	DropItem "RiotShieldDrop";
 	+MissileEvenMore;
 }
-
+//I fuckup something and using this script zombieman become completely invulnerable
+/*
 override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
 {
 	vector3 relat_pos = (0, 0, 0);
@@ -25,7 +26,7 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 	}
 	//bullet dont hit shield, return default damage mobj
 	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
-}
+}*/
 
 States
 {
@@ -1651,8 +1652,7 @@ States
 	
 	
 CLASS PyroSargeFireBall : ACTOR { 
-	Default {
-	
+Default {
 	Radius 3;
 	Height 5;
 	Speed 18;

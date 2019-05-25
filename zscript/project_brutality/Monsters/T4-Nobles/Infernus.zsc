@@ -1,4 +1,4 @@
-CLASS pb_Infernus : proto_noble_class// replaces BaronOfHell
+CLASS pb_Infernus : pb_Baron_of_Hell// replaces BaronOfHell
 { 
 Default
 {
@@ -15,10 +15,11 @@ Default
 	Obituary "%o was slaughtered by an Infernus";
 	HitObituary "%o was cremated by an Infernus";
 	
-	DropItem "DemonMorphRune", 5;
+/*	DropItem "DemonMorphRune", 5;
 	DropItem "Demonpickup2", 76;
 	DropItem "Demonpickup2", 76;
-	DropItem "Demonpickup2", 76;
+	DropItem "Demonpickup2", 76;*/
+
 	Scale 1.08;
 }
 States

@@ -1,4 +1,4 @@
-CLASS pb_Hell_Knight : proto_noble_class// Replaces HellKnight
+CLASS pb_Hell_Knight : knight_base// Replaces HellKnight
 {
 	//SpawnID 2210;
 Default

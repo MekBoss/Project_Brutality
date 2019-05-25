@@ -4,7 +4,6 @@ Default
 {
 	Health 50;
 	Radius 16;
-//	Height 44;
 	Speed 6;
 	FastSpeed 12;
 	Scale 0.98;

@@ -1,5 +1,5 @@
 //PhasicKnightX from X-Weapon Hellsturm, BRUTALIZED!//Translation "16:47=112:127", "192:207=80:111", "168:191=64:79"
-CLASS pb_Phasic_Knight_X: proto_noble_class// Replaces HellKnight
+CLASS pb_Phasic_Knight_X: knight_base// Replaces HellKnight
 {
 Default
 {	

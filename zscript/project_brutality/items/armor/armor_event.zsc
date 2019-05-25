@@ -1,0 +1,42 @@
+class armor_spawner : eventhandler
+{
+override void CheckReplacement(ReplaceEvent e)
+{
+	if(e.Replacee is "armorbonus")
+	{
+		e.IsFinal = true;
+		int rand = random(0, 3);
+		switch(rand)
+		{
+			case 0: e.Replacement = "pb_Armor_Shard"; break;
+			case 1: e.Replacement = "pb_Strong_Armor_Shard"; break;
+			case 2: e.Replacement = "pb_Super_Armor_Bonus"; break;
+			case 3: e.Replacement = "pb_Zombie_Helmet"; break;
+		}
+	}
+	
+	if(e.Replacee is "greenarmor")
+	{
+		e.IsFinal = true;
+		int rand = random(0, 1);
+		switch(rand)
+		{
+			case 0: e.Replacement = "pb_Light_Armor"; break;
+			case 1: e.Replacement = "pb_Medium_Armor"; break;
+		}
+	}
+
+	if(e.Replacee is "bluearmor")
+	{
+		e.IsFinal = true;
+		int rand = random(0, 1);
+		switch(rand)
+		{
+			case 0: e.Replacement = "pb_Heavy_Armor"; break;
+			case 1: e.Replacement = "pb_Elite_Armor"; break;
+		}
+	}
+
+}
+
+}
