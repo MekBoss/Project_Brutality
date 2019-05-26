@@ -11,6 +11,8 @@ override void tick()
 }
 
 }
+
+
 //base for weapons attack hich use continuos ray
 class pb_in_line_attack : pb_projectile_base
 {
@@ -86,5 +88,6 @@ states
 
 class pb_monsters_effect_base : pb_special_effect_base {}
 
-class pb_decoration_base : actor
-{}
+class pb_decoration_base : actor {}
+
+class pb_puff : actor {}

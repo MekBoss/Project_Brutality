@@ -129,9 +129,8 @@ Default {
 }
 }
 
-CLASS MeleePuff: BulletPuff { 
+CLASS MeleePuff : pb_puff { 
 Default {
-	
 	renderstyle "Translucent";
 	alpha 0.5;
 	Scale 1.5;
@@ -153,15 +152,14 @@ states
 		PUFF A 0 A_PlaySound("player/cyborg/fist");
 		EXPL AAAAAA 0 a_spawnprojectile("MeleeSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 10;
-		stop;
-		
+	stop;
 }
+
 }
 
 //For Revenant's laser pointer
-CLASS nullPuff: BulletPuff { 
+CLASS nullPuff: pb_puff { 
 Default {
-	
 	renderstyle "Translucent";
 	alpha 1.0;
 	Scale 0.1;
@@ -190,7 +188,6 @@ states
 
 CLASS FatalityPuff: MeleePuff { 
 Default {
-	
 	DamageType "Fatality";
 	Decal "Crack";
 }
@@ -209,7 +206,6 @@ states
 
 CLASS KickPuff: MeleePuff { 
 Default {
-	
 	DamageType "Kick";
 }
 states
@@ -218,42 +214,46 @@ states
 		PUFF A 0 A_PlaySound("player/cyborg/fist");
 		TNT1 A 0 A_SpawnItemEx("PLOFT2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL AAAAAA 0 a_spawnprojectile("MeleeSmoke", 0, 0, random(0, 360), 2, random(0, 360));
-		stop;
+	stop;
+
 	Death:
 		PUFF A 0 A_PlaySound("player/cyborg/fist");
 		TNT1 A 0 A_SpawnItemEx("PLOFT2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL AAAAAA 0 a_spawnprojectile("MeleeSmoke", 0, 0, random(0, 360), 2, random(0, 360));
-		stop;
+	stop;
+
 	Melee:
 		PUFF A 0 A_PlaySound("player/cyborg/fist");
 		TNT1 A 0 A_SpawnItemEx("PLOFT2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL AAAAAA 0 a_spawnprojectile("MeleeSmoke", 0, 0, random(0, 360), 2, random(0, 360));
-		stop;
+	stop;
+
 	XDeath:
 		PUFF A 0 A_PlaySound("player/cyborg/fist");
 		TNT1 A 0 A_SpawnItemEx("PLOFT2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL AAAAAA 0 a_spawnprojectile("MeleeSmoke", 0, 0, random(0, 360), 2, random(0, 360));
-		stop;
+	stop;
 }
+
 }
 
 CLASS SuperKickPuff: KickPuff { 
 Default {
-	
 	DamageType "Kick";
 	-NOEXTREMEDEATH;
 	+EXTREMEDEATH;
 	Decal "Crack";
 }
+
 }
 
 CLASS SmashingPuff: MeleePuff { 
 Default {
-	
 	DamageType "ExplosiveImpact";
 	-NOEXTREMEDEATH;
 	Decal "Crack";
 }
+
 states
 {
 	Spawn:
@@ -265,8 +265,9 @@ states
 		EXPL A 0 Radius_Quake(4, 24, 0, 15, 0);
 		EXPL AAAAAA 0 a_spawnprojectile("MeleeSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 10;
-		stop;
+	stop;
 }
+
 }
 
 
@@ -278,16 +279,16 @@ Default {
 
 CLASS FatalitySmashingPuff: SmashingPuff { 
 Default {
-	
 	DamageType "Fatality";
 	+NOEXTREMEDEATH;
 	-EXTREMEDEATH;
 }
+
 }
 
-CLASS HitPuff : ACTOR Replaces BulletPuff { 
+CLASS HitPuff : pb_puff// Replaces BulletPuff { 
+{
 Default {
-	
 	renderstyle "Translucent";
 	alpha 0.4;
 	Scale 1.5;
@@ -305,6 +306,7 @@ Default {
 	+DONTSPLASH;
 	-EXPLODEONWATER;
 }
+
 states
 {
 	Spawn:
@@ -315,13 +317,12 @@ states
 		TNT1 A 0 A_PlaySound("ricochet/hit");
 	Melee:
 		TNT1 AAA 0 a_spawnprojectile("OldschoolRocketSmokeTrail2", 2, 0, random(0, 360), 2, random(0, 360));
-		stop;
+	stop;
 }
 }
 
 CLASS AxePuffs: HitPuff { 
 Default {
-	
 	renderstyle "Translucent";
 	scale 0.15;
 	alpha 0.7;
@@ -340,30 +341,25 @@ states
 	Death:
 	XDeath:
 	Melee:
-		
-		TNT1 A 20;
-		
-		Stop;
+		TNT1 A 1;
+	Stop;
 }
 }
 
 CLASS ExtremeBulletPuff: HitPuff { 
 Default {
-	
 	DamageType "Saw";
 }
 }
 
 CLASS ExtremeBulletPuff2: HitPuff { 
 Default {
-	
 	DamageType "Cut";
 }
 }
 
 CLASS QUADshotpuff1 : HitPuff { 
 Default {
-	
 	DamageType "SSG";
 	+RIPPER;
 	+EXTREMEDEATH;
@@ -372,7 +368,6 @@ Default {
 
 CLASS QUADshotpuff2 : HitPuff { 
 Default {
-	
 	DamageType "SSG";
 	+RIPPER;
 }
@@ -380,7 +375,6 @@ Default {
 
 CLASS QUADshotpuff3 : HitPuff { 
 Default {
-	
 	DamageType "QuadBlast";
 	+RIPPER;
 	+EXTREMEDEATH;
@@ -389,21 +383,18 @@ Default {
 
 CLASS shotpuff : HitPuff { 
 Default {
-	
 	DamageType "SSG";
 }
 }
 
 CLASS Shotgunpuff : HitPuff { 
 Default {
-	
 	DamageType "Shotgun";
 }
 }
 
 CLASS RicoChet : ACTOR { 
 Default {
-	
 	renderstyle "Add";
 	alpha 1.0;
 	-COUNTKILL;
@@ -424,6 +415,7 @@ Default {
 	Radius 1;
 	Height 1;
 }
+
 states
 {
 	Spawn:
@@ -443,29 +435,26 @@ states
 		TNT1 A 0 A_SpawnItem("Sparks");
 		PUFF A 0 bright A_PlaySound("ricochet/hit");
 		TNT1 AAA 0 a_spawnprojectile("OldschoolRocketSmokeTrail2", 2, 0, random(0, 360), 2, random(0, 360));
-		
 		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4");
-		
 	Spawn1:
 		IPF2 AABB 1 bright A_SpawnItem("YellowFlareSmall", 0);
-		Stop;
+	Stop;
 		
 	Spawn2:
 		IPF2 CCDD 1 bright A_SpawnItem("YellowFlareSmall", 0);
-		Stop;
+	Stop;
 		
 	Spawn3:
 		IPF2 EEFF 1 bright A_SpawnItem("YellowFlareSmall", 0);
-		Stop;
+	Stop;
 		
 	Spawn4:
 		IPF2 GGHH 1 bright A_SpawnItem("YellowFlareSmall", 0);
-		Stop;
+	Stop;
 		
 		
 	SpawnFloor:
 		TNT1 A 0;
-		TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0);//Check if is under a liquid
 		TNT1 A 2;
 		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "SpawnWater");
 		TNT1 A 0 A_JumpIfInventory("IsOverSludge", 1, "SpawnSludge");
@@ -474,10 +463,11 @@ states
 		TNT1 A 0 A_JumpIfInventory("IsOverLava", 1, "SpawnLava");
 		TNT1 A 0 A_JumpIfInventory("IsOverGrass", 1, "SpawnDirt");
 		TNT1 A 0 A_JumpIfInventory("IsOverSand", 1, "SpawnSand");
-		
+
 		TNT1 A 0 A_SpawnItemEx("DetectFloorBullet",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("DetectCeilBullet",0,0,0,-5,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("UnderwaterHitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SparkXNoModel", 2, 0, random(0, 360), 2, random(30, 160));
 		TNT1 AAAA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
 		TNT1 AA 0 a_spawnprojectile("HitSpark22", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
@@ -486,7 +476,7 @@ states
 		PUFF A 0 bright A_PlaySound("ricochet/hit");
 		IPF2 GGHH 1 bright A_SpawnItem("YellowFlareSmall", 0);
 		TNT1 AAA 0 a_spawnprojectile("OldschoolRocketSmokeTrail2", 2, 0, random(0, 360), 2, random(30, 160));
-		stop;
+	stop;
 		
 	SpawnWater:
 		TNT1 A 0;
@@ -495,7 +485,7 @@ states
 		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
 		TNT1 A 0 A_SpawnItem("WaterRicochet");
 		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
-		Stop;
+	Stop;
 		
 	SpawnSlime:
 		TNT1 A 0;
@@ -504,7 +494,7 @@ states
 		TNT1 A 0 A_SpawnItem("SlimeRicochet");
 		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
 		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
-		Stop;
+	Stop;
 		
 	SpawnBlood:
 		TNT1 A 0;
@@ -513,7 +503,7 @@ states
 		TNT1 A 0 A_SpawnItem("BloodSplashWaves");
 		TNT1 A 0 A_SpawnItem("BloodRicochet");
 		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
-		Stop;
+	Stop;
 		
 	SpawnSludge:
 		TNT1 A 0;
@@ -522,24 +512,24 @@ states
 		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
 		TNT1 A 0 A_SpawnItem("Slime2Ricochet");
 		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
-		Stop;
+	Stop;
 		
 	SpawnLava:
 		TNT1 A 0;
 		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
-		EXPL A 0 A_SpawnItem("BurningEmberParticlesFloating_Bigger");//BurningEmberParticlesFloating
+		EXPL A 0 A_SpawnItem("ExplosionParticle");//BurningEmberParticlesFloating
 		TNT1 AAA 0 ;//a_spawnprojectile("LavaMist", 0, 0, random(0, 360), 2, random(0, 90));
 		TNT1 A 0 A_SpawnItem("LavaRicochet");
 		TNT1 A 0 A_PlaySound("Daedabus/impact", 1);
 		TNT1 A 0;
 		TNT1 A 0 a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 12, 0, random(160, 210), 2, random(10, 90));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random(-5, 5), random(-5, 5));
-		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 10, 0, random(0, 180), 2, random(10, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 180), 2, random(10, 90));
 		TNT1 A 0 A_SetScale(0.5, 0.5);
 		INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
 		INFE ST 1 BRIGHT a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 32, 0, random(160, 210), 2, random(10, 90));
 		TNT1 AAA 4 a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 14, 0, random(160, 210), 2, random(10, 90));
-		Stop;
+	Stop;
 		
 	SpawnDirt:
 		TNT1 A 0;
@@ -549,7 +539,7 @@ states
 		TNT1 AA 0 a_spawnprojectile("DirtChunk4", 0, 0, random(0, 360), 2, random(30, 150));
 		TNT1 A 0 a_spawnprojectile("MudDustSmall", 4, 0, random(0, 360), 2, random(30, 150));
 		TNT1 A 0 A_SpawnItem("DirtRicochet");
-		Stop;
+	Stop;
 		
 	SpawnSand:
 		TNT1 A 0;
@@ -557,22 +547,19 @@ states
 		TNT1 A 0 a_spawnprojectile("SandCloudSmallLong", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 a_spawnprojectile("SandCloudSmall", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 a_spawnprojectile("SandDustSmall", 4, 0, random(0, 360), 2, random(30, 150));
-		Stop;
-		
-		
-		
+	Stop;
 }
 }
 
 
 CLASS DirtRicochet: RicoChet { 
 Default {
-	
 	renderstyle "Translucent";
 	alpha 0.8;
 	XScale 1.1;
 	YScale 1.1;
 }
+
 states
 {
 	Spawn:
@@ -583,23 +570,25 @@ states
 		TNT1 A 0;
 		TNT1 A 0 A_SetScale(1.1, 1.1);
 		SDRT ABCDEF 2;
-		Stop;
+	Stop;
+
 	Spawn2:
 		TNT1 A 0;
 		TNT1 A 0 A_SetScale(1.9, 1.9);
 		SDRT ABCDEF 2;
-		Stop;
+	Stop;
+
 	Spawn3:
 		TNT1 A 0;
 		TNT1 A 0 A_SetScale(1.4, 0.4);
 		SDRT ABCDEF 2;
-		Stop;
+	Stop;
+
 	Spawn4:
 		TNT1 A 0;
 		TNT1 A 0 A_SetScale(-1.4, 1.1);
 		SDRT ABCDEF 2;
-		Stop;
-		
+	Stop;
 }
 }
 
@@ -619,7 +608,6 @@ states
 {
 	Spawn:
 		TNT1 A 0;
-		TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0);//Check if is under a liquid
 		TNT1 A 2;
 		TNT1 A 0 A_JumpIfInventory("IsOverBlood", 1, "SpawnBlood");
 		TNT1 A 0 A_JumpIfInventory("IsOverSlime", 1, "SpawnSlime");
@@ -650,7 +638,7 @@ states
 		TNT1 A 0 a_spawnprojectile("SlimeParticleXSpawner", 8, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 0 A_PlaySound("bigspl1", 1);
 		TNT1 A 20;
-		Stop;
+	Stop;
 		
 	SpawnSludge:
 		TNT1 A 0;
@@ -660,7 +648,7 @@ states
 		TNT1 A 0 a_spawnprojectile("SludgeParticleXSpawner", 8, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 0 A_PlaySound("bigspl1", 1);
 		TNT1 A 20;
-		Stop;
+	Stop;
 		
 	SpawnBlood:
 		TNT1 A 0;
@@ -670,39 +658,37 @@ states
 		TNT1 A 0 a_spawnprojectile("BloodParticleXSpawner", 8, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 0 A_PlaySound("bigspl1", 1);
 		TNT1 A 20;
-		Stop;
+	Stop;
 		
 	SpawnLava:
 		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
 		TNT1 A 0 A_RadiusGive("LavaSplasherz", 90, RGF_PLAYERS, 1);
-		EXPL AAAAAA 0 A_SpawnItem("BurningEmberParticlesFloating_Bigger");//BurningEmberParticlesFloating
+		EXPL AAAAAA 0 A_SpawnItem("ExplosionParticle");//BurningEmberParticlesFloating
 		TNT1 AAAAAAAA 0 ;//a_spawnprojectile("LavaMist", 0, 0, random(0, 360), 2, random(0, 90));
 		TNT1 A 0 A_SpawnItem("LavaRicochet");
 		TNT1 A 0 A_PlaySound("Daedabus/impact", 1);
 		TNT1 A 0 a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 12, 0, random(160, 210), 2, random(10, 90));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random(-5, 5), random(-5, 5));
-		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 10, 0, random(0, 180), 2, random(10, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 180), 2, random(10, 90));
 		TNT1 A 0 A_SetScale(0.5, 0.5);
 		INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
 		INFE ST 1 BRIGHT a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 32, 0, random(160, 210), 2, random(10, 90));
 		TNT1 AAA 4 a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 14, 0, random(160, 210), 2, random(10, 90));
-		Stop;
-		
-		
+	Stop;
+
 	SpawnSand:
 		TNT1 A 0 A_PlaySound("dirtrain", 1);
 		TNT1 AA 0 a_spawnprojectile("SandCloudSmallLong", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("SandCloudSmall", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AAA 0 a_spawnprojectile("SandDustSmall", 42, 0, random(0, 360), 2, random(40, 150));
-		Stop;
-		
+	Stop;
 }
+
 }
 
 
 CLASS BigRicoChet : ACTOR { 
 Default {
-	
 	renderstyle "Add";
 	alpha 1.0;
 	+CLIENTSIDEONLY;
@@ -719,22 +705,20 @@ Default {
 	Radius 4;
 	Height 8;
 }
+
 states
 {
 	Spawn:
 		TNT1 A 0;
-		Goto Death;
-		
 	Death:
 		TNT1 A 2;
 		TNT1 A 1 A_Explode(4, 32);
 		TNT1 A 0 A_CheckFloor("SpawnFloor");
 		TNT1 A 0;
-		Stop;
+	Stop;
 		
 	SpawnFloor:
 		TNT1 A 0;
-		TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0);//Check if is under a liquid
 		TNT1 A 2;
 		//TNT1 A 0 A_JumpIfInventory("IsOverGrass", 1, "SpawnGrass")
 		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "SpawnWater");
@@ -744,7 +728,7 @@ states
 		TNT1 A 0 A_JumpIfInventory("IsOverLava", 1, "SpawnLava");
 		TNT1 A 0 A_JumpIfInventory("IsOverSand", 1, "SpawnSand");
 		TNT1 A 0;
-		stop;
+	stop;
 		
 	SpawnWater:
 		TNT1 A 0;
@@ -755,8 +739,8 @@ states
 		TNT1 A 0 A_SpawnItem("GiantWaterRicochet");
 		TNT1 A 4;
 		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
-		Stop;
-		
+	Stop;
+
 	SpawnSlime:
 		TNT1 A 0;
 		TNT1 A 0 A_RadiusGive("SlimeSplasherz", 215, RGF_PLAYERS, 1);
@@ -797,7 +781,7 @@ states
 		TNT1 AAA 0 a_spawnprojectile("FlyingLava1b", 54, 0, random(0, 360), 2, random(30, 80));
 		TNT1 AAA 0 a_spawnprojectile("FlyingLava2b", 44, 0, random(0, 360), 2, random(30, 80));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		EXPL AAAAAAAAA 0 A_SpawnItem("BurningEmberParticlesFloating_Bigger");
+		EXPL AAAAAAAAA 0 A_SpawnItem("ExplosionParticle");
 		EXPL AAA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
 		TNT1 AA 0 a_spawnprojectile("FireworkSFXType2", 0, 0, random(0, 360), 2, random(30, 60));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
@@ -821,8 +805,7 @@ states
 		TNT1 A 0 A_PlaySound("BHITDIR3", 3);
 		TNT1 A 0 A_PlaySound("BHITDIR4", 4);
 		TNT1 A 0 A_PlaySound("BHITDIR5", 5);
-		Stop;
-		
+	Stop;
 }
 }
 
@@ -944,9 +927,8 @@ Default {
 }
 
 ///////////////////////////////////////////////////////////////////////////////PB
-CLASS GiantLavaRicochet : ACTOR {//: RicoChet
+CLASS GiantLavaRicochet : pb_puff {//: RicoChet
 Default {
-	
 	+NOBLOCKMAP;
 	+NOGRAVITY;
 	+CLIENTSIDEONLY;
@@ -958,6 +940,7 @@ Default {
 	XScale 3.0;
 	YScale 2.0;
 }
+
 States
 {
 	Spawn:
@@ -966,13 +949,12 @@ States
 		GSPP ABCDEFGHIJKLMNOPQRS 2 BRIGHT;
 		//TNT1 A 0 A_PlaySound("mountain/splash", 15)
 		GSPP TUVWXYZ 2 BRIGHT;
-		Stop;
+	Stop;
 }
 }
 
-CLASS GiantSlimeRicochet : ACTOR {//: RicoChet
+CLASS GiantSlimeRicochet : pb_puff {//: RicoChet
 Default {
-	
 	+NOBLOCKMAP;
 	+NOGRAVITY;
 	+CLIENTSIDEONLY;
@@ -984,6 +966,7 @@ Default {
 	XScale 3.0;
 	YScale 2.0;
 }
+
 States
 {
 	Spawn:
@@ -996,7 +979,7 @@ States
 }
 }
 
-CLASS GiantBloodRicochet : ACTOR {//: RicoChet
+CLASS GiantBloodRicochet : pb_puff {//: RicoChet
 Default {
 	
 	+NOBLOCKMAP;
@@ -1024,7 +1007,6 @@ States
 
 CLASS Slime2Ricochet: RicoChet { 
 Default {
-	
 	+NOINTERACTION;
 	RenderStyle "Translucent";
 	Alpha 0.8;
@@ -1042,9 +1024,8 @@ States
 }
 }
 
-CLASS GiantSlime2Ricochet : ACTOR {//: RicoChet
+CLASS GiantSlime2Ricochet : pb_puff {//: RicoChet
 Default {
-	
 	+NOBLOCKMAP;
 	+NOGRAVITY;
 	+CLIENTSIDEONLY;
@@ -1071,9 +1052,9 @@ States
 
 CLASS RailgunPuff1 : HitPuff { 
 Default {
-	
 	DamageType "Blast";
 }
+
 States
 {
 	Death:
@@ -1084,11 +1065,11 @@ States
 		TNT1 A 0 A_Explode(120,5, 0);
 		TNT1 A 0 A_Playsound("explosion/deepimpact", 3);
 		TNT1 A 0 A_PlaySound("FAREXPL", 1);
-		EXPL A 0 Radius_Quake(4, 10, 0, 15, 0);
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 0, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticleVeryFast", 0, 0, random(0, 360), 2, random(0, 360));
-		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmokeFast22", 0, 0, random(0, 360), 2, random(0, 360));
+		tnt1 A 0 Radius_Quake(4, 10, 0, 15, 0);
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		tnt1 AAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("FireworkSFXType2", 2, 0, random(0, 360), 2, random(10, 80));
 		TNT1 A 0 A_SpawnItemEx("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -1108,9 +1089,8 @@ States
 }
 }
 
-CLASS MicrowavePuff : FastProjectile { 
+CLASS MicrowavePuff : pb_projectile_base { 
 Default {
-	
 	Renderstyle "Add";
 	DamageType "Incinerate";
 	DeathSound "weapons/StachanovHit";
@@ -1132,7 +1112,6 @@ states
 
 CLASS HMGPuff : HitPuff { 
 Default {
-	
 	DamageType "Blast";
 }
 }
@@ -1140,10 +1119,8 @@ Default {
 
 CLASS PulsePuff : HitPuff { 
 Default {
-	
 	DamageType "Blackhole";
 	+FRIENDLY;
-	+DONTHURTSPECIES;
 	+DONTHARMSPECIES;
 	Species "Marine";
 }
@@ -1153,7 +1130,6 @@ Default {
 ///////////////////////////////////////////////////////////////////////////////PB
 CLASS WaterRicochet: RicoChet { 
 Default {
-	
 	renderstyle "Translucent";
 	alpha 0.8;
 	Scale 1.0;
@@ -1170,7 +1146,6 @@ states
 
 CLASS GiantWaterRicochet: RicoChet { 
 Default {
-	
 	renderstyle "Translucent";
 	alpha 0.9;
 	XScale 3.0;
@@ -1186,11 +1161,11 @@ states
 
 CLASS SlimeRicochet: RicoChet { 
 Default {
-	
 	renderstyle "Translucent";
 	alpha 0.8;
 	Scale 1.0;
 }
+
 states
 {
 	Spawn:
@@ -1204,12 +1179,12 @@ states
 //////////////////////////////////////////////////PB
 CLASS SludgeRicochet: RicoChet { 
 Default {
-	
 	+NOINTERACTION;
 	RenderStyle "Translucent";
 	Alpha 0.8;
 	Scale 1.0;
 }
+
 States
 {
 	Spawn:
@@ -1222,12 +1197,12 @@ States
 
 CLASS BloodRicochet: RicoChet { 
 Default {
-	
 	+NOINTERACTION;
 	RenderStyle "Translucent";
 	Alpha 0.8;
 	Scale 1.0;
 }
+
 States
 {
 	Spawn:
@@ -1241,12 +1216,12 @@ States
 
 CLASS LavaRicochet: RicoChet { 
 Default {
-	
 	+NOINTERACTION;
 	RenderStyle "Translucent";
 	Alpha 0.8;
 	Scale 0.85;
 }
+
 States
 {
 	Spawn:
@@ -1262,31 +1237,28 @@ States
 
 CLASS SilentHitPuff: hitPuff { 
 Default {
-	
 	DamageType "bullet";
 }
 }
 
 CLASS MiniGunBulletPuff: HitPuff { 
 Default {
-	
 	DamageType "CutLess";
 }
 }
 
 CLASS MachineGunBulletPuff: HitPuff { 
 Default {
-	
 	DamageType "CutLess";
 }
 }
 
 CLASS ATBulletPuff: HitPuff { 
 Default {
-	
 	Scale 0.4;
 	DamageType "Blast";
 }
+
 States
 {
 	Spawn:
@@ -1300,7 +1272,6 @@ States
 
 CLASS SSawPuff: BulletPuff { 
 Default {
-	
 	renderstyle "Translucent";
 	scale 0.15;
 	alpha 0.7;
@@ -1311,6 +1282,7 @@ Default {
 	+FORCEXYBILLBOARD;
 	Decal "SawDecalNew1";
 }
+
 states
 {
 	Spawn:
@@ -1328,14 +1300,13 @@ states
 		TNT1 A 0 a_spawnprojectile("HitSpark23", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
 		BPUF C 1 bright A_PlaySound("weapons/chainsaw/hitwall");
 		BPUF D 1 bright;
-		Stop;
+	Stop;
 }
 }
 
 
 CLASS Plasma_Puff : ACTOR { 
 Default {
-	
 	renderstyle "Add";
 	+NOBLOCKMAP;
 	+NOGRAVITY;
@@ -1344,6 +1315,7 @@ Default {
 	Scale 0.75;
 	Damage 0;
 }
+
 States
 {
 	Spawn:
@@ -1354,14 +1326,13 @@ States
 	Spawn2:
 		TNT1 A 0;
 		DB23 ABCDEFGHI 1 bright;
-		Stop;
+	Stop;
 }
 }
 
 //DB26
 CLASS HellRifle_Puff2 : ACTOR { 
 Default {
-	
 	+NOBLOCKMAP;
 	+NOGRAVITY;
 	+NOEXTREMEDEATH;
@@ -1371,6 +1342,7 @@ Default {
 	Scale 0.65;
 	Damage 0;
 }
+
 States
 {
 	Spawn:
@@ -1385,7 +1357,7 @@ CLASS UnmakerPuff : HellRifle_Puff2 {
 Default
 { Scale 2.25; } }
 
-class HellRifle_Puff : actor
+class HellRifle_Puff : pb_puff
 {
 default{
 	+NOBLOCKMAP;
@@ -1397,17 +1369,18 @@ default{
 	Scale 0.94;
 	Damage 0;
 }
-	States
-	{
-		Spawn:
-			TNT1 A 0;
-			DB60 ABCDE 1 bright Light("IncinerationGlow");
-			DB60 FGHIJKLMNOPQ 1 bright;
-			Stop;
-	}
+
+States
+{
+	Spawn:
+		TNT1 A 0;
+		DB60 ABCDE 1 bright Light("IncinerationGlow");
+		DB60 FGHIJKLMNOPQ 1 bright;
+		Stop;
+}
 }
 
-class GreenPlasma_Puff : actor
+class GreenPlasma_Puff : pb_puff
 {
 default{
 	+NOBLOCKMAP;
@@ -1417,63 +1390,50 @@ default{
 	renderstyle "Add";
 	Damage 0;
 }
-	States
+States
 
-	{
-		Spawn:
-			TNT1 A 0;
-			DB59 ABCDEFGHIJKLMNOPQRS 1 bright;
-			Stop;
-	}
+{
+	Spawn:
+		TNT1 A 0;
+		DB59 ABCDEFGHIJKLMNOPQRS 1 bright;
+		Stop;
+}
 }
 
 class GreenPlasma_Puff_Medium: GreenPlasma_Puff
-	{
-default{		Scale 0.45;
-}}
+{default{Scale 0.45; } }
 
 class GreenPlasma_Puff_Small: GreenPlasma_Puff
-	{
+{
+default{Scale 0.29;}
 
-default {		Scale 0.29;}
-		States
-		{
-		Spawn:
-			TNT1 A 0;
-			DB59 ABCDEFGHIJKLM 1 bright Light("ARMORBONUS");
-			DB59 NOPQRS 1 bright;
-			Stop;
-	}
+States
+{
+	Spawn:
+		TNT1 A 0;
+		DB59 ABCDEFGHIJKLM 1 bright Light("ARMORBONUS");
+		DB59 NOPQRS 1 bright;
+		Stop;
+}
 }
 
 class GreenExplosionMushroom: GreenPlasma_Puff
-	{
-default{		Scale 1.55;}
-}
-
+{ default{Scale 1.55;} }
 
 class SSawPuff2: SSawPuff
-	{
-		default{damagetype "cut";}
-}
+{ default{damagetype "cut";} }
 
 class SSawPuff3: SSawPuff
-	{
-	default{	damagetype "saw";}
-}
+{default{damagetype "saw";} }
 
 class SSawPuff4: SSawPuff
-	{
-	default{	damagetype "Massacre";}
-}
+{ default{	damagetype "Massacre";} }
 
 class FakeSSawPuff: SSawPuff
-	{
-default{		+THRUGHOST;}
-}
+{ default{ +THRUGHOST;} }
 
 
-class PuffSmoke : actor
+class PuffSmoke : pb_puff
 {
 default {
 	+MISSILE;
@@ -1501,21 +1461,23 @@ default {
 	//damagetype Shrapnel
 	seesound "weapons/ricochet";
 }
-	states
-	{
-		Spawn:
-			TNT1 A 0;
-			PUFY ZZZCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_FadeOut(0.03);
-			//LENY AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_FadeOut(0.06)
-			//LENY AAAAAA 1 bright
-			//LENY AAA 1
-			stop;
-	}
+
+states
+{
+	Spawn:
+		TNT1 A 0;
+		PUFY ZZZCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_FadeOut(0.03);
+		//LENY AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_FadeOut(0.06)
+		//LENY AAAAAA 1 bright
+		//LENY AAA 1
+	stop;
+}
 }
 
-class LavaStep : actor
+class LavaStep : pb_puff
 {
-default{
+default
+{
 	renderstyle "Add";
 	alpha 1.0;
 	-COUNTKILL;
@@ -1535,24 +1497,23 @@ default{
 	Height 1;
 }
 
-	states
-	{
-		Spawn:
-			TNT1 A 0;
-			TNT1 A 0;
-			EXPL A 0 A_SpawnItem("BurningEmberParticlesFloating_Bigger");//BurningEmberParticlesFloating
-			TNT1 A 0 a_spawnprojectile("ExplosionParticleHeavy", 10, 0, random(0, 180), 2, random(10, 90));
-			TNT1 A 0 A_SetScale(0.28, 0.22);
-			INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
-			INFE ST 1 BRIGHT a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 32, 0, random(160, 210), 2, random(10, 90));
-			Stop;
-	}
+states
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0;
+		EXPL A 0 A_SpawnItem("ExplosionParticle");//BurningEmberParticlesFloating
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 180), 2, random(10, 90));
+		TNT1 A 0 A_SetScale(0.28, 0.22);
+		INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
+		INFE ST 1 BRIGHT a_spawnprojectile("OldschoolRocketSmokeTrailDarker", 32, 0, random(160, 210), 2, random(10, 90));
+		Stop;
+}
 }
 
 
 class Sparks: BulletPuff
 {
-
 default{
 		renderstyle "Translucent";
 		alpha 0.8;
@@ -1561,19 +1522,19 @@ default{
 		+CLIENTSIDEONLY;
 		Scale 0.5;
 }
-		states
-		{
-		Spawn:
-			TNT1 A 0;
-			//TNT1 AAAA 0 a_spawnprojectile("RicochetBullet",0,0,random(0,360),2,random(-40,40))
-			TNT1 A 0 A_SpawnItem("YellowFlareSmall", 0);
-			TNT1 A 0 A_Jump(132, 15);
-			FX58 ABCDEFGHIJ 1 bright;
-			Stop;
-			TNT1 AAAAA 0;
-			FX57 ABCDEFGHIJ 1 bright;
-			stop;
-	}
+states
+{
+	Spawn:
+		TNT1 A 0;
+		//TNT1 AAAA 0 a_spawnprojectile("RicochetBullet",0,0,random(0,360),2,random(-40,40))
+		TNT1 A 0 A_SpawnItem("YellowFlareSmall", 0);
+		TNT1 A 0 A_Jump(132, 15);
+		FX58 ABCDEFGHIJ 1 bright;
+		Stop;
+		TNT1 AAAAA 0;
+		FX57 ABCDEFGHIJ 1 bright;
+		stop;
+}
 }
 
 
@@ -1582,30 +1543,29 @@ default{
 class SiphonPuff : BulletPuff
 {
 default {
-
-		+NOBLOCKMAP;
-		+NOGRAVITY;
-		+NOEXTREMEDEATH;
-		+PUFFONACTORS;
-		+BLOODLESSIMPACT;
-		+FORCEXYBILLBOARD;
-		+DONTSPLASH;
-		//renderstyle "Add"
-		renderstyle "Add";
-		Scale 0.65;
-		Damage 0;
-		Damagetype "Siphon";
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+NOEXTREMEDEATH;
+	+PUFFONACTORS;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+DONTSPLASH;
+	//renderstyle "Add"
+	renderstyle "Add";
+	Scale 0.65;
+	Damage 0;
+	Damagetype "Siphon";
 }
-		States
-		{
-		Spawn:
-		Death:
-		Melee:
-		XDeath:
-			TNT1 A 0;
-			DB26 I 1;
-			DB26 JKLM 1 bright Light("IncinerationGlow");
-			DB26 NOPQRSTUV 1 bright;
-			Stop;
-	}
+States
+{
+	Spawn:
+	Death:
+	Melee:
+	XDeath:
+		TNT1 A 0;
+		DB26 I 1;
+		DB26 JKLM 1 bright Light("IncinerationGlow");
+		DB26 NOPQRSTUV 1 bright;
+		Stop;
+}
 }

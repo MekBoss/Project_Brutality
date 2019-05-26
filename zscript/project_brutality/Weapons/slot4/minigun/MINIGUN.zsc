@@ -68,14 +68,15 @@ States
 		CHGS ABCD 1;
 		TNT1 A 0 A_PlaySound("CHGNPKUP");
 	ready_loop:
-		TNT1 A 0
+		CHAG A 1
 		{
+			a_weaponready();
+			//pb_casing_base.pb_spawn_casing('spawn', self.pos, self.angle, self.pitch, z_offset: self.height / 4 * 3, speed: random(6,10) );
 			A_StopSound(6);
 			A_StopSound(1);
 			//A_GunFlash("Glow");
 			if(invoker.barrel_spins == true) {self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("spins_barrels") ); }
 		}
-		CHAG A 1 a_weaponready();
 	loop;
 
 	spins_barrels:

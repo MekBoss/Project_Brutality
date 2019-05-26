@@ -164,9 +164,9 @@ States
 		TNT1 A 0 a_spawnprojectile ("MetalShard3", 5, 0, random (0, 360), 2, random (30, 160));
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ZombieRocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
 		//XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160))
 		
 		TNT1 AAAAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));

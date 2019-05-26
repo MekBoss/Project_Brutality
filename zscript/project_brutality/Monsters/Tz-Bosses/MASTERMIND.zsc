@@ -196,8 +196,8 @@ States
 	DeathRare:
 		TNT1 A 0;
 		TNT1 AAAAAAA 0 a_spawnprojectile("ExplosionFlames", 60, -19, random(0, 360), 2, random(0, 360));
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 60, 19, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 60, -19, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 60, 19, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticle", 60, -19, random(0, 360), 2, random(0, 180));
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
 		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel1", 60, 19, random(0, 360), 2, random(30, 160));
 		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel2", 60, -19, random(0, 360), 2, random(30, 160));

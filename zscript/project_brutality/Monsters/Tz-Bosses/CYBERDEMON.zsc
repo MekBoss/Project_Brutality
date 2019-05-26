@@ -393,8 +393,8 @@ states
 		TNT1 A 0 a_spawnprojectile("ExcavatorExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 ;//a_spawnprojectile("FireworkSFXType2", 0, 0, random(0, 360), 2, random(30, 60));
 		EXPL AAA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
-		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 0, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticleHeavy", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
 		EXPL A 0 Radius_Quake(3, 120, 0, 120, 0);
 		BEXP B 0 BRIGHT A_Scream;
 		EXP1 ABCDEFGHIJKLMN 2 BRIGHT;

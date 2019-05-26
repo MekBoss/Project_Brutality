@@ -52,10 +52,10 @@ CLASS DrillBombExplode : ACTOR {
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType2", 0, 0, random (0, 360), 2, random (30, 60));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 12, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 12, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 12, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 12, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 12, 0, random (0, 360), 2, random (0, 360));
-		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmokeFast22", 12, 0, random (0, 360), 2, random (0, 360));
+		tnn1 AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 12, 0, random (0, 360), 2, random (0, 360));
 		//TNT1 A 0 A_SpawnItemEx ("ExcavatorExplosion",0,0,12,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
 	//	TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -157,11 +157,11 @@ CLASS ExcavatorDrill : ACTOR {
 		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
-		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmokeFast22", 0, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
 		//TNT1 A 0 A_SpawnItemEx ("ExcavatorExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		//TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
@@ -215,7 +215,7 @@ CLASS DropShotExplode : ACTOR {
 		XXXX A 0 a_spawnprojectile ("ExplosionQuake", 1, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnItemEx ("DiggerTrail",random (-3, 0),random (-3, -1),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("DiggerTrail",random (0, 3),random (1, 3),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		5DKP DDDDDDDDDDDDDD 1 a_spawnprojectile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360));
+		5DKP DDDDDDDDDDDDDD 1 a_spawnprojectile ("ExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360));
 		
 		EXPL A 0 Radius_Quake (3, 24, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
 		TNT1 A 0 a_spawnprojectile("BigRicoChet");
@@ -226,10 +226,10 @@ CLASS DropShotExplode : ACTOR {
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType2", 0, 0, random (0, 360), 2, random (30, 60));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
-		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmokeFast22", 0, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
 		//TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
 		

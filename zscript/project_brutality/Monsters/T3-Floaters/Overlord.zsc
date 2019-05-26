@@ -18,7 +18,7 @@ Default
 	damagefactor "Avoid", 0.0;
 	DamageFactor "Fatality", 1.1;
 	
-	DropItem "DemonStrengthRune", 25;
+/*	DropItem "DemonStrengthRune", 25;
 	DropItem "DemonMorphRune", 25;
 	DropItem "Demonpickup2", 76;
 	DropItem "Demonpickup2", 76;
@@ -28,7 +28,7 @@ Default
 	DropItem "ShieldSphere", 13;
 	DropItem "TimeSphere", 13;
 	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 188;
+	DropItem "Demonpickup2", 188;*/
 	
 	Obituary "%o was smoked by the Overlord.";
 	HitObituary "The Overlord ate %o for lunch.";
@@ -899,42 +899,42 @@ Spawn:
 	OF31 A 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 B 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 C 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 D 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 E 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 F 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 G 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 H 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("ExplosionParticleVerySlow", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	loop;
 	
 Death:

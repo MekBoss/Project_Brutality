@@ -1297,8 +1297,8 @@ States
 	Pain.ArchvileAttack:
 	PLAY G 1;
 	TNT1 A 0 A_SpawnProjectile ("NewRocketExploFX", 30, 0, random (0, 360), 2, random (0, 360));
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("ExplosionParticleHeavy", 30, 0, random (0, 360), 2, random (0, 180));
-	TNT1 AAAAAA 0 A_SpawnProjectile ("ExplosionParticleHeavy", 30, 0, random (0, 360), 2, random (0, 180));
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("ExplosionParticle", 30, 0, random (0, 360), 2, random (0, 180));
+	TNT1 AAAAAA 0 A_SpawnProjectile ("ExplosionParticle", 30, 0, random (0, 360), 2, random (0, 180));
 	tnt1 A 0 A_Pain;
 	tnt1 A 0;//ACS_Execute(577, 0, 0, 0, 0)
 	tnt1 A 0 ;//acs_Execute(530, 0, 0, 0, 0);

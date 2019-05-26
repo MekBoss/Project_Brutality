@@ -30,7 +30,7 @@ states
 		TNT1 A 0;//a_spawnprojectile ("Flametrails", 0, 0, random (0, 180), 2, random (0, 360))
 		TNT1 A 0 A_SpawnItem("HellRifle_Puff");
 		TNT1 A 0 BRIGHT A_SpawnItem("RedFlare");
-		TNT1 AAA 0 A_SpawnItemEx("ExplosionParticleVerySlow", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
+		TNT1 AAA 0 A_SpawnItemEx("ExplosionParticle", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
 		//TNT1 AAA 0 ; //A_SpawnItemEx("ObeliskTrailSpark", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
 		TNT1 A 4;
 		TNT2 AAA 3 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
@@ -39,8 +39,8 @@ states
 	Death:
 		TNT1 A 0 A_SpawnItem("HellRifle_Puff2");
 		TNT1 A 0 BRIGHT A_SpawnItem("RedFlare");
-		TNT1 AAA 0 A_SpawnItemEx("ExplosionParticleVerySlow", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
-		TNT1 AA 0 A_SpawnItemEx("BurningEmberParticlesFloating_Bigger", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 AAA 0 A_SpawnItemEx("ExplosionParticle", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
+		TNT1 AA 0 A_SpawnItemEx("ExplosionParticle", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
 		TNT1 AAA 0 ; //A_SpawnItemEx("ObeliskTrailSpark", random(-8, 8), random(-8, 8), random(-2,2), 0, 0, 0, 0, 128, 0);
 		TNT1 A 4;
 		TNT2 AAAAA 4 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
@@ -381,13 +381,13 @@ CLASS RedTracerSmall : ACTOR {
 	Spawn:
 	Death:
 		SHOQ A 2 Bright A_FadeOut(0.04);
-		TNT1 A 0 A_SpawnItemEx("ExplosionParticleVerySlow", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionParticle", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
 		SHOQ B 2 Bright A_FadeOut(0.04);
 		SHOQ C 2 Bright A_FadeOut(0.04);
-		TNT1 A 0 A_SpawnItemEx("BurningEmberParticlesFloating", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionParticle", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
 		SHOQ D 2 Bright A_FadeOut(0.04);
 		SHOQ E 2 Bright A_FadeOut(0.04);
-		TNT1 A 0 A_SpawnItemEx("ExplosionParticleVerySlow", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionParticle", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
 		SHOQ F 2 Bright A_FadeOut(0.04);
 		SHOQ G 2 Bright A_FadeOut(0.04);
 		TNT1 A 0 ; //A_SpawnItemEx("ObeliskTrailSpark", random(19,-19), random(19,-19), random(4,-4), 0, 0, 0, 0, 128, 0);
