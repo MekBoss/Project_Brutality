@@ -155,7 +155,7 @@ States
 		Goto See;
 		
 	NormalBarrel:
-		BAR1 BCDEFGHIJKLM 2 A_JumpIfInventory("RedBloodSplatterz", 1, "Pain.Blood");
+		BAR1 BCDEFGHIJKLM 2 ;//;//;//A_JumpIfInventory("RedBloodSplatterz", 1, "Pain.Blood");
 		loop;
 		
 	NormalBarrel2:
@@ -163,7 +163,7 @@ States
 		Goto NormalBarrel;
 		
 	See:
-		BAR1 ABCDEFGHIJKLM 2 A_JumpIfInventory("RedBloodSplatterz", 1, "Pain.Blood");
+		BAR1 ABCDEFGHIJKLM 2 ;//;//A_JumpIfInventory("RedBloodSplatterz", 1, "Pain.Blood");
 		TNT1 A 0 A_TAkeInventory("BarrelExpMeasure", 100);
 		TNT1 A 0 A_TAkeInventory("BarrelExpMeas2", 100);
 	Loop;

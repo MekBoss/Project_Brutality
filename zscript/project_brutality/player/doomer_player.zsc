@@ -259,7 +259,7 @@ Default
 	+SOLID;
 	+THRUSPECIES;
 	+MTHRUSPECIES;
-	+DONTHURTSPECIES;
+	+DONTHarmclass;
 	+THRUGHOST;
 	-NOSKIN;
 	Species "Marines";

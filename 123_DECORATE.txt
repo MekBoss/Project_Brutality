@@ -13,11 +13,14 @@
 //#include "actors/Effects/PARTICLES.dec"
 
 
-#include "actors/Gore/BLOODSPLASH.dec"
-#include "actors/Gore/JUNK.dec"
-#include "actors/Gore/BURN.dec"
-#include "actors/Gore/Underwaterblood.dec"
-#include "actors/Gore/SwarmFly.dec"
+//#include "actors/Gore/BLOODSPLASH.dec"
+//#include "actors/Gore/JUNK.dec"
+//#include "actors/Gore/BURN.dec"
+
+
+//#include "actors/Gore/Underwaterblood.dec"
+
+//#include "actors/Gore/SwarmFly.dec"
 
 
 //#include "actors/Effects/CASING.dec"
@@ -123,6 +126,7 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 
 
 //Lil Guys!
+/*
 #include "actors/Monsters/Tz-Shrinks/ZombieShrinks.dec"
 #include "actors/Monsters/Tz-Shrinks/SergeantShrinks.dec"
 #include "actors/Monsters/Tz-Shrinks/CommandoShrinks.dec"
@@ -130,7 +134,7 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 #include "actors/Monsters/Tz-Shrinks/DemonShrinks.dec"
 #include "actors/Monsters/Tz-Shrinks/NoblesShrinks.dec"
 #include "actors/Monsters/Tz-Shrinks/MancubusShrinks.dec"
-
+*/
 //#include "actors/Monsters/Frozen.dec"
 
 

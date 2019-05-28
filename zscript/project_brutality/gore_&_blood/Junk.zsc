@@ -10,7 +10,7 @@ CLASS XJunk1: XDeath1 {
 		Gravity 0.8;
 		DeathSound "none";
 		SeeSound "none";
-		Decal None;
+		Decal "";
 		Scale 1.0;
 	}
 	States

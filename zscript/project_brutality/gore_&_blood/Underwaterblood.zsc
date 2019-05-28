@@ -1,7 +1,6 @@
 CLASS Underblood1 : ACTOR { 
 	Default {
 		
-		game Doom;
 		scale 1.4;
 		speed 1;
 		health 1;
@@ -11,8 +10,8 @@ CLASS Underblood1 : ACTOR {
 		damage 0;
 		Renderstyle "Translucent";
 		Alpha 0.2;
-		DamageType Blood;
-		Decal BrutalBloodSplat;
+		DamageType "Blood";
+		Decal "BrutalBloodSplat";
 		+MISSILE;
 		+CLIENTSIDEONLY;
 		+NOTELEPORT;
@@ -28,6 +27,7 @@ CLASS Underblood1 : ACTOR {
 		Mass 1;
 	}
 	States
+	
 	{
 		Spawn:
 			BSP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 A_JumpIf(waterlevel < 1, "Splash");
@@ -76,37 +76,39 @@ CLASS Underblood3: Underblood1 {
 
 CLASS UnderbloodGreen: Underblood1 { 
 	Default {
-	}
-{translation "168:191=112:127", "16:47=123:127"}
+translation "168:191=112:127", "16:47=123:127";
+
+}}
 CLASS UnderbloodGreen2: Underblood2 { 
-	Default {
-	
-translation "168:191=112:127", "16:47=123:127"
-	Decal GreenBloodSplat;
+	Default {	
+translation "168:191=112:127", "16:47=123:127";
+	Decal "GreenBloodSplat";
 	}
 }
 CLASS UnderbloodGreen3: Underblood3 { 
 	Default {
  
-translation "168:191=112:127", "16:47=123:127"
-Decal GreenBloodSplat
+translation "168:191=112:127", "16:47=123:127";
+Decal "GreenBloodSplat";
 	}
 }
 CLASS UnderbloodBlue: Underblood1 { 
-	Default {
-	}
-{translation "168:191=192:207","16:47=240:247"}
+	Default
+{translation "168:191=192:207","16:47=240:247";}
+
+}
+
 CLASS UnderbloodBlue2: Underblood2 { 
 	Default {
 	
-translation "168:191=192:207","16:47=240:247"
-	Decal BlueBloodSplat;
+translation "168:191=192:207","16:47=240:247";
+	Decal "BlueBloodSplat";
 	}
 }
 CLASS UnderbloodBlue3: Underblood3 { 
 	Default {
  
-translation "168:191=192:207","16:47=240:247"
-Decal BlueBloodSplat
+translation "168:191=192:207","16:47=240:247";
+Decal "BlueBloodSplat";
 	}
 }

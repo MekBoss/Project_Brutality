@@ -13,8 +13,8 @@ CLASS Bodiless_Swarm : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 0 A_PlaySoundEX("DSBUZZ","Body",1);
-			TNT1 AAAAAAAAAAAA 1 A_SpawnItemEx ("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+			TNT1 A 0 A_PlaySound("DSBUZZ",4, looping:true);
+			TNT1 AAAAAAAAAAAA 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
 			TNT1 A -1;
 			Stop;
 	}
@@ -60,8 +60,8 @@ CLASS Body_Swarm : ACTOR {
 			TNT1 A 0 A_SpawnItemEX("GibbedMarine");
 			Goto MakeSwarm;
 		MakeSwarm:
-			TNT1 A 0 A_PlaySoundEX("SFX/Buzz","Body",1);
-			TNT1 AAAAA 1 A_SpawnItemEx ("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+			TNT1 A 0 A_PlaySound("SFX/Buzz", 4, looping:true);
+			TNT1 AAAAA 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
 			TNT1 A -1;
 			Stop;
 	}
@@ -85,15 +85,19 @@ CLASS SwarmFly : ACTOR {
 			TNT1 A 0;
 			TNT1 A 0 A_PlaySound("SwarmFly",2,0.5,1);
 		Exist:
-			SFLY A 1 ThrustThingZ(0, random (-1, 1), random (1, 0), 1)TNT1 A 0 A_ChangeVelocity(frandom(-2,2),frandom(-1,1),frandom(-2,2),1);
-			SFLY B 1 ThrustThingZ(0, random (-1, 1), random (1, 0), 1)TNT1 A 0 A_ChangeVelocity(frandom(-1,1),frandom(-2,2),frandom(-1,1),1);
-			SFLY A 0 A_CountDown();
-			SFLY C 1 ThrustThingZ(0, random (-1, 1), random (1, 0), 1)TNT1 A 0 A_ChangeVelocity(frandom(-2,2),frandom(-1,1),frandom(-2,2),1);
-			SFLY B 1 ThrustThingZ(0, random (-1, 1), random (1, 0), 1)TNT1 A 0 A_ChangeVelocity(frandom(-1,1),frandom(-2,2),frandom(-1,1),1);
-			SFLY A 0 A_CountDown();
+			SFLY A 1 ThrustThingZ(0, random(-1, 1), random(1, 0), 1);
+			TNT1 A 0 A_ChangeVelocity(frandom(-2,2),frandom(-1,1),frandom(-2,2),1);
+			SFLY B 1 ThrustThingZ(0, random(-1, 1), random(1, 0), 1);
+			TNT1 A 0 A_ChangeVelocity(frandom(-1,1),frandom(-2,2),frandom(-1,1),1);
+			SFLY A 0 A_CountDown;
+			SFLY C 1 ThrustThingZ(0, random(-1, 1), random(1, 0), 1);
+			TNT1 A 0 A_ChangeVelocity(frandom(-2,2),frandom(-1,1),frandom(-2,2),1);
+			SFLY B 1 ThrustThingZ(0, random(-1, 1), random(1, 0), 1);
+			TNT1 A 0 A_ChangeVelocity(frandom(-1,1),frandom(-2,2),frandom(-1,1),1);
+			SFLY A 0 A_CountDown;
 			Loop;
 		Death:
-			SFLY A 1 A_CustomMissile("SwarmFly",0,0,frandom(-20,20));
+			SFLY A 1 a_spawnprojectile("SwarmFly",0,0,frandom(-20,20));
 			SFLY B 1 A_StopSound(2);
 			Stop;
 	}
