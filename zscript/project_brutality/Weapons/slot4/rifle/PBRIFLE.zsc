@@ -201,6 +201,7 @@ States
 		}
 		RI2Z CDEEF 1;
 	Goto Ready_loop;
+
 	back_to_aim:
 		RI2Z FEEDC 1;
 		tnt1 a 0
@@ -210,8 +211,6 @@ States
 			invoker.iron_sight = false;
 		}
 	Goto Ready_loop;
-
-
 		RIFR ABCDE 1;
 		TNT1 A 0 A_PlaySound("RIFCL_OU", 2);
 		RIFR F 1;// A_JumpIfInventory("HasUnloaded", 1, 2);
@@ -222,7 +221,6 @@ States
 		TNT1 A 0 A_PlaySound("RIFCL_IN", 3);
 		RIFR NOPQRST 1;
 		TNT1 A 0 A_PlaySound("RIFCL_CL", 4);
-
 		TNT1 A 0 A_JumpIfInventory("RifleAmmo",1,"InsertBullets2");//30+1 effect
 	//Goto InsertBullets;
 		
@@ -296,7 +294,6 @@ States
 		TNT1 A 0 A_ZoomFactor(1.0);
 		RIGR BATS 1;
 		RGLR A 4;
-
 		RGLR BCD 2;
 		TNT1 A 0 A_PlaySound("Weapons/GrenadeOpen", 1);
 		TNT1 AAAA 0 a_fireprojectile("SmokeSpawner",4,0,0,2);
@@ -344,7 +341,6 @@ States
 	Steady:
 		TNT1 A 1;
 		Goto Ready;
-		
 	SkipIntro:
 
 
@@ -357,15 +353,13 @@ States
 		PUNS GF 7;//A_TakeInventory("Reloading", 1)
 		TNT1 A 0;//A_TakeInventory("GoWeaponSpecialAbility", 1)
 		PUNS EDCB 1;
-
-
 		RIFW ABCDEFGH 1;
 		RIFR HIKL 1;
 		RIFR MMM 1;
 		TNT1 A 0 A_PlaySound("RIFCL_IN", 3);
 		RIFR NOPQRST 1;
 		TNT1 A 0 A_PlaySound("RIFCL_CL", 4);
-		Goto LoadChamber;
+	Goto LoadChamber;
 
 	
 	
@@ -378,13 +372,8 @@ States
 		Wait;
 	GrabBarrel:
 		TNT1 A 0;
-
-
-
 		TNT1 A 0 A_ZoomFactor(1.0);
 		TNT1 A 0 A_PlaySound("weapons/fistwhoosh");
-
-
 		PKUP ABCDEF 1;
 		//TNT1 A 0 A_SelectWeapon("BarrelThrower");
 		TNT1 A 0 A_Lower(80);
@@ -393,10 +382,8 @@ States
 	DualWieldBaby:
 		TNT1 AAAAA 0;
 		TNT1 A 0 A_SetCrosshair(0);
-
 		TNT1 A 0 A_Print("You need two rifles to dual wield!");
-
-		Goto Ready_loop;
+	Goto Ready_loop;
 		
 	SwitchToDualWield:
 		//TNT1 A 0 A_SelectWeapon("DualRifles");
@@ -410,36 +397,26 @@ States
 		
 	Unload:
 		RIFG A 1 A_WeaponReady;
-
 		TNT1 A 0 A_ZoomFactor(1.0);
-
-
-
 		TNT1 A 0 A_JumpIfInventory("RifleAmmo",1,3);
-		Goto NoAmmo;
+	Goto NoAmmo;
 		TNT1 AAA 0;
-
 		RIFR TSRQPO 1;
 		TNT1 A 0 A_PlaySound("RIFCL_OU");
-
-
-		
 	RemoveBullets:
 		TNT1 AAAA 0;
 		TNT1 A 0 A_JumpIfInventory("RifleAmmo",1,3);
-		Goto FinishUnload;
+	Goto FinishUnload;
 		TNT1 AAAAAA 0;
 		TNT1 A 0 A_Takeinventory("RifleAmmo",1);
 		TNT1 A 0 ;
 		TNT1 A 0 A_Giveinventory("pb_clip",1);
-		Goto RemoveBullets;
+	Goto RemoveBullets;
 		
 	FInishUnload:
 		RIFR NMLKIGHGFEDCBA 1;
 		TNT1 A 0 A_PlaySound("DryFire");
-
-
-		Goto Ready_loop;
+	Goto Ready_loop;
 		
 		//////////////////////////////////////////Unloading
 		
@@ -543,157 +520,4 @@ States
 		Stop;
 }
 
-}
-
-CLASS RifleAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 31;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 30;
-   Inventory.Icon "RIFLA0";
-	}
-}
-
-CLASS MeatshieldGunAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 30;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 30;
-   Inventory.Icon "RIFLA0";
-	}
-}
-
-CLASS MeatshieldPistolAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 15;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 15;
-   Inventory.Icon "DEGTA0";
-	}
-}
-
-CLASS MeatshieldASGAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 12;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 12;
-   Inventory.Icon "AUSCA0";
-	}
-}
-
-CLASS MeatshieldCarbineAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 40;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 40;
-   Inventory.Icon "4AFLA0";
-	}
-}
-
-CLASS MeatshieldPlasmaAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 50;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 50;
-   Inventory.Icon "PLASA0";
-	}
-}
-
-CLASS MeatAmmo : Ammo { 
-	Default {
- 
-   Inventory.Amount 0;
-   Inventory.MaxAmount 100;
-   Ammo.BackpackAmount 0;
-   Ammo.BackpackMaxAmount 100;
-   Inventory.Icon "5DUNA0";
-	}
-}
-
-class BouncingGrenadeHE : pb_projectile_base
-{
-default
-{
-    +DOOMBOUNCE
-	-EXPLODEONWATER
-	+CANBOUNCEWATER
-	+FORCERADIUSDMG
-	Scale 0.25;
-	Speed 60;
-    BounceFactor 0.5;
-	Damage 35;
-	SeeSound "weapon/grenade";
-}
-
-States
-{
-	Spawn:
-	    TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
-		GRNP A 1 Bright A_SpawnItem("RedFlareVerySmall",0,0);
-	Loop;
-	
-	SpawnUnderwater:
-		GRNP A 2 Bright A_SpawnItem("RedFlareSmall",0,0);	
-	    TNT1 A 0 a_spawnprojectile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180));	
-	Goto Spawn;
-	
-	Death:
-        TNT1 A 0;
-        //TNT1 A 0 A_SpawnItemEx ("HandGrenadeExplosion",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
-		//TNT1 A 0 a_spawnprojectile("BigRicoChet");
-		//TNT1 A 0 A_SpawnItem("WhiteShockwave");
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-	    TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX", 0, 0, 0);
-		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
-        TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
-	    EXPL A 0 Radius_Quake (2, 24, 0, 15, 0);
-		BEXP B 0 BRIGHT A_Scream;
-        TNT1 A 0 A_ALertMonsters;
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle2", 0, 0, random (0, 360), 2, random (5, 90));
-		TNT1 A 0 A_Playsound("excavator/explode");
-		TNT1 A 0 A_PlaySound("FAREXPL", 3);
-		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
-		//TNT1 A 0 A_SpawnItem("FragGrenadeExplosionSmoke");
-	Stop;
-		
-	XDeath:
-        TNT1 A 0;
-		//TNT1 A 0 A_SpawnItemEx ("HandGrenadeExplosion",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
-		TNT1 A 0 a_spawnprojectile("BigRicoChet");
-		//TNT1 A 0 A_SpawnItem("WhiteShockwave");
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-	    TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX", 0, 0, 0);
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
-        TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
-	    EXPL A 0 Radius_Quake (2, 24, 0, 15, 0);
-		BEXP B 0 BRIGHT A_Scream;
-        TNT1 A 0 A_ALertMonsters;
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle2", 0, 0, random (0, 360), 2, random (5, 90));
-		TNT1 A 0 A_Playsound("excavator/explode");
-		TNT1 A 0 A_PlaySound("FAREXPL", 3);
-		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
-		//TNT1 A 0 A_SpawnItem("FragGrenadeExplosionSmoke");
-	Stop;
-	}
 }

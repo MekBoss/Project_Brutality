@@ -71,7 +71,8 @@ States
 		CHAG A 1
 		{
 			a_weaponready();
-			//pb_casing_base.pb_spawn_casing('spawn', self.pos, self.angle, self.pitch, z_offset: self.height / 4 * 3, speed: random(6,10) );
+			if(pb_clip_debug)
+			{pb_casing_base.pb_spawn_casing('spawn', self.pos, self.angle, self.pitch, z_offset: self.height / 4 * 3, speed: random(4,8) );}
 			A_StopSound(6);
 			A_StopSound(1);
 			//A_GunFlash("Glow");

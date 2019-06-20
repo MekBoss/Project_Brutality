@@ -5,13 +5,22 @@ class pb_monster_base : actor
 eventhandler spawning_event;
 //link to event which control effects
 eventhandler effects_monster;
-//unsed because now, version 4.0 and hogher, gzdoom allow check cvars directly
-//like if( 'cvar name' true/ > 10/ == 148/ etc)
+//unused because now, version 4.0 and hogher, gzdoom allow check cvars directly
+//like if( 'cvar name' == true/ > 10/ == 148/ etc)
+
+protected bool frozen, dismembered, cant_resurrect;
+override bool CanResurrect (Actor other, bool passive)
+{
+	if(cant_resurrect == true) return false;
+	return true;
+}
+
+
 
 //head position is height on which "body" of monster should become "head"
 //I recomend to set head_starting_position approx. to "monster heght" - "monster height / 10"
 //because golden ratio and it dont looks stupid in game
-double head_mul, head_pos, legs_pos;
+protected double head_mul, head_pos, legs_pos;
 
 Property headshot_multiplier : head_mul;
 Property head_starting_position : head_pos;
@@ -20,7 +29,7 @@ Property legs_height_max : legs_pos;
 
 //references to gore event so it can decide what blood and how much spawn
 //blood color obvious, blood size is amount of a blood/gore it must spawn
-string blood_color, blood_size;
+protected string blood_color, blood_size;
 //blood color for translation, by default are red, can be or green or blue
 Property blood_color : blood_color;
 Property blood_size : blood_size;

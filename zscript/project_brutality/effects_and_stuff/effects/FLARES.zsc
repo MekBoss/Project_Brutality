@@ -1,15 +1,23 @@
 //Alternative Flares
 // SMU new flares using special flare graphic designed to eliminate overlap with 
 // decoration sprites.
-
-CLASS Flare_TallTorch_Green : ACTOR { 
-Default {
-	+NOINTERACTION;
+class pb_flare : actor
+{
+default
+{
+	+nointeraction
+	+noclip
 	+NOGRAVITY;
 	+CLIENTSIDEONLY;
 	renderstyle "Translucent";
-	radius 1;
-	height 1;
+	radius 0;
+	height 0;
+}
+
+}
+
+CLASS Flare_TallTorch_Green : pb_flare { 
+Default {
 	alpha 0.4;
 	Scale 0.40;
 }
@@ -20,24 +28,18 @@ states
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(128,2);
 		TGRN X 2 bright;
-		stop;
+	stop;
 		TNT1 A 0;
 		TNT1 A 0 A_SetScale(0.39);
 		TGRN X 2 bright;
 		TNT1 A 0 A_SetScale(0.40);
-		stop;
+	stop;
 }
 }
 
 
-CLASS Flare_ShortTorch_Green : ACTOR { 
+CLASS Flare_ShortTorch_Green : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.22;
 }
@@ -56,14 +58,8 @@ states
 }
 }
 
-CLASS Flare_TallTorch_Red : ACTOR { 
+CLASS Flare_TallTorch_Red : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.40;
 }
@@ -82,14 +78,8 @@ states
 }
 }
 
-CLASS Flare_ShortTorch_Red : ACTOR { 
+CLASS Flare_ShortTorch_Red : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.22;
 	
@@ -109,14 +99,8 @@ states
 }
 }
 
-CLASS Flare_TallTorch_Blue : ACTOR { 
+CLASS Flare_TallTorch_Blue : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.40;
 }
@@ -135,14 +119,8 @@ states
 }
 }
 
-CLASS Flare_ShortTorch_Blue : ACTOR { 
+CLASS Flare_ShortTorch_Blue : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.22;
 }
@@ -161,14 +139,8 @@ states
 }
 }
 
-CLASS Flare_Candelabra_Yellow : ACTOR { 
+CLASS Flare_Candelabra_Yellow : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.40;
 }
@@ -187,14 +159,8 @@ states
 }
 }
 
-CLASS Flare_Candlestick_Yellow : ACTOR { 
+CLASS Flare_Candlestick_Yellow : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.15;
 }
@@ -213,14 +179,8 @@ states
 }
 }
 
-CLASS Flare_BurningBarrel_Red : ACTOR { 
+CLASS Flare_BurningBarrel_Red : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.4;
 	Scale 0.40;
 }
@@ -239,14 +199,8 @@ states
 }
 }
 
-CLASS Flare_SmallItem_White : ACTOR { 
+CLASS Flare_SmallItem_White : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
 	Scale 0.15;
 }
@@ -265,14 +219,8 @@ states
 }
 }
 
-CLASS Flare_Item_Green : ACTOR { 
+CLASS Flare_Item_Green : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.3;
 	Scale 0.25;
 }
@@ -291,14 +239,8 @@ states
 }
 }
 
-CLASS Flare_SmallItem_Green : ACTOR { 
+CLASS Flare_SmallItem_Green : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
 	Scale 0.15;
 }
@@ -317,14 +259,8 @@ states
 }
 }
 
-CLASS Flare_Item_Red : ACTOR { 
+CLASS Flare_Item_Red : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.3;
 	Scale 0.25;
 }
@@ -343,14 +279,8 @@ states
 }
 }
 
-CLASS Flare_SmallItem_Red : ACTOR { 
+CLASS Flare_SmallItem_Red : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
 	Scale 0.15;
 }
@@ -369,14 +299,8 @@ states
 }
 }
 
-CLASS Flare_Item_Blue : ACTOR { 
+CLASS Flare_Item_Blue : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.3;
 	Scale 0.25;
 }
@@ -395,14 +319,8 @@ states
 }
 }
 
-CLASS Flare_SmallItem_Blue : ACTOR { 
+CLASS Flare_SmallItem_Blue : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
 	Scale 0.15;
 }
@@ -422,14 +340,8 @@ states
 }
 
 
-CLASS Flare_Column : ACTOR { 
+CLASS Flare_Column : pb_flare { 
 Default {
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
 	scale 0.25;
 }
@@ -451,15 +363,9 @@ states
 
 
 
-CLASS Flare_Techlamp : ACTOR { 
+CLASS Flare_Techlamp : pb_flare { 
 Default {
 	
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
 	scale 0.25;
 	
@@ -480,20 +386,11 @@ states
 
 }
 
-CLASS Flare_Barrel_Green : ACTOR { 
+CLASS Flare_Barrel_Green : pb_flare { 
 Default {
-	
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+CLIENTSIDEONLY;
-	renderstyle "Translucent";
-	radius 1;
-	height 1;
 	alpha 0.25;
-	
 	xscale 0.25;
 	yscale 0.15;
-	
 }
 states
 {
@@ -506,7 +403,7 @@ states
 
 /////////////////
 
-CLASS Flare_General : ACTOR { 
+CLASS Flare_General : pb_flare { 
 Default {
 	
 	+NOINTERACTION;
@@ -630,7 +527,7 @@ states
 }
 }
 
-CLASS GreenFlareSpawnEvenSmaller : ACTOR { 
+CLASS GreenFlareSpawnEvenSmaller : pb_flare { 
 Default {
 	
 	Scale 0.3;
@@ -646,7 +543,7 @@ States
 }
 }
 
-CLASS GreenFlareSpawnJustSmaller : ACTOR { 
+CLASS GreenFlareSpawnJustSmaller : pb_flare { 
 Default {
 	
 	Scale 0.6;
@@ -662,7 +559,7 @@ States
 }
 }
 
-CLASS GreenFlareSpawnSmallClose : ACTOR { 
+CLASS GreenFlareSpawnSmallClose : pb_flare { 
 Default {
 	
 	Scale 0.9;
@@ -980,7 +877,7 @@ Spawn:
 
 
 
-CLASS RedFlareSpawn : ACTOR { 
+CLASS RedFlareSpawn : pb_flare { 
 Default {
 
 	Speed 20;
@@ -997,7 +894,7 @@ States
 
 
 
-CLASS PLasmaFlareSpawn : ACTOR { 
+CLASS PLasmaFlareSpawn : pb_flare { 
 Default {
 
 	Speed 20;
@@ -1013,7 +910,7 @@ States
 }
 }
 
-CLASS PLasmaFlareSpawner : ACTOR { 
+CLASS PLasmaFlareSpawner : pb_flare { 
 Default {
 
 Speed 20;
@@ -1033,7 +930,7 @@ Spawn:
 }
 
 
-CLASS YellowFlareSpawn : ACTOR { 
+CLASS YellowFlareSpawn : pb_flare { 
 Default {
 
 Speed 20;
@@ -1050,7 +947,7 @@ Spawn:
 }
 }
 
-CLASS PlayerMuzzle1 : ACTOR { 
+CLASS PlayerMuzzle1 : pb_flare { 
 Default {
 
 Speed 0;
@@ -1067,7 +964,7 @@ Spawn:
 }
 
 
-CLASS PlayerMuzzle2 : ACTOR { 
+CLASS PlayerMuzzle2 : pb_flare { 
 Default {
 
 Speed 0;
@@ -1084,7 +981,7 @@ Spawn:
 }
 }
 
-CLASS MarineMuzzle1 : ACTOR { 
+CLASS MarineMuzzle1 : pb_flare { 
 Default {
 
 Speed 0;
@@ -1103,7 +1000,7 @@ Spawn:
 }
 }
 
-CLASS MarineMuzzle2 : ACTOR { 
+CLASS MarineMuzzle2 : pb_flare { 
 Default {
 
 Speed 0;
@@ -1123,7 +1020,7 @@ Spawn:
 }
 }
 
-CLASS BlueFlareSpawn : ACTOR { 
+CLASS BlueFlareSpawn : pb_flare { 
 Default {
 
 Speed 20;
@@ -1138,7 +1035,7 @@ Spawn:
 }
 }
 
-CLASS GreenFlareSpawn : ACTOR { 
+CLASS GreenFlareSpawn : pb_flare { 
 Default {
 
 Speed 20;

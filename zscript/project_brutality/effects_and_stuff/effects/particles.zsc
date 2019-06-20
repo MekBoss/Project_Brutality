@@ -46,194 +46,9 @@ States
 	loop;
 }
 }
-/*
-CLASS pb_particle : pb_particle { 
-Default {Gravity 0.5; Scale 0.2; }
-States
-{
-	Spawn:
-		SPRK S 5 BRIGHT;
-		SPRK SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 1 Bright A_FadeOut(0.02);
-		stop;
-	Death:
-		SPRK S 1 BRIGHT A_FadeOut(0.10);
-		Loop;
-}
-}
-
-CLASS ExplosionParticleVeryFast: pb_particle { 
-Default {
-	speed 18;
-	Gravity 0.9;
-}
-}
 
 
-CLASS ExplosionParticleVerySlow: pb_particle { 
-Default {
-	Scale 0.05;
-	speed 3;
-	Gravity 0.2;
-}
-}
-
-CLASS BurningEmberParticlesFloating: pb_particle { 
-Default {
-	Scale 0.045;
-	speed 1;
-	fastspeed 1;
-	// Gravity 0.01
-	+NOGRAVITY;
-	+NOCLIP;
-	+NOINTERACTION;
-}
-States
-{
-	Spawn:
-		SPRK A 0 NoDelay A_JumpIf(Scale.X <= 0, "tnt1");
-		SPRK A 0 A_SetScale(Scale.X-0.00075);
-		SPRK S 3 bright A_ChangeVelocity(frandom(-0.2, 0.03), frandom(-0.01, 0.04), frandom(-0.1, 0.12), 0);
-		SPRK S 1 bright A_FadeOut(0.001);
-		Loop;
-}
-}
-
-CLASS BurningEmberParticlesFloating_Bigger: pb_particle { 
-Default {
-	Scale 0.19;
-	speed 1;
-	fastspeed 1;
-	// Gravity 0.01
-	+NOGRAVITY;
-	+NOCLIP;
-	+NOINTERACTION;
-}
-States
-{
-	Spawn:
-		SPRK A 0 NoDelay A_JumpIf(Scale.X <= 0, "tnt1");
-		SPRK A 0 A_SetScale(Scale.X-0.00175);
-		SPRK S 2 bright A_ChangeVelocity(frandom(-0.1, 0.2), frandom(-0.2, 0.2), frandom(-0.1, 0.12), 0);
-		SPRK S 1 bright A_FadeOut(0.02);
-		Loop;
-}
-}
-
-
-CLASS BurningEmberParticlesFloating_Bigger_Faster: pb_particle { 
-Default {
-	Scale 0.18;
-	speed 2;
-	fastspeed 2;
-	// Gravity 0.01
-	+NOGRAVITY;
-	+NOCLIP;
-	+NOINTERACTION;
-}
-States
-{
-	Spawn:
-		SPRK A 0 NoDelay A_JumpIf(Scale.X <= 0, "tnt1");
-		SPRK A 0 A_SetScale(Scale.X-0.00175);
-		SPRK S 1 bright A_ChangeVelocity(frandom(-0.1, 0.2), frandom(-0.2, 0.2), frandom(-0.1, 0.12), 0);
-		SPRK S 0 bright A_FadeOut(0.04);
-		Loop;
-}
-}
-
-CLASS BurningEmberParticlesFloating_EvenBigger: BurningEmberParticlesFloating_Bigger { 
-Default {
-	Scale 0.27;
-}
-}
-
-CLASS BurningEmberParticlesSpawner : pb_particle {//: pb_particle
-States
-{
-	Spawn:
-		TNT1 A 0;
-		TNT1 AAA 1 A_SpawnItemEx("BurningEmberParticlesFloating",frandom(1.5,-1.5),frandom(1.5,-1.5),31,0,0,frandom(0.1,0.2),0,SXF_CLIENTSIDE,0);
-		TNT1 A 11;
-		Loop;
-}
-}
-*/
-
-CLASS ShrapnelParticle: pb_particle { 
-Default {
-	speed 20;
-	Gravity 0.0;
-	+NOGRAVITY;
-	Scale 0.12;
-	radius 10;
-	height 10;
-	-DOOMBOUNCE;
-	Damage 0;
-	alpha 1.0;
-}
-States
-{
-	Spawn:
-		SPKO AAAAAAAAAAAAAAAAA 1 Bright A_FadeOut(0.05);
-		stop;
-	Death:
-		TNT1 A 0;
-		Stop;
-}
-}
-
-
-CLASS ShrapnelParticle2: ShrapnelParticle { 
-Default {
-	Speed 20;
-}
-}
-
-CLASS ShrapnelParticleSmall : ShrapnelParticle { 
-Default {
-	Scale 0.06;
-}
-}
-
-CLASS SuperExpensiveParticle: pb_particle { 
-Default {
-	Scale 0.1;
-	Speed 2;
-	Gravity 0.1;
-	+DOOMBOUNCE;
-	+FASTER;
-}
-States
-{
-	Spawn:
-		SPRK SSSSSS 1 BRIGHT A_Recoil(1);		Spawn2:
-		SPRK SSSS 1 BRIGHT A_SetAngle(random(angle-60, angle+60));
-		TNT1 A 0 A_FadeOut(0.1);
-		TNT1 A 0 A_Recoil(1);
-		Loop;
-}
-}
-
-CLASS SuperExpensiveParticleSpawner : ACTOR { 
-Default {
-	+THRUACTORS;
-}
-States
-{
-	Spawn:
-		TNT1 A 1
-		{
-			for(uint i = 0; i < 90; i++)
-			{
-				a_spawnprojectile("SuperExpensiveParticle", 2, 0, random(0, 360), 2, random(0, 360));
-			}
-		}
-	Stop;
-}
-}
-
-
-CLASS ShotgunParticles : ACTOR { 
+CLASS ShotgunParticles : pb_particle { 
 Default {
 	speed 20;
 	radius 8;
@@ -245,7 +60,6 @@ Default {
 	+MISSILE;
 	+CLIENTSIDEONLY;
 	+NOTELEPORT;
-	+NOBLOCKMAP;
 	-RIPPER;
 	+BLOODLESSIMPACT;
 	+FORCEXYBILLBOARD;
@@ -278,6 +92,43 @@ Default {
 	Alpha 0.9;
 }
 }
+
+
+
+
+
+CLASS ShrapnelParticle: pb_particle { 
+Default {
+	speed 20;
+	Gravity 0.0;
+	+NOGRAVITY;
+	Scale 0.12;
+	radius 10;
+	height 10;
+	-DOOMBOUNCE;
+	Damage 0;
+	alpha 1.0;
+}
+States
+{
+	Spawn:
+		tnt1 a 0 nodelay
+		{
+			self.vel = (random(0, 12), random(0, 12), random(0, 12) );
+			self.gravity = frandom(0, 0.3);
+			int rand = random(0.02, 0.04);
+			self.scale = (rand, rand);
+		}
+		SPKO AAAAAAAAAA 1 Bright A_FadeOut(0.1);
+	stop;
+}
+}
+
+
+
+
+
+
 
 
 CLASS UnModHitSpark: pb_particle { 
@@ -439,6 +290,8 @@ States
 		Loop;
 }
 }
+
+
 
 CLASS HeavyAssExplosionFireball : pb_particle { 
 Default {
