@@ -52,8 +52,7 @@ States
 		RAIS ABCB 2
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-		}
+ 		}
 
 	loop;
 	
@@ -63,8 +62,7 @@ States
 		RIIL ABCB 2;
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-		}
+ 		}
 	looop;
 
 
@@ -116,8 +114,7 @@ States
 		RAIR A 1;
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-		}
+ 		}
 	loop;
 	
 	MicrowaveReadyUnloaded:
@@ -125,8 +122,7 @@ States
 		RIIT F 1;
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	}
+ 	}
 	loop;
 	
 	WeaponSpecial:

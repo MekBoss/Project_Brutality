@@ -40,8 +40,7 @@ States
 		BFGG A 1
 		{
 			A_WeaponReady;
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-		}
+ 		}
 	loop;
 	
 	WeaponSpecialPurist:
@@ -319,8 +318,7 @@ CLASS SuperBFGBall : BFGBall replaces BFGBall {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_Playsound("Bfgfly1",6 ,1,1);
-		TNT1 A 0 ACS_ExecuteAlways(719, 0, 0, 0, 0);//Check if Coop
-	Spawn1:
+ 	Spawn1:
 		TNT1 A 0 A_SpawnItemEx("BFGFOG", 15, 0);
 		BFS1 A 1 BRIGHT A_SpawnItem("Green_FlareMedium",0,0);
 		TNT1 A 0 A_SpawnItemEx("BFGFOG", 15, 0);

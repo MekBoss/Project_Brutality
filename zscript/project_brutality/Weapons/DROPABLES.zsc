@@ -44,14 +44,12 @@ CLASS DropedVanillaRifle  : ACTOR {
 	States
 	{ 
 		Spawn:
-			TNT1 A 1 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"SpawnTraditional");
-			TNT1 A 4;
+ 			TNT1 A 4;
 			TNT1 A 0 A_ChangeFlag("THRUACTORS", 0);
 			TNT1 A 4;
 		Death:
 			TNT1 AAA 0;
-			TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"SpawnTraditional");
-			TNT1 A 0;
+ 			TNT1 A 0;
 			TNT1 A 0 A_SPawnItem("VanillaRifle");
 			TNT1 A 0 A_SPawnItem("DualVanillaRifles");
 			TNT1 A 0 A_SpawnItem("HasTwoVanillaRifles");
@@ -118,8 +116,7 @@ CLASS PlayerDropedCarbine : ACTOR {
 			4AFL A 4;
 			4AFL A 4;
 		Death:
-			4AFL A 1 ACS_NamedExecuteAlways("ReplaceRestrictedMode", 0, 0, 0, 0);//Check if Restricted Mode is activated
-			4AFL A 1;
+ 			4AFL A 1;
 			TNT1 A 0 A_SPawnItem("Carbine");
 			TNT1 A 0 A_SPawnItem("DualCarbines");
 			TNT1 A 0 A_SpawnItem("HasTwoCarbines");
@@ -187,24 +184,20 @@ CLASS DropedMinigun : ACTOR {
 	States
 	{
 		Spawn://SPAWN_A_FUCKING_CHAINGUN
-			TNT1 A 1 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"ReplaceTraditional");
-			TNT1 A 1 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-			TNT1 AA 1;
+ 			TNT1 AA 1;
 			TNT1 AA 1;
 			Goto Death;
 			
 		Death:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"ReplaceTraditional");
-			TNT1 A 1 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-			TNT1 A 1();
+ 			TNT1 A 1();
 			TNT1 AA 1;
 			TNT1 AA 1;
 			TNT1 A 0 A_SpawnItemEx("Mini_Gun",0,0,0,0,0,0,0,SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION | 288);
 			TNT1 A 0 A_SpawnItemEx("HasThreeMiniguns",0,0,0,0,0,0,0,SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION | 288);
 			Stop;
 		ReplaceVanilla:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"ReplaceTraditional");
-			TNT1 A 0 A_SpawnItemEx("Vanilla_Mini_Gun",0,0,0,0,0,0,0,SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION | 288);
+ 			TNT1 A 0 A_SpawnItemEx("Vanilla_Mini_Gun",0,0,0,0,0,0,0,SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION | 288);
 			Stop;
 			
 		ReplaceTraditional:

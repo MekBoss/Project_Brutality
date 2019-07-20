@@ -192,8 +192,7 @@ CLASS CrueltyBonus5health: CustomInventory { //23167
 			
 		Pickup:
 			//TNT1 A 0 A_PlaySound("CrueltyBonus", 0)
-			TNT1 A 0 ACS_NamedExecute("CrueltyBonus", 0);
-			Stop;
+ 			Stop;
 			
 	}
 }

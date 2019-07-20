@@ -854,8 +854,7 @@ CLASS JuggernautRocket: Rocket2 {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
-			
+ 			
 		Spawn1:
 			TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
 			WYVB A 1 Bright A_SpawnItem("Red_FlareSmall22",0,0);
@@ -945,8 +944,7 @@ CLASS CyberBalls : ACTOR {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
-			
+ 			
 		Spawn1:
 			TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
 			WYVB A 1 Bright A_SpawnItem("Red_FlareSmall22",0,0);

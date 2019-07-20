@@ -37,10 +37,7 @@ States
 		
 	Spawn:
 		TNT1 A 0;
-		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-		//TNT1 A 0 A_TakeInventory("ZombiemanAmmo", 20);
-		//TNT1 A 0 A_GiveInventory("ZombieManAmmo", random(1,10));
-		ACPS A 1 {ammo_amount = random(0, max_magazine_size);}
+ 		ACPS A 1 {ammo_amount = random(0, max_magazine_size);}
 	Stand:
 		TNT1 A 0;
 		ACPS AA 10 A_Look();
@@ -340,8 +337,7 @@ States
 		TNT1 A 0 A_SetInvulnerable();
 		ACPS G 3;
 		ACPS G 3 A_Pain();
-		"####" "#" 35 ;//ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 A_UnSetInvulnerable();
+ 		TNT1 A 0 A_UnSetInvulnerable();
 		Goto See;
 		
 	Pain.Stun:
@@ -1112,12 +1108,10 @@ CLASS CommandoSpawnBeacon : ACTOR {
   {
 	Spawn:
 		TNT1 A 0;
-		//TNT1 A 0 A_JumpIf(CallACS("GetActorZDist") <= 200, "SpawnFlyers");
-	SpawnTroops:
+ 	SpawnTroops:
 		TNT1 A 0;
 		BEAC Z 1;
-		//TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "SpawnFlyers");
-		BEAC Z 3 A_SpawnItem("Red_Flare", 0, 4);
+ 		BEAC Z 3 A_SpawnItem("Red_Flare", 0, 4);
 		BEAC Z 1;
 		BEAC Z 3 A_SpawnItem("Red_Flare", 0, 4);
 		BEAC Z 1;
@@ -1138,8 +1132,7 @@ CLASS CommandoSpawnBeacon : ACTOR {
 	
 /*	SpawnFlyers:
 	TNT1 A 0;
-	TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, 2);
-	Goto SpawnTroops;
+ 	Goto SpawnTroops;
 	TNT1 AA 0;
 	BEAC Z 3 A_SpawnItem("Red_Flare", 0, 4);
 	BEAC Z 1;

@@ -50,9 +50,7 @@ Default
 states
 {
 	Spawn:
-		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-		//TNT1 AA 0;
-		OVER A 10 A_Look;
+ 		OVER A 10 A_Look;
 	loop;
 	
 	See:
@@ -192,8 +190,7 @@ states
 		TNT1 A 0 {self.binvulnerable = true;}
 		OVER L 3;
 		OVER L 3 A_Pain;
-		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 {self.binvulnerable = false;}
+ 		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 	
 	Teleport:

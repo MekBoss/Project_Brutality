@@ -323,7 +323,6 @@ CLASS XDeath1 : pb_blood_and_gore_base {
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot", 0, 1);
-		//TNT1 A 0 ACS_EXecuteAlways(373, 0, 0, 0, 0);
 		XDT1 EF 3;
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
@@ -377,7 +376,6 @@ CLASS XDeath2: XDeath1 {
 		XME1 E 1;
 		TNT1 A 0 A_QueueCorpse;
 		XME1 E -1;
-		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
 		TNT1 A 0;
 		XME1 E 3;
 		TNT1 A 0 A_SpawnItemEx("PB_Blood_Spot", 0, 0, 1);
@@ -426,7 +424,6 @@ States
 		XME2 E 1;
 		TNT1 A 0 A_QueueCorpse;
 		XME2 E -1;
-		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
 		TNT1 A 0;
 		XME2 E 3;
 		TNT1 A 0 A_SpawnItemEx("PB_Blood_Spot", 0, 0, 1);
@@ -470,7 +467,6 @@ CLASS XDeath4: XDeath2 {
 		
 	Death1:
 		TNT1 A 0;
-		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
 		XME3 GH 3;
 		XME3 A 1;
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -514,7 +510,6 @@ CLASS XDeath4b: XDeath2 {
 		GIB4 B 1;
 		TNT1 A 0 A_QueueCorpse;
 		GIB4 B -1;
-		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
 		TNT1 A 0;
 		GIB4 B 1;
 		TNT1 A 0 A_SpawnItemEx("PB_Blood_Spot", 0, 0, 1);
@@ -546,7 +541,6 @@ CLASS XDeath5: XDeath2 {
 		XME5 E 1;
 		TNT1 A 0 A_QueueCorpse;
 		XME5 E -1;
-		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
 		XME5 E 3;
 	Living:
 		XME5 E 800;//duration
@@ -620,7 +614,6 @@ CLASS WaterBloodCHecker: XDeath1 {
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot", 0, 1);
-		//TNT1 A 0 ACS_EXecuteAlways(373, 0, 0, 0, 0);
 		TNT1 A 5;
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
@@ -652,7 +645,6 @@ CLASS WaterBloodCHeckerBlue: XDeath1 {
 		Loop;
 	Death:
 		TNT1 A 0;
-		//TNT1 A 0 ACS_EXecuteAlways(373, 0, 0, 0, 0);
 		TNT1 A 5;
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
@@ -684,7 +676,6 @@ CLASS WaterBloodCHeckerGreen: XDeath1 {
 		Loop;
 	Death:
 		TNT1 A 0;
-		//TNT1 A 0 ACS_EXecuteAlways(373, 0, 0, 0, 0);
 		TNT1 A 5;
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
 		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
@@ -4952,7 +4943,6 @@ CLASS GibHalfDraugr: BigGibBase {
 		Stop   ;
 	Death.Trample:
 	Death:
-		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,2);
 		TNT1 A 0 A_SpawnItem("HellishMissileLauncher");
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
@@ -4980,7 +4970,6 @@ CLASS GibHalfSkeleton: BigGibBase {
 		Stop   ;
 	Death.Trample:
 	Death:
-		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,2);
 		TNT1 A 0 A_SpawnItem("HellishMissileLauncher");
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
@@ -5008,7 +4997,6 @@ CLASS GibHalfSkeletonJustLegs: BigGibBase {
 		Stop   ;
 	Death.Trample:
 	Death:
-		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,2);
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
@@ -5445,11 +5433,9 @@ CLASS Instestin : pb_blood_and_gore_base {
 		Loop;
 		
 	Death:
-		
 		GUTS E 0;
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water");
-		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
-		Goto Rest;
+	Goto Rest;
 		
 		
 	Rest:
@@ -6188,7 +6174,6 @@ CLASS XDeathMancubusArm: XDeathArm1 {
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		HND8 A 0;
-		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,2);
 		//HND8 A 0 A_SpawnItem("FlameCannon",0,0,0,1);
 		Stop;
 		TNT1 A 0;
@@ -9357,7 +9342,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9424,7 +9408,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9494,7 +9477,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9562,7 +9544,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9625,7 +9606,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9647,7 +9627,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9707,7 +9686,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9768,7 +9746,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9830,7 +9807,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9895,7 +9871,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9958,7 +9933,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -9980,7 +9954,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10042,7 +10015,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathImpHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10068,7 +10040,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathImpHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10129,7 +10100,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathSavageImpHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10188,7 +10158,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathHellKnightHead", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10244,7 +10213,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10299,7 +10267,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10414,7 +10381,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathPinkyDemonHead", 42, 0, random(0, 360), 2, random(0, 160));
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10473,7 +10439,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathBloodDemonHead", 42, 0, random(0, 360), 2, random(0, 160));
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10577,7 +10542,6 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10633,7 +10597,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -10687,7 +10650,6 @@ States
 		TNT1 A 0 A_SpawnItem("BigBloodSpot");
 		
 		TNT1 A 1;
-		TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 		TNT1 A 2;
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
@@ -12652,7 +12614,6 @@ CLASS InfernusXDeath : pb_blood_and_gore_base {
 			TNT1 AA 0 a_spawnprojectile("XDeathInfernusLeg", 32, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 A_SpawnItem("BigBloodSpot");
 			TNT1 A 1;
-			TNT1 A 0 ACS_NamedExecuteAlways("DetermineUserBloodAmount", 0, 0, 0, 0);//Check Blood density
 			TNT1 A 2;
 			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
 			Stop;

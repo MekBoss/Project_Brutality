@@ -55,8 +55,7 @@ States
 		UNHG AABBCCDDEE 2
 		{
 			A_WeaponReady();
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-		}
+ 		}
 	loop;
 
 	Steady:

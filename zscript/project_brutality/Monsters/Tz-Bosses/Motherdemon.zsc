@@ -41,8 +41,7 @@ states
 
 	See:
 		TNT1 A 0;
-		TNT1 A 0 ACS_ExecuteAlways(621, 0, 0, 0, 0);//Health Bar
-		
+ 		
 	Chasing:
 		MOTH AAABBBCCCDDD 3 A_Chase();
 	loop;

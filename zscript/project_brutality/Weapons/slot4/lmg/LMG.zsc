@@ -56,7 +56,7 @@ States
 			self.Player.findPSprite(PSP_WEAPON).frame = 25;}//frames is a numbers, a = 1, b = 2...z = 25
 			
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+			A_WeaponOffset(0, 32);
 		}
 	loop;
 
@@ -67,7 +67,7 @@ States
 		LM2G A 1
 		{
 			A_WeaponReady();
-			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+			A_WeaponOffset(0, 32); 
 		}
 	Loop;
 
@@ -264,7 +264,7 @@ States
 		LM2G B 1
 		{
 			A_WeaponReady();
-			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+			A_WeaponOffset(0, 32); 
 		}
 	Loop;
 	
@@ -273,7 +273,7 @@ States
 		LMGG Z 1
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(0, 32);//CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
+			A_WeaponOffset(0, 32); 
 	}
 	Goto ReadyUnloaded+11;
 	

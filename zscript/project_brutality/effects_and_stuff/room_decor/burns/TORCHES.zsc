@@ -81,8 +81,7 @@ CLASS TallTorch_Blue : pb_torch_base replaces BlueTorch {
 	Spawn:
 		TTRB A 0;
 		TNT1 A 0 A_Playsound("BDFireplace2", 1, 0.25, 1);
-		//TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-		TNT1 A 1;
+ 		TNT1 A 1;
 		TNT1 A 0 A_SPawnItem("TallTOrch_BlueFlames");
 		TNT1 A 1 A_SPawnItem("TallTOrch_BlueCore");
 		
@@ -146,9 +145,7 @@ CLASS TallTorch_Green : pb_torch_base replaces GreenTorch {
 	Spawn:
 		TTRB A 0;
 		TNT1 A 0 A_Playsound("BDFireplace2", 1, 0.25, 1);
-		//TNT1 A 0 A_SpawnItemEx("EvidenceCheckerGreenTorch", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
-		//TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-		TNT1 A 1;
+  		TNT1 A 1;
 		TNT1 A 0 A_SPawnItem("TallTOrch_GreenFlames");
 		TNT1 A 1 A_SPawnItem("TallTOrch_GreenCore");
 		
@@ -221,8 +218,7 @@ CLASS ShortTorch_Blue : ShortBlueTorch replaces ShortBlueTorch {
 	Spawn:
 		TTRB A 0;
 		TNT1 A 0 A_Playsound("BDFireplace2", 1, 0.25, 1);
-		//TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-		TNT1 A 1;
+ 		TNT1 A 1;
 		TNT1 A 0 A_SPawnItem("ShortTOrch_BlueFlames");
 		TNT1 A 1 A_SPawnItem("ShortTOrch_BlueCore");
 		
@@ -285,9 +281,7 @@ CLASS ShortTorch_Red : ShortTorch_Blue replaces ShortRedTorch {
 	Spawn:
 		TTRB A 0;
 		TNT1 A 0 A_Playsound("BDFireplace2", 1, 0.25, 1);
-		//TNT1 A 0 A_SpawnItemEx("EvidenceCheckerGreenTorch", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
-		//TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-		TNT1 A 1;
+ 		TNT1 A 1;
 		TNT1 A 0 A_SPawnItem("ShortTOrch_RedFlames");
 		TNT1 A 1 A_SPawnItem("ShortTOrch_RedCore");
 		
@@ -349,9 +343,7 @@ CLASS ShortTorch_Green : ShortTorch_Blue replaces ShortGreenTorch {
 	Spawn:
 		TTRB A 0;
 		TNT1 A 0 A_Playsound("BDFireplace2", 1, 0.25, 1);
-		//TNT1 A 0 A_SpawnItemEx("EvidenceCheckerGreenTorch", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
-		//TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-		TNT1 A 1;
+ 		TNT1 A 1;
 		TNT1 A 0 A_SPawnItem("ShortTOrch_GreenFlames");
 		TNT1 A 1 A_SPawnItem("ShortTOrch_GreenCore");
 		
@@ -455,8 +447,7 @@ CLASS Candlestick1 : Candlestick replaces Candlestick {
 	{
 	Spawn:
 		TNT1 A 0;
-		TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-	Stay:
+ 	Stay:
 		CAND A 25 bright A_SpawnItemEx ("CandleStick1Flare",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_Jump(128, "Stay2");
 		
@@ -558,8 +549,7 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_Playsound("BDFirePlace2", 1, 1, 1);
-		TNT1 A 0 ACS_NamedExecuteAlways("PerformanceMode", 0, 0, 0, 0);//Check Effects
-	Stay:
+ 	Stay:
 		TNT1 A 0 bright a_spawnprojectile ("BigBlackSmokePillar", 72, 0, random (40, 180), 2, random (60, 120));
 		
 		
@@ -632,8 +622,7 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 		
 	Active:
 		BURB A 1 A_FaceTarget;
-		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"Stay");
-		//TNT1 A 0 A_JumpIfInTargetInventory("HasBarrel",1, "See");
+ 		//TNT1 A 0 A_JumpIfInTargetInventory("HasBarrel",1, "See");
 		////TNT1 A 0 A_JumpIfInTargetInventory("HasBurningBarrel",1, "See");
 		//TNT1 A 0 A_JumpIfInTargetInventory("PowerStrength",1, "GiveBarrel");
 		Goto Stay;

@@ -189,19 +189,19 @@ Default
 		BLHS A 0 A_PlaySound("SpiritSeeker",5,1.0,1);
 		BLHS A 0 A_Explode(20,32,0);
 		BLHS A 0 A_SeekerMissile (4, 8);
-		BLHS A 1 A_JumpIf(CallACS("DemonSoulSeeker"), "Death");
+		BLHS A 1 ;
 		BLHS A 0 A_Explode(20,32,0);
 		BLHS A 0 A_SeekerMissile (4, 8);
-		BLHS B 1 A_JumpIf(CallACS("DemonSoulSeeker"), "Death");
+		BLHS B 1 ;
 		BLHS A 0 A_Explode(20,32,0);
 		BLHS A 0 A_SeekerMissile (4, 8);
-		BLHS C 1 A_JumpIf(CallACS("DemonSoulSeeker"), "Death");
+		BLHS C 1;
 		BLHS A 0 A_Explode(20,32,0);
 		BLHS A 0 A_SeekerMissile (4, 8);
-		BLHS D 1 A_JumpIf(CallACS("DemonSoulSeeker"), "Death");
+		BLHS D 1 ;
 		BLHS A 0 A_Explode(20,32,0);
 		BLHS A 0 A_SeekerMissile (4, 8);
-		BLHS E 1 A_JumpIf(CallACS("DemonSoulSeeker"), "Death");
+		BLHS E 1 ;
 		Goto Spawn2+8;
 		
 	Death:
@@ -235,8 +235,7 @@ CLASS DemonSoulHeal: CustomInventory { //23167
 		Stop;
 		
 	Pickup:
-		TNT1 A 0 ACS_NamedExecute("CrueltyBonus10", 0);
-		Stop;
+ 		Stop;
 	}
 }
 
@@ -259,9 +258,7 @@ CLASS Demonpickup: CustomInventory {
 	{
 	Spawn:
 		TNT1 A 1;
-		TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-		TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"ReplaceTraditional");
-	Stay:
+ 	Stay:
 		MDHP ABCDEFGH 3 bright A_Fadeout(0.001);
 		Loop;
 		
@@ -343,9 +340,7 @@ states
 {
 	Spawn:
 		TNT1 A 1;
-		TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-		TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("CheckTraditional")==1,"ReplaceTraditional");
-		MSP1 ABCD 4 bright;
+ 		MSP1 ABCD 4 bright;
 	loop;
 }
 
@@ -751,8 +746,7 @@ CLASS PossessionWarperA : ACTOR {
 		TNT1 A 0 NoDelay {user_xoffset = 32;}
 	SetVars:
 		TNT1 A 0 {user_yoffset = 0;
-		user_zoffset = CallACS("Pos - Adjust height");
-		user_angle = 0;}
+ 		user_angle = 0;}
 	AnimInit:
 		TNT1 A 1 A_Warp(AAPTR_MASTER, user_xoffset, user_yoffset, user_zoffset, user_angle,
 		WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_ABSOLUTEANGLE);
@@ -762,8 +756,7 @@ CLASS PossessionWarperA : ACTOR {
 		TNT1 A 0 {user_angle += 8;}
 		TNT1 A 0 A_SpawnItemEx("PossessionWarperTrail", 0, 0, 0, 0, 0, 0, 0,
 		SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		TNT1 A 0 A_JumpIf(CallACS("Pos - Check possession state") == TRUE, "Destroy");
-		MSP2 B 1;
+ 		MSP2 B 1;
 		Loop;
 	Destroy:
 		MSP2 A 1 Bright A_Warp(AAPTR_MASTER, user_xoffset, user_yoffset, user_zoffset, user_angle,
@@ -813,8 +806,7 @@ CLASS PossessMonster : CustomInventory {
 	States
 	{
 	Pickup: // "Forces" the to-be-possessed monster to enter the Possession state
-		TNT1 A 0 ACS_NamedExecuteAlways("Pos - Execute Possession state");
-		Stop;
+ 		Stop;
 	}
 }
 

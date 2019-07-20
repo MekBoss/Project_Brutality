@@ -49,8 +49,7 @@ CLASS DualM2PlasmaRifles: PB_DualWeapon {
 			P8SG A 1();
 			{
 				A_WeaponReady(WRF_ALLOWRELOAD);
-				A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-		}
+ 		}
 		TNT1 A 0 A_JumpIfInventory("Grabbing_A_Ledge",1,"LedgeClimb");
 		TNT1 A 0 A_JumpIfInventory("Unloading",1,"Unload");
 		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick");
@@ -64,8 +63,7 @@ CLASS DualM2PlasmaRifles: PB_DualWeapon {
 		P8SG B 1;
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-		}
+ 		}
 		TNT1 A 0 A_JumpIfInventory("Grabbing_A_Ledge",1,"LedgeClimb");
 		TNT1 A 0 A_JumpIfInventory("Unloading",1,"Unload");
 		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick");
@@ -79,8 +77,7 @@ CLASS DualM2PlasmaRifles: PB_DualWeapon {
 		P8SG C 1;
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-		}
+ 		}
 		TNT1 A 0 A_JumpIfInventory("Grabbing_A_Ledge",1,"LedgeClimb");
 		TNT1 A 0 A_JumpIfInventory("Unloading",1,"Unload");
 		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick");

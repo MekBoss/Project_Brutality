@@ -61,10 +61,7 @@ States
 	Stop;
 		
 	Spawn:
-		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-		//TNT1 A 0 ACS_NamedExecuteAlways("ArchvileBigHeal", 0);
-		//TNT1 A 0 ACS_NamedExecuteAlways("ArchvileDemonSummon", 0);
-	Stand:
+ 	Stand:
 		DIAB B 10 A_Look;
 	Loop;
 
@@ -221,8 +218,7 @@ States
 	Possession:
 		DIAB Q 3 {self.binvulnerable = true;}
 		DIAB Q 3 A_Pain;
-		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 {self.binvulnerable = false;}
+ 		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 
 	Pain.Stun:

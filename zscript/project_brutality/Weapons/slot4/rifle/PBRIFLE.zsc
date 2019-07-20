@@ -62,14 +62,12 @@ States
 
 	Ready:
 /*		TNT1 A 0;
-		TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("ToggleHelmetAnimation",0,0,0)==1,"SkipIntro");
-		TNT1 A 0 A_JumpIfInventory("IntroductionSequence",1,"SkipIntro");
-		TNT1 A 0 A_GiveInventory("sae_extcam", 1);//ACS_NamedExecuteAlways("PlayerPlacingHelmet", 0)
+ 		TNT1 A 0 A_JumpIfInventory("IntroductionSequence",1,"SkipIntro");
+		TNT1 A 0 A_GiveInventory("sae_extcam", 1); 
 		TNT1 A 0 A_GiveInventory("sae_deathcam", 1);
 		TNT1 A 0 A_SetCrosshair(5);
 		TNT1 A 15 A_PlaySound("IronSights",0);
-		TNT1 A 1 ACS_NamedExecute("ToggleHelmetAnimation", 0);
-		HLMT ABC 3;
+ 		HLMT ABC 3;
 		HLMT C 1;
 		TNT1 A 0 A_PlaySound("IronSights",1);
 		HLMT DEFGH 4;
@@ -97,7 +95,7 @@ States
 			//else {self.Player.findPSprite(PSP_WEAPON).sprite = getspriteindex("RIFG"); }
 			A_SetCrosshair(0);
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			A_WeaponOffset(0, 32);//(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
+			A_WeaponOffset(0, 32); 
 		}
 	Loop;
 

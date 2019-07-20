@@ -69,8 +69,7 @@ States
 		Goto See;
 		
 	Spawn:
-		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-	Stand:
+ 	Stand:
 		CYBR D 10 A_Look;
 		CYBR Z 10 A_Look;
 	Loop;
@@ -272,8 +271,7 @@ States
 
 	Death:
 		CYBR H 10;
-		//TNT1 A 0 ACS_NamedExecuteAlways("CyberDemonDoorFix", 0, 0, 0, 0)//Fix for map 26 of starter pack
-		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
+ 		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
 		TNT1 AAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 90, 0, random(0, 360), 2, random(0, 180));
@@ -292,8 +290,7 @@ States
 	Death.Decaptate:
 		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonHead", 120, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAAAA 0 a_spawnprojectile("XDeath1", 120, 0, random(0, 360), 2, random(0, 180));
-		//TNT1 A 0 ACS_NamedExecuteAlways("CyberDemonDoorFix", 0, 0, 0, 0)//Fix for map 26 of starter pack
-		CYBB AAAAA 8 A_SpawnItem("MuchBlood", 0, 120);
+ 		CYBB AAAAA 8 A_SpawnItem("MuchBlood", 0, 120);
 		CYBB ABCABCB 8 A_SpawnItem("MuchBlood", 0, 120);
 		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
 		TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));

@@ -40,9 +40,7 @@ States
 	Stop;
 		
 	Spawn:
-		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0)//Check if Vanilla Mode is activated
-		TNT1 A 0;//ACS_NamedExecuteAlways("BaronBarrelFun", 0)
-	Stand:
+ 	Stand:
 		BRUS Z 10 A_Look;
 	Loop;
 
@@ -353,8 +351,7 @@ States
 		TNT1 A 0 {self.binvulnerable = true;}
 		BRUS N 3;
 		BRUS N 3 A_Pain;
-		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 {self.binvulnerable = false;}
+ 		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 
 	Pain.Stun:

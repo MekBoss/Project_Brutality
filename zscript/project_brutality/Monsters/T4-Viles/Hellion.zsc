@@ -281,8 +281,7 @@ States
 	Possession:
 		HELN M 3 {self.binvulnerable = true;}
 		HELN M 3 A_Pain;
-		"####" "#" 35 ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 {self.binvulnerable = false;}
+ 		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 		
 	Pain.Stun:

@@ -95,8 +95,7 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			TNT1 A 0 A_PlaySound("Weapons/AutoShotgun", 4);//Play gun fire sound
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -5, 0, 0, 0);
-			TNT1 AAA 0 ACS_NamedExecute("Recoil282", 0, 0, 0, 0);
-			P8W2 C 1 A_FireCustomMissile("ShotCaseSpawn",0,0,6,4);//Ejetts empty brass
+ 			P8W2 C 1 A_FireCustomMissile("ShotCaseSpawn",0,0,6,4);//Ejetts empty brass
 			P8W2 D 0 A_SetPitch(-1.35 + pitch);//Vertical recoil down
 			P8W2 D 1();
 			P8W2 A 3 A_WeaponReady(1);

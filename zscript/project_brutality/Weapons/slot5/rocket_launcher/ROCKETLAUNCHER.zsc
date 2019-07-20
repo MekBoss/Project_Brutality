@@ -250,8 +250,7 @@ States
 		MISF A 1 BRIGHT a_fireprojectile("RocketGlassBreaker", 0, 1, 0, -6);
 		MISF A 0 BRIGHT a_fireprojectile("Rocket", random(1,1), 1, 0, -5);
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
-		TNT1 A 0 ACS_NamedExecute("Recoil282", 0, 0, 0, 0);
-		MISF BCD 1 BRIGHT;
+ 		MISF BCD 1 BRIGHT;
 		TNT1 A 0 A_ZoomFactor(0.99);
 		MISF E 3;
 		TNT1 A 0 A_ZoomFactor(1.00);
@@ -269,8 +268,7 @@ States
 		MISF A 0 BRIGHT a_fireprojectile("Rocket", random(3,4), 1, 0, -5);
 		MISF A 0 BRIGHT a_fireprojectile("Rocket", random(-4,-3), 1, 0, -5);
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
-		TNT1 A 0 ACS_NamedExecute("Recoil282", 0, 0, 0, 0);
-		MISF BCD 1 BRIGHT;
+ 		MISF BCD 1 BRIGHT;
 		TNT1 A 0 A_ZoomFactor(0.99);
 		MISF E 3;
 		TNT1 A 0 A_ZoomFactor(1.00);
@@ -289,8 +287,7 @@ States
 		MISF A 0 a_fireprojectile("Rocket", random(5,6), 1, 0, -5);
 		MISF A 0 a_fireprojectile("Rocket", random(-5,-6), 1, 0, -5);
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
-		TNT1 A 0 ACS_NamedExecute("Recoil282", 0, 0, 0, 0);
-		MISF BCD 1 BRIGHT;
+ 		MISF BCD 1 BRIGHT;
 		TNT1 A 0 A_ZoomFactor(0.99);
 		MISF E 3;
 		TNT1 A 0 A_ZoomFactor(1.00);
@@ -576,9 +573,7 @@ CLASS RocketPuff : ACTOR {
 	Spawn:
 		TNT1 A 0;
 		LEYS G 1 BRIGHT;
-		//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(102,800,0,0),1)
-//		Goto Spawn+2;
-		TNT1 A 0;
+ 		TNT1 A 0;
 		TNT1 A 1 A_Die;
 		Goto Death;
 	Death:
@@ -625,12 +620,10 @@ States
 		TNT1 A 0 A_SpawnItem("RocketFlare",-20,0);
 		TNT1 A 0 a_spawnprojectile("Explosion_Smoke", 2, 0, random(160, 210), 2, random(-30, 30));
 		TNT1 A 0 A_SpawnItem("ExplosionSmoke");
-		TNT1 A 0;//A_JumpIf(CallACS("GetActorZDist") <= 9, "Death")
-	Loop;
+ 	Loop;
 
 	Death:
-		//MISL B 0 ACS_ExecuteAlways(101,0,800,0,0)//GuidedMissileACS100
-		TNT1 A 0 A_Stopsound(6);
+ 		TNT1 A 0 A_Stopsound(6);
 		EXPL A 0 Radius_Quake(3, 16, 0, 15, 0);
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);

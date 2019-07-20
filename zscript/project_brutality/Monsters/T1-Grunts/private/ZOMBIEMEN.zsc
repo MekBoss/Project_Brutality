@@ -639,8 +639,7 @@ States
 		TNT1 A 0 {self.bInvulnerable = true;}
 		POSS G 3;
 		POSS G 3 A_Pain();
-		"####" "#" 35 ;//ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 {self.bInvulnerable = false;}
+ 		TNT1 A 0 {self.bInvulnerable = false;}
 	Goto See;
 
 	Death.Shrink:

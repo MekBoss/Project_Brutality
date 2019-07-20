@@ -9,8 +9,7 @@ CLASS StimkitBox : Health {
 	{
 		Spawn:
 			TNT1 A 0;
-		//	TNT1 A 1 ACS_NamedExecuteAlways("SmartScavengerHealthScript",0);
-			TNT1 A 10;
+ 			TNT1 A 10;
 			Stop;
 		SpawnSmartScavGreen:
 			//TNT1 A 1 A_SpawnItemEx("SmartStimkitBoxGreen",0,0,0,0,0,0,0,SXF_TRANSFERSPECIAL | SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | 288,0,tid);
@@ -65,8 +64,7 @@ CLASS SmartStimkitBoxGreen : SwitchableDecoration {
 			M4DI D 10 A_SpawnItemEx("NormalStimkitGreen",0,0,0,frandom(2,4),0,frandom(2,4),random(1,360));
 			M4DI E 10 A_SpawnItemEx("NormalStimkitGreen",0,0,0,frandom(2,4),0,frandom(2,4),random(1,360));
 			M4DI E 10;
-			TNT1 A 0 ACS_NamedExecuteAlways("SmartScavContainerStay",0);
-			M4DI A 70;
+ 			M4DI A 70;
 		FadeOut:
 			M4DI A 5 A_FadeOut(0.1,1);
 			Loop;
@@ -117,8 +115,7 @@ CLASS SmartStimkitBoxWhite : SwitchableDecoration {
 			M4DW D 10 A_SpawnItemEx("NormalStimkitWhite",0,0,0,frandom(2,4),0,frandom(2,4),random(1,360));
 			M4DW E 10 A_SpawnItemEx("NormalStimkitWhite",0,0,0,frandom(2,4),0,frandom(2,4),random(1,360));
 			M4DW E 10;
-			TNT1 A 0 ACS_NamedExecuteAlways("SmartScavContainerStay",0);
-			M4DW A 70;
+ 			M4DW A 70;
 		FadeOut:
 			M4DW A 5 A_FadeOut(0.1,1);
 			Loop;

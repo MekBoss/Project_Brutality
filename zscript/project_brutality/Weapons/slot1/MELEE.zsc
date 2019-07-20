@@ -61,8 +61,7 @@ States
 		P0NG ABCDEFGHIJKLMNOPQRSRQPONMLKJIHGFEDCBA 1
 		{
 			A_WeaponReady(WRF_ALLOWRELOAD);
-			//A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-		}
+ 		}
 	loop;
 	
 	Steady:
@@ -588,8 +587,7 @@ States
 		PTG1 B 1
 		{
 			A_WeaponReady();
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-		}
+ 		}
 	Goto Ready+8;
 	
 	LostSoulHandFireOverlay:
@@ -608,8 +606,7 @@ States
 		THEA AAAABBBBAAAABBBBCCCCDDDDCCCCDDDD 1 BRIGHT
 		{
 			A_WeaponReady();
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-	}
+ 	}
 	loop;
 	
 	PhantasmHandFireOverlay:
@@ -627,8 +624,7 @@ States
 		TH3A AAAABBBBAAAABBBBCCCCDDDDCCCCDDDD 1 BRIGHT
 		{
 			A_WeaponReady();
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-	}
+ 	}
 	loop;
 	
 	ReadyBarrel:
@@ -636,8 +632,7 @@ States
 		THRG HIJKL 1
 		{
 			A_WeaponReady();
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-	}
+ 	}
 	Loop;
 	
 	ReadyBurningBarrel:
@@ -645,8 +640,7 @@ States
 		THRG DDEEFFGGFFEE 1
 		{
 			A_WeaponReady();
-			A_WeaponOffset(CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_KEEPY);
-	}
+ 	}
 	Loop;
 	
 	ReadyArachno:

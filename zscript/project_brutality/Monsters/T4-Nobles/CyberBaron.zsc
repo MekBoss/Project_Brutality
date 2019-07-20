@@ -52,8 +52,7 @@ Default
 states
 {
 	Spawn:
-		//TNT1 A 0 ACS_ExecuteAlways(796, 0, 0, 0, 0);//Check if Vanilla Mode is activated
-		TNT1 A 0;
+ 		TNT1 A 0;
 		CBOS AB 10 A_Look;
 	Stand:
 		TNT1 A 0;
@@ -338,8 +337,7 @@ states
 		TNT1 A 0 {self.binvulnerable = true;}
 		CBOS H 3;
 		CBOS H 3 A_Pain;
-		"####" "#" 35;// ACS_NamedExecuteAlways("Pos - Flicker effect");
-		TNT1 A 0 {self.binvulnerable = false;}
+ 		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 		
 	Pain.Stun:

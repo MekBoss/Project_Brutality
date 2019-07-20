@@ -470,8 +470,7 @@ Default
 	
 	Spawn:
 	TNT1 A 0;
-	TNT1 A 0 ACS_ExecuteAlways(719, 0, 0, 0, 0);//Check if Coop
-	
+ 	
 	Spawn1:
 	DB19 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 BRIGHT;
 	//	{	
@@ -568,8 +567,7 @@ CLASS UltPlasma_Ball: Plasma_Ball {
 	
 	Spawn:
 	TNT1 A 0;
-	TNT1 A 0 ACS_ExecuteAlways(719, 0, 0, 0, 0);//Check if Coop
-	
+ 	
 	Spawn1:
 	DB19 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT A_SpawnItem("PlasmaFlareSpawner",0,0);
 	Loop;

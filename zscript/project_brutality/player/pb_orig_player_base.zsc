@@ -93,8 +93,7 @@ class PlayerPawnBase : PB_player_pawn_base
 			bool cameraspawned;
 			[cameraspawned, cameraactor] = ExtSpawn ("ChaseCam2", campos, C_TID+playernumber(), angle);
 			if (CheckForCamera ("ChaseCam2", C_TID + playernumber()))
-			ACS_NamedExecuteAlways('ChangeCamera',0,C_TID + playernumber());
-			else
+ 			else
 			{
 				//camera_mode[p_num] = OFF;
 				Console.MidPrint ("INDEXFONT_DOOM","Camera script failed to initialize.");
