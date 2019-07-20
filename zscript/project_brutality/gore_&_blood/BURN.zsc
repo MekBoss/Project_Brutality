@@ -160,13 +160,13 @@ Default {
 States    {
 	Spawn:
 		TNT1 A 0 A_PlaySound("MELT",6,1,1);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistExtraBig", 22, 0, random(0, 360), 2, random(0, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodmistBig", 37, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodmistSmall", 30, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 37, 0, random(0, 360), 2, random(10, 50));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 22, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 37, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 37, 0, random(0, 360), 2, random(10, 50));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 30, 0, random(0, 360), 2, random(0, 90));
 		TNT1 A 0 a_spawnprojectile("SuperGoreSpawner2", 30, 0, random(0, 360), 2, random(10, 90));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		ID51 ABCDEFGHIJ 5 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 28, 6, 6, 6, 0, 128);
 		TNT1 A 20;//A_StopSound(2)
 		
@@ -415,10 +415,10 @@ States    {
 		TNT1 A 0 A_Jump(128, "Spawn2");
 		TNT1 A 0 A_PlaySound("desintegratedflesh", 3);
 		TNT1 A 0 A_PlaySound("MELT",6);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistExtraBig", 22, 0, random(0, 360), 2, random(0, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodmistBig", 37, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodmistSmall", 30, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 37, 0, random(0, 360), 2, random(10, 50));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 22, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 37, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 37, 0, random(0, 360), 2, random(10, 50));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 30, 0, random(0, 360), 2, random(0, 90));
 		TNT1 A 0 a_spawnprojectile("SuperGoreSpawner2", 30, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
@@ -448,10 +448,10 @@ States    {
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("desintegratedflesh", 3);
 		TNT1 A 0 A_PlaySound("MELT",6,1);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistExtraBig", 22, 0, random(0, 360), 2, random(0, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodmistBig", 37, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodmistSmall", 30, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 37, 0, random(0, 360), 2, random(10, 50));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 22, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 37, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 37, 0, random(0, 360), 2, random(10, 50));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 30, 0, random(0, 360), 2, random(0, 90));
 		TNT1 A 0 a_spawnprojectile("SuperGoreSpawner2", 30, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");

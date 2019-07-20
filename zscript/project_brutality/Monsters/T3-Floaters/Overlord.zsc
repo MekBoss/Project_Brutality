@@ -123,7 +123,7 @@ states
 		TNT1 AAAAAA 0 a_spawnprojectile ("SmallBrainPiece", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAAAAAAAAAA 0 A_SpawnItem ("Blood", 0, 56);
-		TNT1 AAAAAAAAAAA 0 a_spawnprojectile ("BrainBlood", 50, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile ("PB_blood", 50, 0, random (0, 360), 2, random (0, 160));
 		
 		OVF8 DD 4;
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
@@ -237,7 +237,7 @@ states
 		TNT1 AAAA 0 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_Explode (40,100);
 		TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 		TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160));
@@ -252,7 +252,7 @@ states
 		OVER P 0 bright a_spawnprojectile("OverSmallArm2",100,30,90,2,random(-15,15));
 		OVER P 0 bright a_spawnprojectile("OverHorn1",110,-16,-90,2,random(-15,15));
 		OVER P 0 bright a_spawnprojectile("OverHorn2",110,16,90,2,random(-15,15));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("BloodMistExtraBig", 30, 0, random (0, 360), 2, random (20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("Bloodmist", 30, 0, random (0, 360), 2, random (20, 90));
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile ("SuperWallRedBlood", 40, 0, random (0, 360), 2, random (-5, 5));
 		OVER TUVPQRS 1 bright;
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
@@ -325,7 +325,7 @@ Default {
 States
 {
 	Spawn:
-	OVF1 ACEGIKM 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF1 ACEGIKM 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF1 O 3;
@@ -338,7 +338,7 @@ CLASS OverFlesh2 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF1 BDFHJLN 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF1 BDFHJLN 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF1 P 3;
@@ -351,7 +351,7 @@ CLASS OverFlesh3 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF2 ACEG 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF2 ACEG 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF2 I -1;
@@ -363,7 +363,7 @@ CLASS OverFlesh4 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF2 BDFH 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF2 BDFH 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF2 J -1;
@@ -375,7 +375,7 @@ CLASS OverFlesh5 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF3 ACEGI 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF3 ACEGI 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF3 K -1;
@@ -387,7 +387,7 @@ CLASS OverFlesh6 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF3 BDFHJ 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF3 BDFHJ 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF3 L -1;
@@ -399,7 +399,7 @@ CLASS OverBigArm1 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF4 ACEGI 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF4 ACEGI 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF4 K 3;
@@ -412,7 +412,7 @@ CLASS OverBigArm2 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF4 BDFHJ 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF4 BDFHJ 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF4 L 3;
@@ -425,7 +425,7 @@ CLASS OverSmallArm1 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF5 ACEG 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF5 ACEG 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF5 I -1;
@@ -437,7 +437,7 @@ CLASS OverSmallArm2 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF5 BDFH 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF5 BDFH 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF5 J -1;
@@ -449,7 +449,7 @@ CLASS OverHorn1 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF6 ACEGI 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF6 ACEGI 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF6 K -1;
@@ -461,7 +461,7 @@ CLASS OverHorn2 : OverFlesh1 {
 States
 {
 	Spawn:
-	OVF6 BDFHJ 5 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
+	OVF6 BDFHJ 5 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 160));
 	loop;
 	Death:
 	OVF6 L -1;
@@ -938,7 +938,7 @@ Death:
 	OVER NOP 3 bright;
 	TNT1 A 0 A_Explode (75,144);
 	TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-	TNT1 AAAAA 0 a_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+	TNT1 AAAAA 0 a_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 AAAAAAAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160));
@@ -1027,7 +1027,7 @@ Death:
 	OVER NOP 3 bright;
 	TNT1 A 0 A_Explode (75,144);
 	TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-	TNT1 AAAAAAAAA 0 a_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+	TNT1 AAAAAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 AAAAAAAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160));

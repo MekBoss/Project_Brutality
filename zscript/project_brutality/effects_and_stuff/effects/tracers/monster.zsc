@@ -23,7 +23,7 @@ States
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 180), 2, random(0, 180));
-		XXXX A 0 a_spawnprojectile("ShakeShakeShake", 1, 0, random(0, 360), 2, random(0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		
 		TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));

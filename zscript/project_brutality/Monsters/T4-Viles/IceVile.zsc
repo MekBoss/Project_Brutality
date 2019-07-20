@@ -336,7 +336,7 @@ Default
 states
 {
 	Spawn:
-		NULL ABCDEFGHIJK 1 A_RadiusThrust(128,255,0);
+		tnt1 aBCDEFGHIJK 1 A_RadiusThrust(128,255,0);
 	Stop;
 }
 

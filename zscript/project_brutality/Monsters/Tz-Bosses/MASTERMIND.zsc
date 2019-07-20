@@ -146,19 +146,19 @@ States
 		EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
 		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID K 10 A_NoBlocking();
 		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID L 5;
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 		//SPID MNOPQR 5
 		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
 		TNT1 A 0 a_spawnprojectile("SpiderPart1", 32, 0, random(0, 360), 2, random(0, 160));
@@ -168,7 +168,7 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeathSpiderPart5", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSpiderPart6", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSpiderPart4", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		SPID MNOPQR 5;
 	Goto Burns;
 	
@@ -219,11 +219,11 @@ States
 		EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
 		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID K 10 A_NoBlocking();
 		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID L 5;
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
@@ -231,12 +231,12 @@ States
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", random(30, 100), 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", random(30, 100), 0, random(0, 360), 2, random(70, 90));
 		//SPID MNOPQR 5
 		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
 		TNT1 A 0 a_spawnprojectile("MastermindLeg", 30, 0, 0, 2, 65);
 		//TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160))
-		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 300;
 		TNT1 A 1 A_BossDeath();
 		TNT1 A -1;
@@ -281,7 +281,7 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		SPIP ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		SPIP ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	Loop;
 
 	Death:
@@ -515,7 +515,7 @@ States
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
 		TNT1 A 0 A_SpawnItem("BrutalizedSpidermastermind");
 	Stop;
 
@@ -541,11 +541,11 @@ States
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 
 		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
-		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		SPID MNOPQR 4;
 	Burns:
 		TNT1 A 0;
@@ -618,10 +618,10 @@ States
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
-		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		SPID NOPQR 4;
 	Burns:
 		TNT1 A 0;

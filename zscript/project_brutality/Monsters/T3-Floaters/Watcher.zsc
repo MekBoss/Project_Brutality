@@ -168,7 +168,7 @@ States
 		TNT1 AAA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
 		WAT4 C 2 A_SetFloorClip;
 		WAT4 DEF 6 a_spawnprojectile ("Brutal_FlyingBloodFaster", 32, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AA 0 a_spawnprojectile ("XDeath2b", 45, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile ("XDeath2", 45, 0, random (0, 360), 2, random (0, 160));
 		WAT4 G -1;
 		stop;
 		
@@ -218,11 +218,11 @@ States
 		TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random (0, 40));
 		TNT1 A 0 a_spawnprojectile ("Instestin", 32, 0, random (150, 210), 2, random (0, 40));
 		TNT1 AAAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 32, 0, random (0, 360), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 32, 0, random (0, 360), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 40));
 		TNT1 AA 0 a_spawnprojectile ("SuperWallRedBlood", 32, 0, random (0, 360), 2, random (0, 40));
 		TNT1 AAA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (0, 360), 2, random (0, 40));
 		TNT1 AAAAAA 0 a_spawnprojectile ("WatcherGib1", 32, 0, random (0, 360), 2, random (0, 40));
-		TNT1 A 0 A_SpawnItem ("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 	Stop;
 	
 	
@@ -235,21 +235,21 @@ States
 		TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 A 0 a_spawnprojectile ("Instestin", 32, 0, random (150, 210), 2, random (0, 40));
 		TNT1 AAAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 32, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 32, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AA 0 a_spawnprojectile ("SuperWallRedBlood", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAAAA 0 a_spawnprojectile ("WatcherGib1", 32, 0, random (170, 190), 2, random (0, 40));
-		TNT1 A 0 A_SpawnItem ("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 	Stop;
 	
 	Avoid:
-	NULL A 0 A_FaceTarget;
+	tnt1 a 0 A_FaceTarget;
 	WATC A 6 A_FastChase;
-	NULL A 0 A_FaceTarget;
+	tnt1 a 0 A_FaceTarget;
 	WATC A 6 A_FastChase;
-	NULL A 0 A_FaceTarget;
+	tnt1 a 0 A_FaceTarget;
 	WATC A 6 A_FastChase;
-	NULL A 0 A_FaceTarget;
+	tnt1 a 0 A_FaceTarget;
 	WATC A 6 A_FastChase;
 	WATC B 5 A_FaceTarget;
 	WATC C 5 A_FaceTarget;
@@ -310,7 +310,7 @@ CLASS WatcherGib1: pb_dismembered_monster_base {
     States
     {
 	Spawn:
-	TNT1 AA 0 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
+	TNT1 AA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
 	XWAT ABCDEFG 2;
 	Loop;
 	Death:
@@ -326,7 +326,7 @@ CLASS WatcherGib2: pb_dismembered_monster_base {
     States
     {
 	Spawn:
-	TNT1 AA 0 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
+	TNT1 AA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
 	XWBT ABCD 2;
 	Loop;
 	Death:
@@ -354,7 +354,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 {self.bTHRUACTORS = false;}
 		TNT1 A 0 A_GiveInventory("ComeEatMeDemon");
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		XPL4 GGG 6;// A_SpawnItem("KillMe");
 		XPL4 G -1;
 	stop;

@@ -72,7 +72,10 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 //all blood/gore stuff and event which spawn them
 #include "zscript/project_brutality/gore_&_blood/blood-o-gore_event.zsc"
-#include "zscript/project_brutality/gore_&_blood/blood.zsc"
+
+#include "zscript/project_brutality/gore_&_blood/blood/blood.zsc"
+
+
 #include "zscript/project_brutality/gore_&_blood/sticky_blood.zsc"
 #include "zscript/project_brutality/gore_&_blood/monsters_spare_parts.zsc"
 #include "zscript/project_brutality/gore_&_blood/gore.zsc"

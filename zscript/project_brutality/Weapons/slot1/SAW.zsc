@@ -77,15 +77,15 @@ states
 	
 	BloodDropRed:
 		SSW2 ABCDEFGHIJKL 1;
-		NULL A 0 A_SpawnItemEx("DripingSawBlood", 0, -4, 2, 0, 0);
+		tnt1 a 0 A_SpawnItemEx("DripingBlood", 0, -4, 2, 0, 0);
 	Stop;
 	BloodDropBlue:
 		SSW3 ABCDEFGHIJKL 1;
-		NULL A 0 A_SpawnItemEx("DripingSawBlueBlood", 0, -4, 2, 0, 0);
+		tnt1 a 0 A_SpawnItemEx("DripingSawBlueBlood", 0, -4, 2, 0, 0);
 	Stop;
 	BloodDropGreen:
 		SSW4 ABCDEFGHIJKL 1;
-		NULL A 0 A_SpawnItemEx("DripingSawGreenBlood", 0, -4, 2, 0, 0);
+		tnt1 a 0 A_SpawnItemEx("DripingSawGreenBlood", 0, -4, 2, 0, 0);
 	Stop;
 	
 	Ready.Blood:

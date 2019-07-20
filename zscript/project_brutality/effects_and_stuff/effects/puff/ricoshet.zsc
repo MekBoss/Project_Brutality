@@ -334,7 +334,7 @@ states
 		
 	SpawnBlood:
 		TNT1 A 0;
-		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 0, 0, random(0, 360), 2, random(80, 110));
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(80, 110));
 		//TNT1 A 0 A_RadiusGive("BloodSplasherz", 215, RGF_PLAYERS, 1);
 		TNT1 A 0 a_spawnprojectile("BloodParticleXSpawner", 0, 0, random(0, 360), 2, random(80, 110));
 		TNT1 A 0 A_SpawnItem("GiantBloodRicochet");

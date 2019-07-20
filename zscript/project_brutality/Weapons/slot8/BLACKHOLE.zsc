@@ -71,7 +71,7 @@ States
 		PRDC DEDEF 1 ; //A_SpawnItem("BHMiniSmoke",14,30,0,0);
 		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		PRDC EDCB 1 ; //A_SpawnItem("BHMiniSmoke",14,30,0,0);
-		TNT1 A 0 A_FireProjectile("ShakeShakeShake", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		PRDC ABCDEFGH 1 ; //A_SpawnItem("BHMiniSmoke",14,30,0,0);
 		TNT1 A 0 A_PlaySound("DMC/Fire", 5);
 		TNT1 A 0 A_PlaySound("DSPBCN", 6);

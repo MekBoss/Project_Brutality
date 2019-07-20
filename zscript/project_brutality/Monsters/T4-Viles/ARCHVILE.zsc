@@ -35,7 +35,7 @@ Default
 	ActiveSound "vile/active";
 	MeleeSound "vile/stop";
 	Obituary "%o was exploded by an Arch-Vile.";
-	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 
 /*	//DropItem "DemonStrengthRune", 5;
 	//DropItem "DemonMorphRune", 5;
@@ -249,23 +249,23 @@ States
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
 		TNT1 A 0 A_XScream;
 		TNT1 A 0 A_NoBlocking;
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("Teeth", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 40, 0, random(0, 360), 2, random(50, 90));
-		TNT1 A 0 a_spawnprojectile("XDeath3b", 40, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(50, 90));
+		TNT1 A 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(50, 90));
 		TNT1 A 0 A_Jump(130, "Head2");
 		VID2 A 3;
-		VID2 BC 7 a_spawnprojectile("BloodMistSMall", 58, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("BloodMistSMall", 50, 0, random(0, 360), 2, random(0, 160));
-		VID2 D 6 a_spawnprojectile("BloodMistSMall", 45, 0, random(0, 360), 2, random(0, 160));
-		VID2 E 6 a_spawnprojectile("BloodMistSMall", 36, 0, random(0, 360), 2, random(0, 160));
-		VID2 F 6 a_spawnprojectile("BloodMistSMall", 20, 0, random(0, 360), 2, random(0, 160));
+		VID2 BC 7 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
+		VID2 D 6 a_spawnprojectile("Bloodmist", 45, 0, random(0, 360), 2, random(0, 160));
+		VID2 E 6 a_spawnprojectile("Bloodmist", 36, 0, random(0, 360), 2, random(0, 160));
+		VID2 F 6 a_spawnprojectile("Bloodmist", 20, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_SpawnItem("DeadArchvileVID2F");
@@ -273,7 +273,7 @@ States
 
 	Death.Decapitate:
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileHead", 60, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 40, 0, random(0, 360), 2, random(30, 90));
 	Head2:
 		D1AX G 7;
@@ -287,7 +287,7 @@ States
 		TNT1 A 0 A_Jump(32, "Death.Arm");
 		TNT1 A 0 A_Scream;
 		TNT1 A 0 A_NoBlocking;
-		DIAB RSTUVWX 5 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		DIAB RSTUVWX 5 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		TNT1 A 0 A_SpawnItem("DeadArchvile");
@@ -305,7 +305,7 @@ States
 	DeathArm:
 		TNT1 A 0 A_Scream;
 		TNT1 A 0 A_NoBlocking;
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 44, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 42, 0, random(150, 210), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 38, 0, random(150, 210), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 45, 0, random(150, 210), 2, random(0, 40));
@@ -334,9 +334,9 @@ States
 		TNT1 AAA 0 a_spawnprojectile("Xdeath3", 26, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 38, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 38, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodMuchFaster", 38, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 38, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 44, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		D2AX N 8 A_Stop;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		D2AX OOOOOOOO 3 a_spawnprojectile("Brutal_LiquidBlood2", 38, 0, random(0, 360), 2, random(30, 60));
@@ -359,9 +359,9 @@ States
 		TNT1 AAA 0 a_spawnprojectile("Xdeath3", 26, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodMuchFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 44, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		D2AX EEEEEEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 38, 0, random(0, 360), 2, random(0, 160));
 		D2AX FG 8;
 		TNT1 A 0 A_PlaySound("BODYF",6);
@@ -378,7 +378,7 @@ States
 		TNT1 A 0 A_Scream;
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("XDeathStomach", 32, 0, random(0, 360), 2, random(60, 120));
 		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));
 		D2AX EEEEEEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 38, 0, random(0, 360), 2, random(0, 160));
@@ -421,10 +421,10 @@ States
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_Scream;
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(60, 120));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 52, 0, random(0, 360), 2, random(60, 120));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 52, 0, random(0, 360), 2, random(60, 120));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(60, 120));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));
 		XVIL ABCDEFGHIJKLMNOPQ 2;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
@@ -446,8 +446,8 @@ States
 	Death.Desintegrate:
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAAAAA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile("BloodMistBig", 52, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistBig", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("Bloodmist", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 		VIGI C 3 A_Scream;
 		VIGI D 3;
@@ -471,11 +471,11 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_Scream;
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 52, 0, random(0, 360), 2, random(60, 120));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("MuchBlood2", 0, 40);
+		TNT1 A 0 A_SpawnItem("MuchBlood", 0, 40);
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 A_NoBlocking;
 		XVIP ABCDEFGHIJKLMNOPQ 2;
@@ -564,11 +564,11 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		VIGP A 4 a_spawnprojectile("BloodTrails",0,0,180,2);
+		VIGP A 4 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 	Loop;
 
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItem("pb_blood_spot",0,0,0,1);
 		VIGP B 1;
 		VIGP B -1;
@@ -603,11 +603,11 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		VIGP C 4 a_spawnprojectile("BloodTrails",0,0,180,2);
+		VIGP C 4 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 	Loop;
 
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItem("pb_blood_spot",0,0,0,1);
 		VIGP D 1;
 		VIGP D -1;
@@ -919,7 +919,7 @@ Default
 	Radius 16;
 	Height 58;
 	Health 50;
-	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 	PainSound "";
 	PainChance 255;
 	Mass 999999;
@@ -937,17 +937,17 @@ States
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
-		D1AX GGGHHHIII 2 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(10, 90));
+		D1AX GGGHHHIII 2 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
-		D1AX GGGHHHIII 2 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(10, 90));
+		D1AX GGGHHHIII 2 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
-		D1AX GGGHHHIII 2 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(10, 90));
+		D1AX GGGHHHIII 2 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
-		D1AX GGGHHHIII 2 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(10, 90));
+		D1AX GGGHHHIII 2 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
-		D1AX GGGHHHIII 2 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(10, 90));
+		D1AX GGGHHHIII 2 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(10, 90));
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
-		D1AX GGGHHHIII 2 a_spawnprojectile("BloodMistBig", 58, 0, random(0, 360), 2, random(10, 90));
+		D1AX GGGHHHIII 2 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(10, 90));
 	DieNow:
 	Death:
 		D1AX H 2;
@@ -965,10 +965,10 @@ States
 		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodMuchFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 32, 0, random(150, 210), 2, random(0, 40));
 		TNT1 A 0 A_Recoil(2);
 		D2AX N 6 A_Stop;
@@ -986,7 +986,7 @@ Default
 	Radius 18;
 	Height 58;
 	Health 50;
-	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 	PainSound "grunt/pain";
 	PainChance 255;
 	Mass 999999;
@@ -1005,7 +1005,7 @@ Default
 		TNT1 A 0;
 		TNT1 A 0 A_Recoil(2);
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 	Pain:
 		D1AX M 35;
@@ -1018,15 +1018,15 @@ Default
 	
 	Death:
 		TNT1 A 0;
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains5", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("BrainBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_Recoil(4);
@@ -1059,7 +1059,7 @@ CLASS BrutalizedArchvile2 : BrutalizedArchvile {
 		TNT1 A 0;
 		TNT1 A 0 A_Recoil(2);
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 	Pain:
 		D1AX Q 35;
@@ -1072,15 +1072,15 @@ CLASS BrutalizedArchvile2 : BrutalizedArchvile {
 	
 	Death:
 		TNT1 A 0;
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains5", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("BrainBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_Recoil(4);
@@ -1111,7 +1111,7 @@ CLASS BrutalizedArchvile3 : BrutalizedArchvile {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_Recoil(2);
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 40, 0, random(0, 360), 2, random(0, 160));
@@ -1127,15 +1127,15 @@ CLASS BrutalizedArchvile3 : BrutalizedArchvile {
 	
 	Death:
 		TNT1 A 0;
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains5", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("BrainBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_Recoil(4);
 		D2AX A 16;
@@ -1165,7 +1165,7 @@ CLASS BrutalizedArchvile4 : BrutalizedArchvile {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_Recoil(2);
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 40, 0, random(0, 360), 2, random(0, 160));
@@ -1189,7 +1189,7 @@ CLASS BrutalizedArchvile4 : BrutalizedArchvile {
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));//f8UCK thae fans assholz
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("BrainBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_Recoil(4);
 		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
@@ -1278,16 +1278,16 @@ States
 		TNT1 AA 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
 	Death.Head:
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("Teeth", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 40, 0, random(0, 360), 2, random(50, 90));
-		TNT1 A 0 a_spawnprojectile("XDeath3b", 40, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(50, 90));
+		TNT1 A 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(50, 90));
 		TNT1 A 0 A_XScream;
 		TNT1 A 0 A_NoBlocking;
 		VID3 MNOP 4;
@@ -1303,19 +1303,19 @@ States
 	Death.SSG:
 	Death.Blast:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItem("SplatteredLarge");
+		TNT1 A 0 A_SpawnItem("SplatteredSmall");
 		TNT1 A 0 A_XScream;
 		TNT1 A 0 a_spawnprojectile("XDeathHalfArchvile2", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 52, 0, random(0, 360), 2, random(60, 120));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 52, 0, random(0, 360), 2, random(60, 120));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(60, 120));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(30, 120));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 52, 0, random(0, 360), 2, random(30, 120));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("MuchBlood2", 0, 40);
+		TNT1 A 0 A_SpawnItem("MuchBlood", 0, 40);
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 A_NoBlocking;
 		VID3 A 3;

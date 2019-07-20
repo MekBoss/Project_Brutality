@@ -55,11 +55,11 @@ states
 	loop;
 
 	See:
-		TNT1 AAA 0 a_spawnprojectile("BloodMistBig", 10, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 10, 0, random(0, 360), 2, random(30, 90));
 		LMW1 ABCD 5 a_spawnprojectile("Brutal_LiquidBlood2", 26, 0, random(0, 360), 2, random(10, 40));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 36, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 36, 0, random(0, 360), 2, random(30, 90));
 		LMW1 EF 5 a_spawnprojectile("Brutal_LiquidBlood", 46, 0, random(0, 360), 2, random(10, 40));
-		TNT1 AAA 0 a_spawnprojectile("BloodMistBig", 50, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(30, 90));
 		LMW1 G 4 {self.bSTEALTH= true; self.bALLOWPAIN = true;}
 		LMWZ E 6;
 	See2:
@@ -173,7 +173,7 @@ states
 	Death:
 		LMWZ J 6 A_Scream;
 		LMWZ K 6 A_NoBlocking;
-		TNT1 AAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 46, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAAA 0 a_spawnprojectile("Bloodmist", 46, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(170, 190), 2, random(0, 40));
@@ -181,7 +181,7 @@ states
 		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodMuchFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		LMWZ LMNO 6 A_SpawnItem("MuchBlood", 20);
 		LMWZ P -1;

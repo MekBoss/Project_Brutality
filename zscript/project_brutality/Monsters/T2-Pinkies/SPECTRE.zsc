@@ -26,7 +26,7 @@ Default
 	PainSound "demon/pain";
 	DeathSound "demon/death";
 	ActiveSound "demon/active";
-	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 	DamageType "Eat";
 	MaxStepHeight 48;
 	MaxDropOffHeight 48;

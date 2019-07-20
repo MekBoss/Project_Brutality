@@ -72,7 +72,7 @@ States
 		TNT1 A 0 A_PlaySound("PLSDRAW");
 		PRIR EDCB 1;
 	ready_loop:
-		null a 0
+		tnt1 a 0
 		{//lighting ZR2G normal Z999
 			switch(invoker.actual_fire_mode)
 			{
@@ -91,13 +91,13 @@ States
 	Z999 qwertyuiopasdfghjklzxcvbnm 0;
 
 	change_fire_mode:
-		null a 0
+		tnt1 a 0
 		{
 			if(invoker.actual_fire_mode == plasma)
 			{self.player.SetPSprite(PSP_WEAPON, invoker.findstate("lighting_turn_on") ); return;}
 		}
 	back_to_plasma:
-		null A 0
+		tnt1 a 0
 		{
 			A_PlaySound("PLSMLG1");
 			invoker.actual_fire_mode = plasma;
@@ -116,7 +116,7 @@ States
 		
 	Fire:
 		TNT1 A 0 A_WeaponOffset(0,32);
-		null A 0
+		tnt1 a 0
 		{
 			A_StopSound(6);
 			if(invoker.actual_fire_mode == lighting)
@@ -326,7 +326,7 @@ States
 		TNT1 A 0 A_JumpIfInventory("psalm_of_Saint_Mark",50,"Ready_loop");
 		TNT1 A 0 A_JumpIfInventory("pb_cell",1,1);
 	Goto Ready_loop;
-		null a 0
+		tnt1 a 0
 		{
 			if(invoker.actual_fire_mode == plasma)
 			{self.player.SetPSprite(PSP_WEAPON, invoker.FindState("normal_reloading") ); return;}
@@ -374,7 +374,7 @@ States
 			while( (left_arm_ammo).amount < (left_arm_ammo).maxamount && (main_ammo).amount > 0)
 		}
 	FinishReload:
-		null a 0
+		tnt1 a 0
 		{
 			if(invoker.actual_fire_mode == plasma)
 			{self.player.SetPSprite(PSP_WEAPON, invoker.findstate("Ready_loop") ); return;}

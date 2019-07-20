@@ -250,17 +250,17 @@ States
 		
 		TNT1 AAAAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		//TNT1 AAAAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
-		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 		
 		TNT1 A 0;
 		BS1B B 5 a_spawnprojectile("ExplosionSmoke", 60, 0, random(0, 360), 2, random(70, 110));

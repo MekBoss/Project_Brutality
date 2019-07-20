@@ -591,18 +591,18 @@ CLASS BigBrutalExplode : ACTOR {
 States
 {
 	Spawn:
-		NULL A 0 A_PlaySound("Explosion");
+		tnt1 a 0 A_PlaySound("Explosion");
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, 150);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, -150);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, -30);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, 30);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, -60);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, 60);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, -90);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, 90);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, -120);
-		NULL A 0 a_spawnprojectile("FootStep6", 0, 0, 120);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 150);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -150);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -30);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 30);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -60);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 60);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -90);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 90);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, -120);
+		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 120);
 		EXPL AAA 0 a_spawnprojectile ("CasingSmoke", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 22, 0, random (0, 360), 2, random (0, 360));
 		EXPL A 0 A_Explode();

@@ -22,3 +22,665 @@ states
 }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS XDeathArchvileHeadPiece: XDeathArm1 { 
+	Default {
+ 
+    Scale 1.1;
+    Speed 10;
+	Gravity 0.4;
+	bounceFactor 0.4; 
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		D6AX ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		D6AX E 1;
+		D6AX E 0 A_SpawnItem("Gib_ArchvileHeadPiece",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileHeadPiece: LimbBase { 
+	Default {
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		D6AX E 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		D6AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		D6AX E -1;
+		Stop;
+	Death:    
+		TNT1 AAA 0 a_spawnprojectile("BloodMist", 2, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 2, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 2, random(5, -5), random(170, 190), 2, random(-10, 10));
+		TNT1 AA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 3, 0, random(0, 360), 2, random(0, 160));
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		D6AX AA 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileHeadPiece", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		D6AX ABCD 3;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		D6AX A 5;
+		D6AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileHeadPiece");
+		Stop;
+}}
+
+CLASS XDeathArchvileHead: XDeathArm1 { 
+	Default {
+	Scale 1.1;
+	Speed 10;
+	Gravity 0.4;
+	BounceFactor 0.4;
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		VILP CDEFGHIJ 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		VILP J 1;
+		D6AX E 0 A_SpawnItem("Gib_ArchvileHead",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileHead: LimbBase { 
+	Default {
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		VILP J 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		VILP J 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		VILP J -1;
+		Stop;
+	Death:    
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 2, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 2, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 a_spawnprojectile("Brains2", 2, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileHeadPiece", 2, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 2, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 2, random(5, -5), random(170, 190), 2, random(-10, 10));
+		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Teeth", 4, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 3, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 3, 0, random(0, 360), 2, random(0, 160));
+		VILP K -1;
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		VILP C 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileHead", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		VILP CDEFGHIJ 2;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		VILP CDEFGHIJ 3 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileHead");
+		Stop;
+}}
+
+CLASS XDeathArchvileLegPiece: XDeathArm1 { 
+	Default {
+	Scale 1.1;
+	Speed 10;
+	Gravity 0.4;
+	BounceFactor 0.4;
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		D4AX ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		D4AX E 1;
+		D4AX E 0 A_SpawnItem("Gib_ArchvileLegPiece",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileLegPiece: LimbBase { 
+Default {
+	Scale 1.1;
+}
+	States
+	{
+	Spawn:
+		D4AX E 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		D4AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		D4AX E -1;
+		Stop;
+	Death:    
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		D4AX AA 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileLegPiece", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		D4AX ABCD 3;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		D4AX A 5;
+		D4AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileLegPiece");
+		Stop;
+}}
+
+CLASS XDeathArchvileLeg: XDeathArm1 { 
+	Default {
+	Scale 1.1;
+	Speed 10;
+	Gravity 0.4;
+	BounceFactor 0.4;
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		DIAG IJKLMNOP 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		DIAG Q 1;
+		D4AX E 0 A_SpawnItem("Gib_ArchvileLeg",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileLeg: LimbBase { 
+	Default {
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		DIAG Q 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		DIAG Q 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		DIAG Q -1;
+		Stop;
+	Death:    
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileLegPiece", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		DIAG Q 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileLeg", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		DIAG IJKLMNOP 3;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		DIAG IJKLMNOP 4 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileLeg");
+		Stop;
+}}
+
+
+CLASS XDeathArchvileTorso: XDeathArm1 { 
+	Default {
+	
+	Scale 1.1;
+	Speed 10;
+	Gravity 0.4;
+	BounceFactor 0.4;
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		D3AX ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		D3AX E 1;
+		D3AX E 0 A_SpawnItem("Gib_ArchvileTorso",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileTorso: LimbBase { 
+	Default {
+	Scale 1.0;
+	}
+	States
+	{
+	Spawn:
+		D3AX E 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		D3AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		D3AX E -1;
+		Stop;
+	Death:    
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 a_spawnprojectile("Xdeath2", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		D3AX AA 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileTorso", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		D3AX ABCD 3;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		D3AX A 5;
+		D3AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileTorso");
+		Stop;
+}}
+
+CLASS XDeathArchvileArmPiece: XDeathArm1 { 
+	Default {
+	Scale 1.1;
+	Speed 10;
+	Gravity 0.4;
+	BounceFactor 0.4;
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		D7AX ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		D7AX E 1;
+		D7AX E 0 A_SpawnItem("Gib_ArchvileArmPiece",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileArmPiece: LimbBase { 
+	Default {
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		D7AX E 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		D7AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		D7AX E -1;
+		Stop;
+	Death:    
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		D7AX AA 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileArmPiece", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		D7AX ABCD 3;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		D7AX A 5;
+		D7AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileArmPiece");
+		Stop;
+}}
+
+CLASS XDeathArchvileArm: XDeathArm1 { 
+	Default {
+	Scale 1.1;
+	Speed 10;
+	Gravity 0.4;
+	BounceFactor 0.4;
+	+SKYEXPLODE;
+	Species "Marines";
+	+THRUSPECIES;
+	BounceCount 5;
+	Radius 10;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		DIAG ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		Loop;
+	Death:
+		DIAG R 1;
+		D7AX E 0 A_SpawnItem("Gib_ArchvileArm",0,0,0,1);
+		Stop;
+	}
+}
+
+CLASS Gib_ArchvileArm: LimbBase { 
+	Default {
+	
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		DIAG R 2;
+		Goto Spawn1;
+		
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		DIAG R 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		DIAG R -1;
+		Stop;
+	Death:    
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileArmPiece", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
+		Stop;
+		
+	Death.Kick:
+	Death.Melee:
+	Death.SuperPunch:
+		DIAG R 1 A_FaceTarget;
+		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 5, 0, random(170, 190), 2, random(20, 40));
+		Stop;
+		
+	Pain:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		DIAG ABCDEFGH 3;
+		Goto Spawn1;
+		
+	Death.ExplosiveImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false);
+		TNT1 A 0 ThrustThingZ(0,50,0,1);
+		DIAG ABCDEFGH 3 A_CheckFloor("Landz");
+		Goto Landz;
+		
+	Landz:
+		XDT5 I 0 A_SpawnItem("Gib_ArchvileArm");
+		Stop;
+}}
+
+
+CLASS XDeathHalfArchvile : pb_blood_and_gore_base { 
+	Default {
+	
+	Radius 2;
+	Height 2;
+	Scale 1.1;
+	Speed 4;
+	Gravity 2.3;
+	Mass 200;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.2;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	}
+	States
+	{
+	Spawn:
+		//TNT1 A 0 A_SpawnItem("Brutal_LiquidBlood",0,0,0,1)
+		D6AX FFFF 3 a_spawnprojectile("Brutal_LiquidBlood",0,0,0,1);
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_spawnItem("BloodMist", 0, 10);
+		D6AX F 1 A_SpawnItem("Gib_HalfArchvile",0,0,0,1);
+		TNT1 A 0;
+		Stop;
+	}
+}
+
+CLASS Gib_HalfArchvile: BigGibBase { 
+	Default {
+	
+	damagefactor "ExplosiveImpact", 5.0;
+	Mass 100;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		D6AX G -1;
+Stop;  }}	 
+
+
+CLASS XDeathHalfArchvile2 : pb_blood_and_gore_base { 
+	Default {
+	
+	Radius 2;
+	Height 2;
+	Scale 1.1;
+	Speed 4;
+	Gravity 2.3;
+	Mass 200;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.2;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	}
+	States
+	{
+	Spawn:
+		//TNT1 A 0 A_SpawnItem("Brutal_LiquidBlood",0,0,0,1)
+		VILP AAAA 3 a_spawnprojectile("Brutal_LiquidBlood",0,0,0,1);
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_spawnItem("BloodMist", 0, 10);
+		VILP B 1 A_SpawnItem("Gib_HalfArchvile2",0,0,0,1);
+		TNT1 A 0;
+		Stop;
+	}
+}
+
+CLASS Gib_HalfArchvile2: BigGibBase { 
+	Default {
+	
+	damagefactor "ExplosiveImpact", 5.0;
+	Mass 100;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		VILP B -1;
+Stop;  }}
+

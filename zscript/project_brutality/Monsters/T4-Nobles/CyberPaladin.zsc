@@ -34,7 +34,7 @@ Default
 	damagefactor "killme", 0.0;
 	damagefactor "TeleportRemover", 0.0;
 	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
-	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 	
 	Obituary "%o played dodgeball with a paladin and lost.";
 	HitObituary "A Paladin blew %o away.";
@@ -401,17 +401,17 @@ States
 		TNT1 A 0 A_SpawnItemEx("PaladinShield", 0, 0, 25, 6, 0, 0, 60, SXF_SETMASTER|SXF_CLIENTSIDE);
 		TNT1 A 0 A_PlaySound("misc/gibbed", 3);
 		TNT1 AAAA 0 a_spawnprojectile ("Xdeath1", 62, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("Brains1", 62, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("SmallBrainPiece", 62, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("Brains2", 62, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("Brains3", 62, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("Brains6", 62, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("Brains7", 62, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("Brains2", 62, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("Brains4", 62, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile ("Brains4", 62, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("Teeth", 62, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 62, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath3b", 62, 0, random (0, 360), 2, random (50, 80));
+		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 62, 0, random (0, 360), 2, random (50, 80));
 		TNT1 AAA 0 a_spawnprojectile ("SmallBrainPieceFast", random (55, 59), random (5, -5), random (170, 190), 2, random (-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile ("SmallBrainPiece", 58, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile ("BloodMistBig", 58, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile ("Bloodmist", 58, 0, random (0, 360), 2, random (30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 0, 0, random (0, 360), 2, random (30, 90));
 		TNT1 A 0 A_Jump(162, 3);
 		TNT1 A 0 A_SpawnItem("DyingCyberKnight1", 1);

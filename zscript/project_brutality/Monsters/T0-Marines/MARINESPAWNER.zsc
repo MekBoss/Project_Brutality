@@ -220,7 +220,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		MaxDropOffHeight 52;
 		ActiveSound "none";
 		damagefactor "Cut", 0.1;
-		BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+		BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 		damagefactor "FriendBullet", 0.0;
 		damagefactor "Blood", 0.0;    damagefactor "GreenBlood", 0.0;
 		damagefactor "BlueBlood", 0.0;    damagefactor "Taunt", 0.0;    damagefactor "KillMe", 0.0;
@@ -261,7 +261,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 A_JumpIfInventory("ImpFatality3", 1, "FatalityImp");
 		TNT1 A 0 A_JumpIfInventory("SergeantFatality", 1, "FatalitySergeant");
 		TNT1 A 0 A_JumpIfInventory("RevenantFatality", 1, "FatalityRevenant");
-		NULL A 0 A_JumpIfInventory("ComandoFatality", 1, "FatalityComando");
+		tnt1 a 0 A_JumpIfInventory("ComandoFatality", 1, "FatalityComando");
 		TNT1 A 0 {self.bNODROPOFF = false;}
 		TNT1 A 0 {self.bFRIENDLY = true;}
 		TNT1 A 0 A_JumpIfInTargetInventory("TargetIsAMarine", 1, "FollowPLayer");//
@@ -730,7 +730,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		PLAY J 10;
 		TNT1 A 0 A_SpawnItemEx("RemoveMarine",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		PLAY KLM 10;
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		PLAY N -1;
 		Stop;
 		
@@ -745,7 +745,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		XPL1 A 10 A_XScream();
 		XPL1 B 20 A_NoBlocking();
 		XPL1 CDE 10;
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		XPL1 E -1;
 		Stop;
 		
@@ -769,7 +769,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		XPL2 C 10 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		XPL2 DE 10 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		XPL2 E -1;
 		Stop;
 		
@@ -807,7 +807,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		XPL2 C 10 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		XPL2 DE 10 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		XPL2 E -1;
 		Stop;
 		
@@ -830,7 +830,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		XPL3 F 10 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		XPL3 F 10 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		XPL3 F -1;
 		Stop;
 	Death.Massacre:
@@ -856,7 +856,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0;
 		TNT1 A 0 {self.bFRIENDLY = false;}
 		TNT1 A 0 {self.bUSESPECIAL = false;}
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("Brutal_FlyingBloodTrail8", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail8", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
 		TNT1 AAAAAA 0 bright a_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (30, 180));
 		TNT1 AA 0 bright a_spawnprojectile ("XDeath2", 55, 0, random (0, 360), 2, random (30, 180));
@@ -881,7 +881,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 AAAA 0 a_spawnprojectile ("XDeath3", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 32, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 32, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 32, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
 		TNT1 A 0 a_spawnprojectile ("XDeathArm1", 32, 0, random (170, 190), 2, random (0, 40));
@@ -889,7 +889,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_SpawnItemEx("RemoveMarine",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		PLAY OPQRSTU 8;
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		PLAY U -1;
 		Stop;
 		
@@ -915,7 +915,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 AAA 0 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		XPL4 F 20;
 		TNT1 AAAA 0 a_spawnprojectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("MediumBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 		XPL4 F -1;
 		Stop;
 		
@@ -996,24 +996,24 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0;
 		TNT1 A 0 {self.bFRIENDLY = false;}
 		TNT1 A 0 {self.bUSESPECIAL = false;}
-		NULL A 0 ThrustThingZ(0,30,0,1);
-		NULL AAAA 0 a_spawnprojectile ("Brains1", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("Brains2", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("Brains3", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("Brains4", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("Brains5", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL AAAA 0 a_spawnprojectile ("SmallBrainPiece", random (45, 55), random (5, -5), random (170, 190), 2, random (0, 40));
-		NULL AAAA 0 a_spawnprojectile ("SmallBrainPiece", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL AA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
-		NULL AAAAAAAAAAA 0 a_spawnprojectile ("BrainBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("XDeathArm1", 35, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 ThrustThingZ(0,30,0,1);
+		tnt1 aAAA 0 a_spawnprojectile ("SmallBrainPiece", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 a_spawnprojectile ("Brains2", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 a_spawnprojectile ("Brains2", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 a_spawnprojectile ("Brains4", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 a_spawnprojectile ("Brains4", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 aAAA 0 a_spawnprojectile ("SmallBrainPiece", random (45, 55), random (5, -5), random (170, 190), 2, random (0, 40));
+		tnt1 aAAA 0 a_spawnprojectile ("SmallBrainPiece", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 aA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
+		tnt1 aAAAAAAAAAA 0 a_spawnprojectile ("PB_blood", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 a_spawnprojectile ("XDeathArm1", 35, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 a_spawnprojectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
 		PPOD A 0 A_SpawnItemEx("BasicMarineGib1", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION);
-		NULL AAAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
+		tnt1 aAAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnItemEx("RemoveMarine",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		NULL A 0 A_XScream();
+		tnt1 a 0 A_XScream();
 		XPL6 A 5;
-		NULL A 0 A_NoBlocking();
+		tnt1 a 0 A_NoBlocking();
 		XPL6 BCDE 5;
 		XPL6 F -1;
 		Stop;
@@ -1058,7 +1058,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		//////////////////////////////////////////////////////
 		FPZ3 A 10;
 		FPZ3 ABCDE 4;
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("grunt/pain", 1);
 		FPZ3 FGGGG 4;
 		
@@ -1087,12 +1087,12 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 AA 0 a_spawnprojectile ("XDeath1", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("Brains1", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains3", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
 		
 		
@@ -1123,8 +1123,8 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 {self.bInvulnerable = true;}
 		//////////////////////////////////////////////////////
 		FPZ2 AB 5;
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
- 		TNT1 AAAAAA 0 a_spawnprojectile ("CeilBloodLauncher", 50, 0, random (0, 360), 2, random (50, 130));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
+ 		TNT1 AAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 50, 0, random (0, 360), 2, random (50, 130));
 		TNT1 AAAA 0 a_spawnprojectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("XDeath2", 60, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160));
@@ -1152,7 +1152,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 {self.bInvulnerable = true;}
 		//////////////////////////////////////////////////////
 		FPZ4 AB 3;
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("grunt/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		FPZ4 CDEEE 3;
@@ -1220,12 +1220,12 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 AAA 0 a_spawnprojectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("Brains1", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains3", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
 		FPZ4 P 7;
 		FPZ4 L 10;
@@ -1244,7 +1244,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 A_Jump(128, "FatalityImp2");
 		//////////////////////////////////////////////////////
 		FTCI AB 4;
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("imp/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		FTCI CDE 4;
@@ -1304,12 +1304,12 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 AAA 0 a_spawnprojectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("Brains1", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains3", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
 		FTCI L 10;
 		FTCI J 20;
@@ -1330,16 +1330,16 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0  A_PlaySound("imp/pain");
 		TNT1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
 		TNT1 A 0 A_PlaySound("CLAP");
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		FTYI GGGGHHHHHHHHIJJJ 2;
 		FTYI K 3;
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
  		TNT1 A 0 A_SpawnItemEx("FootStep5", 0, 25, 30, 0, 0);
-		TNT1 AAA 0 a_spawnprojectile ("Brains1", 11, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("SmallBrainPiece", 11, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains2", 11, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains3", 11, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains2", 11, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("Brains4", 11, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 11, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 11, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
 		FTYI LLLL 1 A_SpawnItemEx("Brutal_Blood", 0, 25, 10, 0, 0);
@@ -1377,7 +1377,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 A_PlaySound("misc/xdeath");
 		FTYS DE 4;
 		
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/xdeath", 3);
 		TNT1 AAAA 0 a_spawnprojectile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
@@ -1419,7 +1419,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		FSP3 HIIIII 5;
 		
 		TNT1 A 0 A_PlaySound("weapons/sg");
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AAAAA 0 a_spawnprojectile ("XDeath1", 70, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 70, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 70, 0, random (0, 360), 2, random (0, 160));
@@ -1444,8 +1444,8 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 {self.bInvulnerable = true;}
 		//////////////////////////////////////////////////////
 		FREV ABABAB 3;
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile ("CeilBloodLauncher", 40, 0, random (0, 360), 2, random (50, 130));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
+		TNT1 AAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
 		TNT1 AAAA 0 a_spawnprojectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 ACS_Execute(580, 0, 0, 0, 0);
@@ -1459,7 +1459,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		FREV N 2;
 		FREV O 2;
 		
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AA 0 a_spawnprojectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 50, 0, random (0, 360), 2, random (0, 160));
@@ -1487,35 +1487,35 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 A 0 {self.bInvulnerable = true;}
 		//////////////////////////////////////////////////////
 		CFTA AAABCDE 2;
-		NULL A 0 A_PlaySound("commando/pain");
-		NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
-		XXXX A 0 a_spawnprojectile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 A_PlaySound("CLAP");
+		tnt1 a 0 A_PlaySound("commando/pain");
+		tnt1 a 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
+		tnt1 a 0 A_PlaySound("CLAP");
 		CFTA EFF 7;
 		CFTA GHIJK 2;
-		NULL A 0 A_PlaySound("grunt/pain");
-		NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
-		NULL A 0 a_spawnprojectile ("ShakeShakeShake", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL A 0 a_spawnprojectile ("GoreSound", 22, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_PlaySound("grunt/pain");
+		tnt1 a 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
+		tnt1 a 0 a_Playsound("misc/xdeath4");
 		CFTA L 7;
 		
 		CFTA M 15;
 		CFTA OPQR 4;
-		NULL A 0 A_PlaySound("grunt/pain");
-		NULL A 0 A_PlaySound("grunt/death");
+		tnt1 a 0 A_PlaySound("grunt/pain");
+		tnt1 a 0 A_PlaySound("grunt/death");
 		CFTA R 15;
-		NULL A 0 A_PlaySound("BURNZOM");
-		NULL A 0 a_spawnprojectile ("ShakeShakeShake", 50, 0, random (0, 360), 2, random (0, 160));
-		NULL AAAAAA 0 a_spawnprojectile ("CeilBloodLauncher", 40, 0, random (0, 360), 2, random (50, 130));
-		NULL AAAA 0 a_spawnprojectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-		NULL AAA 0 a_spawnprojectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-		NULL AAA 0 a_spawnprojectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
-		NULL AAAAAAAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+		tnt1 a 0 A_PlaySound("BURNZOM");
+		tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
+		tnt1 aAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
+		tnt1 aAAA 0 a_spawnprojectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
+		tnt1 aAA 0 a_spawnprojectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
+		tnt1 aAA 0 a_spawnprojectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
+		tnt1 aAAAAAAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		CFTA S 25;
 		//////////////////////////////////////////////////////
-		NULL A 0 A_TakeInventory("ComandoFatality",1);
-		NULL A 0 A_TakeInventory("GoFatality", 1);
-		NULL A 0 A_SpawnItemEx("DyingComando", 0, 0, 40, 0, 0);
+		tnt1 a 0 A_TakeInventory("ComandoFatality",1);
+		tnt1 a 0 A_TakeInventory("GoFatality", 1);
+		tnt1 a 0 A_SpawnItemEx("DyingComando", 0, 0, 40, 0, 0);
 		TNT1 A 0 {self.bshootable = true;}
 		TNT1 A 0 {self.bInvulnerable = false;}
 		Goto See;

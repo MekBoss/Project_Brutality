@@ -38,7 +38,7 @@ Default
 
 	Species "Noble";
 	PainSound "PSXDPN";
-	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "Green_Blood", "GreenAxeBlood", "GreenAxeBlood";
 	BloodColor "DarkGreen";
 	Obituary "%o was brutalized by a Baron of Hell.";
 
@@ -515,7 +515,7 @@ States
 		TNT1 A 0 A_NoBlocking();
 		
 		TNT1 AAAA 0 ;//a_spawnprojectile("SuperWallGreenBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		
 		TNT1 AAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
@@ -558,8 +558,8 @@ States
 		BS12 A 6;
 		TNT1 AAAAAA 0 ;//a_spawnprojectile("XDeath1Green", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 ;//a_spawnprojectile("Green_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeath2bGreen", 45, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeath3bGreen", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//a_spawnprojectile("XDeath2Green", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//a_spawnprojectile("XDeath3Green", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeathBrain1", 60, 0, random(0, 360), 2, random(0, 160));
 		BS12 B 6 A_XScream();
@@ -579,7 +579,7 @@ States
 	Death.SSG:
 	Death.Railgun:
 		TNT1 AAAA 0 ;//a_spawnprojectile("SuperWallGreenBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodMistBig", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 ;//a_spawnprojectile("XDeathStomachGreen", 60, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath3Green", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath2Green", 45, 0, random(0, 360), 2, random(0, 160));
@@ -644,7 +644,7 @@ States
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath2Green", 46, 0, random(130, 210), 2, random(0, 40));
 		TNT1 AAAAAAAA 0 ;//a_spawnprojectile("Green_FlyingBlood", 42, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 ;//a_spawnprojectile("SuperWallGreenBlood", 52, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodMistBig", 44, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 ;//A_SpawnItem("GreenGrowingBloodPool");
 		BSA1 AAAAAAAAAA 1 ;//a_spawnprojectile("Green_LiquidBlood", 40, 0, random(0, 360), 2, random(30, 60));
 		BSA1 BBBBCCCCDDD 2 ;//a_spawnprojectile("Green_LiquidBlood", 25, 0, random(0, 360), 2, random(30, 60));
@@ -662,7 +662,7 @@ States
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath2Green", 46, 0, random(130, 210), 2, random(0, 40));
 		TNT1 AAAAAAAA 0 ;//a_spawnprojectile("Green_FlyingBlood", 42, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 ;//a_spawnprojectile("SuperWallGreenBlood", 52, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodMistBig", 44, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 ;//A_SpawnItem("GreenGrowingBloodPool");
 		BSA1 VVVVVVVVV 1 ;//a_spawnprojectile("Green_LiquidBlood", 40, 0, random(0, 360), 2, random(30, 60));
 		BSA1 WWWXXXYYY 2 ;//a_spawnprojectile("Green_LiquidBlood", 25, 0, random(0, 360), 2, random(30, 60));
@@ -816,8 +816,8 @@ States
 	CurbstompMarine:
 		KNTF A 10;
 		TNT1 A 0 A_PlaySound("NECK_BRK", 3);
-		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath2b", 25, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath3b", 25, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath2", 25, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(0, 160));
 		KNTF BCD 4 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
 		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
@@ -880,7 +880,7 @@ States
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath1", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath2", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath3", 55, 0, random(0, 360), 2, random(0, 160));
-		3HF1 OPQQQ 8 a_spawnprojectile("BloodMistBig", 25, 0, random(0, 360), 2, random(0, 160));
+		3HF1 OPQQQ 8 a_spawnprojectile("Bloodmist", 25, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItem("DeadDemonHalf", 1);
 		TNT1 A 0 ;//A_SpawnItem("GreenGrowingBloodPool");
 		//TNT1 A 0 A_TakeInventory("DemonFatality",1);
@@ -890,7 +890,7 @@ States
 	FatalityImp:
 		TNT1 A 0 A_PlaySound("imp/pain");
 		3HF2 ABABAB 4;
-		TNT1 AAAAAA 0 A_SpawnItem("BloodMistBig", 40);
+		TNT1 AAAAAA 0 A_SpawnItem("Bloodmist", 40);
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath1", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath2", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath3", 55, 0, random(0, 360), 2, random(0, 160));
@@ -926,7 +926,7 @@ States
 	
 	Crush:
 	Death.Stomp:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Green_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Green_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
 		TNT1 AAAAAA 0 bright ;//a_spawnprojectile("XDeath1Green", 5, 0, random(0, 360), 2, random(30, 180));
 		TNT1 AA 0 bright ;//a_spawnprojectile("XDeath2Green", 55, 0, random(0, 360), 2, random(30, 180));
@@ -962,7 +962,7 @@ Default
 	Health 200;
 	damagefactor "Blood", 0.0;
 	damagefactor "Trample", 0.0;
-	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "Green_Blood", "GreenAxeBlood", "GreenAxeBlood";
 }
 States
 {
@@ -980,7 +980,7 @@ States
 	Stop;
 	Death:
 	TNT1 A 0 A_SpawnItemEx("DeadBaronBSA1U",-3,-3);
-	TNT1 A 0 ;//a_spawnprojectile("GreenBloodMistBig", 9, 0, random(0, 360), 2, random(30, 90));
+	TNT1 A 0 ;//a_spawnprojectile("GreenBloodmist", 9, 0, random(0, 360), 2, random(30, 90));
 	TNT1 AAA 0 ;//a_spawnprojectile("XDeath1Green", 5, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AAA 0 ;//a_spawnprojectile("XDeath2Green", 5, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AAA 0 ;//a_spawnprojectile("XDeath3Green", 5, 0, random(0, 360), 2, random(0, 160));
@@ -1003,7 +1003,7 @@ States{
 Spawn:        BSA1 U -1 ;      
 Stop;
 Death:
-	 TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodMistBig", 9, 0, random(0, 360), 2, random(30, 90));
+	 TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodmist", 9, 0, random(0, 360), 2, random(30, 90));
 	 TNT1 AAA 0 ;//a_spawnprojectile("XDeath1Green", 5, 0, random(0, 360), 2, random(0, 160));
 	 TNT1 A 0 ;//A_SpawnItem("GibsZ_Green");
 	 Stop;
@@ -1111,7 +1111,7 @@ CLASS BaronDeath2_Big: DeadBaron {
 	States
 	{
 	Spawn:
-		TNT1 AA 0 ;//a_spawnprojectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//a_spawnprojectile("GreenBloodmist", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath1Green", 32, 0, random(150, 210), 2, random(0, 40));
 		TNT1 AAA 0 ;//a_spawnprojectile("XDeath3Green", 26, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath2Green", 31, 0, random(130, 210), 2, random(0, 40));
@@ -1271,7 +1271,7 @@ Default
 	Health 150;
 	Scale 1.15;
 	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
-	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "Green_Blood", "GreenAxeBlood", "GreenAxeBlood";
 	damagefactor "Avoid", 0.0;
 	damagefactor "killme", 0.0;
 	damagefactor "Shrapnel", 0.0;
@@ -1387,7 +1387,7 @@ CLASS BrutalizedBaron1 : ACTOR
 	Health 120;
 	Scale 1.15;
 	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
-	BloodType "Green_Blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "Green_Blood", "GreenAxeBlood", "GreenAxeBlood";
 	damagefactor "Avoid", 0.0;
 	damagefactor "killme", 0.0;
 	damagefactor "Shrapnel", 0.0;
@@ -1486,7 +1486,7 @@ CLASS BrutalizedBaron2 : BrutalizedBaron1 {
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath3Green", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 ;//a_spawnprojectile("Green_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 ;//a_spawnprojectile("SuperWallGreenBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodMistBig", 45, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 ;//a_spawnprojectile("GreenBloodmist", 45, 0, random(0, 360), 2, random(30, 90));
 		BSA0 N 1 A_SpawnItem("BrutalizedBaron3");
 	Stop;
 }

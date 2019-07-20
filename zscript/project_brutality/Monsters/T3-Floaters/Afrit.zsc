@@ -229,7 +229,7 @@ States
 		
 	Death.Dropdown:
 		FRI1 A 6 Bright A_Scream;
-		TNT1 AAA 0 a_spawnprojectile ("MuchBlood2", 35, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("MuchBlood", 35, 0, random (0, 360), 2, random (0, 160));
 		FRI1 B 6 Bright A_NoBlocking;
 		FRI1 CD 6 Bright;
 		TNT1 A 0 A_SpawnItem ("DeadAfrit");
@@ -321,7 +321,7 @@ CLASS DeadAfrit : ACTOR {
 	States
 	{
 	Spawn:
-		//TNT1 A 0 a_spawnprojectile ("MuchBlood2", 35, 0, random (0, 360), 2, random (0, 160))
+		//TNT1 A 0 a_spawnprojectile ("MuchBlood", 35, 0, random (0, 360), 2, random (0, 160))
 		FRI1 E -1;
 		Stop;
 	Raise:
@@ -624,7 +624,7 @@ CLASS AfritXDeath : ACTOR {
 		TNT1 AA 0 a_spawnprojectile ("XDeath2", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("XDeath3", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeath4", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem ("PB_pot");
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -643,7 +643,7 @@ Default {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("pb_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		G4FD ABCD 4 a_spawnprojectile ("Brutal_FlyingBloodTrail5", 0, 0, random (0, 360), 2, random (0, 360));
+		G4FD ABCD 4 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("pb_Blood_Spot",0,0,0,1);
@@ -668,8 +668,8 @@ Death.plasma: Death.Burn: Death.Flames:
 	    TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
         Stop;
 Death:    
-	TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
-	TNT1 AAAAAAA 0 a_spawnprojectile ("BloodTr", 0, 0, random (0, 360), 2, random (0, 360));
+	TNT1 AAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
+	TNT1 AAAAAAA 0 a_spawnprojectile ("named_BloodTr", 0, 0, random (0, 360), 2, random (0, 360));
 	TNT1 A 0 a_spawnprojectile ("Xdeath1", 0, 0, random (0, 360), 2, random (0, 360));
 Stop;}}
 
@@ -717,18 +717,18 @@ CLASS AfritHead: pb_blood_and_gore_base {
 		Stop;
 		
 	Death:
-		TNT1 AAAAA 0 a_spawnprojectile ("Brutal_FlyingBloodTrail5", 0, 0, random (0, 360), 2, random (60, 140));
+		TNT1 AAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAA 0 a_spawnprojectile ("Brains1", 5, 0, random (0, 360), 2, random (60, 140));
+		TNT1 AAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (60, 140));
 		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 A 0 a_spawnprojectile ("Brains3", 5, 0, random (0, 360), 2, random (60, 140));
+		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (60, 140));
 		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 A 0 a_spawnprojectile ("Brains5", 5, 0, random (0, 360), 2, random (60, 140));
+		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (60, 140));
 		TNT1 AAAAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (60, 140));
 		Stop;
 	Death.Trample:
 	Crush:
-		TNT1 AAAAAAAA 0 a_spawnprojectile ("Brutal_FlyingBloodTrail5", 0, 0, random (0, 360), 2, random (60, 140));
+		TNT1 AAAAAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		CRS1 B 5;
 		CRS1 B 2002;

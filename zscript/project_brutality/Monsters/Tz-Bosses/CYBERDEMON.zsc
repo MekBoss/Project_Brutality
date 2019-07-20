@@ -44,7 +44,7 @@ Default
 	PainChance "Head", 80;
 	PainChance "KillMe", 64;
 	PainChance "Taunt", 255;
-	BloodType "CyberDemon_Blood", "SawBlood", "SawBlood";
+	BloodType "CyberDemon_Blood", "AxeBlood", "AxeBlood";
 	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
 
 /*	//DropItem "DemonStrengthRune", 25;

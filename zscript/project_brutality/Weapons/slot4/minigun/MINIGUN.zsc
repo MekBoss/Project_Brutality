@@ -161,7 +161,7 @@ States
 		}
 		CHAF H 1{A_SetAngle(frandom(1.2, -1.2) + angle);}
 		MNGG B 0 A_ReFire("hold");
-		null A 0
+		tnt1 a 0
 		{
 			A_StopSound(6);
 			A_StopSound(3);
@@ -204,7 +204,7 @@ States
 
 	AltFire:
 	spin:
-		null A 0
+		tnt1 a 0
 		{
 			A_WeaponOffset(0,32);
 			if(invoker.barrel_spins == true) {self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("unspin") ); return;}
@@ -222,14 +222,14 @@ States
 	Goto spins_barrels;
 
 	unspin:
-		null A 0
+		tnt1 a 0
 		{
 			invoker.barrel_spins = false;
 			A_PlaySound("CHAINSTO");
 		}
 		CHAG ABCD 2;
 		CHAG ABCD 3;
-		null A 0 A_PlaySound("CHAINCLI", 8);
+		tnt1 a 0 A_PlaySound("CHAINCLI", 8);
 		CHAG A 4 A_ZoomFactor(0.995);
 		CHAG B 4 A_ZoomFactor(0.990);
 		CHAG C 4 A_ZoomFactor(0.985);

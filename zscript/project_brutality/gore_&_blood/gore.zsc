@@ -45,10 +45,10 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("XDeathSkinPiece2", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("XDeathSkinPiece1", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("SmallSuperGore", 10, 0, random(0, 360), 2, random(10, 170));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 10, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AA 0 a_spawnprojectile("Bloodmist", 10, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("XDeath3b", 10, 0, random(0, 360), 2, random(50, 90));
-		TNT1 AAA 0 a_spawnprojectile("XDeath2b", 10, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 10, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 10, 0, random(0, 360), 2, random(50, 90));
 		Stop;
 	Death.plasma:
 		TNT1 A 0;
@@ -84,9 +84,10 @@ States
 		TNT1 A 0;
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFake", 0, 0, random(0, 360), 2, random(0, 90));
 		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 7, 0, random(0, 360), 2, random(30, 60));
-		TNT1 A 0 a_spawnprojectile("BloodMistSmall", 7, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 a_spawnprojectile("Bloodmist", 7, 0, random(0, 360), 2, random(30, 60));
 	Stop;
 }}
+
 
 CLASS LimbBase: BigGibBase { 
 	Default {
@@ -126,7 +127,7 @@ States
 		TNT1 A 1900 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		XDT3 BCDEFGH 3;
 	Death.Crush:
@@ -168,7 +169,7 @@ Default {
 
 
 
-CLASS BloodTrails : pb_blood_and_gore_base
+CLASS Brutal_FlyingBloodTrails : pb_blood_and_gore_base
 { 
 Default
 {
@@ -191,7 +192,7 @@ Default
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		//BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.01)
-		TNT1 AAAAAA 0 a_spawnprojectile("BloodTr255G", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 180));
 		//BLOD A 0 A_SpawnItem("Big_Blood", 0, 10)
 		stop;
 	}
@@ -199,7 +200,7 @@ Default
 
 
 // Blood trails spawned by FlyingBlood
-CLASS Brutal_FlyingBloodTrail8 : pb_blood_and_gore_base { 
+CLASS pb_FlyingBloodTrail8 : pb_blood_and_gore_base { 
 Default {
 	scale 0.70;
 	mass 1;
@@ -214,25 +215,18 @@ Default {
 	+MISSILE;
 	-NOGRAVITY;
 	Speed 3;
-	}
+}
 	states
 	{
 	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		BTRL A 8;
-		BTRL B 8;
-		BTRL C 8;
-		BTRL D 8;
-		stop;
-		
-	Splash:
-		BLOD A 0;
-		stop;
-		
-	}
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "null");
+		BTRL ABCD 8;
+	stop;
 }
 
-CLASS GreenBloodTrail : pb_blood_and_gore_base { 
+}
+
+CLASS GreenBrutal_FlyingBloodTrail : pb_blood_and_gore_base { 
 	Default {
 	-NOGRAVITY;
 	+NOCLIP;
@@ -260,7 +254,7 @@ Splash:
 }
 
 
-CLASS BlueBloodTrail : pb_blood_and_gore_base
+CLASS BlueBrutal_FlyingBloodTrail : pb_blood_and_gore_base
 { 
 Default {
  
@@ -291,8 +285,7 @@ states
 
 
 CLASS XDeath1 : pb_blood_and_gore_base { 
-	Default {
- 
+Default {
     Radius 8;
     Height 8;
     Speed 10;
@@ -314,9 +307,10 @@ CLASS XDeath1 : pb_blood_and_gore_base {
 	DeathSound "misc/xdeath1";
 	Decal "BrutalBloodSuper";
 	Mass 1;
-	}
-	States
-	{
+}
+
+States
+{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater");
 		BLOD A 4 a_spawnprojectile("XDeath1Trail", 0, 0, random(0, 360), 2, random(0, 360));
@@ -332,15 +326,12 @@ CLASS XDeath1 : pb_blood_and_gore_base {
 	Underwater:
 	Splash:
 		BLUD C 0 ThrustThingZ(0,35,1,0);
-		XDT1 AB 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XDT1 AB 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		BLUD C 0 ThrustThingZ(0,35,1,0);
-		XDT1 CD 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XDT1 CD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 		
 	IsOverLiquid:
-		TNT1 A 1;
-		TNT1 A 0 A_CheckFloor("SpawnOnWater");
-	SpawnOnWater:
 		TNT1 A 1;
 		TNT1 A 0 A_SpawnItem("WaterBloodSpot", 5);
 		Stop;
@@ -361,14 +352,14 @@ CLASS XDeath2: XDeath1 {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		XME1 ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XME1 ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		
 		
 		TNT1 A 0 A_CheckFloor("SpawnFloor");
-		TNT1 A 0 A_SpawnItemEx("DetectCeilBloodSimplerLarge",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("CeilBloodSpot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("DetectCeilXDeath2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		Stop;
 		
@@ -390,13 +381,6 @@ CLASS XDeath2: XDeath1 {
 }
 
 
-CLASS XDeath2b: XDeath2 { 
-	Default {
-	
-	Speed 4;
-	}
-}
-
 CLASS XDeath3: XDeath2 { 
 	Default {
 	SeeSound "misc/xdeath4";
@@ -411,12 +395,12 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		XME2 ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XME2 ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_CheckFloor("SpawnFloor");
-		TNT1 A 0 A_SpawnItemEx("DetectCeilBloodSimplerLarge",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("CeilBloodSpot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("DetectCeilXDeath3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		Stop;
 		
@@ -436,14 +420,6 @@ States
 	}
 }
 
-CLASS XDeath3b: XDeath3 { 
-	Default {
-	
-	Speed 4;
-	Gravity 0.7;
-	}
-}
-
 
 CLASS XDeath4: XDeath2 { 
 	Default {
@@ -458,13 +434,11 @@ CLASS XDeath4: XDeath2 {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		XME3 ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XME3 ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(255, "Death1", "Death2");
-		GOto Death1;
-		
 	Death1:
 		TNT1 A 0;
 		XME3 GH 3;
@@ -504,7 +478,7 @@ CLASS XDeath4b: XDeath2 {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		GIB4 AAAAAA 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		GIB4 AAAAAA 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		GIB4 B 1;
@@ -533,10 +507,10 @@ CLASS XDeath5: XDeath2 {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		XME5 ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XME5 ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItemEx("PB_Blood_Spot", 0, 0, 1);
 		XME5 E 1;
 		TNT1 A 0 A_QueueCorpse;
@@ -569,13 +543,13 @@ CLASS XDeathOrgan1: XDeath2 {
 			self.scale.y = frandompick(1, 0.5, -0.5, 1.1);
 		}
 		tnt2 a 0 a_jump(126, "spawn_2", "spawn_3");
-		XME8 A 4 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XME8 A 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		XME8 A 1 A_QueueCorpse;
 		XME8 A -1;
 	Stop;
 
 	Spawn_2:
-		XME8 B 4 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XME8 B 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		XME8 B 1 A_QueueCorpse;
 		XME8 B -1;
 	Stop;
@@ -583,8 +557,7 @@ CLASS XDeathOrgan1: XDeath2 {
 	spawn_3:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		XME4 AAAABBBBCCCCDDDD 2;
-
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_QueueCorpse;
 		XME4 E -1;
 	Stop;
@@ -592,180 +565,15 @@ CLASS XDeathOrgan1: XDeath2 {
 
 }
 
-CLASS WaterBloodCHecker: XDeath1 { 
-	Default {
-	
-	Speed 4;
-	Scale 1.2;
-	Radius 1;
-	+DOOMBOUNCE;
-	BounceFactor 0.01;
-	+EXPLODEONWATER;
-	+DONTSPLASH;
-	Height 1;
-	SeeSound "none";
-	DeathSound "none";
-	Decal "";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 5;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot", 0, 1);
-		TNT1 A 5;
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 10;
-		Stop;
-		
-	IsOverLiquid:
-		TNT1 A 1;
-		TNT1 A 0 A_CheckFloor("SpawnOnWater");
-		
-	SpawnOnWater:
-		TNT1 A 1;
-		TNT1 A 0 A_SpawnItem("WaterBloodSpot", 5);
-		Stop;
-	}
-}
-
-CLASS WaterBloodCHeckerBlue: XDeath1 { 
-	Default {
-	
-	Decal "BlueBloodSplat";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 5;
-		Loop;
-	Death:
-		TNT1 A 0;
-		TNT1 A 5;
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 10;
-		Stop;
-		
-	IsOverLiquid:
-		TNT1 A 1;
-		TNT1 A 0 A_CheckFloor("SpawnOnWater");
-		
-	SpawnOnWater:
-		TNT1 A 1;
-		TNT1 A 0 A_SpawnItem("WaterBloodSpot", 5);
-		Stop;
-	}
-}
-
-CLASS WaterBloodCHeckerGreen: XDeath1 { 
-	Default {
-	
-	Decal "GreenBloodSplat";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 5;
-		Loop;
-	Death:
-		TNT1 A 0;
-		TNT1 A 5;
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 0 A_JumpIfInventory("crutch", 1, "IsOverLiquid");
-		TNT1 A 10;
-		Stop;
-		
-	IsOverLiquid:
-		TNT1 A 1;
-		TNT1 A 0 A_CheckFloor("SpawnOnWater");
-		
-	SpawnOnWater:
-		TNT1 A 1;
-		TNT1 A 0 A_SpawnItem("WaterBloodSpot", 5);
-		Stop;
-	}
-}
-
-CLASS GoreSound: XDeath2 { 
-	Default {
-	
-	SeeSound "misc/xdeath4";
-	DeathSound "none";
-	Decal "";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		TNT1 A 2;
-		Loop;
-	Death:
-		TNT1 BCDE 1;
-		Stop;
-	Splash:
-		TNT1 A 1;
-		Stop;
-	}
-}
 
 
-CLASS ShakeShakeShake: XDeath2 { 
-	Default {
-	
-	SeeSound "none";
-	DeathSound "none";
-	Decal "";
-	Gravity 1.0;
-	Speed 1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 5;
-		Goto Death;
-	Death:
-		TNT1 A 1;
-		EXPL A 0 Radius_Quake(4, 24, 0, 15, 0);
-		TNT1 A 20;
-		Stop;
-	}
-}
 
-//ACTOR XDeathMarineHead
-//{
-//    Radius 8
- //   Height 8
- //   Speed 16
-	//Mass 6
-//bounceFactor 0.4
-	//	+DOOMBOUNCE
-	//  +NOBLOCKMAP
-	//	+MISSILE
-	//   +NOTELEPORT
-	//   +DONTSPLASH
-	//   +MOVEWITHSECTOR
-	//  DeathSound "misc/xdeath1"
-	//	Decal "BrutalBloodSplat";
-	//  States
-	//  {
-	//  Spawn:
-	//    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
-	//     MHEA A 15 a_spawnprojectile("Brutal_FlyingBloodTrail",0,0,180,2)
-	//    Loop
-	// Death:
-	//     MHEA A 9009
-	//    Stop
-	//   }
-	//}
+
+
+
+
+
+
 	
 	
 	
@@ -778,11 +586,10 @@ CLASS ShakeShakeShake: XDeath2 {
 	
 	
 	
-	/////////////////
-	//ARMS
-	/////////////////
-	
-	
+/////////////////
+//ARMS
+/////////////////
+
 class XDeathArm1 : pb_blood_and_gore_base
 {
 default {
@@ -813,7 +620,7 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		XARM AEBCFDG 5 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XARM AEBCFDG 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		XDT5 I 1;
@@ -823,24 +630,7 @@ States
 }
 
 }
-	
-class XDeathLabGuyArm: XDeathArm1
-{
-States
-{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		XLRM ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-	Loop;
 
-	Death:
-		XLRM I 1;
-		XLRM I 0 A_SpawnItem("Gib_LabGuyArm",0,0,0,1);
-	Stop;
-}
-
-}
 	
 class Gib_Arm: LimbBase
 {
@@ -863,7 +653,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 2, 0, random(0, 360), 2, 270)    ;
 	Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 a_spawnprojectile("GibHand", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("GibArmPart", 0, 0, random(0, 180), 2, random(0, 180));
 	Stop;
@@ -893,52 +683,6 @@ States
 
 }
 
-CLASS Gib_LabguyArm: LimbBase { 
-	Default {	
-	Scale 1.2;
-	}
-    States
-    {
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		XLRM I 1 A_SpawnItem("PB_Blood_Spot", 0, 1);
-		XLRM I -1;
-	Stop;
-
-	Death.plasma: Death.Burn: Death.Flames:	    
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 2, 0, random(0, 360), 2, 270)    ;
-		Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("GibHand", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("GibArmPart", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		XLRM II 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathLabGuyArm", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		XLRM ABCD 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		XLRM A 6;
-		XLRM ABCDEFGHABCD 6 A_CheckFloor("Landz");
-		Goto Landz;
-	Landz:
-		XLRM I 0 A_SpawnItem("Gib_LabguyArm");
-		Stop;
-}}
 
 CLASS XDeathArm1Kicked: XDeathArm1 { 
 	Default {
@@ -955,7 +699,7 @@ CLASS XDeathArm1Kicked: XDeathArm1 {
 	TNT1 A 0;
         TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-	XARM ABCD 6 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	XARM ABCD 6 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	Goto Spawn+3;
 	}
 }
@@ -1002,1958 +746,29 @@ CLASS XDeathArm2: XDeathArm1 {
 	}
 }
 
-CLASS XDeathArchvileHeadPiece: XDeathArm1 { 
-	Default {
- 
-    Scale 1.1;
-    Speed 10;
-	Gravity 0.4;
-	bounceFactor 0.4; 
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		D6AX ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		D6AX E 1;
-		D6AX E 0 A_SpawnItem("Gib_ArchvileHeadPiece",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileHeadPiece: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		D6AX E 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		D6AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		D6AX E -1;
-		Stop;
-	Death:    
-		TNT1 AAA 0 a_spawnprojectile("BloodMist", 2, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 2, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 2, random(5, -5), random(170, 190), 2, random(-10, 10));
-		TNT1 AA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("XDeath1", 3, 0, random(0, 360), 2, random(0, 160));
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		D6AX AA 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileHeadPiece", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		D6AX ABCD 3;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		D6AX A 5;
-		D6AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileHeadPiece");
-		Stop;
-}}
-
-CLASS XDeathArchvileHead: XDeathArm1 { 
-	Default {
-	Scale 1.1;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		VILP CDEFGHIJ 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		VILP J 1;
-		D6AX E 0 A_SpawnItem("Gib_ArchvileHead",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileHead: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		VILP J 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		VILP J 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		VILP J -1;
-		Stop;
-	Death:    
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 2, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 2, 0, random(0, 360), 2, random(30, 90));
-		TNT1 A 0 a_spawnprojectile("Brains2", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileHeadPiece", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 2, random(5, -5), random(170, 190), 2, random(-10, 10));
-		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("Teeth", 4, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("XDeath1", 3, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2", 3, 0, random(0, 360), 2, random(0, 160));
-		VILP K -1;
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		VILP C 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileHead", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		VILP CDEFGHIJ 2;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		VILP CDEFGHIJ 3 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileHead");
-		Stop;
-}}
-
-CLASS XDeathArchvileLegPiece: XDeathArm1 { 
-	Default {
-	Scale 1.1;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		D4AX ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		D4AX E 1;
-		D4AX E 0 A_SpawnItem("Gib_ArchvileLegPiece",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileLegPiece: LimbBase { 
-Default {
-	Scale 1.1;
-}
-	States
-	{
-	Spawn:
-		D4AX E 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		D4AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		D4AX E -1;
-		Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		D4AX AA 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileLegPiece", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		D4AX ABCD 3;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		D4AX A 5;
-		D4AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileLegPiece");
-		Stop;
-}}
-
-CLASS XDeathArchvileLeg: XDeathArm1 { 
-	Default {
-	Scale 1.1;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		DIAG IJKLMNOP 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		DIAG Q 1;
-		D4AX E 0 A_SpawnItem("Gib_ArchvileLeg",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileLeg: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		DIAG Q 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		DIAG Q 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		DIAG Q -1;
-		Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileLegPiece", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		DIAG Q 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileLeg", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		DIAG IJKLMNOP 3;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		DIAG IJKLMNOP 4 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileLeg");
-		Stop;
-}}
-
-
-CLASS XDeathArchvileTorso: XDeathArm1 { 
-	Default {
-	
-	Scale 1.1;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		D3AX ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		D3AX E 1;
-		D3AX E 0 A_SpawnItem("Gib_ArchvileTorso",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileTorso: LimbBase { 
-	Default {
-	Scale 1.0;
-	}
-	States
-	{
-	Spawn:
-		D3AX E 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		D3AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		D3AX E -1;
-		Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AA 0 a_spawnprojectile("Xdeath2", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		D3AX AA 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileTorso", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		D3AX ABCD 3;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		D3AX A 5;
-		D3AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileTorso");
-		Stop;
-}}
-
-CLASS XDeathArchvileArmPiece: XDeathArm1 { 
-	Default {
-	Scale 1.1;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		D7AX ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		D7AX E 1;
-		D7AX E 0 A_SpawnItem("Gib_ArchvileArmPiece",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileArmPiece: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		D7AX E 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		D7AX E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		D7AX E -1;
-		Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		D7AX AA 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileArmPiece", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		D7AX ABCD 3;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		D7AX A 5;
-		D7AX ABCDABCDABCDABCD 5 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileArmPiece");
-		Stop;
-}}
-
-CLASS XDeathArchvileArm: XDeathArm1 { 
-	Default {
-	Scale 1.1;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		DIAG ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		DIAG R 1;
-		D7AX E 0 A_SpawnItem("Gib_ArchvileArm",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_ArchvileArm: LimbBase { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		DIAG R 2;
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		DIAG R 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		DIAG R -1;
-		Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileArmPiece", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-		
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		DIAG R 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathArchvileArm", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		DIAG ABCDEFGH 3;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		DIAG ABCDEFGH 3 A_CheckFloor("Landz");
-		Goto Landz;
-		
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ArchvileArm");
-		Stop;
-}}
-
-
-CLASS XDeathBullArm1: XDeathArm1 { 
-	Default {
-	
-	Scale 1.0;
-	Speed 10;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		HND8 ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-Death.plasma: Death.Burn: Death.Flames:
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
-		Stop;
-Death:
-	HND8 I 1;
-	HND8 A 0 A_SpawnItem("Gib_DemonArm",0,0,0,1);
-	Stop;
-}
-}
-
-CLASS Gib_DemonArm: LimbBase { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-    Spawn:
-	HND8 GH 2;
-	Goto Spawn1;
-	
-	Spawn1:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	HND8 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	HND8 I -1;
-        Stop;
-    Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 A 0 a_spawnprojectile("GibDemonHand", 0, 0, random(0, 180), 2, random(0, 180));
-    TNT1 A 0 a_spawnprojectile("GibDemonArmPart", 0, 0, random(0, 180), 2, random(0, 180));
-Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-	    HND8 AA 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathBullArm1Kicked", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-	Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	HND8 ABCDEFGH 2;
-	Goto Spawn1;
-	
-	Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	HND8 A 5;
-	HND8 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-	Landz:
-	
-	XDT5 I 0 A_SpawnItem("Gib_DemonArm");
-	Stop;
-}}
-
-
-CLASS XDeathBloodDemonArm1: XDeathArm1 { 
-	Default {
- 
-    Scale 1.0;
-    Speed 10;
-	Gravity 0.4;
-	bounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		M3G8 ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death.plasma: Death.Burn: Death.Flames:
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:
-		M3G8 I 1;
-		HND8 A 0 A_SpawnItem("Gib_BloodDemonArm",0,0,0,1);
-	Stop;
-}
-}
-
-CLASS Gib_BloodDemonArm: LimbBase { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-    Spawn:
-	M3G8 GH 2;
-	Goto Spawn1;
-	
-	Spawn1:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	M3G8 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	M3G8 I -1;
-        Stop;
-    Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 A 0 a_spawnprojectile("GibDemonHand", 0, 0, random(0, 180), 2, random(0, 180));
-    TNT1 A 0 a_spawnprojectile("GibDemonArmPart", 0, 0, random(0, 180), 2, random(0, 180));
-Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-	    M3G8 AA 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathBullArm1Kicked", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-	Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	M3G8 ABCDEFGH 2;
-	Goto Spawn1;
-	
-	Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	M3G8 A 5;
-	M3G8 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-	Landz:
-	
-	M3G8 I 0 A_SpawnItem("Gib_BloodDemonArm");
-	Stop;
-}}
-
-CLASS XDeathVoidSpectreArm: XDeathArm1 { 
-	Default {
- 
-    Scale 1.0;
-    Speed 10;
-	Gravity 0.4;
-bounceFactor 0.4;
-	+SKYEXPLODE;
-	Species "Marines";
-	+THRUSPECIES;
-	BounceCount 5;
-	Decal "GreenBloodSplat";
-	Radius 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		ND6M ABCDEFGH 3 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death.plasma: Death.Burn: Death.Flames:
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160)); 
-	Stop;
-	Death:
-		ND6M I 1;
-		ND6M A 0 A_SpawnItem("Gib_VoidSpectreArm",0,0,0,1);
-	Stop;
-}
-}
-
-CLASS Gib_VoidSpectreArm: LimbBase { 
-	Default {
- 
-    Scale 1.1;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	BloodColor "DarkGreen";
-	}
-    States
-    {
-    Spawn:
-	ND6M GH 2;
-	Goto Spawn1;
-	
-	Spawn1:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	ND6M I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	ND6M I -1;
-        Stop;
-    Death:    
-    TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 A 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 180), 2, random(0, 180));
-    TNT1 A 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 180), 2, random(0, 180));
-	Stop;
-	
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-	    ND6M AA 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreKicked", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-	Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	ND6M ABCDEFGH 2;
-	Goto Spawn1;
-	
-	Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	ND6M A 5;
-	ND6M ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-	Landz:
-	
-	XDT5 I 0 A_SpawnItem("Gib_VoidSpectreArm");
-	Stop;
-}}
-
-CLASS XDeathDemonArm: XDeathBullArm1 { 
-	Default {
-    Scale 1.1;
-	}
-}
-
-CLASS XDeathVoidSpectreKicked: XDeathVoidSpectreArm { 
-	Default {
-+ACTIVATEMCROSS
-+ACTIVATEIMPACT
-+CANUSEWALLS
-	}
-}
-
-CLASS XDeathBullArm1Kicked: XDeathBullArm1 { 
-	Default {
-+ACTIVATEMCROSS
-+ACTIVATEIMPACT
-+CANUSEWALLS
-	}
-}
-
-CLASS GibDemonArmPart: TinyGib { 
-	Default {
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	HND8 Z -1;
-        Stop;
-		
-    Death:
-HND8 Z 1;
-       Loop;
-}}
-
-CLASS GibDemonHand: TinyGib { 
-	Default {
- 
-    Scale 0.8;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	HND8 Y -1;
-       Loop;
-    Death:
-HND8 Y 1;
-       Loop;
-}}
 
 
 
 
 
 
-CLASS XDeathImpArm: XDeathArm1 { 
-	Default {
-    Scale 1.1;
-    Speed 8;
-	Gravity 0.4;
-	bounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		HND4 ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death.plasma:    TNT1 A 0 a_spawnprojectile("XDeathBurnedImpArm", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:
-		HND4 X 1;
-		//HND4 X -1
-		HND4 X 0 A_SpawnItem("Gib_ImpArm",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS XDeathSavageImpArm: XDeathImpArm { 
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		9ND4 ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-		
-	Death.plasma:
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedImpArm", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:
-		9ND4 X 1;
-		//9ND4 X -1
-		9ND4 X 0 A_SpawnItem("Gib_SavageImpArm",0,0,0,1);
-		Stop;
-	}
-}
-
-
-CLASS Gib_ImpArm: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		HND4 X 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		HND4 X -1;
-		Stop;
-Death.plasma: Death.Burn: Death.Flames:	    TNT1 A 0 a_spawnprojectile("XDeathBurnedImpArm", 32, 0, random(0, 360), 2, random(0, 160));
-        Stop;
-Death:    
-	TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-	TNT1 A 0 a_spawnprojectile("GibImpHand", 0, 0, random(0, 180), 2, random(0, 180));
-	TNT1 A 0 a_spawnprojectile("GibImpArmPart", 0, 0, random(0, 180), 2, random(0, 180));
-	Stop;
-	Stop;
-Death.Kick:
-Death.Melee:
-Death.SuperPunch:
-	HND4 AA 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathImpArm", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	HND4 ABCDEFGH 3;
-	Goto Spawn;
-	
-Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	HND4 X 5;
-	HND4 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-Landz:
-	XDT5 I 0 A_SpawnItem("Gib_ImpArm");
-	Stop;
-}}
-
-CLASS Gib_SavageImpArm: Gib_ImpArm {
-    States
-    {
-    Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-        9ND4 X 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-        9ND4 X -1;
-        Stop;
-	Death.plasma: Death.Burn: Death.Flames:	    TNT1 A 0 a_spawnprojectile("XDeathBurnedImpArm", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-    Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 A 0 a_spawnprojectile("GibSavageImpHand", 0, 0, random(0, 180), 2, random(0, 180));
-    TNT1 A 0 a_spawnprojectile("GibSavageImpArmPart", 0, 0, random(0, 180), 2, random(0, 180));
-Stop;
-
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-	    9ND4 AA 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathSavageImpArm", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-	Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	9ND4 ABCDEFGH 3;
-	Goto Spawn;
-	
-	Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	9ND4 X 5;
-	9ND4 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-	Landz:
-	XDT5 I 0 A_SpawnItem("Gib_SavageImpArm");
-	Stop;
-}}
-
-CLASS GibImpArmPart: TinyGib { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-        HND4 Z -1;
-        Stop;
-    Death:
-        HND4 Z 1;
-       Loop;
-}}
-
-CLASS GibImpHand: TinyGib { 
-	Default {
- 
-    Scale 0.8;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-        HND4 Y -1;
-        Stop;
-    Death:
-        HND4 Y 1;
-       Loop;
-}}
-
-
-CLASS GibSavageImpArmPart: TinyGib { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-        9ND4 Z -1;
-        Stop;
-    Death:
-        9ND4 Z 1;
-       Loop;
-}}
-
-CLASS GibSavageImpHand: TinyGib { 
-	Default {
- 
-    Scale 0.8;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-        9ND4 Y -1;
-        Stop;
-    Death:
-        9ND4 Y 1;
-       Loop;
-}}
-
-
-CLASS XDeathHalfImpUpperPart32 : pb_blood_and_gore_base { 
-	Default {
- 
-    Radius 2;
-    Height 2;
-    Scale 1.1;
-	Speed 12;
-	Gravity 0.3;
-	Mass 4;
-	Decal "BrutalBloodSplat";
-	bounceFactor 0.2;
-	+MISSILE;
-	+MOVEWITHSECTOR;
-	+CLIENTSIDEONLY;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	}
-	States
-	{
-	Spawn:
-		//TNT1 A 0 A_SpawnItem("Brutal_LiquidBlood",0,0,0,1)
-		HND4 IJKLMNOPQ 3 a_spawnprojectile("Brutal_LiquidBlood",0,0,0,1);
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 AAA 0 A_spawnItem("Blood", 0, 10);
-		HND4 Q 1 A_SpawnItem("Gib_HalfImpUpperPart32",0,0,0,1);
-		TNT1 A 0;
-		Stop;
-	}
-}
-
-CLASS XDeathHalfSavageImpUpperPart32 : pb_blood_and_gore_base { 
-	Default {
-	
-	Radius 2;
-	Height 2;
-	Scale 1.1;
-	Speed 12;
-	Gravity 0.3;
-	Mass 4;
-	Decal "BrutalBloodSplat";
-	BounceFactor 0.2;
-	+MISSILE;
-	+MOVEWITHSECTOR;
-	+CLIENTSIDEONLY;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	}
-	States
-	{
-	Spawn:
-		//TNT1 A 0 A_SpawnItem("Brutal_LiquidBlood",0,0,0,1)
-		9ND4 IJKLMNOPQ 3 a_spawnprojectile("Brutal_LiquidBlood",0,0,0,1);
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 AAA 0 A_spawnItem("Blood", 0, 10);
-		9ND4 Q 1 A_SpawnItem("Gib_HalfSavageImpUpperPart32",0,0,0,1);
-		TNT1 A 0;
-		Stop;
-	}
-}
-
-CLASS Gib_HalfImpUpperPart32: BigGibBase { 
-	Default {
-	
-	damagefactor "ExplosiveImpact", 5.0;
-	Mass 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		HND4 Q -1;
-		Stop   ;
-	Death.ExplosiveImpact:
-	Death.Explosive:
-	Death.Kick:
-	Death.SuperPunches:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,30,0,1);
-		Goto Fly;
-	Fly:
-		HND4 IJKLMNOPQ 3 A_CheckFloor("Land");
-		Loop;
-	Land:
-		HND4 Q 1 A_SpawnItem("Gib_HalfImpUpperPart32",0,0,0,1);
-Stop; }}	 
-
-CLASS Gib_HalfSavageImpUpperPart32: BigGibBase { 
-	Default {
-	
-	damagefactor "ExplosiveImpact", 5.0;
-	Mass 10;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		9ND4 Q -1;
-		Stop   ;
-	Death.ExplosiveImpact:
-	Death.Explosive:
-	Death.Kick:
-	Death.SuperPunches:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,30,0,1);
-		Goto Fly;
-	Fly:
-		9ND4 IJKLMNOPQ 3 A_CheckFloor("Land");
-		Loop;
-	Land:
-		9ND4 Q 1 A_SpawnItem("Gib_HalfSavageImpUpperPart32",0,0,0,1);
-Stop; }}	
 
 
 
-CLASS XDeathHalfArchvile : pb_blood_and_gore_base { 
-	Default {
-	
-	Radius 2;
-	Height 2;
-	Scale 1.1;
-	Speed 4;
-	Gravity 2.3;
-	Mass 200;
-	Decal "BrutalBloodSplat";
-	BounceFactor 0.2;
-	+MISSILE;
-	+MOVEWITHSECTOR;
-	+CLIENTSIDEONLY;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	}
-	States
-	{
-	Spawn:
-		//TNT1 A 0 A_SpawnItem("Brutal_LiquidBlood",0,0,0,1)
-		D6AX FFFF 3 a_spawnprojectile("Brutal_LiquidBlood",0,0,0,1);
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 AAA 0 A_spawnItem("BloodMist", 0, 10);
-		D6AX F 1 A_SpawnItem("Gib_HalfArchvile",0,0,0,1);
-		TNT1 A 0;
-		Stop;
-	}
-}
-
-CLASS Gib_HalfArchvile: BigGibBase { 
-	Default {
-	
-	damagefactor "ExplosiveImpact", 5.0;
-	Mass 100;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		D6AX G -1;
-Stop;  }}	 
 
 
-CLASS XDeathHalfArchvile2 : pb_blood_and_gore_base { 
-	Default {
-	
-	Radius 2;
-	Height 2;
-	Scale 1.1;
-	Speed 4;
-	Gravity 2.3;
-	Mass 200;
-	Decal "BrutalBloodSplat";
-	BounceFactor 0.2;
-	+MISSILE;
-	+MOVEWITHSECTOR;
-	+CLIENTSIDEONLY;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	}
-	States
-	{
-	Spawn:
-		//TNT1 A 0 A_SpawnItem("Brutal_LiquidBlood",0,0,0,1)
-		VILP AAAA 3 a_spawnprojectile("Brutal_LiquidBlood",0,0,0,1);
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 AAA 0 A_spawnItem("BloodMist", 0, 10);
-		VILP B 1 A_SpawnItem("Gib_HalfArchvile2",0,0,0,1);
-		TNT1 A 0;
-		Stop;
-	}
-}
-
-CLASS Gib_HalfArchvile2: BigGibBase { 
-	Default {
-	
-	damagefactor "ExplosiveImpact", 5.0;
-	Mass 100;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		VILP B -1;
-Stop;  }}
 
 /////////////////////
 //LEGS
 /////////////////////
 
-CLASS XDeathZombieLeg: XDeathArm1 { 
-	Default {
-	
-	Scale 1.1;
-	Speed 8;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEG1 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		LEG1 E 1;
-		LEG1 E 0 A_SpawnItem("Gib_ZombieLeg1");
-		Stop;
-	}
-}
-
-
-CLASS Gib_ZombieLeg1: LimbBase { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG1 E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		LEG1 E -1;
-		Stop;
-	Death.plasma:    TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("GibZombieLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("GibZombieBoot", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		LEG1 EE 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathZombieLeg", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		LEG1 ABCDEFGH 2;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		LEG1 A 5;
-		LEG1 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-		Goto Landz;
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ZombieLeg2");
-		Stop;
-		
-}}
-
-
-CLASS XDeathPlasmaZombieLeg: XDeathArm1 { 
-	Default {
-	
-	Scale 1.1;
-	Speed 8;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		ZM42 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		ZM42 I 1;
-		ZM42 E 0 A_SpawnItem("Gib_PlasmaZombieLeg");
-		Stop;
-	}
-}
-
-
-CLASS Gib_PlasmaZombieLeg: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		ZM42 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		ZM42 I -1;
-		Stop;
-	Death.plasma: 
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("GibZombieLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("GibZombieBoot", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		ZM42 I 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathPlasmaZombieLeg", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		ZM42 ABCDEFGH 2;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		ZM42 I 5;
-		ZM42 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-		Goto Landz;
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_PlasmaZombieLeg");
-		Stop;
-		
-}}
-
-CLASS GibZombieLegPart: TinyGib { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG1 Z -1;
-		Stop;
-	Death:
-		LEG1 Z 1;
-		Loop;
-}}
-
-CLASS GibZombieBoot: TinyGib { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG1 Y -1;
-		Stop;
-	Death:
-		LEG1 Y 1;
-		Loop;
-}}
-
-
-CLASS XDeathZombieLeg2: XDeathZombieLeg { 
-	Default {
-	
-	Speed 8;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEG1 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		LEG1 A 1;
-		TNT1 A 0 A_SpawnItem("Gib_ZombieLeg2");
-		Stop;
-	}
-}
-
-
-CLASS Gib_ZombieLeg2: LimbBase { 
-	Default {
-	
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG1 A 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		LEG1 A -1;
-		Stop;
-	Death.plasma: 
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));  
-	Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("GibZombieLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("GibZombieBoot", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		LEG1 AA 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathZombieLegKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		LEG1 ABCDEFGH 2;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		LEG1 A 5;
-		LEG1 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-		Goto Landz;
-	Landz:
-		XDT5 I 0 A_SpawnItem("Gib_ZombieLeg1");
-		Stop;
-}}
-
-CLASS XDeathZombieLegKicked: XDeathZombieLeg { 
-	Default {
-	
-	+ACTIVATEMCROSS;
-	+ACTIVATEIMPACT;
-	}
-}
 
 
 
 
-CLASS XDeathImpLeg: XDeathArm1 { 
-	Default {
-	
-	Scale 1.1;
-	Speed 8;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEG4 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		LEG4 I 1;
-		LEG4 I 1 A_SpawnItem("Gib_ImpLeg");
-		Stop;
-		
-	}
-}
-
-CLASS XDeathSavageImpLeg: XDeathImpLeg { 
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		1EG4 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		1EG4 I 1;
-		1EG4 I 1 A_SpawnItem("Gib_SavageImpLeg");
-		Stop;
-		
-	}
-}
-
-CLASS Gib_ImpLeg: LimbBase { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG4 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		LEG4 I -1;
-		Stop;
-Death.plasma: Death.Burn: Death.Flames:
-    TNT1 A 0 a_spawnprojectile("XDeathBurnedImpLeg", 32, 0, random(0, 360), 2, random(0, 160));        
-Stop;
-Death:    
-	TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-	TNT1 A 0 a_spawnprojectile("GibImpLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-	TNT1 A 0 a_spawnprojectile("GibImpPaw", 0, 0, random(0, 180), 2, random(0, 180));
-	Stop;
-Death.Kick:
-Death.Melee:
-Death.SuperPunch:
-	LEG4 A 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	LEG4 ABCDEFGH 2;
-	Goto Spawn;
-	
-Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	LEG4 A 5;
-	LEG4 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-Landz:
-	XDT5 I 0 A_SpawnItem("Gib_ImpLeg");
-	Stop;
-}}
-
-CLASS Gib_SavageImpLeg: LimbBase { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-    Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	1EG4 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	1EG4 I -1;
-        Stop;
-Death.plasma: Death.Burn: Death.Flames:
-	    TNT1 A 0 a_spawnprojectile("XDeathBurnedImpLeg", 32, 0, random(0, 360), 2, random(0, 160));
-Stop;
-    Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 A 0 a_spawnprojectile("GibSavageImpLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-    TNT1 A 0 a_spawnprojectile("GibSavageImpPaw", 0, 0, random(0, 180), 2, random(0, 180));
-Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-	    1EG4 A 1 A_FaceTarget;
-	TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 5, 0, random(170, 190), 2, random(20, 40));
-	Stop;
-	
-	Pain:
-	TNT1 A 0;
-	TNT1 A 0 ThrustThingZ(0,20,0,1);
-	1EG4 ABCDEFGH 2;
-	Goto Spawn;
-	
-	Death.ExplosiveImpact:
-	TNT1 A 0;
-	TNT1 A 0 A_ChangeLinkFlags(false);
-	TNT1 A 0 ThrustThingZ(0,50,0,1);
-	1EG4 A 5;
-	1EG4 ABCDEFGHABCDEFGHABCDEFGH 5 A_CheckFloor("Landz");
-	Goto Landz;
-	Landz:
-	1EG4 I 0 A_SpawnItem("Gib_SavageImpLeg");
-	Stop;
-}}
-
-CLASS GibImpLegPart: TinyGib { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	LEG4 Z -1;
-        Stop;
-    Death:
-LEG4 Z 1;
-       Loop;
-}}
-
-CLASS GibImpPaw: TinyGib { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	LEG4 Y -1;
-        Stop;
-    Death:
-LEG4 Y 1;
-       Loop;
-}}
-
-CLASS GibSavageImpLegPart: TinyGib { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	1EG4 Z -1;
-        Stop;
-    Death:
-1EG4 Z 1;
-       Loop;
-}}
-
-CLASS GibSavageImpPaw: TinyGib { 
-	Default {
- 
-    Scale 1.1;
-	}
-    States
-    {
-Spawn:
-	TNT1 A 0;
-	TNT1 A 0 A_QueueCorpse;
-	1EG4 Y -1;
-        Stop;
-    Death:
-1EG4 Y 1;
-       Loop;
-}}
 
 
-CLASS XDeathBullLeg12: XDeathArm1 { 
-	Default {
- 
-    Scale 1.1;
-    Speed 8;
-	Gravity 0.4;
-bounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		LEG8 ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		LEG8 I 1;
-		LEG8 I 0 A_SpawnItem("Gib_DemonLeg");
-		Stop;
-	}
-}
 
-CLASS Gib_DemonLeg: LimbBase { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		LEG8 GH 2;
-		Goto Spawn1;
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG8 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		LEG8 I -1;
-		Stop;
-		
-		
-	Death.plasma:
-    TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonLeg", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("GibDemonLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("GibDemonPaw", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		LEG8 A 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathBullLeg12", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		LEG8 ABCDEFGH 2;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		LEG8 A 5;
-		LEG8 ABCDEFGH 5;
-		XDT5 I 0 A_SpawnItem("Gib_DemonLeg");
-Stop;}}
-	
-CLASS XDeathBloodDemonLeg12: XDeathArm1 { 
-	Default {
-	
-	Scale 1.1;
-	Speed 8;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		M3G7 ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		M3G7 I 1;
-		M3G7 I 0 A_SpawnItem("Gib_BloodDemonLeg");
-		Stop;
-	}
-}
-
-CLASS Gib_BloodDemonLeg: LimbBase { 
-	Default {
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		M3G7 I 0;
-		M3G7 I 0 A_Jump(128, "Spawn2");
-		Goto Spawn1;
-		
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		M3G7 I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		M3G7 I -1;
-		Stop;
-		
-	Spawn2:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		M3G7 J 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		M3G7 J -1;
-		Stop;
-		
-	Death.plasma:
-    TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonLeg", 32, 0, random(0, 360), 2, random(0, 160));
-	Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("GibDemonLegPart", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("GibDemonPaw", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		M3G7 A 0 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathBloodDemonLeg12", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		M3G7 ABCDEFGH 2;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		M3G7 A 5;
-		M3G7 ABCDEFGH 5;
-		XDT5 I 0 A_SpawnItem("Gib_BloodDemonLeg");
-Stop;}}
-
-CLASS XDeathVoidSpectreLeg: XDeathArm1 { 
-	Default {
-	
-	Scale 1.1;
-	Speed 8;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	Decal "GreenBloodSplat";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		L3G8 ABCDEFGH 4 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		L3G8 H 1;
-		L3G8 I 0 A_SpawnItem("Gib_VoidSpectreLeg");
-		Stop;
-	}
-}
-
-CLASS Gib_VoidSpectreLeg: LimbBase { 
-	Default {
-	
-	Scale 1.1;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	BloodColor "DarkGreen";
-	}
-	States
-	{
-	Spawn:
-		L3G8 GH 2;
-	Spawn1:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		L3G8 H 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		L3G8 H -1;
-		Stop;
-		
-		
-	Death.plasma:    TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonLeg", 32, 0, random(0, 360), 2, random(0, 160));        
-	Stop;
-	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 180), 2, random(0, 180));
-		Stop;
-	Death.Kick:
-	Death.Melee:
-	Death.SuperPunch:
-		L3G8 A 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreLeg", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		L3G8 ABCDEFGH 2;
-		Goto Spawn1;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		L3G8 A 5;
-		L3G8 ABCDEFGH 5;
-		XDT5 I 0 A_SpawnItem("Gib_VoidSpectreLeg");
-Stop;}}
-
-CLASS GibDemonLegPart: TinyGib { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG8 Z -1;
-		Stop;
-	Death:
-		LEG8 Z 1;
-		Loop;
-}}
-
-CLASS GibDemonPaw: TinyGib { 
-	Default {
-	
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		LEG8 Y 1;
-		Stop;
-	Death:
-		LEG8 Y 1;
-		Loop;
-}}
 
 
 
@@ -2974,7 +789,7 @@ CLASS XDeathSargeLeg1: XDeathArm1 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEG2 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		LEG2 ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		LEG2 A 1;
@@ -2999,7 +814,7 @@ CLASS Gib_SargeLeg: LimbBase {
 	Death.plasma:    TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160)); 
 	Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 a_spawnprojectile("GibSargeLegPart", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 0, 0, random(0, 180), 2, random(0, 180));
 		Stop;
@@ -3074,7 +889,7 @@ CLASS XDeathSargeLeg2: XDeathArm1 {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEG2 ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		LEG2 ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		LEG2 E 1;
@@ -3098,7 +913,7 @@ CLASS Gib_SargeLeg2: Gib_SargeLeg {
 	Death.plasma:    TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 a_spawnprojectile("GibSargeLegPart", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 0, 0, random(0, 180), 2, random(0, 180));
 		Stop;
@@ -3148,7 +963,7 @@ CLASS Gib_ChainLeg: LimbBase {
     TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 	Death:    
-		TNT1 AAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Stop;
 	Death.Kick:
 	Death.Melee:
@@ -3198,7 +1013,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 	Death:    
-		TNT1 AAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Stop;
 	Death.Kick:
 	Death.Melee:
@@ -3229,13 +1044,13 @@ CLASS XDeathStomach: XDeathArm1 {
 	{
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XSTO A 24 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		XSTO A 24 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_QueueCorpse;
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XSTO EEEEEEEEE 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		XSTO EEEEEEEEE 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		XSTO E -1;
 		Stop;
 	}
@@ -3253,13 +1068,13 @@ translation "168:191=112:127","16:47=120:127";
     {
 Spawn:
 	TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	XSTO A 24 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	XSTO A 24 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	Loop;
 Death:
 	TNT1 A 0;
 	TNT1 A 0 A_QueueCorpse;
 	TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	XSTO EEEEEEEEE 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+	XSTO EEEEEEEEE 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	XSTO E -1;
 	Stop;
 }
@@ -3290,7 +1105,7 @@ bounceFactor 0.4;
 	{
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		DEMH ABCDEF 7 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		DEMH ABCDEF 7 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -3330,7 +1145,7 @@ CLASS Gib_DemonHead: LimbBase {
 		TNT1 AA 0 a_spawnprojectile("XDeathBrain2", 10, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath3", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 10, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 10, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AA 0 a_spawnprojectile("PinkyHeadPiece", 12, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("PinkyJaw", 12, 0, random(0, 360), 2, random(0, 160));
 		
@@ -3365,7 +1180,7 @@ CLASS XDeathBloodDemonHead : pb_blood_and_gore_base {
 	{
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		M3G6 ABCDEFGH 7 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		M3G6 ABCDEFGH 7 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -3405,7 +1220,7 @@ CLASS Gib_BloodDemonHead: LimbBase {
 		TNT1 AA 0 a_spawnprojectile("XDeathBrain2", 10, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath3", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 10, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 10, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AA 0 a_spawnprojectile("PinkyHeadPiece", 12, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("PinkyJaw", 12, 0, random(0, 360), 2, random(0, 160));
 		
@@ -3472,7 +1287,7 @@ CLASS Gib_VoidSpectreHead: LimbBase {
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath3", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 10, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 10, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AA 0 a_spawnprojectile("VoidSpectreHeadPiece", 12, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreEyeball", 12, 0, random(0, 360), 2, random(0, 160));
 		Stop;
@@ -3507,7 +1322,7 @@ CLASS XDeathHalfMarine : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		HPLA A 12 a_spawnprojectile("Brutal_FlyingBloodTrail",0,0,180,2);
+		HPLA A 12 a_spawnprojectile("pb_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -3549,7 +1364,7 @@ CLASS XDeathHalfImp : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TROG I 12 a_spawnprojectile("Brutal_FlyingBloodTrail",0,0,180,2);
+		TROG I 12 a_spawnprojectile("pb_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4052,7 +1867,7 @@ CLASS XDeathHalfSergeant : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		SP2X F 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		SP2X F 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4086,7 +1901,7 @@ CLASS XDeathHalfPlasmaZombie2 : pb_blood_and_gore_base {
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
 		ZMS0 FG 7;
 	Fly:
-		ZMS0 H 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		ZMS0 H 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4131,7 +1946,7 @@ CLASS XDeathHalfSergeant2 : pb_blood_and_gore_base {
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
 		SXD1 JK 7;
 	Fly:
-		SXD1 L 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		SXD1 L 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4176,7 +1991,7 @@ CLASS XDeathHalfHelmetSergeant : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		SP4X F 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		SP4X F 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4218,7 +2033,7 @@ CLASS XDeathHalfChaingunGuy1 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		CP04 W 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		CP04 W 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4262,7 +2077,7 @@ CLASS XDeathHalfChaingunGuy2 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		CP06 K 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		CP06 K 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4314,7 +2129,7 @@ CLASS XDeathHalfHelmetChaingunGuy1 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		C404 W 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		C404 W 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4346,7 +2161,7 @@ CLASS XDeathHalfHelmetChaingunGuy2 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		C404 K 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		C404 K 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4388,7 +2203,7 @@ CLASS XDeathHalfZombieman2 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		PP2X F 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		PP2X F 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4429,7 +2244,7 @@ CLASS XDeathHalfHelmetZombieman2 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		4P2X F 12 a_spawnprojectile("BloodTrails",0,0,180,2);
+		4P2X F 12 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4471,7 +2286,7 @@ CLASS XDeathHellionLeg: XDeathArm1 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		03AG ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		03AG ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		03AG I 1;
@@ -4498,7 +2313,7 @@ Death.plasma: Death.Burn: Death.Flames:
     TNT1 A 0 a_spawnprojectile("XDeathBurnedImpLeg", 32, 0, random(0, 360), 2, random(0, 160)); 
 	Stop;
 Death:    
-	TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	TNT1 AAA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 180), 2, random(0, 180));
 	Stop;
 Death.Kick:
@@ -4539,7 +2354,7 @@ bounceFactor 0.4;
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		01AG ABCDEFGH 5 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		01AG ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		01AG I 1;
@@ -4566,7 +2381,7 @@ Death.plasma: Death.Burn: Death.Flames:
    TNT1 A 0 a_spawnprojectile("XDeathBurnedImpArm", 32, 0, random(0, 360), 2, random(0, 160));
    Stop;
 Death:    
-	TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	TNT1 AAA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 180), 2, random(0, 180));
 	Stop;
 Death.Kick:
@@ -4613,7 +2428,7 @@ bounceFactor 0.4;
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		04AG ABCD 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		04AG ABCD 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		D3AX E 1;
@@ -4640,10 +2455,10 @@ CLASS Gib_HellionTorso: LimbBase {
 		04AG E -1;
 		Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 AA 0 a_spawnprojectile("Xdeath2", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
 		Stop;
 		
 	Death.Kick:
@@ -4690,7 +2505,7 @@ CLASS XDeathHellionPelvis: XDeathArm1 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		05AG ABCDEFGHIJKLMNOP 1 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		05AG ABCDEFGHIJKLMNOP 1 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		05AG Q 1;
@@ -4717,10 +2532,10 @@ CLASS Gib_HellionPelvis: LimbBase {
 		05AG Q -1;
 		Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 AA 0 a_spawnprojectile("Xdeath2", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 180), 2, random(0, 180));
 		Stop;
 		
 	Death.Kick:
@@ -4766,7 +2581,7 @@ CLASS XDeathHellionHead: XDeathArm1 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		02AG ABCDEFGHI 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		02AG ABCDEFGHI 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		02AG i 1;
@@ -4793,10 +2608,10 @@ CLASS Gib_HellionHead: LimbBase {
 		02AG I -1;
 		Stop;
 	Death:    
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 2, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 2, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 2, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 2, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 2, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 2, random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("Teeth", 4, 0, random(0, 360), 2, random(0, 160));
@@ -4851,7 +2666,7 @@ CLASS RipUndeadMarine : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		UDM3 E 4 a_spawnprojectile("Brutal_FlyingBloodTrail",0,0,180,2);
+		UDM3 E 4 a_spawnprojectile("pb_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0;
@@ -4884,7 +2699,7 @@ CLASS XDeathHalfSkeleton : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		SKEX F 12 a_spawnprojectile("Brutal_FlyingBloodTrail",0,0,180,2);
+		SKEX F 12 a_spawnprojectile("pb_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -4915,7 +2730,7 @@ CLASS XDeathHalfDraugr : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		BNP4 E 12 a_spawnprojectile("Brutal_FlyingBloodTrail",0,0,180,2);
+		BNP4 E 12 a_spawnprojectile("pb_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -5236,7 +3051,7 @@ CLASS XDeathArchVile : pb_blood_and_gore_base {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		VILP A 4 a_spawnprojectile("BloodTrails",0,0,180,2);
+		VILP A 4 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Goto Death;
 	Death:
 		VILP B 0;
@@ -5276,7 +3091,7 @@ CLASS XDeathArchVileLeg1 : pb_blood_and_gore_base {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		VILP C 4 a_spawnprojectile("BloodTrails",0,0,180,2);
+		VILP C 4 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Goto Death;
 	Death:
 		TNT1 A 0;
@@ -5310,7 +3125,7 @@ CLASS XDeathGreen : pb_blood_and_gore_base {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 4 a_spawnprojectile("GreenBloodTrail",0,0,180,2);
+		TNT1 A 4 a_spawnprojectile("GreenBrutal_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 1;
@@ -5531,7 +3346,7 @@ CLASS GenericHKGib1: XDeathArm1 {
 	Spawn:
 		tnt1 a 0 nodelay {frame_num = random(0, 3);}
 		GG71 A 4 {
-			a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+			a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 			frame = frame_num;
 		}
 		Loop;
@@ -5551,7 +3366,7 @@ CLASS GenericBaronGib1: GenericHKGib1 {
 	States
 	{
 	Spawn:
-		GG71 E 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		GG71 E 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0;
@@ -5578,7 +3393,7 @@ CLASS GenericBaronGib2: GenericHKGib1 {
 	States
 	{
 	Spawn:
-		GG71 F 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		GG71 F 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0;
@@ -5662,7 +3477,7 @@ CLASS XDeathCyberKnightArm: XDeathArm1 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		G0RB ABCD 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		G0RB ABCD 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		G0RB E 1;
@@ -5675,7 +3490,7 @@ CLASS Gib_HellKnightArm: LimbBase {
 	Default {
 	
 	Scale 1.1;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	BloodColor "DarkGreen";
 	}
 	States
@@ -5716,7 +3531,7 @@ CLASS Gib_BaronOfHellArm: LimbBase {
 	Default {
  
     Scale 1.1;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	BloodColor "DarkGreen";
 	}
     States
@@ -5730,8 +3545,8 @@ CLASS Gib_BaronOfHellArm: LimbBase {
 Death.plasma: Death.Burn: Death.Flames:	    TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
         Stop;
     Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 AAAAAAA 0 a_spawnprojectile("BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
+    TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+    TNT1 AAAAAAA 0 a_spawnprojectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
     TNT1 A 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 360));
 Stop;}}
 
@@ -5752,8 +3567,8 @@ CLASS Gib_CyberKnightArm: LimbBase {
 Death.plasma: Death.Burn: Death.Flames:	    TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160)); 
        Stop;
     Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-    TNT1 AAAAAAA 0 a_spawnprojectile("BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
+    TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+    TNT1 AAAAAAA 0 a_spawnprojectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
     TNT1 A 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 360), 2, random(0, 360));
 Stop;}}
 
@@ -5772,7 +3587,7 @@ bounceFactor 0.4;
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		GHKL ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		GHKL ABCDEFGH 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		GHKL A 1;
@@ -5793,7 +3608,7 @@ CLASS XDeathCyberKnightLeg: XDeathArm1 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		G0RA ABCD 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		G0RA ABCD 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		G0RA A 1;
@@ -5844,7 +3659,7 @@ CLASS Gib_HellKnightLeg: LimbBase {
 	Default {
  
     Scale 1.1;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+	BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	BloodColor "DarkGreen";
 	}
     States
@@ -5899,7 +3714,7 @@ bounceFactor 0.4;
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		GHKT ABCDEFGH 4 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		GHKT ABCDEFGH 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -5909,278 +3724,7 @@ bounceFactor 0.4;
 	}
 }
 
-CLASS Gib_HellKnightTorso: LimbBase { 
-	Default {
-	
-	Scale 1.1;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	BloodColor "DarkGreen";
-	}
-	States
-	{
-	Spawn:
-		GHKT I 1;
-		TNT1 A 0 A_QueueCorpse;
-		GHKT I 1900;
-		GHKT I -1;
-		Stop;
-	Death:    
-		TNT1 A 0 A_NoBlocking;
-		TNT1 AAA 0 a_spawnprojectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 5, 0, random(0, 360), 2, random(10, 80));
-		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 5, 0, random(0, 360), 2, random(10, 80));
-		TNT1 A 0 a_spawnprojectile("GenericHKGib1", 5, 0, random(0, 360), 2, random(10, 80));
-		TNT1 A 0 a_spawnprojectile("XDeathHellKnightArm", 5, 0, random(0, 360), 2, random(10, 80));
-Stop;}}
 
-
-
-CLASS XDeathBaronofHellTorso: XDeathArm1 { 
-	Default {
-	
-	Scale 1.3;
-	Speed 12;
-	BounceFactor 0.4;
-	Decal "GreenBloodSplat";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		GORD ABCD 4 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		GORD E 1;
-		HNDC A 0 A_SpawnItem("Gib_BaronofHellTorso",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS XDeathCyberKnightTorso: XDeathArm1 { 
-	Default {
-	
-	Scale 1.3;
-	Speed 12;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		G0RC ABCD 4 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		G0RC E 1;
-		HNDC A 0 A_SpawnItem("Gib_CyberKnightTorso",0,0,0,1);
-		Stop;
-	}
-}
-
-CLASS Gib_BaronofHellTorso: LimbBase { 
-	Default {
-	
-	Scale 1.3;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	BloodColor "DarkGreen";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		GORD E -1;
-		Stop;
-	Death:    
-		TNT1 A 0 A_NoBlocking;
-		TNT1 AAA 0 a_spawnprojectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 5, 0, random(0, 360), 2, random(10, 80));
-		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 5, 0, random(0, 360), 2, random(10, 80));
-		TNT1 AA 0 a_spawnprojectile("GenericBaronGib1", 5, 0, random(0, 360), 2, random(10, 80));
-		TNT1 A 0 a_spawnprojectile("GenericBaronGib2", 5, 0, random(0, 360), 2, random(10, 80));
-Stop;}}
-
-CLASS Gib_CyberKnightTorso: LimbBase { 
-	Default {
-	
-	Scale 1.3;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		G0RC E -1;
-		sTOP;
-Death.plasma: Death.Burn: Death.Flames:
-	    TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-        Stop;
-Death:    
-	TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-	TNT1 AAAAAAA 0 a_spawnprojectile("BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
-	TNT1 AAAAA 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 360), 2, random(0, 360));
-Stop;}}
-
-
-CLASS XDeathVolcabusArm: XDeathArm1 { 
-	Default {
- 
-    +SKYEXPLODE
-	-CLIENTSIDEONLY
-    Scale 1.2;
-    Speed 9;
-	Gravity 0.4;
-bounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		VOLA ABCDEFGH 3;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		VOLA I -1;
-		Stop;
-	}
-}
-
-CLASS XDeathMancubusTorso: XDeathArm1 { 
-	Default {
-	
-	+SKYEXPLODE;
-	-CLIENTSIDEONLY;
-	Scale 1.2;
-	Speed 9;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		MANA IJKLMNOP 3;
-		Loop;
-	Death:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	Rest:
-		MANA QRSTTT 4;
-		Loop;
-	}
-}
-
-CLASS XDeathMancubusLeg: XDeathArm1 { 
-	Default {
-	
-	+SKYEXPLODE;
-	-CLIENTSIDEONLY;
-	Scale 1.2;
-	Speed 9;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		MAN4 ABCDEFGH 3;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		MAN4 I -1;
-		Stop;
-	}
-}
-
-CLASS XDeathDaedabusTorso: XDeathArm1 { 
-	Default {
-	
-	+SKYEXPLODE;
-	-CLIENTSIDEONLY;
-	Scale 1.2;
-	Speed 9;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		M4NA IJKLMNOP 3;
-		Loop;
-	Death:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-	Rest:
-		M4NA QRSTTT 4;
-		Loop;
-	}
-}
-
-CLASS XDeathDaedabusLeg: XDeathArm1 { 
-	Default {
-	
-	+SKYEXPLODE;
-	-CLIENTSIDEONLY;
-	Scale 1.2;
-	Speed 9;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		M4N4 ABCDEFGH 3;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		M4N4 I -1;
-		Stop;
-	}
-}
-
-CLASS XDeathMancubusArm: XDeathArm1 { 
-	Default {
-	
-	+SKYEXPLODE;
-	-CLIENTSIDEONLY;
-	Scale 1.1;
-	Speed 9;
-	Gravity 0.4;
-	BounceFactor 0.4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		MANA ABCDEFG 3;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		HND8 A 0;
-		//HND8 A 0 A_SpawnItem("FlameCannon",0,0,0,1);
-		Stop;
-		TNT1 A 0;
-		MANA H -1;
-		Stop;
-	}
-}
 
 CLASS XDeathSpiderPart1: XDeathArm1 { 
 	Default {
@@ -6386,7 +3930,7 @@ CLASS ZombiemanHead: LimbBase {
 		TNT1 A 0 A_SpawnItem("ZombiemanHeadExplode");
 		Stop;
 	Crush:
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		CRS1 B 5;
 		CRS1 B 9009;
@@ -6859,7 +4403,7 @@ CLASS ChaingunguyHead: LimbBase {
 	Death.Trample:
 	Crush:
 		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		CRS1 B 5;
 		CRS1 B 9009;
@@ -6933,7 +4477,7 @@ CLASS HelmetChaingunguyHead: LimbBase {
 	Death.Trample:
 	Crush:
 		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		CRS1 B 5;
 		CRS1 B 9009;
@@ -7195,11 +4739,11 @@ CLASS BurningFlyingMeatPiece : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		XME1 ABCD 2 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BloodTrails",0,0,180,2);
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
 		XME1 E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 AAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		XME1 EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 7 a_spawnprojectile("FlameTrails", 10, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0;
 		TNT1 A 0 A_QueueCorpse;
@@ -7314,801 +4858,29 @@ CLASS XDeathCyberPaladinHead: XDeathBullArm1 {
 	}
 }
 
-CLASS XDeathCyberPaladinRipped: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	Scale 1.0;
-	Speed 4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		CP4L AA 6;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		CP4L B 1;
-		CP4L B -1;
-		Stop;
-	}
-}
 
 
-CLASS XDeathCyberKnightRipped: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	Scale 1.0;
-	Speed 4;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		CP4L CC 6;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		CP4L D 1;
-		CP4L D -1;
-		Stop;
-	}
-}
 
-CLASS XDeathPinkyDemonHead: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	Speed 10;
-	Scale 1.3;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		DEMH AB 3;// a_spawnprojectile("ShortWallRedBlood", 0, 0, 0, 2)//
-		TNT1 A 0 {self.bTHRUSPECIES = false;}
-		DEMH CDEFGH 3;// a_spawnprojectile("ShortWallRedBlood", 0, 0, 0, 2)//
-		Loop;
-	Death:
-		DEMH I 1;
-		DEMH I 1 A_SpawnItem("PinkyDemonHead",0,0,0,1);
-		Stop;
-	}
-}
 
 
 
-CLASS PinkyDemonHead: LimbBase { 
-	Default {
-	
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	-CLIENTSIDEONLY;
-	Radius 10;
-	
-	Mass 12;
-	Health 60;
-	Scale 1.5;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		DEMH I 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		DEMH I -1;
-		Stop;
-		
-	Death:
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 A 0 A_SpawnItem("MeatDeathSmall");
-		TNT1 AA 0 a_spawnprojectile("XDeathBrain1", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathBrain2", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
-		TNT1 AA 0 a_spawnprojectile("XDeath2", 10, random(5, -5), random(160, 200), 2, random(-10, 10));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 10, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AA 0 a_spawnprojectile("PinkyHeadPiece", 12, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("PinkyJaw", 12, 0, random(0, 360), 2, random(0, 160));
-		Stop;
-	Death.Trample:
-	Crush:
-		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		DEMH I 5;
-		DEMH I 9009;
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		DEMH A 1 A_Pain;
-		DEMH A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile("XDeathPinkyDemonHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		TNT1 A 0 A_PlaySound("misc/xdeath4", 1);
-		TNT1 A 0 A_PlaySound("player/cyborg/fist", 3);
-		TNT1 A 20;
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		DEMH ACEGI 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ThrustThingZ(0,30,0,1);
-		DEMH ABCDEFGH 3;
-		DEMH I 0 A_SpawnItem("PinkyDemonHead");
-		Stop;
-		
-}}
 
 
 
-CLASS XDeathPinkyDemonHeadKicked: XDeathPinkyDemonHead { 
-	Default {
-	
-	-BOUNCEONACTORS;
-	Damage 4;
-	Speed 13;
-	Scale 1.3;
-	BounceFactor 0.4;
-	}
-}
 
 
 
 
-CLASS HellKnightHead: LimbBase { 
-	Default {
-	
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	-CLIENTSIDEONLY;
-	+SHOOTABLE;
-	-NOBLOCKMAP;
-	+SOLID;
-	+THRUACTORS;
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	damagefactor "Crush", 50.0;
-	Radius 10;
-	Mass 12;
-	Health 60;
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		HKHE G 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		HKHE G -1;
-		Stop;
-	Death:
-		TNT1 A 0 a_spawnprojectile("HellKnightHeadExplode", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		HKHE ABCDEFGH 1 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("XDeathHellKnightHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		TNT1 A 0 A_PlaySound("misc/xdeath4", 1);
-		TNT1 A 0 A_PlaySound("player/cyborg/fist", 3);
-		TNT1 A 20;
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		HKHE ABCDEFGH 1;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0;
-		TNT1 A 0 A_ChangeLinkFlags(false);
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		HKHE ABCDEFGH 6;
-		HKHE I 0 A_SpawnItem("HellKnightHead");
-		Stop;
-		
-}}
 
 
-CLASS XDeathHellKnightHeadKicked: XDeathHellKnightHead { 
-	Default {
-	
-	-BOUNCEONACTORS;
-	Damage 4;
-	Speed 13;
-	BounceFactor 0.4;
-	}
-}
 
 
 
 
 
-CLASS XDeathBaronHead5: XDeathBullArm1 { 
-	Default {
-	
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	-CLIENTSIDEONLY;
-	Scale 1.2;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		XHE5 ABCDEFGH 6;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XHE5 A 1;
-		XHE5 A 1 A_SpawnItem("BaronHead",0,0,0,1);
-		Stop;
-	}
-}
 
 
 
-CLASS BaronHead: LimbBase { 
-	Default {
-	
-	BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	-CLIENTSIDEONLY;
-	Radius 10;
-	
-	Mass 12;
-	Health 60;
-	Scale 1.2;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		XHE5 A 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XHE5 A -1;
-		Stop;
-		
-	Death:
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 A 0 a_spawnprojectile("BaronOfHellHeadExplode", 5, 0, random(0, 360), 2, random(60, 140));
-		Stop;
-	Death.Trample:
-	Crush:
-		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		CRS1 B 5;
-		CRS1 B 9009;
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		XHE5 A 1 A_Pain;
-		XHE5 A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile("XDeathBaronHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		TNT1 A 0 A_PlaySound("misc/xdeath4", 1);
-		TNT1 A 0 A_PlaySound("player/cyborg/fist", 3);
-		TNT1 A 20;
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		XHE5 ABCD 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		XHE5 ABCD 6;
-		//XHE5 I 0 A_SpawnItem("XDeathBaronHead");
-		Stop;
-		
-}}
-
-
-CLASS XDeathBaronHeadKicked: XDeathBaronHead5 { 
-	Default {
-	
-	-BOUNCEONACTORS;
-	Damage 4;
-	Speed 13;
-	BounceFactor 0.4;
-	}
-}
-
-
-
-
-
-
-
-
-CLASS XDeathRevenantHead: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	Scale 1.0;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		XHE6 ABCD 6;
-		Loop;
-	Death:
-		XHE6 A 1;
-		XHE6 A 1 A_SpawnItem("RevenantHead",0,0,0,1);
-		Stop;
-	}
-}
-
-
-
-
-CLASS RevenantHead: LimbBase { 
-	Default {
-	
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	BloodType "RevenantBlood";
-	-CLIENTSIDEONLY;
-	Radius 10;
-	
-	Mass 12;
-	Health 60;
-	Scale 1.0;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		XHE6 B -1;
-		Stop;
-		
-	Death.Trample:
-	Crush:
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		CRS1 B 5;
-		CRS1 B 9009;
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		XHE6 A 1 A_Pain;
-		XHE6 A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile("XDeathRevenantHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Death:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 AAA 0 a_spawnprojectile("LSpart1", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("LSpart3", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("LSpart2", 2, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 AAAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		XHE6 ABCD 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		Goto Fly293;
-	Fly293:
-		XHE6 ABCD 6;
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Land293");
-		
-	Land293:
-		XHE6 I 0 A_SpawnItem("XDeathRevenantHead");
-		Stop;
-		
-}}
-
-
-CLASS XDeathRevenantHeadKicked: XDeathRevenantHead { 
-	Default {
-	
-	-BOUNCEONACTORS;
-	Damage 4;
-	Speed 13;
-	BounceFactor 0.4;
-	}
-}
-
-CLASS XDeathRevenantHeadKicked2: XDeathRevenantHead { 
-	Default {
-	
-	+BOUNCEONACTORS;
-	+NOEXTREMEDEATH;
-	Damage 15;
-	Speed 24;
-	BounceFactor 0.2;
-	}
-}
-
-
-
-
-
-
-
-
-CLASS XDeathMancubusHead: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	Scale 0.9;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		XHE7 ABCD 6;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XHE5 A 1;
-		XHE5 A 1 A_SpawnItem("MancubusHead",0,0,0,1);
-		Stop;
-	}
-}
-
-
-
-CLASS MancubusHead: LimbBase { 
-	Default {
-	
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	-CLIENTSIDEONLY;
-	Radius 10;
-	
-	Mass 12;
-	Health 60;
-	Scale 0.9;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		XHE7 B 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XHE7 B -1;
-		Stop;
-		
-	Death:
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains2", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains3", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains4", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains5", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 AAAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
-		Stop;
-	Death.Trample:
-	Crush:
-		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		CRS1 B 5;
-		CRS1 B 9009;
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		XHE7 A 1 A_Pain;
-		XHE7 A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile("XDeathMancubusHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		TNT1 A 0 A_PlaySound("misc/xdeath4", 1);
-		TNT1 A 0 A_PlaySound("player/cyborg/fist", 3);
-		TNT1 A 20;
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		XHE7 ABCD 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		XHE7 ABCD 6;
-		XHE7 I 0 A_SpawnItem("MancubusHead");
-		Stop;
-		
-}}
-
-CLASS XDeathDaedabusHead: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	Scale 0.9;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		XH37 ABCD 6;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XH37 A 1;
-		XH37 A 1 A_SpawnItem("DaedabusHead",0,0,0,1);
-		Stop;
-	}
-}
-
-
-
-CLASS DaedabusHead: LimbBase { 
-	Default {
-	
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	-CLIENTSIDEONLY;
-	Radius 10;
-	
-	Mass 12;
-	Health 60;
-	Scale 0.9;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		XH37 B 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XH37 B -1;
-		Stop;
-		
-	Death:
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains2", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains3", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains4", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains5", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 AAAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
-		Stop;
-	Death.Trample:
-	Crush:
-		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		CRS1 B 5;
-		CRS1 B 9009;
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		XH37 A 1 A_Pain;
-		XH37 A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile("XDeathDaedabusHead", 5, 0, random(170, 190), 2, random(20, 40));
-		TNT1 A 0 A_PlaySound("misc/xdeath4", 1);
-		TNT1 A 0 A_PlaySound("player/cyborg/fist", 3);
-		TNT1 A 20;
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		XH37 ABCD 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		XH37 ABCD 6;
-		XH37 I 0 A_SpawnItem("DaedabusHead");
-		Stop;
-		
-}}
-
-
-
-CLASS XDeathMancubusHeadKicked: XDeathMancubusHead { 
-	Default {
-	
-	-BOUNCEONACTORS;
-	Damage 4;
-	Speed 13;
-	BounceFactor 0.4;
-	}
-}
-
-
-
-
-
-
-
-CLASS XDeathCyberdemonHead: XDeathBullArm1 { 
-	Default {
-	
-	-CLIENTSIDEONLY;
-	+SKYEXPLODE;
-	Scale 1.1;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
-		XHE8 ABCD 6;
-		Loop;
-	Death:
-		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XHE8 A 1;
-		XHE8 A 1 A_SpawnItem("CyberdemonHead",0,0,0,1);
-		Stop;
-	}
-}
-
-
-
-CLASS CyberdemonHead: LimbBase { 
-	Default {
-	
-	damagefactor "Kick", 9.0;
-	damagefactor "Melee", 9.0;
-	damagefactor "SuperPunch", 9.0;
-	-CLIENTSIDEONLY;
-	Radius 20;
-	
-	Mass 100;
-	Health 60;
-	Scale 1.2;
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 A_QueueCorpse;
-		XHE8 B 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		XHE8 B -1;
-		Stop;
-		
-	Death:
-	Death.Trample:
-		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
-	Crush:
-		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAA 0 a_spawnprojectile("Brains6Big", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("Brains7Big", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("XDeath3b", 10, 0, random(0, 360), 2, random(50, 90));
-		TNT1 AAAAA 0 a_spawnprojectile("XDeath2b", 10, 0, random(0, 360), 2, random(50, 90));
-		TNT1 A 0 A_Stop;
-		XHE8 I 10;
-		XHE8 I -1;
-		Stop;
-	Death.plasma:
-		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
-		Stop;
-	Death.Melee:
-	Death.SuperPunch:
-	Death.Kick:
-		XHE8 A 1 A_Pain;
-		XHE8 A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
-		Stop;
-		
-	Pain:
-		TNT1 A 0;
-		TNT1 A 0 ThrustThingZ(0,5,0,1);
-		XHE8 B 3;
-		Goto Spawn;
-		
-	Death.ExplosiveImpact:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ThrustThingZ(0,50,0,1);
-		XHE8 ABCD 6;
-		XHE8 I 0 A_SpawnItem("XDeathCyberdemonHead");
-		Stop;
-		
-}}
-
-
-CLASS XDeathCyberdemonHeadKicked: XDeathCyberdemonHead { 
-	Default {
-	
-	-BOUNCEONACTORS;
-	Damage 4;
-	Speed 5;
-	BounceFactor 0.4;
-	}
-}
 
 
 
@@ -8169,37 +4941,6 @@ CLASS Ashes2: XDeath1 {
 	}
 }
 
-CLASS XDeathArachnotronHead: XDeath1 { 
-	Default {
-	
-	Speed 12;
-	Gravity 0.9;
-	+DONTSPLASH;
-	DeathSound "none";
-	SeeSound "none";
-	+SKYEXPLODE;
-	Decal "";
-	Scale 1.0;
-	}
-	States
-	{
-	Spawn:
-		NAHA ABCDEFGH 4;
-		Loop;
-	Death:
-		TNT1 A 0;
-		//TNT1 A 0 A_Jump(128, "CleanDeath")
-		//TNT1 A 0 A_SpawnItem("CrawlingDyingSpider");
-		Stop;
-	CleanDeath:
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SmallBrainPiece", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
-		NAHC IJKLMN 5;
-		NAHC N -5;
-		Stop;
-		Stop;
-	}
-}
 
 
 
@@ -8389,19 +5130,19 @@ States
 	Spawn:
 		TNT1 A 0 nodelay A_JumpIf(waterlevel > 1, "Splash");
 		tnt1 a 0 a_jump(126, "spawn2");
-		CAGI ABCDEFGH 2 a_spawnprojectile("Brutal_FlyingBloodTrail", 5, 0, random(0, 360), 2, random(0, 360));
+		CAGI ABCDEFGH 2 a_spawnprojectile("pb_FlyingBloodTrail", 5, 0, random(0, 360), 2, random(0, 360));
 	Loop;
 	
     Spawn2:
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CAGI IJKLMNOP 2 a_spawnprojectile("Brutal_FlyingBloodTrail", 5, 0, random(0, 360), 2, random(0, 360));
+        CAGI IJKLMNOP 2 a_spawnprojectile("pb_FlyingBloodTrail", 5, 0, random(0, 360), 2, random(0, 360));
     Loop;
 
 	Death:
 		TNT1 A 0;
 		TNT1 AAA 0 A_SpawnItem("Blood", 0, 5);
 		TNT1 A 0 A_CheckFloor("SpawnFloor");
-		TNT1 A 0 A_SpawnItemEx("DetectCeilBloodSimpler",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("CeilBloodSpot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("DetectCeilXDeath2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0;
 		TNT1 A 0 A_QueueCorpse;
@@ -8434,14 +5175,14 @@ CLASS XDeathPainElementalGreen1: XDeath1 {
     {
     Spawn:
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CAGI ABCDEFGH 2 a_spawnprojectile("BloodTrails", 5, 0, random(0, 360), 2, random(0, 360));
+        CAGI ABCDEFGH 2 a_spawnprojectile("Brutal_FlyingBloodTrails", 5, 0, random(0, 360), 2, random(0, 360));
         Loop;
     Death:
 	    
 	TNT1 A 0;
-        TNT1 AAA 0 A_SpawnItem("BloodTrails", 0, 5);
+        TNT1 AAA 0 A_SpawnItem("Brutal_FlyingBloodTrails", 0, 5);
 	    TNT1 A 0 A_CheckFloor("SpawnFloor");
-	TNT1 A 0 A_SpawnItemEx("DetectCeilBloodSimpler",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 A 0 A_SpawnItemEx("CeilBloodSpot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	TNT1 A 0 A_SpawnItemEx("DetectCeilXDeath2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	
 	TNT1 A 0;
@@ -8470,14 +5211,14 @@ CLASS XDeathPainElementalGreen2: XDeathPainElementalGreen1 {
     {
     Spawn:
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CAGI IJKLMNOP 2 a_spawnprojectile("BloodTrails", 5, 0, random(0, 360), 2, random(0, 360));
+        CAGI IJKLMNOP 2 a_spawnprojectile("Brutal_FlyingBloodTrails", 5, 0, random(0, 360), 2, random(0, 360));
         Loop;
 
     Death:
 	TNT1 A 0;
-        TNT1 AAA 0 A_SpawnItem("BloodTrails", 0, 5);
+        TNT1 AAA 0 A_SpawnItem("Brutal_FlyingBloodTrails", 0, 5);
 	    TNT1 A 0 A_CheckFloor("SpawnFloor");
-	TNT1 A 0 A_SpawnItemEx("DetectCeilBloodSimpler",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 A 0 A_SpawnItemEx("CeilBloodSpot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	TNT1 A 0 A_SpawnItemEx("DetectCeilXDeath2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	
 	TNT1 A 0;
@@ -8536,7 +5277,7 @@ bounceFactor 0.4;
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		QARM ABCDEFGH 5 a_spawnprojectile("brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		QARM ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		QARM X 1;
@@ -8563,7 +5304,7 @@ Death.plasma: Death.Burn: Death.Flames:
 	    TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
         Stop;
 Death:    
-	TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	TNT1 A 0 a_spawnprojectile("GibHFQSZHand", 0, 0, random(0, 180), 2, random(0, 180));
 	TNT1 A 0 a_spawnprojectile("GibHFQSZArmPart", 0, 0, random(0, 180), 2, random(0, 180));
 	Stop;
@@ -8607,7 +5348,7 @@ CLASS XDeathHFQSZArm1Kicked: XDeathArm1 {
 	TNT1 A 0;
         TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-	QARM ABCDEFGH 3 a_spawnprojectile("brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	QARM ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	Goto Spawn+3;
 	}
 }
@@ -8669,7 +5410,7 @@ bounceFactor 0.4;
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEGQ ABCDEFGH 5 a_spawnprojectile("brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		LEGQ ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -8696,7 +5437,7 @@ CLASS Gib_HFQSZLeg: LimbBase {
     TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 a_spawnprojectile("GibHFQSZLegPart", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("GibHFQSZBoot", 0, 0, random(0, 180), 2, random(0, 180));
 		Stop;
@@ -8771,7 +5512,7 @@ CLASS XDeathHFQSZLeg2: XDeathHFQSZArm1 {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		LEGQ ABCDEFGH 5 a_spawnprojectile("brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		LEGQ ABCDEFGH 5 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -8798,7 +5539,7 @@ CLASS Gib_HFQSZLeg2: Gib_HFQSZLeg {
     TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 	Death:    
-		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 a_spawnprojectile("GibHFQSZLegPart", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("GibHFQSZBoot", 0, 0, random(0, 180), 2, random(0, 180));
 		Stop;
@@ -8898,13 +5639,13 @@ CLASS HFQSZHead: ZombieManHead {
 		QHED A -1;
 		Stop;
 	Death:
-		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(60, 140));
+		TNT1 AAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAA 0 a_spawnprojectile("Brains1", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 a_spawnprojectile("Brains2", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains3", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 A 0 a_spawnprojectile("Brains2", 5, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 a_spawnprojectile("Brains4", 5, 0, random(0, 360), 2, random(60, 140));
-		TNT1 A 0 a_spawnprojectile("Brains5", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 A 0 a_spawnprojectile("Brains4", 5, 0, random(0, 360), 2, random(60, 140));
 		TNT1 AAAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
 		HEDQ A -1;
 		Stop;
@@ -9320,7 +6061,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9329,8 +6070,8 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfZombiemanNoArmNoHead", 48, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath5", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath2b", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath3b", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath2", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathSkinPiece2", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathSkinPiece1", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
@@ -9339,22 +6080,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathZombieLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibZombieBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathZombiemanHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9389,7 +6130,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9405,22 +6146,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathZombieLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibZombieBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9455,7 +6196,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9464,8 +6205,8 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfPlasmaZombiemanNoArmNoHead", 48, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath5", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath2b", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath3b", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath2", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathSkinPiece2", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathSkinPiece1", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
@@ -9474,22 +6215,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathPlasmaZombieLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibZombieBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathPlasmaZombieHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9524,7 +6265,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathLabGuyArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9541,22 +6282,22 @@ States
 		TNT1 A 0 a_spawnprojectile("GibSargeLegPart", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathLabguyHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9588,7 +6329,7 @@ States
 		TNT1 A 0 NoDelay A_Jump(110, "Spawn2");
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9603,17 +6344,17 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathSargeLeg2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSergeantHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	Spawn2:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathNewSergeantArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
@@ -9624,22 +6365,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathNewSergeantLowerTorso", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathNewSergeantUpperTorso", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSergeantHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9671,7 +6412,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AA 0 a_spawnprojectile("XDeathArchvileArm", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9683,22 +6424,22 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 44, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathArchvileLeg", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathArchvileHead", 52, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9730,7 +6471,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AA 0 a_spawnprojectile("XDeathHellionArm", 46, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9743,22 +6484,22 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 44, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathHellionLeg", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHellionHead", 58, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9789,7 +6530,7 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9804,22 +6545,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathSargeLeg2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSergeantHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9855,7 +6596,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AA 0 a_spawnprojectile("XDeathHFQSZArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9868,22 +6609,22 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathHFQSZLeg2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathZSpecOpsHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9915,7 +6656,7 @@ States
 		TNT1 A 0 NoDelay A_Jump(110, "Spawn2");
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -9930,17 +6671,17 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathSargeLeg2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	Spawn2:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathNewSergeantArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
@@ -9951,22 +6692,22 @@ States
 		TNT1 A 0 a_spawnprojectile("GibSargeBoot", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathNewSergeantLowerTorso", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathNewSergeantUpperTorso", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -9998,7 +6739,7 @@ States
 		TNT1 A 0 NoDelay A_Jump(110, "Spawn2");
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathImpArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfImpUpperPart32", 32, 0, random(0, 360), 2, random(10, 60));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10013,16 +6754,16 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathImpHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	Spawn2:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathImpArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
@@ -10038,21 +6779,21 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathImpHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10083,7 +6824,7 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathSavageImpArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfSavageImpUpperPart32", 32, 0, random(0, 360), 2, random(10, 60));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10098,21 +6839,21 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSavageImpLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSavageImpHeadOnXDeath", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10143,7 +6884,7 @@ States
 	Spawn:
 		TNT1 AAAA 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("WallRedBlood", 32, 0, random(0, 360), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathHellKnightArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHellKnightTorso", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathHellKnightLeg", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10153,23 +6894,23 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath2b", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath3b", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath2", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHellKnightHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodmistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodmistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("GreenSuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10208,23 +6949,23 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath2b", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeath3b", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 AAAA 0 a_spawnprojectile("XDeath2", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodmistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodmistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("GreenSuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10264,22 +7005,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10309,9 +7050,9 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 30, 0, random(0, 360), 2, random(70, 90));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 100, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AAAAA 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
 		
@@ -10335,7 +7076,7 @@ States
 		TNT1 AAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 25, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 35, 0, random(0, 180), 2, random(0, 180));
 		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 54, 0, random(0, 360), 2, random(0, 90));
-		TNT1 A 0 A_SpawnItem("GiantBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -10365,35 +7106,35 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 0 a_spawnprojectile("XDeathStomach", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBullLeg12", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathPinkyDemonHead", 42, 0, random(0, 360), 2, random(0, 160));
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10423,35 +7164,35 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 0 a_spawnprojectile("XDeathStomach", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathBloodDemonLeg12", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathBloodDemonArm1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBloodDemonHead", 42, 0, random(0, 360), 2, random(0, 160));
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10480,14 +7221,14 @@ Default {
 States
 {
 	Spawn:
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAA 0 a_spawnprojectile("WallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		TNT1 A 0 a_spawnprojectile("XDeathStomachGreen", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathVoidSpectreLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathVoidSpectreArm", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10528,7 +7269,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AA 0 a_spawnprojectile("XDeathChainArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10543,18 +7284,18 @@ States
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10586,7 +7327,7 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathArm2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10594,22 +7335,22 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10640,29 +7381,29 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 		
 		TNT1 A 1;
 		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		Stop;
 		
 	LowBlood:
 		TNT1 A 2;
 		Stop;
 	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
 	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 		Stop;
@@ -10693,7 +7434,7 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfSkeleton", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10701,7 +7442,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -10738,7 +7479,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -10769,7 +7510,7 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("BloodSplasher3");
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathArm2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10778,7 +7519,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -10807,7 +7548,7 @@ Default {
 States
 {
 	Spawn:
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10815,7 +7556,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -10827,7 +7568,7 @@ CLASS SmalllMeatDeath: MeatDeath {
 States
 {
 	Spawn:
-		TNT1 AAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -10863,14 +7604,14 @@ Default {
 States
 {
 	Spawn:
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -11428,10 +8169,10 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4Green", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4GreenBig", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
@@ -11452,10 +8193,10 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4Blue", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4BlueBig", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
@@ -11477,10 +8218,10 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4Orange", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4OrangeBig", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
@@ -11503,12 +8244,12 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains5", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains6", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 6, 0, random(170, 190), 2, random(0, 40));
@@ -11527,12 +8268,12 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("Brains4Blonde", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains4BlondeBig", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4Blonde", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 6, 0, random(170, 190), 2, random(0, 40));
@@ -11551,11 +8292,11 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains6", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains7", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("BrainsImpHeadPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
@@ -11576,11 +8317,11 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains6", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains7", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("BrainsImpHeadPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
@@ -11600,11 +8341,11 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
-		TNT1 A 0 a_spawnprojectile("Brains3", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains6", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("Brains7", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("BrainsSavageImpHeadPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
@@ -11628,7 +8369,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		//TNT1 A 0 a_spawnprojectile("GreenBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("GreenBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
@@ -11656,7 +8397,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		//TNT1 A 0 a_spawnprojectile("GreenBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 a_spawnprojectile("GreenBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
@@ -11683,7 +8424,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 //			TNT1 A 0 a_spawnprojectile("GreenBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
 //			TNT1 A 0 a_spawnprojectile("GreenBrainPiece", 0, 0, random(0, 360), 2, random(0, 160));
@@ -11707,18 +8448,18 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher2");
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AA 0 a_spawnprojectile("MancubusEyeballs", 0, 0, random(0, 360), 2, random(10, 90));
-		TNT1 AA 0 a_spawnprojectile("Brains6Big", 0, 0, random(0, 360), 2, random(10, 90));
-		TNT1 AA 0 a_spawnprojectile("Brains7Big", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 AA 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 AA 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 0, 0, random(0, 360), 2, random(10, 20));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(10, 90));
 		
 		TNT1 AAA 0 a_spawnprojectile("Teeth", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(10, 90));
-		TNT1 AAA 0 a_spawnprojectile("XDeath3b", 10, 0, random(0, 360), 2, random(50, 90));
-		TNT1 AAA 0 a_spawnprojectile("XDeath2b", 10, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 10, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 10, 0, random(0, 360), 2, random(50, 90));
 		TNT1 A 10;
 		Stop;
 }
@@ -11732,18 +8473,18 @@ States
 		TNT1 A 0 A_SpawnItem("BloodSplasher2");
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
-		TNT1 AAAAAA 0 a_spawnprojectile("BloodMistBig", 0, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAAA 0 a_spawnprojectile("Bloodmist", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 a_spawnprojectile("XDeathDaedabusEyeball", 0, 0, random(0, 360), 2, random(10, 90));
-		//TNT1 AA 0 a_spawnprojectile("Brains6Big", 0, 0, random(0, 360), 2, random(10, 90));
-		TNT1 AA 0 a_spawnprojectile("Brains7Big", 0, 0, random(0, 360), 2, random(10, 90));
+		//TNT1 AA 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 AA 0 a_spawnprojectile("Brains4", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AAA 0 a_spawnprojectile("SmallBrainPieceFast", 0, 0, random(0, 360), 2, random(10, 20));
 		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 0, 0, random(0, 360), 2, random(10, 90));
 		
 		TNT1 AAA 0 a_spawnprojectile("Teeth", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(10, 90));
-		TNT1 AAA 0 a_spawnprojectile("XDeath3b", 10, 0, random(0, 360), 2, random(50, 90));
-		TNT1 AAA 0 a_spawnprojectile("XDeath2b", 10, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 10, 0, random(0, 360), 2, random(50, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 10, 0, random(0, 360), 2, random(50, 90));
 		TNT1 A 10;
 		Stop;
 }
@@ -11774,7 +8515,7 @@ States
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-5, 5));
 		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodLauncherLong", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZArm1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -11785,7 +8526,7 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Instestin", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZLeg2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZHead", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("BigBloodSpot");
+		TNT1 A 0 A_SpawnItem("PB_pot");
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -11797,13 +8538,13 @@ States
 {
 	Spawn:
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2b", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3b", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 10, 0, random(0, 360), 2, random(40, 90));
 		TNT1 A 0 a_spawnprojectile("XDeathSkinPiece2", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathSkinPiece1", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SmallSuperGore", 10, 0, random(0, 360), 2, random(10, 170));
-		TNT1 AAAA 0 a_spawnprojectile("BloodMistSmall", 35, 0, random(0, 360), 2, random(40, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 35, 0, random(0, 360), 2, random(40, 90));
 		Stop;
 }
 }
@@ -11971,7 +8712,7 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		4N09 ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+		4N09 ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	Loop;
 
 	Death.plasma: Death.Burn: Death.Flames:
@@ -12000,7 +8741,7 @@ CLASS Gib_NewSergeantArm1: LimbBase {
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
 		Stop;
     Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+    TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
     TNT1 A 0 a_spawnprojectile("GibHand", 0, 0, random(0, 180), 2, random(0, 180));
     TNT1 A 0 a_spawnprojectile("GibArmPart", 0, 0, random(0, 180), 2, random(0, 180));
 Stop;
@@ -12044,7 +8785,7 @@ CLASS XDeathNewSergeantArm1Kicked: XDeathNewSergeantArm1 {
 		TNT1 A 0;
         TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		4N09 ABCD 6 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		4N09 ABCD 6 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Goto Spawn+3;
 	}
 }
@@ -12160,7 +8901,7 @@ CLASS XDeathNewSergeantLeg1: XDeathArm1 {
 		Spawn:
 			TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 			TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-			4N07 ABCDEFGH 3 a_spawnprojectile("Brutal_FlyingBloodTrail5", 0, 0, random(0, 360), 2, random(0, 360));
+			4N07 ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 			Loop;
 Death.plasma: Death.Burn: Death.Flames:
 	    TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
@@ -12187,7 +8928,7 @@ CLASS Gib_NewSergeantLeg1: LimbBase {
 	TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 	Stop;
     Death:    
-    TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+    TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
     TNT1 A 0 a_spawnprojectile("GibHand", 0, 0, random(0, 180), 2, random(0, 180));
     TNT1 A 0 a_spawnprojectile("GibArmPart", 0, 0, random(0, 180), 2, random(0, 180));
 Stop;
@@ -12231,7 +8972,7 @@ CLASS XDeathNewSergeantLeg1Kicked: XDeathNewSergeantLeg1 {
 		TNT1 A 0;
         TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		4N07 ABCD 6 a_spawnprojectile("Brutal_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		4N07 ABCD 6 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Goto Spawn+3;
 	}
 }
@@ -12349,7 +9090,7 @@ CLASS XDeathInfernusLeg : pb_blood_and_gore_base {
 		+NOBLOCKMAP;
 		+NOTELEPORT;
 		Scale 1.1;
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	}
 	States
 	{
@@ -12368,7 +9109,7 @@ CLASS XDeathInfernusLeg : pb_blood_and_gore_base {
 CLASS Gib_InfernusLeg: BigGibBase { 
 	Default {
 		
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 		Scale 1.0;
 	}
 	States
@@ -12396,7 +9137,7 @@ CLASS XDeathInfernusArm : pb_blood_and_gore_base {
 		+CLIENTSIDEONLY;
 		+NOBLOCKMAP;
 		+NOTELEPORT;
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 		Scale 1.1;
 	}
 	States
@@ -12416,7 +9157,7 @@ CLASS XDeathInfernusArm : pb_blood_and_gore_base {
 CLASS Gib_InfernusArm: BigGibBase { 
 	Default {
 		
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 		Scale 1.0;
 	}
 	States
@@ -12445,7 +9186,7 @@ CLASS XDeathInfernusTorso : pb_blood_and_gore_base {
 		+NOBLOCKMAP;
 		+NOTELEPORT;
 		Scale 1.1;
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	}
 	States
 	{
@@ -12464,7 +9205,7 @@ CLASS XDeathInfernusTorso : pb_blood_and_gore_base {
 CLASS Gib_InfernusTorso: BigGibBase { 
 	Default {
 		
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 		Scale 1.0;
 	}
 	States
@@ -12493,7 +9234,7 @@ CLASS XDeathInfernusHead : pb_blood_and_gore_base {
 		+NOBLOCKMAP;
 		+NOTELEPORT;
 		Scale 1.1;
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	}
 	States
 	{
@@ -12512,7 +9253,7 @@ CLASS XDeathInfernusHead : pb_blood_and_gore_base {
 CLASS Gib_InfernusHead: BigGibBase { 
 	Default {
 		
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 		Scale 1.08;
 	}
 	States
@@ -12541,7 +9282,7 @@ CLASS XDeathInfernusUpperTorso : pb_blood_and_gore_base {
 		+NOBLOCKMAP;
 		+NOTELEPORT;
 		Scale 1.1;
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 	}
 	States
 	{
@@ -12562,7 +9303,7 @@ CLASS XDeathInfernusUpperTorso : pb_blood_and_gore_base {
 CLASS Gib_InfernusUpperTorso: BigGibBase { 
 	Default {
 		
-		BloodType "PB_blood", "GreenSawBlood", "GreenSawBlood";
+		BloodType "PB_blood", "GreenAxeBlood", "GreenAxeBlood";
 		Scale 1.08;
 	}
 	States
@@ -12605,27 +9346,27 @@ CLASS InfernusXDeath : pb_blood_and_gore_base {
 			TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
-			TNT1 AAAA 0 a_spawnprojectile("XDeath2b", 15, 0, random(0, 360), 2, random(0, 160));
-			TNT1 AAAA 0 a_spawnprojectile("XDeath3b", 15, 0, random(0, 360), 2, random(0, 160));
+			TNT1 AAAA 0 a_spawnprojectile("XDeath2", 15, 0, random(0, 360), 2, random(0, 160));
+			TNT1 AAAA 0 a_spawnprojectile("XDeath3", 15, 0, random(0, 360), 2, random(0, 160));
 			//TNT1 AAA 0 a_spawnprojectile("Green_Instestin", 24, 0, random(0, 360), 2, random(0, 160));
-			TNT1 AAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
+			TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 			TNT1 AA 0 a_spawnprojectile("XDeathInfernusArm", 32, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 a_spawnprojectile("XDeathInfernusTorso", 48, 0, random(0, 360), 2, random(0, 160));
 			TNT1 AA 0 a_spawnprojectile("XDeathInfernusLeg", 32, 0, random(0, 360), 2, random(0, 160));
-			TNT1 A 0 A_SpawnItem("BigBloodSpot");
+			TNT1 A 0 A_SpawnItem("PB_pot");
 			TNT1 A 1;
 			TNT1 A 2;
-			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistBig", 30, 0, random(0, 360), 2, random(20, 90));
+			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 			Stop;
 		LowBlood:
 			TNT1 A 2;
 			Stop;
 		LotsOfBlood:
-			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodmistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 			TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 			Stop;
 		AbsurdBlood:
-			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodmistExtraBig", 30, 0, random(0, 360), 2, random(20, 90));
+			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 			TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("GreenSuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
 			TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
 			Stop;

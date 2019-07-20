@@ -36,9 +36,9 @@ States
 	See:
 		//TNT1 A 0 A_JumpIfInventory("Curbstomp_Marine", 1, "FatalityMarine");
 		TNT1 A 0 A_SpawnItemEx("FootStep", 0, 0, 20, 0, 0);
-		NULL A 0 A_PlaySound("skeleton/step",5);
+		tnt1 a 0 A_PlaySound("skeleton/step",5);
 		R4SK AAABBBC 2 A_Chase();
-		NULL A 0 A_PlaySound("skeleton/step",5);
+		tnt1 a 0 A_PlaySound("skeleton/step",5);
 		R4SK CCDDD 2 A_Chase();
 	Loop;
 
@@ -191,7 +191,7 @@ States
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile ("Bloodmist", 46, 0, random (0, 360), 2, random (30, 90));
 		TNT1 AAAA 0 a_spawnprojectile ("RevenantBones", 37, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAAAAA 0 a_spawnprojectile ("RevenantPiece", 37, 0, random (0, 360), 2, random (30, 150));
 		TNT1 A 0 A_NoBlocking();
@@ -296,9 +296,9 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile ("RevenantPiece", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 42, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 42, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 62, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAA 0 a_spawnprojectile ("Bloodmist", 46, 0, random (0, 360), 2, random (30, 90));
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_XScream();
 		R4SK R 2;
@@ -316,9 +316,9 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile ("RevenantPiece", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 42, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 42, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 62, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAA 0 a_spawnprojectile ("Bloodmist", 46, 0, random (0, 360), 2, random (30, 90));
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_XScream();
 		DK4L A 6;
@@ -339,9 +339,9 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile ("RevenantPiece", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 42, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 42, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 62, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile ("Bloodmist", 46, 0, random (0, 360), 2, random (30, 90));
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_XScream();
 		5KL8 HHHH 2 a_spawnprojectile ("Brutal_LiquidBlood3", 60, 0, random (0, 360), 2, random (0, 160));
@@ -371,12 +371,12 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile ("RevenantPiece", 37, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodFaster", 42, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 42, 0, random (170, 190), 2, random (0, 40));
+		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 62, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile ("Bloodmist", 46, 0, random (0, 360), 2, random (30, 90));
 		//Goto Death.Rare
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_XScream();

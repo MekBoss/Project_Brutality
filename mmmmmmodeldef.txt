@@ -1,5 +1,5 @@
 /*
-Model VeryGiantBloodSpot      // Name of actor in DECORATE
+Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -9,7 +9,7 @@ Model VeryGiantBloodSpot      // Name of actor in DECORATE
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GiantBloodSpot      // Name of actor in DECORATE
+Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -63,7 +63,7 @@ Model BlueBloodFootPrintRight      // Name of actor in DECORATE
 
 
 /*
-Model BigBloodSpot      // Name of actor in DECORATE
+Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -238,7 +238,7 @@ Model Blue_BloodSpot      // Name of actor in DECORATE
 }*/
 
 /*
-Model MediumBloodSpot2      // Name of actor in DECORATE
+Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -248,7 +248,7 @@ Model MediumBloodSpot2      // Name of actor in DECORATE
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model MediumBloodSpot      // Name of actor in DECORATE
+Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -922,7 +922,7 @@ Model Waterbloodspot      // Name of actor in DECORATE
    FrameIndex BPDL E 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model WaterbloodspotBlue      // Name of actor in DECORATE
+Model WaterBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -936,7 +936,7 @@ Model WaterbloodspotBlue      // Name of actor in DECORATE
 }
 
 
-Model WaterbloodspotGreen      // Name of actor in DECORATE
+Model WaterBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -962,7 +962,7 @@ Model SplatteredSmall     // Name of actor in DECORATE
 
 
 
-Model SplatteredLarge     // Name of actor in DECORATE
+Model SplatteredSmall     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file

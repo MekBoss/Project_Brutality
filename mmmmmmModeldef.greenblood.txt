@@ -155,7 +155,7 @@ Model MinuscleGreenBloodSpot      // Name of actor in DECORATE
 
 
 
-Model GreenBigBloodSpot      // Name of actor in DECORATE
+Model GreenPB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -167,7 +167,7 @@ Model GreenBigBloodSpot      // Name of actor in DECORATE
 
 
 
-Model GreenMediumBloodSpot      // Name of actor in DECORATE
+Model GreenPB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -179,7 +179,7 @@ Model GreenMediumBloodSpot      // Name of actor in DECORATE
 
 
 
-Model GreenMediumBloodSpot2      // Name of actor in DECORATE
+Model GreenPB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -345,7 +345,7 @@ Model MinuscleGreenBloodSpot      // Name of actor in DECORATE
 
 
 
-Model GreenBigBloodSpot      // Name of actor in DECORATE
+Model GreenPB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -357,7 +357,7 @@ Model GreenBigBloodSpot      // Name of actor in DECORATE
 
 
 
-Model GreenMediumBloodSpot      // Name of actor in DECORATE
+Model GreenPB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -369,7 +369,7 @@ Model GreenMediumBloodSpot      // Name of actor in DECORATE
 
 
 
-Model GreenMediumBloodSpot2      // Name of actor in DECORATE
+Model GreenPB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file

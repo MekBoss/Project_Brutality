@@ -25,7 +25,7 @@ Default
 	damagefactor "TeleportRemover", 0.0;
 	DamageFactor "CauseObjectsToSplash", 0.0;
 	Obituary "$OB_BABY";
-	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "SawBlood";
+	BloodType "Brutal_Blood", "BloodSPlatterReplacer", "AxeBlood";
 	MaxStepHeight 24;
 	MaxDropOffHeight 24;
 	PainChance "Kick", 255;
@@ -107,7 +107,7 @@ States
 	Death:
 		TNT1 A 0 A_Jump(101, "RareDeath");
 		BSPI J 8 A_Scream();
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 		TNT1 AAAA 0 A_spawnprojectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAA 0 A_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAA 0 A_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
@@ -128,7 +128,7 @@ States
 		TNT1 AAAAA 0 A_spawnprojectile ("SuperGoreSpawner", 10, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("SuperGoreSpawner", 0, 0, random (0, 180), 2, random (0, 180));
 		TNT1 AA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 		TNT1 AAAA 0 A_spawnprojectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAA 0 A_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
@@ -215,7 +215,7 @@ States
 	Death.Cut:
 	Death.Saw:
 		TNT1 AAAAA 0 A_spawnprojectile ("Instestin2", 14, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAA 0 A_spawnprojectile ("CeilBloodLauncher", 40, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
 		TNT1 AAAAA 0 A_spawnprojectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAA 0 A_spawnprojectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAAAAA 0 A_spawnprojectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
@@ -236,7 +236,7 @@ States
 		TNT1 AAAAA 0 A_spawnprojectile ("SuperGoreSpawner2", 50, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("SuperGoreSpawner2", 30, 0, random (0, 180), 2, random (0, 180));
 		TNT1 AA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 		TNT1 AAAA 0 A_spawnprojectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAA 0 A_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
@@ -288,7 +288,7 @@ States
 	XDeathRare:
 		TNT1 A 0 A_spawnprojectile ("XDeathArachnotronHead", 50, 0, random (0, 360), 2, random (40, 130));
 		TNT1 AA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
 		XBSP A 6 A_NoBlocking();
 		XBSP BCD 6;
 		XBSP D 1 A_BossDeath();
@@ -458,7 +458,7 @@ States
 {
     Spawn:
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        ID22 ABCD 2 A_spawnprojectile("BloodTrails",0,0,180,2);
+        ID22 ABCD 2 A_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 	Loop;
 
 	Death:
@@ -501,7 +501,7 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		ID22 ABCD 2 A_spawnprojectile("BloodTrails",0,0,180,2);
+		ID22 ABCD 2 A_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 	Loop;
 
 	Death:
@@ -581,7 +581,7 @@ States
 		NAHA A 2 A_FaceTarget();
 	Fly:
 		NAHA ABCDEFGH 3 A_CheckFloor("See");
-		NULL A 0 A_JumpIf (vel.z == 0, "See");
+		tnt1 a 0 A_JumpIf (vel.z == 0, "See");
 		TNT1 A 0;
 	Loop;
 }
