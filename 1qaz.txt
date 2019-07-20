@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SPELL_FILES=$(find . | grep '\.zs\|.txt\|\.acs')
+
+LOWERCASE=$(grep -h -o -E '\w{4,}' $SPELL_FILES)
+
+echo "$LOWERCASE" | while read l; do echo "$(echo -n "$l:"; grep $l $SPELL_FILES | wc -l)" | grep ":1$"; done

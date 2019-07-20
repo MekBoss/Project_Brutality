@@ -1,0 +1,440 @@
+CLASS HellishMissileLauncher : PB_Weapon_base
+{
+enum rev_modes
+{
+	rockets = 0,
+	beam
+};
+
+enum barrels
+{
+	left = 0,
+	right
+};
+
+protected barrels last_barrel;
+
+protected rev_modes fire_mode;
+
+Default
+{
+	+FLOORCLIP;
+	+DONTGIB;
+	Height 20;
+	//Weapon.SelectionOrder 2800
+	Weapon.AmmoUse1 1;
+	Weapon.AmmoUse2 1;
+	Weapon.AmmoGive 8;
+	Weapon.AmmoType1 "MiniHellRocketAmmo";
+	Weapon.AmmoType2 "MiniHellRocketAmmo";
+	Inventory.PickupSound "revup";
+	Tag "Hellish Missile Launcher";
+	-WEAPON.NOAUTOFIRE;
+	+WEAPON.NOALERT;
+	// +WEAPON.MELEEWEAPON
+	+WEAPON.DONTBOB;
+	+WEAPON.NOAUTOAIM;
+	Inventory.PickupMessage "You got the Revenant's Hellish Missile Launcher! (Slot 9)";
+}
+
+override bool, bool weapon_dual_and_special()
+{return false, true; }
+
+override void activate_special()
+{
+	owner.player.SetPSprite(PSP_WEAPON, self.FindState("switch_to_beam") );
+}
+
+States
+{
+	Spawn:
+		FATB D -1;
+	Loop;
+
+	Select:
+		TNT1 A 0 A_Overlay(-10, "FirstPersonLegsStand");
+		TNT1 A 1 A_Raise(100);
+	Wait;
+
+	Ready://rocket
+	rocket_select:
+		TNT1 A 0
+		{
+			A_PlaySound("revup");
+			if(invoker.fire_mode == beam)
+			{
+				self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("beam_select") );
+				return;
+			}
+		}
+		RVCS DCBA 1;
+	rocket_ready:
+		RVCG A 1 a_weaponready;
+	loop;
+		
+	beam_select://beam
+		RVCS HGFE 1;
+	beam_ready:
+		RVCG D 1 a_weaponready;
+	loop;
+		
+
+	Fire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 
+		{
+			if(invoker.fire_mode == beam)
+			{
+				self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("beam_shot") );
+				return;
+			}
+		}
+		TNT1 A 0 A_JumpIfTargetInLOS("fire_one");
+		RVCG B 1;
+	Goto rocket_ready;
+	fire_one:
+		TNT1 A 0 A_PlaySound("hellishmissle/fire", 1);
+		TNT1 A 0 A_AlertMonsters;
+		TNT1 A 0 
+		{
+			if(invoker.last_barrel == left)
+			{
+				self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("fire_second") );
+				return;
+			}
+			invoker.last_barrel = left;
+		}
+		TNT1 A 0 a_fireprojectile("Alerter", 0, 0, -1, 0);
+		TNT1 A 0 A_ZoomFactor(0.98);
+		RVCF A 3 BRIGHT a_fireprojectile("DoomerRevenantSeeker3", random(4,-4), 1, -8, 0);
+		TNT1 A 0 A_ZoomFactor(0.975);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
+		RVCG A 6 A_ZoomFactor(1.0);
+	Goto rocket_ready;
+		
+	fire_second:
+		tnt1 a 0 {invoker.last_barrel = right;}
+		TNT1 A 0 A_PlaySound("hellishmissle/fire", 2);
+		TNT1 A 0 A_ZoomFactor(0.98);
+		RVCF B 3 BRIGHT a_fireprojectile("DoomerRevenantSeeker2", random(4,-4), 1, 8, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
+		TNT1 A 0 A_ZoomFactor(0.975);
+		RVCG A 6 A_ZoomFactor(1.0);
+	Goto rocket_ready;		
+
+	beam_shot:
+		TNT1 A 0 A_AlertMonsters;
+		TNT1 A 0 A_Playsound("weapons/revrailgf", 2);
+		TNT1 A 0  a_fireprojectile("DoomerRevBeam", random(1,-1), 0, 8, 0);
+		TNT1 A 0  a_fireprojectile("DoomerRevBeam", random(1,-1), 1, 8, 0);
+		TNT1 A 0 A_ZoomFactor(0.97);
+		RVCF D 3 BRIGHT A_ZoomFactor(0.965);
+		TNT1 A 0 A_ZoomFactor(1.0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
+		RVCG D 20;
+		TNT1 A 0 a_fireprojectile("Red_Flare", 0, 0, 0, 0);
+	Goto beam_ready;
+
+
+
+
+	AltFire:
+		TNT1 A 0 A_WeaponOffset(0,32);
+		TNT1 A 0 A_AlertMonsters;
+		TNT1 A 0
+		{
+			if(invoker.fire_mode == beam)
+			{
+				self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("Alt_beam_shot") );
+				return;
+			}
+		}
+		TNT1 A 0 A_PlaySound("hellishmissle/fire", 1);
+		TNT1 A 0 A_ZoomFactor(0.98);
+		RVCF A 3 BRIGHT a_fireprojectile("DoomerRevenantMissile2", random(4,-4), 1, -8, 0);
+		
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
+		TNT1 A 0 A_ZoomFactor(0.975);
+		RVCG A 6 A_ZoomFactor(1.0);
+		TNT1 A 0 A_ZoomFactor(0.98);
+		TNT1 A 0 A_PlaySound("hellishmissle/fire", 2);
+		RVCF B 3 BRIGHT a_fireprojectile("DoomerRevenantMissile3", random(4,-4), 1, 8, 0);
+		
+		TNT1 A 0 A_ZoomFactor(0.975);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
+		RVCG A 6 A_ZoomFactor(1.0);
+	Goto rocket_ready;
+
+
+
+
+	Alt_beam_shot:
+		TNT1 A 0 A_PlaySound("weapons/revrailgf", 1);
+		TNT1 A 0 a_fireprojectile("DoomerRevBeam", random(4,-4), 1, 8, 0);
+		RVCF D 1 BRIGHT;
+		RVCG D 2 BRIGHT A_ZoomFactor(0.99);
+		
+		TNT1 A 0 A_PlaySound("weapons/revrailgf", 1);
+		TNT1 A 0 a_fireprojectile("DoomerRevBeam", random(6,-6), 1, 8, 0);
+		RVCF D 1 BRIGHT;
+		RVCG D 2 BRIGHT A_ZoomFactor(0.98);
+		
+		
+		TNT1 A 0 A_PlaySound("weapons/revrailgf", 1);
+		TNT1 A 0 a_fireprojectile("DoomerRevBeam", random(8,-8), 1, 8, 0);
+		RVCF D 1 BRIGHT;
+		RVCG D 2 BRIGHT A_ZoomFactor(0.97);
+		
+		RVCG D 2 A_ZoomFactor(1.0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
+		RVCG D 22;
+		TNT1 A 0 a_fireprojectile("Red_Flare", 0, 0, 0, 0);
+		TNT1 A 0 A_TakeInventory("RevenantRocketFire1823", 4);
+	Goto beam_ready;
+		
+	switch_to_beam:
+		TNT1 A 0 A_StopSound;
+		TNT1 A 0
+		{
+			if(invoker.fire_mode == beam)
+			{
+				self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("switch_to_rocket") );
+				return;
+			}
+			invoker.fire_mode = beam;
+		}
+		TNT1 A 0 A_PlaySound("DSBOWREL", 1);
+		TNT1 A 0 A_Print("Firemode: Rail");
+		TNT1 A 0 A_PlaySound("REVCYC", 2);
+		RVCS ABCD 1;
+		TNT1 A 10;
+		RVCS HGFE 1;
+	Goto beam_ready;
+		
+	switch_to_rocket:
+		TNT1 A 0 { A_PlaySound("DSBOWREL"); invoker.fire_mode = rockets;}
+		TNT1 A 0 A_Print("Firemode: Seeker Missile");
+		TNT1 A 0 A_PlaySound("REVCYC", 2);
+		RVCS EFGH 1;
+		TNT1 A 10;
+		RVCS DCBA 1;
+	Goto rocket_ready;
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Deselect:
+	rocket_deselect:
+		TNT1 A 0
+		{
+			if(invoker.fire_mode == beam)
+			{
+				self.Player.SetPSprite(PSP_WEAPON, invoker.FindState("beam_deselect") );
+				return;
+			}
+		}
+		RVCS ABCD 1;
+		TNT1 A 0 A_Lower;
+	Wait;
+
+	beam_deselect:
+		RVCS EFGH 1;
+		TNT1 A 0 A_Lower;
+	Wait;
+
+
+
+
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Steady:
+		TNT1 A 1;
+		Goto Ready;
+		
+		
+
+
+	Flash:
+		TNT1 A 0;
+		RVCG A 15;
+		Stop;
+	AltFlash:
+		TNT1 A 0;
+		RVCG A 19;
+		Stop;
+	TauntFlash:
+		TNT1 A 0;
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailTauntFlash");
+		TNT1 A 0;
+		RVCG A 47;
+		Stop;
+		
+	RailTauntFlash:
+		TNT1 A 0;
+		RVCG D 47;
+		Stop;
+		
+	SaluteFlash:
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailSaluteFlash");
+		TNT1 A 0;
+		RVCG A 69;
+		Stop;
+		
+	RailSaluteFlash:
+		TNT1 A 0;
+		RVCG A 69;
+		Stop;
+		
+	FlashKicking:
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailFlashKicking");
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 3;
+		RVCG A 3;
+		RVCG A 3;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG AAA 1;
+		Stop;
+		
+	RailFlashKicking:
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 3;
+		RVCG D 3;
+		RVCG D 3;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG DDD 1;
+		Stop;
+		
+	FlashAirKicking:
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailFlashAirKicking");
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 3;
+		RVCG A 3;
+		RVCG A 3;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG AAA 1;
+		Stop;
+		
+	RailFlashAirKicking:
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 3;
+		RVCG D 3;
+		RVCG D 3;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG DDD 1;
+		Stop;
+		
+	FlashSlideKicking:
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailFlashSlideKicking");
+		RVCG AA 2;
+		RVCG AAAAAAAAAAA 2 ;
+		Stop;
+		
+	RailFlashSlideKicking:
+		RVCG DD 2;
+		RVCG DDDDDDDDDDD 2 ;
+		Stop;
+		
+	FlashSlideKickingStop:
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailFlashSlideKickingStop");
+		RVCG AAAAAA 1;
+		RVCG A 1;
+		Stop;
+		
+	RailFlashSlideKickingStop:
+		RVCG DDDDDD 1;
+		RVCG D 1;
+		Stop;
+		
+	FlashPunching:
+		//TNT1 A 0 A_JumpIfInventory("HasRailgun",1,"RailFlashPunching");
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 3;
+		RVCG A 3;
+		RVCG A 3;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG A 1;
+		RVCG AAA 1 ;
+		Stop;
+		
+	RailFlashPunching:
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 3;
+		RVCG D 3;
+		RVCG D 3;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG D 1;
+		RVCG DDD 1 ;
+		Stop;
+	}
+}

@@ -1,0 +1,119 @@
+CLASS Red_Flare : Flare_General { 
+states
+{
+	Spawn:
+		TNT1 A 0
+		{
+			a_setscale(frandom(0.3, 0.5), frandom(0.3, 0.5) );
+		}
+		TNT1 A 0 A_Jump(128,2);
+		LENR A 2 bright;
+	stop;
+		TNT1 A 0;
+		LENR BA 2 bright;
+	stop;
+}
+}
+
+CLASS Red_FlareSpawn : pb_flare { 
+Default {
+
+	Speed 20;
+	PROJECTILE;
+	+NOCLIP;
+}
+States
+{
+	Spawn:
+		TNT1 AA 1 a_spawnprojectile("Red_FlareSmall2",-5,0,-85,0,random(-10,10));
+		Stop;
+}
+}
+
+CLASS Red_Flare22 : Flare_General { 
+Default {
+
+}
+states
+{
+Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128,2);
+	L2NR A 2 bright;
+	stop;
+	TNT1 A 0;
+	L2NR B 2 bright;
+	stop;
+}
+}
+
+CLASS Red_FlareSmall22 : Red_Flare22 { 
+Default {
+
+scale 0.15;
+}
+}
+
+CLASS SmallFleshTrails: FlameTrails { 
+Default {
+
+
+Scale 0.4;
+}
+States
+{
+Spawn:
+	TNT1 A 2 A_SpawnItem("Red_Flare",0,0);
+	HSMX ABCDEFGHIJKL 3 BRIGHT a_spawnprojectile ("Brutal_LiquidBlood3", 46, 0, random (170, 190), 2, random (0, 40));
+	Stop;
+}
+}
+CLASS Red_FlareMedium : Red_Flare { 
+Default {
+
+scale 0.25;
+}
+}
+
+CLASS Red_FlareArmor : Red_Flare { 
+Default {
+
+scale 0.3;
+}
+}
+
+CLASS Red_FlareBig : Red_Flare { 
+Default {
+
+scale 0.9;
+}
+}
+
+CLASS Red_FlareLarge1X : Red_Flare { 
+Default {
+
+scale 1.0;
+}
+}
+
+CLASS Red_FlareSmall : Red_Flare { 
+Default {
+
+scale 0.15;
+}
+}
+
+CLASS Red_FlareVerySmall : Red_Flare { 
+Default {
+
+alpha 0.15;
+scale 0.17;
+}
+}
+
+CLASS Red_FlareSmall2 : Red_Flare { 
+Default {
+
+scale 0.10;
+}
+}

@@ -40,9 +40,9 @@ Default
 	Species "Noble";
 	PainSound "PSXDPN";
 	
-	//DropItem "DemonStrengthRune", 3;
-	//DropItem "Demonpickup2", 50;
-	//DropItem "Demonpickup", 196;
+	////DropItem "DemonStrengthRune", 3;
+	////DropItem "Demonpickup2", 50;
+	////DropItem "Demonpickup", 196;
 }
 
 States
@@ -177,23 +177,23 @@ States
 		BOS2 F 2 A_FaceTarget();
 		//TNT1 A 0 A_JumpIfInventory("CantFire",1, "SeeContinue");
 		BOS2 E 2 A_FaceTarget();
-		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 bright A_SpawnProjectile("GreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
 		BOS2 E 2 A_FaceTarget();
-		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 bright A_SpawnProjectile("GreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
 		BOS2 E 2 A_FaceTarget();
-		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 bright A_SpawnProjectile("GreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
 		BOS2 E 2 A_FaceTarget();
 
-		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 bright A_SpawnProjectile("GreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
 		BOS2 E 2 A_FaceTarget();
-		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 bright A_SpawnProjectile("GreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
 		BOS2 E 2 A_FaceTarget();
-		TNT1 A 0 bright A_SpawnProjectile("SmallGreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 bright A_SpawnProjectile("GreenFlameTrails", 64, 30, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnProjectile("BallGettingReadyGreen", 64, 30, random(0, 140), 2, random(0, 160));
 		BOS2 E 2;
 		BOS2 F 8 A_FaceTarget();
@@ -231,11 +231,11 @@ States
 		BSPC AB 3 A_FaceTarget();
 		BSPC CCC 3;
 		TNT1 A 0 A_PlaySound("CLAP", 2);
-		TNT1 A 0 A_SpawnProjectile("CyberStep",10,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Cyber_Step",10,0,0,0);
 		TNT1 A 0 A_SpawnProjectile("Knight_Slam",10,0,0,0);
 		TNT1 A 0 A_SpawnProjectile("BigRicoChet");
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
-		TNT1 A 0 A_SpawnItemEx("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
 		BSPC D 25;
 	Goto seecontinue;
@@ -317,9 +317,9 @@ States
 		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "SuperWallBlood", 32, random(170, 190), random(0, 40) ); //A_ SpawnProjectile("SuperWallGreenBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "BloodMistBig", 40, random(0, 360), random(30, 90) );
 		TNT1 AAAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "SuperWallBlood", 32, random(170, 190), random(0, 40) );
 		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "SuperWallBlood", 46, random(170, 190), 2, random(0, 40));
 		BRUD LM 5 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
@@ -329,11 +329,11 @@ States
 		TNT1 AAAAAA 0 A_SpawnProjectile("RevenantDust2", 30, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 ;//A_SpawnProjectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
 		BRUD QRS 5 ;//pb_spawn_blood_color(green, "XDeath1", 40, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AA 0 A_SpawnProjectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
 		BRUD TUV 5;
-		BRUD WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 8 A_SpawnProjectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		BRUD WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 8 A_SpawnProjectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
 		BRUD W -1;
 	STOP;
 
@@ -663,14 +663,14 @@ States
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
 		TNT1 AAAAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		BOSB ABC 7 A_SpawnProjectile("PlasmaSmoke", 28, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		BOSB ABC 7 A_SpawnProjectile("ExplosionSmoke", 28, 0, random(0, 180), 2, random(0, 180));
 		TNT1 AAAAA 0 A_SpawnProjectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 A_SpawnProjectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		BOSB D 7 A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAA 0 A_SpawnProjectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		BOSB D 7 A_SpawnProjectile("ExplosionSmoke", 14, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 ;//pb_spawn_blood_color(green, "GrowingBloodPool");
 		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
-		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 A_SpawnProjectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 A_SpawnProjectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
 		BOSB E -1;
 	Stop;
 		
@@ -680,10 +680,10 @@ States
 		TNT1 A 0 A_NoBlocking();
 		TNT1 AAAA 0 ;//pb_spawn_blood_color(green, "pb_blood", 30, random(0, 360), random(0, 160) );
 		TNT1 AA 0 ;//A_SpawnProjectile("XdeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//A_SpawnProjectile("XdeathBurnedMeat2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//A_SpawnProjectile("XdeathBurnedMeat3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
-		XBRN AAAA 2 BRIGHT A_SpawnItem("GreenFlare",0,43);
+		XBRN AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
 	Stop;
 		
 	Death.ExplosiveImpact:
@@ -731,8 +731,8 @@ States
 		TNT1 AAAAAA 0 A_SpawnProjectile("ExplosionParticle", 32, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random(-35, 35), random(-35, 35));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random(-45, 45), random(-45, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
 		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),40,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
@@ -749,15 +749,15 @@ States
 		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),12,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
 		B4UD FFFFF 1 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("ExplosionParticle", 10, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 		B4UD GGGG 2 BRIGHT Light("IncinerationGlow");
 		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		B4UD HHGGHHGGHHGGHHGG 2 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		B4UD HHGGHHGGHHGGHHGG 2 BRIGHT Light("IncinerationGlow") A_SpawnProjectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		B4UD HHGGHHGGHHGGHHGG 2 Light("IncinerationGlow") A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		B4UD HHGGHHGGHHGGHHGG 2 Light("IncinerationGlow") A_SpawnProjectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
 		B4UD HHGGHHGGHHGGHHGG 2;
-		B4UD IIIIIII 12 A_SpawnProjectile("PlasmaSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		B4UD IIIIIII 12 A_SpawnProjectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
 		B4UD I -1;
 	Stop;
 
@@ -911,13 +911,13 @@ States
 		//TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
 		//TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "SpawnCheap");
 	Spawn1:
-		DB57 AB 1 BRIGHT A_SpawnItem("GreenFlareSmall",0,0);
-		TNT1 A 0 A_SpawnItemEx("SmallGreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		DB57 C 1 BRIGHT A_SpawnItem("GreenFlareSmall",0,0);
+		DB57 AB 1 BRIGHT A_SpawnItem("Green_FlareSmall",0,0);
+		TNT1 A 0 A_SpawnItemEx("GreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+		DB57 C 1 BRIGHT A_SpawnItem("Green_FlareSmall",0,0);
 	Loop;
 		
 	SpawnCheap:
-		TNT1 A 0 A_SpawnItemEx("SmallGreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_SpawnItemEx("GreenFlameTrails", 0, 0, 0, 0, 0, 0, 0, 128);
 		DB57 ABC 1 BRIGHT;
 	Loop;
 		
@@ -926,11 +926,11 @@ States
 		//    TNT1 A 0 A_Playsound("BaronFireImpact", 0)
 		TNT1 A 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
 		//EXPL AAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 0, 0, random(0, 360), 2, random(0, 360))
-		TNT1 A 0 A_SpawnItemEx("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("GreenPlasma_Puff", 0, 0, 0);
-		TNT1 A 0 A_SpawnItemEx("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		FRPG ABCDEFGH 1 BRIGHT  A_SpawnItem("GreenFlare",0,0);
-		TNT1 AAAAA 19 A_SpawnProjectile("PlasmaSmoke", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		FRPG ABCDEFGH 1 BRIGHT  A_SpawnItem("Green_Flare",0,0);
+		TNT1 AAAAA 19 A_SpawnProjectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 
 	XDeath:
@@ -938,7 +938,7 @@ States
 		// TNT1 A 0 A_Playsound("BaronFireImpact", 0)
 		TNT1 A 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
 		//EXPL AAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 0, 0, random(0, 360), 2, random(0, 360))
-		FRPG ABCDEFGH 2  A_SpawnItem("GreenFlare",0,0);
+		FRPG ABCDEFGH 2  A_SpawnItem("Green_Flare",0,0);
 	Stop;
 }
 
@@ -989,8 +989,8 @@ States
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
 		EXPL AAAAA 0 A_SpawnProjectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		BOSB ABCDE 9 A_SpawnProjectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
-		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 A_SpawnProjectile("PlasmaSmoke", 16, 0, random(0, 180), 2, random(0, 180));
+		BOSB ABCDE 9 A_SpawnProjectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 A_SpawnProjectile("ExplosionSmoke", 16, 0, random(0, 180), 2, random(0, 180));
 		BOSB E -1;
 	Stop;
 	
@@ -1378,8 +1378,8 @@ States
 		BTC1 D 10 A_Pain();
 		TNT1 A 0 ;//A_SpawnItemEx("Green_Instestin", 0, 0, 5, 0, 0);
 			
-		TNT1 A 0 A_GiveInventory("DeathTimer1", 1);
-		TNT1 A 0 A_JumpIfInventory("DeathTimer1", 8, "GotoDeath");
+		//TNT1 A 0 A_GiveInventory("DeathTimer1", 1);
+		//TNT1 A 0 A_JumpIfInventory("DeathTimer1", 8, "GotoDeath");
 	Loop;
 			
 	GotoDeath:

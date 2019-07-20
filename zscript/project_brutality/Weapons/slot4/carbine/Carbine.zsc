@@ -126,7 +126,7 @@ States
 		4AFF A 1
 		{
 			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
-			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
@@ -156,7 +156,7 @@ States
 		}
 		4A2F A 1 BRIGHT {
 			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
-			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
@@ -385,10 +385,10 @@ States
 		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
 		Goto Reload;
 		4AFF A 1 {
-			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
-			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
-			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
 			A_Takeinventory("XRifleAmmo",1);
 			A_PlaySound("Weapons/Rifle/SFire", 0);
@@ -423,10 +423,10 @@ States
 		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
 		Goto Reload;
 		4AFF A 1 {
-			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
-			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
-			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
 			A_Takeinventory("XRifleAmmo",1);
 
@@ -457,7 +457,7 @@ States
 	Goto Reload;
 	4AFF A 1 {
 		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
-		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
@@ -490,7 +490,7 @@ States
 	Goto Reload;
 	4AFF A 1 {
 		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
-		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
@@ -533,10 +533,10 @@ States
 		Goto Reload;
 		TNT1 A 0 {invoker.bNOAUTOFIRE = true;}
 		4A2F A 1 BRIGHT {
-			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
-			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
-			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
 			A_Takeinventory("XRifleAmmo",1);
 
@@ -573,10 +573,10 @@ States
 		TNT1 A 0 A_JumpIfInventory("XRifleAmmo",1,1);
 		Goto Reload;
 		4A2F A 1 BRIGHT {
-			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);;
-			a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);;
+			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
-			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);;
+			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
 			A_Takeinventory("XRifleAmmo",1);
 
@@ -607,7 +607,7 @@ States
 	Goto Reload;
 	4A2F A 1 BRIGHT {
 		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
-		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);
@@ -640,7 +640,7 @@ States
 	Goto Reload;
 	4A2F A 1 BRIGHT {
 		A_FireBullets (0.1, 0.1, -1, 15, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
-		a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		a_fireprojectile("RifleCaseSpawn",5,0,8,-9);

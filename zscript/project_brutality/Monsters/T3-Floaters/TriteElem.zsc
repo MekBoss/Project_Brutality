@@ -26,12 +26,12 @@ Default
 	PainChance "Kick", 255;
 	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
 	
-	DropItem "DemonStrengthRune", 5;
-	DropItem "DemonStrengthRune", 7;
-	DropItem "RageSphere", 6;
-	DropItem "DoubleSphere", 5;
-	DropItem "ShieldSphere", 4;
-	DropItem "Demonpickup", 148;
+	//DropItem "DemonStrengthRune", 5;
+	//DropItem "DemonStrengthRune", 7;
+	//DropItem "RageSphere", 6;
+	//DropItem "DoubleSphere", 5;
+	//DropItem "ShieldSphere", 4;
+	//DropItem "Demonpickup", 148;
 	
 	damagetype "Flames";
 	Obituary "%o was nested by a Trite Elemental.";
@@ -64,7 +64,7 @@ States
 		TNT1 AA 0;
 		TORT Z 5 A_FaceTarget;
 		TORT Z 1 A_FaceTarget;
-		TNT1 A 0 BRIGHT A_SpawnItem("GreenFlareMedium",0,0);
+		TNT1 A 0 BRIGHT A_SpawnItem("Green_FlareMedium",0,0);
 		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-20, 20), 0, random(-10, 10));
 		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-16, 16), 0, random(-7, 7));
 		TORT Z 1 a_spawnprojectile("TriteEgg", 32, 0, random(-20, 20), 0, random(-7, 7));

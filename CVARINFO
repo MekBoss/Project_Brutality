@@ -1,7 +1,10 @@
 server bool pb_clip_debug=false;
 
+server bool pb_debug = false;
 
-
+//hiden cvars, shhhhh
+server int pb_max_sprite_effects = 500;
+server int pb_max_particle_effects = 500;
 
 
 

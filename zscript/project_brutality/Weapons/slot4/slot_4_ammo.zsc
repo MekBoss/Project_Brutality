@@ -24,57 +24,57 @@ States
 }
 
 CLASS NormalClipBox2 : pb_clip { 
-	Default {
-		
-		Scale 0.75;
-		Inventory.PickupMessage "Picked up a Box of High Caliber Bullets.";
-		Inventory.PickupSound "CBOXPKUP";
-		Inventory.Amount 50;
-		Inventory.Icon "CLIPA0";
-		+DONTGIB;
-		+FLOORCLIP;
-	}
-	States
-	{
-		Spawn:
-			AMM0 A -1;
-			Stop;
-	}
+Default {
+	
+	Scale 0.75;
+	Inventory.PickupMessage "Picked up a Box of High Caliber Bullets.";
+	Inventory.PickupSound "CBOXPKUP";
+	Inventory.Amount 50;
+	Inventory.Icon "CLIPA0";
+	+DONTGIB;
+	+FLOORCLIP;
+}
+States
+{
+	Spawn:
+		AMM0 A -1;
+		Stop;
+}
 }
 
 CLASS NormalClipBox : pb_clip { 
-	Default {
-		
-		Scale 0.75;
-		Inventory.PickupMessage "Picked up a Box of High Caliber Bullets.";
-		Inventory.PickupSound "CBOXPKUP";
-		Inventory.Amount 100;
-		Inventory.Icon "CLIPA0";
-		+DONTGIB;
-		+FLOORCLIP;
-	}
-	States
-	{
-		Spawn:
-			AMMO A -1;
-			Stop;
-	}
+Default {
+	
+	Scale 0.75;
+	Inventory.PickupMessage "Picked up a Box of High Caliber Bullets.";
+	Inventory.PickupSound "CBOXPKUP";
+	Inventory.Amount 100;
+	Inventory.Icon "CLIPA0";
+	+DONTGIB;
+	+FLOORCLIP;
+}
+States
+{
+	Spawn:
+		AMMO A -1;
+		Stop;
+}
 }
 
 CLASS NormalClipBoxBig : pb_clip { 
-	Default {
-		
-		Inventory.PickupMessage "Picked up a Large Case of High Caliber Bullets.";
-		Inventory.PickupSound "CBOXPKUP";
-		Inventory.Amount 150;
-		Inventory.Icon "CLIPA0";
-		+DONTGIB;
-		+FLOORCLIP;
-	}
-	States
-	{
-		Spawn:
-			8CLP A -1;
-		Stop;
-	}
+Default {
+	
+	Inventory.PickupMessage "Picked up a Large Case of High Caliber Bullets.";
+	Inventory.PickupSound "CBOXPKUP";
+	Inventory.Amount 150;
+	Inventory.Icon "CLIPA0";
+	+DONTGIB;
+	+FLOORCLIP;
+}
+States
+{
+	Spawn:
+		8CLP A -1;
+	Stop;
+}
 }

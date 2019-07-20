@@ -107,7 +107,7 @@ States
 			A_PlaySound("CHAINSPI", 6,1,1);
 			A_PlaySound("weapons/minigunfire", 1, 1, 1);
 			A_Recoil(0.1);
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			A_FireBullets(4, 4, 1, 10, "MachineGunBulletPuff", 1);
@@ -118,7 +118,7 @@ States
 		CHAF B 1
 		{
 			A_SetAngle(frandom(1.2, -1.2) + angle);
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		}
@@ -133,7 +133,7 @@ States
 		CHAF D 1
 		{
 			A_SetAngle(frandom(1.2, -1.2) + angle);
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		}
@@ -147,7 +147,7 @@ States
 		CHAF F 1
 		{
 			A_SetAngle(frandom(1.2, -1.2) + angle);
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		}
@@ -170,33 +170,33 @@ States
 			A_WeaponReady();
 			A_GunFlash("PostGlow");
 		}
-		CHAG ABCD 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		CHAG ABCD 1 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_GunFlash("PostGlow");
 		CHAG ABCD 1
 		{
-			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			a_fireprojectile("GunFireSmoke",0,0,0,0);
 			A_Refire("hold");
 			A_GunFlash("PostGlow");
 		}
 		CHAG A 2
 		{
-			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			a_fireprojectile("GunFireSmoke",0,0,0,0);
 			A_ZoomFactor(0.980);
 		}
 		CHAG B 2
 		{
-			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			a_fireprojectile("GunFireSmoke",0,0,0,0);
 			A_ZoomFactor(0.990);
 			A_GunFlash("PostGlow");
 		}
 		CHAG C 2
 		{
-			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			a_fireprojectile("GunFireSmoke",0,0,0,0);
 			A_ZoomFactor(0.995);
 		}
 		CHAG D 2
 		{
-			a_fireprojectile("SmokeSpawner11",0,0,0,0);
+			a_fireprojectile("GunFireSmoke",0,0,0,0);
 			A_ZoomFactor(1.0);
 			A_PlaySound("CHAINCLI", 8);
 		}
@@ -548,7 +548,7 @@ States
 		TNT1 A 0 A_PlaySound("8HAINFIR", 2, 1,1);
 		TNT1 A 0 A_Recoil(0.1);
 		
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
 		RIFF A 0 a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
@@ -563,7 +563,7 @@ States
 		
 		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
 		TNT1 A 0 A_Recoil(0.1);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		8HAF D 1 BRIGHT A_FireBullets(7, 7, 3, 9, "MachineGunBulletPuff", 1);
 		TNT1 A 0 A_TakeInventory("pb_clip", 2);
@@ -590,25 +590,25 @@ States
 		TNT1 A 0 A_PlaySound("CHAINSTO", 5);
 		TNT1 A 0 A_PlaySound("DTHDLRSP", 4);
 		TNT1 A 0 A_WeaponReady;
-		8HAG A 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG A 1 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(0.980);
-		8HAG B 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG B 1 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(0.990);
-		8HAG C 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG C 1 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(0.995);
-		8HAG D 1 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG D 1 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(1.0);
-		8HAG ABCD 2 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG ABCD 2 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_Refire("HoldDeathDealer");
-		8HAG ABCD 2 a_fireprojectile("SmokeSpawner11",0,0,0,0);
-		8HAG ABCD 3 a_fireprojectile("SmokeSpawner11",0,0,0,0);
+		8HAG ABCD 2 a_fireprojectile("GunFireSmoke",0,0,0,0);
+		8HAG ABCD 3 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		TNT1 A 0 A_PlaySound("CHAINCLI", 8);
 		goto ReadyDeathDealer+13;
 		
 	Fire2:
 		TNT1 A 0 A_PlaySound("CHAINSPI", 6,1,1);
 		TNT1 A 0 A_PlaySound("weapons/minigunfirefast", 1, 1, 1);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		
 		TNT1 A 0 A_SetAngle(frandom(2.15, -2.2) + angle);
@@ -660,16 +660,16 @@ States
 		TNT1 A 0 A_GunFlash("PostGlow");
 		
 		CHAG A 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		CHAG B 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		CHAG C 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		CHAG D 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 
 		
 		goto spins_barrels+1;
@@ -678,7 +678,7 @@ States
 		TNT1 A 0 A_PlaySound("CHAINSPI", 6, 1,1);
 		TNT1 A 0 A_PlaySound("8HAINFIR", 2, 1,1);
 		TNT1 A 0 A_PlaySound("weapons/minigunfire2", 1);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		
 		TNT1 A 0 A_SetAngle(frandom(2.85, -2.94) + angle);
@@ -706,16 +706,16 @@ States
 		TNT1 A 0 A_StopSound(6);
 		TNT1 A 0 A_StopSound(2);
 		8HAG A 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		8HAG B 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		8HAG C 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		8HAG D 1 A_WeaponReady;
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,0);
 		
 		goto ReadyDeathDealer2;
 		

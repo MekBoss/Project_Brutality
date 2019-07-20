@@ -1,0 +1,85 @@
+
+CLASS BDExplosionparticles: pb_particle { 
+Default {
+	Radius 1;
+	Height 1;
+	Alpha 1.0;
+	RenderStyle "Add";
+	Scale 0.5;
+	Speed 6;
+	Gravity 1.4;
+	+BOUNCEONCEILINGS;
+	+BOUNCEONWALLS;
+	-SKYEXPLODE;
+	-NOGRAVITY;
+}
+States
+{
+	Spawn: 
+		SPKO M 1;
+		SPKO M 8 BRIGHT;
+		SPKO MMMMMMMMMMMMMM 1 BRIGHT A_FadeOut(0.1);
+		Stop;
+}
+}
+
+
+
+
+
+
+
+CLASS ExplosionParticle : pb_particle { 
+default{Scale 0.1; gravity 0.6;}
+States
+{
+	Spawn:
+		tnt1 a 0 nodelay
+		{
+			double scal = frandom(0.05, 0.27);
+			self.scale = (scal, scal);
+			self.vel = (frandom(-12, 12), frandom(-12, 12), frandom(-12, 12) );
+		}
+	live_loop:
+		SPRK S 1 Bright
+		{
+			self.tics = random(1, 5);
+			A_FadeOut(frandom(0.03, 0.1) );
+			self.vel += (frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2) );
+			scale *= 0.7;
+		}
+	loop;
+}
+}
+
+
+CLASS ExplosionParticleSpawner : pb_particle { 
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 AAAAA 0 a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAA 0 a_spawnprojectile("pb_particle", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 A 1;
+		Stop;
+}
+}
+
+
+
+
+CLASS HeavyAssExplosionFireball : pb_particle { 
+Default {
+	Alpha 0.60;
+	RenderStyle "Translucent";
+	Scale 2.5;
+}
+States
+{
+	Spawn:
+		tnt1 A 0;
+		EXF4 ABCDEFGHIJKLMNOP 1 BRIGHT A_SpawnItem("Red_Flare");
+		Stop;
+}
+}
+

@@ -2279,21 +2279,21 @@ Default
 		TNT1 A 0;
 		TNT1 A 0 A_XScream();
 		TNT1 A 0 A_NoBlocking();
-		XBRN AA 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN AA 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
 		
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 		//TNT1 A 0 A_SpawnItem("CrueltyBonus5Armor");
-		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN BB 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 A 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN CC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0;
 	Stop;
 	
@@ -2432,21 +2432,21 @@ Damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlo
 	TNT1 A 0;
 	TNT1 A 0 A_XScream();
 	TNT1 A 0 A_NoBlocking();
-	XBRN AA 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+	XBRN AA 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 	TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
 	
 	TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
 	TNT1 A 0 a_spawnprojectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
 	TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
 	TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat2", 32, 0, random(0, 360), 2, random(0, 160));
-	TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat3", 32, 0, random(0, 360), 2, random(0, 160));
+	TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 	//TNT1 A 0 A_SpawnItem("CrueltyBonus5Armor");
-	XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+	XBRN BB 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 	TNT1 A 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-	XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+	XBRN CC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 	TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-	TNT1 AAA 0 a_spawnprojectile("BigPlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
 	TNT1 A 0;
 	Stop;
 	

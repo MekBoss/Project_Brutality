@@ -1,0 +1,142 @@
+
+CLASS SlimeParticleXSpawner : pb_special_effect_base { 
+Default {
+	speed 40;
+	renderstyle "Add";
+	alpha 0.9;
+	scale .15;
+}
+states
+{
+	Spawn:
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItem("SpawnSlimeParticleX");
+		TNT1 AAAA 1 A_SpawnItem("SpawnSlimeParticleX");
+		TNT1 A 12;
+		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
+		TNT1 A 16;
+		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
+		TNT1 A 16;
+		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
+		Stop;
+}
+}
+
+CLASS NukageSplashWaves : pb_special_effect_base { 
+States
+{
+	Spawn:
+		SLDG DE 4 BRIGHT A_SetScale(1.2, 1.4);
+		SLDG FHI 4 BRIGHT;
+		TNT1 A 1 A_SetScale(1.6, 1.0);
+		SLDG DEFHI 6 BRIGHT;
+		TNT1 A 1 A_SetScale(1.8, 0.6);
+		SLDG DEFHI 8 BRIGHT;
+	Stop;
+}
+}
+
+CLASS SpawnSlimeParticleX : pb_special_effect_base { 
+states
+{
+	Spawn:
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SlimeParticleXNEW", 0, 0, random(0, 360), 2, random(0, 360));
+	Stop;
+}
+}
+
+CLASS SlimeSplashWaves : pb_special_effect_base { 
+States
+{
+	Spawn:
+		SLIM DE 4 A_SetScale(1.8, 1.8);
+		SLIM FHI 4;
+		TNT1 A 1 A_SetScale(2.2, 1.4);
+		SLIM DEFHI 6;
+		TNT1 A 1 A_SetScale(2.8, 0.8);
+		SLIM DEFHI 8;
+		Stop;
+}
+}
+
+
+
+CLASS SludgeParticleXSpawner : pb_special_effect_base { 
+Default {
+	speed 40;
+	renderstyle "Add";
+	alpha 0.9;
+	scale .15;
+}
+states
+{
+	Spawn:
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItem("SpawnSludgeParticleX");
+		TNT1 AAAA 1 A_SpawnItem("SpawnSludgeParticleX");
+		TNT1 A 12;
+		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
+		TNT1 A 16;
+		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
+		TNT1 A 16;
+		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
+	Stop;
+}
+}
+
+CLASS SpawnSludgeParticleX : pb_special_effect_base { 
+states
+{
+	Spawn:
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SludgeParticleX", 0, 0, random(0, 360), 2, random(0, 360));
+	Stop;
+}
+}
+
+
+CLASS SludgeParticleX : pb_special_effect_base { 
+Default {
+	Gravity 0.5;
+	RenderStyle "Add";
+	Scale 1.5;
+	Alpha 0.4;
+	//Translation "179:191=144:151"
+	//Speed 2
+	Speed 7;
+}
+States
+{
+	Spawn:
+		TNT1 A 1;
+		//TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0);
+		TNT1 A 1;
+		L3QU ABCDDDDDDD 4;
+	Stop;
+}
+}
+
+CLASS SlimeParticleXNEW : pb_special_effect_base { 
+Default {
+	Gravity 0.5;
+	RenderStyle "Add";
+	Scale 1.5;
+	Alpha 0.4;
+	//Speed 2
+	Speed 7;
+}
+States
+{
+	Spawn:
+		TNT1 A 1;
+		//TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0);
+		TNT1 A 1;
+		Goto Stand;
+	Stand:
+		L1QU ABCDDDDDDD 4;
+		Stop;
+	Death:
+		TNT1 A 1;
+		TNT1 A 0;
+		Stop;
+		
+}
+}
+

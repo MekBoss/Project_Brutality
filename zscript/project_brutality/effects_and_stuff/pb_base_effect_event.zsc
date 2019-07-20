@@ -1,4 +1,4 @@
-//event which controll all effects smoke/particle/etc
+//event which controll all effects (smoke/particle/etc)
 class pb_effect_event : eventhandler
 {
 enum effect_type
@@ -6,20 +6,19 @@ enum effect_type
 	sprite,
 	particle
 };
+
 //arrays for storing pointers to sprite a particle actors
-array<sprite_effect> sprite_actors;
-array<particle_effect> particle_actors;
-//here contains all projectiles which must have trails
-//happens in this event world tick virtual
-array<pb_projectile_base> canonballs;
+protected array<sprite_effect> sprite_actors;
+protected array<particle_effect> particle_actors;
+
 //special array type which contains thinkers which handle case of contaniou rays
 //like beam bfg
-array<thinker> continious_ray_handlers;
+protected array<thinker> continious_ray_handlers;
 
+//give pointer to this event to pb actors
+//so they can use functions of that event whenever they want
 override void worldthingspawned(worldevent e)
-{	//give pointers to this event to monsters and weapons
-	//so they can use functions of that event
-	//wirhout bothering event tick function with 2-3 tick long effect spawning
+{	
 	if(e.thing is "pb_weapon_base")
 	{pb_weapon_base(e.thing).effects_weapon = self;}
 	if(e.thing is "pb_monster_base")
@@ -29,6 +28,8 @@ override void worldthingspawned(worldevent e)
 	{ canonballs.push( (pb_projectile_base)(e.thing) );}
 	/*/
 }
+
+
 //find bored thinker to say it "draw some line, cmon"
 thinker find_free_line_handler()
 {
@@ -53,6 +54,7 @@ thinker find_free_line_handler()
 	}
 	return null;
 }
+
 //find free sprite or particle effect actor
 actor find_free_effect_actor(effect_type what_effect = sprite)
 {
@@ -75,7 +77,7 @@ actor find_free_effect_actor(effect_type what_effect = sprite)
 			}
 			if(self.sprite_actors[i])
 			{
-				if(sprite_effect(self.sprite_actors[i]).show_something == false)
+				if(sprite_effect(self.sprite_actors[i]).check_busyness() == false)
 				{
 					return self.sprite_actors[i]; break; 
 				}
@@ -97,7 +99,7 @@ actor find_free_effect_actor(effect_type what_effect = sprite)
 			}
 			if(self.particle_actors[i])
 			{
-				if(particle_effect(self.particle_actors[i]).show_something == false)
+				if(particle_effect(self.particle_actors[i]).check_busyness() == false)
 				{
 					return self.particle_actors[i]; break; 
 				}
@@ -106,6 +108,7 @@ actor find_free_effect_actor(effect_type what_effect = sprite)
 	}
 	return null;
 }
+
 //simple function all sense of it check state and say into console if there are no such state
 void approve_state(actor subject = null, statelabel state_name = null)
 {
@@ -114,63 +117,22 @@ void approve_state(actor subject = null, statelabel state_name = null)
 
 	let stt_lnk = subject.findstate(state_name);
 
-	if(stt_lnk == null) {console.printf("actor %s dont have state %s", subject.getclassname(), state_name); return;}
+	if(stt_lnk == null) {console.printf("actor at %d %d %d dont have state", subject.pos.x, subject.pos.y, subject.pos.z ); return;}
 
 	subject.setstate(stt_lnk);
 }
-//function which draw smoke line between two points in space
-//note, before using vector as argument in while block copy it to new vector
-//because all manipulations with it would chage original vector
-//and this is not always safe and harmless
-void smoke_between_points(vector3 primus = (0, 0, 0), vector3 secundum = (0, 0, 0), effect_type type = sprite, statelabel what_state = null)
-{
-	if(primus == secundum) {return;}
 
-	vector3 dir = level.vec3diff(secundum, primus);
-	vector3 stepping_stone = primus;
-	//hardcoded value 10, probably need to be replaced to cvar
-	vector3 fuck = dir / 100;
-	console.printf("try show something");
-	for(int i = 0; i < 100; i++)//while(stepping_stone.x < secundum.x || stepping_stone.y < secundum.y || stepping_stone.z < secundum.z)
-	{
-//		console.printf("show something");
-		//if(stepping_stone.x < secundum.x || stepping_stone.y < secundum.y || stepping_stone.z < secundum.z) {break;}
-		actor ret = find_free_effect_actor(type);
-		if(ret == null) {return;}
-//	console.printf("effect actor exist");
-		ret.setorigin(stepping_stone, false);
-		approve_state(ret, what_state);
-		stepping_stone -= fuck;
-	}
-}
-//function for actors/weapons which try to show some mikle bay explosions
-actor show_some_effect(actor caller = null, statelabel effect_state = null, effect_type effect_type = sprite)
+//here actually shows some mikle bay explosions
+actor show_some_effect(actor caller = null, statelabel effect_state = null, vector3 eff_vel = (0,0,0) , effect_type effect_type = sprite)
 {
+	//effect must be "attached" to some actor
 	if(caller == null) {return null;}
+	
 	actor lin = find_free_effect_actor(effect_type);
 	approve_state(lin, effect_state);
 	lin.setorigin(caller.pos, false);
+	lin.vel = eff_vel;
 	return lin;
-}
-
-override void worldtick()
-{	//if there are any projectiles in array...
-	if(canonballs.size() > 0)
-	{
-		for(int i = 0; i < canonballs.size(); i++)
-		{//...draw smoke trail behind each
-			console.printf("size %i", canonballs.size());
-			if(canonballs[i])
-			{
-				self.smoke_between_points(pb_projectile_base(canonballs[i]).prev_pos, canonballs[i].pos, what_state: "test_state");
-			}
-			else
-			{
-				canonballs.delete(i);
-				i--;
-			}
-		}
-	}
 }
 
 }
@@ -180,3 +142,101 @@ class actual_effect_base : pb_special_effect_base {}
 
 class sprite_effect : actual_effect_base {}
 class particle_effect : actual_effect_base {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Optional Motion Blur by Pixel Eater
+class MBlurHandler : StaticEventHandler
+{
+	int			pitch, yaw ;
+	double		xtravel, ytravel ;
+	
+	transient cvar m_blur;
+	
+	override void PlayerEntered( PlayerEvent e )
+	{
+		PlayerInfo plr = players[ consoleplayer ];
+		m_blur = Cvar.GetCVar( "mblur", plr );
+		if( plr )
+		{	
+			xtravel = 0 ;
+			ytravel = 0 ;
+		}
+	}
+	
+	override void WorldTick()
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr && plr.health > 0 && m_blur.GetBool() )
+		{
+			yaw		= plr.mo.GetPlayerInput( ModInput_Yaw );
+			pitch	= -plr.mo.GetPlayerInput( ModInput_Pitch );
+		}
+	}
+	
+	override void NetworkProcess( ConsoleEvent e )
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr && e.Name == "liveupdate" )
+		{
+			double pitchdimin	= 1. - abs( plr.mo.pitch * 1. / 90 );
+			double decay		= 1. - Cvar.GetCVar( "mblur_recovery", plr ).GetFloat() * .01 ;
+			double amount		= Cvar.GetCVar( "mblur_strength", plr ).GetFloat() * 10. / 32767 * sqrt( pitchdimin );
+			xtravel				= xtravel * decay + yaw * amount * .625 ;
+			ytravel				= ytravel * decay + pitch * amount ;
+			
+			if( Cvar.GetCVar( "mblur_autostop", plr ).GetBool() )
+			{
+				double threshold = Cvar.GetCVar( "mblur_threshold", plr ).GetFloat() * 30 ;
+				double recovery2 = 1 - Cvar.GetCVar( "mblur_recovery2", plr ).GetFloat() * .01 ;
+				if( abs( yaw )		<= threshold ) xtravel *= recovery2 ;
+				if( abs( pitch )	<= threshold ) ytravel *= recovery2 ;
+			}
+		}
+	}
+	
+	override void UiTick()
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr )
+		{
+			if( plr.health > 0 && Cvar.GetCVar( "mblur", plr ).GetBool() )//&& yaw && pitch )
+			{
+				EventHandler.SendNetworkEvent( "liveupdate" );
+				
+				int copies			= 1 + Cvar.GetCVar( "mblur_samples", plr ).GetInt() ;
+				double increment	= 1. / copies ;
+				vector2 travel		= ( xtravel, ytravel ) / screen.getheight() ;
+				
+				Shader.SetUniform2f( plr, "MBlur", "steps", travel * increment );
+				Shader.SetUniform1f( plr, "MBlur", "samples", copies );
+				Shader.SetUniform1f( plr, "MBlur", "increment", increment );
+				Shader.SetUniform1f( plr, "MBlur", "blendmode", Cvar.GetCVar( "mblur_blendmode", plr ).GetInt() );
+					
+				Shader.SetEnabled( plr, "MBlur", true );
+			}
+			else
+			{
+				Shader.SetEnabled( plr, "MBlur", false );
+			}
+		}
+	}
+}

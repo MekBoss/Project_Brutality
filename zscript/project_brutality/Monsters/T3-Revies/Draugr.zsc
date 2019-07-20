@@ -8,9 +8,9 @@ Default
 	Obituary "%o was eviscerated by a Draugr";
 	// +DONTHARMSPECIES
 	+MISSILEEVENMORE;
-	DropItem "Demonpickup2", 80;
-	DropItem "Demonpickup", 255;
-	DropItem "DemonMorphRune", 1;
+	//DropItem "Demonpickup2", 80;
+	//DropItem "Demonpickup", 255;
+	//DropItem "DemonMorphRune", 1;
 	damagefactor "SSG", 2.0;
 	Scale 1.02;
 	Species "Bonehead";
@@ -69,7 +69,7 @@ Default
 		TNT1 AA 0 a_spawnprojectile ("XDeathSkinPiece2", 55, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("XDeathSkinPiece1", 65, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathOrgan1", 64, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathOrgan2", 64, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathOrgan1", 64, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAA 0 a_spawnprojectile ("Instestin", 64, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAA 0 a_spawnprojectile ("BloodMistExtraBig", 60, 0, random (0, 360), 2, random (20, 90));
 		TNT1 AAA 0 a_spawnprojectile ("Brains1", 60, 0, random (0, 360), 2, random (0, 160));
@@ -90,27 +90,27 @@ Default
 		//Aiming with laser pointer
 		TNT1 A 0 A_Playsound("REILAIM");
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		SKE2 G 2 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2 Bright;
-		TNT1 A 0 a_spawnprojectile ("RedFlareSmall", 62, -15, 0, 0);
+		TNT1 A 0 a_spawnprojectile ("Red_FlareSmall", 62, -15, 0, 0);
 		TNT1 A 0 A_CustomRailgun(0, -15, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "NullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
 		SKE2 G 2;
 		SKE2 H 6 Bright;
@@ -187,7 +187,7 @@ Default
 		R3D5 b 8 a_noblocking;
 		R3D5 c 8;
 		R3D5 d 7;
-		R3D5 EEEEEEEEEEEEEEEEEEE 12 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		R3D5 EEEEEEEEEEEEEEEEEEE 12 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 		R3D5 E -1;
 	Stop;
 		
@@ -251,8 +251,8 @@ Default
 		TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedSkull", 32, 0, random (0, 360), 2, random (0, 160));
 		EXPL AAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-		R3DP ABCDEF 5 BRIGHT A_SpawnItem("BlueFlare3",0,30);
-		R3DP FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		R3DP ABCDEF 5 BRIGHT A_SpawnItem("Blue_Flare",0,30);
+		R3DP FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 		R3DP F -1;
 	Stop;
 	
@@ -290,8 +290,8 @@ Default
 		TNT1 AA 0 a_spawnprojectile ("RevenantArm", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 A 0 a_spawnprojectile ("RevenantTorso6", 20, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("MetalShard2", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard3", 50, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAAA 0 a_spawnprojectile ("RevenantBonesFast", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAAA 0 a_spawnprojectile ("RevenantPiece", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 A 0;
@@ -316,8 +316,8 @@ Default
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 62, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("MetalShard2", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard3", 50, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_Scream;
@@ -342,8 +342,8 @@ Default
 		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBloodMuchFaster", 42, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAA 0 a_spawnprojectile ("SuperWallRedBlood", 62, 0, random (170, 190), 2, random (0, 40));
 		TNT1 AAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile ("MetalShard2", 50, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile ("MetalShard3", 50, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAAAAA 0 a_spawnprojectile ("BloodMistBig", 46, 0, random (0, 360), 2, random (30, 90));
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_Scream;
@@ -360,8 +360,8 @@ Default
 		TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticle", 32, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random (-45, 45), random (-45, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-45, 45), random (-45, 35));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("Ashes1", 28, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("Ashes2", 40, 0, random (0, 360), 2, random (0, 180));
 		TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),42,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
@@ -382,15 +382,15 @@ Default
 		TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
 		R8RN HHHH 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile ("ExplosionParticle", 10, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 		R8RN IIII 2 BRIGHT Light("IncinerationGlow");
 		TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		R8RN JJIIJJIIJJIIJJII 2 BRIGHT Light("IncinerationGlow") a_spawnprojectile ("PlasmaSmoke", 14, 0, random (0, 360), 2, random (0, 160));
+		R8RN JJIIJJIIJJIIJJII 2 BRIGHT Light("IncinerationGlow") a_spawnprojectile ("ExplosionSmoke", 14, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		R8RN JJIIJJIIJJIIJJII 2 Light("IncinerationGlow") a_spawnprojectile ("PlasmaSmoke", 14, 0, random (0, 360), 2, random (0, 160));
+		R8RN JJIIJJIIJJIIJJII 2 Light("IncinerationGlow") a_spawnprojectile ("ExplosionSmoke", 14, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
 		R8RN JJIIJJIIJJIIJJII 2;
-		R8RN KKKKKKKKK 12 a_spawnprojectile ("PlasmaSmoke", 14, 0, random (0, 360), 2, random (0, 160));
+		R8RN KKKKKKKKK 12 a_spawnprojectile ("ExplosionSmoke", 14, 0, random (0, 360), 2, random (0, 160));
 		R8RN K -1;
 	Stop;
 	
@@ -404,7 +404,7 @@ Default
 		SK3L P 1;
 		TNT1 A 0 A_Playsound("props/redfire");
 		CARB NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 a_spawnprojectile ("FlameTrails", 25, 0, random (0, 360), 2, random (70, 130));
-		CARB NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 10 a_spawnprojectile ("PlasmaSmoke", 25, 0, random (0, 360), 2, random (70, 130));
+		CARB NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 10 a_spawnprojectile ("ExplosionSmoke", 25, 0, random (0, 360), 2, random (70, 130));
 		CARB N -1;
 	Stop;
 	
@@ -465,15 +465,15 @@ States
 		Goto Fly;
 		Fly:
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 	Loop;
 	
 	Death:
 		TNT1 A 0 A_explode(25, 200);
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", 0, 0, random (0, 360), 2, random (0, 180));
 		EXPL AA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (0, 90));
@@ -502,89 +502,89 @@ States
 		TNT1 A 0 ThrustThingZ(0,150,0,1);
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 0 A_Recoil(-4);
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 0 A_Recoil(-4);
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		
 		TNT1 A 0 ThrustThingZ(0,-50,0,1);
 		TNT1 A 0 A_Recoil(-4);
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 0 ThrustThingZ(0,-50,0,1);
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 0 ThrustThingZ(0,-50,0,1);
 		TNT1 A 0 A_SpawnItem("DraugrDemonFireballTrail");
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 0 ThrustThingZ(0,-50,0,1);
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 1 A_SeekerMissile (80,90);
 		
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 1 A_SeekerMissile (80,90);
 		
 		
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 1 A_SeekerMissile (80,90);
 	Goto Fly;
 
 	Fly:
 		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
-		TNT1 A 0 A_SpawnItem ("RocketSmokeTrail52");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 	Loop;
 
 	Death:
 		TNT1 A 0 A_explode(25, 200);
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", 0, 0, random (0, 360), 2, random (0, 180));
 		EXPL AA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (0, 90));
@@ -609,12 +609,12 @@ States
 {
 	Spawn:
 		DYVB A 1 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
 		TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		DYVB A 1 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
 		TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 1 A_SeekerMissile (1,5);
 	Loop;
 }
@@ -631,12 +631,12 @@ States
 {
 	Spawn:
 		DYVB A 1 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
 		TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		DYVB A 1 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
 		TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 1;//A_SeekerMissile (5,5)
 	Loop;
 }
@@ -654,20 +654,20 @@ CLASS D4MeteorNonSeeker: DraugrDemonMeteor {
 	{
 	Spawn:
 		DYVB A 1 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
-		TNT1 A 0 A_SpawnItem("RedFlareSmall");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
 		TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		DYVB A 1 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
 		TNT1 A 0 A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2");
+		TNT1 A 0 A_SpawnItem ("ExplosionSmoke");
 		TNT1 A 1;//A_SeekerMissile (5,5)
 	Loop;
 	
 	Death:
 		TNT1 A 0 A_explode(150, 200);
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", 0, 0, random (0, 360), 2, random (0, 180));
 		EXPL AA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (0, 90));

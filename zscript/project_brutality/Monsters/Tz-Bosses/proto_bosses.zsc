@@ -55,7 +55,7 @@ override void tick()
 		vector3 square = self.vec3to(target);
 		
 		double dis = (square.x * square.x) + (square.y * square.y) + (square.z * square.z);
-		if(dis < 180 ** 2) {self.SetStateLabel("stomp"); }
+		if(dis < 180 * 180) {self.SetStateLabel("stomp"); }
 	}
 
 	if(self.instatesequence(curstate, findstate("stomp") ) )

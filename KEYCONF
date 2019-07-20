@@ -2,7 +2,7 @@ addkeysection "Project Brutality Zscript Actions" [project_brutality]
 
 addmenukey "Grenade throw" pb_gr_tt
 defaultbind f "pb_gr_tt"
-alias pb_gr_tt "netevent throw_grenade"
+alias pb_gr_tt "netevent throw_grenade 5"
 
 addmenukey "Weapon special" pb_wp_sp_tt
 defaultbind x "pb_wp_sp_tt" 
@@ -19,6 +19,30 @@ alias pb_wp_kn_tt "netevent swing_knife"
 addmenukey "Kick" pb_wp_kc_tt
 defaultbind q "pb_wp_kc_tt"
 alias pb_wp_kc_tt "netevent do_kick"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    addkeysection "BrutalDoom - Advanced Movements" BrutalDoomActions               // the last unquoted bit used to say MySampleKeysection

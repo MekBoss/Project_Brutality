@@ -118,12 +118,12 @@ class PlayerPawnBase : PB_player_pawn_base
 		{
 			if (health < 500)
 			{
-				A_SpawnProjectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
+				A_SpawnProjectile ("CasingSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
 				A_SpawnProjectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
 			}
 			if (health < 350)
 			{
-				A_SpawnProjectile ("BigNeoSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
+				A_SpawnProjectile ("CasingSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
 				A_SpawnProjectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, -random (0, 360));
 			}
 			if (Health < 200)

@@ -20,7 +20,7 @@ actor find_free_fire(actor caller = null)
 			return ttt;
 		}
 		
-		if(pb_special_effect_base(pb_torch_base(caller).fire[i]).show_something == false)
+		if(pb_special_effect_base(pb_torch_base(caller).fire[i]).check_busyness() == false)
 		{return pb_torch_base(caller).fire[i];}
 	}
 	return null;

@@ -192,9 +192,9 @@ States
 		TNT1 A 0 a_fireprojectile("RailgunWallPenetrationHitscan", 0, 0, -1, 0, 0, 0);
 		RAIF A 1 BRIGHT A_PlaySound("weapons/railgf");
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
 		RAIF B 2 BRIGHT A_ZoomFactor(0.95);
-		TNT1 A 0 a_fireprojectile("BlueFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Blue_Flare",0,0,0,5);
 		RAIF C 2 A_ZoomFactor(0.97);
 		RAIF D 2 A_ZoomFactor(0.99);
 		RAIF E 1 A_ZoomFactor(1.0);
@@ -227,27 +227,27 @@ States
 		TNT1 A 0 A_JumpIfInventory("MicrowaveCharge",10,"ChargeUp3");
 		TNT1 A 0 A_JumpIfInventory("MicrowaveCharge",5,"ChargeUp2");
 	ChargeUp1:
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("MicrowaveCharge1",3);
 		TNT1 A 0 A_SetBlend("Orange",0.1,16);
 		Goto ChargingContinue;
 	ChargeUp2:
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("MicrowaveCharge2",3);
 		TNT1 A 0 A_SetBlend("Orange",0.15,16);
 		Goto ChargingContinue;
 	ChargeUp3:
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("MicrowaveCharge3",3);
 		TNT1 A 0 A_SetBlend("Orange",0.2,16);
 		Goto ChargingContinue;
 	ChargeUp4:
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("MicrowaveCharge4",3);
 		TNT1 A 0 A_SetBlend("Orange",0.25,16);
 		Goto ChargingContinue;
 	ChargeUp5:
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("MicrowaveCharge5",3);
 		TNT1 A 0 A_SetBlend("Orange",0.3,16);
 		Goto ChargingContinue;
@@ -280,9 +280,9 @@ States
 		RA1F A 1 BRIGHT;
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
 		RA1F B 2 BRIGHT A_ZoomFactor(0.9);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		RA1F C 2 BRIGHT A_ZoomFactor(0.95);
 		RA1F D 2 A_ZoomFactor(0.99);
 		RA1F E 1 A_ZoomFactor(1.0);
@@ -297,9 +297,9 @@ States
 		RA1F A 1 BRIGHT A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
 		RA1F B 2 BRIGHT A_ZoomFactor(0.9);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		RA1F C 2 BRIGHT A_ZoomFactor(0.95);
 		RA1F D 2 BRIGHT A_ZoomFactor(0.99);
 		RA1F E 1 BRIGHT A_ZoomFactor(1.0);
@@ -314,9 +314,9 @@ States
 		RA1F A 1 BRIGHT A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
 		RA1F B 2 BRIGHT A_ZoomFactor(0.9);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		RA1F C 2 BRIGHT A_ZoomFactor(0.95);
 		RA1F D 2 BRIGHT A_ZoomFactor(0.99);
 		RA1F E 1 BRIGHT A_ZoomFactor(1.0);
@@ -331,9 +331,9 @@ States
 		RA1F A 1 BRIGHT A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
 		RA1F B 2 BRIGHT A_ZoomFactor(0.9);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		RA1F C 2 BRIGHT A_ZoomFactor(0.95);
 		RA1F D 2 BRIGHT A_ZoomFactor(0.99);
 		RA1F E 1 BRIGHT A_ZoomFactor(1.0);
@@ -348,9 +348,9 @@ States
 		RA1F A 1 BRIGHT A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
 		RA1F B 2 BRIGHT A_ZoomFactor(0.90);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		RA1F C 2 BRIGHT A_ZoomFactor(0.95);
 		RA1F D 2 BRIGHT A_ZoomFactor(0.99);
 		RA1F E 1 BRIGHT A_ZoomFactor(1.0);
@@ -379,7 +379,7 @@ States
 	ZoomedChargeUp1:
 		TNT1 A 0 A_PlaySound("MicrowaveCharge1",3);
 		TNT1 A 0 A_GiveInventory("MicrowaveCharge", 5);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_SetBlend("Orange",0.2,16);
 		R216 BBBBB 1 BRIGHT;
 		{
@@ -390,7 +390,7 @@ States
 	ZoomedChargeUp2:
 		TNT1 A 0 A_PlaySound("MicrowaveCharge2",3);
 		TNT1 A 0 A_GiveInventory("MicrowaveCharge", 5);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_SetBlend("Orange",0.25,16);
 		R216 CCCCC 1 BRIGHT;
 		{
@@ -402,7 +402,7 @@ States
 		TNT1 A 0 A_PlaySound("MicrowaveCharge3",3);
 		TNT1 A 0 A_GiveInventory("MicrowaveCharge", 5);
 		TNT1 A 0 A_SetBlend("Orange",0.3,16);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		R216 DDDDD 1 BRIGHT;
 		{
 			A_Takeinventory("Rails_without_sleeper",1);
@@ -413,7 +413,7 @@ States
 		TNT1 A 0 A_PlaySound("MicrowaveCharge4",3);
 		TNT1 A 0 A_GiveInventory("MicrowaveCharge", 5);
 		TNT1 A 0 A_SetBlend("Orange",0.35,16);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		R216 EEEEE 1 BRIGHT;
 		{
 			A_Takeinventory("Rails_without_sleeper",1);
@@ -424,7 +424,7 @@ States
 		TNT1 A 0 A_PlaySound("MicrowaveCharge5",3);
 		TNT1 A 0 A_GiveInventory("MicrowaveCharge", 5);
 		TNT1 A 0 A_SetBlend("Orange",0.4,16);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		R216 EEEEE 1 BRIGHT;
 		{
 			A_Takeinventory("Rails_without_sleeper",1);
@@ -453,8 +453,8 @@ States
 		TNT1 A 0 A_Takeinventory("MicrowaveCharge",20);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		
 		TNT1 A 0 A_Takeinventory("MicrowaveCharge",5);
 		R216 A 1;
@@ -468,8 +468,8 @@ States
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		
 		TNT1 A 0 A_Takeinventory("MicrowaveCharge",5);
 		R216 A 1;
@@ -484,8 +484,8 @@ States
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		
 		TNT1 A 0 A_Takeinventory("MicrowaveCharge",5);
 		R216 B 1 Offset(2,26) A_ZoomFactor(3.55);
@@ -503,8 +503,8 @@ States
 		TNT1 A 0 BRIGHT A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		
 		TNT1 A 0 A_Takeinventory("MicrowaveCharge",5);
 		R216 C 1 Offset(3,26) BRIGHT A_ZoomFactor(3.64);
@@ -525,8 +525,8 @@ States
 		TNT1 A 0 BRIGHT A_PlaySound("Weapons/StachanovAddFire",1);
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
-		TNT1 A 0 a_fireprojectile("RedFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Red_Flare",0,0,0,5);
 		
 		TNT1 A 0 A_Takeinventory("MicrowaveCharge",5);
 		R216 D 1 Offset(1,30) BRIGHT A_ZoomFactor(3.55);
@@ -551,8 +551,8 @@ States
 		TNT1 A 0 A_RailAttack(230, 0, 1, "Green","Cyan", 0, 0, "RAILGUNPUFF1",0,0,0,0,5,1.0,"RailGunTrail");
 		TNT1 A 0 a_fireprojectile("RailgunWallPenetrationHitscan", 0, 0, -1, 0, 0, 0);
 
-		TNT1 A 0 a_fireprojectile("SmokeSpawner",0,0,0,5);
-		TNT1 A 0 a_fireprojectile("BlueFlare",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("GunFireSmoke",0,0,0,5);
+		TNT1 A 0 a_fireprojectile("Blue_Flare",0,0,0,5);
 		TNT1 A 0 A_Takeinventory("Rails_without_sleeper",10);
 		TNT1 A 0 A_GiveInventory("RailgunCooldown", 1);// 1 - R116 B 
 		R116 B 1 Offset(1,30) BRIGHT A_ZoomFactor(3.55);
@@ -848,16 +848,16 @@ CLASS DoomerRailShot : pb_projectile_base {
 		EXPL A 0 Radius_Quake (4, 10, 0, 15, 0);
 		TNT1 A 0 A_SpawnItemEx("RailgunImpactExplosionSFX", 0, 0, 0, 0, 0, 0, 0, 128);
 		TNT1 AAA 0 a_spawnprojectile ("BDExplosionparticles", 0, 0, random (0, 360), 2, random (40, 90));
-		TNT1 AA 0 a_spawnprojectile ("BDExplosionparticles2", 0, 0, random (0, 360), 2, random (40, 90));
-		TNT1 AA 0 a_spawnprojectile ("BDExplosionparticles3", 10, 0, random (0, 360), 2, random (40, 90));
+		TNT1 AA 0 a_spawnprojectile ("BDExplosionparticles", 0, 0, random (0, 360), 2, random (40, 90));
+		TNT1 AA 0 a_spawnprojectile ("BDExplosionparticles", 10, 0, random (0, 360), 2, random (40, 90));
 		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmokeFast22", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType2", 2, 0, random (0, 360), 2, random (10, 80));
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType1", 2, 0, random (0, 360), 2, random (10, 80));
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile ("BluePlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 ABCDE 2 BRIGHT A_SpawnItem("BlueFlare" ,0);
-		TNT2 AAAAAAAAA 9 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 ABCDE 2 BRIGHT A_SpawnItem("Blue_Flare" ,0);
+		TNT2 AAAAAAAAA 9 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
 		stop;
 		
 		
@@ -866,7 +866,7 @@ CLASS DoomerRailShot : pb_projectile_base {
 		TNT1 AA 0 A_SpawnItemEx("BluePlasmaParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
 		TNT1 A 0 A_SpawnItemEx("Plasma_Puff", 0, 0);
 		TNT1 A 0 A_PlaySound("RAILIMP");
-		TNT1 ABCDE 2 BRIGHT A_SpawnItem("BlueFlare" ,0);
+		TNT1 ABCDE 2 BRIGHT A_SpawnItem("Blue_Flare" ,0);
 		stop;
 	}
 }

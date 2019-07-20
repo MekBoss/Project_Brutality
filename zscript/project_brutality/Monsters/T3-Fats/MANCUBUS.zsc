@@ -39,9 +39,9 @@ Default
 	+DONTHARMSPECIES;
 	+DONTHARMCLASS;
 	
-	DropItem "DemonStrengthRune", 5;
-	DropItem "Demonpickup2", 60;
-	DropItem "Demonpickup2", 250;
+	//DropItem "DemonStrengthRune", 5;
+	//DropItem "Demonpickup2", 60;
+	//DropItem "Demonpickup2", 250;
 }
 States
 {
@@ -308,14 +308,14 @@ States
 		TNT1 A 0 A_NoBlocking();
 		TNT1 AAAA 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("GreenFlameTrails", 50, 0, random (0, 360), 2, random (0, 360));
-		XBRN AAAA 2 BRIGHT A_SpawnItem("GreenFlare",0,43);
+		XBRN AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
 	Stop;
 		
 	Death.SuperPlasma:
@@ -324,17 +324,17 @@ States
 		TNT1 A 0 A_NoBlocking();
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		TNT1 AAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		XBRN BB 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 A 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
-		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN CC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAAA 0 a_spawnprojectile ("PlasmaParticleX", 48, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAA 0 a_spawnprojectile ("BigPlasmaParticleX", 42, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("PlasmaParticleX", 42, 0, random (0, 360), 2, random (0, 360));
 	Stop;
 		
 	Death:
@@ -522,12 +522,12 @@ States
 	TNT1 A 0 A_NoBlocking();
 	CRB7 G 5 BRIGHT;
 	TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	CRB7 H 5 BRIGHT;
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
 	CRB7 IJ 5 BRIGHT;
-	CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB L -1;
 	Stop;
 	
@@ -541,7 +541,7 @@ States
 	BF4T F 1 A_BossDeath();
 	TNT1 A 0 A_Playsound("props/redfire");
 	BF4T FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 a_spawnprojectile ("FlameTrails", 32, 0, random (0, 360), 2, random (70, 130));
-	BF4T FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 10 a_spawnprojectile ("PLasmaSmoke", 32, 0, random (0, 360), 2, random (70, 130));
+	BF4T FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 10 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (70, 130));
 	BF4T F -1;
 	Stop;
 	
@@ -640,17 +640,16 @@ States
 	Spawn:
 	TNT1 A 0;
 	TNT1 A 0 ACS_ExecuteAlways(798, 0, 0, 0, 0);//Check Effects
-	TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "SpawnCheap");
 	TNT1 A 0 A_Playsound("BGFLMBL", 6, 1, 1);
 	Spawn1:
 	TNT1 A 0;
-	BLHD CD 1 BRIGHT A_SpawnItem ("FireballExplosionFlamesSmall");
-	TNT1 A 0 a_spawnprojectile ("RocketSmokeTrail52", 2, 0, random (70, 110), 2, random (0, 360));
+	BLHD CD 1 BRIGHT A_SpawnItem ("CoolandNewFlameTrails");
+	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 2, 0, random (70, 110), 2, random (0, 360));
 	Loop;
 	
 	SpawnCheap:
-	TNT1 A 0 A_SpawnItem ("FireballExplosionFlamesSmall");
-	BLHD CD 1 BRIGHT A_SpawnItem("RedFlare22");
+	TNT1 A 0 A_SpawnItem ("CoolandNewFlameTrails");
+	BLHD CD 1 BRIGHT A_SpawnItem("Red_Flare22");
 	Loop;
 	
 	Death:
@@ -662,15 +661,14 @@ States
 	ExplosionEffect:
 	TNT1 A 0;
 	TNT1 A 0 A_StopSound(6);
-	TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "DeathCheap");
 	TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
 	TNT1 AAA 0 A_SpawnItemEx("ExplosionParticle", random(12,-12), random(12,-12), random(2,12), 0, 0, 0, 0, 128, 0);
 	EXPL AAA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (0, 90));
-	//TNT1 AA 0 a_spawnprojectile ("FireworkSFXType2", 0, 0, random (0, 360), 2, random (30, 60));
+	//TNT1 AA 0 a_spawnprojectile ("FireworkSFXType1", 0, 0, random (0, 360), 2, random (30, 60));
 	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random (-45, 45), random (-45, 35));
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-45, 45), random (-45, 35));
 	TNT1 A 1 Light("BIGREDTORCH");
 	TNT1 AAAAAA 20 a_spawnprojectile ("BigBlackSmoke", 0, 0, random (0, 360), 2, random (40, 160));
 	Stop;
@@ -713,10 +711,10 @@ Death.Plasma: Death.Plasma2:
 	TNT1 A 0 A_Scream();
 	TNT1 A 0 A_NoBlocking();
 	TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-	CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB L -1;
 Death.Cut:
 Death.Saw:
@@ -749,10 +747,10 @@ Spawn:
         TNT1 A 0 A_Scream();
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
        Death.Cutless: 
 	   Death.Cut:
@@ -808,10 +806,10 @@ CLASS DeadFat : ACTOR {
 	TNT1 A 0 A_Scream();
 	TNT1 A 0 A_NoBlocking();
 	TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-	CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB L -1;
 	Stop;
 	Death.Cutless: 
@@ -840,10 +838,10 @@ Death.Plasma: Death.Plasma2:
 	TNT1 A 0 A_Scream();
 	TNT1 A 0 A_NoBlocking();
 	TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-	CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB O -1;
 	Stop;
 Death.Cutless: 
@@ -898,10 +896,10 @@ CLASS DeadFat2NoArm : ACTOR {
 	TNT1 A 0 A_Scream();
 	TNT1 A 0 A_NoBlocking();
 	TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-	CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB O -1;
 	Stop;
 	Death.Cutless: 
@@ -1047,10 +1045,10 @@ Death.Plasma: Death.Plasma2:
 	TNT1 A 0 A_Scream();
 	TNT1 A 0 A_NoBlocking();
 	TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-	CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB O -1;
 	Stop;
 Death.Cutless: 
@@ -1120,10 +1118,10 @@ Spawn:
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
        Death.Cutless:
 	   Death.Cut:
@@ -1159,10 +1157,10 @@ Spawn:
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
 	Stop;
        Death.Cutless: 
@@ -1209,10 +1207,10 @@ Spawn:
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB L -1;
 		
     Death:
@@ -1265,10 +1263,10 @@ CLASS DeadFattyHoles: Deadfat {
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
 	Stop;
        Death.Cutless: 
@@ -1299,10 +1297,10 @@ CLASS DeadFattyHolesNoArm: Deadfat {
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
 	Stop;
        Death.Cutless: 
@@ -1357,10 +1355,10 @@ CLASS DeadFatSlump: Deadfat
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
 	Stop;
        Death.Cutless: 
@@ -1390,10 +1388,10 @@ CLASS DeadFatSlumpNoArm: Deadfat {
         TNT1 A 0 A_Scream;
         TNT1 A 0 A_NoBlocking;
         TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
-	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 AA 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAAAAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+        CARB OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
         CARB O -1;
 	Stop;
        Death.Cutless: 

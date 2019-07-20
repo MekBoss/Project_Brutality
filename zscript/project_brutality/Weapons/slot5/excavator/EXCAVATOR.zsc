@@ -8,7 +8,7 @@ CLASS Excavator : weapon_slot_5_proto_class
 enum weapon_mode
 { digger_charge, drop_charge };
 
-weapon_mode actual_weapon_mode;
+protected weapon_mode actual_weapon_mode;
 
 Default
 {
@@ -69,7 +69,7 @@ States
 		TNT1 A 0 { if(invoker.actual_weapon_mode == drop_charge) {invoker.set_weapon_state("FireDropShot");} }
 		TNT1 AAAAAA 0 BRIGHT a_fireprojectile("ShotgunParticles", random(-16,16), 0, -1, random(-9,9));
 		TNT1 A 0 A_FireBullets(0, 0, 1, 50, "shotpuff", 0, 130);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",-5,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",-5,0,0,0);
 		TNT1 A 0 A_PlaySound ("excavator/firedigger", 18);
 		TNT1 A 0 A_AlertMonsters;
 		TNT1 A 0 BRIGHT a_fireprojectile("Alerter");
@@ -77,7 +77,7 @@ States
 		TNT1 A 0 a_fireprojectile("ExcavatorDrill", 0, False, 0, 0, True, -3);
 		5DKF A 2 BRIGHT;
 		TNT1 A 0 A_TakeInventory("ExcavatorRounds",1);
-		TNT1 A 0 a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 		5DKF B 1 BRIGHT A_ZoomFactor(0.97);
 		5DKF C 1 BRIGHT A_ZoomFactor(0.98);
 		5DKF D 1 BRIGHT A_ZoomFactor(0.99);
@@ -91,7 +91,7 @@ States
 	FireDropShot:
 		TNT1 AAAAAA 0 BRIGHT a_fireprojectile("ShotgunParticles", random(-16,16), 0, -1, random(-9,9));
 		TNT1 A 0 A_FireBullets(0, 0, 1, 50, "shotpuff", 0, 130);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",-5,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",-5,0,0,0);
 		TNT1 A 0 A_PlaySound ("excavator/firedropshot", 18);
 		TNT1 A 0 A_AlertMonsters;
 		TNT1 A 0 BRIGHT a_fireprojectile("Alerter");
@@ -99,7 +99,7 @@ States
 		TNT1 A 0 a_fireprojectile("ExcavatorDropShot", 0, False, 0, 0, True, 0);
 		6DKF A 2 BRIGHT;
 		TNT1 A 0 A_TakeInventory("ExcavatorRounds",1);
-		TNT1 A 0 a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 		6DKF B 2 BRIGHT A_ZoomFactor(0.97);
 		6DKF C 2 BRIGHT A_ZoomFactor(0.98);
 		6DKF D 1 BRIGHT A_ZoomFactor(0.99);

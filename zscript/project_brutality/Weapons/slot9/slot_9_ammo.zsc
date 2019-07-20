@@ -1,17 +1,41 @@
-CLASS Gas : Ammo { 
-	Default {
-	
+CLASS Gas : pb_ammo_proto_class { 
+Default
+{
 	Inventory.Amount 500;
 	Inventory.MaxAmount 999;
 	Ammo.BackpackAmount 500;
 	Ammo.BackpackMaxAmount 999;
 	Inventory.Icon "GSLNA0";
 	Inventory.PickupMessage "You got Gasoline.";
-	}
-	States
-	{
+}
+States
+{
 	Spawn:
 		GSLN A -1;
-		Stop;
+	Stop;
+}
+}
+
+
+CLASS Hell_Ammo : pb_ammo_proto_class
+{ 
+Default
+{
+	Inventory.Amount 0;
+	Inventory.MaxAmount 50;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 50;
+	Inventory.Icon "HRPUA0";
+}
+}
+
+CLASS MiniHellRocketAmmo : pb_ammo_proto_class { 
+	Default {
+	
+	Inventory.Amount 0;
+	Inventory.MaxAmount 50;
+	Ammo.BackpackAmount 0;
+	Ammo.BackpackMaxAmount 100;
+	Inventory.Icon "FATBD0";
 	}
 }

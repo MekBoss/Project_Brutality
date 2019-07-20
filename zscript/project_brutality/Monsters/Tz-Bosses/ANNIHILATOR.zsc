@@ -47,18 +47,18 @@ Default
 	FastSpeed 12;
 	mass 5000;
 /*	
-	DropItem "DemonStrengthRune", 25;
-	DropItem "DemonMorphRune", 25;
-	DropItem "RageSphere", 25;
-	DropItem "DoubleSphere", 25;
-	DropItem "ShieldSphere", 20;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
+	//DropItem "DemonStrengthRune", 25;
+	//DropItem "DemonMorphRune", 25;
+	//DropItem "RageSphere", 25;
+	//DropItem "DoubleSphere", 25;
+	//DropItem "ShieldSphere", 20;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
 */
 	BloodType "Brutal_Blood";
 	Obituary "%o was destroyed by an Annihilator";

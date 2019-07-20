@@ -127,10 +127,10 @@ States
 		TNT1 A 0 A_PlaySound("m2plasma");
 		TNT1 A 0 A_Zoomfactor(0.98);
 		PRIF B 1 BRIGHT A_FireProjectile("HeavyPlasmaBall",0,1,0,-1);
-		TNT1 A 0 A_FireProjectile("BlueFlareSpawn",-5,0,0,0);
+		TNT1 A 0 A_FireProjectile("Blue_FlareSpawn",-5,0,0,0);
 		TNT1 A 0 A_Zoomfactor(0.97);
 		PRIF B 1 BRIGHT A_FireProjectile("AltHeavyPlasmaBall",0,1,0, -1);
-		TNT1 A 0 A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_FireProjectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		TNT1 A 0 A_Zoomfactor(0.96);
 		PRIF C 1 BRIGHT;
@@ -151,11 +151,11 @@ States
 	lighting_loop:
 		TNT1 A 0 A_TakeInventory("psalm_of_Saint_Mark", 1);
 		TNT1 A 0 A_FireProjectile("LightningGunProjectile", 0, 0, 0, 0, 0, 0);
-		TNT1 A 0 A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		PR1F A 1 BRIGHT A_SetAngle(frandom(0.3, -0.3) + angle);
 		TNT1 A 0 A_FireProjectile("LightningGunProjectile", 0, 0, 0, 0, 0, 0);
 		PR1F B 1 BRIGHT A_SetAngle(frandom(0.3, -0.3) + angle);
-		TNT1 A 0 A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		PR1F A 1 BRIGHT A_SetAngle(frandom(0.3, -0.3) + angle);
 		TNT1 A 0 A_FireProjectile("LightningGunProjectile", 0, 0, 0, 0, 0, 0);
 		PR1F C 1 BRIGHT A_SetAngle(frandom(0.3, -0.3) + angle);
@@ -176,10 +176,10 @@ States
 		TNT1 A 0 A_PlaySound("m2plasma");
 		TNT1 A 0 A_Zoomfactor(0.98);
 		PR2F B 1 BRIGHT A_FireProjectile("HeavyPlasmaBall",0,1,0,-1);
-		TNT1 A 0 A_FireProjectile("BlueFlareSpawn",-5,0,0,0);
+		TNT1 A 0 A_FireProjectile("Blue_FlareSpawn",-5,0,0,0);
 		TNT1 A 0 A_Zoomfactor(0.97);
 		PR2F B 1 BRIGHT A_FireProjectile("AltHeavyPlasmaBall",0,1,0, -1);
-		TNT1 A 0 A_FireProjectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_FireProjectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		TNT1 A 0 A_Zoomfactor(0.96);
 		PR2F C 1 BRIGHT;
@@ -209,7 +209,7 @@ States
 		TNT1 A 0 A_PlaySound("plamersh",1, 1, 1);
 		TNT1 A 0 A_PlaySound("PLSTHRW",3);
 		PR3L B 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(27,33),0,8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -217,7 +217,7 @@ States
 		PR3L D 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",4);
 		PR3L E 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(12,18),0,4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -225,7 +225,7 @@ States
 		PR3L G 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",5);
 		PR3L H 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-3,3));
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -233,7 +233,7 @@ States
 		PR3L J 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",6);
 		PR3L K 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-12,-18),0,-4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -241,7 +241,7 @@ States
 		PR3L M 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",7);
 		PR3L N 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-27,-33),0,-8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -262,7 +262,7 @@ States
 		TNT1 A 0 A_PlaySound("plamersh",1, 1, 1);
 		TNT1 A 0 A_PlaySound("PLSTHRW",3);
 		PR3L N 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-27,-33),0,-8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -270,7 +270,7 @@ States
 		PR3L J 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",4);
 		PR3L K 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-12,-18),0,-4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -278,7 +278,7 @@ States
 		PR3L G 1 A_FireProjectile("HotPlasmaGas",random(-1,-1),0,-4);
 		TNT1 A 0 A_PlaySound("PLSTHRW",5);
 		PR3L H 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-3,3));
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -286,7 +286,7 @@ States
 		PR3L D 1 A_FireProjectile("HotPlasmaGas",random(-2,9));
 		TNT1 A 0 A_PlaySound("PLSTHRW",6);
 		PR3L B 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(27,33),0,8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -294,7 +294,7 @@ States
 		PR3L A 1 A_FireProjectile("HotPlasmaGas",random(20,26),0,4);
 		TNT1 A 0 A_PlaySound("PLSTHRW",7);
 		PR3L E 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(8,16),0,4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -313,7 +313,7 @@ States
 		PR1F XYZABACABACABAC 1 BRIGHT A_FireProjectile("ElectroBlastTrail2", 0, 0, 0, 0);
 		TNT1 A 0 A_Playsound("STNBOMB");
 		TNT1 A 0 A_TakeInventory("psalm_of_Saint_Mark", 10);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_FireProjectile("StunBomb", 0, 0, 0, 0, 0, 0);
 		TNT1 A 0 A_Zoomfactor(0.96);
 		PR1F DDEEFF 1 BRIGHT;
@@ -474,7 +474,7 @@ States
 		TNT1 A 0 A_PlaySound("plamersh",1, 1, 1);
 		TNT1 A 0 A_PlaySound("PLSTHRW",3);
 		PR4L B 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(27,33),0,8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -482,7 +482,7 @@ States
 		PR4L D 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",4);
 		PR4L E 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(12,18),0,4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -490,7 +490,7 @@ States
 		PR4L G 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",5);
 		PR4L H 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-3,3));
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -498,7 +498,7 @@ States
 		PR4L J 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",6);
 		PR4L K 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-12,-18),0,-4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -506,7 +506,7 @@ States
 		PR4L M 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",7);
 		PR4L N 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-27,-33),0,-8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -524,7 +524,7 @@ States
 		TNT1 A 0 A_PlaySound("plamersh",1, 1, 1);
 		TNT1 A 0 A_PlaySound("PLSTHRW",3);
 		PR4L N 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-27,-33),0,-8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -532,7 +532,7 @@ States
 		PR4L J 1;
 		TNT1 A 0 A_PlaySound("PLSTHRW",4);
 		PR4L K 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-12,-18),0,-4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -540,7 +540,7 @@ States
 		PR4L G 1 A_FireProjectile("HotPlasmaGas",random(-1,-1),0,-4);
 		TNT1 A 0 A_PlaySound("PLSTHRW",5);
 		PR4L H 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(-3,3));
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -548,7 +548,7 @@ States
 		PR4L D 1 A_FireProjectile("HotPlasmaGas",random(-2,9));
 		TNT1 A 0 A_PlaySound("PLSTHRW",6);
 		PR4L B 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(27,33),0,8);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -556,7 +556,7 @@ States
 		PR4L A 1 A_FireProjectile("HotPlasmaGas",random(20,26),0,4);
 		TNT1 A 0 A_PlaySound("PLSTHRW",7);
 		PR4L E 1 BRIGHT A_FireProjectile("HotPlasmaGas",random(8,16),0,4);
-		TNT1 A 0 A_FireProjectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_Takeinventory("psalm_of_Saint_Mark",2);
 
 
@@ -833,8 +833,8 @@ CLASS HeavyPlasmaBall: Plasma_ball {
 	Spawn:
 		DB20 ABCDEFGHIJLMNOPQRSTUVWXYZ 2 BRIGHT
 		{
-			A_SpawnItem("BlueFlareSmall",0,0);
-			//A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);;
+			A_SpawnItem("Blue_FlareSmall",0,0);
+			//A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 	}
 	Loop;
 	
@@ -857,11 +857,11 @@ CLASS HeavyPlasmaBall: Plasma_ball {
 		TNT1 AAAA 0 a_spawnprojectile ("BluePlasmaFireSmall2", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("SuperPlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
-		TNT2 AAAA 4 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT2 AAAA 4 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
 		Stop;
 		
 		
@@ -893,8 +893,8 @@ CLASS AltHeavyPlasmaBall: Plasma_ball {
 	Spawn:
 		DB20 ABCDEFGHIJLMNOPQRSTUVWXYZ 1 BRIGHT
 		{
-			A_SpawnItem("BlueFlareSmall",0,0);
-			//A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);;
+			A_SpawnItem("Blue_FlareSmall",0,0);
+			//A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 		}
 	Loop;
 	
@@ -908,7 +908,7 @@ CLASS AltHeavyPlasmaBall: Plasma_ball {
 		TNT1 A 0 A_Explode(6,90,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
-		TNT2 AAAA 4 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT2 AAAA 4 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
 		Stop;
 		
 	Death:
@@ -918,8 +918,8 @@ CLASS AltHeavyPlasmaBall: Plasma_ball {
 		TNT1 AAAA 0 a_spawnprojectile ("BluePlasmaFireSmall2", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("SuperPlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCraterSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
 		Stop;
@@ -1059,7 +1059,7 @@ CLASS LightningGunProjectile: FastProjectile {
 		
 	Death:
 		TNT1 A 0 BRIGHT A_SpawnItem("LightningGunPuff",0);
-		TNT1 A 0 BRIGHT A_SpawnItem("BlueFlare",0);
+		TNT1 A 0 BRIGHT A_SpawnItem("Blue_Flare",0);
 		//TNT1 AA 0 A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 		TNT1 A 0 A_explode(random(12,15), 80);
 		TNT1 AAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
@@ -1109,17 +1109,17 @@ CLASS LightningGunPuff : ACTOR {
 	FloorCheck:
 		TNT1 A 0 Acs_executealways(373, 0, 0, 0, 0);//Check if is under a liquid
 		TNT1 A 2;
-		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "ConductiveDeath");
-		TNT1 A 0 A_JumpIfInventory("IsOverSludge", 1, "ConductiveDeath");
-		TNT1 A 0 A_JumpIfInventory("IsOverSlime", 1, "ConductiveDeath");
-		TNT1 A 0 A_JumpIfInventory("IsOverBlood", 1, "ConductiveDeath");
+		TNT1 A 0 A_JumpIfInventory("crutch", 1, "ConductiveDeath");
+		TNT1 A 0 A_JumpIfInventory("crutch", 1, "ConductiveDeath");
+		TNT1 A 0 A_JumpIfInventory("crutch", 1, "ConductiveDeath");
+		TNT1 A 0 A_JumpIfInventory("crutch", 1, "ConductiveDeath");
 		TNT1 A 1;
 		Goto Die;
 		
 	ConductiveDeath:
 		TNT1 A 0 BRIGHT A_SpawnItem("LightningGunPuff_Big",0);
 		TNT1 A 0 BRIGHT A_SpawnItem("ElectroBombFX",0);
-		TNT1 A 0 BRIGHT A_SpawnItem("BlueFlare",0);
+		TNT1 A 0 BRIGHT A_SpawnItem("Blue_Flare",0);
 		TNT1 A 0 A_explode(random(30,35), 240,0,0,200);
 		TNT1 AA 0 a_spawnprojectile("ElectroBlastTrail3",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(30,270));
 		TNT1 AAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
@@ -1360,7 +1360,7 @@ CLASS LightningGunPuff_Bigger : LightningGunPuff_Big {
 			TNT1 A 0 A_StopSound(6);
 			STFL ABCDEFGHIJKL 1 BRIGHT Light("LightningImpactLight") A_SetScale(Scale.X+0.1,Scale.y+0.1);
 			TNT1 A 0 BRIGHT A_SpawnItem("LightningGunPuff_Bigger",0);
-			TNT1 A 0 BRIGHT A_SpawnItem("BlueFlare",0);
+			TNT1 A 0 BRIGHT A_SpawnItem("Blue_Flare",0);
 			TNT1 A 0 A_explode(2, 300,0,0,300);
 			TNT1 A 0 A_PlaySound("STNBOEX", 3);
 			TNT1 AAAAAAAAAAA 0 a_spawnprojectile("ElectroBlastTrail3",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(30,270));

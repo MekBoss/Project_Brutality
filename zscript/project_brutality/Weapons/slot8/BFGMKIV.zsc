@@ -132,50 +132,50 @@ States
 		TNT1 A 0 A_GunFlash("FlashFireGreen");
 		TNT1 A 0 A_PlaySound("BFGCHARGE", 7);
 		TNT1 A 0 A_SetBlend("Green",0.10,5);
-		4DAX K 1 BRIGHT Offset(-2,34) a_fireprojectile("GreenFlareSpawnEvenSmaller",0,0,0,0);//2
+		4DAX K 1 BRIGHT Offset(-2,34) a_fireprojectile("Green_FlareSpawnEvenSmaller",0,0,0,0);//2
 		4DAX L 1 BRIGHT Offset(0, 32);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0)
 		4DAX L 1 BRIGHT Offset(2, 34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_ZoomFactor(.950);
-		4DAX M 1 BRIGHT Offset(1, 33) a_fireprojectile("GreenFlareSpawnSmallClose",0,0,0,0);//2
+		4DAX M 1 BRIGHT Offset(1, 33) a_fireprojectile("Green_FlareSpawnSmallClose",0,0,0,0);//2
 		4DAX N 1 BRIGHT Offset(-2,34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//2
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_ZoomFactor(.925);
 		TNT1 A 0 A_SetBlend("Green",0.15,6);
-		4DAX M 1 BRIGHT Offset(0, 32) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX M 1 BRIGHT Offset(0, 32) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX N 1 BRIGHT Offset(2, 34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		4DAX O 1 BRIGHT Offset(1, 33) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX O 1 BRIGHT Offset(1, 33) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX P 1 BRIGHT Offset(-2,34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
 		4DAX O 1 BRIGHT;// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
 		4DAX P 1 BRIGHT;// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("BFGCHAFF", 8);
 		TNT1 A 0 A_SetBlend("Green",0.20,8);
-		4DAX Q 1 BRIGHT Offset(0, 32) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX Q 1 BRIGHT Offset(0, 32) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX R 1 BRIGHT Offset(2, 34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		4DAX Q 1 BRIGHT Offset(1, 33) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX Q 1 BRIGHT Offset(1, 33) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX R 1 BRIGHT Offset(-2,34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		4DAX S 1 BRIGHT Offset(0, 32) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX S 1 BRIGHT Offset(0, 32) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX T 1 BRIGHT Offset(2, 34);// ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		4DAX S 1 BRIGHT Offset(1, 33) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX S 1 BRIGHT Offset(1, 33) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX T 1 BRIGHT Offset(-2,34) ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_SetBlend("Green",0.25,5);
-		4DAX U 1 BRIGHT Offset(0, 32) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX U 1 BRIGHT Offset(0, 32) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX T 1 BRIGHT Offset(2, 34) ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		4DAX S 1 BRIGHT Offset(1, 33) a_fireprojectile("GreenFlareSpawn",0,0,0,0);//13
+		4DAX S 1 BRIGHT Offset(1, 33) a_fireprojectile("Green_FlareSpawn",0,0,0,0);//13
 		4DAX T 1 BRIGHT Offset(-2,34) ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
 		4DAX U 1 BRIGHT Offset(0, 32) ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0);//13
-		TNT1 A 0 a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+		TNT1 A 0 A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 		TNT1 A 0 A_SetBlend("Green",0.27,4);
-		TNT1 A 0 a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		4DAX S 1 BRIGHT Offset(0,36);//
 		4DAX T 1 BRIGHT Offset(0,37);//
 		4DAX U 1 BRIGHT Offset(0,38);
 		4DAX T 1 BRIGHT Offset(0,39);
 		TNT1 A 0 A_ZoomFactor(.9);
 		TNT1 A 0 A_PlaySound("BFG_FIRE", 1);
-		TNT1 A 0 a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		TNT1 AAA 0 ; //a_fireprojectile("BFGLightningTrial_Small_Faster",0,0,0,0);
 		TNT1 A 0 A_Recoil(6);
 		TNT1 A 0 BRIGHT a_fireprojectile("Alerter", 0, 0, -1, 0);
@@ -186,15 +186,15 @@ States
 		4DAX W 1  BRIGHT;//Offset(1,37)
 		4DAX X 1  BRIGHT;//Offset(1,36)
 		
-		TNT1 A 0 a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
+			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 		TNT1 A 0 A_ZoomFactor(.925);
-		4DAX Y 1 a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		4DAX Y 1 a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(.95);
-		4DAX Z 1 Offset(0,34) a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		4DAX Z 1 Offset(0,34) a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(.975);
-		4DBX Z 2 Offset(0,33)a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		4DBX Z 2 Offset(0,33)a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		TNT1 A 0 A_ZoomFactor(1.0);
-		4DBX Z 2 Offset(0,32)a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		4DBX Z 2 Offset(0,32)a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		
 		4DBX Z 2;
 		TNT1 A 0 A_ReFire("fire_bfg");
@@ -241,7 +241,7 @@ States
 		TNT1 A 0 A_ReFire("Charge1A");
 		TNT1 A 0 a_fireprojectile("bfg_4_laser_projectile",0,0,0,-1,0,0);
 		TNT1 A 0 A_Takeinventory("Cell",5);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",0,0,0,0);
 		TNT1 AAAAAA 0;
 		TNT1 A 0 A_SetBlend("Red",0.25,15);
 		TNT1 A 0 A_StopSound(5);
@@ -415,7 +415,7 @@ States
 		TNT1 A 0 a_fireprojectile("bfg_4_laser_projectile1",0,0,0,-1,0,0.0);
 
 		TNT1 A 0 A_Takeinventory("Cell", 15);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",0,0,0,0);
 	Goto Fire_Laser+12;
 	Charged_Fire2:
 		TNT1 A 0 A_PlaySound("Weapons/StachanovCharged2",6);
@@ -423,14 +423,14 @@ States
 		TNT1 A 0 a_fireprojectile("bfg_4_laser_projectile2",0,0,0,-1,0,0.0);
 
 		TNT1 A 0 A_Takeinventory("Cell",25);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",0,0,0,0);
 	Goto Fire_Laser+12;
 	Charged_Fire3:
 		TNT1 A 0 A_PlaySound("Weapons/StachanovCharged3",6);
 		TNT1 A 0 A_SetBlend("Red",0.4,30);
 		TNT1 A 0 a_fireprojectile("bfg_4_laser_projectile3",0,0,0,-1,0,0.0);
 		TNT1 A 0 A_Takeinventory("Cell",40);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",0,0,0,0);
 	Goto Fire_Laser+12;
 		
 
@@ -460,14 +460,14 @@ States
 		TNT1 A 0 A_PlaySound("mbfgsh", 3, 1.0);
 		4DAX V 1 BRIGHT A_PlaySound("BFGFIRE", CHAN_WEAPON, 1.2);
 		TNT1 A 0 A_Takeinventory("Cell",5);
-		TNT1 A 0 a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		4DAX W 1 BRIGHT;// a_fireprojectile("BFGSmallSphere", 0, 1, 0, 0);
-		TNT1 A 0 a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 
 		TNT1 A 0 A_Recoil(1);
 		4DAX X 1 BRIGHT;
-		TNT1 A 0 a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
-		TNT1 A 0 a_fireprojectile("GreenFlareSpawn",0,0,0,0);
+			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
+		TNT1 A 0 a_fireprojectile("Green_FlareSpawn",0,0,0,0);
 		4DAX Y 1;
 		4DAX Z 1 A_GunFlash("FlashAltFireGreen");
 		4DBX Z 5;
@@ -511,7 +511,7 @@ States
 		TNT1 A 0 A_GunFlash("FlashFireRed");
 		TNT1 A 0 a_fireprojectile("bfg_4_laser_seek_er",0,0,0,-1,0,0);
 		TNT1 A 0 A_Takeinventory("Cell",20);
-		TNT1 A 0 a_fireprojectile("RedFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_fireprojectile("Red_FlareSpawn",0,0,0,0);
 		TNT1 A 0 A_SetBlend("Red",0.25,15);
 		TNT1 A 0 A_StopSound(5);
 		TNT1 A 0 A_AlertMonsters;
@@ -1450,7 +1450,7 @@ CLASS Lightning_Ball : pb_projectile_base
    Death:
 	  TNT1 A 0 a_spawnprojectile ("BluePlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
 	TNT1 AAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-	TNT2 AAA 0 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	TNT2 AAA 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
       Stop;
    }
 }

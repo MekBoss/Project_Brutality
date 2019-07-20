@@ -301,7 +301,7 @@ states
 		TNT1 A 0 A_JumpIfCloser(119, "RightAttackCleanContinue");
 		C4S1 FGHIJ 1;
 		{
-			A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+			A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 			A_SetRoll(roll-0.2);
 		}
 		TNT1 A 2 A_Refire("RightAttackClean2");
@@ -328,7 +328,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackClean2Continue");
 	C4S1 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackClean");
@@ -336,18 +336,8 @@ states
 	C4S1 RSTU 1 a_spawnprojectile("GunFireSmoke", 0, 0, -5, -5, 0, 0);
 	SAWG GHGHGHGGHHGGHH 1;
 	{
-	A_WeaponReady;
-	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
+		A_WeaponReady;
+		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
 	}
 	Goto OnLoop;
 	
@@ -366,7 +356,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackCleanContinue");
 	C5S1 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackClean2");
@@ -376,16 +366,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	LeftAttackClean2:
@@ -402,7 +382,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackClean2Continue");
 	C5S1 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackClean");
@@ -412,16 +392,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	
@@ -433,7 +403,7 @@ states
 	C6S1 ABCD 1;
 	{
 		A_SetRoll(roll+0.4);
-		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);;
+		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);
 	}
 	Goto BackwardAttackCleanContinue+5;
 	BackwardAttackCleanContinue:
@@ -454,16 +424,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	
@@ -490,7 +450,7 @@ states
 	TNT1 A 0 A_JumpIfInventory("PowerBlueBloodOnVisor",1,"ClassicAttackBlueLoop");
 	CSA2 EFG 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
 	}
 	CSA2 F 1;
@@ -512,16 +472,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.Blood;
 	
@@ -547,16 +497,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"),WOF_INTERPOLATE);
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.Blood;
 	
@@ -574,7 +514,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackRedContinue");
 	C4S2 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackRed2");
@@ -584,16 +524,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.blood;
 	RightAttackRed2:
@@ -609,7 +539,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackRed2Continue");
 	C4S2 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackRed");
@@ -619,16 +549,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.blood;
 	
@@ -646,7 +566,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackRedContinue");
 	C5S2 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackRed2");
@@ -656,16 +576,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.blood;
 	LeftAttackRed2:
@@ -681,7 +591,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackRed2Continue");
 	C5S2 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackRed");
@@ -691,16 +601,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.blood;
 	
@@ -712,7 +612,7 @@ states
 	C6S2 ABCD 1;
 	{
 		A_SetRoll(roll+0.4);
-		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);;
+		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);
 	}
 	Goto BackwardAttackRedContinue+5;
 	BackwardAttackRedContinue:
@@ -732,16 +632,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.blood;
 	
@@ -766,7 +656,7 @@ states
 	TNT1 A 0 A_JumpIfInventory("PowerGreenBloodOnVisor",1,"ClassicAttackGreenLoop");
 	CSA3 EFG 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
 	}
 	CSA3 F 1;
@@ -789,16 +679,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.BlueBlood;
 	
@@ -823,16 +703,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.BlueBlood;
 	
@@ -849,7 +719,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackBlueContinue");
 	C4S3 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackBlue2");
@@ -859,16 +729,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.BlueBlood;
 	RightAttackBlue2:
@@ -883,7 +743,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackBlue2Continue");
 	C4S3 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackBlue");
@@ -893,16 +753,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.BlueBlood;
 	
@@ -919,7 +769,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackBlueContinue");
 	C5S3 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackBlue2");
@@ -929,16 +779,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.BlueBlood;
 	LeftAttackBlue2:
@@ -953,7 +793,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackBlue2Continue");
 	C5S3 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackBlue");
@@ -963,16 +803,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.BlueBlood;
 	
@@ -984,7 +814,7 @@ states
 	C6S3 ABCD 1;
 	{
 		A_SetRoll(roll+0.4);
-		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);;
+		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);
 	}
 	Goto BackwardAttackBlueContinue+5;
 	BackwardAttackBlueContinue:
@@ -1003,16 +833,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.BlueBlood;
 	
@@ -1036,7 +856,7 @@ states
 	ClassicAttackGreenLoop:
 	CSA4 EFG 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
 	}
 	CSA4 F 1;
@@ -1058,16 +878,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.GreenBlood;
 	
@@ -1091,16 +901,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.GreenBlood;
 	
@@ -1116,7 +916,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackGreenContinue");
 	C4S4 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackGreen2");
@@ -1126,16 +926,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.GreenBlood;
 	RightAttackGreen2:
@@ -1149,7 +939,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "RightAttackGreen2Continue");
 	C4S4 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+0.2);
 	}
 	TNT1 A 2 A_Refire("RightAttackGreen");
@@ -1159,16 +949,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.GreenBlood;
 	
@@ -1184,7 +964,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackGreenContinue");
 	C5S4 FGHIJ 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll+.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackGreen2");
@@ -1204,7 +984,7 @@ states
 	TNT1 A 0 A_JumpIfCloser(119, "LeftAttackGreen2Continue");
 	C5S4 EDCBA 1;
 	{
-		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);;
+		A_Saw("", "Machete/Yum", 2, "SSawPuff2", SF_NOPULLIN | SF_NOTURN , 120, 32);
 		A_SetRoll(roll-0.2);
 	}
 	TNT1 A 1 A_Refire("LeftAttackGreen");
@@ -1214,16 +994,6 @@ states
 	{
 	A_WeaponReady;
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.GreenBlood;
 	
@@ -1235,7 +1005,7 @@ states
 	C6S4 ABCD 1;
 	{
 		A_SetRoll(roll+0.4);
-		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);;
+		A_Saw("", "Machete/Yum", 8, "SSawPuff", SF_NOPULLIN | SF_NOTURN , 120);
 	}
 	Goto BackwardAttackGreenContinue+5;
 	BackwardAttackGreenContinue:
@@ -1254,16 +1024,6 @@ states
 	{
 		A_WeaponReady;
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("DoKick"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto ready.GreenBlood;
 	
@@ -1510,16 +1270,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick1"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	
@@ -1569,16 +1319,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick1"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.Blood;
 	
@@ -1628,16 +1368,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick1"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.BlueBlood;
 	
@@ -1687,16 +1417,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick1"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.GreenBlood;
 	
@@ -1730,16 +1450,6 @@ states
 	{
 	A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
 	A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick2"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	
@@ -1770,16 +1480,6 @@ states
 	{
 		A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick2"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	
@@ -1823,16 +1523,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick2"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto OnLoop;
 	
@@ -1876,16 +1566,6 @@ states
 	/*{
 			A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 			A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-			if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-			if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-			if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-			if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-			if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-			if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-			if (CountInv("Kicking") == 1) { return state("ComboKick2"); }
-			if (CountInv("Taunting") == 1) { return state("Taunt"); }
-			if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-			return state("");
 			}*/
 	Goto Ready.Blood;
 	
@@ -1929,16 +1609,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick2"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.BlueBlood;
 	
@@ -1982,16 +1652,6 @@ states
 	{
 		A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
 		A_WeaponOffset(-CallACS("Script_GetGunOffsetX"), CallACS("Script_GetGunOffsetY"));
-	if (CountInv("DoPunch") == 1) { return state("QuickPunch"); }
-	if (CountInv("Grabbing_A_Ledge") == 1) { return state("LedgeClimb"); }
-	if (CountInv("GoWeaponSpecialAbility") == 1) { return state("WeaponSpecial"); }
-	if (CountInv("UseEquipment") == 1) { return state("UseEquipment"); }
-	if (CountInv("ToggleEquipment") == 1) { return state("SwitchEquipment"); }
-	if (CountInv("GrabbedBarrel") == 1) { return state("GrabBarrel"); }
-	if (CountInv("Kicking") == 1) { return state("ComboKick2"); }
-	if (CountInv("Taunting") == 1) { return state("Taunt"); }
-	if (CountInv("Salute1") == 1 || CountInv("Salute2") == 1) { return state("Salute"); }
-	return state("");
 	}
 	Goto Ready.GreenBlood;
 	

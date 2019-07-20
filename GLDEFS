@@ -1452,14 +1452,14 @@ object FlyingBurningFuel
 }
 
 
-object FlyingBurningFuelSmall
+object FlyingBurningFuel
 {
     frame F1RE{ light SMALLREDTORCH }
 	 frame F2RE{ light SMALLREDTORCH }
 }
 
 
-object FlyingBurningFuelTiny
+object FlyingBurningFuel
 {
     frame F1RE{ light SMALLREDTORCH }
 	 frame F2RE{ light SMALLREDTORCH }
@@ -1481,14 +1481,14 @@ object FlamethrowerMissile
 	
 //}
 
-//object FireballExplosionFlamesDamaging
+//object CoolandNewFlameTrails
 //{
 //    frame FIR3 { light BIGREDTORCH }
 //	frame TNT1 { light BIGREDTORCH }
 //}
 
 
-object FireballExplosionFlamesDamaging2
+object CoolandNewFlameTrails
 {
     frame FIR3 { light BIGREDTORCH }
 	frame TNT1 { light BIGREDTORCH }

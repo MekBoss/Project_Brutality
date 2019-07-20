@@ -123,7 +123,7 @@ States
 			A_PlaySound("revolver/fire", 4);
 			A_FireBullets (0.1, 0.1, -1, 65, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 			A_AlertMonsters();
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			A_Takeinventory("RevolverAmmo",1);
@@ -164,7 +164,7 @@ States
 			A_Playsound("revolver/fire",4);
 			A_FireBullets (0.1, 0.1, -1, 65, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 			A_AlertMonsters();
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			A_Takeinventory("RevolverAmmo",1);
@@ -202,7 +202,7 @@ States
 			A_Playsound("revolver/fire",4);
 			A_FireBullets (0.1, 0.1, -1, 65, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 			A_AlertMonsters();
-			a_fireprojectile("ShakeYourAss", 0, 0, 0, 0);
+			A_QuakeEx(2, 2, 2, 6, 0, 64, "", 0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			A_Takeinventory("RevolverAmmo",1);

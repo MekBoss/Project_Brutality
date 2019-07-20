@@ -104,7 +104,7 @@ States
 			if(invoker.iron_sight == true) {invoker.set_weapon_state("iron_sight_fire"); }
 			A_AlertMonsters();
 			a_fireprojectile("YellowFlareSpawn", 0, 0, 0, 0);
-			a_fireprojectile("ShakeYourAssDouble", 0, 0, 0, 0);
+			A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 		}
 		SHTF AB 1 BRIGHT;
 		TNT1 A 0
@@ -118,7 +118,7 @@ States
 				
 				case slug :
 					A_PlaySound("SlugShot", 5);
-					A_FireBullets(1.5, 0.5, 1, 144, "ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-1);;
+					A_FireBullets(1.5, 0.5, 1, 144, "ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-1);
 				break;
 
 				case dragon :
@@ -204,7 +204,7 @@ States
 		TNT1 A 0
 		{
 			A_AlertMonsters();
-			a_fireprojectile("YellowFlareSpawn", 0, 0, 0, 0);;
+			a_fireprojectile("YellowFlareSpawn", 0, 0, 0, 0);
 		}
 		tnt1 a 0
 		{
@@ -235,7 +235,7 @@ States
 				case slug :
 					invoker.change_weapon_PSprite("SHT6");
 					A_PlaySound("SlugShot", 5);
-					A_FireBullets(1.5, 0.5, 1, 144, "ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-1);;
+					A_FireBullets(1.5, 0.5, 1, 144, "ShotgunPuff",FBF_NORANDOM,8192,"Tracer",-1);
 					A_FireBullets(1.1, 0.25, 1, 67, "ShotgunPuff",0,0,"none",-2);
 					a_fireprojectile("Tracer");
 
@@ -462,7 +462,7 @@ States
 	pick_dragon_shells:
 		TNT1 A 0
 		{ 
-			A_Print("Dragon's Breath Shells Loaded");;
+			A_Print("Dragon's Breath Shells Loaded");
 			invoker.actual_shotgun_ammo_type = dragon;
 		}
 		TNT1 A 0;
@@ -852,9 +852,9 @@ CLASS DragonBreath : pb_projectile_base
 		EXPL A 0 A_SpawnItemEx ("ExplosionParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL AAAAAAAAAAA 0 a_spawnprojectile ("ShotgunParticles", 6, 0, random (0, 360), 2, random (0, 90));//ShotgunParticles
 		TNT1 A 0 A_Jump(76, 2, 3);
-		TNT1 A 0 A_SpawnItemEx("DragonsBreathPiece1", random (-15, 15), random (-15, 15));
-		TNT1 A 0 A_SpawnItemEx("DragonsBreathPiece2", random (-35, 35), random (-35, 35));
-		TNT1 A 0 A_SpawnItemEx("DragonsBreathPiece3", random (-45, 45), random (-45, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-45, 45), random (-45, 35));
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("SparkX", 2, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0 A_SpawnItemEx ("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		Stop;

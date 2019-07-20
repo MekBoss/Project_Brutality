@@ -203,7 +203,7 @@ States
 		TNT1 A 0 A_NoBlocking;
 		TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0;
 	Stop;
@@ -306,7 +306,7 @@ States
 		TNT1 A 0 A_NoBlocking;
 		TNT1 AAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0;
 		Stop;
@@ -530,7 +530,7 @@ CLASS GoryAshes : pb_pre_placed_gore {
 	Spawn:
 		TNT1 A 0;
 		GIBD SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 6 a_spawnprojectile ("BurnParticles", 8, 0, random (0, 180), 2, random (0, 180));
-		GIBD SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 8 a_spawnprojectile ("PlasmaSmoke", 8, 0, random (0, 180), 2, random (0, 180));
+		GIBD SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 8 a_spawnprojectile ("ExplosionSmoke", 8, 0, random (0, 180), 2, random (0, 180));
 		GIBD S -1;
 stop; }}
 
@@ -586,13 +586,13 @@ Default
 	Health 50;
 	Radius 16;
 	Height 64;
-/*	DropItem "HealthPlus", 55;
-	DropItem "HealthPlus", 55;
-	DropItem "ArmorShard", 55;
-	DropItem "ArmorShard", 55;
-	DropItem "Stimpack", 55;
-	DropItem "Clips", 55;
-	DropItem "Shells", 55;*/
+/*	//DropItem "HealthPlus", 55;
+	//DropItem "HealthPlus", 55;
+	//DropItem "ArmorShard", 55;
+	//DropItem "ArmorShard", 55;
+	//DropItem "Stimpack", 55;
+	//DropItem "Clips", 55;
+	//DropItem "Shells", 55;*/
 	bloodtype "DeadBlood";
 	damagefactor "Blood", 0.0;    damagefactor "GreenBlood", 0.0;
     damagefactor "BlueBlood", 0.0;    damagefactor "Taunt", 0.0;
@@ -656,13 +656,13 @@ Default {
 	Radius 16;
 	Height 64;
 	GibHealth 10;
-/*	DropItem "HealthPlus", 55;
-	DropItem "HealthPlus", 55;
-	DropItem "ArmorShard", 55;
-	DropItem "ArmorShard", 55;
-	DropItem "Stimpack", 55;
-	DropItem "Clips", 55;
-	DropItem "Shells", 55;*/
+/*	//DropItem "HealthPlus", 55;
+	//DropItem "HealthPlus", 55;
+	//DropItem "ArmorShard", 55;
+	//DropItem "ArmorShard", 55;
+	//DropItem "Stimpack", 55;
+	//DropItem "Clips", 55;
+	//DropItem "Shells", 55;*/
 	damagefactor "Blood", 0.0;    damagefactor "GreenBlood", 0.0;    damagefactor "BlueBlood", 0.0;
     damagefactor "Taunt", 0.0;
     damagefactor "KillMe", 0.0;  damagefactor "Avoid", 0.0;  damagefactor "Taunt", 0.0;
@@ -825,16 +825,16 @@ CLASS ImpaledMarineAlive1: pb_pre_placed_gore {
 		TNT1 A 0 A_PlaySound("BIGSCRE");
 		POLF DEDEDEDEDEDE 3 A_SpawnItem("BurnParticles", 0, 20);
 		POLF DEDEDEDEDEDEDEDEDE 3 A_SpawnItem("BurnParticles", 0, 20);
-		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 		TNT1 AA 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-		TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+		TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 		POLF FFFFFFFFF 4 A_SpawnItem("BurnParticles", 0, 20);
 		TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-		TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+		TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 		POLF FFFFFFFFF 4 A_SpawnItem("BurnParticles", 0, 20);
-		TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 		TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-		TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+		TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 		POLF F -1;
 	Stop;
 	
@@ -902,16 +902,16 @@ CLASS ImpaledMarineAlive2: ImpaledMarineAlive1 {
 	TNT1 A 0 A_PlaySound("BIGSCRE");
 	POLF KLKLKLKLKLKL 3 A_SpawnItem("BurnParticles", 0, 10);
 	POLF KLKLKLKLKLKLKLKLKL 3 A_SpawnItem("BurnParticles", 0, 10);
-	TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+	TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 	TNT1 AA 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-	TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+	TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 	POLF MMMMMMMMM 4 A_SpawnItem("BurnParticles", 0, 10);
 	TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-	TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+	TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 	POLF MMMMMMMMM 4 A_SpawnItem("BurnParticles", 0, 10);
-	TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+	TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 	TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-	TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
+	TNT1 AAAA 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 	POLF M -1;
 	Stop	;
 	}
@@ -968,10 +968,10 @@ CLASS DeadBloodyTwitch: BloodyTwitch Replaces BloodyTwitch {
     damagefactor "Taunt", 0.0;    damagefactor "KillMe", 0.0;  damagefactor "Avoid", 0.0;
 	damagefactor "Taunt", 0.0;
 	bloodtype "DeadBlood";
-	DropItem "HealthPlus", 55;
-	DropItem "HealthPlus", 55;
-	DropItem "ArmorShard", 55;
-	DropItem "ArmorShard", 55;
+	//DropItem "HealthPlus", 55;
+	//DropItem "HealthPlus", 55;
+	//DropItem "ArmorShard", 55;
+	//DropItem "ArmorShard", 55;
 	}
 	States
 	{
@@ -999,10 +999,10 @@ CLASS DeadBloodyTwitch: BloodyTwitch Replaces BloodyTwitch {
 
 CLASS DeadBloodyTwitchB: DeadBloodyTwitch { 
 Default {
-	DropItem "HealthPlus", 0;
-	DropItem "HealthPlus", 0;
-	DropItem "ArmorShard", 0;
-	DropItem "ArmorShard", 0;
+	//DropItem "HealthPlus", 0;
+	//DropItem "HealthPlus", 0;
+	//DropItem "ArmorShard", 0;
+	//DropItem "ArmorShard", 0;
 	Health 100;
 }
     States
@@ -1051,12 +1051,12 @@ CLASS HangingBody: Meat2 Replaces Meat2 {
 	+SHOOTABLE;
 	GibHealth 10;
 	damagefactor "Fire", 0.0;
-	DropItem "CLIP1Drop", 128;
-	DropItem "HealthPlus", 128;
-	DropItem "HealthPlus", 128;
-	DropItem "HealthPlus", 128;
-	DropItem "ArmorShard", 128;
-	DropItem "ArmorShard", 128;
+	//DropItem "CLIP1Drop", 128;
+	//DropItem "HealthPlus", 128;
+	//DropItem "HealthPlus", 128;
+	//DropItem "HealthPlus", 128;
+	//DropItem "ArmorShard", 128;
+	//DropItem "ArmorShard", 128;
 	damagefactor "Blood", 0.0;    damagefactor "GreenBlood", 0.0;    damagefactor "BlueBlood", 0.0;
     damagefactor "Taunt", 0.0;    damagefactor "KillMe", 0.0;  damagefactor "Avoid", 0.0;
 	damagefactor "Taunt", 0.0;
@@ -1154,10 +1154,10 @@ CLASS HangingDeadGuyNoLeg: Meat3 Replaces Meat3 {
 	+SHOOTABLE;
 	GibHealth 10;
 	damagefactor "Fire", 0.0;
-	DropItem "HealthPlus", 128;
-	DropItem "HealthPlus", 128;
-	DropItem "ArmorShard", 128;
-	DropItem "ArmorShard", 128;
+	//DropItem "HealthPlus", 128;
+	//DropItem "HealthPlus", 128;
+	//DropItem "ArmorShard", 128;
+	//DropItem "ArmorShard", 128;
 	damagefactor "Blood", 0.0;
     damagefactor "GreenBlood", 0.0;
     damagefactor "BlueBlood", 0.0;    damagefactor "Taunt", 0.0;

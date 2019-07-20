@@ -1,9 +1,9 @@
 class constant_line_handler : thinker
 {
-bool busy, draw_line;
+bool busy;
 
-actor linear_actor;
-array<actual_effect_base> in_line_actors;
+pb_in_line_attack linear_actor;
+
 //pointer to effect event, so thiker can use effects actor from it and dont create new
 eventhandler effect;
 
@@ -13,69 +13,35 @@ override void tick()
 	if(linear_actor == null)
 	{
 		self.busy = false;
-		for(int i = 0; i < in_line_actors.size(); i++)
-		{actual_effect_base(in_line_actors[i]).show_something = false;}
-		in_line_actors.clear();
 		return;
 	}
-	//pb_effect_event(effect).smoke_between_points(pb_in_line_attack(linear_actor).start_pos, pb_in_line_attack(linear_actor).pos,  what_state:'test_state');
-
-	if(in_line_actors.size() < 100)
+	else
 	{
-		for(int i = 0; i < 100; i++)
-		{
-			actor ss = pb_effect_event(effect).find_free_effect_actor();
-			actual_effect_base(ss).show_something = true;
-			in_line_actors.push( (actual_effect_base)(ss) );
-		}
+		busy = true;
+		pb_draw_line(linear_actor, 'test_state');
 	}
-	vector3 begining = pb_in_line_attack(linear_actor).start_pos;
-	vector3 ending = linear_actor.pos;
+}
+
+protected void pb_draw_line(actor liner, statelabel effect_type)
+{
+	vector3 begining = pb_in_line_attack(liner).start_pos;
+	vector3 ending = liner.pos;
 
 	vector3 diff = level.vec3diff(begining, ending);
-	vector3 direction_vector = diff;// * 20;
-	//need to replace 20 to or hardcoded in target
-	//projectile value or by computed based on a size of a sprite
+
 	vector3 increment = diff / 10;
-	//count how much actors we need to form a line from the player gun to wall/monster
 	vector3 test_vector = begining;
-	//for(int i = 0; i < 10; i++)//
-	//while(test_vector.x > ending.x || test_vector.y > ending.y || test_vector.z > ending.z)
     double ending_squared = (ending dot ending);
 
-    if(draw_line == false)
+	while ( (test_vector dot test_vector) <= ending_squared)
 	{
-		int i = 0;
-		while ( (test_vector dot test_vector) <= ending_squared)
-		{
-			actor tt = pb_effect_event(effect).find_free_effect_actor();
-			actor(in_line_actors[i]).setorigin(test_vector, false);
-			test_vector += increment;
-			i++;
-		}
+		actor tt = pb_effect_event(effect).find_free_effect_actor();
+		actor(tt).setorigin(test_vector, false);
+		pb_effect_event(effect).approve_state(tt, effect_type);
+		test_vector += increment;
 	}
-	//make sure that amount of actor in array enough to draw line
-/*	if(actor_count < in_line_actors.size() )
-	{
-		pb_effect_event(effect).approve_state(tt, 'test_state');
-		while(actor_count >= in_line_actors.size() )
-		{
-			actor wow = pb_effect_event(effect).find_free_effect_actor();
-			in_line_actors.push( (actual_effect_base)(wow) );
-		}
-	}
-	//actually draw line
-	test_vector = begining;
-	for(int i = 0; i < 20; i++)//while(test_vector.x < ending.x || test_vector.y < ending.y || test_vector.z < ending.z)
-	{
-		in_line_actors[i].setorigin(test_vector, true);
-		test_vector -= increment;
-	}
-	
-	discrod server
-	
-	*/
 }
+
 /*
 void interpolating_line(array<actor> nol = null)
 {
@@ -85,7 +51,8 @@ void interpolating_line(array<actor> nol = null)
 	{
 		nol[i].setorigin((0, 0, 0), true);
 	}
-}/*/
+}
+*/
 
 }
 

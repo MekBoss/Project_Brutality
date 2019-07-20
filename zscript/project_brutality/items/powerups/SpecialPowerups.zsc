@@ -149,7 +149,7 @@ ReplaceTraditional:
 	Stop;
 	
 Pickup:
-	TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("ShinnySmoke", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 	TNT1 A 0 A_Print("You got the Demon Damage sphere. You're arsenal craves blood...");
 	Stop;
 }
@@ -217,7 +217,7 @@ ReplaceTraditional:
 	Stop;
 	
 Pickup:
-	TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("ShinnySmoke", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 	TNT1 A 0 A_Print("You got the Haste Sphere. Your body trembles with energy...");
 	Stop;
 }
@@ -251,7 +251,7 @@ ReplaceTraditional:
 	Stop;
 	
 Pickup:
-	TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("ShinnySmoke", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 	TNT1 A 0 A_Print("You've found a Time Sphere!");
 	Stop;
 	
@@ -913,7 +913,7 @@ states
 		TNT1 A 0 {self.bUSESPECIAL = false;}
 		SENT C 0 A_PlaySound("weapons/rocklx", 6);
 		SENT C 0 ;//A_SpawnItemEx("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		SENT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 8 a_spawnprojectile("PlasmaSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		SENT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
 		SENT C -1;
 	FadeOut:
 		SENT C 2 A_FadeOut(0.1);

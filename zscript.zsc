@@ -13,20 +13,55 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //defenition of effects and environment
 #include "zscript/project_brutality/effects_and_stuff/pb_base_effect_event.zsc"
 #include "zscript/project_brutality/effects_and_stuff/additional_stuff.zsc"
-//converted decorate effect
-#include "zscript/project_brutality/effects_and_stuff/effects/casing.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/flares.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/flatdecals.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/puff.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/smoke.zsc"
+
 #include "zscript/project_brutality/effects_and_stuff/effects/sparks.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/splashes.zsc"
+
+
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/flares/flares.zsc"
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/flares/yellow.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/flares/red.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/flares/green.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/flares/blue.zsc"
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/smoke/smoke.zsc"
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/puff/puff.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/puff/ricoshet.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/puff/liquid_rico.zsc"
+
+
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/splashes/splashes.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/splashes/water.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/splashes/slime.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/splashes/blood.zsc"
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/tracers/tracers.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/tracers/marine.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/tracers/monster.zsc"
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/particles/particles.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/particles/plasma.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/particles/explosions.zsc"
+
+
+#include "zscript/project_brutality/effects_and_stuff/effects/fireworks/fireworks.zsc"
+
+
+
 #include "zscript/project_brutality/effects_and_stuff/effects/teleports.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/tracers.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/particles.zsc"
-#include "zscript/project_brutality/effects_and_stuff/effects/fireworks.zsc"
-//ready zscript effects
+
 #include "zscript/project_brutality/effects_and_stuff/fire.zsc"
+
 #include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torch_base.zsc"
 #include "zscript/project_brutality/effects_and_stuff/room_decor/burns/torches.zsc"
 #include "zscript/project_brutality/effects_and_stuff/room_decor/lamps.zsc"
@@ -59,10 +94,12 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 //base inventory items begins here
 #include "zscript/project_brutality/items/items_base.zsc"
+
 //armors
 #include "zscript/project_brutality/items/armor/armor_shards.zsc"
 #include "zscript/project_brutality/items/armor/full_armor.zsc"
 #include "zscript/project_brutality/items/armor/armor_event.zsc"
+
 //health pakcs
 #include "zscript/project_brutality/items/medikits/healthbonuses.zsc"
 #include "zscript/project_brutality/items/medikits/stimkit.zsc"
@@ -72,6 +109,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/items/medikits/medikit.zsc"
 #include "zscript/project_brutality/items/medikits/medipack.zsc"
 //#include "zscript/project_brutality/items/medikits/generichealth.zsc"
+
 //powerups
 #include "zscript/project_brutality/items/powerups/poweruptypes.zsc"
 #include "zscript/project_brutality/items/powerups/genericpowerups.zsc"
@@ -97,7 +135,11 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/player/doomer_player.zsc"
 #include "zscript/project_brutality/player/pb_player.zsc"
 
+//marines
+//#include "zscript/project_brutality/player/marines/marine.zsc"
+
 //wepons at ready, it is time
+#include "zscript/project_brutality/weapons/casing.zsc"
 #include "zscript/project_brutality/weapons/new_weapon_base.zsc"
 #include "zscript/project_brutality/weapons/weapon_specific_event_extended.zsc"
 #include "zscript/project_brutality/weapons/weapon_effect_actors.zsc"
@@ -117,6 +159,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/weapons/slot3/weapon_slot_3_base.zsc"
 #include "zscript/project_brutality/weapons/slot3/shotgun/SHOTGUN.zsc"
 #include "zscript/project_brutality/weapons/slot3/double_shotgun/SSG.zsc"
+#include "zscript/project_brutality/weapons/slot3/autoshotgun/autoshotgun.zsc"
 //-----------------------------------------------------------------------
 #include "zscript/project_brutality/weapons/slot4/slot_4_ammo.zsc"
 #include "zscript/project_brutality/weapons/slot4/weapon_slot_4_base.zsc"
@@ -133,6 +176,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/weapons/slot5/tactical_gl/tactical_GL.zsc"
 #include "zscript/project_brutality/weapons/slot5/excavator/excavator.zsc"
 #include "zscript/project_brutality/weapons/slot5/excavator/excavator_stuff.zsc"
+#include "zscript/project_brutality/weapons/slot5/rocket_launcher/ROCKETLAUNCHER.zsc"
 //#include "zscript/project_brutality/weapons/slot5/simple_gl/simple_GL.zsc"
 //-----------------------------------------------------------------------
 #include "zscript/project_brutality/weapons/slot6/slot_6_ammo.zsc"
@@ -157,7 +201,13 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/weapons/slot9/weapon_slot_9_base.zsc"
 #include "zscript/project_brutality/weapons/slot9/demon_tech_rifle/DemonTech.zsc"
 #include "zscript/project_brutality/weapons/slot9/demon_tech_rifle/projectiles_and_etc.zsc"
-//#include "zscript/project_brutality/weapons/slot9/Unmaker/Unmaker.zsc"
+#include "zscript/project_brutality/weapons/slot9/flameshot/fatso_canon.zsc"
+#include "zscript/project_brutality/weapons/slot9/flameshot/flamethrower_stuff.zsc"
+
+#include "zscript/project_brutality/weapons/slot9/rev_canon/revenant_launcher.zsc"
+#include "zscript/project_brutality/weapons/slot9/rev_canon/launcher_stuff.zsc"
+
+#include "zscript/project_brutality/weapons/slot9/Unmaker/Unmaker.zsc"
 //-----------------------------------------------------------------------
 
 
@@ -296,115 +346,39 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/Tz-Bosses/MASTERMIND.zsc"
 #include "zscript/project_brutality/monsters/Tz-Bosses/Demolisher.zsc"
 #include "zscript/project_brutality/monsters/Tz-Bosses/JUGGERNAUT.zsc"
-/*#include "zscript/project_brutality/monsters/Tz-Bosses/BossBrain.zsc"
-#include "zscript/project_brutality/monsters/Tz-Bosses/Abomination.zsc"
-#include "zscript/project_brutality/monsters/Tz-Bosses/Motherdemon.zsc"
+//#include "zscript/project_brutality/monsters/Tz-Bosses/BossBrain.zsc"
+//#include "zscript/project_brutality/monsters/Tz-Bosses/Abomination.zsc"
+//#include "zscript/project_brutality/monsters/Tz-Bosses/Motherdemon.zsc"
 
 
 
 
-/*
-//converted to zscript but most bugs left in place, need to polish before actually use
-//ST Monsters
-#include "zscript/project_brutality/monsters/T0-Marines/MARINESPAWNER.zsc"
-
-////////////////////////////////////////////////////////////////////////////
-/*
-//New Death System
-#include "zscript/project_brutality/monsters/T1-Grunts/ZOMBIEMEN_DeathAnim.zsc"
-
-//Lil Guys!
-#include "zscript/project_brutality/monsters/Tz-Shrinks/ZombieShrinks.zsc"
-#include "zscript/project_brutality/monsters/Tz-Shrinks/SergeantShrinks.zsc"
-#include "zscript/project_brutality/monsters/Tz-Shrinks/CommandoShrinks.zsc"
-#include "zscript/project_brutality/monsters/Tz-Shrinks/ImpShrinks.zsc"
-#include "zscript/project_brutality/monsters/Tz-Shrinks/DemonShrinks.zsc"
-#include "zscript/project_brutality/monsters/Tz-Shrinks/NoblesShrinks.zsc"
-#include "zscript/project_brutality/monsters/Tz-Shrinks/MancubusShrinks.zsc"
-
-#include "zscript/project_brutality/monsters/T0-Marines/CapturedMarine.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-AutoShotgun.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-BFG.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-Chaingun.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-Plasmagun.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-PulseCannon.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-RocketLauncher.zsc"
-#include "zscript/project_brutality/monsters/T0-Marines/Marine-Shotgun.zsc"
-
-
-#include "zscript/project_brutality/monsters/T1-Grunts/DyingGuys.zsc"
-#include "zscript/project_brutality/monsters/T1-Grunts/DyingNewGuys.zsc"
-
-#include "zscript/project_brutality/monsters/T1-Grunts/LastStandMonsters.zsc"
-
-#include "zscript/project_brutality/monsters/T1-Grunts/NAZIS.zsc"
-
-#include "zscript/project_brutality/monsters/T1-Imps/DyingDarkImps.zsc"
-
-#include "zscript/project_brutality/monsters/Tz-Bosses/SpecialDoom1Bosses.zsc"
-
-#include "zscript/project_brutality/monsters/Frozen.zsc"
-#include "zscript/project_brutality/monsters/realm667monsters.zsc"
-#include "zscript/project_brutality/monsters/StealthMonsters.zsc"
-#include "zscript/project_brutality/monsters/UnderwaterMonsters.zsc"
-
-//Special Monsters
-#include "zscript/project_brutality/monsters/Tz-Special/EVIL.zsc"
-#include "zscript/project_brutality/monsters/Tz-Special/Epic2Sstuff.zsc"
-*/
-
-//all classes must be moved from here to specific zscript files
-//much of this are just a plug for gzdoom zscript compile
-//to shut down it "Unknown base class!!! ERROR STOP Ex000000000000000000"
 
 
 
-class GotAPack_h : inventory {}
-class GotAPack : inventory {}
 
 
-class BossBrainBase : Actor
-{
-	void RemoveCubes()
-	{
-		ThinkerIterator ti = ThinkerIterator.Create("Actor");
-		Actor a;
-		while (a = Actor(ti.Next()))
-		{
-			if (a is "SpawnShot" || a is "BossEye") a.Destroy();
-			if (a.bISMONSTER && a.bCOUNTKILL) a.A_Die("Massacre");
-		}
-	}
-}
-
-class InvisiblePuff : BulletPuff
-{
-	Default
-	{
-		-ALLOWPARTICLES
-	}
-}
-class InvisiblePuffAlways : InvisiblePuff
-{
-	Default
-	{
-		+ALWAYSPUFF
-		+THRUACTORS
-		+ALLOWTHRUFLAGS
-	}
-}
 
 ////zone of crutches
 class CurbstompedMarine : actor {}
-class ObeliskTrailSpark : actor
-{states {spawn: tnt1 a 10 {console.printf("quick crutch");} stop; } }
+//separately, because with it bounded, non obvious much of a times, too much actors
+
+class crutch : inventory
+{
+default
+{+noclip +nointeraction}
+
+states {spawn: tnt1 a 1 {console.printf("quick crutch");} stop; } 
+}
+
+//now that a lots of crutches
+class ObeliskTrailSpark : crutch {}
 class ObeliskExplode : ObeliskTrailSpark {}
 class GreenExplosionFire : ObeliskTrailSpark {}
 class BFGAltExplosion : ObeliskTrailSpark{}
 class MancubusSwitchModeEffect : ObeliskTrailSpark{}
 class BFGAltShockWave : ObeliskTrailSpark{}
 class ExcavatorExploFX : ObeliskTrailSpark{}
-class HellishMissileLauncher : ObeliskTrailSpark{}
 class DaedabusSwitchModeEffect : ObeliskTrailSpark{}
 class WhiteShockwave : ObeliskTrailSpark{}
 class ThrowedBarrel : ObeliskTrailSpark{}
@@ -418,11 +392,9 @@ class ThrowedZombieMan2 : ObeliskTrailSpark{}
 class ThrowedSergeant2 : ObeliskTrailSpark{}
 class ThrowedImp2 : ObeliskTrailSpark{}
 class NewRocketExploFX_Small : ObeliskTrailSpark{}
-class RedLightningTrial_Small : ObeliskTrailSpark{}
 class GreenTrailSparks : ObeliskTrailSpark{}
 class BFGAltTrail : ObeliskTrailSpark{}
 class WhiteShockwaveBig : ObeliskTrailSpark{}
-class DeadKnight : ObeliskTrailSpark{}
 
 class HasIncendiaryWeapon : inventory
 {states {spawn: tnt1 a 10 {console.printf("quick crutch");} stop; } }
@@ -432,5 +404,3 @@ class  PhantasmFatality  : HasIncendiaryWeapon {}
 class  ArachnoGun  : HasIncendiaryWeapon {}
 class CasingsJanitor : HasIncendiaryWeapon {}
 class CrueltyBonus5Health : HasIncendiaryWeapon {}
-class DeathTimer1 : HasIncendiaryWeapon {}
-class PLOFT2 : HasIncendiaryWeapon {}

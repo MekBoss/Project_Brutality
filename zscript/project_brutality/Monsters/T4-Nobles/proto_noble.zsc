@@ -16,7 +16,33 @@ states
 	Death.Blackhole://exluding belphegors
 		TNT1 A 0 {A_Scream(); A_NoBlocking(); A_PlaySound("redburn",6,1,1);}
 		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
-		ID55 AABCDEFGHIJK 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		tnt1 a 0
+		{
+			name class_name = getclassname();
+			switch ( class_name )
+			{
+				case 'pb_Infernus' : setstatelabel("infernus_holed"); break;
+				case 'pb_Cyber_Paladin' : setstatelabel("paladin_holed");break;
+				case 'pb_Phasic_Knight_X' : setstatelabel("cyber_k_holed");break;
+				default : break;
+			}
+		}
+		ID56 AABCDEFGHIJK 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+	Stop;
+
+	infernus_holed:
+		ID69 AAABCDEFGHIJ 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 50, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+	Stop;
+
+	paladin_holed:
+		ID70 AAABCDEFGH 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 50, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+		Stop;
+
+	cyber_k_holed:
+		ID71 AAABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 50, 0, 0, 0, 0, 128);
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 }

@@ -565,21 +565,21 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 		
 		TTRB A 0 a_spawnprojectile ("RealisticFireSparks1", 44, 0, random (0, 140), 2, random (0, 160));
 		TNT1 A 0 bright a_spawnprojectile ("BurningBarrelTopFIre", 28, 0, random (40, 180), 2, random (50, 130));
-		BURB ABCBA 2;//A_SpawnItem("RedFlare3",0,32)
+		BURB ABCBA 2;//A_SpawnItem("Red_Flare",0,32)
 		
 		TTRB A 0 a_spawnprojectile ("RealisticFireSparks1", 44, 0, random (0, 140), 2, random (0, 160));
 		TNT1 A 0 bright a_spawnprojectile ("BurningBarrelTopFIre", 28, 0, random (40, 180), 2, random (50, 130));
-		BURB ABCBA 2;//A_SpawnItem("RedFlare3",0,32)
+		BURB ABCBA 2;//A_SpawnItem("Red_Flare",0,32)
 		
 		TTRB A 0 a_spawnprojectile ("RealisticFireSparks1", 44, 0, random (0, 140), 2, random (0, 160));
 		TNT1 A 0 bright a_spawnprojectile ("BurningBarrelTopFIre", 28, 0, random (40, 180), 2, random (50, 130));
-		BURB ABCBA 2;//A_SpawnItem("RedFlare3",0,32)
+		BURB ABCBA 2;//A_SpawnItem("Red_Flare",0,32)
 		Loop;
 		
 	Spawn2:
 		//TNT1 A 0 A_Playsound("BDFireplace2", 1, 0.25, 1)
 		BURB A 1;
-		TNT1 A 0 a_spawnprojectile ("ImBallGettingReady2", 35, 0, random (0, 140), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("ImBallGettingReady", 35, 0, random (0, 140), 2, random (0, 160));
 		Goto Spawn;
 		
 	Performance:
@@ -596,8 +596,8 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_PlaySound("Afrit/Hellfire");
 		TNT1 AAA 0 a_spawnprojectile ("FlyingBurningFuel", 24, 0, random (150, 210), 2, random (0, 40));
-		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel2", 24, 0, random (150, 210), 2, random (0, 40));
-		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel3", 24, 0, random (150, 210), 2, random (0, 40));
+		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel", 24, 0, random (150, 210), 2, random (0, 40));
+		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel", 24, 0, random (150, 210), 2, random (0, 40));
 		BURB D -1;
 		Stop;
 		
@@ -605,11 +605,11 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 	Death.ExplosiveImpact:
 		TNT1 A 0 A_NoBlocking;
 		TNT1 AAA 0 a_spawnprojectile ("FlyingBurningFuel", 24, 0, random (0, 360), 2, random (30, 80));
-		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel2", 24, 0, random (0, 360), 2, random (30, 80));
-		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel3", 24, 0, random (0, 360), 2, random (30, 80));
+		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel", 24, 0, random (0, 360), 2, random (30, 80));
+		TNT1 AA 0 a_spawnprojectile ("FlyingBurningFuel", 24, 0, random (0, 360), 2, random (30, 80));
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
-		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("BarrelExplosion",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -617,9 +617,9 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 25, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel2", 15, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel3", 5, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel4", 5, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 15, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 5, 0, random (0, 360), 2, random (30, 160));
+		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 5, 0, random (0, 360), 2, random (30, 160));
 		Stop;
 		
 		
@@ -641,9 +641,6 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 1);
 		BURB A 1 A_FaceTarget;
-		//TNT1 A 0 A_GiveToTarget("BarrelThrower", 1);
-		//TNT1 A 0 A_GiveToTarget("GrabbedBarrel", 1);
-		//TNT1 A 0 A_GiveToTarget("HasBurningBarrel", 1);
 		TTRB A 0 a_spawnprojectile ("RealisticFireSparks1", 44, 0, random (0, 140), 2, random (0, 160));
 		TNT1 A 0 bright a_spawnprojectile ("BurningBarrelTopFIre", 28, 0, random (40, 180), 2, random (50, 130));
 		BURB ABCBA 2;

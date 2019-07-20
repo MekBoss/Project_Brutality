@@ -1,0 +1,72 @@
+
+CLASS MastermindTracer: Tracer { 
+Default {
+	
+	+BLOODSPLATTER;
+	+THRUGHOST;
+	-DONTSPLASH;
+	speed 90;
+	damagefunction(random(5,7));
+	scale .45;
+	Seesound "HeavyDistantGunshot";
+	damagetype "ExplosiveImpact";
+	Decal "Scorch";
+	Obituary "$OB_SPIDER";
+}
+States
+{
+	
+	
+	Death:
+	Xdeath:
+		EXPL A 0 A_Explode(2, 120, 0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 180), 2, random(0, 180));
+		XXXX A 0 a_spawnprojectile("ShakeShakeShake", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+		
+		TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 40));
+		
+		TNT1 A 0 A_PlaySound("FAREXPL");
+		TNT1 AAAAAAAA 4 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+		Stop;
+}
+}
+
+CLASS SuperMastermindTracer: MastermindTracer { 
+Default {
+	
+	Speed 120;
+	damagefunction(random(7,10));
+	Height 24;
+}
+}
+
+CLASS ArachnophyteTracer: MastermindTracer { 
+Default {
+	
+	Speed 50;
+	damage 0;
+	Height 16;
+	scale .36;
+Translation "0:255=%[0,0,0]:[1,1,0]";
+}
+States
+{
+	
+	
+Death:
+Xdeath:
+	EXPL A 0 A_Explode(4, 24, 0);
+	TNT1 A 0 a_spawnprojectile("YellowFlare", 0, 0, random(0, 360));
+	TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 AA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+	TNT1 AA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 40));
+	TNT1 A 0 A_PlaySound("FAREXPL", 1, 0.3);
+	TNT1 AAA 4 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+	Stop;
+}
+}

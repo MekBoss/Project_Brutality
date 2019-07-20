@@ -1,0 +1,630 @@
+CLASS RicoChet : ACTOR { 
+Default {
+	renderstyle "Add";
+	alpha 1.0;
+	-COUNTKILL;
+	-SHOOTABLE;
+	+CLIENTSIDEONLY;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+THRUACTORS;
+	+NOCLIP;
+	+NOGRAVITY;
+	+NODAMAGETHRUST;
+	+DONTTHRUST;
+	//Mass 9999999
+	Obituary "%o ate bullet shrapnel.";
+	//damagetype "Shrapnel"
+	Scale 0.09;
+	Speed 0;
+	Radius 1;
+	Height 1;
+}
+
+states
+{
+	Spawn:
+		TNT1 A 0;
+		//TNT1 A 0 ThrustThingZ(0,-5,0,1)
+		//TNT1 A 1
+		//TNT1 A 0 A_Explode(4, 15)
+		TNT1 A 0 A_CheckFloor("SpawnFloor");
+		TNT1 A 0 A_SpawnItem("YellowFlareSmall", 0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("UnderwaterHitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SparkX", 2, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
+		TNT1 AA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
+		TNT1 A 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
+		TNT1 A 0 A_SpawnItem("Sparks");
+		PUFF A 0 bright A_PlaySound("ricochet/hit");
+		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4");
+	Spawn1:
+		IPF2 AABB 1 bright A_SpawnItem("YellowFlareSmall", 0);
+	Stop;
+		
+	Spawn2:
+		IPF2 CCDD 1 bright A_SpawnItem("YellowFlareSmall", 0);
+	Stop;
+		
+	Spawn3:
+		IPF2 EEFF 1 bright A_SpawnItem("YellowFlareSmall", 0);
+	Stop;
+		
+	Spawn4:
+		IPF2 GGHH 1 bright A_SpawnItem("YellowFlareSmall", 0);
+	Stop;
+		
+		
+	SpawnFloor:
+		TNT1 A 0;
+		TNT1 A 2;
+		TNT1 A 0 A_SpawnItemEx("UnderwaterHitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+
+		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SparkX", 2, 0, random(0, 360), 2, random(30, 160));
+		TNT1 AAAA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
+		TNT1 AA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
+		TNT1 A 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
+		TNT1 A 0 A_SpawnItem("Sparks");
+		PUFF A 0 bright A_PlaySound("ricochet/hit");
+		IPF2 GGHH 1 bright A_SpawnItem("YellowFlareSmall", 0);
+		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(30, 160));
+	stop;
+		
+	SpawnWater:
+		TNT1 A 0;
+		TNT1 AAAAA 0 a_spawnprojectile("WaterParticleX", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("WaterParticleX", 24, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
+		TNT1 A 0 A_SpawnItem("WaterRicochet");
+		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
+	Stop;
+		
+	SpawnSlime:
+		TNT1 A 0;
+		//TNT1 AAAAA 0 a_spawnprojectile("nukageParticleXFAster", 8, 0, random(0, 360), 2, random(30, 160));
+		//TNT1 AAAAA 0 a_spawnprojectile("nukageParticleXFAster", 24, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_SpawnItem("SlimeRicochet");
+		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
+		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
+	Stop;
+		
+	SpawnBlood:
+		TNT1 A 0;
+		TNT1 AAAAA 0 a_spawnprojectile("BloodParticleXFAster", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("BloodParticleXFAster", 24, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_SpawnItem("BloodSplashWaves");
+		TNT1 A 0 A_SpawnItem("BloodRicochet");
+		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
+	Stop;
+		
+	SpawnSludge:
+		TNT1 A 0;
+		TNT1 AAAAA 0 a_spawnprojectile("SludgeParticleX", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("SludgeParticleX", 24, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
+		TNT1 A 0 A_SpawnItem("Slime2Ricochet");
+		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
+	Stop;
+		
+	SpawnLava:
+		TNT1 A 0;
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		EXPL A 0 A_SpawnItem("ExplosionParticle");//BurningEmberParticlesFloating
+		TNT1 AAA 0 ;//a_spawnprojectile("LavaMist", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 A 0 A_SpawnItem("LavaRicochet");
+		TNT1 A 0 A_PlaySound("Daedabus/impact", 1);
+		TNT1 A 0;
+		TNT1 A 0 a_spawnprojectile("rocket_trail_darker", 12, 0, random(160, 210), 2, random(10, 90));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 180), 2, random(10, 90));
+		TNT1 A 0 A_SetScale(0.5, 0.5);
+		INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
+		INFE ST 1 BRIGHT a_spawnprojectile("rocket_trail_darker", 32, 0, random(160, 210), 2, random(10, 90));
+		TNT1 AAA 4 a_spawnprojectile("rocket_trail_darker", 14, 0, random(160, 210), 2, random(10, 90));
+	Stop;
+		
+	SpawnDirt:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("dirtrain", 1);
+		TNT1 A 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(10, 150));
+		TNT1 AA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 a_spawnprojectile("MudDust", 4, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 A_SpawnItem("DirtRicochet");
+	Stop;
+		
+	SpawnSand:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("dirtrain", 1);
+		TNT1 A 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 a_spawnprojectile("MudDust", 4, 0, random(0, 360), 2, random(30, 150));
+	Stop;
+}
+}
+
+
+CLASS DirtRicochet: RicoChet { 
+Default {
+	renderstyle "Translucent";
+	alpha 0.8;
+	XScale 1.1;
+	YScale 1.1;
+}
+
+states
+{
+	Spawn:
+		TNT1 A 2;
+		TNT1 A 0 A_PlaySound("BHITDIR");
+		TNT1 A 0 A_Jump(255, "spawn1", "Spawn2", "Spawn3", "Spawn4");
+	Spawn1:
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(1.1, 1.1);
+		SDRT ABCDEF 2;
+	Stop;
+
+	Spawn2:
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(1.9, 1.9);
+		SDRT ABCDEF 2;
+	Stop;
+
+	Spawn3:
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(1.4, 0.4);
+		SDRT ABCDEF 2;
+	Stop;
+
+	Spawn4:
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(-1.4, 1.1);
+		SDRT ABCDEF 2;
+	Stop;
+}
+}
+
+CLASS LargeMassWaterImpact: Ricochet { 
+Default {
+	
+	DamageFactor "CauseObjectsToSplash", 99.0;
+	+SHOOTABLE;
+	+NOBLOOD;
+	-SOLID;
+	Health 1;
+	Radius 0;
+	Height 0;
+}
+states
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 2;
+		Stop;
+		
+	Death.CauseObjectsToSplash:
+	SpawnWater:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("bigspl1", 1);
+		//TNT1 A 0 A_RadiusGive("WaterSplasherz", 90, RGF_PLAYERS, 1);
+		TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", 14, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 20;
+		Stop;
+		
+		
+	Death.CauseObjectsToSplashSlime:
+	SpawnSlime:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItem("SlimeRicochet");
+		//TNT1 A 0 A_RadiusGive("SlimeSplasherz", 90, RGF_PLAYERS, 1);
+		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
+		TNT1 A 0 a_spawnprojectile("SlimeParticleXSpawner", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_PlaySound("bigspl1", 1);
+		TNT1 A 20;
+	Stop;
+		
+	SpawnSludge:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItem("Slime2Ricochet");
+		//TNT1 A 0 A_RadiusGive("SludgeSplasherz", 90, RGF_PLAYERS, 1);
+		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
+		TNT1 A 0 a_spawnprojectile("SludgeParticleXSpawner", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_PlaySound("bigspl1", 1);
+		TNT1 A 20;
+	Stop;
+		
+	SpawnBlood:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItem("BloodRicochet");
+		//TNT1 A 0 A_RadiusGive("BloodSplasherz", 90, RGF_PLAYERS, 1);
+		TNT1 A 0 A_SpawnItem("BloodSplashWaves");
+		TNT1 A 0 a_spawnprojectile("BloodParticleXSpawner", 8, 0, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 A_PlaySound("bigspl1", 1);
+		TNT1 A 20;
+	Stop;
+		
+	SpawnLava:
+		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+		//TNT1 A 0 A_RadiusGive("LavaSplasherz", 90, RGF_PLAYERS, 1);
+		EXPL AAAAAA 0 A_SpawnItem("ExplosionParticle");//BurningEmberParticlesFloating
+		TNT1 AAAAAAAA 0 ;//a_spawnprojectile("LavaMist", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 A 0 A_SpawnItem("LavaRicochet");
+		TNT1 A 0 A_PlaySound("Daedabus/impact", 1);
+		TNT1 A 0 a_spawnprojectile("rocket_trail_darker", 12, 0, random(160, 210), 2, random(10, 90));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 180), 2, random(10, 90));
+		TNT1 A 0 A_SetScale(0.5, 0.5);
+		INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
+		INFE ST 1 BRIGHT a_spawnprojectile("rocket_trail_darker", 32, 0, random(160, 210), 2, random(10, 90));
+		TNT1 AAA 4 a_spawnprojectile("rocket_trail_darker", 14, 0, random(160, 210), 2, random(10, 90));
+	Stop;
+
+	SpawnSand:
+		TNT1 A 0 A_PlaySound("dirtrain", 1);
+		TNT1 AA 0 a_spawnprojectile("MudDust", 24, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 AAA 0 a_spawnprojectile("MudDust", 42, 0, random(0, 360), 2, random(40, 150));
+	Stop;
+}
+
+}
+
+
+CLASS BigRicoChet : ACTOR { 
+Default {
+	renderstyle "Add";
+	alpha 1.0;
+	+CLIENTSIDEONLY;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+THRUACTORS;
+	+NOGRAVITY;
+	Mass 9999999;
+	+MISSILE;
+	Obituary "%o ate bullet shrapnel.";
+	damagetype "CauseWaterSplash";
+	Scale 0.09;
+	Speed 0;
+	Radius 4;
+	Height 8;
+}
+
+states
+{
+	Spawn:
+		TNT1 A 0;
+	Death:
+		TNT1 A 2;
+		TNT1 A 1 A_Explode(4, 32);
+		TNT1 A 0 A_CheckFloor("SpawnFloor");
+		TNT1 A 0;
+	Stop;
+		
+	SpawnFloor:
+		TNT1 A 0;
+		TNT1 A 2;
+		TNT1 A 0;
+	stop;
+		
+	SpawnWater:
+		TNT1 A 0;
+		//TNT1 A 0 A_RadiusGive("WaterSplasherz", 215, RGF_PLAYERS, 1);
+		
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(50, 60), 0, random(0, 360), 2, random(10, 90));
+		TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 A_SpawnItem("GiantWaterRicochet");
+		TNT1 A 4;
+		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
+	Stop;
+
+	SpawnSlime:
+		TNT1 A 0;
+		//TNT1 A 0 A_RadiusGive("SlimeSplasherz", 215, RGF_PLAYERS, 1);
+		TNT1 A 0 a_spawnprojectile("SlimeParticleXSpawner", 0, 0, random(0, 360), 2, random(80, 110));
+		TNT1 A 0 A_SpawnItem("GiantSlimeRicochet");
+		TNT1 A 0 A_PlaySound("bigspl1");
+		TNT1 A 4;
+		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
+		Stop;
+		
+	SpawnBlood:
+		TNT1 A 0;
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("BloodMistExtraBig", 0, 0, random(0, 360), 2, random(80, 110));
+		//TNT1 A 0 A_RadiusGive("BloodSplasherz", 215, RGF_PLAYERS, 1);
+		TNT1 A 0 a_spawnprojectile("BloodParticleXSpawner", 0, 0, random(0, 360), 2, random(80, 110));
+		TNT1 A 0 A_SpawnItem("GiantBloodRicochet");
+		TNT1 A 0 A_PlaySound("bigspl1");
+		TNT1 A 4;
+		TNT1 A 0 A_SpawnItem("BloodSplashWaves");
+		Stop;
+		
+	SpawnSludge:
+		TNT1 A 0;
+		//TNT1 A 0 A_RadiusGive("SludgeSplasherz", 215, RGF_PLAYERS, 1);
+		TNT1 A 0 a_spawnprojectile("SludgeParticleXSpawner", 0, 0, random(0, 360), 2, random(80, 110));
+		TNT1 A 0 A_SpawnItem("GiantSlime2Ricochet");
+		TNT1 A 0 A_PlaySound("bigspl1");
+		TNT1 A 4;
+		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
+		Stop;
+		
+	SpawnLava:
+		TNT1 A 0;
+		//TNT1 A 0 A_RadiusGive("LavaSplasherz", 215, RGF_PLAYERS, 1);
+		TNT1 AAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("LavaMist", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AA 0 a_spawnprojectile("FlyingLava", 54, 0, random(0, 360), 2, random(20, 80));
+		TNT1 AA 0 a_spawnprojectile("FlyingLava", 44, 0, random(0, 360), 2, random(20, 80));
+		TNT1 AAA 0 a_spawnprojectile("FlyingLava", 54, 0, random(0, 360), 2, random(30, 80));
+		TNT1 AAA 0 a_spawnprojectile("FlyingLava", 44, 0, random(0, 360), 2, random(30, 80));
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL AAAAAAAAA 0 A_SpawnItem("ExplosionParticle");
+		EXPL AAA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AA 0 a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
+		TNT1 A 0 A_SpawnItem("GiantLavaRicochet");
+		TNT1 A 0 A_PlaySound("Daedabus/impact", 1);
+		TNT1 AA 20 a_spawnprojectile("BigBlackSmoke", 10, 0, random(0, 360), 2, random(40, 160));
+		TNT1 A 20;
+		Stop;
+		
+	SpawnSand:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("dirtrain", 1);
+		TNT1 AAAAAA 0 a_spawnprojectile("MudDust", 96, 0, random(0, 360), 2, random(60, 120));
+		TNT1 AAAAAA 0 a_spawnprojectile("MudDust", 32, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("MudDust", 62, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(10, 20));
+		TNT1 A 0 A_PlaySound("BHITDIR1", 1);
+		TNT1 A 0 A_PlaySound("BHITDIR2", 2);
+		TNT1 A 0 A_PlaySound("BHITDIR3", 3);
+		TNT1 A 0 A_PlaySound("BHITDIR4", 4);
+		TNT1 A 0 A_PlaySound("BHITDIR5", 5);
+	Stop;
+}
+}
+
+
+
+
+CLASS ExplosionSplashSpawner : BigRicoChet { 
+Default {
+	/*
+	  +THRUACTORS
+	  +VULNERABLE
+	  Radius 1
+	  Height 1
+	  Gravity 4
+	  Mass 99999
+	  Health 99999
+}
+  states
+  {
+  Spawn:
+  Death:
+	TNT1 A 0
+	TNT1 A 0 Acs_executealways(375, 0, 0, 0, 0)//Check if is under grass/dirt/
+	TNT1 A 0 ThrustThingZ(0,-30,0,1)
+	TNT1 A 3
+	TNT1 A 0 A_CheckFloor("Spawn2")
+	Stop
+  Spawn2:
+	TNT1 A 0
+	TNT1 A 2
+	TNT1 A 0 A_JumpIfInventory("crutch", 1, "SpawnWater")
+	TNT1 A 0 A_JumpIfInventory("crutch", 1, "SpawnSlime")
+	TNT1 A 0 A_JumpIfInventory("IsOverNukage", 1, "SpawnNukage")
+	TNT1 A 0 A_JumpIfInventory("IsOverBlood", 1, "SpawnBlood")
+	TNT1 A 0 A_JumpIfInventory("IsOverLava", 1, "SpawnLava")
+	TNT1 A 0 A_JumpIfInventory("IsOverGrass", 1, "SpawnGrass")
+	TNT1 A 0 A_JumpIfInventory("IsOverSand", 1, "SpawnSand")
+	Stop
+	
+  SpawnWater:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("bigspl1")
+	TNT1 AAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(50, 60), 0, random(0, 360), 2, random(10, 90))
+	TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("BlueLiquidParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90))
+	TNT1 A 20
+	Stop
+	
+ SpawnSlime:	
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("bigspl1")
+	TNT1 AAAAAAAAA 0 a_spawnprojectile("SlimeParticleXNEW", random(50, 60), 0, random(0, 360), 2, random(10, 90))
+	TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("BrownLiquidParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90))
+	TNT1 A 20
+	Stop	
+	
+ SpawnNukage:	
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("bigspl1")
+	//tNT1 AAAAAAAAA 0 a_spawnprojectile("NukageParticleXSuperFast", random(50, 60), 0, random(0, 360), 2, random(10, 90))/
+	TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("GreenLiquidParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90))
+	TNT1 A 20
+	Stop
+	
+	
+  SpawnBlood:	
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("bigspl1")
+	//TNT1 AAAAAAAAA 0 a_spawnprojectile("BloodParticleXSuperFast", random(50, 60), 0, random(0, 360), 2, random(10, 90))/
+	TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("BloodLiquidParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90))
+	TNT1 A 20
+	Stop	
+	
+	
+ SpawnLava:	
+	TNT1 A 0
+	TNT1 AAA 0 a_spawnprojectile("FlyingLava", 54, 0, random(0, 360), 2, random(20, 80))
+	TNT1 AAA 0 a_spawnprojectile("FlyingLava", 44, 0, random(0, 360), 2, random(20, 80))
+	TNT1 AAAAAAAA 0 a_spawnprojectile("FlyingLava", 54, 0, random(0, 360), 2, random(30, 80))
+	TNT1 AAAAAAAAA 0 a_spawnprojectile("FlyingLava", 44, 0, random(0, 360), 2, random(30, 80))
+	EXPL AAAAAAAA 0 a_spawnprojectile("FlamethrowerFireParticles", 16, 0, random(0, 360), 2, random(0, 90))
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15))
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35))
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35))
+	TNT1 AA 20 a_spawnprojectile("BigBlackSmoke", 10, 0, random(0, 360), 2, random(40, 160))
+	TNT1 A 20
+	Stop	
+	
+ 
+ SpawnGrass:
+	TNT1 A 0
+	TNT1 AAAA 0 a_spawnprojectile("MudDust", 96, 0, random(0, 360), 2, random(60, 120))
+	TNT1 AAAA 0 a_spawnprojectile("MudDust", 16, 0, random(0, 360), 2, random(30, 150))
+	TNT1 AAAAAA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150))
+	TNT1 AAAAAA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150))
+	TNT1 AAA 0 a_spawnprojectile("MudDust", 20, 0, random(0, 360), 2, random(10, 90))
+	TNT1 AAA 0 a_spawnprojectile("MudDust", 60, 0, random(0, 360), 2, random(40, 90))
+	TNT1 A 0 A_PlaySound("BHITDIR1", 1)
+	TNT1 A 0 A_PlaySound("BHITDIR2", 2)
+	TNT1 A 0 A_PlaySound("BHITDIR3", 3)
+	TNT1 A 0 A_PlaySound("BHITDIR4", 4)
+	TNT1 A 0 A_PlaySound("BHITDIR5", 5)
+	Stop
+	
+	
+  SpawnSand:
+	TNT1 A 0
+	TNT1 AAAAAA 0 a_spawnprojectile("MudDust", 96, 0, random(0, 360), 2, random(60, 120))
+	TNT1 AAAAAA 0 a_spawnprojectile("MudDust", 32, 0, random(0, 360), 2, random(30, 150))
+	TNT1 AAAAA 0 a_spawnprojectile("MudDust", 62, 0, random(0, 360), 2, random(30, 90))
+	TNT1 AAAAA 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(10, 20))
+	TNT1 A 0 A_PlaySound("BHITDIR1", 1)
+	TNT1 A 0 A_PlaySound("BHITDIR2", 2)
+	TNT1 A 0 A_PlaySound("BHITDIR3", 3)
+	TNT1 A 0 A_PlaySound("BHITDIR4", 4)
+	TNT1 A 0 A_PlaySound("BHITDIR5", 5)
+	Stop	
+  }*/
+}
+}
+
+CLASS GiantLavaRicochet : pb_puff {
+Default {
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+CLIENTSIDEONLY;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+NOINTERACTION;
+	RenderStyle "Translucent";
+	Alpha 0.9;
+	XScale 3.0;
+	YScale 2.0;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("WTREXP");
+		GSPP ABCDEFGHIJKLMNOPQRS 2 BRIGHT;
+		//TNT1 A 0 A_PlaySound("mountain/splash", 15)
+		GSPP TUVWXYZ 2 BRIGHT;
+	Stop;
+}
+}
+
+CLASS GiantSlimeRicochet : pb_puff {//: RicoChet
+Default {
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+CLIENTSIDEONLY;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+NOINTERACTION;
+	RenderStyle "Translucent";
+	Alpha 0.9;
+	XScale 3.0;
+	YScale 2.0;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("WTREXP");
+		GSPN ABCDEFGHIJKLMNOPQRS 2;
+		//TNT1 A 0 A_PlaySound("mountain/splash", 15)
+		GSPN TUVWXYZ 2;
+		Stop;
+}
+}
+
+CLASS GiantBloodRicochet : pb_puff {//: RicoChet
+Default {
+	
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+CLIENTSIDEONLY;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+NOINTERACTION;
+	RenderStyle "Translucent";
+	Alpha 0.9;
+	XScale 3.0;
+	YScale 2.0;
+}
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("WTREXP");
+		GSPB ABCDEFGHIJKLMNOPQRS 2;
+		//TNT1 A 0 A_PlaySound("mountain/splash", 15)
+		GSPB TUVWXYZ 2;
+		Stop;
+}
+}
+
+CLASS Slime2Ricochet: RicoChet { 
+Default {
+	+NOINTERACTION;
+	RenderStyle "Translucent";
+	Alpha 0.8;
+	Scale 1.0;
+	//Translation "179:191=144:151"
+}
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("WaterBulletImpact", 0);
+		//TNT1 A 0 A_RadiusGive("SludgeSplasherz", 80, RGF_PLAYERS, 1);
+		SPHN ABCDE 3;
+		Stop;
+}
+}
+
+CLASS GiantSlime2Ricochet : pb_puff {//: RicoChet
+Default {
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+CLIENTSIDEONLY;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+NOINTERACTION;
+	RenderStyle "Translucent";
+	Alpha 0.9;
+	XScale 3.0;
+	YScale 2.0;
+	//Translation "179:191=144:151"
+}
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("WTREXP");
+		GSPS ABCDEFGHIJKLMNOPQRS 2;
+		GSPS TUVWXYZ 2;
+		Stop;
+}
+}

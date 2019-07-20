@@ -4,7 +4,7 @@ Default {
 	Scale 1.05;
 	Health 75;
 	//SpawnID 1180;
-	//DropItem "Cell";
+	////DropItem "Cell";
 	proto_zombieman_class.max_magazine_size 20;
 }
 
@@ -144,21 +144,21 @@ States
 		TNT1 A 0 {self.ammo_amount --;}//A_GiveInventory("ZombieManAmmo", 2);
 		
 		ZMAY E 8 A_FaceTarget();
-		TNT1 A 0 a_spawnprojectile("SmokeSpawner", 34, 10, 15, 0);
+		TNT1 A 0 a_spawnprojectile("GunFireSmoke", 34, 10, 15, 0);
 		TNT1 A 0 A_PlaySound("PLSM9",3);
-		TNT1 A 0 a_spawnprojectile("BlueFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 		ZMAY F 3 BRIGHT a_spawnprojectile("ZombiePlasma", 32, 0, random(-1, 1), 1, random(-3, 3));
 		
 		ZMAY E 2 A_FaceTarget();
-		TNT1 A 0 a_spawnprojectile("SmokeSpawner", 34, 10, 15, 0);
+		TNT1 A 0 a_spawnprojectile("GunFireSmoke", 34, 10, 15, 0);
 		TNT1 A 0 A_PlaySound("PLSM9",3);
-		TNT1 A 0 a_spawnprojectile("BlueFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 		ZMAY F 3 BRIGHT a_spawnprojectile("ZombiePlasma", 32, 0, random(-2, 2), 1, random(-3, 3));
 		
 		ZMAY E 2 A_FaceTarget();
-		TNT1 A 0 a_spawnprojectile("SmokeSpawner", 34, 10, 15, 0);
+		TNT1 A 0 a_spawnprojectile("GunFireSmoke", 34, 10, 15, 0);
 		TNT1 A 0 A_PlaySound("PLSM9",3);
-		TNT1 A 0 a_spawnprojectile("BlueFlareSpawn",0,0,0,0);
+		TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 		ZMAY F 3 BRIGHT a_spawnprojectile("ZombiePlasma", 32, 0, random(-2, 2), 1, random(-3, 3));
 		ZMAY E 6 A_FaceTarget();
 		TNT1 A 0 pb_check_reloading("reload");//A_JumpIfInventory("ZombieManAmmo", 20, "Reload");
@@ -975,8 +975,8 @@ States
 		ZM5Y BBBBBB 2 a_spawnprojectile ("Brutal_LiquidBlood", 18, 1, random(0, 360), 2, random (0, 45));
 		TNT1 A 0 A_SpawnItem ("BloodDying", 0, 20);
 		TNT1 A 0 A_Jump(12, "LastStand");
-		TNT1 A 0 A_GiveInventory("DeathTimer1", 1);
-		TNT1 A 0 A_JumpIfInventory("DeathTimer1", 10, "GotoDeath");
+		//TNT1 A 0 A_GiveInventory("DeathTimer1", 1);
+		//TNT1 A 0 A_JumpIfInventory("DeathTimer1", 10, "GotoDeath");
 	Loop;
 
 	GotoDeath:
@@ -1022,20 +1022,20 @@ States
 		TNT1 A 0 A_PlaySound("BLANKSND");
 		TNT1 A 0 A_XScream();
 		TNT1 A 0 A_NoBlocking();
-		XBRN AA 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN AA 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAA 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedArm", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedLeg", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedSkull", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		//TNT1 A 0 A_SpawnItem ("CrueltyBonus5Armor");
-		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN BB 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 A 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
-		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN CC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAAA 0 a_spawnprojectile ("PlasmaParticleX", 48, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAA 0 a_spawnprojectile ("BigPlasmaParticleX", 42, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("PlasmaParticleX", 42, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0;
 	Stop;
 	
@@ -1075,13 +1075,13 @@ States
 
 CLASS FatalizedPlasmaZombie : ACTOR { 
 States{Spawn:
-	    FPMA PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 5 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	    FPMA PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 5 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
 	FPMA P -1;
         Stop; }}
 	
 CLASS FatalizedPlasmaZombie2 : ACTOR { 
 States{Spawn:
-	    FPMA SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 5 a_spawnprojectile ("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	    FPMA SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 5 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
 	FPMA S -1;
         Stop; }}	
 	
@@ -1177,20 +1177,20 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_XScream();
 		TNT1 A 0 A_NoBlocking();
-		XBRN AA 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN AA 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAA 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedArm", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedLeg", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedSkull", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		//TNT1 A 0 A_SpawnItem ("CrueltyBonus5Armor");
-		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN BB 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 A 0 a_spawnprojectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
-		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43);
+		XBRN CC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
 		TNT1 AAAAA 0 a_spawnprojectile ("PlasmaParticleX", 48, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAA 0 a_spawnprojectile ("BigPlasmaParticleX", 42, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile ("PlasmaParticleX", 42, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0;
 	Stop;
 }}

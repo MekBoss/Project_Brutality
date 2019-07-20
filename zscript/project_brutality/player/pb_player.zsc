@@ -184,11 +184,11 @@ class BrutalDoomer: Doomer
 		FSP7 A 4;
 		
 		FSP7 B 3 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FSP7 CDE 3;
 		
 		FSP7 F 3 A_PlaySound("CLAP",4);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0; //ACS_Execute(477, 0, 0, 0, 0);
 		TNT1 A 0 A_PlaySound("grunt/pain", 1);
 		FSP7 GGHHH 3;
@@ -221,11 +221,11 @@ class BrutalDoomer: Doomer
 		FSP6 A 4;
 		
 		FSP6 B 3 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FSP6 CDE 3;
 		
 		FSP6 F 3 A_PlaySound("CLAP",4);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0; //ACS_Execute(477, 0, 0, 0, 0);
 		TNT1 A 0 A_PlaySound("grunt/pain", 1);
 		FSP6 GGG 3;
@@ -235,7 +235,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("barrel/pain", 4);
 		TNT1 AAAA 0 A_SpawnProjectile ("XDeath1", 9, -2, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnProjectile ("ShotgunguyHeadExplode", 8, -4, random (0, 360), 2, random (0, 160));
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FSP6 J 9;
 		FSP6 KKKKKK 2 A_SpawnProjectile ("Brutal_LiquidBlood2", 12, 0, random (0, 360), 2, random (60, 120));
 		//////////////////////////////////////////////////////
@@ -526,7 +526,7 @@ class BrutalDoomer: Doomer
 		4PZ3 HHHIIIIIIIIHJJJ 1;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 AA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
@@ -536,7 +536,7 @@ class BrutalDoomer: Doomer
 		4PZ3 KKKLLLLLLKJJJ 1;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 AA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
@@ -546,7 +546,7 @@ class BrutalDoomer: Doomer
 		4PZ3 MMMNNNNNNNMOOO 1;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 AA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
@@ -554,7 +554,7 @@ class BrutalDoomer: Doomer
 		4PZ3 MMMNNNNNNNMOOO 1;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 AA 0 A_SpawnProjectile ("XDeath1", 30, 0, random (0, 360), 2, random (0, 160));
 		tnt1 AA 0 A_SpawnProjectile ("BloodMist", 5, 0, random (0, 360), 2, random (0, 160));
@@ -570,7 +570,7 @@ class BrutalDoomer: Doomer
 		FPZ3 PPPQQQQQQQPRRR 1;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
 		tnt1 A 0 A_SpawnProjectile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90));
@@ -578,7 +578,7 @@ class BrutalDoomer: Doomer
 		FPZ3 PPPQQQQQQPRRR 1;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
 		tnt1 A 0 A_SpawnProjectile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90));
@@ -611,7 +611,7 @@ class BrutalDoomer: Doomer
 		4PZ4 HHI 2;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
@@ -623,7 +623,7 @@ class BrutalDoomer: Doomer
 		4PZ4 HHI 2;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
@@ -634,7 +634,7 @@ class BrutalDoomer: Doomer
 		4PZ4 HHI 2;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
@@ -646,7 +646,7 @@ class BrutalDoomer: Doomer
 		4PZ4 NNM 2;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
@@ -657,7 +657,7 @@ class BrutalDoomer: Doomer
 		4PZ4 NNM 2;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
@@ -670,7 +670,7 @@ class BrutalDoomer: Doomer
 		4PZ4 NNM 2;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("grunt/pain", 1);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
@@ -679,7 +679,7 @@ class BrutalDoomer: Doomer
 		tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
 		tnt1 AAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
@@ -790,13 +790,13 @@ class BrutalDoomer: Doomer
 		FSP5 A 4;
 		
 		FSP5 B 4 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FSP5 CDE 2;
 		FSP5 E 6;
 		
 		FSP5 FG 3;
 		tnt1 A 0 A_PlaySound("grunt/death");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(582, 0, 0, 0, 0);
@@ -904,7 +904,7 @@ class BrutalDoomer: Doomer
 		tnt1 AA 0 A_SpawnProjectile ("MuchBlood", 1, 0, random (0, 360), 2, random (0, 160));
 		tnt1 A 0 A_SpawnProjectile ("XdeathChainArm", 42, 0, random (0, 360), 2, random (0, 160));
 		tnt1 A 0 A_SpawnProjectile ("XdeathChainLeg", 42, 0, random (0, 360), 2, random (0, 160));
-		tnt1 A 0 A_SpawnProjectile ("XdeathGuts", 42, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_SpawnProjectile ("XDeathOrgan1", 42, 0, random (0, 360), 2, random (0, 160));
 		CFTC CDEF 4;
 		CFTC F 15;
 		//////////////////////////////////////////////////////
@@ -948,25 +948,25 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("BFGCHARGE", 7);
 		
 		
-		SPFD K 6 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD K 6 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
-		SPFD L 6 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD L 6 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
-		SPFD K 4 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD K 4 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
 		TNT1 A 0 A_PlaySound("BFGCHAFF", 8);
-		SPFD J 4 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD J 4 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
-		SPFD K 4 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD K 4 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
 		
-		SPFD L 3 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD L 3 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
-		SPFD K 3 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD K 3 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
-		SPFD J 3 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD J 3 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
-		SPFD K 3 A_SpawnProjectile ("GreenFlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
+		SPFD K 3 A_SpawnProjectile ("Green_FlareSpawnJustSmaller", 16, -20, random (0, 360), 2, random (30, 90));
 		
 		TNT1 A 0 A_PlaySound("BFG_FIRE", 1);
 		SPFD L 1;
@@ -1922,8 +1922,8 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_SpawnProjectile ("Brutal_FlyingBlood", 53, 5, random (0, 360), 2, random (0, 160));
 		CYUS F 0 A_PlaySound("DSRFIRE", 4);
 		TNT1 AA 0 A_SpawnProjectile("OrangeLensFlareAlt", 34, -10, 0, 0);
-		TNT1 A 0 A_SpawnProjectile("SmokeSpawner", 34, -10, 15, 0);
-		TNT1 A 0 A_SpawnProjectile("RedFlareSpawn", 34, -10, 15, 0);
+		TNT1 A 0 A_SpawnProjectile("GunFireSmoke", 34, -10, 15, 0);
+		TNT1 A 0 A_SpawnProjectile("Red_FlareSpawn", 34, -10, 15, 0);
 		FCY1 ST 3;
 		//TNT1 AA 0 A_SpawnProjectile ("ExplosionSpawner", 30, 4, random (0, 360), 2, random (0, 180));
 		//TNT1 AAAA 0 A_SpawnProjectile ("ExplosionSpawner", 40, 4, random (0, 360), 2, random (0, 180));
@@ -1936,7 +1936,7 @@ class BrutalDoomer: Doomer
 		TNT1 AA 0 A_SpawnProjectile ("XDeath2", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 A_SpawnProjectile ("XDeath3", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnProjectile ("XDeath4", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnProjectile ("XDeathGuts", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 A_SpawnProjectile ("XDeathOrgan1", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAA 0 A_SpawnProjectile ("Instestin", 24, 0, random (0, 360), 2, random (0, 160));
 		FCY1 U 13;
 		
@@ -2240,14 +2240,14 @@ class BrutalDoomer: Doomer
 		QZY1 A 6;
 		
 		QZY1 B 3 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		QZY1 CDE 3;
 		QZY1 E 5;
 		
 		//
 		
 		QZY1 F 5;
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		QZY1 G 5;
 		TNT1 A 0; //ACS_Execute(477, 0, 0, 0, 0);
 		QZY1 HIJKL 3;
@@ -2262,7 +2262,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("grunt/pain", 1);
 		TNT1 A 0 A_PlaySound("BLAM2", 4);
 		TNT1 AAAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
@@ -2312,7 +2312,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("BURNZOM", 1);
 		TNT1 A 0 A_PlaySound("BLAM2", 4);
 		TNT1 AA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
@@ -2842,11 +2842,11 @@ class BrutalDoomer: Doomer
 		FPMA A 4;
 		
 		FPMA B 3 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FPMA CDE 3;
 		
 		FPMA F 3;
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FPMA G 3;
 		TNT1 A 0; //ACS_Execute(477, 0, 0, 0, 0);
 		TNT1 A 0 A_PlaySound("CLAP",4);
@@ -2856,16 +2856,16 @@ class BrutalDoomer: Doomer
 		FPMA IJ 2 Bright;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("BURNZOM", 8);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
 		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160));
-		//TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160))
-		//TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160))
-		//TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		//TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160))
+		//TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160))
+		//TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 		
 		
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
@@ -2874,15 +2874,15 @@ class BrutalDoomer: Doomer
 		FPMA KL 2 Bright;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160));
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160))
+		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160));
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
-		//TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		//TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 		
 		
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
@@ -2892,15 +2892,15 @@ class BrutalDoomer: Doomer
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
 		TNT1 A 0 A_StopSound(8);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160))
-		//TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160));
+		//TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160))
+		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
-		TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 		
 		
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
@@ -2926,11 +2926,11 @@ class BrutalDoomer: Doomer
 		FPMA A 4;
 		
 		FPMA B 3 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FPMA CDE 3;
 		
 		FPMA F 3;
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		FPMA G 3;
 		TNT1 A 0; //ACS_Execute(477, 0, 0, 0, 0);
 		TNT1 A 0 A_PlaySound("CLAP",4);
@@ -2940,16 +2940,16 @@ class BrutalDoomer: Doomer
 		FPMA IJ 2 Bright;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("BURNZOM", 8);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160));
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160))
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160))
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160))
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
-		TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 103, CMF_AIMDIRECTION, -20);
@@ -2957,15 +2957,15 @@ class BrutalDoomer: Doomer
 		FPMA KL 2 Bright;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160));
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160))
+		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160));
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
-		TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 103, CMF_AIMDIRECTION, -20);
@@ -2974,15 +2974,15 @@ class BrutalDoomer: Doomer
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
 		TNT1 A 0 A_StopSound(8);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160))
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160));
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160))
+		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160));
 		TNT1 AAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
-		TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 		
 		
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
@@ -2990,15 +2990,15 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0 A_StopSound(8);
 		FPMA OO 3;
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("PLSM8", 4);
 		TNT1 AAA 0 A_SpawnProjectile ("XDeath1", 5, -40, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 5, -40, random (0, 360), 2, random (0, 160));
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat2", 3, -45, random (0, 360), 2, random (0, 160))
-		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat3", 2, -35, random (0, 360), 2, random (0, 160))
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 3, -45, random (0, 360), 2, random (0, 160))
+		//	TNT1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 2, -35, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 5, -40, random (0, 360), 2, random (0, 160));
 		
-		TNT1 A 0 A_SpawnProjectile("BlueFlareSpawn",30,0,0,0);
+		TNT1 A 0 A_SpawnProjectile("Blue_FlareSpawn",30,0,0,0);
 		
 		
 		////TNT1 A 0 A_SpawnProjectile("ZombiePlasma", 30, -1, 78, CMF_AIMDIRECTION, -19);
@@ -3025,20 +3025,20 @@ class BrutalDoomer: Doomer
 		
 		SGF8 B 5;
 		TNT1 A 0  A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		//SCREAMS!
 		SGF8 A 4;
 		
 		SGF8 B 4;
 		TNT1 A 0  A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		//SCREAMS!
 		SGF8 A 4;
 		
 		SGF8 B 4;
 		TNT1 A 0  A_PlaySound("grunt/pain");
 		TNT1 A 0 A_PlaySound("misc/xdeath4a", 4);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		//SPLATTERS!
 		
 		SGF8 CD 4;
@@ -3302,7 +3302,7 @@ class BrutalDoomer: Doomer
 		FTDI AA 5;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("imp/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_SpawnProjectile ("Blood", 34, -7, random (0, 360), 2, random (0, 160));
@@ -3314,7 +3314,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("imp/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_SpawnProjectile ("Blood", 34, -7, random (0, 360), 2, random (0, 160));
@@ -3326,7 +3326,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("imp/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_PlaySound("misc/xdeath4c", 3);
@@ -3338,7 +3338,7 @@ class BrutalDoomer: Doomer
 		FTDI E 7;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("imp/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_PlaySound("misc/xdeath", 3);
@@ -3598,13 +3598,13 @@ class BrutalDoomer: Doomer
 		F4SG A 6;
 		
 		F4SG B 3 A_PlaySound("grunt/pain");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		F4SG CDE 3;
 		F4SG E 5;
 		
 		F4SG FG 4;
 		TNT1 A 0 A_PlaySound("grunt/death");
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(582, 0, 0, 0, 0);
@@ -3685,7 +3685,7 @@ class BrutalDoomer: Doomer
 		
 		ZPFT ABC 5;
 		ZPFT C 2;
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("grunt/pain");
 		ZPFT DEE 3;
 		TNT1 A 0 A_PlaySound("weapons/fistwhoosh",7);
@@ -4541,7 +4541,7 @@ class BrutalDoomer: Doomer
 		FA2F AA 6;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("fatso/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_SpawnProjectile ("Blood", 44, -7, random (0, 360), 2, random (0, 160));
@@ -4554,7 +4554,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("fatso/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_SpawnProjectile ("Blood", 44, -7, random (0, 360), 2, random (0, 160));
@@ -4567,7 +4567,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("fatso/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_PlaySound("misc/xdeath4c", 3);
@@ -4581,7 +4581,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("fatso/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_PlaySound("misc/xdeath4c", 3);
@@ -4594,7 +4594,7 @@ class BrutalDoomer: Doomer
 		FA2F E 8;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("fatso/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_PlaySound("misc/xdeath", 3);
@@ -4610,7 +4610,7 @@ class BrutalDoomer: Doomer
 		FA2F E 8;
 		TNT1 A 0; //ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0; //ACS_Execute(581, 0, 0, 0, 0);
-		XXXX A 0 A_SpawnProjectile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160));
+		tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_PlaySound("fatso/pain", 1);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		TNT1 A 0 A_PlaySound("misc/xdeath", 3);

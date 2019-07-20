@@ -1,114 +1,114 @@
 CLASS Underblood1 : ACTOR { 
-	Default {
-		
-		scale 1.4;
-		speed 1;
-		health 1;
-		radius 8;
-		height 1;
-		Gravity 0.9;
-		damage 0;
-		Renderstyle "Translucent";
-		Alpha 0.2;
-		DamageType "Blood";
-		Decal "BrutalBloodSplat";
-		+MISSILE;
-		+CLIENTSIDEONLY;
-		+NOTELEPORT;
-		+NOBLOCKMAP;
-		+RIPPER;
-		+BLOODLESSIMPACT;
-		+FORCEXYBILLBOARD;
-		+NODAMAGETHRUST;
-		+MOVEWITHSECTOR;
-		+CORPSE;
-		+DONTSPLASH;
-		+THRUACTORS;
-		Mass 1;
-	}
-	States
+Default {
 	
-	{
-		Spawn:
-			BSP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 A_JumpIf(waterlevel < 1, "Splash");
-			Stop;
-			
-		Splash:
-			BLOD A 0;
-			stop;
-		Death:
-			TNT1 A 0;
-			Stop;
-	}
+	scale 1.4;
+	speed 1;
+	health 1;
+	radius 8;
+	height 1;
+	Gravity 0.9;
+	damage 0;
+	Renderstyle "Translucent";
+	Alpha 0.2;
+	DamageType "Blood";
+	Decal "BrutalBloodSplat";
+	+MISSILE;
+	+CLIENTSIDEONLY;
+	+NOTELEPORT;
+	+NOBLOCKMAP;
+	+RIPPER;
+	+BLOODLESSIMPACT;
+	+FORCEXYBILLBOARD;
+	+NODAMAGETHRUST;
+	+MOVEWITHSECTOR;
+	+CORPSE;
+	+DONTSPLASH;
+	+THRUACTORS;
+	Mass 1;
+}
+States
+
+{
+	Spawn:
+		BSP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 A_JumpIf(waterlevel < 1, "Splash");
+		Stop;
+		
+	Splash:
+		BLOD A 0;
+		stop;
+	Death:
+		TNT1 A 0;
+		Stop;
+}
 }
 
 
 CLASS Underblood2: Underblood1 { 
-	Default {
+Default {
+	
+	scale 0.7;
+	speed 0;
+}
+States
+{
+	Spawn:
+		BSP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_JumpIf(waterlevel < 1, "Splash");
+		Stop;
 		
-		scale 0.7;
-		speed 0;
-	}
-	States
-	{
-		Spawn:
-			BSP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_JumpIf(waterlevel < 1, "Splash");
-			Stop;
-			
-		Splash:
-			BLOD A 0;
-			stop;
-		Death:
-			TNT1 A 0;
-			Stop;
-	}
+	Splash:
+		BLOD A 0;
+		stop;
+	Death:
+		TNT1 A 0;
+		Stop;
+}
 }
 
 
 CLASS Underblood3: Underblood1 { 
-	Default {
-		
-		scale 2.2;
-		speed 2;
-		Alpha 0.3;
-	}
+Default {
+	
+	scale 2.2;
+	speed 2;
+	Alpha 0.3;
+}
 }
 
 CLASS UnderbloodGreen: Underblood1 { 
-	Default {
+Default {
 translation "168:191=112:127", "16:47=123:127";
 
 }}
 CLASS UnderbloodGreen2: Underblood2 { 
-	Default {	
-translation "168:191=112:127", "16:47=123:127";
-	Decal "GreenBloodSplat";
-	}
-}
-CLASS UnderbloodGreen3: Underblood3 { 
-	Default {
- 
+Default {	
 translation "168:191=112:127", "16:47=123:127";
 Decal "GreenBloodSplat";
-	}
+}
+}
+CLASS UnderbloodGreen3: Underblood3 { 
+Default {
+
+translation "168:191=112:127", "16:47=123:127";
+Decal "GreenBloodSplat";
+}
 }
 CLASS UnderbloodBlue: Underblood1 { 
-	Default
+Default
 {translation "168:191=192:207","16:47=240:247";}
 
 }
 
 CLASS UnderbloodBlue2: Underblood2 { 
-	Default {
-	
-translation "168:191=192:207","16:47=240:247";
-	Decal "BlueBloodSplat";
-	}
-}
-CLASS UnderbloodBlue3: Underblood3 { 
-	Default {
- 
+Default {
+
 translation "168:191=192:207","16:47=240:247";
 Decal "BlueBloodSplat";
-	}
+}
+}
+CLASS UnderbloodBlue3: Underblood3 { 
+Default {
+
+translation "168:191=192:207","16:47=240:247";
+Decal "BlueBloodSplat";
+}
 }

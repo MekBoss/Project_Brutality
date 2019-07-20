@@ -22,3 +22,173 @@ override void worldthingdied(worldevent e)
 }
 
 }
+
+
+CLASS pb_Blood_Spot : pb_blood_and_gore_base { 
+Default {
+	radius 1;
+	height 1;
+	mass 1;
+	Health 300;
+	+NOTELEPORT;
+	+CLIENTSIDEONLY;
+	+FORCEXYBILLBOARD;
+	+MOVEWITHSECTOR;
+	+FLOORCLIP;
+	+NOTARGET;
+	-SHOOTABLE;
+	+NOBLOOD;
+	+DONTSPLASH;
+	-SOLID;
+	+THRUACTORS;
+	Alpha 0.9;
+	Mass 99999999;
+	Scale 0.5;
+	Decal "BrutalBloodSplat";
+	Renderstyle "Normal";
+	DamageFactor "TeleportRemover", 100.0;
+}
+
+states
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
+		
+		TNT1 A 1;
+		TNT1 A 0 A_CheckFloor("SpawnNormally");
+		Goto Splash;
+		
+	SpawnNormally:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TNT1 A 0 A_Jump(255, "SpawnBFrameOnly", "SpawnCFrameOnly", "SpawnDFrameOnly");
+	SpawnAFrameOnly:
+		BPDL A -1;
+		stop;
+	SpawnBFrameOnly:
+		BPDL B -1;
+		stop;
+		
+	FadeA:
+		BPDL AAAA 1 A_FadeOut(0.05);
+		Stop;
+		
+	FadeB:
+		BPDL BBBB 1 A_FadeOut(0.05);
+		Stop;
+		
+	SpawnCFrameOnly:
+		//BPDL C 800//duration
+		//TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "FadeC")
+		BPDL C -1;
+		stop;
+		
+	SpawnDFrameOnly:
+		//BPDL D 800//duration
+		// TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "FadeD")
+		BPDL D -1;
+		stop;
+		
+	FadeC:
+		BPDL CCCC 1 A_FadeOut(0.05);
+		Stop;
+		
+	FadeD:
+		BPDL DDDD 1 A_FadeOut(0.05);
+		Stop;
+		
+	Splash:
+		BLOD A 0;
+		stop;
+		
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_NoBlocking;
+		Stop;
+		
+	IsOverLiquid:
+		BPDL E 1 A_FadeOut(0.9);
+		BPDL EEEEEEEEEEEEEEEEEEEE 4 A_FadeIn(0.05);
+		BPDL E 400;
+		BPDL EEEEEEEEEEEEEEEEEEEE 4 A_FadeOut(0.05);
+		Stop;
+	}
+}
+
+
+CLASS PB_blood : pb_blood_and_gore_base Replaces Blood
+{ 
+Default {
+	Decal "BrutalBloodSplat";
+	+FORCEXYBILLBOARD;
+	+NOGRAVITY;
+	+THRUACTORS;
+	+NOTELEPORT;
+	+CLIENTSIDEONLY;
+	Scale 0.6;
+	Alpha 0.6;
+	Speed 0;
+}
+
+states
+{
+	Spawn:
+		BLHT A 1;
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
+		TNT1 A 0 a_spawnprojectile("WaterBloodCHecker", 7, 0, random(0, 360), 2, random(30, 60));
+		//TNT1 A 0 ;//A_RadiusGive("BloodSplasherZ", 96, RGF_PLAYERS | RGF_OBJECTS | RGF_MONSTERS, 1)
+		TNT1 A 0 A_Stop;
+		BLHT A 1;
+	Spawn2:
+		//TNT1 A 0 a_spawnprojectile("Brutal_LiquidBlood3", 1, 0, random(0, 360), 2, random(0, 40))
+		TNT1 AA 0 a_spawnprojectile("Brutal_FlyingBloodFake", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 7, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_Stop;
+		BLHT ABCDEFG 1;
+		BLHT GGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.05);
+		Stop;
+	Splash:
+		BLOD A 0;
+		TNT1 AAA 0 a_spawnprojectile("Underblood1", 7, 0, random(0, 360), 2, random(30, 150));
+		stop;
+	LotsOfBlood:
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodFake", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 7, 0, random(0, 360), 2, random(40, 60));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 7, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AA 0 a_spawnprojectile("BloodmistExtraSmall", 0, 0, random(0, 360), 2, random(10, 40));
+		TNT1 AA 0 a_spawnprojectile("SuperGoreMistTiny", 0, 0, random(0, 360), 2, random(60, 90));
+		TNT1 A 0 a_spawnprojectile("BloodHit", 0, 0, random(0, 360), 2, random(0, 90));
+		BLHT ABCDEFG 1;
+		BLHT GGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.05);
+		Stop;
+	AbsurdBlood:
+		TNT1 A 2;
+		TNT1 A 0 A_JumpIfInventory("AnimuGore", 1, "AnimuGore");
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodFake", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 7, 0, random(0, 360), 2, random(10, 50));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 7, 0, random(0, 360), 2, random(40, 60));
+		TNT1 AAA 0 a_spawnprojectile("BloodmistSmall", 7, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AA 0 a_spawnprojectile("SuperGoreMistSmall", 0, 0, random(0, 360), 2, random(10, 90));
+		BLHT ABCDEFG 1;
+		BLHT GGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.05);
+		Stop;
+	AnimuGore:
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBloodFake", 0, 0, random(0, 360), 2, random(0, 90));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 7, 0, random(0, 360), 2, random(10, 50));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBloodLevel3", 7, 0, random(0, 360), 2, random(40, 60));
+		TNT1 AAA 0 a_spawnprojectile("BloodmistSmall", 7, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AA 0 a_spawnprojectile("SuperGoreMistSmall", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 a_spawnprojectile("SuperGoreSpawner2", 0, 0, random(0, 360), 2, random(10, 90));
+		BLHT ABCDEFG 1;
+		BLHT GGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.05);
+		Stop ;
+	LowBlood:
+		TNT1 A 0;
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBloodFake", 0, 0, random(0, 360), 2, random(0, 90));
+		BLHT ABCDEFG 1;
+	Stop;
+}
+
+}

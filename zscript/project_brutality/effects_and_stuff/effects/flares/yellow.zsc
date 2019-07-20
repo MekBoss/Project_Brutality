@@ -1,0 +1,112 @@
+
+CLASS YellowFlare : Flare_General { 
+states
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,2);
+		LENY A 2 bright;
+		stop;
+		TNT1 A 0;
+		LENY B 2 bright;
+		stop;
+}
+}
+
+
+CLASS YellowFlareSpawn : pb_flare { 
+Default {
+
+Speed 20;
+PROJECTILE;
++NOCLIP;
++NOGRAVITY;
+}
+States
+{
+Spawn:
+	TNT1 AA 1 a_spawnprojectile("YellowFlareSmallB",-5,0,-85,0,random(-10,10));
+	//TNT1 AA 0 a_spawnprojectile("OrangeLensFlareAlt",2,0,0,0,0)
+	Stop;
+}
+}
+
+
+CLASS YellowFlare22 : Flare_General { 
+Default {
+
+}
+states
+{
+Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128,2);
+	L2NY A 2 bright;
+	stop;
+	TNT1 A 0;
+	L2NY B 2 bright;
+	stop;
+}
+}
+
+CLASS YellowFlareSmall22 : YellowFlare22 { 
+Default {
+
+scale 0.15;
+}
+}
+CLASS YellowLensFlareAlt : Flare_General { 
+Default {
+
+alpha 0.5;
+xscale 0.6;
+yscale 0.2;
+}
+states
+{
+Spawn:
+	LEYS A 5 bright;
+	stop;
+}
+}
+
+CLASS YellowFlareSmall : YellowFlare { 
+Default {
+
+scale 0.15;
+}
+}
+
+CLASS YellowFlareMedium : YellowFlare { 
+Default {
+
+scale 0.20;
+}
+}
+
+CLASS YellowFlareLarge1X : YellowFlare { 
+Default {
+
+scale 1.0;
+}
+}
+
+CLASS YellowFlareSmallB : YellowFlare { 
+Default {
+
+	+FORCEXYBILLBOARD;
+	scale 0.15;
+	Alpha 0.3;
+}
+states
+{
+Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128,2);
+	LENY A 1 bright;
+	stop;
+	TNT1 A 0;
+	LENY B 1 bright;
+	stop;
+}
+}

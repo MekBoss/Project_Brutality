@@ -8,10 +8,29 @@ states
 		TNT1 A 0 A_PlaySound("redburn",6,1,1);
 		TNT1 AAAAA 0;// a_spawnprojectile("Blue_FlyingBlood", 47, 0, random (0, 360), 2, random (30, 150));	
 		TNT1 AAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 36, 0, 0, 0, 0, 128);
+		tnt2 s 0 
+		{
+			name class_name = getclassname();
+			switch( class_name )
+			{
+				case 'pb_Afrit' : setstatelabel("afrit_holed"); break;
+				case 'pb_Lava_Caco' : setstatelabel("lava_holed"); break;
+				default : break;
+			}
+		}
 		ID54 AAABCDEFGH 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 36, 0, 0, 0, 0, 128);
 		TNT1 A 0 A_StopSound(2);
 	Stop;
+	
+	lava_holed:
+		ID60 AAABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 30, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+	Stop;	
 
+	afrit_holed:
+		ID62 AAABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		TNT1 A 0 A_StopSound(2);
+	Stop;
 }
 
 }

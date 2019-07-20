@@ -65,14 +65,14 @@ Default
 	obituary "$OB_SPIDER";
 	damagefactor "Blood", 0.0;
 	
-	DropItem "DemonStrengthRune", 25;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 255;
-	DropItem "DemonMorphRune", 25;
+	//DropItem "DemonStrengthRune", 25;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "DemonMorphRune", 25;
 	Species "MasterMind";
 }
 
@@ -154,7 +154,7 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID L 5;
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
@@ -200,10 +200,10 @@ States
 		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticle", 60, -19, random(0, 360), 2, random(0, 180));
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
 		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel1", 60, 19, random(0, 360), 2, random(30, 160));
-		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel2", 60, -19, random(0, 360), 2, random(30, 160));
-		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel3", 80, 25, random(0, 360), 2, random(30, 160));
-		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel4", 80, -25, random(0, 360), 2, random(30, 160));
-		TNT1 A 0 {A_PlaySound("Explosion", 2); A_NoBlocking();  A_SpawnItem("BarrelExplosionSmokeColumn");}
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel1", 60, -19, random(0, 360), 2, random(30, 160));
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel1", 80, 25, random(0, 360), 2, random(30, 160));
+		//TNT1 AAA 0 a_spawnprojectile("BarrelShrapnel1", 80, -25, random(0, 360), 2, random(30, 160));
+		TNT1 A 0 {A_PlaySound("Explosion", 2); A_NoBlocking();  A_SpawnItem("Barrel_explosion_Column");}
 		SPID J 10 A_PlaySound("FAREXPL", 3);
 		SPID K 10 A_Pain();
 		SPID L 10
@@ -227,7 +227,7 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("BloodMistXXBig", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID L 5;
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
 
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
@@ -338,9 +338,9 @@ States
 		tnt1 a 0 a_spawnprojectile("FootStep6", 0, 0, 120);
 		TNT1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
 		TNT1 A 0 A_PlaySound("CLAP");
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("HugeWallChunk",0,0,random(0,360),2,random(-40,40));
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("BigWallChunk",0,0,random(0,360),2,random(-40,40));
-		EXPL AAA 0 a_spawnprojectile("BigSmokes", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("WallChunk",0,0,random(0,360),2,random(-40,40));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("WallChunk",0,0,random(0,360),2,random(-40,40));
+		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		
 		EXPL A 0 A_Explode();
@@ -538,7 +538,7 @@ States
 		SPID L 5 { A_NoBlocking(); A_Scream();}
 	ExplosionDeath:
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 
@@ -615,7 +615,7 @@ States
 		TNT1 A 0 A_Scream();
 	ExplosionDeath:
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("RidiculousExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));

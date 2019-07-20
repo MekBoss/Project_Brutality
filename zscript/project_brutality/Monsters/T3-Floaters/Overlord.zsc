@@ -18,17 +18,17 @@ Default
 	damagefactor "Avoid", 0.0;
 	DamageFactor "Fatality", 1.1;
 	
-/*	DropItem "DemonStrengthRune", 25;
-	DropItem "DemonMorphRune", 25;
-	DropItem "Demonpickup2", 76;
-	DropItem "Demonpickup2", 76;
-	DropItem "Demonpickup2", 76;
-	DropItem "RageSphere", 22;
-	DropItem "DoubleSphere", 15;
-	DropItem "ShieldSphere", 13;
-	DropItem "TimeSphere", 13;
-	DropItem "Demonpickup2", 255;
-	DropItem "Demonpickup2", 188;*/
+/*	//DropItem "DemonStrengthRune", 25;
+	//DropItem "DemonMorphRune", 25;
+	//DropItem "Demonpickup2", 76;
+	//DropItem "Demonpickup2", 76;
+	//DropItem "Demonpickup2", 76;
+	//DropItem "RageSphere", 22;
+	//DropItem "DoubleSphere", 15;
+	//DropItem "ShieldSphere", 13;
+	//DropItem "TimeSphere", 13;
+	//DropItem "Demonpickup2", 255;
+	//DropItem "Demonpickup2", 188;*/
 	
 	Obituary "%o was smoked by the Overlord.";
 	HitObituary "The Overlord ate %o for lunch.";
@@ -259,47 +259,47 @@ states
 		TNT1 AAAAAAAAAAAAAAA 0 a_spawnprojectile ("SuperWallRedBlood", 40, 0, random (0, 360), 2, random (-5, 5));
 		OVER TUVPQRS 1 bright;
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
 		
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
 	stop;
 	
@@ -492,10 +492,10 @@ Default {
 states
 {
 	Spawn:
-	PBAL HI 3 bright A_SpawnItem("RedFlare",0,0);
+	PBAL HI 3 bright A_SpawnItem("Red_Flare",0,0);
 	loop;
 	Death:
-	tnt1 a 0 A_SpawnItem("RedFlare",0,0);
+	tnt1 a 0 A_SpawnItem("Red_Flare",0,0);
 	TNT1 AAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(19,-19), random(19,-19), random(19,-19), 0, 0, 0, 0, 128, 0);
 	TNT1 A 0 A_SpawnItemEx("ObeliskExplode",0,0,0,0,0,0,0,128,0);
 	HEFX CDEEFGH 2 bright;
@@ -528,10 +528,10 @@ States
 {
 Spawn:
 	PBAL HI 2 Bright;
-	TNT1 A 0 A_SpawnItem("RedFlare",0,0);
+	TNT1 A 0 A_SpawnItem("Red_Flare",0,0);
 	loop;
 Death:
-	tnt1 a 0 A_SpawnItem("RedFlare",0,0);
+	tnt1 a 0 A_SpawnItem("Red_Flare",0,0);
 	TNT1 AAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(19,-19), random(19,-19), random(19,-19), 0, 0, 0, 0, 128, 0);
 	TNT1 A 0 A_SpawnItemEx("ObeliskExplode",0,0,0,0,0,0,0,128,0);
 	AFX1 DE 2 Bright A_Explode;
@@ -898,42 +898,42 @@ States
 Spawn:
 	OF31 A 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 B 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 C 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 D 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 E 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 F 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 G 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	
 	OF31 H 4;
 	TNT1 A 0 a_spawnprojectile("BurnParticles", 40, 0, random (0, 360), 2, random (50, 130));
-	TNT1 A 0 a_spawnprojectile("FireballExplosionFlamesBig", 40, 0, random (0, 360), 2, random (50, 130));
+	TNT1 A 0 a_spawnprojectile("CoolandNewFlameTrails", 40, 0, random (0, 360), 2, random (50, 130));
 	TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 	loop;
 	
@@ -957,47 +957,47 @@ Death:
 	OVER P 0 bright a_spawnprojectile("OverHorn1",110,-16,-90,2,random(-15,15));
 	OVER P 0 bright a_spawnprojectile("OverHorn2",110,16,90,2,random(-15,15));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
 	
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
 	stop;
 	
@@ -1046,47 +1046,47 @@ Death:
 	OVER P 0 bright a_spawnprojectile("OverHorn1",110,-16,-90,2,random(-15,15));
 	OVER P 0 bright a_spawnprojectile("OverHorn2",110,16,90,2,random(-15,15));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
 	
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmallLong", 1, 0, random (0, 360), 2, random (70, 110));
+	TNT1 A 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
 	TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
 	stop;
 }

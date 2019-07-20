@@ -3,19 +3,20 @@ class pb_monster_base : actor
 //pointer to event which store pointers to cvar which control monsters ability
 //like knight leap or revenant jetpack
 eventhandler spawning_event;
-//link to event which control effects
-eventhandler effects_monster;
-//unused because now, version 4.0 and hogher, gzdoom allow check cvars directly
+//unused because now, version 3.7 and higher, gzdoom allow check cvars directly
 //like if( 'cvar name' == true/ > 10/ == 148/ etc)
 
+//link to event which control effects
+eventhandler effects_monster;
+
+//handler for freeze/fatality/dismembering and other death types
+//where monster ripped to pieces
 protected bool frozen, dismembered, cant_resurrect;
 override bool CanResurrect (Actor other, bool passive)
 {
 	if(cant_resurrect == true) return false;
 	return true;
 }
-
-
 
 //head position is height on which "body" of monster should become "head"
 //I recomend to set head_starting_position approx. to "monster heght" - "monster height / 10"
@@ -24,11 +25,13 @@ protected double head_mul, head_pos, legs_pos;
 
 Property headshot_multiplier : head_mul;
 Property head_starting_position : head_pos;
+
 //for legs, height where legs lost it preciese name and turns into ass
 Property legs_height_max : legs_pos;
 
-//references to gore event so it can decide what blood and how much spawn
-//blood color obvious, blood size is amount of a blood/gore it must spawn
+//references to gore function so it can decide what blood and how much spawn
+//blood color obvious, blood size is amount of a blood/gore it must spawn (realistic/japanes cartoon/etc)
+//not confuse with cvar
 protected string blood_color, blood_size;
 //blood color for translation, by default are red, can be or green or blue
 Property blood_color : blood_color;
@@ -67,7 +70,7 @@ blood_colors collor = 0, string actor_type = "Unknown", double height = 0, doubl
 	return qqqq;
 }
 
-
+//internal gzdoom handler for damaging actors
 override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
 {
 	if(!(flags & DMG_EXPLOSION) )
@@ -99,6 +102,26 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 		//fatality placeholder
 	}
 	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+}
+
+//handling of freeze death
+override double GetDeathHeight()
+{
+	if(DamageType == 'Ice' || DamageType == 'Freeze' || DamageType == 'Chill')
+	{return default.height;}
+	return super.GetDeathHeight();
+}
+
+override void Die(Actor source, Actor inflictor, int dmgflags, Name MeansOfDeath)
+{
+	//dy default, return 
+	super.die(source, inflictor, dmflags, MeansOfDeath);
+}
+
+//virtual which return state corresponding to damage
+virtual protected state pb_get_death_state()
+{
+	return null;
 }
 
 states

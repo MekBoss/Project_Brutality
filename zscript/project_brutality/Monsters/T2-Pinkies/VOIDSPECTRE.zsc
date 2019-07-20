@@ -38,8 +38,8 @@ Default
 	DamageType "Eat";
 	MaxStepHeight 48;
 	MaxDropOffHeight 48;
-	DropItem "NewBlurSphere", 3;
-	DropItem "Demonpickup", 100;
+	//DropItem "NewBlurSphere", 3;
+	//DropItem "Demonpickup", 100;
 	Obituary "%o was devoured by a Void Spectre.";
 	+NOBLOODDECALS;
 }
@@ -420,7 +420,7 @@ States
 		
 		TNT1 AAA 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 6, 6, 6, 0, 128);
 		//TNT1 A 0 A_SpawnItem ("GreenGrowingBloodPool");
-		ND4M MMMMMMMMMMMMMMMMMMMMMMM 8 a_spawnprojectile ("PlasmaSmoke", 60, 0, random (0, 360), 2, random (0, 160));
+		ND4M MMMMMMMMMMMMMMMMMMMMMMM 8 a_spawnprojectile ("ExplosionSmoke", 60, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 A_SpawnItem ("DeadVoidSpectre_ND4MM");
 	Stop;
 		
@@ -455,11 +455,11 @@ States
 		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedDemonArm", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedDemonLeg", 32, 0, random (0, 360), 2, random (0, 160));
 		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
 		
 		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile ("GreenFlameTrails", 50, 0, random (0, 360), 2, random (0, 360));
-		XBRN AAAA 2 BRIGHT ;//A_SpawnItem("GreenFlare",0,43);
+		XBRN AAAA 2 BRIGHT ;//A_SpawnItem("Green_Flare",0,43);
 	Stop;
 		
 	Death.SuperPlasma:
@@ -475,7 +475,7 @@ States
 	TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedDemonArm", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 ;//a_spawnprojectile ("XDeathBurnedDemonLeg", 32, 0, random (0, 360), 2, random (0, 160));
 	SPRG GHIJK 6;
-	CARB RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR 10 a_spawnprojectile ("SmallSmoke", 25, 0, random (0, 360), 2, random (70, 110));
+	CARB RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR 10 a_spawnprojectile ("Explosion_Smoke", 25, 0, random (0, 360), 2, random (70, 110));
 	CARB R -1;
 	Stop;
 	
@@ -486,8 +486,8 @@ States
 	TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticle", 32, 0, random (0, 360), 2, random (0, 360));
 	TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece2", random (-35, 35), random (-35, 35));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece3", random (-45, 45), random (-45, 35));
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
+	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-45, 45), random (-45, 35));
 	TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("Ashes1", 28, 0, random (0, 360), 2, random (0, 180));
 	TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("Ashes2", 40, 0, random (0, 360), 2, random (0, 180));
 	TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
@@ -504,15 +504,15 @@ States
 	TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),12,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
 	S6RN FFFFF 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile ("ExplosionParticle", 10, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-	TNT1 A 0 A_SpawnItem("BarrelExplosionSmokeColumn");
+	TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 	S6RN GGGG 2 BRIGHT Light("IncinerationGlow");
 	TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-	S6RN HHIIHHIIHHIIHHII 2 BRIGHT Light("IncinerationGlow") a_spawnprojectile ("PlasmaSmoke", 14, 0, random (0, 360), 2, random (0, 160));
+	S6RN HHIIHHIIHHIIHHII 2 BRIGHT Light("IncinerationGlow") a_spawnprojectile ("ExplosionSmoke", 14, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-	S6RN HHIIHHIIHHIIHHII 2 Light("IncinerationGlow") a_spawnprojectile ("PlasmaSmoke", 14, 0, random (0, 360), 2, random (0, 160));
+	S6RN HHIIHHIIHHIIHHII 2 Light("IncinerationGlow") a_spawnprojectile ("ExplosionSmoke", 14, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 A_SpawnItemEx ("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
 	S6RN HHIIHHIIHHIIHHII 2;
-	S6RN JJJJJJJ 12 a_spawnprojectile ("PlasmaSmoke", 14, 0, random (0, 360), 2, random (0, 160));
+	S6RN JJJJJJJ 12 a_spawnprojectile ("ExplosionSmoke", 14, 0, random (0, 360), 2, random (0, 160));
 	S6RN J -1;
 	Stop;
 	
@@ -699,7 +699,7 @@ Death.Plasma: Death.Plasma2:
 	TNT1 A 0;
 	TNT1 AAA 0 ;//a_spawnprojectile ("Green_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
 	EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-	CARB JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 10 a_spawnprojectile ("SmallSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+	CARB JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 10 a_spawnprojectile ("Explosion_Smoke", 1, 0, random (0, 360), 2, random (0, 160));
 	CARB J -1;
 	Stop;
 }

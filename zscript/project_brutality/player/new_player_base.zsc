@@ -9,6 +9,8 @@ const max_jumps = 2;
 
 default {Player.StartItem "zscript_Axe", 1;}
 
+protected string ready_weapon_name;
+
 //----------------------------------------------------------------------------
 //	PROC P_CheckJump
 //	clightly changed copy paste from gzdoom pack

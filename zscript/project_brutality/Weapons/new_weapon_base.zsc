@@ -7,15 +7,52 @@
 class PB_weapon_base : weapon
 {
 //pointer to effect handler event
-eventhandler effects_weapon;
+pb_effect_event effects_weapon;
 //base bools for check weapons special state conditions
-bool fatality, grab_ledge, knife_combo, kick,
+protected bool fatality, grab_ledge, knife_combo, kick,
 	taunt, salute, Grabbed_Barrel, unload_gun, grenade_out,
 //not sure what this must do
 Use_Equipment, Toggle_Equipment;
 //toogle to prevent trying to quick puch/kick/etc. in the same moment
-bool in_specific_state;
+protected bool in_specific_state;
 
+//function which turn on fatality/barrel grabbing/etc.
+void pb_set_spec_wep_state(string command)
+{
+	switch(name(command))
+	{
+		case 'swing_knife' : knife_combo = true; break;
+		case 'do_kick' : kick = true; break;
+		case 'throw_grenade' : grenade_out = true; break;
+		//something fuckup handle it here
+		default : break;
+	}
+}
+
+override void doeffect()
+{//check for special actions here, like kick or grenade throws
+	if(owner.player.readyweapon == self)
+	{
+		if(self.in_specific_state == false)
+		{
+			if(owner.player.findPsprite(psp_weapon) != null )//<-- null check, without it gzdoom crush after player death
+			{
+				if(self.instatesequence(owner.player.findPsprite(psp_weapon).curstate, self.findstate("ready_loop") ) )
+				{
+					if(self.grab_ledge == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("Ledge_Climb") ); return;}
+					if(self.grenade_out == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("Throw_Grenade") ); return;}
+					if(self.kick == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("weapon_kick") ); return;}
+					if(self.knife_combo == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("quick_melee") ); return;}
+			//		if(self.fatality == true) {self.setstatelabel(); return;}
+			//		if(self.taunt == true) {self.setstatelabel(); return;}
+			//		if(self.salute == true) {self.setstatelabel(); return;}
+			//		if(self.Grabbed_Barrel == true) {self.setstatelabel(); return;}
+			//		if(self.unload_gun == true) {self.setstatelabel(); return;}
+				}
+			}
+		}
+	}
+}
 default
 {
 	Weapon.BobRangeX 0.3;
@@ -47,19 +84,19 @@ virtual void activate_dual()
 {}
 
 //base function for reloading magazine based weapon
-protected void reload_weapon_magazine(string weapon_pool = "", string main_pool = "")
+protected void reload_weapon_magazine(string ammo_pool = "", string magazine_pool = "")
 {
-	if(weapon_pool == "" || main_pool == "") {return;}
+	if(ammo_pool == "" || magazine_pool == "") {return;}
 
-	inventory actual_ammo = owner.findinventory(weapon_pool);
+	inventory actual_ammo = owner.findinventory(ammo_pool);
 
 	if(actual_ammo == null)
-	{console.printf("there is no %s ammo in player inventory", weapon_pool); return;}
+	{console.printf("there is no %s ammo in player inventory", ammo_pool); return;}
 
-	inventory main_ammo = owner.findinventory(main_pool);
+	inventory main_ammo = owner.findinventory(magazine_pool);
 	
 	if(main_ammo == null)
-	{console.printf("there is no %s ammo in player inventory", main_pool); return;}
+	{console.printf("there is no %s ammo in player inventory", magazine_pool); return;}
 
 	while( (actual_ammo).amount < (actual_ammo).maxamount && (main_ammo).amount > 0)
 	{
@@ -68,7 +105,7 @@ protected void reload_weapon_magazine(string weapon_pool = "", string main_pool 
 	}
 }
 
-//function which hceck and set weapon state to defined
+//function which check and set weapon state to defined
 protected void set_weapon_state(statelabel state_name = null)
 {
 	let player = owner.player;
@@ -126,33 +163,6 @@ protected void change_weapon_PSprite(string sprite_name = "")
 	{ console.printf("%s PSprite dont exist", player.ReadyWeapon.getclassname() ); return; }
 
 	gun.sprite = sprite_number;
-}
-
-
-override void doeffect()
-{//check for special actions here, like kick or grenade throws
-	
-	if(owner.player.readyweapon == self)
-	{
-		if(self.in_specific_state == false)
-		{
-			if(owner.player.findPsprite(psp_weapon) != null )//<-- null check, without it gzdoom crush after player death
-			{
-				if(self.instatesequence(owner.player.findPsprite(psp_weapon).curstate, self.findstate("ready_loop") ) )
-				{
-					if(self.grab_ledge == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("Ledge_Climb") ); return;}
-					if(self.grenade_out == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("Throw_Grenade") ); return;}
-					if(self.kick == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("weapon_kick") ); return;}
-					if(self.knife_combo == true) {owner.Player.SetPSprite(PSP_WEAPON, self.FindState("quick_melee") ); return;}
-			//		if(self.fatality == true) {self.setstatelabel(); return;}
-			//		if(self.taunt == true) {self.setstatelabel(); return;}
-			//		if(self.salute == true) {self.setstatelabel(); return;}
-			//		if(self.Grabbed_Barrel == true) {self.setstatelabel(); return;}
-			//		if(self.unload_gun == true) {self.setstatelabel(); return;}
-				}
-			}
-		}
-	}
 }
 
 states
@@ -240,7 +250,7 @@ states
 		TNT1 A 0 A_ZoomFactor(1.025);
 		MC3S GHIJ 1;
 		TNT1 A 0 {A_ZoomFactor(1.0); invoker.knife_combo = false;}
-		tnt1 aaaaaaa 1//a little pause to check whish player continue combo or no
+		tnt1 aaaaaa 1//a little pause to check whish player continue combo or no
 		{
 			if(invoker.knife_combo == true)
 			{
@@ -523,7 +533,7 @@ states
 		CL1M B 1 A_SetPitch(-20);
 		CL1M C 1 A_SetPitch(-24);
 		CL1M D 1 {A_SetPitch(-28); A_Playsound("Ledge_Climb");}
-		TNT1 A 0 a_fireprojectile("ShakeYourAssMinor", 0, 0, 0, 0);
+		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		CL1M E 1 A_SetPitch(-20);
 		CL1M F 1 A_SetPitch(-16);
 		CL1M G 1 A_SetPitch(-12);
@@ -554,7 +564,8 @@ override void NetworkProcess(ConsoleEvent e)
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
-			PB_weapon_base(players[e.Player].readyweapon).grenade_out = true;
+			PB_weapon_base(players[e.Player].readyweapon).pb_set_spec_wep_state("throw_grenade");
+			console.printf("%i", e.args[0]);
 		}
 	}
 	
@@ -562,7 +573,7 @@ override void NetworkProcess(ConsoleEvent e)
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
-			PB_weapon_base(players[e.Player].readyweapon).kick = true;
+			PB_weapon_base(players[e.Player].readyweapon).pb_set_spec_wep_state("do_kick");
 		}
 	}
 
@@ -570,7 +581,7 @@ override void NetworkProcess(ConsoleEvent e)
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
-			PB_weapon_base(players[e.Player].readyweapon).knife_combo = true;
+			PB_weapon_base(players[e.Player].readyweapon).pb_set_spec_wep_state("swing_knife");
 		}
 	}
 

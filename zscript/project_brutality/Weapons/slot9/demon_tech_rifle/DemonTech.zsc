@@ -12,9 +12,9 @@ enum enum_fire_mode
 	acid_mode = 1,
 };
 //can be used int insted, but recomended to use enum name
-enum_fire_mode actual_fire_mode;
+protected enum_fire_mode actual_fire_mode;
 
-int acid_charge;
+protected int acid_charge;
 
 Default
 {
@@ -169,7 +169,7 @@ States
 		TNT1 AA 0;
 		TNT1 A 0 A_PlaySound("HRCharge");
 		HRFI CBA 4 BRIGHT;
-		TNT1 A 0 A_FireProjectile("RedFlareSpawn");
+		TNT1 A 0 A_FireProjectile("Red_FlareSpawn");
 		HRFI A 2 BRIGHT
 		{
 			A_Recoil(3);
@@ -208,13 +208,13 @@ States
 		TNT1 A 0 A_StopSound(5);
 		TNT1 A 0 A_StopSound(6);
 		TNT1 A 0 A_AlertMonsters();
-		HRF1 B 0 A_FireProjectile("GreenFlareSpawn");
+		HRF1 B 0 A_FireProjectile("Green_FlareSpawn");
 		HRF1 C 1 BRIGHT A_FireProjectile("ShrinkBeam");
 		HRF1 ABC 1 BRIGHT;
 		TNT1 A 0 A_PlaySound("Weapons/StachanovAddFire",3);
-		TNT1 A 0 A_FireProjectile("SmokeSpawner");
+		TNT1 A 0 A_FireProjectile("GunFireSmoke");
 		HRF1 B 2 BRIGHT A_ZoomFactor(0.9);
-		TNT1 A 0 A_FireProjectile("RedFlare");
+		TNT1 A 0 A_FireProjectile("Red_Flare");
 		HRF1 C 2 BRIGHT A_ZoomFactor(0.95);
 		HRF1 D 2 A_ZoomFactor(0.99);
 		HRF1 E 1 A_ZoomFactor(1.0);
@@ -370,17 +370,5 @@ States
 		HR1D V 1;
 		HR1D ABC 1;
 		Stop;
-	}
-}
-
-CLASS Hell_Ammo : Ammo
-{ 
-	Default
-	{
-		Inventory.Amount 0;
-		Inventory.MaxAmount 50;
-		Ammo.BackpackAmount 0;
-		Ammo.BackpackMaxAmount 50;
-		Inventory.Icon "HRPUA0";
 	}
 }

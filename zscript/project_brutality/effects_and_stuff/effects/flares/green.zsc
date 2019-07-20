@@ -1,0 +1,161 @@
+
+CLASS Green_Flare : Flare_General { 
+states
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,2);
+		LENG A 2 bright;
+		stop;
+		TNT1 A 0;
+		LENG B 2 bright;
+		stop;
+}
+}
+
+CLASS Green_FlareSmall : Green_Flare { 
+Default {
+
+alpha 0.4;
+scale 0.2;
+}
+}
+
+CLASS Green_FlareMedium : Green_Flare { 
+Default {
+
+alpha 0.3;
+scale 0.25;
+}
+}
+CLASS Green_FlareSmall2 : Green_Flare { 
+Default {
+
+	alpha 0.15;
+	scale 0.15;
+}
+}
+
+
+CLASS Green_FlareSpawn : pb_flare { 
+Default {
+
+Speed 20;
+PROJECTILE;
++NOCLIP;
+}
+States
+{
+Spawn:
+	TNT1 AA 1 a_spawnprojectile("Green_FlareSmall",-5,0,-85,0,random(-10,10));
+	Stop;
+}
+}
+
+CLASS Green_Flare22 : Flare_General { 
+Default {
+
+}
+states
+{
+Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128,2);
+	L2NG A 2 bright;
+	stop;
+	TNT1 A 0;
+	L2NG B 2 bright;
+	stop;
+}
+}
+
+CLASS Green_FlareSmall22 : Green_Flare22 { 
+Default {
+
+scale 0.22;
+}
+}
+CLASS GreenLensFlareAltSmall : Flare_General { 
+Default {
+
++FORCEYBILLBOARD;
+alpha 0.3;
+xscale 0.4;
+yscale 0.1;
+}
+states
+{
+Spawn:
+	LEYS G 8 bright;
+	stop;
+}
+}
+
+
+CLASS GreenLensFlareAltSmallZZ : Flare_General { 
+Default {
+
++FORCEYBILLBOARD;
+alpha 0.4;
+xscale 0.2;
+yscale 0.2;
+}
+states
+{
+Spawn:
+	LEYS G 3 bright;
+	stop;
+}
+}
+
+CLASS Green_FlareSpawnEvenSmaller : pb_flare { 
+Default {
+	
+	Scale 0.3;
+	Speed 20;
+	PROJECTILE;
+	+NOCLIP;
+}
+States
+{
+	Spawn:
+		TNT1 AA 1 a_spawnprojectile("Green_FlareSmall",-5,0,-85,0,random(-10,10));
+		Stop;
+}
+}
+
+CLASS Green_FlareSpawnJustSmaller : pb_flare { 
+Default {
+	
+	Scale 0.6;
+	Speed 20;
+	PROJECTILE;
+	+NOCLIP;
+}
+States
+{
+	Spawn:
+		TNT1 AA 1 a_spawnprojectile("Green_FlareSmall",-5,0,-85,0,random(-10,10));
+		Stop;
+}
+}
+
+
+
+
+ 
+CLASS Green_FlareSpawnSmallClose : pb_flare { 
+Default {
+	
+	Scale 0.9;
+	Speed 20;
+	PROJECTILE;
+	+NOCLIP;
+}
+States
+{
+	Spawn:
+		TNT1 AA 1 a_spawnprojectile("Green_FlareSmall",-5,0,-85,0,random(-10,10));
+		Stop;
+}
+}
