@@ -300,3 +300,206 @@ override void tick()
 }
 
 }
+
+
+CLASS XDeathCyberdemonHeadPiece: XDeathBullArm1 { 
+	Default {
+	
+	-CLIENTSIDEONLY;
+	+SKYEXPLODE;
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		HEDC ABCDEFGH 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		HEDC A 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		HEDC A -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonGun: XDeathBullArm1 { 
+	Default {
+	
+	-CLIENTSIDEONLY;
+	+SKYEXPLODE;
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		HND7 ABCDEFGH 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		HND7 E 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		HND7 E -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonArm: XDeathBullArm1 { 
+	Default {
+	
+	-CLIENTSIDEONLY;
+	+SKYEXPLODE;
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		HND9 ABCDEFGH 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		HND9 A 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		HND9 A -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonLeg1: XDeathBullArm1 { 
+	Default {
+	
+	-CLIENTSIDEONLY;
+	+SKYEXPLODE;
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		LEG7 ABCDEFGH 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		LEG7 A 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		LEG7 A -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonLeg2: XDeathCyberdemonLeg1 { 
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		LEG9 ABCDEFGH 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		LEG9 A 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		LEG9 A -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonTorso1: XDeathBullArm1 { 
+	Default {
+	
+	-CLIENTSIDEONLY;
+	+SKYEXPLODE;
+	Scale 1.1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		TRC1 ABCDDDDDDDBCDD 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TRC1 E 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TRC1 E -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonTorso2: XDeathCyberdemonTorso1 { 
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		TRC2 ABCDDDDDDDBCDD 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TRC2 E 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TRC2 E -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonTorso3: XDeathCyberdemonTorso1 { 
+States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		TRC3 ABCDDDDDDDBCDD 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TRC3 E 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TRC3 E -1;
+		Stop;
+	}
+}
+
+CLASS XDeathCyberdemonHead2: XDeathCyberdemonTorso1 { 
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
+		TNT1 A 0 A_JumpIf(vel.z == 0, "Death");
+		HED7 ABCDEFGH 5;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		HED7 H 1;
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		HED7 H -1;
+		Stop;
+	}
+}
+
