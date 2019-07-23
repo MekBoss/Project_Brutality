@@ -118,7 +118,7 @@ States
 		TNT1 A 0 A_Jump(128, "RareDeath2");
 		ARAC Q 5;
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAAA 0 a_spawnprojectile ("SuperGoreSpawner", 10, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile ("SuperGoreSpawner", 0, 0, random (0, 180), 2, random (0, 180));
 		TNT1 AA 0 a_spawnprojectile ("SpiderLeg2", 32, 0, random (0, 360), 2, random (0, 160));
@@ -140,7 +140,7 @@ States
 	RareDeath2:
 		AR4C Q 5;
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAAA 0 a_spawnprojectile ("SuperGoreSpawner", 10, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile ("SuperGoreSpawner", 0, 0, random (0, 180), 2, random (0, 180));
 		TNT1 AA 0 a_spawnprojectile ("SpiderLeg2", 32, 0, random (0, 360), 2, random (0, 160));
@@ -254,7 +254,7 @@ States
 	XDeath:
 		ARAC J 4;
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		
 		TNT1 A 0 A_Jump(64, "XDeathRare");
 		TNT1 AAAAA 0 a_spawnprojectile ("SuperGoreSpawner", 10, 0, random (0, 360), 2, random (0, 180));

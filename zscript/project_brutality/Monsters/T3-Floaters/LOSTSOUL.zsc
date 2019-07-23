@@ -226,7 +226,7 @@ CLASS LostSoulBlood : Blood {
 	{
 	Spawn:
 		TNT1 A 0;
-		TNT1 AAAAAA 0 a_spawnprojectile ("SparkX", 2, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 2, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AA 0 a_spawnprojectile ("SmallLSPart1", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AA 0 a_spawnprojectile ("SmallLSPart3", 0, 0, random (0, 360), 2, random (0, 360));
 	Stop;

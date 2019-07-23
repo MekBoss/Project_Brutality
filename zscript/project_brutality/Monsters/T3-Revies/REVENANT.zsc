@@ -630,7 +630,7 @@ States
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_PlaySound("FAREXPL");
 		TNT1 A 0 ThrustThing(angle*256/360+random(-6, 6), 14, 0, 0);
 		TNT1 A 0 ThrustThingZ(0,random(-10, 10),0,1);
@@ -681,11 +681,11 @@ States
 		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 40, 0, random (0, 360), 2, random (50, 130));
 		JKED H 3;
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_PlaySound("FAREXPL");
 		TNT1 AAAAA 0 a_spawnprojectile ("RevenantDust", 60, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAAA 0 a_spawnprojectile ("RevenantDust2", 60, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 67, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAA 0 a_spawnprojectile ("RevenantBones", 47, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AA 0 a_spawnprojectile ("RevenantArm", 57, 0, random (0, 360), 2, random (30, 150));
@@ -761,7 +761,7 @@ States
 	Death.Decaptate:
 		TNT1 A  0 { if(self.jetpack == true) {setstatelabel("DeathJetpack");} }
 		TNT1 AAAAAAAA 0 a_spawnprojectile ("Xdeath1", 72, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 64, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 64, 0, random (0, 360), 2, random (50, 130));
 		TNT1 A 0 A_SpawnItem ("GrowingBloodPool");
 		REVH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 a_spawnprojectile ("Brutal_LiquidBlood3", 72, 0, random (0, 360), 2, random (0, 160));
 		REVH B 8 A_NoBlocking();
@@ -787,7 +787,7 @@ States
 	Death.Tear:
 		TNT1 A  0 { if(self.jetpack == true) {setstatelabel("DeathJetpack");} }
 		TNT1 A 0 A_Jump(64, "SpecialDeath");
-		TNT1 A 0 a_spawnprojectile ("XDeathHalfSkeleton", 45, 0, random (0, 360), 2, random (30, 150));
+		TNT1 A 0 a_spawnprojectile ("GibHalfSkeleton", 45, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAA 0 a_spawnprojectile ("RevenantDust", 40, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAA 0 a_spawnprojectile ("RevenantDust2", 30, 0, random (0, 360), 2, random (0, 360));
@@ -818,7 +818,7 @@ States
 		TNT1 A  0 { if(self.jetpack == true) {setstatelabel("DeathJetpack");} }
 		TNT1 A 0 A_Jump(96, "Death.Blast3");
 		TNT1 A 0 A_Jump(32, "SpecialDeath");
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("RevenantArm", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 30, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAA 0 a_spawnprojectile ("RevenantDust", 30, 0, random (0, 360), 2, random (0, 360));
@@ -915,7 +915,7 @@ States
 		TNT1 AAA 0 a_spawnprojectile ("RevenantDust", 30, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAA 0 a_spawnprojectile ("RevenantDust2", 30, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 37, 0, random (0, 360), 2, random (30, 150));
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("RevenantArm", 57, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAA 0 a_spawnprojectile ("RevenantBones", 67, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAAAAAA 0 a_spawnprojectile ("RevenantPiece", 57, 0, random (0, 360), 2, random (30, 150));
@@ -1023,7 +1023,7 @@ States
 		TNT1 A  0 { if(self.jetpack == true) {setstatelabel("DeathJetpack");} }
 		TNT1 AAAAA 0 a_spawnprojectile ("RevenantDust", 60, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAAA 0 a_spawnprojectile ("RevenantDust2", 60, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 67, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AAA 0 a_spawnprojectile ("RevenantBones", 47, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AA 0 a_spawnprojectile ("RevenantArm", 57, 0, random (0, 360), 2, random (30, 150));
@@ -1052,7 +1052,7 @@ States
 	TNT1 AA 0 a_spawnprojectile ("RevenantArm", 57, 0, random (0, 360), 2, random (30, 150));
 	TNT1 A 0 a_spawnprojectile ("RevenantTorso5", 20, 0, random (0, 360), 2, random (30, 150));
 	TNT1 AA 0 a_spawnprojectile ("MetalShard1", 50, 0, random (0, 360), 2, random (30, 160));
-	TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
+	TNT1 A 0 a_spawnprojectile ("RevenantHead", 52, 0, random (0, 360), 2, random (0, 160));
 	TNT1 AA 0 bright a_spawnprojectile ("XDeath3", 55, 0, random (0, 360), 2, random (30, 180));
 	TNT1 A 0 A_SpawnItem ("GrowingBloodPool");
 	TNT1 A 0 A_SpawnItem ("CrushedRemains");
@@ -1319,7 +1319,7 @@ States
 	TNT1 AAA 0 a_spawnprojectile ("XDeath1", 7, 0, random (0, 360), 2, random (30, 150));
 	TNT1 AAA 0 a_spawnprojectile ("RevenantBones", 7, 0, random (0, 360), 2, random (30, 150));
 	TNT1 AA 0 a_spawnprojectile ("RevenantArm", 7, 0, random (0, 360), 2, random (30, 150));
-	TNT1 A 0 a_spawnprojectile ("XDeathHalfSkeleton", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 A 0 a_spawnprojectile ("GibHalfSkeleton", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 A_SpawnItem ("XDeadSkeleton", 1);
 	Stop;
 	Death.flames:
@@ -1341,7 +1341,7 @@ Death.Saw:
 	TNT1 AAA 0 a_spawnprojectile ("XDeath1", 7, 0, random (0, 360), 2, random (30, 150));
 	TNT1 AAA 0 a_spawnprojectile ("RevenantBones", 7, 0, random (0, 360), 2, random (30, 150));
 	TNT1 AA 0 a_spawnprojectile ("RevenantArm", 7, 0, random (0, 360), 2, random (30, 150));
-	TNT1 A 0 a_spawnprojectile ("XDeathHalfSkeleton", 32, 0, random (0, 360), 2, random (0, 160));
+	TNT1 A 0 a_spawnprojectile ("GibHalfSkeleton", 32, 0, random (0, 360), 2, random (0, 160));
 	TNT1 A 0 A_SpawnItem ("XDeadSkeleton", 1);
 	Stop;
 }}
@@ -1778,7 +1778,7 @@ CLASS RevenantU : ACTOR {
 	Death:
 		TNT1 AAA 0 a_spawnprojectile ("RevenantDust", 5, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAA 0 a_spawnprojectile ("RevenantDust2", 5, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 5, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AA 0 a_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AA 0 a_spawnprojectile ("RevenantBones", 5, 0, random (0, 360), 2, random (30, 150));
 		TNT1 AA 0 a_spawnprojectile ("RevenantArm", 5, 0, random (0, 360), 2, random (30, 150));

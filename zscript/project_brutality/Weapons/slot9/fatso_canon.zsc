@@ -36,7 +36,7 @@ CLASS MancubusSwitchModeEffect  : ACTOR {
 	{
 	Spawn:
 		TNT1 AAAA 0 A_SpawnItemEx("CoolandNewFlameTrails", random(5,6),random(-1,1),random(-12,-6),8,0,0,0,SXF_NOCHECKPOSITION);
-		TNT1 AAAA 0 A_SpawnItemEx("BurningEmberParticlesFloating_Bigger", random(5,6),random(-1,1),random(-12,-6),8,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 AAAA 0 A_SpawnItemEx("BurningEmberParticlesFloating", random(5,6),random(-1,1),random(-12,-6),8,0,0,0,SXF_NOCHECKPOSITION);
 		Stop;
 	}
 }
@@ -429,8 +429,8 @@ CLASS BigFireBallWithGravity: BigFireBall {
 	Spawn1:
 		TNT1 A 0();
 		BLHD CD 1 BRIGHT A_SpawnItem ("CoolandNewFlameTrails");
-		TNT1 A 0 A_SpawnItemEx("BurningEmberParticlesFloating_Bigger", random(7,-7), random(7,-7), random(8,-8), 0, 0, 0, 0, 128, 0);
-		TNT1 A 0 A_CustomMissile ("ExplosionSmoke", 2, 0, random (70, 110), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx("BurningEmberParticlesFloating", random(7,-7), random(7,-7), random(8,-8), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 2, 0, random (70, 110), 2, random (0, 360));
 		Loop;
 		
 	Death:
@@ -493,12 +493,12 @@ Default
 		TNT1 A 0 A_Explode (15, 40);
 		FRFX C 2 BRIGHT A_SpawnItem("Red_FlareMedium",0,0);
 		TNT1 A 0 A_Explode (15, 40);
-		EXPL AA 0 A_CustomMissile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
+		EXPL AA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0 A_Explode (15, 40);
 		FRFX FGHIJKLMNOPG 2 BRIGHT A_SpawnItem("Red_FlareMedium",0,0);
 		Goto Death;
 	Death:
-		EXPL AA 0 A_CustomMissile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
+		EXPL AA 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0 A_SpawnItem("Red_FlareMedium",0,0);
 		Stop;
 	}

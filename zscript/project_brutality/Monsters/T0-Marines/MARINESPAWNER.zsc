@@ -1463,7 +1463,7 @@ CLASS Marine_Rifle: SwitchableDecoration {
 		TNT1 AA 0 a_spawnprojectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 50, 0, random (0, 360), 2, random (0, 160));
 		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathRevenantHead", 45, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile ("RevenantHead", 45, 0, random (0, 360), 2, random (50, 130));
 		TNT1 A 0 ACS_Execute(580, 0, 0, 0, 0);
 		TNT1 A 0 ACS_Execute(581, 0, 0, 0, 0);
 		TNT1 A 0 ACS_Execute(582, 0, 0, 0, 0);

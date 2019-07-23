@@ -602,10 +602,10 @@ CLASS BurningBarrel1 : SwitchableDecoration replaces BurningBarrel {
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("BarrelExplosion",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAAAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 25, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 15, 0, random (0, 360), 2, random (30, 160));
 		TNT1 AAA 0 a_spawnprojectile ("BarrelShrapnel1", 5, 0, random (0, 360), 2, random (30, 160));

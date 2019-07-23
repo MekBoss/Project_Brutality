@@ -1985,7 +1985,7 @@ CLASS DyingRevenant : ACTOR {
 	FRVX C -1;
 	Stop;
 	XDeath:
-	TNT1 A 0 a_spawnprojectile ("SkeletonXDeath", 0, 0, random (0, 360), 2, random (0, 160));
+	TNT1 A 0 a_spawnprojectile ("rev_main_gorer", 0, 0, random (0, 360), 2, random (0, 160));
 	Stop;
 }
 }

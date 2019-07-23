@@ -855,7 +855,7 @@ CLASS DragonBreath : pb_projectile_base
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-45, 45), random (-45, 35));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("SparkX", 2, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 2, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 0 A_SpawnItemEx ("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		Stop;
 	Death:

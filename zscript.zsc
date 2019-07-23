@@ -16,6 +16,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 #include "zscript/project_brutality/effects_and_stuff/effects/sparks.zsc"
 
+#include "zscript/project_brutality/effects_and_stuff/effects/explosives.zsc"
 
 
 
@@ -280,6 +281,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 //SPOOKY SCARY SKELETON
 #include "zscript/project_brutality/monsters/T3-Revies/proto_skeleton.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/revenants_guro.zsc"
 //AND SHIVERS DOWN YOU SPINE
 #include "zscript/project_brutality/monsters/T3-Revies/REVENANT.zsc"
 #include "zscript/project_brutality/monsters/T3-Revies/BeamRev.zsc"
@@ -382,29 +384,22 @@ states {spawn: tnt1 a 1 {console.printf("quick crutch");} stop; }
 }
 
 //now that a lots of crutches
-class ObeliskTrailSpark : crutch {}
-class ObeliskExplode : ObeliskTrailSpark {}
-class GreenExplosionFire : ObeliskTrailSpark {}
-class BFGAltExplosion : ObeliskTrailSpark{}
-class MancubusSwitchModeEffect : ObeliskTrailSpark{}
-class BFGAltShockWave : ObeliskTrailSpark{}
-class ExcavatorExploFX : ObeliskTrailSpark{}
-class DaedabusSwitchModeEffect : ObeliskTrailSpark{}
-class WhiteShockwave : ObeliskTrailSpark{}
-class ThrowedBarrel : ObeliskTrailSpark{}
-class CyberBalls : ObeliskTrailSpark{}
-class FreezerTrailSparksSmall : ObeliskTrailSpark{}
-class NewRocketExploFX : ObeliskTrailSpark{}
-class ThrowedSergeantPiece : ObeliskTrailSpark{}
-class PurpleTrailSparks : ObeliskTrailSpark{}
-class PurpleTrailSparkssmall : ObeliskTrailSpark{}
-class ThrowedZombieMan2 : ObeliskTrailSpark{}
-class ThrowedSergeant2 : ObeliskTrailSpark{}
-class ThrowedImp2 : ObeliskTrailSpark{}
-class NewRocketExploFX_Small : ObeliskTrailSpark{}
-class GreenTrailSparks : ObeliskTrailSpark{}
-class BFGAltTrail : ObeliskTrailSpark{}
-class WhiteShockwaveBig : ObeliskTrailSpark{}
+class GreenExplosionFire : crutch {}
+class MancubusSwitchModeEffect : crutch{}
+class BFGAltShockWave : crutch{}
+class DaedabusSwitchModeEffect : crutch{}
+class WhiteShockwave : crutch{}
+class ThrowedBarrel : crutch{}
+class FreezerTrailSparksSmall : crutch{}
+class ThrowedSergeantPiece : crutch{}
+class PurpleTrailSparks : crutch{}
+class PurpleTrailSparkssmall : crutch{}
+class ThrowedZombieMan2 : crutch{}
+class ThrowedSergeant2 : crutch{}
+class ThrowedImp2 : crutch{}
+class GreenTrailSparks : crutch{}
+class BFGAltTrail : crutch{}
+class WhiteShockwaveBig : crutch{}
 
 class HasIncendiaryWeapon : inventory
 {states {spawn: tnt1 a 10 {console.printf("quick crutch");} stop; } }
@@ -414,3 +409,30 @@ class  PhantasmFatality  : HasIncendiaryWeapon {}
 class  ArachnoGun  : HasIncendiaryWeapon {}
 class CasingsJanitor : HasIncendiaryWeapon {}
 class CrueltyBonus5Health : HasIncendiaryWeapon {}
+
+
+class BFGAltShockWave_grenade : actor
+{
+states
+{
+	spawn:
+		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
+	stop;
+}
+
+}
+
+class GreenTrailSparks_grenade : actor
+{
+states
+{
+	spawn:
+		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
+	stop;
+}
+
+}
+
+class NewRocketExploFX_grenade : GreenTrailSparks_grenade {}
+
+class ImpactGrenadeExplosion_sg : GreenTrailSparks_grenade {}

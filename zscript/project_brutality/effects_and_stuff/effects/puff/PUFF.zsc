@@ -189,7 +189,7 @@ states
 {
 	Spawn:
 		TNT1 A 0;
-		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SparkX", 2, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAA 0 a_spawnprojectile("ShrapnelParticle", 2, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_SpawnItemEx("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0;
 		TNT1 A 0 A_PlaySound("ricochet/hit");
@@ -333,8 +333,8 @@ states
 	Death:
 		TNT1 A 0 A_PlaySound("Weapons/YamatoExp",5);
 		TNT1 A 0 A_Explode(random(18,22),8,0,0);
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ObeliskTrailSpark", random(19,-19), random(19,-19), random(19,-19), 0, 0, 0, 0, 128, 0);
-		TNT1 A 0 A_SpawnItemEx("ObeliskExplode",0,0,0,0,0,0,0,128,0);
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("bfg_4_laser_train", random(19,-19), random(19,-19), random(19,-19), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 A_SpawnItemEx("bfg_4_laser_explode",0,0,0,0,0,0,0,128,0);
 		TNT1 BCD 4;
 		stop;
 }
@@ -422,7 +422,7 @@ states
 		TNT1 A 0 A_Jump(128,3);
 		TNT1 A 0 A_SpawnItem("Sparks", 0);
 		TNT1 A 0 A_SpawnItemEx("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAA 0 a_spawnprojectile("SparkX", 2, 0, random(0, 360), 2, random(30, 170));
+		TNT1 AAAAAA 0 a_spawnprojectile("ShrapnelParticle", 2, 0, random(0, 360), 2, random(30, 170));
 		TNT1 AAAA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
 		TNT1 AA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
 		TNT1 A 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));

@@ -38,7 +38,7 @@ States
 
 CLASS ShrapnelParticle: pb_particle { 
 Default {
-	speed 20;
+	speed 1;
 	+NOGRAVITY;
 	Scale 0.12;
 	alpha 1.0;
@@ -48,13 +48,13 @@ States
 	Spawn:
 		tnt1 a 0 nodelay
 		{
-			self.vel = (random(0, 12), random(0, 12), random(0, 12) );
+			vel *= frandom(0, 12);
 			self.gravity = frandom(0, 0.3);
 			int rand = frandom(0.02, 0.04);
 			self.scale = (rand, rand);
 		}
-		SPKO AAAAAAAAAA 1 Bright A_FadeOut(0.1);
-	stop;
+		SPKO A 1 Bright A_FadeOut(0.1);
+	wait;
 }
 }
 
@@ -223,32 +223,6 @@ Spawn:
 
 
 
-CLASS SparkX: pb_particle { 
-Default {
-
-speed 10;
-Gravity 0.8;
--NOGRAVITY;
-Scale 0.05;
-radius 1;
-height 1;
-+DOOMBOUNCE;
-+GHOST;
-BounceFactor 0.5;
-Damage 0;
-alpha 1.0;
-}
-States
-{
-Spawn:
-	SPKO AAA 1 BRIGHT;
-	SPKO AAAAAAA 1 Bright A_FadeOut(0.20);
-	stop;
-Death:
-	TNT1 A 0;
-	Stop;
-}
-}
 
 
 

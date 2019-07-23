@@ -2062,39 +2062,26 @@ CLASS GrenadeRounds : Ammo {
 	}
 }
 
-class StickyExplosion : actor
-{
-states
-{
-	spawn:
-		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
-	stop;
+
+CLASS StickyExplosion: actor { 
+Default {
+	+NOBLOCKMAP;
+	+MISSILE;
+	Radius 2;
+	Height 2;
+	Damagetype "ExplosiveImpact";
+	+FORCERADIUSDMG;
 }
-
-}
-
-class BFGAltShockWave_grenade : actor
+States
 {
-states
-{
-	spawn:
-		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
-	stop;
-}
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItem("WhiteShockwaveBig");
+		TNT1 A 2;
+		TNT1 A 0 A_Explode(175, 24, 0, 0,0,0,0,"BulletPuff","Explosive");
+		TNT1 A 1 A_Explode(130,150);
+	Stop;
+}}
 
-}
 
-class GreenTrailSparks_grenade : actor
-{
-states
-{
-	spawn:
-		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
-	stop;
-}
 
-}
-
-class NewRocketExploFX_grenade : GreenTrailSparks_grenade {}
-
-class ImpactGrenadeExplosion_sg : GreenTrailSparks_grenade {}
