@@ -205,8 +205,9 @@ CLASS XDeathBullArm1: XDeathArm1 {
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
 		HND8 ABCDEFGH 3 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
-		Loop;
-Death.plasma: Death.Burn: Death.Flames:
+	Loop;
+
+	Death.plasma: Death.Burn: Death.Flames:
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
 		Stop;
 Death:

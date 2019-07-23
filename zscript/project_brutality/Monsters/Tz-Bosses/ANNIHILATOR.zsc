@@ -205,14 +205,14 @@ States
 	Goto See2;
 		
 	Death:
-		4NNI HHHHH 2 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
+		4NNI HHHHH 2 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
  		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
-		TNT1 AAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonHead", 120, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 a_spawnprojectile("CyberdemonHead", 120, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("CyberXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("cyberdemon_death", 0, 0, random(0, 360), 2, random(0, 160));
 		4NNI I 5 A_Scream();
 		4NNI JKL 1;
 		4NNI M 1 A_NoBlocking();
@@ -225,19 +225,19 @@ States
 	Death.Decaptate:
 	Death.Head:
 	Death.MinorHead:
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonHead", 120, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 a_spawnprojectile("CyberdemonHead", 120, 0, random(0, 360), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItem("ShoqueAzul");
 		TNT1 A 0 A_PlaySound("caco/shotx");
 		TNT1 AAAAAAAAA 0 a_spawnprojectile("XDeath1", 120, 0, random(0, 360), 2, random(0, 180));
  		CYBB AAAAA 8 A_SpawnItem("MuchBlood", 0, 120);
 		CYBB ABCABCB 8 A_SpawnItem("MuchBlood", 0, 120);
 		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
-		TNT1 AAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 ;//a_spawnprojectile("ExplosionSpawner", 90, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 90, 0, random(0, 360), 2, random(0, 180));
 		
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 A 0 a_spawnprojectile("CyberXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("cyberdemon_death", 0, 0, random(0, 360), 2, random(0, 160));
 		CYBR I 0 A_Fall();
 		CYBR JKL 0;
 		CYBR M 0 A_NoBlocking();

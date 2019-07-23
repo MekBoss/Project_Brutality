@@ -55,6 +55,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 
 #include "zscript/project_brutality/effects_and_stuff/effects/fireworks/fireworks.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects/fireworks/barrel.zsc"
 
 
 
@@ -332,13 +333,19 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/T4-Nobles/CyberBaron.zsc"
 #include "zscript/project_brutality/monsters/T4-Nobles/Infernus.zsc"
 
+
 //archvile base
 #include "zscript/project_brutality/monsters/T4-Viles/proto_arch.zsc"
 ////archviles
-#include "zscript/project_brutality/monsters/T4-Viles/ARCHVILE.zsc"
-#include "zscript/project_brutality/monsters/T4-Viles/Hellion.zsc"
+#include "zscript/project_brutality/monsters/T4-Viles/ARCHVILE/ARCHVILE.zsc"
+#include "zscript/project_brutality/monsters/T4-Viles/ARCHVILE/ARCHVILE_gore.zsc"
+
+#include "zscript/project_brutality/monsters/T4-Viles/Hellion/Hellion.zsc"
+#include "zscript/project_brutality/monsters/T4-Viles/Hellion/Hellion_gore.zsc"
+
 #include "zscript/project_brutality/monsters/T4-Viles/FleshWizard.zsc"
 #include "zscript/project_brutality/monsters/T4-Viles/icevile.zsc"
+
 
 //all bosses base
 #include "zscript/project_brutality/monsters/Tz-Bosses/proto_bosses.zsc"

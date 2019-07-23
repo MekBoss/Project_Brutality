@@ -202,7 +202,7 @@ States
 		TNT1 AA 0 a_spawnprojectile ("MetalShard1", 5, 0, random (0, 360), 2, random (30, 160));
 		TNT1 A 0 a_spawnprojectile ("MetalShard1", 5, 0, random (0, 360), 2, random (30, 160));
 		TNT1 A 0 a_spawnprojectile ("MetalShard1", 5, 0, random (0, 360), 2, random (30, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("ExplosionSpawner", 30, 0, random (0, 360), 2, random (0, 180));
+		TNT1 AAAA 0 a_spawnprojectile ("SpawnedExplosion", 30, 0, random (0, 360), 2, random (0, 180));
 		
 		EXPL H 1 A_Jump(256, "Death1", "Death2", "Death3");
 	Death1:

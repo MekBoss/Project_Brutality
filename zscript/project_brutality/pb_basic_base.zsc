@@ -27,6 +27,12 @@ class pb_dismembered_monster_base : actor
 //gore and blood base, obvious
 class pb_blood_and_gore_base : actor
 {
+default
+{
+	speed 1;
+	bouncetype "doom";
+}
+
 //function which check if floor teture name match with function arguments
 //return true if something match
 static bool check_floor_texture(actor caller = null,
@@ -60,6 +66,38 @@ string one = "", string two = "", string three = "", string four = "", string fi
 	if(number > -1) {return true;}
 
 	return false;
+}
+
+protected virtual void pb_move_gore(actor inflictor = null, int dam = 0)
+{
+	if(inflictor == null) return;
+
+	vector3 move_dir = vec3to(inflictor).unit();
+	move_dir *= -1;
+	if(move_dir.z >= -0.4)
+	{
+		move_dir *= 2;
+		move_dir += (0, 0, random(move_dir.z, 5) );
+		vel = move_dir;
+	}
+	else
+	{
+		move_dir *= 2;
+		vel = move_dir;	
+	}
+}
+
+override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
+{
+	if(inflictor)
+	{
+		pb_move_gore(inflictor, damage);
+	}
+	else
+	{
+		pb_move_gore(source, damage);
+	}
+	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
 }
 
 }

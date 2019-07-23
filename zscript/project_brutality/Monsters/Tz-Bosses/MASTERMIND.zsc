@@ -144,16 +144,16 @@ States
 		TNT1 A 0 A_StopSound(5);
 		SPID J 20 A_Scream();
 		EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
-		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
+		//TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 50, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID K 10 A_NoBlocking();
-		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
+		//TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID L 5;
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
@@ -217,16 +217,16 @@ States
 		SPID J 20 A_Scream();
 		tnt1 a 0 A_FaceTarget();
 		EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
-		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 50, 0, random(0, 360), 2, random(0, 360));
+		//TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 50, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID K 10 A_NoBlocking();
-		//TNT1 AAAAAA 0 a_spawnprojectile("ExplosionSpawner", 10, 0, random(0, 360), 2, random(0, 360));
+		//TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 		SPID L 5;
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 30, 0, random(0, 360), 2, 90);
 
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
@@ -537,7 +537,7 @@ States
 		SPID L 5 { A_NoBlocking(); A_Scream();}
 	ExplosionDeath:
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 
@@ -614,7 +614,7 @@ States
 		TNT1 A 0 A_Scream();
 	ExplosionDeath:
 		TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("ExplosionSpawner", 30, 0, random(0, 360), 2, 90);
+		//TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 30, 0, random(0, 360), 2, 90);
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));

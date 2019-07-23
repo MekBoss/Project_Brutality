@@ -1169,61 +1169,6 @@ States
 }
 }
 
-CLASS CyberXDeath : pb_blood_and_gore_base { 
-Default {
-	
-	Radius 1;
-	Height 1;
-	Scale 0.8;
-	Speed 0;
-	Mass 1;
-	Decal "BloodSuper";
-	BounceFactor 0.5;
-	+DOOMBOUNCE;
-	+MISSILE;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	+MOVEWITHSECTOR;
-	+NOGRAVITY;
-	+NOCLIP;
-	+DONTSPLASH;
-}
-States
-{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("BloodSplasher3");
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
-		TNT1 AAAAA 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
-		
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonHeadPiece", 82, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonGun", 42, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonArm", 36, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonTorso1", 36, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonTorso2", 36, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonTorso3", 36, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonLeg1", 22, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathCyberdemonLeg2", 22, 0, random(0, 360), 2, random(0, 160));
-		
-		
-		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAA 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 10, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 25, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 35, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 54, 0, random(0, 360), 2, random(0, 90));
-		TNT1 A 0 A_SpawnItem("PB_pot");
-	Death:
-		TNT1 A 0;
-		Stop;
-}
-}
 
 
 CLASS HellKnightHeadExplode: ZombieXDeath { 
