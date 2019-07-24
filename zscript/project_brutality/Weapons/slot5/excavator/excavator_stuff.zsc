@@ -56,9 +56,9 @@ CLASS DrillBombExplode : ACTOR {
 		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 12, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionFlames", 12, 0, random (0, 360), 2, random (0, 360));
 		tnn1 AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 12, 0, random (0, 360), 2, random (0, 360));
-		//TNT1 A 0 A_SpawnItemEx ("ExcavatorExplosion",0,0,12,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
-	//	TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
+		TNT1 A 0 a_spawnprojectile ("NewRocketExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
 		Stop;
@@ -160,10 +160,10 @@ CLASS ExcavatorDrill : ACTOR {
 		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
 		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
+		TNT1 A 0 a_spawnprojectile ("NewRocketExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
 		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
-		//TNT1 A 0 A_SpawnItemEx ("ExcavatorExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
+		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
 		Stop;
@@ -230,10 +230,10 @@ CLASS DropShotExplode : ACTOR {
 		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
 		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
-		//TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 a_spawnprojectile ("ExcavatorExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
+		TNT1 A 0 a_spawnprojectile ("NewRocketExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
 		
-		//TNT1 A 0 A_SpawnItemEx ("ExcavatorExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
 		Stop;

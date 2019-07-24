@@ -1293,7 +1293,7 @@ object ExplosionFlareSpawner
     frame L2NR { light EXPLOSIONFLASH }
 }
 
-object ROCKET2
+object pb_rocket
 {
     frame MISL { light ROCKETLIGHT }
 }

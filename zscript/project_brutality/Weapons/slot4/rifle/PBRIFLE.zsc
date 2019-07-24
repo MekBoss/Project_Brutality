@@ -269,7 +269,7 @@ States
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		TNT1 AAAAAA 0 BRIGHT a_fireprojectile("ShotgunParticles", random(-16,16), 0, -1, random(-9,9));
 		TNT1 A 0 A_ZoomFactor(0.985);
-		TNT1 A 0 a_fireprojectile("BouncingGrenadeHE", 0, 0, 0, 0);
+		TNT1 A 0 a_fireprojectile("GrenadeMissileHE", 0, 0, 0, 0);
 		R1GF DDEE 1 BRIGHT;
 		TNT1 A 0 A_ZoomFactor(0.980);
 		R1GF FG 1;

@@ -444,7 +444,7 @@ CLASS DoomerRevenantSeeker2 : RevenantSeeker {
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		BFE1 A 0 Bright A_Explode(18, 120, 1);
-		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_Small",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("ExplosionParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
 		EXPL A 0;
@@ -485,7 +485,7 @@ CLASS DoomerRevenantSeeker3 : RevenantSeeker {
 		
 	Death:
 		EXPL A 0 Radius_Quake (2, 54, 0, 15, 0);
-		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_Small",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -521,7 +521,7 @@ CLASS DoomerRevenantMissile2 : RevenantMissile {
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_Small",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 10;
@@ -551,7 +551,7 @@ CLASS DoomerRevenantMissile3 : RevenantMissile {
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_Small",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 10;
@@ -579,7 +579,7 @@ CLASS MiniMissile1 : RevenantMissile {
 		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX_Small",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx ("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
 		TNT1 A 10;

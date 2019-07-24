@@ -1182,26 +1182,6 @@ Death:
 
 
 
-CLASS HighExplosiveFlames: FlameTrails { 
-Default {
-
-Scale 2.4;
-Speed 4;
-Alpha 1.0;
-}
-States
-{
-Spawn:
-	tnt1 A 0 nodelay
-	{
-		double scal = frandom(1, 5);
-		scale = (scal, scal);
-	}
-	TNT1 A 0 A_PlaySound("FAREXPL");
-	X003 AABBCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT;
-	Stop;
-}
-}
 
 
 

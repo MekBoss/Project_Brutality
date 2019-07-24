@@ -434,5 +434,3 @@ states
 }
 
 class NewRocketExploFX_grenade : GreenTrailSparks_grenade {}
-
-class ImpactGrenadeExplosion_sg : GreenTrailSparks_grenade {}

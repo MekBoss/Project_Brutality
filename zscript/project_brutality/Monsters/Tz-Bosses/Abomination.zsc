@@ -244,8 +244,7 @@ States
 	Death:
 		TNT1 A 0 {self.bNOGRAVITY = false;}
 		TNT1 A 0 A_Explode();
-		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "DeathCheap");
-		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+ 		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
 		EXPL AAA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (0, 90));
 		//FRFX ZZZ 0 BRIGHT a_spawnprojectile ("BigBlackSmoke", 2, 0, random (0, 360), 2, random (0, 30))

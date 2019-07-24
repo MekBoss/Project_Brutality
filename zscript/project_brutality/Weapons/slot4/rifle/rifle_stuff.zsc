@@ -76,7 +76,7 @@ CLASS MeatAmmo : Ammo {
 	}
 }
 
-class BouncingGrenadeHE : pb_projectile_base
+class GrenadeMissileHE : pb_projectile_base
 {
 default
 {
@@ -106,7 +106,7 @@ States
 	
 	Death:
         TNT1 A 0;
-        //TNT1 A 0 A_SpawnItemEx ("HandGrenadeExplosion",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
+        TNT1 A 0 A_Explode(200, 320, damagetype:"ExplosiveImpact");
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
 		//TNT1 A 0 a_spawnprojectile("BigRicoChet");
 		//TNT1 A 0 A_SpawnItem("WhiteShockwave");
@@ -129,7 +129,7 @@ States
 		
 	XDeath:
         TNT1 A 0;
-		//TNT1 A 0 A_SpawnItemEx ("HandGrenadeExplosion",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_Explode(200, 320, damagetype:"ExplosiveImpact");
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -15);
 		TNT1 A 0 a_spawnprojectile("BigRicoChet");
 		//TNT1 A 0 A_SpawnItem("WhiteShockwave");

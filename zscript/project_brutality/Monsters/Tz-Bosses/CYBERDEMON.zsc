@@ -254,7 +254,7 @@ states
 		TNT1 A 0 A_Explode(175,80,0,1);
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -15);
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 a_spawnprojectile("ExcavatorExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
 		tnt1 AAA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
 		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
