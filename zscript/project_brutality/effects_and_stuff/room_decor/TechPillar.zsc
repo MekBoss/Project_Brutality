@@ -34,7 +34,7 @@ States
 		tnt1 a 1
 		{
 			random_switch = random(0,1);
-			switch (random_switch)
+			switch(random_switch)
 			{
 				case one:
 					self.setstatelabel("one_pillar"); break;
@@ -55,7 +55,7 @@ States
 	Death:
 	tnt1 a 0
 	{
-		switch (random_switch)
+		switch(random_switch)
 		{
 			case one:
 				self.setstatelabel("one_pillar_dead"); break;

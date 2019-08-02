@@ -34,7 +34,7 @@ Default
 	// +WEAPON.MELEEWEAPON
 	+WEAPON.DONTBOB;
 	+WEAPON.NOAUTOAIM;
-	Inventory.PickupMessage "You got the Revenant's Hellish Missile Launcher! (Slot 9)";
+	Inventory.PickupMessage "You got the Revenant's Hellish Missile Launcher!(Slot 9)";
 }
 
 override bool, bool weapon_dual_and_special()

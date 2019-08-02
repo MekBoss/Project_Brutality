@@ -1,4 +1,4 @@
-//ASSAULT RIFLES (c) 2014 SGT MARK IV tm... And a bit of Pa1nki113r (R)
+//ASSAULT RIFLES(c) 2014 SGT MARK IV tm... And a bit of Pa1nki113r(R)
 
 CLASS PB_AutoshotgunAnimation1: Inventory { 
 	Default {
@@ -88,8 +88,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			TNT1 A 0 A_TakeInventory("DoubleASGAmmo", 1);//Removes 1 ammo from magazine
 			TNT1 A 0 A_AlertMonsters();
 			
-			P8W2 B 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			P8W2 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W2 B 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			P8W2 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 BRIGHT A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 AA 0 A_FireCustomMissile("GunFireSmoke",0,0, 6,4);
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
@@ -114,8 +114,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 		OddFire1:
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W1 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W1 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, 5, 0, 0, 0);
@@ -139,8 +139,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 		OddFire2:
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W1 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W1 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, 5, 0, 0, 0);
@@ -163,8 +163,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 		OddFire3:
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W2 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W2 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			TNT1 A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -5, 0, 0, 0);
@@ -189,8 +189,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 		OddFire4:
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W2 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W2 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			TNT1 A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -5, 0, 0, 0);
@@ -224,8 +224,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W1 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W1 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, 5, 0, 0, 0);
@@ -268,8 +268,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W2 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W2 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -5, 0, 0, 0);
@@ -315,8 +315,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W1 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W1 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, 5, 0, 0, 0);
@@ -349,8 +349,8 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			
 			TNT1 A 0 A_PlaySound("weapons/AutoShotgun");
 			TNT1 A 0 A_ZoomFactor(0.97);
-			P8W2 A 1 BRIGHT A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
-			TNT1 A 0 A_FireBullets (frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
+			P8W2 A 1 BRIGHT A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, 6, "MachineGunBulletPuff");
+			TNT1 A 0 A_FireBullets(frandom(6.84,7.45), frandom(5.3,6.80), 4, 6, "ShotgunPuff");
 			TNT1 AAAAAAAA 0 A_FireCustomMissile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
 			TNT1 A 0 A_QuakeEx(4, 4, 4, 6, 0, 64, "", 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -5, 0, 0, 0);
@@ -574,7 +574,7 @@ CLASS DualAutoShotguns: PB_DualWeapon {
 			
 		FlashSlideKicking:
 			P8SS ED 2();
-			P8SS CCBBBAAABBB 2 ();
+			P8SS CCBBBAAABBB 2();
 			Stop;
 			
 		FlashSlideKickingStop:

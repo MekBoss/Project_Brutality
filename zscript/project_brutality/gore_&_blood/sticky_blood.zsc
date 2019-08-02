@@ -31,7 +31,7 @@ States
 		Stop;
 	Death:
 		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile ("CeilXDeath2Checker", -15, 0, 90, 2, 90);
+		TNT1 A 0 a_spawnprojectile("CeilXDeath2Checker", -15, 0, 90, 2, 90);
 		Stop;
 }
 }
@@ -115,7 +115,6 @@ States
 		TNT1 A 4;
 		Stop;
 	Splash:
-		BLOD A 0;
 		stop;
 	Death:
 		TNT1 A 1 A_SpawnItem("CeilXDeath2",0,0,0,1);
@@ -146,7 +145,7 @@ states
 	Death:
 	Crash:
 		TNT1 A 0;
-		TNT1 A 0 A_JUmp (255, "Live1", "Live2", "Live3");
+		TNT1 A 0 A_JUmp(255, "Live1", "Live2", "Live3");
 		Goto Live1;
 		
 	Live1:
@@ -165,7 +164,6 @@ states
 		TNT1 A 0 A_SpawnItem("XDeath2NoStick");
 		stop;
 	Splash:
-		BLOD A 0;
 		stop;
 }
 }
@@ -189,10 +187,10 @@ States
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		TNT1 A 0 A_CheckFloor("Death");
-		XME1 H 3;//a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		XME1 H 3;//a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360))
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		XME1 E 1;
  		XME1 E 3;
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -251,7 +249,7 @@ States
 		Stop;
 	Death:
 		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile ("CeilXDeath3Checker", -15, 0, 90, 2, 90);
+		TNT1 A 0 a_spawnprojectile("CeilXDeath3Checker", -15, 0, 90, 2, 90);
 		Stop;
 }
 }
@@ -338,7 +336,6 @@ States
 		TNT1 A 4;
 		Stop;
 	Splash:
-		BLOD A 0;
 		stop;
 	Death:
 		TNT1 A 1 A_SpawnItem("CeilXDeath3",0,0,0,1);
@@ -370,7 +367,7 @@ states
 	Crash:
 		TNT1 A 0;
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 0 A_JUmp (255, "Live1", "Live2", "Live3");
+		TNT1 A 0 A_JUmp(255, "Live1", "Live2", "Live3");
 		Goto Live1;
 		
 	Live1:
@@ -389,7 +386,6 @@ states
 		TNT1 A 0 A_SpawnItem("XDeath3NoStick");
 		stop;
 	Splash:
-		BLOD A 0;
 		stop;
 }
 }
@@ -413,10 +409,10 @@ States
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		TNT1 A 0 A_CheckFloor("Death");
-		XME2 H 3;//a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		XME2 H 3;//a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360))
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		XME2 E 1;
  		XME2 E 3;
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -472,7 +468,7 @@ States
 		Stop;
 	Death:
 		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile ("CeilXDeath4Checker", -15, 0, 90, 2, 90);
+		TNT1 A 0 a_spawnprojectile("CeilXDeath4Checker", -15, 0, 90, 2, 90);
 		Stop;
 }
 }
@@ -499,7 +495,6 @@ States
 		TNT1 A 4;
 		Stop;
 	Splash:
-		BLOD A 0;
 		stop;
 	Death:
 		TNT1 A 1 A_SpawnItem("CeilXDeath4",0,0,0,1);
@@ -530,7 +525,7 @@ states
 	Death:
 	Crash:
 		TNT1 A 0;
-		TNT1 A 0 A_JUmp (255, "Live1", "Live2", "Live3");
+		TNT1 A 0 A_JUmp(255, "Live1", "Live2", "Live3");
 		Goto Live1;
 		
 	Live1:
@@ -549,7 +544,6 @@ states
 		TNT1 A 0 A_SpawnItem("XDeath4NoStick");
 		stop;
 	Splash:
-		BLOD A 0;
 		stop;
 }
 }
@@ -572,10 +566,10 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		XME3 ABCD 3;//a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		XME3 ABCD 3;//a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360))
 		Loop;
 	Death:
-		TNT1 AAAAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		XME3 E 2002;
 		
 		Stop;
@@ -677,7 +671,7 @@ States
 		Stop;
 	Death:
 		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile ("SmallBrainPiece", -15, 0, 90, 2, 90);
+		TNT1 A 0 a_spawnprojectile("SmallBrainPiece", -15, 0, 90, 2, 90);
 		Stop;
 }
 }

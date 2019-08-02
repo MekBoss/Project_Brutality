@@ -1,21 +1,14 @@
 class pb_monster_base : actor
 {
-//pointer to event which store pointers to cvar which control monsters ability
-//like knight leap or revenant jetpack
-eventhandler spawning_event;
-//unused because now, version 3.7 and higher, gzdoom allow check cvars directly
-//like if( 'cvar name' == true/ > 10/ == 148/ etc)
-
 //link to event which control effects
-eventhandler effects_monster;
+eventhandler effects;
 
 //handler for freeze/fatality/dismembering and other death types
 //where monster ripped to pieces
 protected bool frozen, dismembered, cant_resurrect;
-override bool CanResurrect (Actor other, bool passive)
+override bool CanResurrect(Actor other, bool passive)
 {
-	if(cant_resurrect == true) return false;
-	return true;
+	return !cant_resurrect;
 }
 
 //head position is height on which "body" of monster should become "head"
@@ -30,9 +23,10 @@ Property head_starting_position : head_pos;
 Property legs_height_max : legs_pos;
 
 //references to gore function so it can decide what blood and how much spawn
-//blood color obvious, blood size is amount of a blood/gore it must spawn (realistic/japanes cartoon/etc)
+//blood color obvious, blood size is amount of a blood/gore it must spawn(realistic/japanes cartoon/etc)
 //not confuse with cvar
 protected string blood_color, blood_size;
+
 //blood color for translation, by default are red, can be or green or blue
 Property blood_color : blood_color;
 Property blood_size : blood_size;
@@ -57,7 +51,7 @@ enum blood_colors
 
 //since all green/blue blood sprites ARE translated default blood sprites
 //this function handle it wihtout copypaste blood definition three times with new translate field
-actor pb_spawn_blood_color(
+actor pb_spawn_blood(
 blood_colors collor = 0, string actor_type = "Unknown", double height = 0, double angle = 0, double pitch = 0)
 {
 	actor qqqq = a_spawnprojectile(actor_type, height, 0, angle, 2, pitch);
@@ -72,36 +66,48 @@ blood_colors collor = 0, string actor_type = "Unknown", double height = 0, doubl
 
 //internal gzdoom handler for damaging actors
 override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
-{
-	if(!(flags & DMG_EXPLOSION) )
-	{//explosion cant inflict headshot...at least in gzdoom
-		int new_damage = super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
-		//to handle cases when actor vulnerable/invulnerable to some damage type
-		//before apply headshot multiplicator
-		
-		vector3 relat_pos = (0, 0, 0);
-		if(inflictor != null){ relat_pos = self.vec3to(inflictor); }
-		//find relative position of inflictor
-		
-		if(pb_monster_base(self).head_pos > -1 && relat_pos.z >= pb_monster_base(self).head_pos)
-		{//if head variable valid
-			new_damage *= self.head_mul;
-			return super.DamageMobj(inflictor, source, new_damage, 'headshot', flags ,angle);
-		}
-
-		if(pb_monster_base(self).legs_pos > -1 && relat_pos.z <= pb_monster_base(self).legs_pos)
-		{//check for arrow in the knee
-			return super.DamageMobj(inflictor, source, new_damage, 'leg', flags ,angle);
-		}
-		return new_damage;
-	}
-
-	if( (inflictor is "PB_player_pawn_base" || source is "PB_player_pawn_base") && self.target == null)
+{	//check if monster actually alive
+	if(self.bkilled == false)
 	{
-		console.printf("here, probably, must shows some fatality");
-		//fatality placeholder
+		if(!(flags & DMG_EXPLOSION) )
+		{//explosion cant inflict headshot...at least in PB
+			int new_damage = super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+			//to handle cases when actor vulnerable/invulnerable to some damage type
+			//before apply headshot multiplicator
+		
+			vector3 relat_pos =(0, 0, 0);
+			if(inflictor != null){ relat_pos = self.vec3to(inflictor); }
+			//find relative position of inflictor
+		
+			if(pb_monster_base(self).head_pos > -1 && relat_pos.z >= pb_monster_base(self).head_pos)
+			{//if head variable valid
+				new_damage *= self.head_mul;
+				return super.DamageMobj(inflictor, source, new_damage, 'headshot', flags ,angle);
+			}
+
+			if(pb_monster_base(self).legs_pos > -1 && relat_pos.z <= pb_monster_base(self).legs_pos)
+			{//check for arrow in the knee
+				return super.DamageMobj(inflictor, source, new_damage, 'leg', flags ,angle);
+			}
+			return new_damage;
+		}
+
+		if((inflictor is "PB_player_pawn_base" || source is "PB_player_pawn_base") && self.target == null)
+		{
+			console.printf("here, probably, must be shown some fatality");
+			//fatality placeholder
+		}
+		return super.DamageMobj(inflictor, source, damage, mod, flags, angle);
 	}
-	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);
+	else
+	{
+		int dam = super.DamageMobj(inflictor, source, damage, mod, flags, angle);
+
+		if(health - dam <= 0)
+			setstatelabel("xdeath");
+
+		return dam;
+	}
 }
 
 //handling of freeze death
@@ -129,5 +135,33 @@ states
 	Death.Massacre:
 	stop;
 }
+
+
+//how much time monster seeek it target before forgeting
+protected int memory_timer;
+const max_memory = 20;
+protected void pb_monster_memory(statelabel idle_state)
+{
+	memory_timer++;
+	if(memory_timer > max_memory)
+	{
+		memory_timer = 0;
+		a_cleartarget();
+		setstatelabel(idle_state);
+	}
+}
+
+protected void simple_death_handler()
+{
+		health += 200;
+		self.bDONTTHRUST = true;
+		self.bNOPAIN = true;
+		self.bNODROPOFF = false;
+		self.bSLIDESONWALLS = true;
+		self.bsolid = false;
+		self.bshootable = true;
+		a_setsize(default.radius, default.height / 10);
+}
+
 
 }

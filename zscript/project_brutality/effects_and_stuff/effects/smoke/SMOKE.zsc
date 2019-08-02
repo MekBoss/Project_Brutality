@@ -35,7 +35,7 @@ States
 		TNT1 A 0 
 		{
 			double scal = frandom(0.2, 1);
-			self.scale = (scal, scal);
+			self.scale =(scal, scal);
 		}
 		smk2 AAAAAA 2 A_FadeIn(0.04);
 		smk2 A 1 {tics = random(15, 40);}
@@ -58,7 +58,7 @@ States
 		TNT1 A 0 nodelay
 		{
 			int scal = frandom(0.1, 1.5);
-			self.scale = (scal, scal);
+			self.scale =(scal, scal);
 			self.alpha = frandom(0.1, 0.5);
 		}
 		
@@ -105,7 +105,7 @@ States
 		
 			self.alpha = frandom(0.1, 0.3);
 			double scal = frandom(-0.7, 0.7);
-			self.scale = (scal, scal);
+			self.scale =(scal, scal);
 		}
 		SMOK ABCDEFGHIJKLMNOPQ 1 {A_FadeOut(0.010); self.tics = random(1 , 3);}
 	Stop;
@@ -138,9 +138,9 @@ States
 		{
 			alpha = frandom(0.05, 0.11);
 			double scal = frandom(0.05, 3.3);
-			scale = (scal, scal);
+			scale =(scal, scal);
 		}
-		PUF2 EEFGHIJKLMNOPQRSTUVWXYZ 1 {A_FadeOut(0.005); self.tics = random(2, 5);}
+		PUF2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 {A_FadeOut(0.005); self.tics = random(2, 5);}
 	Stop;
 } 
 
@@ -226,7 +226,7 @@ States
 		{
 			alpha = frandom(0.12, 0.5);
 			double scal = frandom(1.4, 5);
-			scale = (scal, scal);
+			scale =(scal, scal);
 		}
 		SMO2 A 5;
 		SMO2 A 40;
@@ -334,7 +334,7 @@ States
 	Spawn:
 		TNT1 A 0 nodelay
 		{
-			if (A_CheckFloor("tnt1"))
+			if(A_CheckFloor("tnt1"))
 			{
 				A_Remove(AAPTR_DEFAULT);
 			}

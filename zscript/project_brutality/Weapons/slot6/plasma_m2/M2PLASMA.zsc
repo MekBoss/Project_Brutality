@@ -45,7 +45,7 @@ Default
 	+WEAPON.NOAUTOFIRE;
 	+FLOORCLIP;
 	+DONTGIB;
-	Inventory.PickupMessage "You got the UAC-M2 Heavy Plasma Rifle! (Slot 6)";
+	Inventory.PickupMessage "You got the UAC-M2 Heavy Plasma Rifle!(Slot 6)";
 	Tag "Alexandria church gun";
 }
 
@@ -343,7 +343,7 @@ States
 		TNT1 A 0 A_FireProjectile("GunFireSmoke", -40, 0, -6, -9, 0, 0);
 		TNT1 A 0 A_Playsound("Weapons/CellEject",2);
 		P41R FFWXYZ 1;
-		TNT1 A 0 A_FireProjectile ("PlasmaCaseSpawn", 192, 0, -20, 2, random (0, 160));
+		TNT1 A 0 A_FireProjectile("PlasmaCaseSpawn", 192, 0, -20, 2, random(0, 160));
 	ReloadUnloadedWeapon:
 		P41R GGG 3;
 		P41R GGGIJKL 2;
@@ -371,7 +371,7 @@ States
 
 				main_ammo.amount --;
 			}
-			while( (left_arm_ammo).amount < (left_arm_ammo).maxamount && (main_ammo).amount > 0)
+			while((left_arm_ammo).amount <(left_arm_ammo).maxamount &&(main_ammo).amount > 0)
 		}
 	FinishReload:
 		tnt1 a 0
@@ -584,7 +584,7 @@ States
 		TNT1 A 0 A_FireProjectile("GunFireSmoke", -40, 0, -6, -9, 0, 0);
 		TNT1 A 0 A_Playsound("Weapons/CellEject",2);
 		P42R FFWXYZ 1;
-		TNT1 A 0 A_FireProjectile ("PlasmaCaseSpawn", 192, 0, -20, 2, random (0, 160));
+		TNT1 A 0 A_FireProjectile("PlasmaCaseSpawn", 192, 0, -20, 2, random(0, 160));
 	ReloadUnloadedUpgradedWeapon:
 		P42R GGG 3;
 		P42R GGGIJKL 2;
@@ -839,11 +839,11 @@ CLASS HeavyPlasmaBall: Plasma_ball {
 	Loop;
 	
 	Xdeath:
-		TNT1 A 0 A_SpawnItem ("Plasma_Puff", 0);
-		TNT1 AAAA 0 a_spawnprojectile ("BluePlasmaFireSmall2", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("SuperPlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAAAA 0 ;//a_spawnprojectile ("FreezerTrailSparksSmall", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem("Plasma_Puff", 0);
+		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFireSmall2", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("SuperPlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAA 0 ;//a_spawnprojectile("FreezerTrailSparksSmall", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(6,90,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
@@ -851,17 +851,17 @@ CLASS HeavyPlasmaBall: Plasma_ball {
 		Stop;
 		
 	Death:
-		TNT1 A 0 A_SpawnItem ("Plasma_Puff", 0);
-		//TNT1 A 0 A_SpawnItem ("RailPuff", 0)
+		TNT1 A 0 A_SpawnItem("Plasma_Puff", 0);
+		//TNT1 A 0 A_SpawnItem("RailPuff", 0)
 		TNT1 A 0 A_Explode(6,90,0);
-		TNT1 AAAA 0 a_spawnprojectile ("BluePlasmaFireSmall2", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("SuperPlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFireSmall2", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("SuperPlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
-		TNT2 AAAA 4 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT2 AAAA 4 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
 		Stop;
 		
 		
@@ -900,26 +900,26 @@ CLASS AltHeavyPlasmaBall: Plasma_ball {
 	
 	
 	Xdeath:
-		TNT1 A 0 A_SpawnItem ("Plasma_Puff", 0);
-		TNT1 AAAA 0 a_spawnprojectile ("BluePlasmaFireSmall2", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("SuperPlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		//TNT1 AAAAAAA 0 a_spawnprojectile ("FreezerTrailSparksSmall", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem("Plasma_Puff", 0);
+		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFireSmall2", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("SuperPlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		//TNT1 AAAAAAA 0 a_spawnprojectile("FreezerTrailSparksSmall", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(6,90,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
-		TNT2 AAAA 4 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT2 AAAA 4 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
 		Stop;
 		
 	Death:
-		TNT1 A 0 A_SpawnItem ("Plasma_Puff", 0);
-		//TNT1 A 0 A_SpawnItem ("RailPuff", 0)
+		TNT1 A 0 A_SpawnItem("Plasma_Puff", 0);
+		//TNT1 A 0 A_SpawnItem("RailPuff", 0)
 		TNT1 A 0 A_Explode(6,90,0);
-		TNT1 AAAA 0 a_spawnprojectile ("BluePlasmaFireSmall2", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("SuperPlasmaFire", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFireSmall2", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("SuperPlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
 		Stop;
@@ -1062,7 +1062,7 @@ CLASS LightningGunProjectile: FastProjectile {
 		TNT1 A 0 BRIGHT A_SpawnItem("Blue_Flare",0);
 		//TNT1 AA 0 A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 		TNT1 A 0 A_explode(random(12,15), 80);
-		TNT1 AAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 1 Light("LightningImpactLight");
 		Stop;
 	}
@@ -1121,7 +1121,7 @@ CLASS LightningGunPuff : ACTOR {
 		TNT1 A 0 BRIGHT A_SpawnItem("Blue_Flare",0);
 		TNT1 A 0 A_explode(random(30,35), 240,0,0,200);
 		TNT1 AA 0 a_spawnprojectile("ElectroBlastTrail3",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(30,270));
-		TNT1 AAAAA 0 a_spawnprojectile ("BluePlasmaParticle", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 1 Light("LightningImpactLight");
 		Stop;
 	}
@@ -1181,7 +1181,7 @@ CLASS LightningGunPuff_Bigger : LightningGunPuff_Big {
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 0 A_Jump (256, "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10");
+			TNT1 A 0 A_Jump(256, "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10");
 			DLI6 ABCDEFGHIJK 1 bright;
 			Stop;
 		Spawn2:
@@ -1249,7 +1249,7 @@ CLASS LightningGunPuff_Bigger : LightningGunPuff_Big {
 		Spawn:
 			TNT1 A 0;
 			TNT1 A 0 A_Playsound("Sparks/Spawn");
-			TNT1 A 0 A_Jump (256, "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10");
+			TNT1 A 0 A_Jump(256, "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10");
 			DLI6 ABCDEFGHIJK 1 bright Light("ElectrocutionLight");
 			Stop;
 		Spawn2:

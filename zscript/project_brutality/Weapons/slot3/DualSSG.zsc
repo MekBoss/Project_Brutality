@@ -1,4 +1,4 @@
-//I'm a fucking DANGEROUS cowboy (c) 2014 SGT MARK IV tm... And a bit of Pa1nki113r (R). Original Sprites by Doom Nukem.
+//I'm a fucking DANGEROUS cowboy(c) 2014 SGT MARK IV tm... And a bit of Pa1nki113r(R). Original Sprites by Doom Nukem.
 
 CLASS FiredLeftSSG : Inventory { // How many times you fired with the LMB
 	Default {
@@ -157,7 +157,7 @@ CLASS DualSSG: PB_DualWeapon {
 			TNT1 A 0 A_TakeInventory("FiredRightSSGRMB",1);
 			TNT1 A 0 A_AlertMonsters();
 			P6W2 A 1 BRIGHT;
-			P6W2 B 1 BRIGHT A_FireBullets(0, 0, 1, 35, "shotpuff", 1, 220);//Horizontal Spread, Vertical Spread, Numbers of Projectiles (Leave as -1 if its a single one), Damage Factor
+			P6W2 B 1 BRIGHT A_FireBullets(0, 0, 1, 35, "shotpuff", 1, 220);//Horizontal Spread, Vertical Spread, Numbers of Projectiles(Leave as -1 if its a single one), Damage Factor
 			TNT1 A 0  A_PlaySound("SSHFIRE", 1);//Play gun fire sound
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -3, 0, 0, 0);
 			RIFF A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -6, 0, 0, 0);
@@ -470,7 +470,7 @@ CLASS DualSSG: PB_DualWeapon {
 			
 		FlashSlideKicking:
 			P6SS FE 2();
-			P6SS DDCCCBBBAAA 2 ();
+			P6SS DDCCCBBBAAA 2();
 			Goto Null;
 			
 		FlashSlideKickingStop:

@@ -21,7 +21,7 @@ default
 	Obituary "%o was shot down by %k's DMR.";
 	AttackSound "None";
 	Inventory.PickupSound "CLIPIN";
-	Inventory.Pickupmessage "You got the UAC30 DMR! (Slot 4)";
+	Inventory.Pickupmessage "You got the UAC30 DMR!(Slot 4)";
 	+WEAPON.WIMPY_WEAPON;
 	+WEAPON.NOAUTOAIM;
 	+WEAPON.NOALERT;
@@ -114,7 +114,7 @@ States
 		RIFF A 1 BRIGHT
 		{
 			A_PlaySound("weapons/rifle", 1, 0.8);
-			A_FireBullets (1.25, 1.25, -1, 15, "HitPuff");
+			A_FireBullets(1.25, 1.25, -1, 15, "HitPuff");
 			A_ZoomFactor(0.982);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			A_AlertMonsters();
@@ -153,7 +153,7 @@ States
 			A_AlertMonsters();
 			a_fireprojectile("YellowFlareSpawn",0,0,0,5);
 		
-			A_FireBullets (0.1, 0.1, -1, 15, "HitPuff");
+			A_FireBullets(0.1, 0.1, -1, 15, "HitPuff");
 			A_ZoomFactor(2.535);
 			a_fireprojectile("Tracer", 0, 0, -1, 0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 3, 0, 0);

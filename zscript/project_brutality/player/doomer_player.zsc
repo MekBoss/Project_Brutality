@@ -12,7 +12,7 @@ CLASS FootStep : ACTOR {
 	+MOVEWITHSECTOR;
 	+NOEXTREMEDEATH;
 	DamageType "Trample";
-	Damagefunction (random (2, 3));
+	Damagefunction(random(2, 3));
 	+NODAMAGETHRUST;
 	+BLOODLESSIMPACT;
 	gravity 40;
@@ -47,7 +47,7 @@ CLASS Footstep5: FootStep {
 CLASS Footstep6: FootStep { 
 	Default {
 	
-	Damagefunction (random (2, 3));
+	Damagefunction(random(2, 3));
 	-CLIENTSIDEONLY;
 	}
 	States
@@ -77,7 +77,7 @@ CLASS Footstep6NoDamage: Footstep6 {
 CLASS Footstep8: FootStep { 
 	Default {
 	
-	Damagefunction (random (1, 1));
+	Damagefunction(random(1, 1));
 	Mass 0;
 	-CLIENTSIDEONLY;
 	}
@@ -89,7 +89,7 @@ CLASS FootstepStrong: FootStep {
 	Speed 0;
 	Radius 16;
 	Damage 15;
-	Damagefunction (random (2, 3));
+	Damagefunction(random(2, 3));
 	-CLIENTSIDEONLY;
 	}
 	States
@@ -158,7 +158,7 @@ CLASS HeavyFootSteps32: FootStep {
 CLASS TankStep: FootStep { 
 	Default {
 	
-	Damagefunction (random (4, 5));
+	Damagefunction(random(4, 5));
 	-CLIENTSIDEONLY;
 	-DONTSPLASH;
 	-EXPLODEONWATER;
@@ -193,10 +193,10 @@ CLASS TankStep: FootStep {
 	
 	Sand:
 	TNT1 A 0;
-	TNT1 A 0 a_spawnprojectile ("MudDust", 32, -32, random (0, 360), 2, random (30, 150));
-	TNT1 A 0 a_spawnprojectile ("MudDust", 32, 32, random (0, 360), 2, random (30, 150));
-	TNT1 A 0 a_spawnprojectile ("MudDust", 2, 32, random (0, 360), 2, random (60, 90));
-	TNT1 A 0 a_spawnprojectile ("MudDust", 2, -32, random (0, 360), 2, random (60, 90));
+	TNT1 A 0 a_spawnprojectile("MudDust", 32, -32, random(0, 360), 2, random(30, 150));
+	TNT1 A 0 a_spawnprojectile("MudDust", 32, 32, random(0, 360), 2, random(30, 150));
+	TNT1 A 0 a_spawnprojectile("MudDust", 2, 32, random(0, 360), 2, random(60, 90));
+	TNT1 A 0 a_spawnprojectile("MudDust", 2, -32, random(0, 360), 2, random(60, 90));
 	tnt1 A 300;
 	tnt1 AAAA 50 A_FadeOut(0.05);
 	Stop;
@@ -384,7 +384,7 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialChecker");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldChecker");
-	TNT1 A 0 A_JumpIf (vel.z != 0, "IsJumpin");
+	TNT1 A 0 A_JumpIf(vel.z != 0, "IsJumpin");
 	MARN DDDD 1;
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
@@ -399,7 +399,7 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialChecker");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldChecker");
-	TNT1 A 0 A_JumpIf (vel.z != 0, "IsJumpin");
+	TNT1 A 0 A_JumpIf(vel.z != 0, "IsJumpin");
 	MARN DDDD 1;
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
@@ -414,7 +414,7 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialChecker");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldChecker");
-	TNT1 A 0 A_JumpIf (vel.z != 0, "IsJumpin");
+	TNT1 A 0 A_JumpIf(vel.z != 0, "IsJumpin");
 	MARN EEEE 1;
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
@@ -429,7 +429,7 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialChecker");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldChecker");
-	TNT1 A 0 A_JumpIf (vel.z != 0, "IsJumpin");
+	TNT1 A 0 A_JumpIf(vel.z != 0, "IsJumpin");
 	MARN EEEE 1;
 	MARN A 0 A_JumpIfHealthLower(25, "HeavyWoundsSpawn");
 	TNT1 A 0 {self.bTHRUSPECIES = false;}
@@ -462,10 +462,10 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SlimeSplasherz", 1, "SlimeSplash");
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
-	tnt1 A 0 A_JumpIf (vel.y > 0, "FistsMove");
-	tnt1 A 0 A_JumpIf (vel.x > 0, "FistsMove");
-	tnt1 A 0 A_JumpIf (vel.y < 0, "FistsMove");
-	tnt1 A 0 A_JumpIf (vel.x < 0, "FistsMove");
+	tnt1 A 0 A_JumpIf(vel.y > 0, "FistsMove");
+	tnt1 A 0 A_JumpIf(vel.x > 0, "FistsMove");
+	tnt1 A 0 A_JumpIf(vel.y < 0, "FistsMove");
+	tnt1 A 0 A_JumpIf(vel.x < 0, "FistsMove");
 	PLA1 B 5;
 	Goto FistsStand;
 	
@@ -493,8 +493,8 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialCheckerMoving");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldCheckerMoving");
-	MARN A 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN A 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN A 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN A 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -508,8 +508,8 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialCheckerMoving");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldCheckerMoving");
-	MARN B 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN B 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN B 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN B 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -523,8 +523,8 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialCheckerMoving");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldCheckerMoving");
-	MARN C 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN C 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN C 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN C 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -541,8 +541,8 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialCheckerMoving");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldCheckerMoving");
-	MARN B 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN B 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN B 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN B 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	MARN A 0 A_JumpIfHealthLower(25, "HeavyWounds");
 	Goto StandStillLoop;
 	
@@ -599,8 +599,8 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialCheckerMoving");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldCheckerMoving");
-	tnt1 A 0 A_JumpIf (vel.Z > 0, "InAir");
-	tnt1 A 0 A_JumpIf (vel.Z < 0, "InAir");
+	tnt1 A 0 A_JumpIf(vel.Z > 0, "InAir");
+	tnt1 A 0 A_JumpIf(vel.Z < 0, "InAir");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -619,7 +619,7 @@ States
 	MARN A 0; //A_JumpIfInventory("GoFatality", 1, "FatalityChecker");
 	MARN A 0; //A_JumpIfInventory("GoSpecial", 1, "SpecialCheckerMoving");
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldCheckerMoving");
-	TNT1 A 0 A_JumpIf (vel.Z == 0, "Land");
+	TNT1 A 0 A_JumpIf(vel.Z == 0, "Land");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -699,8 +699,8 @@ States
 	Goto StandStillLoop;
 	
 	Kick:
-	tnt1 A 0 A_JumpIf (vel.Z > 0, "AirKick");
-	tnt1 A 0 A_JumpIf (vel.Z < 0, "AirKick");
+	tnt1 A 0 A_JumpIf(vel.Z > 0, "AirKick");
+	tnt1 A 0 A_JumpIf(vel.Z < 0, "AirKick");
 	TNT1 A 0; //A_JumpIfInventory("IsSlideKicking",1, "SlideKick");
 	PKIK AB 3; //A_JumpIfInventory("IsSlideKicking",1, "SlideKick");
 	TNT1 A 0; //A_JumpIfInventory("KickHasHit", 1, "KickHit");
@@ -718,8 +718,8 @@ States
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
 	Goto StandStillLoop;
 	RifleKick:
-	tnt1 A 0 A_JumpIf (vel.Z > 0, "AirKick");
-	tnt1 A 0 A_JumpIf (vel.Z < 0, "AirKick");
+	tnt1 A 0 A_JumpIf(vel.Z > 0, "AirKick");
+	tnt1 A 0 A_JumpIf(vel.Z < 0, "AirKick");
 	TNT1 A 0; //A_JumpIfInventory("IsSlideKicking",1, "SlideKick");
 	PKI1 AB 3; //A_JumpIfInventory("IsSlideKicking",1, "SlideKick");
 	TNT1 A 0; //A_JumpIfInventory("KickHasHit", 1, "KickHit");
@@ -1020,8 +1020,8 @@ States
 	TNT1 A 0; //A_JumpIfInventory("GotMeatShield", 1, "MeatShieldChecker");
 	TNT1 A 0; //A_JumpIfInventory("Punching", 1, "Punch");
 	TNT1 A 0; //A_JumpIfInventory("Kicking", 1, "Kick");
-	tnt1 A 0 A_JumpIf (vel.y == 0, "Spawn");
-	tnt1 A 0 A_JumpIf (vel.x == 0, "Spawn");
+	tnt1 A 0 A_JumpIf(vel.y == 0, "Spawn");
+	tnt1 A 0 A_JumpIf(vel.x == 0, "Spawn");
 	TNT1 A 0; //A_JumpIfInventory("BootsSmearedWithRedBlood", 1, "SeeSmearedWithRedBlood");
 	MARN A 0; //A_JumpIfInventory("BootsSmearedWithBlueBlood", 1, "SeeSmearedWithBlueBlood");
 	MARN A 0; //A_JumpIfInventory("BootsSmearedWithGreenBlood", 1, "SeeSmearedWithGreenBlood");
@@ -1031,12 +1031,12 @@ States
 	
 	ADSStand:
 	MAR2 A 5;
-	MAR2 A 0 A_JumpIf (vel.y > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.y < 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x < 0, "ADSMove");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MAR2 A 0 A_JumpIf(vel.y > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.y < 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x < 0, "ADSMove");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1049,12 +1049,12 @@ States
  	MAR2 A 5;
 	TNT1 A 0; //A_JumpIfInventory("RollLeft", 1, "RollLeft");
 	MAR2 A 0; //A_JumpIfInventory("RollRight", 1, "RollRight");
-	MAR2 A 0 A_JumpIf (vel.y > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.y < 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x < 0, "ADSMove");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MAR2 A 0 A_JumpIf(vel.y > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.y < 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x < 0, "ADSMove");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1065,12 +1065,12 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
 	MAR2 D 5;
-	MAR2 A 0 A_JumpIf (vel.y > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.y < 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x < 0, "ADSMove");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MAR2 A 0 A_JumpIf(vel.y > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.y < 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x < 0, "ADSMove");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	MAR2 A 0; //A_JumpIfInventory("RollLeft", 1, "RollLeft");
 	MAR2 A 0; //A_JumpIfInventory("RollRight", 1, "RollRight");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
@@ -1083,12 +1083,12 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
 	MAR2 D 5;
-	MAR2 A 0 A_JumpIf (vel.y > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x > 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.y < 0, "ADSMove");
-	MAR2 A 0 A_JumpIf (vel.x < 0, "ADSMove");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MAR2 A 0 A_JumpIf(vel.y > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x > 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.y < 0, "ADSMove");
+	MAR2 A 0 A_JumpIf(vel.x < 0, "ADSMove");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1111,8 +1111,8 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
 	MAR2 A 5; //A_JumpIfInventory("Kicking", 1, "Kick");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1123,8 +1123,8 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
 	MAR2 B 5; //A_JumpIfInventory("Kicking", 1, "Kick");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	MAR2 A 0; //A_JumpIfInventory("RollLeft", 1, "RollLeft");
 	MAR2 A 0; //A_JumpIfInventory("RollRight", 1, "RollRight");
 	MAR2 A 0 A_SpawnItemEx("FootStep6", 0, 0, 40, 0, 0);
@@ -1138,8 +1138,8 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
 	MAR2 C 5; //A_JumpIfInventory("Kicking", 1, "Kick");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1150,20 +1150,20 @@ States
 	TNT1 A 0; //A_JumpIfInventory("SludgeSplasherz", 1, "SludgeSplash");
 	TNT1 A 0; //A_JumpIfInventory("LavaSplasherz", 1, "LavaSplash");
 	MAR2 B 5; //A_JumpIfInventory("Kicking", 1, "Kick");
-	MARN D 0 A_JumpIf (vel.Z > 0, "IsJumpin");
-	MARN D 0 A_JumpIf (vel.Z < 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z > 0, "IsJumpin");
+	MARN D 0 A_JumpIf(vel.Z < 0, "IsJumpin");
 	MAR2 A 0; //A_JumpIfInventory("RollLeft", 1, "RollLeft");
 	MAR2 A 0; //A_JumpIfInventory("RollRight", 1, "RollRight");
 	MAR2 A 0 A_SpawnItemEx("FootStep6", 0, 0, 40, 0, 0);
-	MAR2 A 0 A_JumpIf (vel.y == 0, "Spawn");
-	MAR2 A 0 A_JumpIf (vel.x == 0, "Spawn");
+	MAR2 A 0 A_JumpIf(vel.y == 0, "Spawn");
+	MAR2 A 0 A_JumpIf(vel.x == 0, "Spawn");
 	Goto See;
 	
 	
 	BarrelMove:
 	TNT1 A 0; //A_TakeInventory("Punching", 1);
-	tnt1 A 0 A_JumpIf (vel.y == 0, "BarrelStand");
-	tnt1 A 0 A_JumpIf (vel.x == 0, "BarrelStand");
+	tnt1 A 0 A_JumpIf(vel.y == 0, "BarrelStand");
+	tnt1 A 0 A_JumpIf(vel.x == 0, "BarrelStand");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1231,8 +1231,8 @@ States
 	PBAR A 1;
 	TNT1 A 0; //A_JumpIfInventory("Kicking", 1, "Kick");
 	TNT1 A 0; //A_JumpIfInventory("Punching", 1, "Punch");
-	PLA3 A 0 A_JumpIf ((vel.x >= 1 || vel.x <= -1), "BarrelMove");
-	PLA3 A 0 A_JumpIf ((vel.y >= 1 || vel.x <= -1), "BarrelMove");
+	PLA3 A 0 A_JumpIf((vel.x >= 1 || vel.x <= -1), "BarrelMove");
+	PLA3 A 0 A_JumpIf((vel.y >= 1 || vel.x <= -1), "BarrelMove");
 	TNT1 A 0; //A_JumpIfInventory("RedBloodSplatterz", 1, "RedBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("BlueBloodSplatterz", 1, "BlueBloodSplatters");
 	TNT1 A 0; //A_JumpIfInventory("GreenBloodSplatterz", 1, "GreenBloodSplatters");
@@ -1279,9 +1279,9 @@ States
 	
 	Pain.ArchvileAttack:
 	PLAY G 1;
-	TNT1 A 0 A_SpawnProjectile ("NewRocketExploFX", 30, 0, random (0, 360), 2, random (0, 360));
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("ExplosionParticle", 30, 0, random (0, 360), 2, random (0, 180));
-	TNT1 AAAAAA 0 A_SpawnProjectile ("ExplosionParticle", 30, 0, random (0, 360), 2, random (0, 180));
+	TNT1 A 0 A_SpawnProjectile("NewRocketExploFX", 30, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("ExplosionParticle", 30, 0, random(0, 360), 2, random(0, 180));
+	TNT1 AAAAAA 0 A_SpawnProjectile("ExplosionParticle", 30, 0, random(0, 360), 2, random(0, 180));
 	tnt1 A 0 A_Pain;
  	Goto See;
 	
@@ -1344,7 +1344,7 @@ States
  	TNT1 A 0 A_PlaySound("ICEBRK1");
 	FZM1 A 45 A_JumpIfHealthLower(1, "DeathIce");
 	FZM1 A 2 A_JumpIfHealthLower(1, "DeathIce");
-	TNT1 A 0 A_PlaySound ("DSBOTTLE");
+	TNT1 A 0 A_PlaySound("DSBOTTLE");
  	TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
 	Goto See;
 	
@@ -1354,15 +1354,15 @@ States
 	Death.Freeze:
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	TNT1 A 0 A_NoBlocking;
-	TNT1 A 0 A_PlaySound ("DSBOTTLE");
-	//TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("XIceChunk1", 48, 0, random (0, 360), 2, random (0, 160));
-	//TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("XIceChunk2", 48, 0, random (0, 360), 2, random (0, 160));
-	//tNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("XIceChunk3", 48, 0, random (0, 360), 2, random (40, 120));
-	//	TNT1 AAA 0 A_SpawnProjectile ("XDeath1", 48, 0, random (0, 360), 2, random (0, 160))
-	//	TNT1 AA 0 A_SpawnProjectile ("XDeath2", 48, 0, random (0, 360), 2, random (0, 160))
-	//	TNT1 AA 0 A_SpawnProjectile ("XDeath3", 48, 0, random (0, 360), 2, random (0, 160))
-	//	TNT1 AAAA 0 A_SpawnProjectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AAAAAA 0 A_SpawnProjectile ("MuchBlood", 48, 0, random (0, 360), 2, random (0, 160));
+	TNT1 A 0 A_PlaySound("DSBOTTLE");
+	//TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("XIceChunk1", 48, 0, random(0, 360), 2, random(0, 160));
+	//TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("XIceChunk2", 48, 0, random(0, 360), 2, random(0, 160));
+	//tNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("XIceChunk3", 48, 0, random(0, 360), 2, random(40, 120));
+	//	TNT1 AAA 0 A_SpawnProjectile("XDeath1", 48, 0, random(0, 360), 2, random(0, 160))
+	//	TNT1 AA 0 A_SpawnProjectile("XDeath2", 48, 0, random(0, 360), 2, random(0, 160))
+	//	TNT1 AA 0 A_SpawnProjectile("XDeath3", 48, 0, random(0, 360), 2, random(0, 160))
+	//	TNT1 AAAA 0 A_SpawnProjectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160))
+	TNT1 AAAAAA 0 A_SpawnProjectile("MuchBlood", 48, 0, random(0, 360), 2, random(0, 160));
 	FZD1 C -1;
 	Stop;
 	
@@ -1372,15 +1372,15 @@ States
 	////MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	//tnt1 A 0 A_JumpIfInTargetInventory("TypeSergeant", 1, "Death.Shotgun");
-	tnt1 A 0 A_Jump (160, 3);
+	tnt1 A 0 A_Jump(160, 3);
 	Goto Death.Arm;
 	tnt1 AAA 0;
- 	tnt1 A 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 A 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	PLAY H 10;
 	PLAY I 10 A_PlayerScream;
 	PLAY J 10 A_NoBlocking;
 	PLAY KLM 10;
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	PLAY N -1;
 	Stop;
 	
@@ -1388,15 +1388,15 @@ States
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	////MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	tnt1 A 0 A_JumpIfCloser(345, "Death.Blast");
-	tnt1 A 0 A_Jump (160, 3);
+	tnt1 A 0 A_Jump(160, 3);
 	Goto Death.Arm;
 	tnt1 AAA 0;
- 	tnt1 A 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 A 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	PLAY H 10;
 	PLAY I 10 A_PlayerScream;
 	PLAY J 10 A_NoBlocking;
 	PLAY KLM 10;
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	PLAY N -1;
 	Stop;
 	
@@ -1409,13 +1409,13 @@ States
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	////MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
- 	tnt1 A 0 A_SpawnProjectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath4", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 A 0 A_SpawnProjectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL1 A 10 A_XScream;
 	XPL1 B 20 A_NoBlocking;
 	XPL1 CDE 10;
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	PPOD A 0 A_SpawnItemEx("MarineEattenByDemon", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION);
 	tnt1 A -1;
 	//XPL1 E -1
@@ -1426,21 +1426,21 @@ States
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
- 	tnt1 A 0 A_SpawnProjectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath2", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath3", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath4", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("RipGuts", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathHalfMarine", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 A 0 A_SpawnProjectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath2", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath3", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("RipGuts", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathHalfMarine", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL2 A 10 A_XScream;
-	tnt1 AA 0 A_SpawnProjectile ("Big_Blood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Big_Blood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL2 B 20 A_NoBlocking;
-	tnt1 AA 0 A_SpawnProjectile ("Big_Blood", 50, 0, random (0, 360), 2, random (0, 160));
-	XPL2 C 10 A_SpawnProjectile ("Big_Blood", 40, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("Big_Blood", 30, 0, random (0, 360), 2, random (0, 160));
-	XPL2 DE 10 A_SpawnProjectile ("Big_Blood", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	tnt1 AA 0 A_SpawnProjectile("Big_Blood", 50, 0, random(0, 360), 2, random(0, 160));
+	XPL2 C 10 A_SpawnProjectile("Big_Blood", 40, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Big_Blood", 30, 0, random(0, 360), 2, random(0, 160));
+	XPL2 DE 10 A_SpawnProjectile("Big_Blood", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	XPL2 E -1;
 	Stop;
 	
@@ -1450,16 +1450,16 @@ States
 	tnt1 A 0 A_PlaySound("BIGSCREA");
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
  	
-	TNT1 AA 0 A_SpawnProjectile ("MuchBlood", 30, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 30, 0, random (0, 360), 2, random (10, 50));
-	TNT1 AAAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 25, 0, random (0, 360), 2, random (40, 60));
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("PB_blood", 40, 0, random (0, 360), 2, random (0, 160));
-	PMET AAABBBCC 1 A_SpawnProjectile ("ExplosionSmoke", 25, 0, random (0, 180), 2, random (0, 180));
-	TNT1 AAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 30, 0, random (0, 360), 2, random (10, 50));
-	TNT1 AA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 25, 0, random (0, 360), 2, random (40, 60));
+	TNT1 AA 0 A_SpawnProjectile("MuchBlood", 30, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(10, 50));
+	TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 25, 0, random(0, 360), 2, random(40, 60));
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("PB_blood", 40, 0, random(0, 360), 2, random(0, 160));
+	PMET AAABBBCC 1 A_SpawnProjectile("ExplosionSmoke", 25, 0, random(0, 180), 2, random(0, 180));
+	TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(10, 50));
+	TNT1 AA 0 A_SpawnProjectile("Brutal_FlyingBlood", 25, 0, random(0, 360), 2, random(40, 60));
 	TNT1 A 0 A_SpawnItemEx("DesintegratedHuman3",0,0,0,0,0,0,0,288);
-	//   PMET AABBCCDDEEFFGGHHIIIII 10 A_SpawnProjectile ("ExplosionSmoke", 25, 0, random (0, 180), 2, random (0, 180))
-	//  PMET IIIIIIIIIIJJJJJJJJJJJJJJJJJJJJJJKKKKKKKKKKKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLL 3 A_SpawnProjectile ("ExplosionSmoke", 25, 0, random (0, 180), 2, random (0, 180))
+	//   PMET AABBCCDDEEFFGGHHIIIII 10 A_SpawnProjectile("ExplosionSmoke", 25, 0, random(0, 180), 2, random(0, 180))
+	//  PMET IIIIIIIIIIJJJJJJJJJJJJJJJJJJJJJJKKKKKKKKKKKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLL 3 A_SpawnProjectile("ExplosionSmoke", 25, 0, random(0, 180), 2, random(0, 180))
 	tnt1 A 0 A_NoBlocking;
 	tnt1 A -1;
 	Stop;
@@ -1485,17 +1485,17 @@ States
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
- 	tnt1 AAAAAAAAAAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 AAAAAAAAAAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL3 A 10 A_XScream;
-	tnt1 AAAAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL3 B 20 A_NoBlocking;
-	XPL3 C 10 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	XPL3 D 10 A_SpawnProjectile ("MuchBlood", 40, 0, random (0, 360), 2, random (0, 160));
-	XPL3 E 10 A_SpawnProjectile ("MuchBlood", 30, 0, random (0, 360), 2, random (0, 160));
-	XPL3 F 10 A_SpawnProjectile ("MuchBlood", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("MuchBlood", 10, 0, random (0, 360), 2, random (0, 160));
-	XPL3 F 10 A_SpawnProjectile ("MuchBlood", 0, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	XPL3 C 10 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	XPL3 D 10 A_SpawnProjectile("MuchBlood", 40, 0, random(0, 360), 2, random(0, 160));
+	XPL3 E 10 A_SpawnProjectile("MuchBlood", 30, 0, random(0, 360), 2, random(0, 160));
+	XPL3 F 10 A_SpawnProjectile("MuchBlood", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("MuchBlood", 10, 0, random(0, 360), 2, random(0, 160));
+	XPL3 F 10 A_SpawnProjectile("MuchBlood", 0, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	XPL3 F -1;
 	Stop;
 	
@@ -1509,17 +1509,17 @@ States
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION);
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib3", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION);
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib4", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION);
-	tnt1 A 0 A_SpawnProjectile ("MuchMeatDeath", 0, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
  	MHEA A 0 A_XScream;
 	MHEA B 0 A_NoBlocking;
 	MHEA CD 0;
 	//MHEA E -1
-	tnt1 A 0 A_SpawnProjectile ("XDeathArm1", 32, 0, random (0, 360), 2, random (0, 90));
-	tnt1 A 0 A_SpawnItem ("PB_pot");
-	tnt1 AAAAA 0 A_SpawnProjectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathArm1", 32, 0, random(0, 360), 2, random(0, 90));
+	tnt1 A 0 A_SpawnItem("PB_pot");
+	tnt1 AAAAA 0 A_SpawnProjectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 	XDMG E 1;
-	tnt1 AAAAAAAAAAAAAAA 0 A_SpawnProjectile ("SuperWallRedBlood", 40, 0, random (0, 360), 2, random (-5, 5));
-	tnt1 AAAAAA 0 bright A_SpawnProjectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
+	tnt1 AAAAAAAAAAAAAAA 0 A_SpawnProjectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-5, 5));
+	tnt1 AAAAAA 0 bright A_SpawnProjectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
 	XDMG E -1;
 	Stop;
 	
@@ -1527,27 +1527,27 @@ States
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
-	tnt1 A 0 A_Jump (160, 3);
+	tnt1 A 0 A_Jump(160, 3);
 	Goto Death.Arm;
 	tnt1 AAA 0;
- 	tnt1 AAAAAAAAAAAAAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 AAAAAAAAAAAAAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL4 A 20 A_XScream;
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath2", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath3", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath4", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath2", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath3", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL4 B 20 A_NoBlocking;
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL4 C 20;
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL4 D 20;
-	tnt1 AAAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL4 E 20;
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	XPL4 F 20;
-	tnt1 AAAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	tnt1 AAAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	XPL4 F -1;
 	Stop;
 	
@@ -1556,16 +1556,16 @@ States
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
- 	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathArm1", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 AA 0 A_SpawnProjectile("XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathArm1", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 A_Scream;
 	XPL5 A 10;
 	tnt1 A 0 A_NoBlocking;
 	tnt1 A 0 A_PlaySound("DSFDTHE");
-	XPL5 BCBCBCBC 10 A_SpawnProjectile ("MuchBlood", 25, 0, random (0, 360), 2, random (0, 160));
-	XPL5 DE 7 A_SpawnProjectile ("MuchBlood", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	XPL5 BCBCBCBC 10 A_SpawnProjectile("MuchBlood", 25, 0, random(0, 360), 2, random(0, 160));
+	XPL5 DE 7 A_SpawnProjectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	XPL5 E -1;
 	Stop;
 	
@@ -1576,19 +1576,19 @@ States
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	TNT1 A 0; //A_TakeInventory("Kicking",1);
  	tnt1 A 0 ThrustThingZ(0,30,0,1);
-	tnt1 AAAA 0 A_SpawnProjectile ("SmallBrainPiece", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains2", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains2", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("SmallBrainPiece", random (45, 55), random (5, -5), random (170, 190), 2, random (0, 40));
-	tnt1 AAAA 0 A_SpawnProjectile ("SmallBrainPiece", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
-	tnt1 AAAAAAAAAAA 0 A_SpawnProjectile ("PB_blood", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathArm1", 35, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains2", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("SmallBrainPiece", random(45, 55), random(5, -5), random(170, 190), 2, random(0, 40));
+	tnt1 AAAA 0 A_SpawnProjectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
+	tnt1 AAAAAAAAAAA 0 A_SpawnProjectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathArm1", 35, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib1", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION);
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 A_XScream;
 	XPL6 A 5;
 	tnt1 A 0 A_NoBlocking;
@@ -1602,16 +1602,16 @@ States
 	tnt1 A 0;
 	tnt1 A 0 A_XScream;
 	tnt1 A 0 A_NoBlocking;
- 	tnt1 AAAA 0 A_SpawnProjectile ("pb_blood", 30, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 AAAA 0 A_SpawnProjectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
 	
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedArm", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedLeg", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedSkull", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 	
-	EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("GreenFlameTrails", 50, 0, random (0, 360), 2, random (0, 360));
+	EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("GreenFlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
 	tnt1 AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
 	tnt1 A 1;
 	tnt1 A -1;
@@ -1622,12 +1622,12 @@ States
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
 	tnt1 A 0;
  	PBR1 A 6 A_Scream;
-	tnt1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("Ashes1", 32, 0, random (0, 360), 2, random (0, 180));
-	tnt1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("Ashes2", 32, 0, random (0, 360), 2, random (0, 180));
-	tnt1 AAAA 0 A_SpawnProjectile ("BluePlasmaFire", 32, 0, random (0, 360), 2, random (0, 180));
+	tnt1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+	tnt1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+	tnt1 AAAA 0 A_SpawnProjectile("BluePlasmaFire", 32, 0, random(0, 360), 2, random(0, 180));
 	PBR1 B 6 A_NoBlocking;
-	PBR1 CDEFGH 6 A_SpawnProjectile ("Blood", 10, 0, random (0, 360), 2, random (0, 160));
-	PBR1 HHHHHHHHHHHHHHHHHHHHHH 8 A_SpawnProjectile ("ExplosionSmoke", 10, 0, random (0, 360), 2, random (0, 160));
+	PBR1 CDEFGH 6 A_SpawnProjectile("Blood", 10, 0, random(0, 360), 2, random(0, 160));
+	PBR1 HHHHHHHHHHHHHHHHHHHHHH 8 A_SpawnProjectile("ExplosionSmoke", 10, 0, random(0, 360), 2, random(0, 160));
 	PBR1 H -1;
 	Stop;
 	
@@ -1637,14 +1637,14 @@ States
 	tnt1 A 0;
 	tnt1 A 0 A_XScream;
 	tnt1 A 0 A_NoBlocking;
- 	tnt1 AAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedArm", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedLeg", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedSkull", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-	EXPL AAAAAA 0 A_SpawnProjectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
+ 	tnt1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedArm", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedLeg", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	EXPL AAAAAA 0 A_SpawnProjectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
 	tnt1 A 1;
 	tnt1 A -1;
 	Stop;
@@ -1657,24 +1657,24 @@ States
 	PBUR A 1;
 	PBUR A 1 A_PlayerScream;
 	PBUR A 1 A_NoBlocking;
-	PBUR AAAABBBBCCCC 2 A_SpawnProjectile ("FlameTrails", 32, 0, random (0, 180), 2, random (0, 180));
-	PBUR DDDDEEEE 2 A_SpawnProjectile ("FlameTrails", 16, 0, random (0, 180), 2, random (0, 180));
-	PBUR EEEEE 4 A_SpawnProjectile ("FlameTrails", 8, 0, random (0, 180), 2, random (0, 180));
-	PBUR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 6 A_SpawnProjectile ("ExplosionSmoke", 8, 0, random (0, 180), 2, random (0, 180));
+	PBUR AAAABBBBCCCC 2 A_SpawnProjectile("FlameTrails", 32, 0, random(0, 180), 2, random(0, 180));
+	PBUR DDDDEEEE 2 A_SpawnProjectile("FlameTrails", 16, 0, random(0, 180), 2, random(0, 180));
+	PBUR EEEEE 4 A_SpawnProjectile("FlameTrails", 8, 0, random(0, 180), 2, random(0, 180));
+	PBUR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 6 A_SpawnProjectile("ExplosionSmoke", 8, 0, random(0, 180), 2, random(0, 180));
 	PBUR E -1;
 	Stop;
 	
 	Burn2:
-	tnt1 AAAAA 0 bright A_SpawnProjectile ("XDeath1", 35, 0, random (0, 360), 2, random (30, 180));
-	tnt1 AAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 37, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAA 0 bright A_SpawnProjectile("XDeath1", 35, 0, random(0, 360), 2, random(30, 180));
+	tnt1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 37, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 	P2D0 A 1;
 	P2D0 A 1 A_PlayerScream;
 	P2D0 A 1 A_NoBlocking;
-	P2D0 BCBCBCBCBC 2 A_SpawnProjectile ("FlameTrails", 28, 0, random (0, 180), 2, random (0, 180));
-	P2D0 DDDD 2 A_SpawnProjectile ("FlameTrails", 8, 0, random (0, 180), 2, random (0, 180));
-	P2D0 EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 6 A_SpawnProjectile ("ExplosionSmoke", 8, 0, random (0, 180), 2, random (0, 180));
+	P2D0 BCBCBCBCBC 2 A_SpawnProjectile("FlameTrails", 28, 0, random(0, 180), 2, random(0, 180));
+	P2D0 DDDD 2 A_SpawnProjectile("FlameTrails", 8, 0, random(0, 180), 2, random(0, 180));
+	P2D0 EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 6 A_SpawnProjectile("ExplosionSmoke", 8, 0, random(0, 180), 2, random(0, 180));
 	P2D0 E -1;
 	Stop;
 	
@@ -1719,11 +1719,11 @@ States
 	Death.Stomp:
 	TNT1 A 0;////A_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 	//MARN A 0 A_GiveInventory("PlayerIsDead", 1);
-	tnt1 AAAAAA 0 bright A_SpawnProjectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-	tnt1 AAAAAA 0 bright A_SpawnProjectile ("XDeath1", 5, 0, random (0, 360), 2, random (30, 180));
-	tnt1 AA 0 bright A_SpawnProjectile ("XDeath2", 55, 0, random (0, 360), 2, random (30, 180));
-	tnt1 AA 0 bright A_SpawnProjectile ("XDeath3", 55, 0, random (0, 360), 2, random (30, 180));
-	tnt1 A 0 A_SpawnItem ("CrushedRemains");
+	tnt1 AAAAAA 0 bright A_SpawnProjectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+	tnt1 AAAAAA 0 bright A_SpawnProjectile("XDeath1", 5, 0, random(0, 360), 2, random(30, 180));
+	tnt1 AA 0 bright A_SpawnProjectile("XDeath2", 55, 0, random(0, 360), 2, random(30, 180));
+	tnt1 AA 0 bright A_SpawnProjectile("XDeath3", 55, 0, random(0, 360), 2, random(30, 180));
+	tnt1 A 0 A_SpawnItem("CrushedRemains");
 	tnt1 A 1;
  	tnt1 A 1 A_XScream;
 	tnt1 A 1 A_NoBlocking;
@@ -1774,31 +1774,31 @@ States
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	FTYZ FG 2;
-	tnt1 A 0 A_PlaySound ("misc/xdeath", 1);
+	tnt1 A 0 A_PlaySound("misc/xdeath", 1);
 	FTYZ FG 2;
-	tnt1 A 0 A_PlaySound ("misc/xdeath", 1);
+	tnt1 A 0 A_PlaySound("misc/xdeath", 1);
 	FTYZ F 2;
 	
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	FTYZ H 4;
-	tnt1 AA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	FTYZ I 4;
-	tnt1 AAAA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	
 	
-	tnt1 A 0 A_PlaySound ("misc/xdeath", 3);
+	tnt1 A 0 A_PlaySound("misc/xdeath", 3);
 	
- 	tnt1 AAAAAAAAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 50, 0, random (0, 360), 2, random (50, 130));
-	tnt1 A 0 A_SpawnProjectile ("XDeathHalfZombieMan", 60, 0, 270, 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathHalfZombieManDown", 60, 0, 90, 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath2", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAA 0 A_SpawnProjectile ("Instestin", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 AAAAAAAAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 50, 0, random(0, 360), 2, random(50, 130));
+	tnt1 A 0 A_SpawnProjectile("XDeathHalfZombieMan", 60, 0, 270, 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathHalfZombieManDown", 60, 0, 90, 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath2", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath3", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAA 0 A_SpawnProjectile("Instestin", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
 	FTYZ K 2;
 	FTYZ L 15;
 	//////////////////////////////////////////////////////
@@ -1816,17 +1816,17 @@ States
  	//////////////////////////////////////////////////////
 	FPZ2 AB 4;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
- 	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 50, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath2", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+ 	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 50, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath2", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath3", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
 	FPZ2 C 10;
 	tnt1 A 0 A_PlaySound("imp/melee");
 	FPZ2 D 10;
-	tnt1 AAAAA 0 A_SpawnProjectile ("Instestin2", 32, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("Instestin2", 32, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
  	FPZ2 EF 3;
 	tnt1 A 0 A_PlaySound("grunt/death");
 	FPZ2 G 6;
@@ -1834,9 +1834,9 @@ States
 	TNT1 A 0; //A_TakeInventory("ZombieManFatality2",1);
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnItem ("DeadZombieManFacingFront")
-	//tnt1 A 0 A_SpawnItem ("ZombieManDyingAfterFatality");
-	tnt1 A 0 A_SpawnProjectile ("Instestin", 30, 0, 0, 2, 0);
+	//tnt1 A 0 A_SpawnItem("DeadZombieManFacingFront")
+	//tnt1 A 0 A_SpawnItem("ZombieManDyingAfterFatality");
+	tnt1 A 0 A_SpawnProjectile("Instestin", 30, 0, 0, 2, 0);
  	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStillLoop;
 	
@@ -1855,38 +1855,38 @@ States
  	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (40, 90));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(40, 90));
 	TNT1 A 0 A_SpawnItemEx("SplatteredSmall");
 	
 	FPZ3 KKKLLLLLLKJJJ 1;
  	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (40, 90));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(40, 90));
 	
 	
 	FPZ3 MMMNNNNNNNMOOO 1;
  	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (40, 90));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(40, 90));
 	FPZ3 MMMNNNNNNNMOOO 1;
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 30, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("BloodMist", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAA 0 A_SpawnProjectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 30, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("BloodMist", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains2", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains2", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAA 0 A_SpawnProjectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
 	
 	
 	FPZ3 PPPQQQQQQQPRRR 1;
@@ -1894,24 +1894,24 @@ States
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (40, 90));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(40, 90));
 	
 	FPZ3 PPPQQQQQQPRRR 1;
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (40, 90));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(40, 90));
 	FPZ3 RP 3;
 	
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("ZombieManFatality3",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnItem ("DeadZombieManFatality3");
-	//tnt1 A 0 A_SpawnItem ("ZombieManDyingAfterFatality")
+	//tnt1 A 0 A_SpawnItem("DeadZombieManFatality3");
+	//tnt1 A 0 A_SpawnItem("ZombieManDyingAfterFatality")
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -1936,9 +1936,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(0, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	TNT1 A 0 A_SpawnItemEx("SplatteredSmall", 0, 20);
 	FPZ4 JJJIH 2;
 	
@@ -1948,9 +1948,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(0, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FPZ4 JJJIH 2;
 	
 	FPZ4 HHI 2;
@@ -1959,9 +1959,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(0, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FPZ4 OOOMN 2;
 	
 	
@@ -1971,9 +1971,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(0, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FPZ4 OOOMN 2;
 	
 	FPZ4 NNM 2;
@@ -1982,9 +1982,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(0, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FPZ4 OOOMN 2;
 	
 	
@@ -1995,34 +1995,34 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("grunt/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("Bloodmist", 5, 0, random(0, 360), 2, random(0, 90));
 	
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAA 0 A_SpawnProjectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains2", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("Brains4", 5, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains2", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains2", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("Brains4", 5, 0, random(0, 360), 2, random(0, 160));
 	TNT1 A 0 A_SpawnItem("SplatteredSmall");
-	tnt1 AAAAAAAA 0 A_SpawnProjectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAAAA 0 A_SpawnProjectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(0, 160));
 	FPZ4 P 7;
 	FPZ4 L 6;
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("ZombieManFatality4",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnItem ("DeadZombieManFatality3");
-	//tnt1 A 0 A_SpawnItem ("ZombieManDyingAfterFatality")
+	//tnt1 A 0 A_SpawnItem("DeadZombieManFatality3");
+	//tnt1 A 0 A_SpawnItem("ZombieManDyingAfterFatality")
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2057,7 +2057,7 @@ States
 	TNT1 A 0; //A_TakeInventory("ImpFatality",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
 	//TNT1 A 0 A_GiveInventory("BootsSmearedWithRedBlood", 6);
-	//tnt1 A 0 A_SpawnProjectile ("StompedImp", 1, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 A 0 A_SpawnProjectile("StompedImp", 1, 0, random(0, 360), 2, random(0, 160));
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2070,27 +2070,27 @@ States
 	tnt1 A 0 ;//acs_Execute(;//acsFatality, 0);
 	//////////////////////////////////////////////////////
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 50, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 50, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
 	FTBI BC 2;
 	tnt1 A 0  A_PlaySound("imp/die");
 	FTBI D 25;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 50, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 50, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
 	FTBI EF 3;
 	FTBI G 25;
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("ImpFatality2",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnItem ("ImpMessyCorpse");
+	//tnt1 A 0 A_SpawnItem("ImpMessyCorpse");
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2116,9 +2116,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("imp/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 A_SpawnProjectile ("Bloodmist", 2, 0, random (0, 360), 2, random (20, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 A_SpawnProjectile("Bloodmist", 2, 0, random(0, 360), 2, random(20, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FTCI I 5;
 	FTCI H 2;
 	FTCI G 3;
@@ -2129,9 +2129,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("imp/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 A_SpawnProjectile ("Bloodmist", 2, 0, random (0, 360), 2, random (20, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 A_SpawnProjectile("Bloodmist", 2, 0, random(0, 360), 2, random(20, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FTCI I 5;
 	FTCI H 2;
 	FTCI G 3;
@@ -2143,9 +2143,9 @@ States
 	tnt1 A 0 A_PlaySound("imp/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
 	TNT1 A 0 A_SpawnItemEx("SplatteredSmall", 0, 15);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 A_SpawnProjectile ("Bloodmist", 2, 0, random (0, 360), 2, random (20, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 A_SpawnProjectile("Bloodmist", 2, 0, random(0, 360), 2, random(20, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FTCI I 5;
 	FTCI H 2;
 	FTCI G 3;
@@ -2156,9 +2156,9 @@ States
 	tnt1 A 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 	tnt1 A 0 A_PlaySound("imp/pain", 1);
 	tnt1 A 0 A_PlaySound("player/cyborg/fist", 4);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AA 0 A_SpawnProjectile ("Bloodmist", 2, 0, random (0, 360), 2, random (20, 90));
-	tnt1 A 0 A_SpawnProjectile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 A_SpawnProjectile("Bloodmist", 2, 0, random(0, 360), 2, random(20, 90));
+	tnt1 A 0 A_SpawnProjectile("Teeth", 15, 0, random(0, 360), 2, random(0, 160));
 	FTCI I 5;
 	FTCI H 2;
 	FTCI G 3;
@@ -2177,8 +2177,8 @@ States
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("ImpFatality3",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnItem ("impfacesorapedomgthisiscruel");
-	//tnt1 A 0 A_SpawnItem ("ZombieManDyingAfterFatality")
+	//tnt1 A 0 A_SpawnItem("impfacesorapedomgthisiscruel");
+	//tnt1 A 0 A_SpawnItem("ZombieManDyingAfterFatality")
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2208,9 +2208,9 @@ States
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	tnt1 A 0 A_PlaySound("misc/xdeath", 3);
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AAAAAA 0 A_SpawnProjectile ("BloodMist", 30, 0, random (0, 360), 2, random (20, 90));
-	FTYS FGHIIPPP 2 A_SpawnProjectile ("Blood", 1, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 20, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAAAAA 0 A_SpawnProjectile("BloodMist", 30, 0, random(0, 360), 2, random(20, 90));
+	FTYS FGHIIPPP 2 A_SpawnProjectile("Blood", 1, 0, random(0, 360), 2, random(0, 160));
 	
 	FTYS QR 5;
 	tnt1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
@@ -2220,7 +2220,7 @@ States
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("SergeantFatality",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnProjectile ("BeheadedSergeantZombie", 1, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 A 0 A_SpawnProjectile("BeheadedSergeantZombie", 1, 0, random(0, 360), 2, random(0, 160));
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2237,19 +2237,19 @@ States
 	FTYS J 1 A_PlaySound("grunt/death");
 	FTYS K 4;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath2", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath3", 20, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AAAAAAAAAAA 0 A_SpawnProjectile ("BloodMist", 50, 0, random (0, 360), 2, random (20, 90));
-	tnt1 A 0 A_SpawnProjectile ("RipSergeant", 0, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAAAAAAAAAA 0 A_SpawnProjectile("BloodMist", 50, 0, random(0, 360), 2, random(20, 90));
+	tnt1 A 0 A_SpawnProjectile("RipSergeant", 0, 0, random(0, 360), 2, random(0, 160));
 	FTYS LMNO 3;
 	FTYS O 10;
 	///////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("SergeantFatality2",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
-	//tnt1 A 0 A_SpawnItem ("DeadShotgunguy_Half", 1);
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
+	//tnt1 A 0 A_SpawnItem("DeadShotgunguy_Half", 1);
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2275,21 +2275,21 @@ States
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("XDeath2", 20, 0, random (0, 360), 2, random (0, 160))
-	//tnt1 AA 0 A_SpawnProjectile ("XDeath3", 20, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AAA 0 A_SpawnProjectile ("Bloodmist", 30, 0, random (0, 360), 2, random (20, 90));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 20, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160))
+	//tnt1 AA 0 A_SpawnProjectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160))
+	TNT1 AAA 0 A_SpawnProjectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 	
 	FSP3 HIIIIII 3;
 	
 	tnt1 A 0 A_PlaySound("weapons/sg");
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAA 0 A_SpawnProjectile ("XDeath1", 70, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath2", 70, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath3", 70, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("XDeath1", 70, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath2", 70, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath3", 70, 0, random(0, 360), 2, random(0, 160));
 	
-	TNT1 AAAAAAAAAAA 0 A_SpawnProjectile ("BloodMist", 80, 0, random (0, 360), 2, random (20, 90));
-	//tnt1 A 0 A_SpawnProjectile ("FlyingImpaledSergeant", 50, 0, random (0, 360), 2, random (70, 110));
+	TNT1 AAAAAAAAAAA 0 A_SpawnProjectile("BloodMist", 80, 0, random(0, 360), 2, random(20, 90));
+	//tnt1 A 0 A_SpawnProjectile("FlyingImpaledSergeant", 50, 0, random(0, 360), 2, random(70, 110));
 	
 	
 	FSP3 L 3 BRIGHT;
@@ -2334,19 +2334,19 @@ States
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
 	tnt1 A 0 A_PlaySound("BURNZOM");
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	CFTA S 20;
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("ComandoFatality",1);
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
 	//tnt1 A 0 A_SpawnItemEx("DyingComando", 0, 0, 40, 0, 0);
-	tnt1 A 0 A_SpawnProjectile ("XDeathChainArm", 40, -15, 0, 2, 0);
-	tnt1 A 0 A_SpawnProjectile ("XDeathChainArm", 40, 15, 0, 2, 0);
+	tnt1 A 0 A_SpawnProjectile("XDeathChainArm", 40, -15, 0, 2, 0);
+	tnt1 A 0 A_SpawnProjectile("XDeathChainArm", 40, 15, 0, 2, 0);
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2367,14 +2367,14 @@ States
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath2", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath3", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("MuchBlood", 1, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XdeathChainArm", 42, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XdeathChainLeg", 42, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathOrgan1", 42, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("MuchBlood", 1, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XdeathChainArm", 42, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XdeathChainLeg", 42, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathOrgan1", 42, 0, random(0, 360), 2, random(0, 160));
 	CFTC CDEF 4;
 	CFTC F 15;
 	//////////////////////////////////////////////////////
@@ -2399,13 +2399,13 @@ States
 	FDEM C 1 A_PlaySound("demon/pain");
 	FDEM CDCDCD 3;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	FDEM EFGHI 3 A_SpawnProjectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathDemonHead", 32, 0, 90, 2, random (0, 90));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	FDEM EFGHI 3 A_SpawnProjectile("XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathDemonHead", 32, 0, 90, 2, random(0, 90));
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("DemonFatality",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
@@ -2425,12 +2425,12 @@ States
 	FDEM J 9;
 	FDEM K 7;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathStomach", 32, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathStomach", 32, 0, random(0, 360), 2, random(0, 160));
 	FDEM LMN 6;
 	FDEM OO 3;
 	//////////////////////////////////////////////////////
@@ -2532,12 +2532,12 @@ States
 	CACF E 4 A_PlaySound("demon/pain");
 	TNT1 A 0 A_Playsound("EYEPULL", 2);
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	//tnt1 AAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("Blue_FlyingBrutal_FlyingBloodTrail", 45, 0, random (0, 180), 2, random (0, 180));
-	//tnt1 AAAAAAAAAAAA 0 A_SpawnProjectile ("Blue_FlyingBrutal_FlyingBloodTrail", 45, 0, random (0, 360), 2, random (0, 360));
-	//tnt1 AAA 0 A_SpawnProjectile ("Blue_Blood", 45, 0, random (0, 360), 2, random (0, 160));
-	//CACF EFGHII 4 A_SpawnProjectile ("Blue_Blood", 45, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("Blue_Flyingpb_FlyingBloodTrail", 45, 0, random(0, 180), 2, random(0, 180));
+	//tnt1 AAAAAAAAAAAA 0 A_SpawnProjectile("Blue_Flyingpb_FlyingBloodTrail", 45, 0, random(0, 360), 2, random(0, 360));
+	//tnt1 AAA 0 A_SpawnProjectile("Blue_Blood", 45, 0, random(0, 360), 2, random(0, 160));
+	//CACF EFGHII 4 A_SpawnProjectile("Blue_Blood", 45, 0, random(0, 360), 2, random(0, 160));
 	CACF J 4 A_PlaySound("misc/xdeath2");
-	//CACF KLMMM 4 A_SpawnProjectile ("Blue_Blood", 15, 0, random (0, 360), 2, random (0, 160));
+	//CACF KLMMM 4 A_SpawnProjectile("Blue_Blood", 15, 0, random(0, 360), 2, random(0, 160));
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("CacoDemonFatality",1);
@@ -2562,16 +2562,16 @@ States
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	CA2F F 4;
 	tnt1 A 0 A_PlaySound("misc/xdeath2");
-	//CA2F FFFF 2 A_SpawnProjectile ("Blue_Blood", 25, 0, random (0, 180), 2, random (0, 180));
-	//tnt1 AAAAA 0 A_SpawnProjectile ("CacoXDeath7", 25, 0, random (0, 360), 2, random (0, 160));
+	//CA2F FFFF 2 A_SpawnProjectile("Blue_Blood", 25, 0, random(0, 180), 2, random(0, 180));
+	//tnt1 AAAAA 0 A_SpawnProjectile("CacoXDeath7", 25, 0, random(0, 360), 2, random(0, 160));
 	CA2F GH 4;
-	//tnt1 A 0 A_SpawnProjectile ("RipCaco", 35, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 A 0 A_SpawnProjectile("RipCaco", 35, 0, random(0, 360), 2, random(0, 160));
 	CA2F I 20;
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	TNT1 A 0; //A_TakeInventory("CacoDemonFatality2",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
-	//tnt1 A 0 A_SpawnItem ("DeadHalfCacoDemon", 1);
+	//tnt1 A 0 A_SpawnItem("DeadHalfCacoDemon", 1);
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2585,9 +2585,9 @@ States
 	//////////////////////////////////////////////////////
 	FREV ABABAB 3;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
@@ -2600,10 +2600,10 @@ States
 	FREV O 2;
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("RevenantHead", 40, 0, 0, 2, 0);
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("RevenantHead", 40, 0, 0, 2, 0);
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
@@ -2630,11 +2630,11 @@ States
 	FRE2 A 5 A_PlaySound("skeleton/pain");
 	FRE2 A 5;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath2", 40, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	FRE2 BCDEFGGGGG 6;
 	
 	//////////////////////////////////////////////////////
@@ -2660,28 +2660,28 @@ States
 	//////////////////////////////////////////////////////
 	FATF A 6;
 	tnt1 A 0 ;//acs_Execute(585, 0, 0, 0, 0);
-	tnt1 A 0 A_SpawnProjectile ("Blood", 45, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAA 0 A_SpawnProjectile ("pb_FlyingBloodTrail", 45, 0, random (0, 180), 2, random (0, 180));
+	tnt1 A 0 A_SpawnProjectile("Blood", 45, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 45, 0, random(0, 180), 2, random(0, 180));
 	FATF A 6 A_PlaySound("misc/xdeath4");
-	tnt1 A 0 A_SpawnProjectile ("Blood", 45, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("Blood", 45, 0, random(0, 360), 2, random(0, 160));
 	FATF A 6 A_PlaySound("fatso/pain");
-	FATF AA 6 A_SpawnProjectile ("Blood", 45, 0, random (0, 360), 2, random (0, 160));
+	FATF AA 6 A_SpawnProjectile("Blood", 45, 0, random(0, 360), 2, random(0, 160));
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
 	
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
-	tnt1 A 0 A_SpawnProjectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath2", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeath3", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath2", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeath3", 50, 0, random(0, 360), 2, random(0, 160));
 	FATF BCD 8;
 	tnt1 A 0 A_PlaySound("fatso/pain");
 	FATF D 50;
@@ -2706,29 +2706,29 @@ States
 	BHF1 G 3 A_PlaySound("weapons/gswing");
 	BHF1 HIJKLLLMN 2;
 	BHF1 O 3 A_PlaySound("baron/pain");
-	//tnt1 AAAAAAA 0 A_SpawnProjectile ("Green_Blood", 35, 0, random (0, 180), 2, random (0, 180));
+	//tnt1 AAAAAAA 0 A_SpawnProjectile("Green_Blood", 35, 0, random(0, 180), 2, random(0, 180));
 	tnt1 A 0 A_PlaySound("misc/xdeath4");
-	//BHF1 PQR 3 A_SpawnProjectile ("Green_Blood", 35, 0, random (0, 360), 2, random (0, 160));
+	//BHF1 PQR 3 A_SpawnProjectile("Green_Blood", 35, 0, random(0, 360), 2, random(0, 160));
 	
 	tnt1 A 0 A_PlaySound("misc/xdeath4");
 	tnt1 A 0 A_PlaySound("misc/xdeath3");
 	tnt1 A 0 A_PlaySound("misc/xdeath2");
 	tnt1 A 0 A_PlaySound("misc/xdeath1");
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	//tnt1 AAAA 0 A_SpawnProjectile ("MuchBloodGreen", 50, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAAA 0 A_SpawnProjectile("MuchBloodGreen", 50, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	
-	//BHF1 STUV 3 A_SpawnProjectile ("Green_Blood", 35, 0, random (0, 360), 2, random (0, 160));
+	//BHF1 STUV 3 A_SpawnProjectile("Green_Blood", 35, 0, random(0, 360), 2, random(0, 160));
 	
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	
-	//tnt1 AAAAAA 0 A_SpawnProjectile ("CeilGreenBloodLauncher", 40, 0, random (0, 360), 2, random (50, 130));
-	//tnt1 AAAAAAAAA 0 A_SpawnProjectile ("XDeath1Green", 10, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AAA 0 A_SpawnProjectile ("MuchBloodGreen", 50, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAAAAA 0 A_SpawnProjectile("CeilGreenBloodLauncher", 40, 0, random(0, 360), 2, random(50, 130));
+	//tnt1 AAAAAAAAA 0 A_SpawnProjectile("XDeath1Green", 10, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AAA 0 A_SpawnProjectile("MuchBloodGreen", 50, 0, random(0, 360), 2, random(0, 160));
 	
 	
 	BHF1 WXYZZZZZZZZZZZZZZ 3;
@@ -2756,7 +2756,7 @@ States
 	HKF1 AB 5;
 	tnt1 A 0 a_Playsound("misc/xdeath4");
 	HKF1 C 6 A_PlaySound("PSXDPN");
-	//tnt1 AAA 0 A_SpawnProjectile ("Green_Blood", 45, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAA 0 A_SpawnProjectile("Green_Blood", 45, 0, random(0, 360), 2, random(0, 160));
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	HKF1 C 5;
 	tnt1 A 0 A_PlaySound("imp/melee");
@@ -2764,13 +2764,13 @@ States
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	
-	//tnt1 AAAAAAA 0 A_SpawnProjectile ("XDeath1Green", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("Green_Blood", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("MuchBloodGreen", 50, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAAAAAA 0 A_SpawnProjectile("XDeath1Green", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("Green_Blood", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("MuchBloodGreen", 50, 0, random(0, 360), 2, random(0, 160));
 	
 	
-	HKF1 CDE 6;// A_SpawnItem ("Green_Blood", 30);
-	HKF1 FG 6;// A_SpawnItem ("Green_Blood", 15);
+	HKF1 CDE 6;// A_SpawnItem("Green_Blood", 30);
+	HKF1 FG 6;// A_SpawnItem("Green_Blood", 15);
 	HKF1 HHH 5;
 	
 	//////////////////////////////////////////////////////
@@ -2799,19 +2799,19 @@ States
 	HKF3 D 10;
 	tnt1 A 0 A_PlaySound("knight/death");
 	
-	//tnt1 AAAAAAA 0 A_SpawnProjectile ("XDeath1Green", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("Green_Blood", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("MuchBloodGreen", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathHellKnightArm", 40, 0, 90, 2, random (0, 20));
-	HKF3 EFGG 6;// A_SpawnProjectile ("Green_Blood", 40, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAAAAAA 0 A_SpawnProjectile("XDeath1Green", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("Green_Blood", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("MuchBloodGreen", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathHellKnightArm", 40, 0, 90, 2, random(0, 20));
+	HKF3 EFGG 6;// A_SpawnProjectile("Green_Blood", 40, 0, random(0, 360), 2, random(0, 160));
 	
 	TNT1 A 0 A_PlaySound("NECK_BRK");
 	HKF3 H 11;
 	TNT1 A 0 A_PlaySound("gore/headshot");
-	//tnt1 AAAAAAA 0 A_SpawnProjectile ("XDeath1Green", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("Green_Blood", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("MuchBloodGreen", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 A 0 A_SpawnProjectile ("XDeathHellKnightHead", 40, 0, 270, 2, random (0, 20));
+	//tnt1 AAAAAAA 0 A_SpawnProjectile("XDeath1Green", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("Green_Blood", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("MuchBloodGreen", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 A 0 A_SpawnProjectile("XDeathHellKnightHead", 40, 0, 270, 2, random(0, 20));
 	HKF3 I 12;
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("HKFatality3",1);
@@ -2850,13 +2850,13 @@ States
 	
 	
 	
-	//tnt1 AAAAAAA 0 A_SpawnProjectile ("XDeath1Green", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AAAA 0 A_SpawnProjectile ("Green_Blood", 50, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("MuchBloodGreen", 50, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 AAAAAAA 0 A_SpawnProjectile("XDeath1Green", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AAAA 0 A_SpawnProjectile("Green_Blood", 50, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("MuchBloodGreen", 50, 0, random(0, 360), 2, random(0, 160));
 	
 	
 	HKF2 KL 5;
-	tnt1 A 0 A_SpawnProjectile ("XDeathHellKnightHead", 64, 0, random (0, 360), 2, random (60, 120));
+	tnt1 A 0 A_SpawnProjectile("XDeathHellKnightHead", 64, 0, random(0, 360), 2, random(60, 120));
 	HKF2 MNNNNN 5;
 	
 	//////////////////////////////////////////////////////
@@ -2888,12 +2888,12 @@ States
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
-	tnt1 AAAAA 0 A_SpawnProjectile ("Instestin2", 14, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAA 0 A_SpawnProjectile ("XDeath3", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("Instestin2", 14, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("XDeath3", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	ARF1 JKLMNNNNNNNNNNNNNNNN 3;
 	
 	//////////////////////////////////////////////////////
@@ -2901,7 +2901,7 @@ States
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",20);
 	//tnt1 A 0 A_SpawnItemEx("RapedArachnotron", 0, 1, 1, 1, 1);
-	//tnt1 A 0 A_SpawnProjectile ("SpiderLeg", 30, 0, 0, 2, 0)
+	//tnt1 A 0 A_SpawnProjectile("SpiderLeg", 30, 0, 0, 2, 0)
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2924,20 +2924,20 @@ States
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
-	tnt1 AAAAA 0 A_SpawnProjectile ("Instestin2", 14, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAA 0 A_SpawnProjectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-	tnt1 AAAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("Instestin2", 14, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+	tnt1 AAAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	
 	ARF2 CDE 3;
-	tnt1 A 0 A_SpawnProjectile ("XDeathArachnotronHead", 50, 0, random (0, 360), 2, random (40, 130));
+	tnt1 A 0 A_SpawnProjectile("XDeathArachnotronHead", 50, 0, random(0, 360), 2, random(40, 130));
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("ArachnotronFatality2",1);
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",20);
 	//TNT1 A 0 A_SpawnItemEx("ArachnoTurretFrame", 0, 1, 1, 1, 1);
-	//tnt1 A 0 A_SpawnProjectile ("SpiderLeg", 30, 0, 0, 2, 0)
+	//tnt1 A 0 A_SpawnProjectile("SpiderLeg", 30, 0, 0, 2, 0)
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -2956,20 +2956,20 @@ States
 	AVF1 A 20;
 	
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 50, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 50, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
 	
 	AVF1 A 1 A_PlaySound("vile/Death");
-	AVF1 BCDEEEFGHHH 5 A_SpawnProjectile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160));
+	AVF1 BCDEEEFGHHH 5 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
 	AVF1 IJKLM 2;
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 20, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 20, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
@@ -2980,10 +2980,10 @@ States
 	AVF1 N 30;
 	AVF1 OPQQR 3;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath3", 20, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAAAAAAAAA 0 A_SpawnProjectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0);
 	AVF1 STUUUUVVVV 2;
 	tnt1 A 0 A_PlaySound("TAUNT");
@@ -3017,8 +3017,8 @@ States
 	tnt1 A 0 ;//acs_Execute(582, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(583, 0, 0, 0, 0);
 	
-	tnt1 AAAAAA 0 A_SpawnProjectile ("Blood", 55, 0, random (0, 180), 2, random (0, 180));
-	tnt1 AA 0 A_SpawnProjectile ("XDeath1", 55, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAAAA 0 A_SpawnProjectile("Blood", 55, 0, random(0, 180), 2, random(0, 180));
+	tnt1 AA 0 A_SpawnProjectile("XDeath1", 55, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 A_PlaySound("demon/pain");
 	
 	PA1F BCDEEEEEFGHI 3;
@@ -3028,9 +3028,9 @@ States
 	PA1F JKKKK 3;
 	
 	PA1F L 4;
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 90, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 90, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(585, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
@@ -3043,9 +3043,9 @@ States
 	
 	PA1F OPQR 3;
 	
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 90, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 90, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(585, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
@@ -3056,9 +3056,9 @@ States
 	PA1F RQPQR 3;
 	
 	
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 90, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 90, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(585, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
@@ -3069,9 +3069,9 @@ States
 	PA1F RQPQR 3;
 	
 	
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 90, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 90, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(585, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
@@ -3082,9 +3082,9 @@ States
 	PA1F RQPQR 3;
 	
 	
-	tnt1 AAAA 0 A_SpawnProjectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-	tnt1 AAA 0 A_SpawnProjectile ("MuchBlood", 90, 0, random (0, 360), 2, random (0, 160));
+	tnt1 AAAA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+	tnt1 AAA 0 A_SpawnProjectile("MuchBlood", 90, 0, random(0, 360), 2, random(0, 160));
 	tnt1 A 0 ;//acs_Execute(585, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(580, 0, 0, 0, 0);
 	tnt1 A 0 ;//acs_Execute(581, 0, 0, 0, 0);
@@ -3094,7 +3094,7 @@ States
 	
 	
 	PA1F S 30;
-	PA1F STSTST 6 A_SpawnProjectile ("MuchBlood", 30, 0, random (0, 360), 2, random (0, 160));
+	PA1F STSTST 6 A_SpawnProjectile("MuchBlood", 30, 0, random(0, 360), 2, random(0, 160));
 	PA1F S 9;
 	
 	//////////////////////////////////////////////////////
@@ -3132,7 +3132,7 @@ States
 	TNT1 A 0; //A_TakeInventory("IsCurbstompingZombieman",1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",10);
 	//TNT1 A 0 A_GiveInventory("BootsSmearedWithRedBlood", 6);
-	//tnt1 A 0 A_SpawnProjectile ("StompedZombieman", 1, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 A 0 A_SpawnProjectile("StompedZombieman", 1, 0, random(0, 360), 2, random(0, 160));
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
@@ -3161,7 +3161,7 @@ States
 	TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 	tnt1 A 0 A_GiveInventory("HealthBonus",5);
 	//TNT1 A 0 A_GiveInventory("BootsSmearedWithRedBlood", 6);
-	//tnt1 A 0 A_SpawnProjectile ("StompedSergeant", 1, 0, random (0, 360), 2, random (0, 160));
+	//tnt1 A 0 A_SpawnProjectile("StompedSergeant", 1, 0, random(0, 360), 2, random(0, 160));
 	MARN A 0 ;//acs_ExecuteAlways(171, 0, 0, 0, 0);//Stop Camera
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	Goto StandStill;
@@ -3210,12 +3210,12 @@ States
 	PVPF D 4;
 	tnt1 a 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 	PVPF E 4;
-	tnt1 A 0 A_SpawnProjectile ("MeatDeath", 50, 0, random (0, 360), 2, random (0, 160))       ;
+	tnt1 A 0 A_SpawnProjectile("MeatDeath", 50, 0, random(0, 360), 2, random(0, 160))       ;
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib1", 0, 0, 50);
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib2", 0, 0, 50);
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib3", 0, 0, 50);
 	PPOD A 0 A_SpawnItemEx("BasicMarineGib4", 0, 0, 50);
-	tnt1 AA 0 A_SpawnProjectile ("XDeathArm1", 42, 0, random (0, 360), 2, random (0, 90));
+	tnt1 AA 0 A_SpawnProjectile("XDeathArm1", 42, 0, random(0, 360), 2, random(0, 90));
 	PVPF EFGGGG 4;
 	//////////////////////////////////////////////////////
 	TNT1 A 0; //A_TakeInventory("PVPFatality",1);
@@ -3337,14 +3337,14 @@ States
 	
 	//  Failed attemp to able a player to be saved 
 	//  by other player before getting executed in an enemy's 
-	//  fatality (the following lines were an idea of making the
+	//  fatality(the following lines were an idea of making the
 	//  Hell Knight be shootable before he could headstomp the player).
 	//  This idea was canceled due the current limits on Zdoom engine
-	// (Or maybe I'm just doing it wrong).
+	//(Or maybe I'm just doing it wrong).
 	//  Maybe I will work on this in a future version.
 	
 	//	Death.UnusedHKF: 
-	// tnt1 A 0 A_SpawnProjectile ("HellKnightSpawner", 1, 0, random (0, 360), 2, random (0, 160))
+	// tnt1 A 0 A_SpawnProjectile("HellKnightSpawner", 1, 0, random(0, 360), 2, random(0, 160))
 	//       XXXX A -1
 	//       Stop
 	
@@ -3358,26 +3358,26 @@ States
 	//        tnt1 A 0 A_GiveInventory("BeginCurbstomped", 1)
 	//        tnt1 A 0 SetPlayerProperty(0,1,0)
 	//        tnt1 A 0 ;//acs_ExecuteAlways(477, 0, 0, 0, 0)//Start Camera
-	//       KTFP AAAAAAAAAA 5 A_SpawnItem ("FreePlayerFromHellKnight", 0, 0,0)
-	//      KTFP BCDE 5 A_SpawnItem ("FreePlayerFromHellKnight", 0, 0,0)
+	//       KTFP AAAAAAAAAA 5 A_SpawnItem("FreePlayerFromHellKnight", 0, 0,0)
+	//      KTFP BCDE 5 A_SpawnItem("FreePlayerFromHellKnight", 0, 0,0)
 	//   Goto Curbstomped
 	//
 	//   Curbstomped:
-	//     KTFP EEEEE 5 A_SpawnItem ("FreePlayerFromHellKnight", 0, 10,0)
-	//    KTFP FFFFF 5 A_SpawnItem ("FreePlayerFromHellKnight", 0, 0,0)
-	//     KTFP GGG 5 A_SpawnItem ("FreePlayerFromHellKnight", 0, 0,0)
-	//    KTFP GGGG 1 A_SpawnItem ("CurbStomp", 0, 0)
+	//     KTFP EEEEE 5 A_SpawnItem("FreePlayerFromHellKnight", 0, 10,0)
+	//    KTFP FFFFF 5 A_SpawnItem("FreePlayerFromHellKnight", 0, 0,0)
+	//     KTFP GGG 5 A_SpawnItem("FreePlayerFromHellKnight", 0, 0,0)
+	//    KTFP GGGG 1 A_SpawnItem("CurbStomp", 0, 0)
 	//     Goto Death.HKFAT
 	//
 	//	Pain.FreeHellKnight:
 	//     KTFP E 50 SetPlayerProperty(0,0,0)
 	//      tnt1 A 1 SetPlayerProperty(0,0,0)
-	//tnt1 A 1 A_SpawnItem ("HellKnight", 0, 0)
+	//tnt1 A 1 A_SpawnItem("HellKnight", 0, 0)
 	//Goto See
 	//
 	//   Death.HKFAT:
 	//     KTFP HIJKLLLLLLLLL 5
-	//     tnt1 A 0 A_SpawnItem ("HellKnight", 0, 0)
+	//     tnt1 A 0 A_SpawnItem("HellKnight", 0, 0)
 	//     XXXX A -1
 	//     Stop
 	
@@ -3760,14 +3760,14 @@ States
 	
 	Salutes1:
 	tnt1 A 0;
-	tnt1 A 0 A_PlaySound ("DSSALUTE");
+	tnt1 A 0 A_PlaySound("DSSALUTE");
 	MWAV BCDEFEFDCB 7;
 	TNT1 A 0; //A_TakeInventory("Salute1",1);
 	Goto StandstillLoop;
 	
 	Salutes2:
 	tnt1 A 0;
-	tnt1 A 0 A_PlaySound ("DSSALUTE");
+	tnt1 A 0 A_PlaySound("DSSALUTE");
 	MWAV IJK 4;
 	MWAV LMNNML 3;
 	MWAV LMNNML 3;
@@ -3916,7 +3916,7 @@ States
 	PLAY A 2;
 	tnt1 A 0 SetPlayerProperty(0,0,0);
 	TNT1 A 0 {self.bNOPAIN = false;}
-	//tnt1 A 0 Thing_ChangeTID (0, 567)
+	//tnt1 A 0 Thing_ChangeTID(0, 567)
 	TNT1 A 0; //A_JumpIfInventory("NumberOfAllies", 1, "SummonMarines");
 	SpawnFriends2:
 	TNT1 A 0; //A_JumpIfInventory("NumberOfAlliesMinigun", 1, "SummonMinigunners");
@@ -4062,18 +4062,18 @@ CLASS Player_Blood : pb_Blood {
  states
  {
 	Spawn:
-	//tnt1 AAAAA 0 A_SpawnProjectile ("named_BloodTr", 7, 0, random (0, 360), 2, random (0, 180))
-	//tnt1 AAAAAAAAAAA 0 A_SpawnProjectile ("named_BloodTr", 0, 0, random (0, 180), 2, random (0, 180))
-	tnt1 AAAAAAAAAAAA 0 A_SpawnProjectile ("named_BloodTr", 0, 0, random (0, 360), 2, random (0, 360));
+	//tnt1 AAAAA 0 A_SpawnProjectile("named_BloodTr", 7, 0, random(0, 360), 2, random(0, 180))
+	//tnt1 AAAAAAAAAAA 0 A_SpawnProjectile("named_BloodTr", 0, 0, random(0, 180), 2, random(0, 180))
+	tnt1 AAAAAAAAAAAA 0 A_SpawnProjectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
 	tnt1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-	tnt1 A 0 A_SpawnProjectile ("CeilBloodSpot", -1, 0, random (0, 360), 2, random (50, 130));
-	tnt1 A 0 A_SpawnProjectile ("Brutal_FlyingBlood", 7, 0, random (0, 360), 2, random (0, 160));
-	//tnt1 AA 0 A_SpawnProjectile ("WallRedBlood", 0, 0, random (0, 360), 2, random (0, 160))
+	tnt1 A 0 A_SpawnProjectile("CeilBloodSpot", -1, 0, random(0, 360), 2, random(50, 130));
+	tnt1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 7, 0, random(0, 360), 2, random(0, 160));
+	//tnt1 AA 0 A_SpawnProjectile("WallRedBlood", 0, 0, random(0, 360), 2, random(0, 160))
 	BLOD BCD 0;
 	stop;
 	Splash:
 	BLOD A 0;
-	tnt1 AAA 0 A_SpawnProjectile ("Underblood1", 7, 0, random (0, 360), 2, random (30, 150));
+	tnt1 AAA 0 A_SpawnProjectile("Underblood1", 7, 0, random(0, 360), 2, random(30, 150));
 	stop;
 	
 }
@@ -4371,7 +4371,7 @@ CLASS MarineEattenByDemon: CurbstompedMarine {
 	tnt1 A 0;
 	tnt1 A 0 {self.bTHRUACTORS = false;}
 	tnt1 A 0 A_GiveInventory("ComeEatMeDemon");
-	tnt1 A 0 A_SpawnItem ("GrowingBloodPool");
+	tnt1 A 0 A_SpawnItem("GrowingBloodPool");
 	//XPL1 EEE 6 A_SpawnItem("KillMe");
 	XPL1 E -1;
 stop;

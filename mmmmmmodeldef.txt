@@ -3,7 +3,7 @@ Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bigbloodpool32.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bigbloodpool32.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 100.0 100.0 100.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -13,7 +13,7 @@ Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bigbloodpool32.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bigbloodpool32.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 90.0 90.0 90.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -23,7 +23,7 @@ Model RedBloodFootPrintLeft      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "FTPL.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "FTPL.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 90.0 90.0 90.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -33,7 +33,7 @@ Model RedBloodFootPrintRight      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "FTPR.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "FTPR.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 90.0 90.0 90.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -43,7 +43,7 @@ Model BlueBloodFootPrintLeft      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "FRPL.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "FRPL.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 90.0 90.0 90.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -53,7 +53,7 @@ Model BlueBloodFootPrintRight      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "FRPR.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "FRPR.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 90.0 90.0 90.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -67,7 +67,7 @@ Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bigbloodpool32.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bigbloodpool32.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 80.0            // Scale values
    ZOffset 0.5
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -78,7 +78,7 @@ Model Brutal_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 50.0 50.0 1.0            // Scale values
    ZOffset 0.1
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -88,7 +88,7 @@ Model Brutal_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 50.0 50.0 1.0            // Scale values
    ZOffset 0.3
    FrameIndex BPDL B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -98,7 +98,7 @@ Model Brutal_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 50.0 50.0 1.0            // Scale values
    ZOffset 0.2
    FrameIndex BPDL C 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -108,7 +108,7 @@ Model Brutal_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 50.0 50.0 1.0            // Scale values
    ZOffset 0.1
    FrameIndex BPDL D 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -118,7 +118,7 @@ Model MinuscleBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 30.0 30.0 30.0            // Scale values
    ZOffset 0.2
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -128,7 +128,7 @@ Model MinuscleBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodpool.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodpool.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 20.0 20.0 20.0            // Scale values
    ZOffset 0.7
    FrameIndex BPDL B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -138,7 +138,7 @@ Model MinuscleBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodpool.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodpool.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 20.0 20.0 20.0            // Scale values
    ZOffset 0.7
    FrameIndex BPDL C 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -149,7 +149,7 @@ Model MinuscleBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodpool.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodpool.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 20.0 20.0 20.0            // Scale values
    ZOffset 0.7
    FrameIndex BPDL D 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -160,7 +160,7 @@ Model Brutal_FlyingBlood      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodpool.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodpool.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 50.0 50.0 50.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -170,7 +170,7 @@ Model Brutal_FlyingBlood      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodpool2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodpool2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 46.0 46.0 46.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -181,7 +181,7 @@ Model Brutal_FlyingBlood      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodceil.md3"    // Model index, model file
-   Skin 0 "bloodspothd.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 40.0 40.0 -60.0            // Scale values
    ZOffset -0.3
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -191,7 +191,7 @@ Model CeilBloodSpotLarge      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodceil.md3"    // Model index, model file
-   Skin 0 "bloodspothd2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 40.0 40.0 -60.0            // Scale values
    ZOffset -0.7
    FrameIndex BPDL a 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -201,7 +201,7 @@ Model CeilBloodSpotLarge      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 70.0 70.0 70.0           // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -211,7 +211,7 @@ Model Blue_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 76.0 76.0 76.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -221,7 +221,7 @@ Model Blue_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 76.0 76.0 76.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL C 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -231,7 +231,7 @@ Model Blue_BloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspothd2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspothd2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 76.0 76.0 76.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL D 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -242,7 +242,7 @@ Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "SMSHD.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SMSHD.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 80.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -252,7 +252,7 @@ Model PB_pot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "bloodspot2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "bloodspot2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 80.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -263,7 +263,7 @@ Model MudDust      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "DIRT.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "DIRT.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 1.0            // Scale values
    ZOffset 0.6
    FrameIndex DIRP B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -276,7 +276,7 @@ Model Instestin     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "gut1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "gut1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 25.0 25.0 85.0            // Scale values
    ZOffset 1.5
    FrameIndex GUTS E 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -287,7 +287,7 @@ Model Instestin     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "gut2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "gut2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 25.0 25.0 85.0            // Scale values
    ZOffset 1.5
    FrameIndex GUTS F 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -298,7 +298,7 @@ Model Instestin2     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "gut1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "gut1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 15.0 15.0 85.0            // Scale values
    ZOffset 2.1
    FrameIndex GUTS E 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -309,7 +309,7 @@ Model Instestin2     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "gut2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "gut2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 15.0 15.0 85.0            // Scale values
    ZOffset 2.1
    FrameIndex GUTS F 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -321,7 +321,7 @@ Model Tracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -332,7 +332,7 @@ Model Tracer // Name of actor in DECORATE
 //{ 
 //   Path "Models/Projectiles" // Path to model in PK3
 //   SKIN 0 "rocket1.png" // Model index, model file
- //  MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+ //  MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
  //  Scale 0.5 3.0 3.0 // Scale values
  //  PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
  //  
@@ -345,7 +345,7 @@ Model MinigunTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -355,7 +355,7 @@ Model QuadTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -365,7 +365,7 @@ Model QuadSingeTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -375,7 +375,7 @@ Model SentryTracer1 // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -385,7 +385,7 @@ Model SentryTracer2 // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -395,7 +395,7 @@ Model SentryTracer3 // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -405,7 +405,7 @@ Model MonsterMinigunTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -416,7 +416,7 @@ Model MonsterTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -427,7 +427,7 @@ Model ZombieManTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -438,7 +438,7 @@ Model MarineTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -448,7 +448,7 @@ Model MarineStrongTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -458,7 +458,7 @@ Model MonsterHandgunTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 4.5 4.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -468,7 +468,7 @@ Model MarineTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 1.5 1.5 1.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -479,7 +479,7 @@ Model MastermindTracer // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.png" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 3.0 3.0 3.0 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -497,7 +497,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "buldecground1"    // Model index, model file
-   Skin 0 "BULLETDECAL1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "BULLETDECAL1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 5.0 5.0 5.0            // Scale values
    ZOffset 0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -508,7 +508,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "buldecceil1"    // Model index, model file
-   Skin 0 "BULLETDECAL1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "BULLETDECAL1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 5.0 5.0 5.0            // Scale values
    ZOffset 0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -518,7 +518,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "buldecground1"    // Model index, model file
-   Skin 0 "SCORCH1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SCORCH1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 10.0 10.0 10.0            // Scale values
    ZOffset 0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -529,7 +529,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "buldecground1"    // Model index, model file
-   Skin 0 "SCORCH1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SCORCH1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 10.0 10.0 10.0            // Scale values
    ZOffset 0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -540,7 +540,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "BULDECCEIL1"    // Model index, model file
-   Skin 0 "SCORCH1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SCORCH1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 10.0 10.0 10.0            // Scale values
    ZOffset -0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -550,7 +550,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "buldecground1"    // Model index, model file
-   Skin 0 "SCORCH1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SCORCH1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 10.0 10.0 10.0            // Scale values
    ZOffset 0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -561,7 +561,7 @@ Model crutch     // Name of actor in DECORATE
 {
    Path "models/bulletdecals"    // Path to model in PK3
    Model 0 "BULDECCEIL1"    // Model index, model file
-   Skin 0 "SCORCH1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SCORCH1.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 10.0 10.0 10.0            // Scale values
    ZOffset -0.1
    FrameIndex XXX1 A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -571,7 +571,7 @@ Model ShrapnelParticle // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.tga" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 3.5 3.5 3.5 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -583,7 +583,7 @@ Model ShrapnelParticle // Name of actor in DECORATE
 { 
    Path "Models/Projectiles" // Path to model in PK3
    SKIN 0 "tracer1.tga" // Model index, model file
-   MODEL 0 "Tracer.md3" // Model index, texture (can be in any format supported by GZDoom)
+   MODEL 0 "Tracer.md3" // Model index, texture(can be in any format supported by GZDoom)
    Scale 2.0 2.0 2.0 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    
@@ -593,7 +593,7 @@ Model HitSpark     // Name of actor in DECORATE
 {
    Path "Models/Projectiles"    // Path to model in PK3
    Model 0 "tracer.md3"    // Model index, model file
-   Skin 0 "tracer2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "tracer2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 1.5 1.5 6.0 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    FrameIndex SPKO S 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -603,7 +603,7 @@ Model HitSpark     // Name of actor in DECORATE
 {
    Path "Models/Projectiles"    // Path to model in PK3
    Model 0 "tracer.md3"    // Model index, model file
-   Skin 0 "tracer2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "tracer2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 1.5 1.5 6.0 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    FrameIndex SPKO S 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -612,7 +612,7 @@ Model HitSpark     // Name of actor in DECORATE
 {
    Path "Models/Projectiles"    // Path to model in PK3
    Model 0 "tracer.md3"    // Model index, model file
-   Skin 0 "tracer2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "tracer2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 1.5 1.5 6.0 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    FrameIndex SPKO S 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -622,7 +622,7 @@ Model HitSpark     // Name of actor in DECORATE
 {
    Path "Models/Projectiles"    // Path to model in PK3
    Model 0 "tracer.md3"    // Model index, model file
-   Skin 0 "tracer2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "tracer2.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 1.5 1.5 6.0 // Scale values
    PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
    FrameIndex SPKO S 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -889,7 +889,7 @@ Model BurningPentagram   // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "PNTGA0.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "PNTGA0.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 100.0 100.0 1.0            // Scale values
    ZOffset 0.8
    FrameIndex PNTG A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -899,7 +899,7 @@ Model PentagramOff   // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "PNTGB0.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "PNTGB0.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 100.0 100.0 1.0            // Scale values
    ZOffset 0.7
    FrameIndex PNTG B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -913,7 +913,7 @@ Model Waterbloodspot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "BLODWAT.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "BLODWAT.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 40.0 40.0 40.0            // Scale values
    ZOffset 1.0
    ROTATING
@@ -926,7 +926,7 @@ Model WaterBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "BLODWAT.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "BLODWAT.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 40.0 40.0 40.0            // Scale values
    ZOffset 1.0
    ROTATING
@@ -940,7 +940,7 @@ Model WaterBloodSpot      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "BLODWAT.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "BLODWAT.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 40.0 40.0 40.0            // Scale values
    ZOffset 1.0
    ROTATING
@@ -954,7 +954,7 @@ Model SplatteredSmall     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "SMSHD.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SMSHD.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 80.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -966,7 +966,7 @@ Model SplatteredSmall     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "SMSHD.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "SMSHD.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 140.0 140.0 140.0            // Scale values
    ZOffset 0.6
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -1259,7 +1259,7 @@ Model MudDust      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "DIRT.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "DIRT.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 1.0            // Scale values
    ZOffset 0.6
    FrameIndex DIRP B 0 0         // The sprite lump, sprite frame, model index, frame number
@@ -1270,7 +1270,7 @@ Model MudDust      // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "DIRT.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Skin 0 "DIRT.png"     // Model index, texture(can be in any format supported by GZDoom)
    Scale 80.0 80.0 1.0            // Scale values
    ZOffset 0.6
    FrameIndex DIRP B 0 0         // The sprite lump, sprite frame, model index, frame number

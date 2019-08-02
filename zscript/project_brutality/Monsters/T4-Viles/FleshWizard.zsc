@@ -287,9 +287,9 @@ states
 			if(self.alpha <= 0.5) {tar_alp = 1;}
 			if(self.alpha >= 1) {tar_alp = 0.5;}
 			
-			scale -= (0.015, 0.015);
+			scale -=(0.015, 0.015);
 			
-			if (target.CheckSight(master, 0) )
+			if(target.CheckSight(master, 0) )
 			{
 				setorigin(master.pos, true);
 			}
@@ -303,7 +303,7 @@ states
 		{
 			//copy of fleshy vileattack
 			a_playsound("misc/xdeath4");
-			if (target.CheckSight(master, 0) && target.instatesequence(target.curstate, target.findstate("Archvile_like_Attack") ) )
+			if(target.CheckSight(master, 0) && target.instatesequence(target.curstate, target.findstate("Archvile_like_Attack") ) )
 			{
 				a_explode(random(15, 55), 45, pufftype: null, damagetype: "desintegrate");
 				master.vel.z += 10;

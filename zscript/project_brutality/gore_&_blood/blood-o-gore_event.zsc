@@ -4,7 +4,7 @@ class pb_blood_and_gore_event : eventhandler
     Actor Thing who damaged
     Actor Inflictor from who
     int Damage
-    Actor DamageSource what actor damaging (projectile, puff)
+    Actor DamageSource what actor damaging(projectile, puff)
     Name DamageType
     EDmgFlags DamageFlags same as for damagemobj virtual
     double DamageAngle angle to inflictor
@@ -15,7 +15,7 @@ override void worldthingdamaged(worldevent e)
 	if(e.thing) {}
 
 }
-//called BEFORE thing actually die (before entering death state)
+//called BEFORE thing actually die(before entering death state)
 override void worldthingdied(worldevent e)
 {
 	if(e.thing) {}
@@ -97,7 +97,7 @@ states
 		Stop;
 		
 	Splash:
-		BLOD A 0;
+		tnt1 A 0;
 		stop;
 		
 	Death:
@@ -147,7 +147,6 @@ states
 		BLHT GGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.05);
 		Stop;
 	Splash:
-		BLOD A 0;
 		TNT1 AAA 0 a_spawnprojectile("Underblood1", 7, 0, random(0, 360), 2, random(30, 150));
 		stop;
 	LotsOfBlood:

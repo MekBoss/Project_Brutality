@@ -19,7 +19,7 @@ Default
 	+DONTGIB;
 	Obituary "%o was shot down by %k's UAC17 Compact Sub-Machine Gun.";
 	Inventory.PickupSound "CLIPIN";
-	Inventory.Pickupmessage "You found the UAC Compact Sub-Machine Gun! (Slot 2)";
+	Inventory.Pickupmessage "You found the UAC Compact Sub-Machine Gun!(Slot 2)";
 	Tag "SOF SMG";
 
 	+WEAPON.NOAUTOAIM;
@@ -104,7 +104,7 @@ States
 		A1F1 F 1 BRIGHT {
 			A_AlertMonsters();
 			A_PlaySound("ZSpecOps/MGun", 4);
-			A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_FireBullets(0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
@@ -113,15 +113,15 @@ States
 			A_ZoomFactor(0.985);
 		
 			int force = CountInv("PowerStrength");
-			A_SetPitch(pitch-0.12 * (1 + force) );
-			A_SetAngle(angle+0.11 * (1 + force) );
+			A_SetPitch(pitch-0.12 *(1 + force) );
+			A_SetAngle(angle+0.11 *(1 + force) );
 		}
 		A1F1 G 1 {
 			A_ZoomFactor(0.99);
 
 			int force = CountInv("PowerStrength");
-			A_SetPitch(pitch-0.12 * (1 + force) );
-			A_SetAngle(angle+0.11 * (1 + force) );
+			A_SetPitch(pitch-0.12 *(1 + force) );
+			A_SetAngle(angle+0.11 *(1 + force) );
 		}
 		A1F1 H 1 A_ZoomFactor(1.0);
 		TNT1 A 0 A_Refire("fire");
@@ -135,7 +135,7 @@ States
 		A1F3 E 1 BRIGHT {
 			A_AlertMonsters();
 			A_PlaySound("ZSpecOps/MGun", 4);
-			A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+			A_FireBullets(0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 			a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 3, 0, 0);
 			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
@@ -144,15 +144,15 @@ States
 			A_ZoomFactor(1.19);
 		
 			int force = CountInv("PowerStrength");
-			A_SetPitch(pitch-0.1 * (1 + force) );
-			A_SetAngle(angle+0.09 * (1 + force) );
+			A_SetPitch(pitch-0.1 *(1 + force) );
+			A_SetAngle(angle+0.09 *(1 + force) );
 		}
 		A1F3 F 1 {
 			A_ZoomFactor(1.195);
 		
 			int force = CountInv("PowerStrength");
-			A_SetPitch(pitch-0.1 * (1 + force) );
-			A_SetAngle(angle+0.09 * (1 + force) );
+			A_SetPitch(pitch-0.1 *(1 + force) );
+			A_SetAngle(angle+0.09 *(1 + force) );
 		}
 		A1F3 G 1 A_ZoomFactor(1.2);
 		A1F3 G 0 A_Refire("fire_zoomed");
@@ -322,7 +322,7 @@ States
 	LaserOverlay:
 	TNT1 A 1
 	{
-//		if (CountInv("LaserSightActivated")==1 && CountInv("KeepLaserDeactivated") != 1);
+//		if(CountInv("LaserSightActivated")==1 && CountInv("KeepLaserDeactivated") != 1);
 //		{
 	}
 	Loop;
@@ -391,7 +391,7 @@ States
 	A2F1 A 1 BRIGHT {
 		A_AlertMonsters();
 		A_PlaySound("ZSpecOps/MGun", 6);
-		A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+		A_FireBullets(0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 		a_fireprojectile("YellowFlareSpawn",0,0,4,0);
 		a_fireprojectile("GunFireSmoke", 0, 0, 4, 0, 0, 0);
 		a_fireprojectile("Mp40CaseSpawnRight",5,0,8,2);
@@ -400,7 +400,7 @@ States
 
 		A_ZoomFactor(0.985);
 		
-		if (CountInv("PowerStrength") >= 1 ) {
+		if(CountInv("PowerStrength") >= 1 ) {
 			A_SetPitch(pitch-0.55);
 			A_SetAngle(angle-0.38);
 	}
@@ -411,7 +411,7 @@ States
 	}
 	A2F1 B 1 {
 	A_ZoomFactor(0.99);
-	if (CountInv("PowerStrength") >= 1 ) {
+	if(CountInv("PowerStrength") >= 1 ) {
 		A_SetPitch(pitch-0.55);
 		A_SetAngle(angle+0.38);//Not a typo, recoil pattern should pull heavily to the left
 	}
@@ -427,7 +427,7 @@ States
 	A2F1 C 1 BRIGHT {
 		A_AlertMonsters();
 		A_PlaySound("ZSpecOps/MGun", 7);
-		A_FireBullets (0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
+		A_FireBullets(0.1, 0.1, -1, 12, "HitPuff", FBF_NORANDOM,8192,"Tracer", -2,0);
 		a_fireprojectile("YellowFlareSpawn",0,0,-4,0);
 		a_fireprojectile("GunFireSmoke", 0, 0, -4, 0, 0, 0);
 		a_fireprojectile("Mp40CaseSpawnRight",5,0,-8,2);
@@ -435,7 +435,7 @@ States
 
 		A_ZoomFactor(0.985);
 		
-		if (CountInv("PowerStrength") >= 1 ) {
+		if(CountInv("PowerStrength") >= 1 ) {
 			A_SetPitch(pitch-0.55);
 			A_SetAngle(angle+0.38);
 	}
@@ -446,7 +446,7 @@ States
 	}
 	A2F1 D 1 {
 	A_ZoomFactor(0.99);
-	if (CountInv("PowerStrength") >= 1 ) {
+	if(CountInv("PowerStrength") >= 1 ) {
 		A_SetPitch(pitch-0.55);
 		A_SetAngle(angle+0.38);
 	}

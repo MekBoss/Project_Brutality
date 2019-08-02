@@ -41,7 +41,7 @@ Default
 	Inventory.PickupSound "HRPickup";
 	Obituary "%o was set ablaze by %k's hellish rifle.";
 	Tag "New demon-Tech Rifle";
-	Inventory.PickupMessage "You got the Demon Tech Rifle! (Slot 9)";
+	Inventory.PickupMessage "You got the Demon Tech Rifle!(Slot 9)";
 }
 
 override bool, bool weapon_dual_and_special()
@@ -52,7 +52,7 @@ override void activate_special()
 	owner.player.SetPSprite(PSP_WEAPON, self.FindState("Switch_to_acid") );
 }
 
-override void AttachToOwner (Actor other)
+override void AttachToOwner(Actor other)
 {
 	super.AttachToOwner(other);
 	other.giveinventory(self.AmmoType2.getclassname(), 0);

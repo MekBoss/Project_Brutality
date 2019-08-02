@@ -1,25 +1,4 @@
-CLASS NewBarrelExploFX : ACTOR { 
-Default {
-	
-	Radius 0;
-	Height 0;
-	RenderStyle "Add";
-	Alpha 1;
-	Scale 1.45;
-	+NOGRAVITY;
-	+NOINTERACTION;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	+ForceXYBillboard;
-	+CLIENTSIDEONLY;
-}
-States
-{
-	Spawn:
-		X005 ABCDEFGHIJKLMNOPQRSTUVWX 1 bright;
-		stop;
-}
-}
+
 
 
 

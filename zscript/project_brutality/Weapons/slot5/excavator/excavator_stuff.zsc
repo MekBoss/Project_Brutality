@@ -36,28 +36,28 @@ CLASS DrillBombExplode : ACTOR {
 	States
 	{
 	Spawn:
-		TNT1 AAAAA 0 a_spawnprojectile ("MudDust", 0, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AAAAA 0 a_spawnprojectile ("DirtChunk1", 0, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AAAAA 0 a_spawnprojectile ("DirtChunk1", 10, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AAAAA 0 a_spawnprojectile ("MudDust", 0, 0, random (0, 90), 2, random (30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("DirtChunk1", 10, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("MudDust", 0, 0, random(0, 90), 2, random(30, 150));
 		TNT1 A 0 A_QuakeEx(1, 1, 1, 12, 0, 420, "", 0);
 		TNT1 A 0 A_Explode(15, 32, 0, 12);
 		5DKP EFGHIJIKLMNOONNML 1 BRIGHT;
-		EXPL A 0 Radius_Quake (3, 8, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
+		EXPL A 0 Radius_Quake(3, 8, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
 		TNT1 A 0 a_spawnprojectile("BigRicoChet");
-		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType1", 0, 0, random (0, 360), 2, random (30, 60));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 12, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 12, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionFlames", 12, 0, random (0, 360), 2, random (0, 360));
-		tnn1 AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 12, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 AAAA 0 a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 12, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 12, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionFlames", 12, 0, random(0, 360), 2, random(0, 360));
+		tnn1 AAAAA 0 a_spawnprojectile("ExplosionSmoke", 12, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
-		TNT1 A 0 a_spawnprojectile ("NewRocketExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
@@ -88,16 +88,16 @@ CLASS ExcavatorDrillBomb : ACTOR {
 		TNT1 A 0 Thing_ChangeTid(0,1743);
 	Travel:
 		TNT1 A 3;
-		TNT1 A 0 A_SpawnItemEx ("DiggerTrail",random (-2, 2),random (-1, 1),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 a_spawnprojectile ("MudDust", 0, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AA 0 a_spawnprojectile ("DirtChunk1", 0, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AA 0 a_spawnprojectile ("DirtChunk1", 0, 0, random (0, 360), 2, random (30, 150));
-		EXPL A 0 Radius_Quake (2, 8, 0, 8, 0);
+		TNT1 A 0 A_SpawnItemEx("DiggerTrail",random(-2, 2),random(-1, 1),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150));
+		EXPL A 0 Radius_Quake(2, 8, 0, 8, 0);
 		Loop;
 		
 	Death:
 		TNT1 A 0 A_StopSound(5);
-		TNT1 A 0 A_SpawnItemEx ("DrillBombExplode",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("DrillBombExplode",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		Stop;
 	}
 }
@@ -130,10 +130,10 @@ CLASS ExcavatorDrill : ACTOR {
 	{
 	Spawn:
 		TNT1 A 0 A_CheckFloor("Dig");
-		5DKP A 2 BRIGHT A_SpawnItem ("ExplosionSmoke");
+		5DKP A 2 BRIGHT A_SpawnItem("ExplosionSmoke");
 		TNT1 A 0 A_SpawnItem("RocketFlare",-2,0);
 		TNT1 A 0 A_CheckFloor("Dig");
-		5DKP A 2 BRIGHT A_SpawnItem ("ExplosionSmoke");
+		5DKP A 2 BRIGHT A_SpawnItem("ExplosionSmoke");
 		TNT1 A 0 A_CheckFloor("Dig");
 		Loop;
 		
@@ -149,19 +149,19 @@ CLASS ExcavatorDrill : ACTOR {
 	Bounce.Ceiling:
 	Bounce.Walls:
 		TNT1 A 0 A_StopSound(6);
-		EXPL A 0 Radius_Quake (3, 24, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
+		EXPL A 0 Radius_Quake(3, 24, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
 		TNT1 A 0 a_spawnprojectile("BigRicoChet");
-		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 a_spawnprojectile ("NewRocketExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
-		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
+		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
 		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
@@ -208,30 +208,30 @@ CLASS DropShotExplode : ACTOR {
 	Boom:
 	Death:
 		TNT1 A 0 A_Playsound("superbaron/spike");
-		TNT1 AAAAA 0 a_spawnprojectile ("MudDust", 0, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AAAAA 0 a_spawnprojectile ("DirtChunk1", 0, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AAAAA 0 a_spawnprojectile ("DirtChunk1", 10, 0, random (0, 360), 2, random (30, 150));
-		TNT1 AAAAA 0 a_spawnprojectile ("MudDust", 0, 0, random (0, 90), 2, random (30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("MudDust", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("DirtChunk1", 0, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("DirtChunk1", 10, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("MudDust", 0, 0, random(0, 90), 2, random(30, 150));
 		TNT1 A 0 A_QuakeEx(1, 1, 1, 12, 0, 420, "", 0);
-		TNT1 A 0 A_SpawnItemEx ("DiggerTrail",random (-3, 0),random (-3, -1),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("DiggerTrail",random (0, 3),random (1, 3),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		5DKP DDDDDDDDDDDDDD 1 a_spawnprojectile ("ExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItemEx("DiggerTrail",random(-3, 0),random(-3, -1),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("DiggerTrail",random(0, 3),random(1, 3),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		5DKP DDDDDDDDDDDDDD 1 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
 		
-		EXPL A 0 Radius_Quake (3, 24, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
+		EXPL A 0 Radius_Quake(3, 24, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
 		TNT1 A 0 a_spawnprojectile("BigRicoChet");
-		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx ("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 AAAA 0 a_spawnprojectile ("FireworkSFXType1", 0, 0, random (0, 360), 2, random (30, 60));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("ExplosionParticle", 0, 0, random (0, 360), 2, random (0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360));
-		EXPL AAAAA 0 a_spawnprojectile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 AAAA 0 a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
-		TNT1 A 0 a_spawnprojectile ("NewRocketExploFX", random(1,5), random(-10,10), random (0, 360), 2, random (0, 360));
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
 		
 		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
@@ -265,10 +265,10 @@ CLASS ExcavatorDropShot : pb_projectile_base {
 		TNT1 A 0 A_Playsound("excavator/digloop", 5, 1);
 		TNT1 A 0 Thing_ChangeTid(0,1744);
 	Travel:
-		5DKP A 2 BRIGHT;// A_SpawnItem ("ExplosionSmoke");
+		5DKP A 2 BRIGHT;// A_SpawnItem("ExplosionSmoke");
 		//TNT1 A 0 A_SpawnItem("Green_FlareSmall",-2,0);
-		//TNT1 A 0 a_spawnprojectile ("ShotgunParticles", 0, 0, random (0, 360), 2, random (30, 150));
-		5DKP A 2 BRIGHT;// A_SpawnItem ("ExplosionSmoke");
+		//TNT1 A 0 a_spawnprojectile("ShotgunParticles", 0, 0, random(0, 360), 2, random(30, 150));
+		5DKP A 2 BRIGHT;// A_SpawnItem("ExplosionSmoke");
 	Loop;
 
 	Death:
@@ -276,7 +276,7 @@ CLASS ExcavatorDropShot : pb_projectile_base {
 	Bounce.Ceiling:
 	Bounce.Walls:
 	Bounce.Floor:
-		TNT1 A 0 A_SpawnItemEx ("DropShotExplode",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("DropShotExplode",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	Stop;
 		
 	}

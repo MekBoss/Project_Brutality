@@ -65,29 +65,29 @@ States
 	See:
 		//TNT1 A 0 A_JumpIfInventory("PerformanceMode", 1, "PerformanceSee");
 		FRIT AA 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT AA 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT BB 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT BB 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT CC 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT CC 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT DD 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT DD 2 Bright A_Chase;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 	Loop;
 		
 	PerformanceSee:
@@ -104,11 +104,11 @@ States
 	Melee:
 		//TNT1 A 0 A_JumpIfInventory("PerformanceMode", 1, "PerformanceMelee");
 		TNT1 A 0 A_Jump(64, "Melee2");
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT ST 6 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT U 6 Bright A_CustomComboAttack("AfritBall", 44, 10, "Baron/Melee");
 	Goto See;
 		
@@ -119,20 +119,20 @@ States
 	Goto PerformanceSee;
 
 	Melee2:
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT E 6 Bright A_FaceTarget;
 		
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT F 6 Bright a_spawnprojectile("HellFire", 44);
 		
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT G 6 Bright A_FaceTarget;
 		
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 	Goto See;
 		
 	PerformanceMelee2:
@@ -145,17 +145,17 @@ States
 		//TNT1 A 0 A_JumpIfInventory("PerformanceMode", 1, "PerformanceMissile");
 		TNT1 A 0 A_Jump(128, "Missile2");
 		
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT S 6 Bright A_FaceTarget;
 		
 		FRIT T 6 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT U 6 Bright A_CustomComboAttack("FireShot", 44, 10, "Baron/Melee");
 		
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		Goto See;
 		
 	PerformanceMissile:
@@ -167,14 +167,14 @@ States
 		
 	Missile2:
 		FRIT E 6 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT F 6 Bright A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT G 6 Bright a_spawnprojectile("Comet", 44);
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		Goto See;
 		
 	PerformanceMissile2:
@@ -185,14 +185,14 @@ States
 		
 	Pain:
 		//TNT1 A 0 A_JumpIfInventory("PerformanceMode", 1, "PerformancePain");
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT H 4 Bright;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		FRIT H 4 Bright A_Pain;
-		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
 		Goto See;
 		
 	Possession:
@@ -204,17 +204,17 @@ States
 		
 	Pain.Stun:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx ("StunElectrocute", random (-4, 4), random (-4, 4),  random (16, 32), 0, 0);
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
 		FRIT H 1 A_Pain;
-		FRIT HHHHHHHHHH 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		FRIT HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		FRIT H 1 A_Pain;
-		FRIT HHHHHHHHHH 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		FRIT HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		FRIT H 1 A_Pain;
-		FRIT HHHHHHHHHH 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		FRIT HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		FRIT H 1 A_Pain;
-		FRIT HHHHHHHHHH 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		FRIT HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		FRIT H 1 A_Pain;
-		FRIT HHHHHHHHHH 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		FRIT HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		FRIT H 1 A_Pain;
 		Goto See;
 		
@@ -229,10 +229,10 @@ States
 		
 	Death.Dropdown:
 		FRI1 A 6 Bright A_Scream;
-		TNT1 AAA 0 a_spawnprojectile ("MuchBlood", 35, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		FRI1 B 6 Bright A_NoBlocking;
 		FRI1 CD 6 Bright;
-		TNT1 A 0 A_SpawnItem ("DeadAfrit");
+		TNT1 A 0 A_SpawnItem("DeadAfrit");
 		Stop;
 		
 	Death.Vanish:
@@ -250,7 +250,7 @@ States
 	Death.Cut:
 	Death.Saw:
 	Death.Massacre:
-		TNT1 A 0 a_spawnprojectile ("AfritXDeath", 0, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile("AfritXDeath", 0, 0, random(0, 360), 2, random(0, 160));
 		BXDE A  0;
 		BXDE B  0 A_Scream;
 		BXDE C  0 A_BossDeath;
@@ -321,22 +321,22 @@ CLASS DeadAfrit : ACTOR {
 	States
 	{
 	Spawn:
-		//TNT1 A 0 a_spawnprojectile ("MuchBlood", 35, 0, random (0, 360), 2, random (0, 160))
+		//TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160))
 		FRI1 E -1;
 		Stop;
 	Raise:
 		FRI1 D 1;
 		FRI1 CBA 1;
-		TNT1 A 0 A_SpawnItem ("pb_Afrit", 3);
+		TNT1 A 0 A_SpawnItem("pb_Afrit", 3);
 		Stop;
 	Death:
 	XDeath:
 	Crush:
 	Death:
-		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItem("GibsZ");
 		Stop;
 	}
@@ -391,28 +391,28 @@ States
 	Spawn:
 		COMT A 1 Bright A_SpawnItemEx("CometTail",0,0,0,0,0,0,0,128);
 		TNT1 A 0 A_SpawnItem("FireballFlare",0,0);
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 A_SpawnItem ("CoolAndNewFlameTrails");
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 A_SpawnItem("CoolAndNewFlameTrails");
 		COMT B 1 Bright A_SpawnItemEx("CometTail",0,0,0,0,0,0,0,128);
 		TNT1 A 0 A_SpawnItem("FireballFlare",0,0);
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 A_SpawnItem ("CoolAndNewFlameTrails");
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 A_SpawnItem("CoolAndNewFlameTrails");
 		COMT C 1 Bright A_SpawnItemEx("CometTail",0,0,0,0,0,0,0,128);
 		TNT1 A 0 A_SpawnItem("FireballFlare",0,0);
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 A_SpawnItem ("CoolAndNewFlameTrails");
+		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 A_SpawnItem("CoolAndNewFlameTrails");
 		
 		Loop;
 	Death:
 		TNT1 A 0 A_Explode(random(23,28), 60, 0);
-		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
-		EXPL AAA 0 a_spawnprojectile ("FlamethrowerFireParticles", 6, 0, random (0, 360), 2, random (0, 90));
-		//TNT1 AA 0 a_spawnprojectile ("FireworkSFXType1", 0, 0, random (0, 360), 2, random (30, 60));
+		EXPL AAA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
+		//TNT1 AA 0 a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
 		COMT D 2 Bright A_SpawnItemEx("CometDeathGlow", 0, 0, 0, 0, 0, 0, 0, 128);
 		COMT E 2 Bright;
 		TNT1 A 0 A_SpawnItemEx("CometDeath", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 AAA 20 a_spawnprojectile ("BigBlackSmoke", 0, 0, random (0, 360), 2, random (40, 160));
+		TNT1 AAA 20 a_spawnprojectile("BigBlackSmoke", 0, 0, random(0, 360), 2, random(40, 160));
 		Stop;
 	}
 }
@@ -616,15 +616,15 @@ CLASS AfritXDeath : ACTOR {
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 35, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-		TNT1 A 0 a_spawnprojectile ("XDeathAfritTorso", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathAfritHead5", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("XDeath2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("XDeath3", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeath4", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("PB_pot");
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 A 0 a_spawnprojectile("XDeathAfritTorso", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathAfritHead5", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("PB_pot");
 	Death:
 		TNT1 A 0;
 		Stop;
@@ -643,7 +643,7 @@ Default {
 	Spawn:
 		TNT1 A 0 A_SpawnItem("pb_Blood_Spot",0,0,0,1);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		G4FD ABCD 4 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
+		G4FD ABCD 4 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		TNT1 A 0 A_SpawnItem("pb_Blood_Spot",0,0,0,1);
@@ -665,12 +665,12 @@ CLASS Gib_AfritTorso: pb_blood_and_gore_base {
 		G4FD E -1;
 		Stop;
 Death.plasma: Death.Burn: Death.Flames:
-	    TNT1 A 0 a_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
+	    TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
         Stop;
 Death:    
-	TNT1 AAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360));
-	TNT1 AAAAAAA 0 a_spawnprojectile ("named_BloodTr", 0, 0, random (0, 360), 2, random (0, 360));
-	TNT1 A 0 a_spawnprojectile ("Xdeath1", 0, 0, random (0, 360), 2, random (0, 360));
+	TNT1 AAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 AAAAAAA 0 a_spawnprojectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
+	TNT1 A 0 a_spawnprojectile("Xdeath1", 0, 0, random(0, 360), 2, random(0, 360));
 Stop;}}
 
 CLASS XDeathAfritHead5: pb_blood_and_gore_base { 
@@ -717,26 +717,26 @@ CLASS AfritHead: pb_blood_and_gore_base {
 		Stop;
 		
 	Death:
-		TNT1 AAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (60, 140));
+		TNT1 AAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 AAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 A 0 a_spawnprojectile ("Brains2", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 A 0 a_spawnprojectile ("Brains4", 5, 0, random (0, 360), 2, random (60, 140));
-		TNT1 AAAAAA 0 a_spawnprojectile ("SmallBrainPiece", 5, 0, random (0, 360), 2, random (60, 140));
+		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 A 0 a_spawnprojectile("Brains2", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 A 0 a_spawnprojectile("Brains2", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 A 0 a_spawnprojectile("Brains4", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 A 0 a_spawnprojectile("Brains4", 5, 0, random(0, 360), 2, random(60, 140));
+		TNT1 AAAAAA 0 a_spawnprojectile("SmallBrainPiece", 5, 0, random(0, 360), 2, random(60, 140));
 		Stop;
 	Death.Trample:
 	Crush:
-		TNT1 AAAAAAAA 0 a_spawnprojectile ("pb_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (60, 140));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(60, 140));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		CRS1 B 5;
 		CRS1 B 2002;
 		Stop;
 	Death.plasma:
 		TNT1 A 0;
-		TNT1 A 0 a_spawnprojectile ("XDeathBurnedSkull", 32, 0, random (0, 360), 2, random (0, 160));
-		EXPL A 0 a_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
+		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0;
 		Stop;
 	Death.Melee:
@@ -746,7 +746,7 @@ CLASS AfritHead: pb_blood_and_gore_base {
 		XH4F A 1 A_Pain;
 		XH4F A 1 A_FaceTarget;
 		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile ("XDeathAfritHeadKicked", 5, 0, random (170, 190), 2, random (20, 40));
+		TNT1 A 0 a_spawnprojectile("XDeathAfritHeadKicked", 5, 0, random(170, 190), 2, random(20, 40));
 		Stop;
 		
 	Pain:

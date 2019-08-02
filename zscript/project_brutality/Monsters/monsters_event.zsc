@@ -1,7 +1,7 @@
 /*okay, spawning system need to wait for its hero which rewrite it
 	so for now it use default random replace script
 	case 666:
-			switch (LevelNumber)
+			switch(LevelNumber)
 			{
 				case 1:
 				case 5:
@@ -20,7 +20,7 @@
 					SetActorState(0, "HighLevelMob",true);
 					break;
 				default:
-					if (LevelNumber > 8) SetActorState(0, "HighLevelMob",true);
+					if(LevelNumber > 8) SetActorState(0, "HighLevelMob",true);
 					else SetActorState(0,"LowLevelMob",true);
 					Break;
 			}
@@ -34,7 +34,7 @@
 	case 670
 			Tier4
 	case 671:
-			switch (LevelNumber)
+			switch(LevelNumber)
 			{
 				case 1:
 				case 5:
@@ -53,7 +53,7 @@
 					SetActorState(0, "DiceTier4",true);
 					break;
 				default:
-					if (LevelNumber > 8) SetActorState(0, "DiceTier4",true);
+					if(LevelNumber > 8) SetActorState(0, "DiceTier4",true);
 					else SetActorState(0,"DiceTier2",true);
 					Break;
 			}
@@ -68,14 +68,6 @@
 			ReplaceBrutalOnly*/
 class monster_handle_event : eventhandler
 {
-transient cvar vanilla_cvar, spawn_balance,
-//transient means "dont store pointer in savegame
-//needs to add more pointers here for grenade zomdie and such
-
-//archvile cvars
-Archvile_Heal, Archvile_Summon,
-//revenant
-jet_Revenant;
 
 //return one random names of monsters inherited from base_class
 string return_random_replacement(string base_class = "")

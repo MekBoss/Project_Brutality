@@ -672,12 +672,12 @@ CLASS CacoXdeath1 : ACTOR {
     States
     {
 	Spawn:
- 		TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+ 		TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		CCP1 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
 		Loop;
 	Death:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	Rest:	
 		TNT1 A 0;// A_SpawnItem("Blue_BloodSpot",0,0,0,1);
 		CCP1 B 2002;
@@ -701,13 +701,13 @@ CLASS CacoXdeath2: CacoXDeath1 {
     States
     {
     Spawn:
-         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
         CCP1 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
         Loop;
 	
     Death:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	Rest:	
         TNT1 A 0;// A_SpawnItem("Blue_BloodSpot",0,0,0,1);
         CCP1 C 2002;
@@ -730,12 +730,12 @@ CLASS CacoXdeath3: CacoXDeath1 {
     States
     {
     Spawn:
-         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
         CCP2 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
         Loop;
     Death:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	Rest:	
         TNT1 A 0;// A_SpawnItem("Blue_BloodSpot",0,0,0,1);
         CCP2 B 2002;
@@ -756,12 +756,12 @@ CLASS CacoXdeath4: CacoXDeath1 {
     States
     {
     Spawn:
-         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
         CCP2 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
         Loop;
     Death:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	Rest:
         TNT1 A 0;// A_SpawnItem("Blue_BloodSpot",0,0,0,1);
         CCP2 C 2002;
@@ -781,12 +781,12 @@ CLASS CacoXdeath5: CacoXDeath1 {
     States
     {
     Spawn:
-         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+         TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
         CCP3 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
         Loop;
     Death:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	Rest:	
         TNT1 A 0;// A_SpawnItem("Blue_BloodSpot",0,0,0,1);
         CCP3 B 2002;
@@ -807,12 +807,12 @@ Gravity 0.6;
     States
     {
     Spawn:
-         TNT1 AAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+         TNT1 AAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
         CCP4 ABCDEFG 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
         Loop;
     Death:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_FlyingBrutal_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	Rest:	
 	TNT1 A 0;// A_SpawnItem("Blue_BloodSpot",0,0,0,1);
         CCP4 H 2002;

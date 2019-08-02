@@ -206,7 +206,6 @@ CLASS StealthBloodLol : ACTOR {
 			TNT1 A 1;
 			loop;
 		Splash:
-			BLOD A 0;
 			stop;
 		Death:
 			//TNT1 A 0 a_spawnprojectile("SmallBloodSplasher", 0, 0, random(0, 360), 2, random(0, 160))
@@ -249,7 +248,6 @@ CLASS BloodCloud : ACTOR {
 			Stop;
 			
 		Splash:
-			BLOD A 0;
 			stop;
 			
 	}

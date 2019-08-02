@@ -17,7 +17,7 @@ default
 	Inventory.PickUpSound "IGOTSAW";
 	Weapon.UpSound "none";
 	weapon.readysound "weapons/chainsaw/idle";
-	Inventory.PickupMessage "You found the Chainsaw, find some meat!!! (Slot 1)";
+	Inventory.PickupMessage "You found the Chainsaw, find some meat!!!(Slot 1)";
 
 	+WEAPON.NOAUTOAIM;
 	+WEAPON.AXEBLOOD;
@@ -125,7 +125,7 @@ states
 		TNT1 A 0;
 		{
 			A_WeaponOffset(0,32);
-			if (CountInv("SSG") == 1 && CountInv("NewShell") > 1) { return state("QuickShot"); }
+			if(CountInv("SSG") == 1 && CountInv("NewShell") > 1) { return state("QuickShot"); }
 			A_Print("You need a loaded sawed-off shotgun!");
 			return state("");
 		}
@@ -135,9 +135,9 @@ states
 		TNT1 A 0;
 		{
 			A_GunFlash("SSGFlash");
-			if (CountInv("PowerGreenBloodOnVisor") == 1) { return state("WeaponSpecialGreenBlood"); }
-			if (CountInv("PowerBlueBloodOnVisor") == 1) { return state("WeaponSpecialBlueBlood"); }
-			if (CountInv("PowerBloodOnVisor") == 1) { return state("WeaponSpecialBlood"); }
+			if(CountInv("PowerGreenBloodOnVisor") == 1) { return state("WeaponSpecialGreenBlood"); }
+			if(CountInv("PowerBlueBloodOnVisor") == 1) { return state("WeaponSpecialBlueBlood"); }
+			if(CountInv("PowerBloodOnVisor") == 1) { return state("WeaponSpecialBlood"); }
 			return state("");
 	}
 	WeaponSpecialClean:
@@ -196,9 +196,9 @@ states
 		TNT1 A 0;
 		{
 			A_AlertMonsters();
-			if (CountInv("PowerGreenBloodOnVisor") == 1) { return state("GreenAttack"); }
-			if (CountInv("PowerBlueBloodOnVisor") == 1) { return state("BlueAttack"); }
-			if (CountInv("PowerBloodOnVisor") == 1) { return state("RedAttack"); }
+			if(CountInv("PowerGreenBloodOnVisor") == 1) { return state("GreenAttack"); }
+			if(CountInv("PowerBlueBloodOnVisor") == 1) { return state("BlueAttack"); }
+			if(CountInv("PowerBloodOnVisor") == 1) { return state("RedAttack"); }
 			return state("");
 		}
 		//No Blood
@@ -208,10 +208,10 @@ states
 		{
 			A_AlertMonsters;
 			A_Giveinventory("HasCutingWeapon",1);
-			if (CountInv("MovingForward") == 1) { return state("ForwardAttackClean"); }
-			if (CountInv("MovingRight") == 1) { return state("RightAttackClean"); }
-			if (CountInv("MovingLeft") == 1) { return state("LeftAttackClean"); }
-			if (CountInv("MovingBackward") == 1) { return state("BackwardAttackClean"); }
+			if(CountInv("MovingForward") == 1) { return state("ForwardAttackClean"); }
+			if(CountInv("MovingRight") == 1) { return state("RightAttackClean"); }
+			if(CountInv("MovingLeft") == 1) { return state("LeftAttackClean"); }
+			if(CountInv("MovingBackward") == 1) { return state("BackwardAttackClean"); }
 			return state("");
 		}
 	ClassicAttackClean:
@@ -220,9 +220,9 @@ states
 	ClassicAttackCleanLoop:
 		TNT1 A 0;
 		{
-			if (CountInv("PowerGreenBloodOnVisor") == 1) { return state("ClassicAttackGreenLoop"); }
-			if (CountInv("PowerBlueBloodOnVisor") == 1) { return state("ClassicAttackBlueLoop"); }
-			if (CountInv("PowerBloodOnVisor") == 1) { return state("ClassicAttackRedLoop"); }
+			if(CountInv("PowerGreenBloodOnVisor") == 1) { return state("ClassicAttackGreenLoop"); }
+			if(CountInv("PowerBlueBloodOnVisor") == 1) { return state("ClassicAttackBlueLoop"); }
+			if(CountInv("PowerBloodOnVisor") == 1) { return state("ClassicAttackRedLoop"); }
 			return state("");
 		}
 		CSA1 EFG 1;
@@ -419,10 +419,10 @@ states
 	{
 		A_AlertMonsters;
 		A_Giveinventory("HasCutingWeapon",1);
-	if (CountInv("MovingForward") == 1) { return state("ForwardAttackRed"); }
-	if (CountInv("MovingRight") == 1) { return state("RightAttackRed"); }
-	if (CountInv("MovingLeft") == 1) { return state("LeftAttackRed"); }
-	if (CountInv("MovingBackward") == 1) { return state("BackwardAttackRed"); }
+	if(CountInv("MovingForward") == 1) { return state("ForwardAttackRed"); }
+	if(CountInv("MovingRight") == 1) { return state("RightAttackRed"); }
+	if(CountInv("MovingLeft") == 1) { return state("LeftAttackRed"); }
+	if(CountInv("MovingBackward") == 1) { return state("BackwardAttackRed"); }
 	return state("");
 	}
 	ClassicAttackRed:
@@ -615,10 +615,10 @@ states
 	{
 		A_AlertMonsters;
 		A_Giveinventory("HasCutingWeapon",1);
-	if (CountInv("MovingForward") == 1) { return state("ForwardAttackBlue"); }
-	if (CountInv("MovingRight") == 1) { return state("RightAttackBlue"); }
-	if (CountInv("MovingLeft") == 1) { return state("LeftAttackBlue"); }
-	if (CountInv("MovingBackward") == 1) { return state("BackwardAttackBlue"); }
+	if(CountInv("MovingForward") == 1) { return state("ForwardAttackBlue"); }
+	if(CountInv("MovingRight") == 1) { return state("RightAttackBlue"); }
+	if(CountInv("MovingLeft") == 1) { return state("LeftAttackBlue"); }
+	if(CountInv("MovingBackward") == 1) { return state("BackwardAttackBlue"); }
 	return state("");
 	}
 	ClassicAttackBlue:
@@ -805,10 +805,10 @@ states
 	{
 		A_AlertMonsters;
 		A_Giveinventory("HasCutingWeapon",1);
-	if (CountInv("MovingForward") == 1) { return state("ForwardAttackGreen"); }
-	if (CountInv("MovingRight") == 1) { return state("RightAttackGreen"); }
-	if (CountInv("MovingLeft") == 1) { return state("LeftAttackGreen"); }
-	if (CountInv("MovingBackward") == 1) { return state("BackwardAttackGreen"); }
+	if(CountInv("MovingForward") == 1) { return state("ForwardAttackGreen"); }
+	if(CountInv("MovingRight") == 1) { return state("RightAttackGreen"); }
+	if(CountInv("MovingLeft") == 1) { return state("LeftAttackGreen"); }
+	if(CountInv("MovingBackward") == 1) { return state("BackwardAttackGreen"); }
 	return state("");
 	}
 	ClassicAttackGreen:
@@ -1177,8 +1177,8 @@ states
 	Goto SlashLeft.Green;
 	
 	SlashLeftClean:
-	TNT1 A 0 A_JumpIf (momZ > 0, "SlashDown");
-	TNT1 A 0 A_JumpIf (momZ < 0, "SlashDown");
+	TNT1 A 0 A_JumpIf(momZ > 0, "SlashDown");
+	TNT1 A 0 A_JumpIf(momZ < 0, "SlashDown");
 	TNT1 A 0 A_StopSound(5);
 	TNT1 A 0 A_PlaySound("sawswing", 7,0.5);
 	TNT1 A 0 A_PlaySound("weapons/gswing", 0, 0.8);
@@ -1225,8 +1225,8 @@ states
 	Goto OnLoop;
 	
 	SlashLeft.Red:
-	TNT1 A 0 A_JumpIf (momZ > 0, "SlashDown.Red");
-	TNT1 A 0 A_JumpIf (momZ < 0, "SlashDown.Red");
+	TNT1 A 0 A_JumpIf(momZ > 0, "SlashDown.Red");
+	TNT1 A 0 A_JumpIf(momZ < 0, "SlashDown.Red");
 	TNT1 A 0 A_StopSound(5);
 	TNT1 A 0 A_PlaySound("sawswing", 7,0.5);
 	TNT1 A 0 A_PlaySound("weapons/gswing", 0, 0.8);
@@ -1273,8 +1273,8 @@ states
 	Goto Ready.Blood;
 	
 	SlashLeft.Blue:
-	TNT1 A 0 A_JumpIf (momZ > 0, "SlashDown.Blue");
-	TNT1 A 0 A_JumpIf (momZ < 0, "SlashDown.Blue");
+	TNT1 A 0 A_JumpIf(momZ > 0, "SlashDown.Blue");
+	TNT1 A 0 A_JumpIf(momZ < 0, "SlashDown.Blue");
 	TNT1 A 0 A_StopSound(5);
 	TNT1 A 0 A_PlaySound("sawswing", 7,0.5);
 	TNT1 A 0 A_PlaySound("weapons/gswing", 0, 0.8);
@@ -1321,8 +1321,8 @@ states
 	Goto Ready.BlueBlood;
 	
 	SlashLeft.Green:
-	TNT1 A 0 A_JumpIf (momZ > 0, "SlashDown.Green");
-	TNT1 A 0 A_JumpIf (momZ < 0, "SlashDown.Green");
+	TNT1 A 0 A_JumpIf(momZ > 0, "SlashDown.Green");
+	TNT1 A 0 A_JumpIf(momZ < 0, "SlashDown.Green");
 	TNT1 A 0 A_StopSound(5);
 	TNT1 A 0 A_PlaySound("sawswing", 7,0.5);
 	TNT1 A 0 A_PlaySound("weapons/gswing", 0, 0.8);

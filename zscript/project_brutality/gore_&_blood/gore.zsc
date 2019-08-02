@@ -226,7 +226,7 @@ Default {
 
 }
 
-CLASS GreenBrutal_FlyingBloodTrail : pb_blood_and_gore_base { 
+CLASS Greenpb_FlyingBloodTrail : pb_blood_and_gore_base { 
 	Default {
 	-NOGRAVITY;
 	+NOCLIP;
@@ -254,7 +254,7 @@ Splash:
 }
 
 
-CLASS BlueBrutal_FlyingBloodTrail : pb_blood_and_gore_base
+CLASS Bluepb_FlyingBloodTrail : pb_blood_and_gore_base
 { 
 Default {
 	-NOGRAVITY
@@ -334,7 +334,7 @@ States
 	}
 }
 
-CLASS XDeath2: XDeath1 { 
+CLASS XDeath2 : XDeath1 { 
 	Default {
 	+CLIENTSIDEONLY;
 	+DONTSPLASH;
@@ -1111,7 +1111,7 @@ CLASS XDeathGreen : pb_blood_and_gore_base {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		TNT1 A 4 a_spawnprojectile("GreenBrutal_FlyingBloodTrail",0,0,180,2);
+		TNT1 A 4 a_spawnprojectile("Greenpb_FlyingBloodTrail",0,0,180,2);
 		Loop;
 	Death:
 		TNT1 A 1;
@@ -1144,7 +1144,7 @@ States
 		TNT1 A 0 nodelay A_JumpIf(waterlevel > 1, "Death");
 		tnt1 a 0 {frame_num = random(0,4);}
 		XDT6 A 6 {
-			a_spawnprojectile("brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+			a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
 			frame = frame_num;
 			}
 		Loop;
@@ -2008,11 +2008,3 @@ States
 	Stop;
 }
 }
-
-//gore4.dec
-//Sergeant Gibs
-
-
-//Imps Gibs
-
-//Imp Upper Torso

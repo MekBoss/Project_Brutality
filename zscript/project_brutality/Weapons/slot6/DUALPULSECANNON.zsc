@@ -1,4 +1,4 @@
-//Plasma RIFLES (c) 2014 SGT MARK IV tm
+//Plasma RIFLES(c) 2014 SGT MARK IV tm
 CLASS PB_DualPulseCannonFireAnimation : Inventory { 
 	Default {
 		
@@ -161,7 +161,7 @@ CLASS DualPulseCannons: PB_DualWeapon {
 			TNT1 A 0 A_PlaySound("PAILGF2");
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_ZoomFactor(0.98);
-			DPC1 A 1 BRIGHT A_FireCustomMissile("PulseCannonBall", random(-3,3), 0, 6, -4, 0, random(-2,2));//Horizontal Spread, Vertical Spread, Numbers of Projectiles (Leave as -1 if its a single one), Damage Factor
+			DPC1 A 1 BRIGHT A_FireCustomMissile("PulseCannonBall", random(-3,3), 0, 6, -4, 0, random(-2,2));//Horizontal Spread, Vertical Spread, Numbers of Projectiles(Leave as -1 if its a single one), Damage Factor
 			TNT1 A 0 A_FireCustomMissile("Shakeyourassminor", 0, 0, 0, 0);//Shakes the camera to simulate recoil.
 			TNT1 A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, 3, 0, 0, 0);
 			TNT1 A 0 A_Takeinventory("PulseCannonAmmo",1);
@@ -187,7 +187,7 @@ CLASS DualPulseCannons: PB_DualWeapon {
 			TNT1 A 0 A_PlaySound("PAILGF2");
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_ZoomFactor(0.98);
-			DPC2 A 1 BRIGHT A_FireCustomMissile("PulseCannonBall", random(-3,3), 0, -6, -4, 0, random(-2,2));//Horizontal Spread, Vertical Spread, Numbers of Projectiles (Leave as -1 if its a single one), Damage Factor
+			DPC2 A 1 BRIGHT A_FireCustomMissile("PulseCannonBall", random(-3,3), 0, -6, -4, 0, random(-2,2));//Horizontal Spread, Vertical Spread, Numbers of Projectiles(Leave as -1 if its a single one), Damage Factor
 			TNT1 A 0 A_FireCustomMissile("Shakeyourassminor", 0, 0, 0, 0);//Shakes the camera to simulate recoil.
 			TNT1 A 0 A_FireCustomMissile("GunFireSmoke", 0, 0, -3, 0, 0, 0);
 			TNT1 A 0 A_Takeinventory("DoublePulseCannonAmmo",1);
@@ -339,12 +339,12 @@ CLASS DualPulseCannons: PB_DualWeapon {
 			DPCS C 1();
 			DPCS D 1();
 			DPCS E 1();
-			DPCS EEEE 1 ();
+			DPCS EEEE 1();
 			stop;
 			
 		FlashSlideKicking:
 			DPCS EE 2();
-			DPCS DDCCCBBBAAA 2 ();
+			DPCS DDCCCBBBAAA 2();
 			stop;
 			
 		FlashSlideKickingStop:

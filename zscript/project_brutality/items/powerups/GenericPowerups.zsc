@@ -31,7 +31,7 @@ States
 		PINV AAABBBCCCDDD 2 Bright A_SpawnItem("Green_FlareMedium",0,35);
 		Loop;
 	Pickup:
-		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile ("CasingSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		Stop;
 }
 }
@@ -58,7 +58,7 @@ States
 		SOUL ABCDCB 2 BRIGHT;
 		Goto Spawn;
 	Pickup:
-		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile ("CasingSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_GiveInventory("SoulSphereHealth", 1);
 		Stop;
 }
@@ -93,7 +93,7 @@ States
 		MEGA AABBCCDD 2 BRIGHT;
 		Goto Spawn;
 	Pickup:
-		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile ("CasingSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		//TNT1 A 0 A_GiveInventory("HeavyArmorForMegaSphere", 1);
 		TNT1 AA 0 A_GiveInventory("SoulsphereHealth", 1);
 	Stop;
@@ -153,7 +153,7 @@ States
 		TNT1 A 0 HealThing(100, 0);
 		TNT1 A 0 A_GiveInventory("SoulSphereHealth", 1);
 		TNT1 A 20;
-		TNT1 A 0 A_Print ("Press Reload (R) to alternate smash/execution modes");
+		TNT1 A 0 A_Print("Press Reload(R) to alternate smash/execution modes");
 		Stop;
 }
 }
@@ -178,7 +178,7 @@ States
 		TNT1 A 0 A_GiveInventory("PowerStrength");
 		TNT1 A 0 HealThing(100, 0);
 		TNT1 A 20;
-		TNT1 A 0 A_Print ("Press Reload (R) to alternate smash/execution modes");
+		TNT1 A 0 A_Print("Press Reload(R) to alternate smash/execution modes");
 		Stop;
 }
 }
@@ -207,9 +207,9 @@ States
 	Pickup:
 		TNT1 A 0 A_GiveInventory("PowerStrength");
 		TNT1 A 0 HealThing(10, 0);
-		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile ("CasingSmoke", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 AAAAAAAAAAAAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 20;
-		TNT1 A 0 A_Print ("You got the Demon Strength Rune. RIP AND TEAR!");
+		TNT1 A 0 A_Print("You got the Demon Strength Rune. RIP AND TEAR!");
 		Stop;
 }
 }

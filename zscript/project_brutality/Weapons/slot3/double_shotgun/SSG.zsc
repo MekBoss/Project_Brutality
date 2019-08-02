@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------
 //
-// Sawed-Off (SSG)
+// Sawed-Off(SSG)
 //
 // --------------------------------------------------------------------------
 CLASS SSG : weapon_slot_3_proto_class
@@ -25,7 +25,7 @@ Default
 	Tag "Sawed-Off Shotgun";
 	+WEAPON.NOAUTOFIRE;
 	+WEAPON.MELEEWEAPON;
-	Inventory.PickupMessage "You got the Sawed-Off Shotgun! (Slot 3)";
+	Inventory.PickupMessage "You got the Sawed-Off Shotgun!(Slot 3)";
 	Obituary "%o was splattered by %k's SSG";
 	Inventory.PickupSound "CLIPINQS";
 }
@@ -62,8 +62,8 @@ States
 		TNT1 AA 0 a_fireprojectile("YellowFlareSpawn", 15, 0, 0, 0);
 		TNT1 AA 0 a_fireprojectile("YellowFlareSpawn", -15, 0, 0, 0);
 		SHO9 B 1 BRIGHT;//A_FireBullets(11, 6, 22, 7, "ShotgunPuff")
-		TNT1 A 0 A_FireBullets (12, 6, 10, 7, "ShotgunPuff");//V20B
-		TNT1 A 0 A_FireBullets (12, 6, 10, 7, "ShotgunPuff");
+		TNT1 A 0 A_FireBullets(12, 6, 10, 7, "ShotgunPuff");//V20B
+		TNT1 A 0 A_FireBullets(12, 6, 10, 7, "ShotgunPuff");
 		RIFF AA 0 a_fireprojectile("GunFireSmokE", 0, 0, 2, 0, 0, 0);
 		RIFF AA 0 a_fireprojectile("GunFireSmoke", 0, 0, -2, 0, 0, 0);
 		TNT1 A 0 A_ZoomFactor(0.950);

@@ -16,7 +16,7 @@ actor find_free_fire(actor caller = null)
 		if(i == pb_torch_base(caller).fire.size() )
 		{
 			actor ttt = spawn("torch_fire", pos: pb_torch_base(caller).pos);
-			pb_torch_base(caller).fire.push( (pb_special_effect_base)(ttt) );
+			pb_torch_base(caller).fire.push((pb_special_effect_base)(ttt) );
 			return ttt;
 		}
 		

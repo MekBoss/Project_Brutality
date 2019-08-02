@@ -86,7 +86,7 @@ States
 		}
 		LMGF A 1 BRIGHT
 		{
-			A_FireBullets (1.45, 1.45, -1, random(13,14), "MachineGunBulletPuff");
+			A_FireBullets(1.45, 1.45, -1, random(13,14), "MachineGunBulletPuff");
 			A_FireProjectile("Tracer", random(-1,1), 0, -1, 0);
 			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 			A_FireProjectile("YellowFlareSpawn",0,0,0,0);
@@ -120,7 +120,7 @@ States
 		LM2F A 1 BRIGHT
 		{
 			A_PlaySound("LMGFIRE", 1);
-			A_FireBullets (1.20, 1.20, -1, random(13,14), "MachineGunBulletPuff");
+			A_FireBullets(1.20, 1.20, -1, random(13,14), "MachineGunBulletPuff");
 			A_FireProjectile("Tracer", random(-1,1), 0, -1, 0);
 			A_FireProjectile("GunFireSmoke", 0, 0, 0, 3, 0, 0);
 			A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
@@ -300,7 +300,7 @@ States
 	Goto BeltNoAmmo;
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("LMGFIRE");
-		LM3F A 1 BRIGHT A_FireBullets (3.4, 3.4, -1, random(13,14), "MachineGunBulletPuff");
+		LM3F A 1 BRIGHT A_FireBullets(3.4, 3.4, -1, random(13,14), "MachineGunBulletPuff");
 		TNT1 A 0 A_FireProjectile("Tracer", random(-1,1), 0, -1, 0);
 		tnt1 a 0 A_QuakeEx(1, 1, 1, 4, 0, 64, "", 0);
 		TNT1 A 0 A_FireProjectile("GunFireSmoke", 0, 0, 1, 1, 0, 0);

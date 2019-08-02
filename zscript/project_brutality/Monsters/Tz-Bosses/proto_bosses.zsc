@@ -17,7 +17,7 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 {
 	if(nuts == false)
 	{
-		vector3 relat_pos = (0, 0, 0);
+		vector3 relat_pos =(0, 0, 0);
 		if(inflictor != null){ relat_pos = self.vec3to(inflictor); }
 			//console.printf("%f", self.angleto(inflictor) );
 		if(relat_pos.z >= 55 && relat_pos.z <= 65 && self.angleto(inflictor) < 15 )
@@ -26,11 +26,11 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 			double an_sin = sin(angle);
 			double an_cos = cos(angle);
 
-			actor prj = spawn("UltraGoreSPawner", pos:self.pos + (an_cos * radius, an_sin * radius, 50) );
+			actor prj = spawn("UltraGoreSPawner", pos:self.pos +(an_cos * radius, an_sin * radius, 50) );
 				
 			//prj.bthruactors = true;
 			//prj.angle = self.angle;
-			//prj.vel = (frandom(0, 10) * an_sin, frandom(0, 10) * an_cos, frandom(-3, 7) );
+			//prj.vel =(frandom(0, 10) * an_sin, frandom(0, 10) * an_cos, frandom(-3, 7) );
 			
 			self.MinMissileChance = 0;
 			self.SetStateLabel("Pain.Taunt");
@@ -50,11 +50,11 @@ override void tick()
 	self.instatesequence(self.curstate, findstate("stomp") )
 	) {return;}//if in pain, special attack or stomp state dont do anything
 
-	if(target && (level.time % 3) == 0)
+	if(target &&(level.time % 3) == 0)
 	{
 		vector3 square = self.vec3to(target);
 		
-		double dis = (square.x * square.x) + (square.y * square.y) + (square.z * square.z);
+		double dis =(square.x * square.x) +(square.y * square.y) +(square.z * square.z);
 		if(dis < 180 * 180) {self.SetStateLabel("stomp"); }
 	}
 
@@ -67,10 +67,10 @@ override void tick()
 		
 		if(target)
 		{
-			vector3 startPos = self.pos + (0, 0, height/2);
+			vector3 startPos = self.pos +(0, 0, height/2);
 			vector3 direction = self.vec3to(target);
-			direction.z -= (height/2);
-			direction.z += (target.height/2);
+			direction.z -=(height/2);
+			direction.z +=(target.height/2);
 			
 			cyber_tracer_target_check(l_t).trg = self.target;
 			cyber_tracer_target_check(l_t).src = self;
@@ -93,16 +93,16 @@ actor trg, src;
 
 override ETraceStatus TraceCallback()
 {
-	if (Results.HitType == TRACE_HitActor)
+	if(Results.HitType == TRACE_HitActor)
 	{
 		if(Results.HitActor == trg) {return trace_stop;}
 		if(Results.HitActor == src) {return TRACE_Skip;}
 		return TRACE_Skip;
 	}
 	
-	if (Results.HitType == TRACE_HitWall)
+	if(Results.HitType == TRACE_HitWall)
 	{
-		if (Results.HitLine.Flags & Line.ML_TWOSIDED > 0 && Results.Tier == TIER_Middle)
+		if(Results.HitLine.Flags & Line.ML_TWOSIDED > 0 && Results.Tier == TIER_Middle)
 		{
 			return TRACE_skip;
 		}

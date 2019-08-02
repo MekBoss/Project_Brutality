@@ -118,17 +118,17 @@ States
 		
 	Pain.Stun:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx ("StunElectrocute", random (-4, 4), random (-4, 4),  random (16, 32), 0, 0);
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
 		PAIN G 1 A_Pain();
-		PAIN GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		PAIN GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		PAIN G 1 A_Pain();
-		PAIN GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		PAIN GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		PAIN G 1 A_Pain();
-		PAIN GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		PAIN GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		PAIN G 1 A_Pain();
-		PAIN GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		PAIN GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		PAIN G 1 A_Pain();
-		PAIN GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		PAIN GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		PAIN G 1 A_Pain();
 		Goto See;
 		
@@ -140,130 +140,130 @@ States
 	Death:
 		PAIN H 8 BRIGHT;
 		PAIN I 8 BRIGHT A_Scream();
-		TNT1 A 0 A_Explode (220,220);
-		TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		//TNT1 AAAAAAAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160))
-		//TNT1 AAAA 0 a_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 AAA 0 a_spawnprojectile ("XDeathPainElementalNew1", 32, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathPainElementalNew1", 32, 0, random (0, 360), 2, random (60, 90));
+		TNT1 A 0 A_Explode(220,220);
+		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AAAAAAAA 0 a_spawnprojectile("PEPart1", 32, 0, random(0, 360), 2, random(0, 160))
+		//TNT1 AAAA 0 a_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160))
+		TNT1 AAA 0 a_spawnprojectile("XDeathPainElementalNew1", 32, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeathPainElementalNew1", 32, 0, random(0, 360), 2, random(60, 90));
 		
 		
-		TNT1 AAAAAAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
 		EXPL A 0 A_SpawnItemEx("ExplosionParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
-		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("FireBallExplosion", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FireBallExplosion", 6, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 BRIGHT A_PainDie("pb_Lost_Soul");
 		
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
 		Stop;
 		
 	Death.Telefrag:
 		PAIN H 8 BRIGHT;
 		PAIN I 8 BRIGHT A_Scream();
-		TNT1 AAAAAA 0 bright a_spawnprojectile ("SuperGoreSpawner", 5, 0, random (0, 360), 2, random (30, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		//TNT1 AAAAAAAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160))
-		//TNT1 AAAA 0 a_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 AAA 0 a_spawnprojectile ("XDeathPainElementalNew1", 32, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathPainElementalNew1", 32, 0, random (0, 360), 2, random (60, 90));
+		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AAAAAAAA 0 a_spawnprojectile("PEPart1", 32, 0, random(0, 360), 2, random(0, 160))
+		//TNT1 AAAA 0 a_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160))
+		TNT1 AAA 0 a_spawnprojectile("XDeathPainElementalNew1", 32, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AAA 0 a_spawnprojectile("XDeathPainElementalNew1", 32, 0, random(0, 360), 2, random(60, 90));
 		
 		
-		TNT1 AAAAAAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
 		EXPL A 0 A_SpawnItemEx("ExplosionParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
-		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("FireBallExplosion", 6, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FireBallExplosion", 6, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 BRIGHT A_PainDie("pb_Lost_Soul");
 		
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 4 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 A 0 a_spawnprojectile ("ExplosionSmoke", 1, 0, random (0, 360), 2, random (70, 110));
-		TNT1 AAA 6 a_spawnprojectile ("RealFlameTrailsSmall", 1, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 4 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAA 6 a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
 		Stop;
 		
 	Raise:
@@ -320,13 +320,13 @@ CLASS PEPart1 : ACTOR {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		ID22 A 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		ID22 B 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		ID22 C 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		ID22 D 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		Loop;
 	Death:
 		ID22 F 1;
@@ -370,20 +370,20 @@ CLASS PEPart2 : ACTOR {
 		ID22 A 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
 		TNT1 A 0 A_SPawnItem("ExplosionSmoke");
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		
 		ID22 B 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		
 		ID22 C 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
 		TNT1 A 0 A_SPawnItem("ExplosionSmoke");
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		
 		ID22 D 2 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 	Loop;
 
 	Death:
@@ -410,20 +410,20 @@ CLASS PEPart2SuperFast: PEPart2 {
 		ID22 A 1 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
 		
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		
 		ID22 B 1 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		
 		ID22 C 1 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
 		
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		
 		ID22 D 1 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
 		TNT1 A 0 bright A_SpawnItem("YellowFlare",0,2);
-		TNT1 A 0 a_spawnprojectile ("FlameTrails", 2, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
 		Loop;
 	}
 }
@@ -455,10 +455,10 @@ CLASS FatalizedPE : ACTOR {
 		PA1F U -1;
 		Stop;
 	Death:
-		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 }
 

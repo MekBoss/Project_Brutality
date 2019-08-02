@@ -1,6 +1,6 @@
-version "3.6"
+version "3.7.2"
 const C_TID	= 1000;	//Default camera tid
-const  MAX_R	= 56+32;	//Maximum radius (or distance from the player)
+const  MAX_R	= 56+32;	//Maximum radius(or distance from the player)
 const  ADJUST_R = 8;	//Amount to adjust the camera by
 const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
@@ -216,6 +216,24 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //-----------------------------------------------------------------------
 
 
+//розібрати цей срач тут
+//якщо SwitchableDecoration обовязково HeadshotTarget
+#include "zscript/project_brutality/monsters/fatality_sump/imps/d_d_imp.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/imps/imp.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/imps/savage_imp.zsc"
+
+#include "zscript/project_brutality/monsters/fatality_sump/zombie/shotguner.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/zombie/major.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/zombie/m_last_stand.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/zombie/zombies.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/zombie/zombie_d.zsc"
+
+
+
+#include "zscript/project_brutality/monsters/fatality_sump/working_dir.zsc"
+
+#include "zscript/project_brutality/monsters/fatality_sump/d_guys.zsc"
+#include "zscript/project_brutality/monsters/fatality_sump/d_guy_1.zsc"
 
 
 
@@ -257,6 +275,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/T1-Grunts/captain/RifleCommando.zsc"
 #include "zscript/project_brutality/monsters/T1-Grunts/captain/helmetCommando.zsc"
 
+
 //pimp my imp
 #include "zscript/project_brutality/monsters/T1-Imps/proto_imp.zsc"
 //pimped imps
@@ -287,7 +306,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/T3-Revies/BeamRev.zsc"
 #include "zscript/project_brutality/monsters/T3-Revies/Draugr.zsc"
 
-//all flying monsters base (pain, caco, FLYING SKULLS MAN DAMN ITS CREEPY SHIT)
+//all flying monsters base(pain, caco, FLYING SKULLS MAN DAMN ITS CREEPY SHIT)
 #include "zscript/project_brutality/monsters/T3-Floaters/proto_puffballs.zsc"
 //cacodemons
 #include "zscript/project_brutality/monsters/T3-Floaters/CACODEMON.zsc"
@@ -327,13 +346,15 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //I, THE SUN OV MAN, THE OFFSPRING OF THE STELLAR RACE...and so on
 #include "zscript/project_brutality/monsters/T4-Nobles/BELPHEGOR.zsc"
 //knights
-#include "zscript/project_brutality/monsters/t4-nobles/knigth.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/CyberKnight.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/CyberPaladin.zsc"
+#include "zscript/project_brutality/monsters/t4-nobles/knights/knigth.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberKnight.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberPaladin.zsc"
 //barons
-#include "zscript/project_brutality/monsters/T4-Nobles/BARON.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/CyberBaron.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/Infernus.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/BARON.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/CyberBaron.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/Infernus/Infernus.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/Infernus/guro.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/Infernus/projectile.zsc"
 
 
 //archvile base

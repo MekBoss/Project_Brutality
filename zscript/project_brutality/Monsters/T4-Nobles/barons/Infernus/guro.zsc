@@ -1,0 +1,600 @@
+
+CLASS DeadBruiser1 : pb_blood_and_gore_base
+{ 
+States
+{
+	Spawn:        
+		B4DD F -1;
+	Stop;
+
+	Raise:
+		TNT1 A 0 A_SpawnItem("TeleportFog");
+		TNT1 A 0 A_SpawnItem("pb_Infernus");
+	Stop;
+
+	Death:
+		TNT1 A 0 A_SpawnItem("GibsZ");
+		TNT1 A 0 A_SpawnItem("DeadBruiserSawedTorso");
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+}
+}
+
+
+
+CLASS DeadBruiserSawedTorso: DeadBruiser1 { 
+States{Spawn:        BT04 B -1;        
+	Stop;
+	Death:
+	TNT1 A 0 A_SpawnItem("GibsZ");
+	TNT1 AAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+}}
+
+	
+
+CLASS XDeathBruiserUpperHalf : ACTOR { 
+Default {
+	Radius 1;
+	Height 8;
+	Speed 10;
+	Mass 8;
+	BounceFactor 0.3;
+	+DOOMBOUNCE;
+	+NOBLOCKMAP;
+	+MISSILE;
+	+NOTELEPORT;
+	+DONTSPLASH;
+	+MOVEWITHSECTOR;
+	
+	DeathSound "misc/xdeath1";
+}
+    States
+    {
+	Spawn:
+		BT02 AABCD 4 a_spawnprojectile("Blood",0,0,180,2);
+		BT02 D -1;
+	Stop;
+}
+}
+
+CLASS XDeathSawedBruiser : ACTOR { 
+Default {
+	Radius 1;
+	Height 8;
+	Speed 10;
+	Mass 8;
+	BounceFactor 0.3;
+	+DOOMBOUNCE;
+	+NOBLOCKMAP;
+	+MISSILE;
+	+NOTELEPORT;
+	+DONTSPLASH;
+	+MOVEWITHSECTOR;
+	DeathSound "misc/xdeath1";
+}
+    States
+    {
+	Spawn:
+	Goto Death;
+	Death:
+	BT04 AAAAA 4 a_spawnprojectile("Blood",0,0,180,2);
+	HPLA A 0 A_SpawnItem("DeadBruiserSawedTorso",0,0,0,1);
+	Stop;
+}
+}
+
+
+//Infernus Leg
+CLASS XDeathInfernusLeg : pb_blood_and_gore_base { 
+Default {
+		
+	Radius 8;
+	Height 8;
+		
+	Speed 10;
+	Gravity 0.7;
+	Mass 4;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.01;
+	+DOOMBOUNCE;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	Scale 1.1;
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		G0RZ ABCDEFGH 4;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_SpawnItem("PB_blood", 0, 5);
+		TNT1 A 0 A_SpawnItem("Gib_InfernusLeg",0,0,0,1);
+		Stop;
+}
+}
+
+CLASS Gib_InfernusLeg: BigGibBase { 
+Default {
+		
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+	Scale 1.0;
+}
+States
+{
+	Spawn:
+		G0RZ A 1;
+		G0RZ A -1;
+Stop;    }}
+	   
+//Infernus Arm
+CLASS XDeathInfernusArm : pb_blood_and_gore_base { 
+Default {
+		
+	Radius 8;
+	Height 8;
+		
+	Speed 10;
+	Gravity 0.7;
+	Mass 4;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.01;
+	+DOOMBOUNCE;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+	Scale 1.1;
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		G0RX ABCDEFG 4;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_SpawnItem("PB_blood", 0, 5);
+		TNT1 A 0 A_SpawnItem("Gib_InfernusArm",0,0,0,1);
+		Stop;
+}
+}
+
+CLASS Gib_InfernusArm: BigGibBase { 
+Default {
+		
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+	Scale 1.0;
+}
+States
+{
+	Spawn:
+		G0RX H 1;
+		G0RX H -1;
+Stop;    }}
+	   
+//Infernus Torso
+CLASS XDeathInfernusTorso : pb_blood_and_gore_base { 
+Default {
+		
+	Radius 8;
+	Height 8;
+		
+	Speed 10;
+	Gravity 0.7;
+	Mass 4;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.01;
+	+DOOMBOUNCE;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	Scale 1.1;
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		G0RW ABCDEFGH 4;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_SpawnItem("PB_blood", 0, 5);
+		TNT1 A 0 A_SpawnItem("Gib_InfernusTorso",0,0,0,1);
+		Stop;
+}
+}
+
+CLASS Gib_InfernusTorso: BigGibBase { 
+Default {
+		
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+	Scale 1.0;
+}
+States
+{
+	Spawn:
+		G0RW I -1;
+Stop;    }}
+	   
+//Infernus Head
+CLASS XDeathInfernusHead : pb_blood_and_gore_base { 
+Default {
+		
+	Radius 8;
+	Height 8;
+		
+	Speed 10;
+	Gravity 0.7;
+	Mass 4;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.01;
+	+DOOMBOUNCE;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	Scale 1.1;
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		G0RV ABCDEFGH 4;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_SpawnItem("PB_blood", 0, 5);
+		TNT1 A 0 A_SpawnItem("Gib_InfernusHead",0,0,0,1);
+		Stop;
+}
+}
+
+CLASS Gib_InfernusHead: BigGibBase { 
+Default {
+		
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+	Scale 1.08;
+}
+States
+{
+	Spawn:
+		G0RV I -1;
+Stop;    }}
+	   
+//Infernus Torso Upper
+CLASS XDeathInfernusUpperTorso : pb_blood_and_gore_base { 
+Default {
+	Radius 8;
+	Height 8;
+	Speed 10;
+	Gravity 0.7;
+	Mass 4;
+	Decal "BrutalBloodSplat";
+	BounceFactor 0.01;
+	+DOOMBOUNCE;
+	+MISSILE;
+	+MOVEWITHSECTOR;
+	+CLIENTSIDEONLY;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	Scale 1.1;
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+}
+States
+{
+	Spawn:
+		BT02 ABC 4;
+	Falling:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		BT02 CC 4;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		TNT1 AAA 0 A_SpawnItem("PB_blood", 0, 5);
+		TNT1 A 0 A_SpawnItem("Gib_InfernusUpperTorso",0,0,0,1);
+		Stop;
+}
+}
+
+CLASS Gib_InfernusUpperTorso: BigGibBase { 
+Default {
+		
+	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
+	Scale 1.08;
+}
+States
+{
+	Spawn:
+		BT02 D -1;
+Stop;    }}
+
+CLASS InfernusXDeath : pb_blood_and_gore_base { 
+Default {
+		
+	Radius 1;
+	Height 1;
+	Scale 0.8;
+	Speed 0;
+	Mass 1;
+	Decal "BloodSuper";
+	BounceFactor 0.5;
+	+DOOMBOUNCE;
+	+MISSILE;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	+MOVEWITHSECTOR;
+	+NOGRAVITY;
+	+NOCLIP;
+	+DONTSPLASH;
+}
+States
+{
+	Spawn:
+		TNT1 AAAA 0 a_spawnprojectile("WallRedBlood", 40, 0, random(0, 360), 2, random(-15, 15));
+		TNT1 AA 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Instestin", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AA 0 a_spawnprojectile("XDeathInfernusArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusTorso", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathInfernusLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("PB_pot");
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+	Stop;
+
+	LowBlood:
+		TNT1 A 2;
+		Stop;
+	LotsOfBlood:
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		Stop;
+	AbsurdBlood:
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		Stop;
+}
+
+}
+
+
+CLASS infernus_arm : baron_base { 
+Default {
+	Radius 16;
+	Height 50;
+	Health 200;
+	damagefactor "Blood", 0.0;
+	damagefactor "BlueBlood", 0.0;
+	damagefactor "Blood", 0.0;
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	damagefactor "Shrapnel", 0.0;
+	damagefactor "KillMe", 0.0;
+	damagefactor "Cutless", 0.6;
+	BloodType "PB_Blood", "SawBlood", "SawBlood";
+	Mass 999999;
+	-SOLID;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+NOPAIN;
+	+DONTSPLASH;
+	Scale 1.1;
+}
+States
+{
+	Spawn:
+		B5DR AaabbBccCbbB 2//no arm
+		{
+			a_spawnprojectile("Brutal_FlyingBlood", 52, 5, random(0, 360), 2, random(0, 160));
+			a_spawnprojectile("Brutal_FlyingBlood", 55, 12, random(0, 360), 2, random(0, 160));
+		}
+		TNT1 A 0 A_PlaySound("superbaron/pain");
+	Death:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Fall;
+		TNT1 A 0 A_PlaySound("superbaron/death",10);
+		B5DR DE 6;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		EXPL A 0 Radius_Quake(2, 12, 0, 8, 0);
+		B5DR F -1;
+	stop;
+
+	Death.Head:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Fall;
+		TNT1 AAAAA 0 a_spawnprojectile("BloodMist", 50, 0, random(0, 360), 2, random(10, 170));
+		TNT1 A 0 A_SpawnItem("noble_head_explosion", 0, 56);
+		B5DR GHI 6;
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		B5DR I -1 simple_death_handler();
+	stop;
+			
+	Death.Decapitate:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Fall;
+		TNT1 AAAAA 0 a_spawnprojectile("BloodMist", 50, 0, random(0, 360), 2, random(10, 170));
+		TNT1 AAAAA 0 a_spawnprojectile("Xdeath1", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusHead", 62, 0, random(0, 360), 2, random(50, 130));
+		BTN4 ABCD 6;
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		B5DR I -1;
+	stop;
+			
+			
+	XDeath:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile("InfernusXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		stop;
+			
+	Death.ExplosiveImpact:
+	Death.ExtremePunches:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 ThrustThingZ(0,35,0,1);
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Jump(255, "Death.ExplosiveImpact1", "Death.ExplosiveImpact2");
+	Death.ExplosiveImpact1:
+		B103 A  8 A_Scream;
+		B103 B  8 A_NoBlocking;
+		B103 CCCCCC  8 A_CheckFloor("Land1");
+	Land1:
+		B103 D -1;
+	stop;
+			
+	Death.ExplosiveImpact2:
+		B103 E  8 A_Scream;
+		B103 F  8 A_NoBlocking;
+		B103 GGGGGG  8 A_CheckFloor("Land2");
+	Land2:
+		B103 H -1;
+	stop;
+			
+	Death.SSG:
+	Death.Railgun:
+		TNT1 A 0;
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("BloodMist", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 a_spawnprojectile("XDeathStomach", 60, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AAAAAA 0 a_spawnprojectile("Xdeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusTorso", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusHead", 62, 0, random(0, 360), 2, random(50, 130));
+		BT01 AABCD 10;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BT01 D -1;
+	stop;
+}
+
+}
+
+CLASS infernus_headshot : infernus_arm
+{ 
+States
+{
+	Spawn:
+		B1N5 AAABBBCCCBBB 2 a_spawnprojectile("Brutal_FlyingBlood", 62, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_Pain;
+		TNT1 A 0 A_Scream;
+	Death:
+		B1N5 DDD 2 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_NoBlocking;
+		B1N5 EEE 2 a_spawnprojectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		B1N5 FFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 a_spawnprojectile("Brutal_FlyingBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		B1N5 F -1 simple_death_handler();
+	stop;
+			
+	Death.Head:
+		TNT1 A 0 A_SpawnItem("noble_head_explosion", 0, 62);
+		B1N6 AAAAAAAAAAA 2 a_spawnprojectile("Brutal_FlyingBlood", 62, 0, random(0, 360), 2, random(30, 110));
+		B1N6 BBBBB 2 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_NoBlocking;
+		B1N6 CCCCC 2 a_spawnprojectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		B1N6 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 a_spawnprojectile("Brutal_FlyingBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		B1N6 D -1 simple_death_handler();
+	stop;
+			
+	Death.Decapitate:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Fall;
+		TNT1 AAAAA 0 a_spawnprojectile("BloodMist", 50, 0, random(0, 360), 2, random(10, 170));
+		TNT1 AAAAA 0 a_spawnprojectile("Xdeath1", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusHead", 62, 0, random(0, 360), 2, random(50, 130));
+		BTN4 ABCD 6;
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		B5DR I -1;
+	stop;
+			
+			
+	XDeath:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile("InfernusXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		stop;
+			
+	Death.ExplosiveImpact:
+	Death.ExtremePunches:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 ThrustThingZ(0,35,0,1);
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Jump(255, "Death.ExplosiveImpact1", "Death.ExplosiveImpact2");
+	Death.ExplosiveImpact1:
+		B103 A  8 A_Scream;
+		B103 B  8 A_NoBlocking;
+		B103 CCCCCC  8 A_CheckFloor("Land1");
+	Land1:
+		B103 D -1;
+	stop;
+			
+	Death.ExplosiveImpact2:
+		B103 E  8 A_Scream;
+		B103 F  8 A_NoBlocking;
+		B103 GGGGGG  8 A_CheckFloor("Land2");
+	Land2:
+		B103 H -1;
+	stop;
+
+	Death.SSG:
+	Death.Railgun:
+		TNT1 A 0;
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("BloodMist", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 a_spawnprojectile("XDeathStomach", 60, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AAAAAA 0 a_spawnprojectile("Xdeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusTorso", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathInfernusHead", 62, 0, random(0, 360), 2, random(50, 130));
+		BT01 AABCD 10;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BT01 D -1;
+	stop;
+}
+
+}

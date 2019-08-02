@@ -83,42 +83,42 @@ States
 		
 	Pain.Stun:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx ("StunElectrocute", random (-4, 4), random (-4, 4),  random (16, 32), 0, 0);
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
 		TORT G 1 A_Pain;
-		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		TORT G 1 A_Pain;
-		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		TORT G 1 A_Pain;
-		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		TORT G 1 A_Pain;
-		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		TORT G 1 A_Pain;
-		TORT GGGGGGGGGG 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		TORT GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		TORT G 1 A_Pain;
 	Goto See ;
 		
 	Death:
 		TNT1 A 0;
 		TORT H 6 A_Pain;
-		TNT1 AAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
 		TORT I 6 A_NoBlocking;
-		TNT1 A 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("PEPart1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("PEPart1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160));
 		TORT J 6;
-		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("XDeath2", 40, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
 		TORT K 6;
-		TNT1 AA 0 a_spawnprojectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160));
 		TORT L 5 A_Pain;
-		TNT1 AAAAAA 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 a_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
 		TORT M 6;
-		TNT1 A 0 a_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
 		TORT M -1;
 	Stop;
 		
@@ -152,7 +152,7 @@ CLASS TriteEgg: pb_monster_base
 	Mass 15;
 	FastSpeed 17;
 	Scale .50;
-	DamageFunction (random(3,5));
+	DamageFunction(random(3,5));
 	+RANDOMIZE;
 	+THRUGHOST;
 	+FORCEXYBILLBOARD;
@@ -172,8 +172,8 @@ States
 	Death:
 	XDeath:
 		flob FGHDE 1;
-		//TNT1 AA 0 a_spawnprojectile ("XDeath1Green", 32, 0, random (0, 360), 2, random (50, 130));
-		//TNT1 A 0 A_SpawnItem ("GreenBrutal_FlyingBloodTrails");
+		//TNT1 AA 0 a_spawnprojectile("XDeath1Green", 32, 0, random(0, 360), 2, random(50, 130));
+		//TNT1 A 0 A_SpawnItem("GreenBrutal_FlyingBloodTrails");
 		TNT1 A 0 A_SpawnItem("Trite");
 	Stop;
 }
@@ -202,10 +202,10 @@ CLASS FatalizedTriteElemental : pb_blood_and_gore_base {
 		TA1F I -1;
 		Stop;
 	Death:
-		TNT1 AAA 0 a_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath3", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 a_spawnprojectile ("XDeath4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 }}
 
@@ -296,24 +296,24 @@ CLASS Trite : ACTOR {
 		TNT1 A 0 A_PlaySound("Trite/Sight");
 		TNT1 A 0 A_PlaySound("DSFDTHE");
 		TRFA ABC 6 A_SetScale(1.0);
-		TNT1 AA 0 a_spawnprojectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_PlaySound("XDeath1");
 		TRFA D 7 A_SetScale(1.0);
-		TNT1 A 0 a_spawnprojectile ("XDeath2", 1, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 a_spawnprojectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath2", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TRFA E 6 A_SetScale(1.0);
-		TNT1 AA 0 a_spawnprojectile ("SuperWallRedBlood", 46, 0, random (170, 190), 2, random (0, 40));
-		TNT1 AAAAAAA 0 a_spawnprojectile ("PB_blood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 a_spawnprojectile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_SpawnItem ("PB_pot");
-		EXPL A 0 Radius_Quake (2, 24, 0, 15, 0);
+		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("PB_pot");
+		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
 		TNT1 A 0 A_PlaySound("Trite/Splat");
-		TNT1 AAAAA 0 a_spawnprojectile ("PlayerFlyingBlood", 25, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("PlayerFlyingBlood", 25, 0, random(0, 360), 2, random(0, 160));
 		XPL4 BCDEF 5 A_SetScale(1.0);
-		TNT1 A 0 a_spawnprojectile ("XDeath1", 1, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		XPL4 G -1 A_SetScale(1.0);
-		TNT1 A 0 A_SpawnItem ("PB_pot");
-		TNT1 A 0 A_SpawnItem ("TriteMarineFatalized");
+		TNT1 A 0 A_SpawnItem("PB_pot");
+		TNT1 A 0 A_SpawnItem("TriteMarineFatalized");
 		TNT1 A 0 A_UnSetInvulnerable;
 	Stop;
 
@@ -337,8 +337,8 @@ CLASS Trite : ACTOR {
 	Death:
 		TRIT G 5 A_Scream;
 		TNT1 A 0 A_PlaySound("misc/xdeath2");
-		//TNT1 AA 0 a_spawnprojectile ("GreenBrutal_FlyingBloodTrails", 35, 0, random (0, 360), 2, random (0, 160));
-		//TNT1 A 0 a_spawnprojectile ("XDeath1Green", 35, 0, random (0, 360), 2, random (0, 160))
+		//TNT1 AA 0 a_spawnprojectile("GreenBrutal_FlyingBloodTrails", 35, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("XDeath1Green", 35, 0, random(0, 360), 2, random(0, 160))
 		TRIT H 0 A_PlaySound("Trite/Splat");
 		TRIT H 5 A_NoBlocking;
 		TRIT IJK 5;

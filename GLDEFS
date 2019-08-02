@@ -1508,7 +1508,7 @@ object BurnParticles
 frame TNT1 { light BIGREDTORCH }
 }
 
-//Dark Imp (Nami Fuckers)
+//Dark Imp(Nami Fuckers)
 Pointlight DarkBallSeeker1
 {
 Color 0.8 0.1 0.8

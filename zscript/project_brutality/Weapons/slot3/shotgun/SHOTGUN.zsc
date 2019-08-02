@@ -40,7 +40,7 @@ Default
 	Weapon.AmmoGive2 0;
 	Weapon.AmmoType1 "pb_Shells";
 	Weapon.AmmoType2 "ShotgunAmmo";
-	Inventory.PickupMessage "You got the Pump Shotgun! (Slot 3)";
+	Inventory.PickupMessage "You got the Pump Shotgun!(Slot 3)";
 	Inventory.PickupSound "SHOTPICK";
 	Obituary "%o sucked %k's Shotgun";
 	AttackSound "None";
@@ -73,13 +73,13 @@ States
 			A_SetCrosshair(0);
 			if(invoker.iron_sight == true)
 			{
-				if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHT6"); }
-				if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHT4"); }
+				if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHT6"); }
+				if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHT4"); }
 				invoker.change_weapon_PSprite("SHT8"); return;
 			}
 			
-			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
-			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
 		}
 	Loop;
 
@@ -87,8 +87,8 @@ States
 		TNT1 A 0;
 		SHT8 A 1
 		{
-//		if (CountInv("HasSlugs") >= 1 ) { A_SetWeaponSprite("SHT6"); }
-//		if (CountInv("HasDragonBreath") >= 1 ) { A_SetWeaponSprite("SHT4"); }
+//		if(CountInv("HasSlugs") >= 1 ) { A_SetWeaponSprite("SHT6"); }
+//		if(CountInv("HasDragonBreath") >= 1 ) { A_SetWeaponSprite("SHT4"); }
 		A_Weaponready();
 	}
 	Loop;*/
@@ -109,7 +109,7 @@ States
 		SHTF AB 1 BRIGHT;
 		TNT1 A 0
 		{
-			switch (invoker.actual_shotgun_ammo_type)
+			switch(invoker.actual_shotgun_ammo_type)
 			{
 				case buckshot :
 					A_PlaySound("weapons/sg", 5);
@@ -170,16 +170,16 @@ States
 		SHTG BCDEFG 1;
 		SHTG HI 1
 		{
-			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
-			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
 		}
 		SHTG J 1
 		{
 			A_PlaySound("weapons/sgpump", 1);
 
-			if (invoker.actual_shotgun_ammo_type == slug )
+			if(invoker.actual_shotgun_ammo_type == slug )
 			{ a_fireprojectile("ShotCaseSpawn2",0,0,-4,-4); return; }
-			if (invoker.actual_shotgun_ammo_type == dragon)
+			if(invoker.actual_shotgun_ammo_type == dragon)
 			{ a_fireprojectile("ShotCaseSpawn3",0,0,-4,-4); return; }
 			a_fireprojectile("ShotCaseSpawn",0,0,-4,-4);
 		}
@@ -187,14 +187,14 @@ States
 		SHTG J 1 A_PlaySound("weapons/sgpump", 1);
 		SHTG IH 1
 		{
-			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
-			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
 		}
 		SHTG GFEDCB 1;
 		SHTG A 1
 		{
-			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
-			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
 			A_WeaponReady(WRF_ALLOWRELOAD);
 			A_ReFire("fire");
 		}
@@ -208,7 +208,7 @@ States
 		}
 		tnt1 a 0
 		{
-			switch (invoker.actual_shotgun_ammo_type)
+			switch(invoker.actual_shotgun_ammo_type)
 			{
 				case buckshot :
 					invoker.change_weapon_PSprite("SHT8");
@@ -284,8 +284,8 @@ States
 		"####" JKLMNOPP 1{}
 		"####" A 0
 		{//crutch
-			if (invoker.actual_shotgun_ammo_type == slug ) { a_fireprojectile("ShotCaseSpawn2",0,0,-4,-4); return; }
-			if (invoker.actual_shotgun_ammo_type == dragon) { a_fireprojectile("ShotCaseSpawn3",0,0,-4,-4); return; }
+			if(invoker.actual_shotgun_ammo_type == slug ) { a_fireprojectile("ShotCaseSpawn2",0,0,-4,-4); return; }
+			if(invoker.actual_shotgun_ammo_type == dragon) { a_fireprojectile("ShotCaseSpawn3",0,0,-4,-4); return; }
 			a_fireprojectile("ShotCaseSpawn",0,0,-4,-4);
 		}
 		"####" A 0 A_PlaySound("weapons/sgpump");
@@ -362,8 +362,8 @@ States
 		SHTG A 1
 		{
 			A_ZoomFactor(1.0);
-			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
-			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
 			A_WeaponReady();
 		}
 		//TNT1 A 0 A_JumpIfInventory("ShotgunAmmo",9,"OkToFire");
@@ -387,8 +387,8 @@ States
 		SSHR A 1;
 		SSHR BC 1
 		{
-			if (invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
-			if (invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
+			if(invoker.actual_shotgun_ammo_type == slug ) { invoker.change_weapon_PSprite("SHTS"); }
+			if(invoker.actual_shotgun_ammo_type == dragon) { invoker.change_weapon_PSprite("SHTD"); }
 		}
 		SSHR D 1 A_PlaySound("insertshell");
 		SSHR EFGHIJ 1 A_WeaponReady(WRF_NOBOB);
@@ -430,7 +430,7 @@ States
 	change_shell_type:
 		TNT1 A 0 
 		{
-			switch (invoker.actual_shotgun_ammo_type)
+			switch(invoker.actual_shotgun_ammo_type)
 			{
 				case buckshot :
 					invoker.set_weapon_state("pick_slug_shells");
@@ -601,7 +601,7 @@ States
 
 		
 		/*Pump2: // Old 7+1 Pump, Replaced with an 8+1 shell insert. Never Used./
-			TNT1 A 0 A_GiveInventory ("Pumping", 1)
+			TNT1 A 0 A_GiveInventory("Pumping", 1)
 			TNT1 A 0 A_TakeInventory("Reloading", 1)
 			    TNT1 A 0 A_Takeinventory("Zoomed",1)
 		        TNT1 A 0 A_ZoomFactor(1.0)
@@ -848,15 +848,15 @@ CLASS DragonBreath : pb_projectile_base
 	Spawn:
 		TNT1 A 0 A_Playsound("Afrit/Hellfire");
 		TNT1 A 0 A_Explode(21, 66, 0);
-		TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		EXPL A 0 A_SpawnItemEx ("ExplosionParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		EXPL AAAAAAAAAAA 0 a_spawnprojectile ("ShotgunParticles", 6, 0, random (0, 360), 2, random (0, 90));//ShotgunParticles
+		TNT1 AAAA 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL A 0 A_SpawnItemEx("ExplosionParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		EXPL AAAAAAAAAAA 0 a_spawnprojectile("ShotgunParticles", 6, 0, random(0, 360), 2, random(0, 90));//ShotgunParticles
 		TNT1 A 0 A_Jump(76, 2, 3);
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-35, 35), random (-35, 35));
-		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-45, 45), random (-45, 35));
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("ShrapnelParticle", 2, 0, random (0, 360), 2, random (0, 360));
-		TNT1 A 0 A_SpawnItemEx ("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("ShrapnelParticle", 2, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("RicoChet",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		Stop;
 	Death:
 		Stop;
@@ -902,7 +902,7 @@ CLASS DragonsBreathTracer: pb_projectile_base
 		{
 			A_Explode(5, 30, 0);
 			A_Playsound("ricochet/hit");
-			A_SpawnItemEx ("DragonBreath",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("DragonBreath",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION,0);
 	}
 	Stop;
 	}

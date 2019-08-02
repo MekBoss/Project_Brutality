@@ -29,21 +29,21 @@ override void CheckJump()
 				double jumpvelz = 10;
 				double jumpfac = 0;
 
-				for (let p = Inv; p != null; p = p.Inv)
+				for(let p = Inv; p != null; p = p.Inv)
 				{
 					let pp = PowerHighJump(p);
-					if (pp)
+					if(pp)
 					{
 						double f = pp.Strength;
-						if (f > jumpfac) jumpfac = f;
+						if(f > jumpfac) jumpfac = f;
 					}
 				}
-				if (jumpfac > 0) jumpvelz *= jumpfac;
+				if(jumpfac > 0) jumpvelz *= jumpfac;
 
 				Vel.Z = jumpvelz;
 				bOnMobj = false;
 				player.jumpTics = -1;
-				if (!(player.cheats & CF_PREDICTING)) A_PlaySound("*jump", CHAN_BODY);
+				if(!(player.cheats & CF_PREDICTING)) A_PlaySound("*jump", CHAN_BODY);
 				return;
 		}
 	}
@@ -54,7 +54,7 @@ override void playerthink()
 {
 	super.playerthink();
 
-	if (player.jumpTics == 0) {amount_of_jumps = 0;}
+	if(player.jumpTics == 0) {amount_of_jumps = 0;}
 }
 
 }

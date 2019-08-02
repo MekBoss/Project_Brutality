@@ -8,23 +8,23 @@ private bool jump_pressed;
 //tech ends here
 override bool inputprocess(inputevent e)
 {
-	if (e.type == inputevent.type_keydown)
+	if(e.type == inputevent.type_keydown)
 	{//press key
 		//keys definition store in gzdoom guts as integers
 		//use double int because any action can be binded to two keys
 		int key1, key2;
 		[key1, key2] = Bindings.GetKeysForCommand("+jump");
-		if ( (key1 && key1 == e.KeyScan) || (key2 && key2 == e.KeyScan) )
+		if((key1 && key1 == e.KeyScan) ||(key2 && key2 == e.KeyScan) )
 		{
 			SendNetworkEvent("hold_jump", true);
 		}
 	}
 
-	if (e.type == inputevent.type_keyup)
+	if(e.type == inputevent.type_keyup)
 	{//release key
 		int key1, key2;
 		[key1, key2] = Bindings.GetKeysForCommand("+jump");
-		if ( (key1 && key1 == e.KeyScan) || (key2 && key2 == e.KeyScan) )
+		if((key1 && key1 == e.KeyScan) ||(key2 && key2 == e.KeyScan) )
 		{
 			SendNetworkEvent("hold_jump", false);
 		}
@@ -34,7 +34,7 @@ override bool inputprocess(inputevent e)
 
 override void NetworkProcess(ConsoleEvent e)
 {
-	if (e.Name == "hold_jump")   
+	if(e.Name == "hold_jump")   
 	{
 		//jump_pressed = e.args[0];
 		let plr = players[e.player].mo;

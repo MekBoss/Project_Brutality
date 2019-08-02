@@ -31,9 +31,9 @@ protected void pb_draw_line(actor liner, statelabel effect_type)
 
 	vector3 increment = diff / 10;
 	vector3 test_vector = begining;
-    double ending_squared = (ending dot ending);
+    double ending_squared =(ending dot ending);
 
-	while ( (test_vector dot test_vector) <= ending_squared)
+	while((test_vector dot test_vector) <= ending_squared)
 	{
 		actor tt = pb_effect_event(effect).find_free_effect_actor();
 		actor(tt).setorigin(test_vector, false);

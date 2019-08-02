@@ -42,7 +42,7 @@ CLASS ArmorShard : BasicArmorBonus Replaces ArmorBonus {
 	States
 	{
 		Spawn:
-			//TNT1 A 0 A_CheckSight ("Spawn2")
+			//TNT1 A 0 A_CheckSight("Spawn2")
 			BON2 AAABCDB 2;//A_SpawnItem("Green_FlareSmall",0,7)
 			Loop;
 		Spawn2:

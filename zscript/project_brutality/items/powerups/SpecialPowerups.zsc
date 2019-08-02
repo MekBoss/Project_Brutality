@@ -398,7 +398,7 @@ CLASS Electricity : ACTOR {
 Default {
 	
 	Speed 12;
-	Damagefunction (random(0,1));
+	Damagefunction(random(0,1));
 	Damagetype "plasma";
 	PROJECTILE;
 	RENDERSTYLE "Translucent";

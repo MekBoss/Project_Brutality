@@ -42,7 +42,7 @@ Default {
 	Scale 1.0;
 	Weapon.AmmoType1 "pb_Shells";
 	Weapon.AmmoType2 "AutoShotgunAmmo";
-	Inventory.PickupMessage "$You've found the Auto Shotgun! (Slot 3)";
+	Inventory.PickupMessage "$You've found the Auto Shotgun!(Slot 3)";
 	Inventory.PickupSound "weapons/sgpump";
 
 	Obituary "$OB_MPSHOTGUN";
@@ -113,8 +113,8 @@ States
 		TNT1 A 0;//A_Recoil(1)
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
 		TNT1 AAAAA 0 a_fireprojectile("Tracer", Random(-5, 5), 0, -1, Random(-5, 5));
-		AUSF A 1 BRIGHT A_FireBullets (frandom(5.84,6.45), frandom(5.2,6.75), 4, random(7,8), "ShotgunPuff");
-		TNT1 A 0 A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, random(7,8), "MachineGunBulletPuff");
+		AUSF A 1 BRIGHT A_FireBullets(frandom(5.84,6.45), frandom(5.2,6.75), 4, random(7,8), "ShotgunPuff");
+		TNT1 A 0 A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, random(7,8), "MachineGunBulletPuff");
 		AUSF B 1 BRIGHT;
 		TNT1 A 0 A_ZoomFactor(0.935);
 		TNT1 A 0 A_SetAngle(frandom(-0.65, 0.5) + Angle);
@@ -143,8 +143,8 @@ States
 		TNT1 A 0 A_PlaySound("Weapons/AutoShotgun", 1);
 		TNT1 A 0 A_Recoil(1);
 		TNT1 A 0 a_fireprojectile("YellowFlareSpawn",0,0,0,0);
-		A9SF A 1 BRIGHT A_FireBullets (frandom(5.84,6.45), frandom(5.2,6.75), 4, random(7,8), "ShotgunPuff");
-		TNT1 A 0 A_FireBullets (frandom(5.85,6.65), frandom(5.32,6.75), 4, random(7,8), "MachineGunBulletPuff");
+		A9SF A 1 BRIGHT A_FireBullets(frandom(5.84,6.45), frandom(5.2,6.75), 4, random(7,8), "ShotgunPuff");
+		TNT1 A 0 A_FireBullets(frandom(5.85,6.65), frandom(5.32,6.75), 4, random(7,8), "MachineGunBulletPuff");
 		A9SF B 1 BRIGHT;
 		TNT1 A 0 A_ZoomFactor(0.935);
 		TNT1 A 0 A_SetAngle(frandom(-0.65, 0.5) + Angle);
@@ -553,7 +553,7 @@ States
 		FLAS A 1 Bright a_spawnprojectile("YellowFlareSpawn", 0, 0, 0, 0);
 		loop;
 	Death:
-		EXPL AAA 0 a_spawnprojectile ("ExplosionSmoke", 4, 0, random (0, 360), 2, random (0, 360));
+		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 4, 0, random(0, 360), 2, random(0, 360));
 		Stop;
 }
 }

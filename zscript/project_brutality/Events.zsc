@@ -3,7 +3,7 @@ class PB_EventHandler : StaticEventHandler
 {
 /*	override void WorldThingDied(WorldEvent e)
 	{
-		if (e.thing && e.thing.target
+		if(e.thing && e.thing.target
 		&& e.thing.target.player
 		&& e.thing.bCOUNTKILL
 		&& e.thing.bISMONSTER)

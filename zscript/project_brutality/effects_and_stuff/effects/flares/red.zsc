@@ -64,7 +64,7 @@ States
 {
 Spawn:
 	TNT1 A 2 A_SpawnItem("Red_Flare",0,0);
-	HSMX ABCDEFGHIJKL 3 BRIGHT a_spawnprojectile ("Brutal_LiquidBlood3", 46, 0, random (170, 190), 2, random (0, 40));
+	HSMX ABCDEFGHIJKL 3 BRIGHT a_spawnprojectile("Brutal_LiquidBlood3", 46, 0, random(170, 190), 2, random(0, 40));
 	Stop;
 }
 }

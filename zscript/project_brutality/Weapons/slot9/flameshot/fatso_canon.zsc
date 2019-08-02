@@ -10,7 +10,7 @@ Default {
 	+WEAPON.NOAUTOAIM;
 	+FLOORCLIP;
 	+DONTGIB;
-	Inventory.PickupMessage "You got the Mancubus Flame Cannon! (Slot 9)";
+	Inventory.PickupMessage "You got the Mancubus Flame Cannon!(Slot 9)";
 	Tag "Flame Cannon";
 }
 

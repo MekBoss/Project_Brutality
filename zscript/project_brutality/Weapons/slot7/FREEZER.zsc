@@ -40,7 +40,7 @@ Default
 	+WEAPON.NOAUTOFIRE;
 	+WEAPON.NOALERT;
 	DamageType "Freeze";
-	Inventory.PickupMessage "Fridge Rifle! (Slot 7)";
+	Inventory.PickupMessage "Fridge Rifle!(Slot 7)";
 	Obituary "%o going cool coctail of %k";
 	Tag "Cry Rifle";
 }
@@ -74,7 +74,7 @@ States
 		TNT1 A 0 A_StopSound(2);
 		FR1D ABC 2
 		{
-			if (invoker.choose_pistol == true)
+			if(invoker.choose_pistol == true)
 			{self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("pistol_ready") );}
 			a_weaponready(WRF_ALLOWRELOAD);
 		}
@@ -104,7 +104,7 @@ States
 	Goto Reload;
 		TNT1 A 0
 		{
-			if (invoker.choose_pistol == true) { self.player.SetPSprite(PSP_WEAPON, invoker.FindState("Fire_Pistol") ); return;}
+			if(invoker.choose_pistol == true) { self.player.SetPSprite(PSP_WEAPON, invoker.FindState("Fire_Pistol") ); return;}
 			if(invoker.actual_freezer_fire_mode == freeze_ray) { self.player.SetPSprite(PSP_WEAPON, invoker.FindState("Fire_Beam") ); return;}
 		}
 		TNT1 A 0 A_AlertMonsters;
@@ -188,7 +188,7 @@ States
 		TNT1 A 0 A_StopSound(2);
 		TNT1 A 0 
 		{
-			if (invoker.choose_pistol == true) { self.player.SetPSprite(PSP_WEAPON, invoker.FindState("Reload_Pistol") ); return;}
+			if(invoker.choose_pistol == true) { self.player.SetPSprite(PSP_WEAPON, invoker.FindState("Reload_Pistol") ); return;}
 		}
 
 		TNT1 A 0 A_JumpIfInventory("snowflakes",60,"DontNeedToReload");
@@ -201,7 +201,7 @@ States
 		5RRL ABC 2;
 		5RRL D 3;
 		TNT1 A 0 A_Playsound("Weapons/CellEject",2);
-		TNT1 A 0 a_fireprojectile ("PlasmaCaseSpawn", 192, 0, -20, 2, random (0, 160));
+		TNT1 A 0 a_fireprojectile("PlasmaCaseSpawn", 192, 0, -20, 2, random(0, 160));
 		5RRL EFGH 2;
 		TNT1 AAA 0;
 		5RRL II 1;
@@ -248,7 +248,7 @@ States
 		5RRL D 3;
 		//TNT1 A 0 A_JumpIfInventory("HasUnloaded", 1, 8);
 		TNT1 A 0 A_Playsound("Weapons/CellEject",2);
-		TNT1 A 0 a_fireprojectile ("PlasmaCaseSpawn", 192, 0, -20, 2, random (0, 160));
+		TNT1 A 0 a_fireprojectile("PlasmaCaseSpawn", 192, 0, -20, 2, random(0, 160));
 		5RRL EFGH 2;
 		TNT1 AAA 0;
 		5RRL II 1;
@@ -343,7 +343,7 @@ States
 		TNT1 A 0 A_TakeInventory("FreezerPistolAmmo", 1);//Removes 1 ammo from magazine
 		
 		TNT1 A 0 A_AlertMonsters;
-		D2FS W 1 BRIGHT A_FireBullets(4,1.5,-1,9,"BulletPuff",1);//Horizontal Spread, Vertical Spread, Numbers of Projectiles (Leave as -1 if its a single one), Damage Factor
+		D2FS W 1 BRIGHT A_FireBullets(4,1.5,-1,9,"BulletPuff",1);//Horizontal Spread, Vertical Spread, Numbers of Projectiles(Leave as -1 if its a single one), Damage Factor
 		TNT1 A 0 A_PlaySound("weapons/pistol", CHAN_WEAPON);
 		D2FS X 1 a_fireprojectile("MP40CaseSpawn",0,0,6,4);//Ejetts empty brass
 		D2FS YY 1;
@@ -458,7 +458,7 @@ CLASS FreezerBall : pb_projectile_base
 	Spawn:
 		FRPJ ABC 1 Bright;// A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), 0, 0, 0, 0, 128, 0);
 		TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
-		TNT1 A 0 a_spawnprojectile ("Icetracer", 0, 0, random (0, 360), 2, random (0, 360));
+		TNT1 A 0 a_spawnprojectile("Icetracer", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		BXPL A 0 Bright A_StopSound(CHAN_BODY);
@@ -492,7 +492,7 @@ CLASS CryoSmoke : ACTOR {
 	{
 	Spawn:
 		SMKO A 0;
-		SMK2 A 2 A_FadeOut (0.05);
+		SMK2 A 2 A_FadeOut(0.05);
 		Wait;
 	}
 }

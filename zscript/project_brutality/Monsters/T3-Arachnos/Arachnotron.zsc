@@ -85,17 +85,17 @@ States
 		
 	Pain.Stun:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx ("StunElectrocute", random (-4, 4), random (-4, 4),  random (16, 32), 0, 0);
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
 		BSPI I 1 A_Pain();
-		BSPI IIIIIIIIII 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		BSPI IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		BSPI I 1 A_Pain();
-		BSPI IIIIIIIIII 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		BSPI IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		BSPI I 1 A_Pain();
-		BSPI IIIIIIIIII 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		BSPI IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		BSPI I 1 A_Pain();
-		BSPI IIIIIIIIII 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		BSPI IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		BSPI I 1 A_Pain();
-		BSPI IIIIIIIIII 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0);
+		BSPI IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		BSPI I 1 A_Pain();
 		Goto See;
 		
@@ -107,40 +107,40 @@ States
 	Death:
 		TNT1 A 0 A_Jump(101, "RareDeath");
 		BSPI J 8 A_Scream();
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 AAAA 0 A_spawnprojectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAA 0 A_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAA 0 A_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("BloodMist", 50, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AAA 0 A_spawnprojectile ("XDeathSpiderNew1", 42, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AA 0 A_spawnprojectile ("XDeathSpiderNew2", 42, 0, random (0, 360), 2, random (60, 90));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAA 0 A_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 A_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 A_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0 A_spawnprojectile("BloodMist", 50, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AAA 0 A_spawnprojectile("XDeathSpiderNew1", 42, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AA 0 A_spawnprojectile("XDeathSpiderNew2", 42, 0, random(0, 360), 2, random(60, 90));
 		BSPI K 6 A_NoBlocking();
 		BSPI LMNO 8;
 		BSPI P 1 A_BossDeath();
-		TNT1 A 0 A_SpawnItem ("GrowingBloodPool");
-		TNT1 A 0 A_SpawnItem ("DeadSpider", 1);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadSpider", 1);
 	Stop;
 		
 	RareDeath:
 		BSPI Q 5 A_Scream();
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		//TNT1 A 0 A_SpawnItemEx ("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAA 0 A_spawnprojectile ("SuperGoreSpawner", 10, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("SuperGoreSpawner", 0, 0, random (0, 180), 2, random (0, 180));
-		TNT1 AA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 AAAA 0 A_spawnprojectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAA 0 A_spawnprojectile ("SpiderPart1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 A_spawnprojectile ("SpiderPart2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 A_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAA 0 A_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		//TNT1 A 0 A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAA 0 A_spawnprojectile("SuperGoreSpawner", 10, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0 A_spawnprojectile("SuperGoreSpawner", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 A_spawnprojectile("SpiderLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAA 0 A_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0 A_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 A_spawnprojectile("SpiderPart1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_spawnprojectile("SpiderPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 A_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
 		BSPI R 6 A_NoBlocking();
 		BSPI STUV 6;
 		BSPI WX 2 A_BossDeath();
-		TNT1 A 0 A_SpawnItem ("GrowingBloodPool");
-		TNT1 A 0 A_SpawnItem ("DeadSpider2", 1);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("DeadSpider2", 1);
 	Goto XBurns;
 		
 	Death.Cutless:
@@ -153,10 +153,10 @@ States
 		TNT1 A 0 A_BossDeath();
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
-		TNT1 AAA 0 A_spawnprojectile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 A_spawnprojectile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160));
-		EXPL AAAAAA 0 A_spawnprojectile ("ExplosionSmoke", 32, 0, random (0, 360), 2, random (0, 360));
-		CARB KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 7 A_spawnprojectile ("ExplosionSmoke", 15, 0, random (0, 360), 2, random (70, 110));
+		TNT1 AAA 0 A_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		EXPL AAAAAA 0 A_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+		CARB KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 7 A_spawnprojectile("ExplosionSmoke", 15, 0, random(0, 360), 2, random(70, 110));
 		CARB K -1;
 	Stop;
 	
@@ -165,20 +165,20 @@ States
 		TNT1 A 0 A_BossDeath();
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
-		TNT1 AAA 0 A_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
-		BSPI LLLL 2 A_spawnprojectile ("FlameTrails", 45, 0, random (0, 360), 2, random (50, 130));
-		BSPI MMMM 2 A_spawnprojectile ("FlameTrails", 30, 0, random (0, 360), 2, random (50, 130));
-		BSPI NNNN 2 A_spawnprojectile ("FlameTrails", 25, 0, random (0, 360), 2, random (50, 130));
-		BSPI OOOO 2 A_spawnprojectile ("FlameTrails", 25, 0, random (0, 360), 2, random (50, 130));
+		TNT1 AAA 0 A_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		BSPI LLLL 2 A_spawnprojectile("FlameTrails", 45, 0, random(0, 360), 2, random(50, 130));
+		BSPI MMMM 2 A_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(50, 130));
+		BSPI NNNN 2 A_spawnprojectile("FlameTrails", 25, 0, random(0, 360), 2, random(50, 130));
+		BSPI OOOO 2 A_spawnprojectile("FlameTrails", 25, 0, random(0, 360), 2, random(50, 130));
 		TNT1 A 0 A_Playsound("props/redfire");
 	Burns:
 		TNT1 A 0;
 		//TNT1 A 0 A_GiveInventory("BrutalCounter");
 		CARB KK 2 A_SpawnItem("YellowFlare",0,20);
-		ID22 F 0 A_spawnprojectile ("FlameTrails", 20, 0, random (0, 360), 2, random (70, 110));
+		ID22 F 0 A_spawnprojectile("FlameTrails", 20, 0, random(0, 360), 2, random(70, 110));
 		CARB KK 2 A_SpawnItem("YellowFlare",0,20);
-		ID22 F 0 A_spawnprojectile ("FlameTrails", 20, 0, random (0, 360), 2, random (70, 110));
-		ID22 F 0 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		ID22 F 0 A_spawnprojectile("FlameTrails", 20, 0, random(0, 360), 2, random(70, 110));
+		ID22 F 0 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		//TNT1 A 0 A_JumpIfInventory("BrutalCounter", 30, "Smokes");
 	Loop;
 
@@ -186,7 +186,7 @@ States
 		TNT1 A 0;
 		//TNT1 A 0 A_JumpIfInventory("BrutalCounter", 60, "Rest");
 		//TNT1 A 0 A_GiveInventory("BrutalCounter");
-		CARB K 5 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		CARB K 5 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 	Loop;
 
 	Rest:
@@ -214,12 +214,12 @@ States
 	
 	Death.Cut:
 	Death.Saw:
-		TNT1 AAAAA 0 A_spawnprojectile ("Instestin2", 14, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 40, 0, random (0, 360), 2, random (50, 130));
-		TNT1 AAAAA 0 A_spawnprojectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAA 0 A_spawnprojectile ("XDeath2", 10, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAAAAAA 0 A_spawnprojectile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160));
-		TNT1 A 0 A_spawnprojectile ("XDeathArachnotronHead", 50, 0, random (0, 360), 2, random (40, 130));
+		TNT1 AAAAA 0 A_spawnprojectile("Instestin2", 14, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 A_spawnprojectile("CeilBloodSpot", 40, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAA 0 A_spawnprojectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 A_spawnprojectile("XDeath2", 10, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAA 0 A_spawnprojectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_spawnprojectile("XDeathArachnotronHead", 50, 0, random(0, 360), 2, random(40, 130));
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
 		ARF2 F 16;
@@ -230,26 +230,26 @@ States
 	Death.Crush:
 	XDeath:
 		BSPI J 4;
-		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		//TNT1 A 0 A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_Jump(64, "XDeathRare");
-		TNT1 AAAAA 0 A_spawnprojectile ("SuperGoreSpawner2", 50, 0, random (0, 360), 2, random (0, 180));
-		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("SuperGoreSpawner2", 30, 0, random (0, 180), 2, random (0, 180));
-		TNT1 AA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
-		TNT1 AAAA 0 A_spawnprojectile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("XDeathBrain1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAAA 0 A_spawnprojectile ("XDeathBrain2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAA 0 A_spawnprojectile ("SpiderPart1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 A_spawnprojectile ("XDeathSpiderNew1", 32, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AAA 0 A_spawnprojectile ("XDeathSpiderNew2", 32, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AAA 0 A_spawnprojectile ("PEPart2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAA 0 A_spawnprojectile ("Brutal_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAA 0 A_spawnprojectile("SuperGoreSpawner2", 50, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0 A_spawnprojectile("SuperGoreSpawner2", 30, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AA 0 A_spawnprojectile("SpiderLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAA 0 A_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0 A_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 A_spawnprojectile("SpiderPart1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 A_spawnprojectile("XDeathSpiderNew1", 32, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AAA 0 A_spawnprojectile("XDeathSpiderNew2", 32, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AAA 0 A_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 A_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
 		XBSP A 6 A_NoBlocking();
 		XBSP BCD 6;
 		XBSP D 1 A_BossDeath();
-		TNT1 A 0 A_SpawnItem ("GrowingBloodPool");
-		TNT1 A 0 A_SpawnItem ("XDeadSpider", 1);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("XDeadSpider", 1);
 	Goto XBurns;
 
 	XBurns:
@@ -257,17 +257,17 @@ States
 		//TNT1 A 0 A_JumpIfInventory("BrutalCounter", 20, "XSmokes");
 		//TNT1 A 0 A_GiveInventory("BrutalCounter");
 		TNT1 DD 2 A_SpawnItem("YellowFlare",0,20);
-		ID22 F 0 A_spawnprojectile ("FlameTrails", 20, 0, random (0, 360), 2, random (70, 110));
+		ID22 F 0 A_spawnprojectile("FlameTrails", 20, 0, random(0, 360), 2, random(70, 110));
 		TNT1 DD 2 A_SpawnItem("YellowFlare",0,20);
-		XBSP D 0 A_spawnprojectile ("FlameTrails", 20, 0, random (0, 360), 2, random (70, 110));
-		XBSP D 0 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		XBSP D 0 A_spawnprojectile("FlameTrails", 20, 0, random(0, 360), 2, random(70, 110));
+		XBSP D 0 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 	Loop;
 
 	XSmokes:
 		TNT1 A 0;
 		//TNT1 A 0 A_JumpIfInventory("BrutalCounter", 100, "XRest");
 		//TNT1 A 0 A_GiveInventory("BrutalCounter");
-		TNT1 D 5 A_spawnprojectile ("ExplosionSmoke", 40, 0, random (0, 360), 2, random (70, 110));
+		TNT1 D 5 A_spawnprojectile("ExplosionSmoke", 40, 0, random(0, 360), 2, random(70, 110));
 	Loop;
 
 	XRest:
@@ -286,14 +286,14 @@ States
 	Stop;
 	
 	XDeathRare:
-		TNT1 A 0 A_spawnprojectile ("XDeathArachnotronHead", 50, 0, random (0, 360), 2, random (40, 130));
-		TNT1 AA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAAAAAAA 0 A_spawnprojectile ("CeilBloodSpot", 0, 0, random (0, 360), 2, random (50, 130));
+		TNT1 A 0 A_spawnprojectile("XDeathArachnotronHead", 50, 0, random(0, 360), 2, random(40, 130));
+		TNT1 AA 0 A_spawnprojectile("SpiderLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 A_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
 		XBSP A 6 A_NoBlocking();
 		XBSP BCD 6;
 		XBSP D 1 A_BossDeath();
-		TNT1 A 0 A_SpawnItem ("GrowingBloodPool");
-		TNT1 A 0 A_SpawnItem ("XDeadSpider", 1);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_SpawnItem("XDeadSpider", 1);
 	Goto XBurns;
 	
 	Death.Ice:
@@ -314,7 +314,7 @@ CLASS EnemyPlasmaBall : pb_projectile_base
 { 
 Default
 {
-	DamageFunction (random(10,15));
+	DamageFunction(random(10,15));
 	DamageType "Plasma";
 	Species "NotMarines";
 	Speed 26;
@@ -351,28 +351,28 @@ States
 	Stop;
 
 	Raise:
-		TNT1 A 2 A_spawnprojectile ("RealFlameTrailsSmall", 6, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 2 A_spawnprojectile("RealFlameTrailsSmall", 6, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("PentagramSpawner", 0, 60);
-		TNT1 A 2 A_spawnprojectile ("RealFlameTrailsSmall", 6, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 2 A_spawnprojectile("RealFlameTrailsSmall", 6, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("PentagramSpawner", 0, 60);
 		TNT1 A 0 A_SpawnItem("TeleportFog");
 		TNT1 A 0 A_NoBlocking();
-		TNT1 A 0 A_SpawnItem ("pb_Arrachnotron");
+		TNT1 A 0 A_SpawnItem("pb_Arrachnotron");
 	Stop;
 
 	Death.Cut:
 	Death.Cutless:
 	Death:
-		TNT1 A 0 A_SpawnItemEx ("GibsZ",-3,-3);
-		TNT1 A 0 A_SpawnItemEx ("GibsZ",3,3);
-		TNT1 AAA 0 A_spawnprojectile ("SpiderPart1", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 A_spawnprojectile ("SpiderPart2", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AA 0 A_spawnprojectile ("XDeathSpiderNew1", 32, 0, random (0, 360), 2, random (60, 90));
-		TNT1 AAA 0 A_spawnprojectile ("SpiderLeg", 32, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 A_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 A_spawnprojectile ("XDeath2", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 A_spawnprojectile ("XDeath3", 5, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAA 0 A_spawnprojectile ("XDeath4", 5, 0, random (0, 360), 2, random (0, 160));
+		TNT1 A 0 A_SpawnItemEx("GibsZ",-3,-3);
+		TNT1 A 0 A_SpawnItemEx("GibsZ",3,3);
+		TNT1 AAA 0 A_spawnprojectile("SpiderPart1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 A_spawnprojectile("SpiderPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_spawnprojectile("XDeathSpiderNew1", 32, 0, random(0, 360), 2, random(60, 90));
+		TNT1 AAA 0 A_spawnprojectile("SpiderLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 A_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 }
 
@@ -394,10 +394,10 @@ Health 200;	}
 	XBSP D -1;
 	Stop   ;
 Death.Cut:        Death.Cutless:	        Death:
-	TNT1 AAA 0 A_spawnprojectile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AAA 0 A_spawnprojectile ("XDeath2", 5, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AAA 0 A_spawnprojectile ("XDeath3", 5, 0, random (0, 360), 2, random (0, 160));
-	TNT1 AAA 0 A_spawnprojectile ("XDeath4", 5, 0, random (0, 360), 2, random (0, 160));
+	TNT1 AAA 0 A_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAA 0 A_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAA 0 A_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAA 0 A_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
 Stop;}}
 
 
@@ -563,8 +563,8 @@ States
 		
 	Death:
 		TNT1 A 0 A_NoBlocking();
-		TNT1 AAAAAAAAAAAA 0 A_spawnprojectile ("SmallBrainPiece", 10, 0, random (0, 360), 2, random (0, 160));
-		TNT1 AAAA 0 A_spawnprojectile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160));
+		TNT1 AAAAAAAAAAAA 0 A_spawnprojectile("SmallBrainPiece", 10, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 A_spawnprojectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
 		NAHC IJKLMN 5;
 		NAHC N -5;
 	Stop;
@@ -581,7 +581,7 @@ States
 		NAHA A 2 A_FaceTarget();
 	Fly:
 		NAHA ABCDEFGH 3 A_CheckFloor("See");
-		tnt1 a 0 A_JumpIf (vel.z == 0, "See");
+		tnt1 a 0 A_JumpIf(vel.z == 0, "See");
 		TNT1 A 0;
 	Loop;
 }
@@ -606,34 +606,34 @@ Default {
 	States
 	{
 	Spawn:
-		ARF2 Y 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		ARF2 Y 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Z 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
-		ARF2 YY 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
+		ARF2 YY 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Z 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
-		ARF2 YY 2 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
+		ARF2 YY 2 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Z 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
-		ARF2 YY 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
+		ARF2 YY 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Z 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
-		ARF2 YY 4 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
+		ARF2 YY 4 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Y 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
-		ARF2 ZZ 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Y 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
+		ARF2 ZZ 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Z 6 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
-		ARF2 YY 2 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
+		ARF2 YY 2 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
-		TNT1 A 0 A_SpawnItem ("ShoqueAzul", 0, 17);
-		ARF2 Z 1 A_spawnprojectile ("ExplosionSmoke", 30, 0, random (0, 360), 2, random (70, 110));
+		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
+		ARF2 Z 1 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		Goto Death;
 		
 	Death.Fatality:

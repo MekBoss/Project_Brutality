@@ -51,7 +51,7 @@ States
 			vel *= frandom(0, 12);
 			self.gravity = frandom(0, 0.3);
 			int rand = frandom(0.02, 0.04);
-			self.scale = (rand, rand);
+			self.scale =(rand, rand);
 		}
 		SPKO A 1 Bright A_FadeOut(0.1);
 	wait;
@@ -200,7 +200,7 @@ Spawn:
 	TNT1 A 0 nodelay
 	{
 		double scal = frandom(0.6, 2.3);
-		scale = (scal, scal);
+		scale =(scal, scal);
 	}
 	WOOD ABCD 2;
 	WOOD B 300;
@@ -335,7 +335,7 @@ States
 		TNT1 A 0 nodelay
 		{
 			double scal = frandom(0.1, 0.4);
-			scale = (scal, scal);
+			scale =(scal, scal);
 		}
 		TNT1 A 0 a_jump(256, random(1,4) );
 	See1:
@@ -388,7 +388,7 @@ States
 		tnt1 a 0 nodelay
 		{
 			double scal = frandom(-0.8, 0.8);
-			scale = (scal, scal);
+			scale =(scal, scal);
 		}
 		GLSP ABCDEFGH 3;
 		GLSP C -1;

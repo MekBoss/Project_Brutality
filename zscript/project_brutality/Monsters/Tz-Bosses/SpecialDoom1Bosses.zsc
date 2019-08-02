@@ -138,15 +138,15 @@ CLASS CyberdemonBoss: Cyberdemon 2546 {
 			Goto See;
 		Death:
 			CYBR H 10;
-			EXPL A 0 Radius_Quake (6, 100, 0, 22, 0);
-			TNT1 AAAA 0 a_spawnprojectile ("SpawnedExplosion", 190, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAA 0 a_spawnprojectile ("SpawnedExplosion", 190, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAA 0 a_spawnprojectile ("UltraGoreSPawner", 190, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAA 0 a_spawnprojectile ("UltraGoreSpawner", 190, 0, random (0, 360), 2, random (0, 180));
-			TNT1 A 0 a_spawnprojectile ("cyberdemon_death", 100, 0, random (0, 360), 2, random (0, 160));
-			TNT1 AAAA 0 a_spawnprojectile ("MuchMeatDeath", 0, 0, random (0, 360), 2, random (0, 160));
+			EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
+			TNT1 AAAA 0 a_spawnprojectile("SpawnedExplosion", 190, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 190, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 190, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 190, 0, random(0, 360), 2, random(0, 180));
+			TNT1 A 0 a_spawnprojectile("cyberdemon_death", 100, 0, random(0, 360), 2, random(0, 160));
+			TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
 			CYBR I 5 A_Scream();
-			TNT1 A 0 a_spawnprojectile ("SpawnedExplosion", 150, 0, random (0, 360), 2, 90);
+			TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 150, 0, random(0, 360), 2, 90);
 			CYBR JKL 5;
 			CYBR M 5 A_NoBlocking();
 			CYBR NOP 5;
@@ -319,7 +319,7 @@ CLASS SuperMastermind 2547 : ACTOR {
 			Loop;
 			
 		Missile:
-			TNT1 A 0 A_TakeInventory ("BrutalCounter2", 500);
+			TNT1 A 0 A_TakeInventory("BrutalCounter2", 500);
 			TNT1 A 0 A_SpawnItem("SuperMasterMindHitBox", 0, 144,0);
 			SPID A 4 A_FaceTarget();
 			TNT1 A 0 A_SpawnItem("SuperMasterMindHitBox", 0, 144,0);
@@ -337,10 +337,10 @@ CLASS SuperMastermind 2547 : ACTOR {
 			SPID G 2 A_FaceTarget();
 			TNT1 A 0 A_SpawnItem("SuperMasterMindHitBox", 0, 144,0);
 			SPID H 2 BRIGHT a_spawnprojectile("SuperMastermindTracer", 124, 0, random(-7, 7), 1, random(-4, 2));
-			TNT1 A 0 A_SpawnItem ("MasterMindCaseSpawn", 0, 60,0);
+			TNT1 A 0 A_SpawnItem("MasterMindCaseSpawn", 0, 60,0);
 			TNT1 A 0 A_SpawnItem("SuperMasterMindHitBox", 0, 144,0);
-			TNT1 A 0 A_GiveInventory ("BrutalCounter2", 1);
-			TNT1 A 0 A_JumpIfInventory ("BrutalCounter2", 40, "StopFiring");
+			TNT1 A 0 A_GiveInventory("BrutalCounter2", 1);
+			TNT1 A 0 A_JumpIfInventory("BrutalCounter2", 40, "StopFiring");
 			
 			SPID G 0 A_SpidRefire();
 			Goto Missile+20;
@@ -379,25 +379,25 @@ CLASS SuperMastermind 2547 : ACTOR {
 			
 			SPID J 20 A_Scream();
 			tnt1 a 0 A_FaceTarget();
-			EXPL A 0 Radius_Quake (8, 100, 0, 22, 0);
-			TNT1 AAAAAA 0 a_spawnprojectile ("SpawnedExplosion", 50, 0, random (0, 360), 2, random (0, 360));
-			TNT1 AAAA 0 a_spawnprojectile ("SuperGoreSPawner", 110, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAAA 0 a_spawnprojectile ("Bloodmist", 90, 0, random (0, 360), 2, random (70, 90));
+			EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
+			TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 50, 0, random(0, 360), 2, random(0, 360));
+			TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 			SPID K 10 A_NoBlocking();
-			TNT1 AAAAAA 0 a_spawnprojectile ("SpawnedExplosion", 10, 0, random (0, 360), 2, random (0, 360));
-			TNT1 AAAA 0 a_spawnprojectile ("UltraGoreSPawner", 80, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAAA 0 a_spawnprojectile ("Bloodmist", 90, 0, random (0, 360), 2, random (70, 90));
+			TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(0, 360));
+			TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 			SPID L 5;
-			TNT1 AAAA 0 a_spawnprojectile ("MuchMeatDeath", 0, 0, random (0, 360), 2, random (0, 160));
-			TNT1 A 0 a_spawnprojectile ("SpawnedExplosion", 30, 0, random (0, 360), 2, 90);
-			TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("PEPart2SuperFast", 32, 0, random (0, 360), 2, random (0, 160));
-			TNT1 AAAA 0 a_spawnprojectile ("UltraGoreSPawner", 30, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAA 0 a_spawnprojectile ("UltraGoreSpawner", 30, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("Bloodmist", 30, 0, random (0, 360), 2, random (70, 90));
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("Bloodmist", 100, 0, random (0, 360), 2, random (20, 90));
+			TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+			TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 30, 0, random(0, 360), 2, 90);
+			TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+			TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 			//SPID MNOPQR 5
-			//TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("PEPart2SuperFast", 32, 0, random (0, 360), 2, random (0, 160))
-			TNT1 A 0 A_SpawnItem ("PB_pot");
+			//TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160))
+			TNT1 A 0 A_SpawnItem("PB_pot");
 			TNT1 A 300;
 			TNT1 A 0 A_BrainDie();
 			Stop;
@@ -412,31 +412,31 @@ CLASS SuperMastermind 2547 : ACTOR {
 		Death.Cut:
 		Death.Saw:
 		Death.decaptate:
-			TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("XDeath1", 120, 0, random (0, 360), 2, random (50, 130));
-			TNT1 A 0 a_spawnprojectile ("XSpiderMastermindCuttedBrain", 120, 0, random (0, 360), 2, random (50, 130));
+			TNT1 AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("XDeath1", 120, 0, random(0, 360), 2, random(50, 130));
+			TNT1 A 0 a_spawnprojectile("XSpiderMastermindCuttedBrain", 120, 0, random(0, 360), 2, random(50, 130));
 			SPIY AAAAAAAAAAA 8 A_SpawnItem("MuchBlood", 0, 120);
 			
-			EXPL A 0 Radius_Quake (8, 100, 0, 22, 0);
-			TNT1 AAAAAA 0 a_spawnprojectile ("SpawnedExplosion", 50, 0, random (0, 360), 2, random (0, 360));
-			TNT1 AAAA 0 a_spawnprojectile ("SuperGoreSPawner", 110, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAAA 0 a_spawnprojectile ("Bloodmist", 90, 0, random (0, 360), 2, random (70, 90));
+			EXPL A 0 Radius_Quake(8, 100, 0, 22, 0);
+			TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 50, 0, random(0, 360), 2, random(0, 360));
+			TNT1 AAAA 0 a_spawnprojectile("SuperGoreSPawner", 110, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 			SPID K 10 A_NoBlocking();
-			TNT1 AAAAAA 0 a_spawnprojectile ("SpawnedExplosion", 10, 0, random (0, 360), 2, random (0, 360));
-			TNT1 AAAA 0 a_spawnprojectile ("UltraGoreSPawner", 80, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAAA 0 a_spawnprojectile ("Bloodmist", 90, 0, random (0, 360), 2, random (70, 90));
+			TNT1 AAAAAA 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(0, 360));
+			TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 80, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAAA 0 a_spawnprojectile("Bloodmist", 90, 0, random(0, 360), 2, random(70, 90));
 			SPID L 5;
-			TNT1 AAAA 0 a_spawnprojectile ("MuchMeatDeath", 0, 0, random (0, 360), 2, random (0, 160));
-			TNT1 A 0 a_spawnprojectile ("SpawnedExplosion", 30, 0, random (0, 360), 2, 90);
-			TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("PEPart2SuperFast", 32, 0, random (0, 360), 2, random (0, 160));
-			TNT1 AAAA 0 a_spawnprojectile ("UltraGoreSPawner", 30, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAA 0 a_spawnprojectile ("UltraGoreSpawner", 30, 0, random (0, 360), 2, random (0, 180));
-			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile ("Bloodmist", 30, 0, random (0, 360), 2, random (70, 90));
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile ("Bloodmist", 100, 0, random (0, 360), 2, random (20, 90));
+			TNT1 AAAA 0 a_spawnprojectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
+			TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 30, 0, random(0, 360), 2, 90);
+			TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
+			TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+			TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 			//SPID MNOPQR 5
-			TNT1 AAA 0 a_spawnprojectile ("MastermindLeg", 30, 0, random (0, 360), 2, random (40, 90));
-			TNT1 A 0 a_spawnprojectile ("MastermindLeg", 30, 0, 0, 2, 65);
-			//TNT1 AAAAAAAAAAAA 0 a_spawnprojectile ("PEPart2SuperFast", 32, 0, random (0, 360), 2, random (0, 160))
-			TNT1 A 0 A_SpawnItem ("PB_pot");
+			TNT1 AAA 0 a_spawnprojectile("MastermindLeg", 30, 0, random(0, 360), 2, random(40, 90));
+			TNT1 A 0 a_spawnprojectile("MastermindLeg", 30, 0, 0, 2, 65);
+			//TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160))
+			TNT1 A 0 A_SpawnItem("PB_pot");
 			TNT1 A 300;
 			TNT1 A 0 A_BossDeath();
 			Stop;

@@ -4,10 +4,11 @@
 //corresponding to weapon placing on spawning spot
 //(around pistol/SSG low caliber bullets, grenade launcher grenades, etc)
 //mostly to fix situations when around grenade launcher spawns rockets
+
 class PB_weapon_base : weapon
 {
 //pointer to effect handler event
-pb_effect_event effects_weapon;
+pb_effect_event effects;
 //base bools for check weapons special state conditions
 protected bool fatality, grab_ledge, knife_combo, kick,
 	taunt, salute, Grabbed_Barrel, unload_gun, grenade_out,
@@ -98,7 +99,7 @@ protected void reload_weapon_magazine(string ammo_pool = "", string magazine_poo
 	if(main_ammo == null)
 	{console.printf("there is no %s ammo in player inventory", magazine_pool); return;}
 
-	while( (actual_ammo).amount < (actual_ammo).maxamount && (main_ammo).amount > 0)
+	while((actual_ammo).amount <(actual_ammo).maxamount &&(main_ammo).amount > 0)
 	{
 		actual_ammo.amount ++;
 		main_ammo.amount --;
@@ -235,7 +236,7 @@ states
 
 			if(knife_swing.hitactor != null)
 			{
-				int dam = random(11, 33) * (1 + countinv("PowerStrength") );
+				int dam = random(11, 33) *(1 + countinv("PowerStrength") );
 				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
 				A_PlaySound("Machete/Yum", 3);
 			}
@@ -277,7 +278,7 @@ states
 
 			if(knife_swing.hitactor != null)
 			{
-				int dam = random(11, 33) * (1 + countinv("PowerStrength") );
+				int dam = random(11, 33) *(1 + countinv("PowerStrength") );
 				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
 				A_PlaySound("Machete/Yum", 3);
 			}
@@ -322,7 +323,7 @@ states
 
 			if(knife_swing.hitactor != null)
 			{
-				int dam = random(11, 33) * (1 + countinv("PowerStrength") );
+				int dam = random(11, 33) *(1 + countinv("PowerStrength") );
 				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
 				A_PlaySound("Machete/Yum", 3);
 			}
@@ -423,8 +424,8 @@ states
 			invoker.in_specific_state = true;
 			A_Overlay(-10, "FirstPersonLegsHide");
 			A_ZoomFactor(1.0);
-		//tnt1 a 0 A_JumpIf (momZ > 0, "AirKick");
-		//tnt1 a 0 A_JumpIf (momZ < 0, "AirKick");
+		//tnt1 a 0 A_JumpIf(momZ > 0, "AirKick");
+		//tnt1 a 0 A_JumpIf(momZ < 0, "AirKick");
 		//tnt1 a 0 A_JumpIf(Height < 54, "SlideKick");
 			A_PlaySound("KICK", 6);
 			SetPlayerProperty(0,1,0);
@@ -460,15 +461,15 @@ states
 		{
 			FLineTraceData try_kick;
 			LineTrace(self.player.mo.angle + frandom(-0.5, 0.5), 80, self.player.mo.pitch,
-			offsetz: (self.player.viewz - self.player.mo.Pos.Z) / 2, data: try_kick);
+			offsetz:(self.player.viewz - self.player.mo.Pos.Z) / 2, data: try_kick);
 			
 			if(try_kick.hittype == TRACE_HitNone){return;}
 
 			if(try_kick.hitactor != null)
 			{
-				int dam = random(55, 90) * (1 + (2 * countinv("PowerStrength") ) );
+				int dam = random(55, 90) *(1 +(2 * countinv("PowerStrength") ) );
 				try_kick.hitactor.damagemobj(self, self, dam, 'kcik', 0, 0);
-				try_kick.hitactor.vel = (sin(self.angle) * 5, cos(self.angle) * 5, 5);
+				try_kick.hitactor.vel =(sin(self.angle) * 5, cos(self.angle) * 5, 5);
 				return;
 			}
 			
@@ -560,7 +561,7 @@ class weapon_specific_event : eventhandler
 {
 override void NetworkProcess(ConsoleEvent e)
 {
-	if (e.Name == 'throw_grenade')
+	if(e.Name == 'throw_grenade')
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
@@ -569,7 +570,7 @@ override void NetworkProcess(ConsoleEvent e)
 		}
 	}
 	
-	if (e.Name == 'do_kick')
+	if(e.Name == 'do_kick')
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
@@ -577,7 +578,7 @@ override void NetworkProcess(ConsoleEvent e)
 		}
 	}
 
-	if (e.Name == 'swing_knife')
+	if(e.Name == 'swing_knife')
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
@@ -585,7 +586,7 @@ override void NetworkProcess(ConsoleEvent e)
 		}
 	}
 
-	if (e.Name == 'weapon_dual')
+	if(e.Name == 'weapon_dual')
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
@@ -599,7 +600,7 @@ override void NetworkProcess(ConsoleEvent e)
 		}
 	}
 	
-	if (e.Name == 'weapon_special')
+	if(e.Name == 'weapon_special')
 	{
 		if(players[e.Player].readyweapon is "PB_weapon_base")
 		{
@@ -622,7 +623,7 @@ override void worldthingspawned(worldevent e)
 		ThinkerIterator ammo_checker = ThinkerIterator.Create("pb_ammo_proto_class", 105);
 		
 		pb_ammo_proto_class something;
-		while (something = pb_ammo_proto_class(ammo_checker.Next() ) )
+		while(something = pb_ammo_proto_class(ammo_checker.Next() ) )
 		{
 			if(e.thing.distance2dsquared(something) <= 200**2)
 			{
@@ -824,22 +825,22 @@ override void beginplay()
 	changestatnum(105);
 }
 
-override bool HandlePickup (Inventory item)
+override bool HandlePickup(Inventory item)
 {
 	let ammoitem = Ammo(item);
-	if (ammoitem != null && ammoitem.GetParentAmmo() == GetClass())
+	if(ammoitem != null && ammoitem.GetParentAmmo() == GetClass())
 	{
-		if (Amount < MaxAmount || sv_unlimited_pickup)
+		if(Amount < MaxAmount || sv_unlimited_pickup)
 		{
 			int receiving = item.Amount;
 
-			if (!item.bIgnoreSkill)
+			if(!item.bIgnoreSkill)
 			{ // extra ammo in baby mode and nightmare mode
 				receiving = int(receiving * G_SkillPropertyFloat(SKILLP_AmmoFactor));
 			}
 			int oldamount = Amount;
 
-			if (Amount > 0 && Amount + receiving < 0)
+			if(Amount > 0 && Amount + receiving < 0)
 			{
 				Amount = 0x7fffffff;
 			}
@@ -848,7 +849,7 @@ override bool HandlePickup (Inventory item)
 			   Amount += receiving;
 			}
 			// NEW BEHAVIOR HERE
-			if (Amount > MaxAmount && !sv_unlimited_pickup)
+			if(Amount > MaxAmount && !sv_unlimited_pickup)
 			{
 			   item.Amount -= MaxAmount - oldamount;
 			   Amount = MaxAmount;
@@ -862,7 +863,7 @@ override bool HandlePickup (Inventory item)
 			// If the player previously had this ammo but ran out, possibly switch
 			// to a weapon that uses it, but only if the player doesn't already
 			// have a weapon pending.
-			if (oldamount == 0 && Owner != null && Owner.player != null)
+			if(oldamount == 0 && Owner != null && Owner.player != null)
 			{
 			   PlayerPawn(Owner).CheckWeaponSwitch(GetClass());
 			}
@@ -873,15 +874,15 @@ override bool HandlePickup (Inventory item)
 }
 
 //find first non pb_ammo_base inherited actor and make it acceptable ammo type
-override Class<Ammo> GetParentAmmo ()
+override Class<Ammo> GetParentAmmo()
 {
 	class<Object> type = GetClass();
 
-	while (type.GetParentClass() != "pb_ammo_proto_class" && type.GetParentClass() != NULL)
+	while(type.GetParentClass() != "pb_ammo_proto_class" && type.GetParentClass() != NULL)
 	{
 		type = type.GetParentClass();
 	}
-	return (class<Ammo>)(type);
+	return(class<Ammo>)(type);
 }
 
 }

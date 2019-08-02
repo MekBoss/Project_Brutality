@@ -39,7 +39,7 @@ server int bd_disablenewguns = 0;
 
 server int bd_disablenewenemies = 0;
 
-// Mode (0 = Crop, 1 = Scale)
+// Mode(0 = Crop, 1 = Scale)
 server noarchive int widemode         = 1;
 
 // Title Page

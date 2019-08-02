@@ -77,7 +77,7 @@ protected virtual void pb_move_gore(actor inflictor = null, int dam = 0)
 	if(move_dir.z >= -0.4)
 	{
 		move_dir *= 2;
-		move_dir += (0, 0, random(move_dir.z, 5) );
+		move_dir +=(0, 0, random(move_dir.z, 5) );
 		vel = move_dir;
 	}
 	else
@@ -121,7 +121,7 @@ states
 	stop;
 
 	reset_self_condition:
-		tnt1 a 1{self.scale = (1, 1); self.vel = (0, 0, 0); show_something = false;}
+		tnt1 a 1{self.scale =(1, 1); self.vel =(0, 0, 0); show_something = false;}
 	goto off;
 }
 

@@ -31,24 +31,12 @@
 
 //#include "actors/Gore/BLOODSPLASH.dec"
 //#include "actors/Gore/BURN.dec"
-//#include "actors/Gore/SwarmFly.dec"
 
-//#include "actors/Effects/SPLASHES.dec"
 
 //#include "actors/Effects/FLATDECALS.dec"
 //#include "actors/Effects/TELEPORTS.dec"
-//#include "actors/Gore/Underwaterblood.dec"
 
 /*
-Actor SlideKicking : Inventory {}
-Actor HasUnmorphed : Inventory {}
-Actor LedgeGrabbingRightNow : Inventory {}
-Actor HeightTIDIndicator : Inventory 
-{
-	Inventory.MaxAmount 0x7FFFFFFF
-}
-Actor IsDead : Inventory {}
-Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 */
 //Remap System
 //#include "actors/Decorations/LAMPS.dec"
@@ -83,16 +71,6 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 
 
 
-//#include "actors/Gore/GORE!!!.dec"
-//#include "actors/Gore/GORE2.dec"
-//#include "actors/Gore/GORE3.dec"
-//#include "actors/Gore/GORE4.dec"
-//#include "actors/Gore/BLOOD.dec"
-
-//#include "actors/Gore/GreenBlood.dec"
-//#include "actors/Gore/BlueBlood.dec"
-//#include "actors/Gore/GreenSTICKY.dec"
-//#include "actors/Gore/BlueSTICKY.dec"
 
 //#include "actors/Monsters/T1-Grunts/ZOMBIEMEN_DeathAnim.dec"
 
@@ -151,7 +129,8 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 
 
 //Captured Marines
-/*#include "actors/Monsters/T0-Marines/CapturedMarine.dec"
+/*
+#include "actors/Monsters/T0-Marines/CapturedMarine.dec"
 #include "actors/Monsters/T0-Marines/Marine-AutoShotgun.dec"
 #include "actors/Monsters/T0-Marines/Marine-BFG.dec"
 #include "actors/Monsters/T0-Marines/Marine-Chaingun.dec"
@@ -164,7 +143,6 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 #include "actors/Monsters/T1-Grunts/DyingGuys.dec"
 #include "actors/Monsters/T1-Grunts/DyingNewGuys.dec"
 #include "actors/Monsters/T1-Grunts/LastStandMonsters.dec"
-#include "actors/Monsters/T1-Imps/DyingDarkImps.dec"
 
 
 #include "actors/Monsters/T1-Grunts/NAZIS.dec"
@@ -174,8 +152,6 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 //#include "actors/Monsters/realm667monsters.dec"
 //#include "actors/Monsters/UnderwaterMonsters.dec"
 
-//#include "actors/Weapons/MeatShields/RealismModeItems.dec"
-
 //#include "actors/Weapons/DemonRuneBaron.dec"
 //#include "actors/Weapons/DemonRuneRevenant.dec"
 
@@ -183,9 +159,6 @@ Actor IsTacticalClass : Inventory {} //Fake item to fix the lag.
 //#include "actors/Monsters/Tz-Special/EVIL.dec"
 //#include "actors/Monsters/Tz-Special/Epic2Sstuff.dec"
 
-//#include "actors/Spawners/SpawnerScript.dec"
-
-//Smart Scavenger Health
 
 
 
