@@ -1,0 +1,10 @@
+
+CLASS FatalizedMagCacoDemon: DeadCacoDemon1 { 
+	Default
+	{Health 200;} States{Spawn:
+	IN1F J -1;
+	Stop   ;
+Death.Cut:        Death.Cutless:	        Death:
+	TNT1 AAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+	//TNT1 AAAA 0 a_spawnprojectile("PEPart2", 0, 0, random(0, 360), 2, random(0, 160));
+Stop;}}

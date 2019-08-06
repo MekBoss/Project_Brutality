@@ -56,10 +56,11 @@ states
 
 	See:
 		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 10, 0, random(0, 360), 2, random(30, 90));
-		LMW1 ABCD 5 a_spawnprojectile("Brutal_LiquidBlood2", 26, 0, random(0, 360), 2, random(10, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 36, 0, random(0, 360), 2, random(30, 90));
-		LMW1 EF 5 a_spawnprojectile("Brutal_LiquidBlood", 46, 0, random(0, 360), 2, random(10, 40));
-		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(30, 90));
+		LMW1 ABCDEF 5
+		{
+			a_spawnprojectile("Brutal_LiquidBlood2", 26 + (frame * 2), 0, random(0, 360), 2, random(10, 40));
+			a_spawnprojectile("Bloodmist", 36 - (frame * 2), 0, random(0, 360), 2, random(30, 90));
+		}
 		LMW1 G 4 {self.bSTEALTH= true; self.bALLOWPAIN = true;}
 		LMWZ E 6;
 	See2:
@@ -88,54 +89,44 @@ states
 			mark.target = self;
 			mark.master = self.target;
 		}
-		//A_VileTarget("PentagramSpawner");
-		LMW1 I 1; //A_VileTarget("PentagramSpawner");
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		LMW1 I 3 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		LMW1 I 3 A_FaceTarget;
+		LMW1 II 2
+		{
+			A_VileTarget("PentagramSpawner");
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
+		}
+		LMW1 IJ 3 A_FaceTarget;
 		
-		LMW1 J 3 A_FaceTarget;
-		LMW1 J 1; //A_VileTarget("PentagramSpawner");
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		LMW1 J 3 A_FaceTarget;
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		
-		LMW1 I 3 A_FaceTarget;
-		LMW1 I 1; ////A_VileTarget("PentagramSpawner");
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		LMW1 I 3 A_FaceTarget;
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		
-		LMW1 J 3 A_FaceTarget;
-		LMW1 J 1; //A_VileTarget("PentagramSpawner");
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		LMW1 J 3 A_FaceTarget;
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 A_PlaySound("DamnedSoul/Moan", 8);
-		TNT1 A 0 a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
+		LMW1 J 1 A_VileTarget("PentagramSpawner");
+		LMW1 JI 2
+		{
+			A_VileTarget("PentagramSpawner");
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
+		}
+		LMW1 I 1 A_VileTarget("PentagramSpawner");
+
+		LMW1 JI 2
+		{
+			A_VileTarget("PentagramSpawner");
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
+		}
+		LMW1 J 1 A_VileTarget("PentagramSpawner");
+		LMW1 JI 2
+		{
+			A_VileTarget("PentagramSpawner");
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, 35, random(0, 40), 2, random(0, 160));
+			A_PlaySound("DamnedSoul/Moan", 8);
+			a_spawnprojectile("SmallFleshTrails", 85, -35, random(0, 40), 2, random(0, 160));
+		}
 		LMW1 KL 3 A_FaceTarget;
 		LMW1 L 3 BRIGHT; //A_VileAttack("misc/xdeath4", 15, 40, 45, 1.0, "desintegrate");
 		LMWZ A 3 {self.bshootable = false;}
@@ -155,19 +146,9 @@ states
 	Goto See2;
 		
 	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		LMWZ I 1 A_Pain;
 		LMWZ IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
 		LMWZ I 1 A_Pain;
-		LMWZ IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		LMWZ I 1 A_Pain;
-		LMWZ IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		LMWZ I 1 A_Pain;
-		LMWZ IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		LMWZ I 1 A_Pain;
-		LMWZ IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		LMWZ I 1 A_Pain;
+		tnt1 a 0 a_jumpif(random(0, 10), "Pain.Stun");
 	Goto See;
 		
 	Death:
@@ -220,13 +201,7 @@ states
 	TNT1 A 0 A_XScream;
 	TNT1 A 0 A_NoBlocking;
 		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
 		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("GreenFlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
 		XBRN AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
 	Stop;

@@ -2593,7 +2593,7 @@ States
 }
 
 
-CLASS Gib_LabguyArm: LimbBase { 
+CLASS Gib_LabguyArm: Limbs_Base { 
 	Default {	
 	Scale 1.2;
 	}

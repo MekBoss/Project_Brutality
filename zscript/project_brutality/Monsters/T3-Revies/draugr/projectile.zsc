@@ -1,0 +1,206 @@
+
+CLASS DraugrDemonFireball : pb_projectile_base
+{ 
+Default
+{
+	Radius 6;
+	Height 8;
+	Speed 35;
+	FastSpeed 50;
+	Damage 0;
+	Projectile;
+	+RANDOMIZE;
+	RenderStyle "Translucent";
+	Alpha 1;
+	Scale 1.8;
+	SeeSound "draugr/fire";
+	DeathSound "excavator/explode";
+	DamageType "ExplosiveImpact";
+}
+
+States
+{
+	Spawn:
+		TNT1 A 1;
+		//TNT1 A 0 A_PlaySoundEx("weapons/rocklf", 1, 0, 2)
+		Goto Fly;
+		Fly:
+		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem("ExplosionSmoke");
+	Loop;
+	
+	Death:
+		TNT1 A 0 A_explode(25, 200);
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -15);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", 0, 0, random(0, 360), 2, random(0, 180));
+		EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
+		tnt1 B 0 BRIGHT A_Scream;
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAA 10 a_spawnprojectile("BigBlackSmoke", 0, 0, random(0, 360), 2, random(40, 160));
+	Stop;
+}
+
+}
+
+
+
+CLASS DraugrDemonMeteor: DraugrDemonFireball
+{ 
+Default
+{
+	+SEEKERMISSILE;
+	Speed 13;
+}
+States
+{
+	Spawn:
+		TNT1 A 1;
+		TNT1 A 0 A_PlaySound("weapons/rocklf", 1);
+		TNT1 A 0 ThrustThingZ(0,150,0,1);
+		
+		DYVB AAA 2 BRIGHT
+		{
+			A_SpawnItem("DraugrDemonFireballTrail");
+			A_SpawnItem("Red_FlareSmall");
+			A_SpawnItem("ExplosionSmoke");
+			A_Recoil(-4);
+		}
+		TNT1 A 0 ThrustThingZ(0,-50,0,1);
+		
+		DYVB AAAA 2 BRIGHT
+		{
+			A_SpawnItem("DraugrDemonFireballTrail");
+			A_SpawnItem("Red_FlareSmall");
+			A_SpawnItem("ExplosionSmoke");
+			A_Recoil(-4);
+		}
+		
+		TNT1 A 0 ThrustThingZ(0,-50,0,1);
+		
+		DYVB AAAAA 2 BRIGHT
+		{
+			A_SpawnItem("DraugrDemonFireballTrail");
+			A_SpawnItem("Red_FlareSmall");
+			A_SpawnItem("ExplosionSmoke");
+			A_Recoil(-4);
+		}
+
+		TNT1 A 1 A_SeekerMissile(80,90);
+
+	Fly:
+		DYVB A 2 BRIGHT A_SpawnItem("DraugrDemonFireballTrail");
+		TNT1 A 0 A_SpawnItem("Red_FlareSmall");
+		TNT1 A 0 A_SpawnItem("ExplosionSmoke");
+	Loop;
+
+	Death:
+		TNT1 A 0 A_explode(25, 200);
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -15);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", 0, 0, random(0, 360), 2, random(0, 180));
+		EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
+		tnt1 B 0 BRIGHT A_Scream;
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAA 10 a_spawnprojectile("BigBlackSmoke", 0, 0, random(0, 360), 2, random(40, 160));
+	Stop;
+}
+}
+
+
+
+
+
+CLASS DraugrDemonMeteorSeeker: DraugrDemonMeteor { 
+Default
+{
+	+SEEKERMISSILE;
+	Speed 32;
+}
+States
+{
+	Spawn:
+		DYVB AA 1 BRIGHT
+		{
+			A_SpawnItem("DraugrDemonFireballTrail");
+			A_SpawnItem("Red_FlareSmall");
+			A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("ExplosionSmoke");
+		}
+		TNT1 A 1 A_SeekerMissile(1,5);
+	Loop;
+}
+}
+
+CLASS DraugrDemonMeteorNonSeeker: DraugrDemonMeteor
+{ 
+Default
+{
+	+SEEKERMISSILE;
+	Speed 35;
+}
+States
+{
+	Spawn:
+		DYVB A 1 BRIGHT
+		{
+			A_SpawnItem("DraugrDemonFireballTrail");
+			A_SpawnItem("Red_FlareSmall");
+			A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("ExplosionSmoke");
+		}
+	Loop;
+}
+}
+
+
+
+CLASS D4MeteorNonSeeker: DraugrDemonMeteor { 
+Default {
+	+SEEKERMISSILE;
+	Speed 35;
+}
+States
+{
+	Spawn:
+		DYVB A 1 BRIGHT
+		{
+			A_SpawnItem("DraugrDemonFireballTrail");
+			A_SpawnItem("Red_FlareSmall");
+			A_SpawnItemEx("RevenantProjectileTrails", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("ExplosionSmoke");
+		}
+	Loop;
+	
+	Death:
+		TNT1 A 0 A_explode(150, 200);
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -15);
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", 0, 0, random(0, 360), 2, random(0, 180));
+		EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
+		tnt1 B 0 BRIGHT A_Scream;
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAA 10 a_spawnprojectile("BigBlackSmoke", 0, 0, random(0, 360), 2, random(40, 160));
+	Stop;
+}
+}
+
+CLASS DraugrDemonFireballTrail : ACTOR { 
+Default {
+	+MISSILE;
+	+NOGRAVITY;
+	+THRUACTORS;
+	+CLIENTSIDEONLY;
+	RenderStyle "Add";
+	Alpha 1;
+	Speed 1;
+	SCALE 0.7;
+}
+States
+{
+	Spawn:
+		FRTB ABCDEFGHI 1 BRIGHT;
+	Stop;
+}
+}

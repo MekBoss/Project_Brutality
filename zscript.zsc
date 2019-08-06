@@ -230,9 +230,6 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 
 
-#include "zscript/project_brutality/monsters/fatality_sump/working_dir.zsc"
-
-#include "zscript/project_brutality/monsters/fatality_sump/d_guys.zsc"
 #include "zscript/project_brutality/monsters/fatality_sump/d_guy_1.zsc"
 
 
@@ -302,27 +299,47 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/T3-Revies/proto_skeleton.zsc"
 #include "zscript/project_brutality/monsters/T3-Revies/revenants_guro.zsc"
 //AND SHIVERS DOWN YOU SPINE
-#include "zscript/project_brutality/monsters/T3-Revies/REVENANT.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/REVENANT/REVENANT.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/REVENANT/projectile.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/REVENANT/guro.zsc"
+
 #include "zscript/project_brutality/monsters/T3-Revies/BeamRev.zsc"
-#include "zscript/project_brutality/monsters/T3-Revies/Draugr.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Revies/Draugr/Draugr.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/Draugr/gore.zsc"
+#include "zscript/project_brutality/monsters/T3-Revies/Draugr/projectile.zsc"
+
 
 //all flying monsters base(pain, caco, FLYING SKULLS MAN DAMN ITS CREEPY SHIT)
 #include "zscript/project_brutality/monsters/T3-Floaters/proto_puffballs.zsc"
 //cacodemons
-#include "zscript/project_brutality/monsters/T3-Floaters/CACODEMON.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/CACODEMON/CACODEMON.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/CACODEMON/gore.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/CACODEMON/projectile.zsc"
+
 //watcher goes first, because mag caco can spawn them if watchers goes after mag caco
 // compiler wont see them and throw error "unknow class watcher"
-#include "zscript/project_brutality/monsters/T3-Floaters/Watcher.zsc"
-#include "zscript/project_brutality/monsters/T3-Floaters/InfernalCaco.zsc"
-#include "zscript/project_brutality/monsters/T3-Floaters/Afrit.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Watcher/Watcher.zsc"
+
+
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Infernal_Caco/InfernalCaco.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Infernal_Caco/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Infernal_Caco/projectile.zsc"
+
+
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Afrit/Afrit.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Afrit/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/cacos/Afrit/projectile.zsc"
+
 //skulls first, because of above reason
-#include "zscript/project_brutality/monsters/T3-Floaters/LOSTSOUL.zsc"
-#include "zscript/project_brutality/monsters/T3-Floaters/Phantasm.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/souls/LOSTSOUL.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/souls/Phantasm.zsc"
+
 //did you know about band with name PAIN? check them, they...he are good
-#include "zscript/project_brutality/monsters/T3-Floaters/PAIN.zsc"
-#include "zscript/project_brutality/monsters/T3-Floaters/TriteElem.zsc"//trite include in trite elemntal definition
-#include "zscript/project_brutality/monsters/T3-Floaters/SufferingElemental.zsc"
-#include "zscript/project_brutality/monsters/T3-Floaters/Overlord.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/elementals/PAIN.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/elementals/TriteElem.zsc"//trite include in trite elemntal definition
+#include "zscript/project_brutality/monsters/T3-Floaters/elementals/SufferingElemental.zsc"
+#include "zscript/project_brutality/monsters/T3-Floaters/elementals/Overlord.zsc"
 
 
 //fatso base
@@ -346,12 +363,28 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //I, THE SUN OV MAN, THE OFFSPRING OF THE STELLAR RACE...and so on
 #include "zscript/project_brutality/monsters/T4-Nobles/BELPHEGOR.zsc"
 //knights
-#include "zscript/project_brutality/monsters/t4-nobles/knights/knigth.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberKnight.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberPaladin.zsc"
+#include "zscript/project_brutality/monsters/t4-nobles/knights/knight/knigth.zsc"
+#include "zscript/project_brutality/monsters/t4-nobles/knights/knight/guro.zsc"
+#include "zscript/project_brutality/monsters/t4-nobles/knights/knight/projectile.zsc"
+#include "zscript/project_brutality/monsters/t4-nobles/knights/knight/dead.zsc"
+
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/paladin/CyberPaladin.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/paladin/guro.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/paladin/projectile.zsc"
+
+
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberKnight/CyberKnight.zsc"
+
+
 //barons
-#include "zscript/project_brutality/monsters/T4-Nobles/barons/BARON.zsc"
-#include "zscript/project_brutality/monsters/T4-Nobles/barons/CyberBaron.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/BARON/BARON.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/BARON/guro.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/BARON/projectile.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/BARON/deaths.zsc"
+
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/Cyber_Baron/CyberBaron.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/barons/Cyber_Baron/guro.zsc"
+
 #include "zscript/project_brutality/monsters/T4-Nobles/barons/Infernus/Infernus.zsc"
 #include "zscript/project_brutality/monsters/T4-Nobles/barons/Infernus/guro.zsc"
 #include "zscript/project_brutality/monsters/T4-Nobles/barons/Infernus/projectile.zsc"

@@ -31,7 +31,7 @@ CLASS XDeathChainLeg: XDeathArm1 {
 	}
 }
 
-CLASS Gib_ChainLeg: LimbBase { 
+CLASS Gib_ChainLeg: Limbs_Base { 
 	States
 	{
 	Spawn:
@@ -76,7 +76,7 @@ CLASS XDeathChainArm: XDeathArm1 {
 	}
 }
 
-CLASS Gib_ChainARm: LimbBase { 
+CLASS Gib_ChainARm: Limbs_Base { 
 States
 {
 	Spawn:

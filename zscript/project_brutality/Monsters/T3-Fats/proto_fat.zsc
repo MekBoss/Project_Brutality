@@ -192,7 +192,7 @@ CLASS XDeathMancubusHead: XDeathBullArm1 {
 
 
 
-CLASS MancubusHead: LimbBase { 
+CLASS MancubusHead: Limbs_Base { 
 	Default {
 	
 	damagefactor "Kick", 9.0;
@@ -289,7 +289,7 @@ CLASS XDeathDaedabusHead: XDeathBullArm1 {
 
 
 
-CLASS DaedabusHead: LimbBase { 
+CLASS DaedabusHead: Limbs_Base { 
 	Default {
 	
 	damagefactor "Kick", 9.0;

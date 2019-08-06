@@ -1,4 +1,4 @@
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -9,7 +9,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
 }
 
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -20,7 +20,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
 }
 
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -31,7 +31,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
 }
 
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -43,7 +43,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
 
 
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -55,7 +55,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
 
 
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -65,7 +65,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL F 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -75,7 +75,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL G 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -85,7 +85,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL H 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -95,7 +95,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL I 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -105,7 +105,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL J 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -115,7 +115,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL K 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -125,7 +125,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL L 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -135,7 +135,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL M 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -145,7 +145,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL N 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -155,7 +155,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL O 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -165,7 +165,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL P 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -176,7 +176,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
 }
 
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -186,7 +186,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL R 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -196,7 +196,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL S 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -206,7 +206,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL T 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -216,7 +216,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL U 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -226,7 +226,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL V 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -236,7 +236,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL W 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -246,7 +246,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL X 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file
@@ -256,7 +256,7 @@ Model GreenGrowingBloodPool     // Name of actor in DECORATE
    FrameIndex BPDL Y 0 0         // The sprite lump, sprite frame, model index, frame number
 }
 
-Model GreenGrowingBloodPool     // Name of actor in DECORATE
+Model GrowingBloodPool     // Name of actor in DECORATE
 {
    Path "models/bloodspot"    // Path to model in PK3
    Model 0 "bloodspot.md3"    // Model index, model file

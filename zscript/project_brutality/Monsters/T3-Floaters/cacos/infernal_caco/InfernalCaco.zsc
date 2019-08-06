@@ -1,0 +1,172 @@
+//===========================================================================
+//
+// Cacodemon
+//
+//===========================================================================
+CLASS pb_Lava_Caco : proto_head// replaces Cacodemon
+{ 
+Default
+{
+	BloodType "Brutal_Blood";
+	Health 280;
+	GibHealth 25;
+	DamageFactor "Crush", 10.0;
+	DamageFactor "SSG", 10.0;
+	DamageFactor "Saw", 0.3;
+	Radius 31;
+	Height 56;
+	Mass 400;
+	Speed 10;
+	Health 425;
+	PainChance 128;
+	PainChance "Kick", 255;
+	PainChance "Avoid", 190;
+	PainChance "Saw", 255;
+	PainChance "Stun", 255;
+	Monster;
+	Scale 0.9;
+	+FLOAT +NOGRAVITY;
+	SeeSound "monster/infsit";
+	PainSound "monster/infpai";
+	DeathSound "monster/infact";
+	ActiveSound "";
+	Obituary "%o was deep fried by an Infernal Cacodemon.";
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+	damagefactor "killme", 0.0;
+	
+	//DropItem "DemonStrengthRune", 5;
+	//DropItem "DemonStrengthRune", 3;
+	//DropItem "RageSphere", 4;
+	//DropItem "DoubleSphere", 2;
+	//DropItem "ShieldSphere", 2;
+	//DropItem "Demonpickup2", 65;
+	//DropItem "Demonpickup", 255;
+	
+	Species "FlyingBalls";
+	
+	+DONTHARMSPECIES;
+	+DONTHARMCLASS;
+}
+States 
+{		
+	Spawn: 
+ 		TNT1 AA 0;
+	watch:
+		INFR A 8 Bright A_Look;
+	loop;
+
+
+	See: 
+		INFR BCD 2 Bright A_Chase;
+	Loop;
+
+
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(250, "Torch");
+		TNT1 A 0 A_Jump(16, "WatcherComets");
+	Fireballs:
+		INFR HI 4 Bright A_FaceTarget;
+		INFR J 0 Bright a_spawnprojectile("FireShot",24,0,0,0,0);
+		INFR J 4 BRIGHT;
+	Goto See;
+
+	WatcherComets:
+		TNT1 A 0 A_JumpIfCloser(600, "Fireballs");
+		INFR HI 4 Bright A_FaceTarget;
+		INFR J 0 Bright a_spawnprojectile("WatcherSummonComet",24,0,0,0,0);
+		INFR J 4 BRIGHT;
+	Goto See;
+
+	Torch:
+		INFR HI 4 Bright A_FaceTarget;
+		TNT1 A 0 A_PlaySound("flamersh",2);
+		INFR JI 2 BRIGHT a_spawnprojectile("EnemyFlamethrowerMissile",24,0,0,0,0);
+		tnt1 a 0 
+		{
+			if(distance3d(target) < 250 ) setstatelabel("torch");
+		}
+	Goto See;
+
+
+	Melee:
+		TNT1 A 0 A_PlaySound("monster/ovlbit");
+		INFR AFG 5 A_Facetarget;
+		TNT1 A 0 a_spawnprojectile("MagCacodemonBite", 34, 0, 0, 0);
+		INFR E 4 A_Recoil(-4);
+	Goto See;
+		
+	Pain: 
+		INFR K 3 Bright A_Pain;
+		INFR K 3 Bright;
+		Goto See;
+
+
+
+
+
+
+
+	Death.Fatality:
+		TNT1 A 0 A_Pain;
+		//TNT1 A 0 A_JumpIfIntargetInventory("FistsSelected", 1, 1);
+		Goto Death;
+		TNT1 A 0 A_NoBlocking;
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("MagCacoFatality", 1);
+	Stop;
+		
+
+
+		
+	Possession:
+		TNT1 A 0 A_SetInvulnerable;
+		INFR K 3;
+		INFR K 3 A_Pain;
+ 		TNT1 A 0 A_UnSetInvulnerable;
+		Goto See;
+		
+	Pain.Stun:
+		INFR K 1 A_Pain;
+		INFR KKKKKKKKKK 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		tnt1 a 0 a_jumpif(random(0, 10) < 7, "Pain.Stun");
+	Goto See;
+		
+	Pain.Kick:
+		TNT1 A 0 A_FaceTarget;
+		INFR K 6 A_Recoil(5);
+		INFR K 6 A_Pain;
+		INFR K 10;
+		Goto See;
+		
+	Death: 
+		INFR L 4 Bright;
+		INFR M 3 Bright A_Scream;
+		INFR N 3 Bright;
+		TNT1 A 0 A_Explode(20,100);
+		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBrain2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("PEPart1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Jump(200, 4);
+		TNT1 A 0 a_spawnprojectile("WatcherSummonComet", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Jump(148, 2);
+		TNT1 A 0 a_spawnprojectile("WatcherSummonComet", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("PEPart2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 160));
+		EXPL A 0 A_SpawnItemEx("ExplosionParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FireBallExplosion", 6, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 BRIGHT A_NoBlocking;
+		TNT1 AA 0 a_spawnprojectile("CoolandNewFlameTrails", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4
+		{
+			a_spawnprojectile("RealFlameTrailsSmall", 1, 0, random(0, 360), 2, random(70, 110));
+			a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(70, 110));
+		}
+	Stop;
+} 
+
+}
+
+

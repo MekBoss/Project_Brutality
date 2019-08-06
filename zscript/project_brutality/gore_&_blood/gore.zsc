@@ -1,21 +1,20 @@
 //this would be a veeeeeeeery big file
-CLASS BigGibBase : pb_blood_and_gore_base
+CLASS gibs_base : pb_blood_and_gore_base
 { 
 Default {
 	Radius 10;
 	Height 10;
-	+CLIENTSIDEONLY;
 	+NOTELEPORT;
 	+MOVEWITHSECTOR;
 	+DONTSPLASH;
 	+NOBLOCKMONST;
 	-NOBLOCKMAP;
-	+GHOST;
 	+THRUACTORS;
 	+FLOORCLIP;
 	+SLIDESONWALLS;
 	+FORCEXYBILLBOARD;
 	+NOTAUTOAIMED;
+
 	DamageFactor "CauseObjectsToSplash", 0.0;
 	DamageFactor "GibRemoving", 0.5;
 	//+SOLID
@@ -49,7 +48,8 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath3", 10, 0, random(0, 360), 2, random(50, 90));
 		TNT1 AAA 0 a_spawnprojectile("XDeath2", 10, 0, random(0, 360), 2, random(50, 90));
-		Stop;
+	Stop;
+
 	Death.plasma:
 		TNT1 A 0;
 		TNT1 A 0 A_XScream;
@@ -59,9 +59,9 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0;
-		Stop;
+	Stop;
+
 	Death.Trample:
-		//TNT1 A 0 A_GiveToTarget("BootsSmearedWithRedBlood", 6);
 	Death.Crush:
 	Death.Stomp:
 	Death.SuperPunch:
@@ -75,6 +75,7 @@ States
 		XME2 L 1;
 		XME2 L -1;
 	Stop;
+
 	Death.TeleportRemover:
 	Death.GibRemoving:
 		TNT1 A 1 {self.destroy(); return;}
@@ -86,10 +87,12 @@ States
 		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBlood", 7, 0, random(0, 360), 2, random(30, 60));
 		TNT1 A 0 a_spawnprojectile("Bloodmist", 7, 0, random(0, 360), 2, random(30, 60));
 	Stop;
-}}
+}
+
+}
 
 
-CLASS LimbBase: BigGibBase { 
+CLASS Limbs_Base: gibs_base { 
 	Default {
 	Radius 6;
 	Height 10;
@@ -118,14 +121,15 @@ CLASS LimbBase: BigGibBase {
 	damagefactor "Melee", 9.0;
 	damagefactor "SuperPunch", 9.0;
 	damagefactor "Plasma", 20.0;
-	painchance 255;
+	painchance 0;
 }
 
 States
 {
 	Spawn:
 		TNT1 A 1900 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
-		Loop;
+	Loop;
+
 	Death:
 		TNT1 AAAAAAA 0 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -135,37 +139,12 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 5, -5, random(0, 360), 2, random(0, 160));
 		CRSB A 9009;
-		Stop ;
-Stop;}}
+	Stop;
+}
+
+}
 	
 
-CLASS TinyGib : pb_blood_and_gore_base { 
-Default {
-	Radius 2;
-	Height 8;
-	Speed 6;
-	Mass 1;
-	gravity 0.5;
-	Scale 0.8;
-	Decal "BrutalBloodSplat";
-	+MOVEWITHSECTOR;
-	+CLIENTSIDEONLY;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	+MISSILE;
-	+FORCEXYBILLBOARD;
-	+DONTSPLASH;
-	+NOBLOCKMONST;
-	seesound "bloood";
-	deathsound "bloood";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 1;
-		Loop;
-	}
-}
 
 
 
@@ -310,7 +289,12 @@ Default {
 States
 {
 	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater");
+		TNT1 A 0 nodelay
+		{
+			gravity = frandom(0.4, 1);
+
+
+		}
 		BLOD A 4 a_spawnprojectile("XDeath1Trail", 0, 0, random(0, 360), 2, random(0, 360));
 	Loop;
 
@@ -334,15 +318,11 @@ States
 	}
 }
 
-CLASS XDeath2 : XDeath1 { 
-	Default {
-	+CLIENTSIDEONLY;
-	+DONTSPLASH;
-	Speed 10;
-	Gravity 0.4;
+CLASS XDeath2 : XDeath1
+{
+Default
+{
 	DeathSound "misc/xdeath2";
-	Decal "BrutalBloodSuper";
-	Scale 1.1;
 	}
 	States
 	{
@@ -402,8 +382,8 @@ States
 		XME2 E 3;
 		TNT1 A 0 A_SpawnItemEx("PB_Blood_Spot", 0, 0, 1);
 	Living:
-		XME2 E 600;
-	Loop;
+		XME2 E -1;
+	stop;
 }
 }
 
@@ -439,7 +419,7 @@ States
 		TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 		XME3 I 1;
 	Living2:
-		XME3 I -1;//duration
+		XME3 I -1;
 	stop;
 }
 
@@ -615,7 +595,7 @@ States
 }
 
 	
-class Gib_Arm: LimbBase
+class Gib_Arm: Limbs_Base
 {
 default{
 	Scale 1.2;
@@ -687,7 +667,7 @@ CLASS XDeathArm1Kicked: XDeathArm1 {
 	}
 }
 
-CLASS GibArmPart: TinyGib { 
+CLASS GibArmPart: gibs_base { 
 	Default {
  
     Scale 1.0;
@@ -705,7 +685,7 @@ XDT5 Z 1;
        Loop;
 }}
 
-CLASS GibHand: TinyGib { 
+CLASS GibHand: gibs_base { 
 	Default {
  
     Scale 1.0;
@@ -856,7 +836,7 @@ CLASS XDeathHalfMarine : pb_blood_and_gore_base {
 	}
 }
 
-CLASS HalfMarineGib: BigGibBase { 
+CLASS HalfMarineGib: gibs_base { 
 	States
 	{
 	Spawn:

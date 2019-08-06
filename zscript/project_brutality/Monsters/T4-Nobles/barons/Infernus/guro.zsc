@@ -126,7 +126,7 @@ States
 }
 }
 
-CLASS Gib_InfernusLeg: BigGibBase { 
+CLASS Gib_InfernusLeg: gibs_base { 
 Default {
 		
 	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
@@ -174,7 +174,7 @@ States
 }
 }
 
-CLASS Gib_InfernusArm: BigGibBase { 
+CLASS Gib_InfernusArm: gibs_base { 
 Default {
 		
 	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
@@ -222,7 +222,7 @@ States
 }
 }
 
-CLASS Gib_InfernusTorso: BigGibBase { 
+CLASS Gib_InfernusTorso: gibs_base { 
 Default {
 		
 	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
@@ -237,7 +237,6 @@ Stop;    }}
 //Infernus Head
 CLASS XDeathInfernusHead : pb_blood_and_gore_base { 
 Default {
-		
 	Radius 8;
 	Height 8;
 		
@@ -269,7 +268,7 @@ States
 }
 }
 
-CLASS Gib_InfernusHead: BigGibBase { 
+CLASS Gib_InfernusHead: gibs_base { 
 Default {
 		
 	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
@@ -316,7 +315,7 @@ States
 }
 }
 
-CLASS Gib_InfernusUpperTorso: BigGibBase { 
+CLASS Gib_InfernusUpperTorso: gibs_base { 
 Default {
 		
 	BloodType "PB_blood", "brutalAxeBlood", "brutalAxeBlood";
@@ -382,7 +381,7 @@ States
 }
 
 
-CLASS infernus_arm : baron_base { 
+CLASS infernus_no_arm_death : baron_base { 
 Default {
 	Radius 16;
 	Height 50;
@@ -413,6 +412,9 @@ States
 			a_spawnprojectile("Brutal_FlyingBlood", 55, 12, random(0, 360), 2, random(0, 160));
 		}
 		TNT1 A 0 A_PlaySound("superbaron/pain");
+		tnt1 a 0 a_jumpif(random(0, 10) > 7, "death");
+	loop;
+
 	Death:
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_Fall;
@@ -502,7 +504,7 @@ States
 
 }
 
-CLASS infernus_headshot : infernus_arm
+CLASS infernus_headshot_death : infernus_no_arm_death
 { 
 States
 {
@@ -510,6 +512,9 @@ States
 		B1N5 AAABBBCCCBBB 2 a_spawnprojectile("Brutal_FlyingBlood", 62, 0, random(0, 360), 2, random(30, 110));
 		TNT1 A 0 A_Pain;
 		TNT1 A 0 A_Scream;
+		tnt1 a 0 a_jumpif(random(0, 10) > 7, "death");
+	loop;
+
 	Death:
 		B1N5 DDD 2 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(30, 110));
 		TNT1 A 0 A_NoBlocking;

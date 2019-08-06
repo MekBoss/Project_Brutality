@@ -141,7 +141,7 @@ CLASS XDeathVoidSpectreEyeball : pb_blood_and_gore_base {
 	{
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-		E3G8 KLMN 4 a_spawnprojectile("Brutal_FlyingBlood"/*Green_FlyingBlood*/, 0, 0, random(0, 360), 2, random(0, 360));
+		E3G8 KLMN 4 a_spawnprojectile("Brutal_FlyingBlood"/*brutal_LiquidBlood*/, 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
 	Death:
 		E3G8 J 1;
@@ -217,7 +217,7 @@ Death:
 }
 }
 
-CLASS Gib_DemonArm: LimbBase { 
+CLASS Gib_DemonArm: Limbs_Base { 
 	Default {
  
     Scale 1.1;
@@ -296,7 +296,7 @@ CLASS XDeathBloodDemonArm1: XDeathArm1 {
 }
 }
 
-CLASS Gib_BloodDemonArm: LimbBase { 
+CLASS Gib_BloodDemonArm: Limbs_Base { 
 	Default {
  
     Scale 1.1;
@@ -375,7 +375,7 @@ bounceFactor 0.4;
 }
 }
 
-CLASS Gib_VoidSpectreArm: LimbBase { 
+CLASS Gib_VoidSpectreArm: Limbs_Base { 
 	Default {
  
     Scale 1.1;
@@ -448,7 +448,7 @@ CLASS XDeathBullArm1Kicked: XDeathBullArm1 {
 	}
 }
 
-CLASS GibDemonArmPart: TinyGib { 
+CLASS GibDemonArmPart: gibs_base { 
 	Default {
     Scale 1.1;
 	}
@@ -465,7 +465,7 @@ HND8 Z 1;
        Loop;
 }}
 
-CLASS GibDemonHand: TinyGib { 
+CLASS GibDemonHand: gibs_base { 
 	Default {
  
     Scale 0.8;
@@ -505,7 +505,7 @@ bounceFactor 0.4;
 	}
 }
 
-CLASS Gib_DemonLeg: LimbBase { 
+CLASS Gib_DemonLeg: Limbs_Base { 
 	Default {
 	
 	Scale 1.1;
@@ -575,7 +575,7 @@ CLASS XDeathBloodDemonLeg12: XDeathArm1 {
 	}
 }
 
-CLASS Gib_BloodDemonLeg: LimbBase { 
+CLASS Gib_BloodDemonLeg: Limbs_Base { 
 	Default {
 	Scale 1.1;
 	}
@@ -653,7 +653,7 @@ CLASS XDeathVoidSpectreLeg: XDeathArm1 {
 	}
 }
 
-CLASS Gib_VoidSpectreLeg: LimbBase { 
+CLASS Gib_VoidSpectreLeg: Limbs_Base { 
 	Default {
 	
 	Scale 1.1;
@@ -701,7 +701,7 @@ CLASS Gib_VoidSpectreLeg: LimbBase {
 		XDT5 I 0 A_SpawnItem("Gib_VoidSpectreLeg");
 Stop;}}
 
-CLASS GibDemonLegPart: TinyGib { 
+CLASS GibDemonLegPart: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -718,7 +718,7 @@ CLASS GibDemonLegPart: TinyGib {
 		Loop;
 }}
 
-CLASS GibDemonPaw: TinyGib { 
+CLASS GibDemonPaw: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -762,7 +762,7 @@ CLASS XDeathPinkyDemonHead: XDeathBullArm1 {
 
 
 
-CLASS PinkyDemonHead: LimbBase { 
+CLASS PinkyDemonHead: Limbs_Base { 
 	Default {
 	
 	damagefactor "Kick", 9.0;
@@ -883,7 +883,7 @@ bounceFactor 0.4;
 	}
 }
 
-CLASS Gib_DemonHead: LimbBase { 
+CLASS Gib_DemonHead: Limbs_Base { 
 	Default {
 	
 	Scale 0.9;
@@ -958,7 +958,7 @@ CLASS XDeathBloodDemonHead : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_BloodDemonHead: LimbBase { 
+CLASS Gib_BloodDemonHead: Limbs_Base { 
 	Default {
 	
 	Scale 0.9;
@@ -1033,7 +1033,7 @@ CLASS XDeathVoidSpectreHead : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_VoidSpectreHead: LimbBase { 
+CLASS Gib_VoidSpectreHead: Limbs_Base { 
 	Default {
 	
 	Scale 0.9;
@@ -1127,7 +1127,7 @@ CLASS XDeathHalfDemon : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfDemon: BigGibBase { 
+CLASS Gib_HalfDemon: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1168,7 +1168,7 @@ CLASS XDeathHalfVoidSpectre : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfVoidSpectre: BigGibBase { 
+CLASS Gib_HalfVoidSpectre: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1329,7 +1329,7 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeathVoidSpectreLeg", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeathVoidSpectreArm", 32, 0, random(0, 360), 2, random(0, 160));
 		
-		//TNT1 AA 0 a_spawnprojectile("Green_Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 AA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreEyeball", 42, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreHead", 42, 0, random(0, 360), 2, random(0, 160));
 		

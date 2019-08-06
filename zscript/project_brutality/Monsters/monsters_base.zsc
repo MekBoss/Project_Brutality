@@ -51,7 +51,7 @@ enum blood_colors
 
 //since all green/blue blood sprites ARE translated default blood sprites
 //this function handle it wihtout copypaste blood definition three times with new translate field
-actor pb_spawn_blood(
+protected actor pb_spawn_blood(
 blood_colors collor = 0, string actor_type = "Unknown", double height = 0, double angle = 0, double pitch = 0)
 {
 	actor qqqq = a_spawnprojectile(actor_type, height, 0, angle, 2, pitch);
@@ -120,7 +120,7 @@ override double GetDeathHeight()
 
 override void Die(Actor source, Actor inflictor, int dmgflags, Name MeansOfDeath)
 {
-	//dy default, return 
+	//default
 	super.die(source, inflictor, dmflags, MeansOfDeath);
 }
 
@@ -140,7 +140,7 @@ states
 //how much time monster seeek it target before forgeting
 protected int memory_timer;
 const max_memory = 20;
-protected void pb_monster_memory(statelabel idle_state)
+protected void pb_monster_memory(statelabel idle_state = "idle")
 {
 	memory_timer++;
 	if(memory_timer > max_memory)
@@ -151,6 +151,7 @@ protected void pb_monster_memory(statelabel idle_state)
 	}
 }
 
+//for gibbing death
 protected void simple_death_handler()
 {
 		health += 200;

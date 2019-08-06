@@ -1,0 +1,363 @@
+CLASS baron_no_arm_death : baron_base
+{ 
+Default
+{	
+	Health 150;
+	Scale 1.15;
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "Blood", 0.0;
+	BloodType "_Blood", "AxeBlood", "AxeBlood";
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	damagefactor "Shrapnel", 0.0;
+	damagefactor "KillMe", 0.0;
+	damagefactor "Cutless", 0.6;
+	Mass 0;
+	-SOLID;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+NOPAIN;
+	+DONTSPLASH;
+	Scale 1.1;
+}
+States
+{
+	Spawn:
+		BSA0 ABCBABCBABCBABCBABCBABCBABCBABCB 6
+		{
+			A_SpawnItem("brutal_LiquidBlood", 0, 30);
+			if(frame == 2 && tics == 0) {A_PlaySound("PSXDPN");}
+		}
+	Death:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Fall();
+		TNT1 A 0 A_PlaySound("baron/death");
+		BSA0 DEFGH 6;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA0 H -1 simple_death_handler();
+	Stop;
+
+	Death.Head:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Fall();
+		TNT1 A 0 A_SpawnItem("BaronOfHellHeadExplode", 0, 56);
+		BSA0 IIII 2 A_SpawnItem("brutal_LiquidBlood", 0, 50);
+		BSA0 JKLM 7;
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA0 M -1 simple_death_handler();
+	Stop;
+	
+	Death.Decapitate:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Fall();
+		TNT1 AAAAA 0 a_spawnprojectile("SmallSuperGore", 50, 0, random(0, 360), 2, random(10, 170));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		BSA0 IIII 2 A_SpawnItem("brutal_LiquidBlood", 0, 50);
+		BSA0 JKLM 7;
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA0 M -1 simple_death_handler();
+	Stop;
+	
+	
+	XDeath:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 a_spawnprojectile("BaronXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+
+	Death.SSG:
+	Death.Railgun:
+	Death.Cut:
+	Death.Saw:
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 a_spawnprojectile("XDeathBaronOfHellArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronOfHellTorso", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("brutal_LiquidBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		BSA1 PPPPPPPPQQQQQQRRRRRSSSSSS 2 a_spawnprojectile("brutal_LiquidBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA1 TTTTTTTTUUUUUUUU 1 a_spawnprojectile("brutal_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BSA1 U -1 simple_death_handler();
+	Stop;
+}
+
+}
+
+CLASS baron_bisected_death : baron_bisected_pierced
+{ 
+States
+{
+	Spawn:
+		BSA0 NONP 5
+		{
+			if(frame == 15 && tics == 0) A_SpawnItem("brutal_LiquidBlood", 0, 30);
+		}
+	goto baron_bisected_pierced::spawn;
+		tnt1 a 0 a_jumpif(random(0, 10) > 7, "die");
+	loop;
+
+	Die:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Fall();
+		BSA0 QRST 6;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA0 T -1 simple_death_handler();
+	Stop;
+	
+	xdeath:
+	Death:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Fall();
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("brutal_LiquidBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("SuperWallredBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 45, 0, random(0, 360), 2, random(30, 90));
+		//BSA0 N 1 A_SpawnItem("baron_bisected_pierced");
+	goto baron_bisected_pierced::spawn;
+	Stop;
+}
+
+}
+
+
+
+
+CLASS baron_bisected_pierced : baron_no_arm_death
+{
+Default
+{
+	Health 100;
+	damagefactor "Blood", 0.0;
+	damagefactor "BlueBlood", 0.0;
+	damagefactor "Blood", 0.0;
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	damagefactor "Shrapnel", 0.0;
+	damagefactor "KillMe", 0.0;
+	damagefactor "Cutless", 0.6;
+	BloodType "PB_Blood", "SawBlood", "SawBlood";
+	Mass 0;
+	-SOLID;
+	+SHOOTABLE;
+	+FLOORCLIP;
+	+DONTSPLASH;
+	+NOPAIN;
+	Scale 1.2;
+}
+
+States
+{
+	Spawn:
+		BSA0 UUUUUUUU 2 a_spawnprojectile("brutal_LiquidBlood", 15, 0, random(0, 360), 2, random(0, 160));
+	Die:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Fall();
+		BSA0 VWXY 6;
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA0 Y -1 simple_death_handler();
+	Stop;
+
+	xdeath:
+	Death:
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("brutal_LiquidBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 A_SpawnItem("CrueltyBonus5Health");
+		BSA1 PPPPPPPPQQQQQQRRRRRSSSSSS 2 a_spawnprojectile("brutal_LiquidBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA1 TTTTTTTTUUUUUUUU 1 a_spawnprojectile("brutal_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BSA1 U -1 simple_death_handler();
+	Stop;
+}
+
+}
+
+
+CLASS Baron_guts_death_left : baron_bisected_pierced
+{ 
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		KSA8 BC 6;
+		TNT1 A 0 A_SpawnItem("PB_Blood", 0, 30);
+
+	Death:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Fall;
+		TNT1 A 0 A_PlaySound("baron/death");
+		KSA8 DEFG 6;
+		KSA8 G -1 simple_death_handler();
+	stop;
+		
+	Death.head:
+		TNT1 A 0 A_SpawnItem("BaronOfHellHeadExplode", 0, 62);
+		BADH A 9;
+		BADH B 9;
+		BADH C 9 A_BossDeath;
+		BADH D  9 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BADH D -1 simple_death_handler();
+	stop;
+		
+		
+	Death.SSG:
+	Death.Railgun:
+		TNT1 A 0;
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("BloodMist", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 a_spawnprojectile("XDeathStomach", 60, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 45, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronOfHellTorso", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		BBO2 AABCD 10;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BBO2 D -1 simple_death_handler();
+	stop;
+		
+	XDeath:
+		TNT1 A 0 a_spawnprojectile("BaronXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(0, 160));
+		BXDE B  0 A_xScream;
+		BXDE D  0 A_NoBlocking;
+	stop;
+		
+	Death.Shotgun:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfCloser(120, "Death.Cutless");
+		Goto Death;
+	Death.Cutless:
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAA 0 a_spawnprojectile("Xdeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathHalfBOH", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		BBO2 AABCD 10;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BBO2 D -1 simple_death_handler();
+	stop;
+}
+
+}
+
+CLASS Baron_guts_death_right : Baron_guts_death_left
+{ 
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PSXDPN");
+		BSA1 FG 6;
+		tnt1 a 0 a_jumpif(random(0,10) > 7, "death");
+	loop;
+
+	Death:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Fall;
+		TNT1 A 0 A_PlaySound("baron/death");
+		BSA1 HIJK 6;
+		BSA1 K -1 simple_death_handler();
+	stop;
+		
+	Death.head:
+		TNT1 A 0 A_SpawnItem("BaronOfHellHeadExplode", 0, 62);
+		BADH A 9;
+		BSA1 LLLLL 2 a_spawnprojectile("Brutal_FlyingBlood", 57, 0, random(0, 360), 2, random(30, 60));
+		BSA1 MNO 7;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BSA1 OOOOOOOOO 1 a_spawnprojectile("Brutal_FlyingBlood", 9, 0, random(0, 360), 2, random(30, 60));
+		BSA1 O -1 simple_death_handler();
+	stop;
+		
+	XDeath:
+		TNT1 A 0 a_spawnprojectile("BaronXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(0, 160));
+		BXDE B  0 A_xScream;
+		BXDE D  0 A_NoBlocking;
+	stop;
+		
+	Death.Shotgun:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfCloser(120, "Death.Blast");
+	Goto Death;
+
+	Death.Cutless:
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAA 0 a_spawnprojectile("Xdeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathHalfBOH", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		BSA1 PPPPPPPPQQQQQQRRRRRSSSSSS 2 a_spawnprojectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA1 TTTTTTTTUUUUUUUU 1 a_spawnprojectile("Brutal_FlyingBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BSA1 U -1 simple_death_handler();
+	stop;
+
+	Death.Blast:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile("XDeathBaronOfHellArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 46, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 46, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 42, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 52, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("BloodMist", 44, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BSA1 AAAAAAAAAA 1 a_spawnprojectile("Brutal_FlyingBlood", 40, 0, random(0, 360), 2, random(30, 60));
+		BSA1 BBBBCCCCDDD 2 a_spawnprojectile("Brutal_FlyingBlood", 25, 0, random(0, 360), 2, random(30, 60));
+		BSA1 EEEEEEEE 2 a_spawnprojectile("Brutal_FlyingBlood", 10, 0, random(0, 360), 2, random(30, 60));
+		BSA1 E -1 simple_death_handler();
+	stop;
+		
+		
+	Death.SSG:
+	Death.Railgun:
+	Death.Cut:
+	Death.Saw:
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 a_spawnprojectile("XDeathBaronOfHellArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronOfHellTorso", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("healthbonus");
+		BSA1 PPPPPPPPQQQQQQRRRRRSSSSSS 2 a_spawnprojectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_PlaySound("BIG_BODYF", 9);
+		BSA1 TTTTTTTTUUUUUUUU 1 a_spawnprojectile("Brutal_FlyingBlood", 10, 0, random(0, 360), 2, random(30, 110));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		BSA1 U -1 simple_death_handler();
+	stop;
+}
+
+}

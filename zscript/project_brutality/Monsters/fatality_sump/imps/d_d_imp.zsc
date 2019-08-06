@@ -878,7 +878,7 @@ CLASS XDeathDarkImpArm2: XDeathArm1 {
 	}
 }
 
-CLASS GibDarkImpArmPart: TinyGib { 
+CLASS GibDarkImpArmPart: gibs_base { 
 	Default {
 		
 		Scale 1.1;
@@ -893,7 +893,7 @@ CLASS GibDarkImpArmPart: TinyGib {
 			Loop;
 }}
 
-CLASS GibDarkImpHand: TinyGib { 
+CLASS GibDarkImpHand: gibs_base { 
 	Default {
 		
 		Scale 0.8;
@@ -908,7 +908,7 @@ CLASS GibDarkImpHand: TinyGib {
 			Loop;
 }}
 
-CLASS Gib_DarkImpArm1: LimbBase { 
+CLASS Gib_DarkImpArm1: Limbs_Base { 
 	Default {
 		
 		Scale 1.1;
@@ -952,7 +952,7 @@ Landz:
 	stop;
 }}
 
-CLASS Gib_DarkImpArm2: LimbBase { 
+CLASS Gib_DarkImpArm2: Limbs_Base { 
 	Default {
  
     Scale 1.1;
@@ -996,7 +996,7 @@ CLASS Gib_DarkImpArm2: LimbBase {
 }}
 
 
-CLASS GibDarkImpLegPart: TinyGib { 
+CLASS GibDarkImpLegPart: gibs_base { 
 	Default {
  
     Scale 1.1;
@@ -1011,7 +1011,7 @@ Spawn:
        Loop;
 }}
 
-CLASS GibDarkImpPaw: TinyGib { 
+CLASS GibDarkImpPaw: gibs_base { 
 	Default {
     Scale 0.8;
 	}
@@ -1049,7 +1049,7 @@ CLASS XDeathDarkImpLeg: XDeathArm1 {
 	}
 }
 
-CLASS Gib_DarkImpLeg: LimbBase { 
+CLASS Gib_DarkImpLeg: Limbs_Base { 
 	Default {
 		Scale 1.1;
 	}
@@ -1251,7 +1251,7 @@ CLASS XDeathHalfDarkImp : ACTOR {
 }
 
 
-CLASS HalfDarkImpGib: BigGibBase { 
+CLASS HalfDarkImpGib: gibs_base { 
 	Default {
 		
 	}
@@ -1294,7 +1294,7 @@ CLASS XDeathHalfDarkImpUpperPart32 : ACTOR {
 	}
 }
 
-CLASS Gib_HalfDarkImpUpperPart32: BigGibBase { 
+CLASS Gib_HalfDarkImpUpperPart32: gibs_base { 
 	Default {
 		
 		damagefactor "ExplosiveImpact", 5.0;

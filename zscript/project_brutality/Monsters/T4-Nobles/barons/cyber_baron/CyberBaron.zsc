@@ -1,0 +1,484 @@
+// Cyber Baron created by Ben2k9/Virtue
+CLASS pb_Cyber_Baron : baron_base
+{ 
+Default
+{
+	obituary "%o was shock-and-awed by a cyber baron";
+	hitobituary "%o was ripped to shreds by a cyber baron";
+	health 1250;
+	//SpawnID 2250;
+	mass 1000;
+	speed 9;
+	Scale 1.25;
+	painchance 40;
+	+QUICKTORETALIATE;
+
+	PainChance "Kick", 200;
+	PainChance "ExtremePunches", 200;
+	PainChance "Head", 255;
+	PainChance "Explosive", 255;
+	PainChance "Stun", 255;
+	PainChance "Avoid", 135;
+
+	DamageFactor "Crush", 10.0;
+	DamageFactor "Fire", 1.05;
+	DamageFactor "Desintegrate", 0.95;
+	damagefactor "SSG", 0.85;
+	damagefactor "Head", 0.6;
+	DamageFactor "Ice", 1.01; DamageFactor "Freeze", 1.01; DamageFactor "Frost", 1.01;
+	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "Blood", 0.0;
+	DamageFactor "Head", 1.4;
+	DamageFactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	BloodType "_Blood", "AxeBlood", "AxeBlood";
+	
+	seesound "cbaron/sight";
+	painsound "cbaron/pain";
+	deathsound "cbaron/death";
+	activesound "cbaron/active";
+	Species "Noble";
+	+DONTHARMSPECIES;
+	// -HARMFRIENDS 
+	+NOBLOODDECALS;
+	MONSTER;
+	+BossDeath;
+	
+/*	//DropItem "DemonStrengthRune", 9;
+	//DropItem "RageSphere", 8;
+	//DropItem "DoubleSphere", 7;
+	//DropItem "ShieldSphere", 5;
+	//DropItem "DemonMorphRune", 5;
+*/	
+}
+states
+{
+	Spawn:
+	Stand:
+		CBOS AB 10 A_Look;
+	Loop;
+		
+
+	See:
+		CBOS B 0 A_playsound("cbaron/metal");
+		CBOS AA 3 A_chase;
+		CBOS B 0 A_PlaySound("master/walk", 5);
+		CBOS BB 3 A_chase;
+		CBOS B 0 A_playsound("cbaron/metal");
+		CBOS CC 3 A_chase;
+		CBOS B 0 A_PlaySound("master/walk", 5);
+		CBOS DD 3 A_chase;
+	Loop;
+
+	Melee:
+		CBOS P 8 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("weapons/gswing");
+		CBOS Q 8 A_FaceTarget;
+		CBOS R 8 a_spawnprojectile("BaronAttack",8,0,0,0);
+	Goto See;
+
+	Missile:
+		TNT1 A 0 {self.bNOTARGET = true;}
+		CBOS E 0 A_jump(86,"BaronBall");
+		CYUS E 0 A_JumpIfCloser(400, "FlameOn");
+		CBOS EE 6 A_FaceTarget;
+		CYUS F 0 A_PlaySound("DSRFIRE");
+		CBOS F 6 Bright a_spawnprojectile("CyberKnightMissile",35,16,0);
+		CBOS E 6 A_FaceTarget;
+		CYUS F 0 A_PlaySound("DSRFIRE");
+		CBOS F 6 Bright a_spawnprojectile("CyberKnightMissile",35,16,0);
+		CBOS E 6 A_FaceTarget;
+		CYUS F 0 A_PlaySound("DSRFIRE");
+		CBOS F 6 Bright a_spawnprojectile("CyberKnightMissile",35,16,0);
+		CBOS E 6 A_FaceTarget;
+		TNT1 A 0 {self.bNOTARGET = false;}
+	Goto See;
+
+	BaronBall:
+		CBOS PQ 8 A_FaceTarget;
+		CBOS R 8 a_spawnprojectile("BaronBall", 36, 0, 0, 1);
+		CBOS QPQ 5 A_FaceTarget;
+		CBOS R 6 a_spawnprojectile("BaronBall", 36, 0, 0, 1);
+		TNT1 A 0 {self.bNOTARGET = false;}
+	Goto See;
+		
+	FlameOn:
+		CBOS E 1 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("flamersh",2);
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",35,16,0);
+		CBOS F 1 BRIGHT a_spawnprojectile("CometDeathGlow",35,16,0);
+		CBOS EE 1 A_FaceTarget;
+		CYUS E 0 A_JumpIfCloser(400, "FlameOn");
+		CBOS EE 5;
+		TNT1 A 0 {self.bNOTARGET = false;}
+	Goto See;
+
+
+	Pain:
+		TNT1 A 0 A_PlaySound("caco/shotx");
+		CBOS H 2;
+		CBOS H 2 A_Pain;
+	Goto See;
+
+	Pain.Stun:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
+		CBOS H 1 A_Pain;
+		CBOS HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		CBOS H 1 A_Pain;
+		tnt1 a 0 a_jumpif(random(0,10) < 7, "Pain.Stun");
+	Goto See;
+
+
+
+
+
+
+
+
+
+
+
+
+	Death.Incinerate:
+		TNT1 A 0;
+		TNT1 A 0 A_Stop;
+		TNT1 A 0 A_Playsound("MELT");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
+		B4UD AAAABBBBCCCCC 1 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionParticle", 36, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		TNT1 A 0 A_Playsound("SZZLL", 3);
+		B4UD DDDDDEEEEEFFFFF 1 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionParticle", 36, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
+		B4UD GGGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGG 1 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionParticle", 36, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		B4UD IIIIIII 12 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		B4UD I -1;
+	Stop;
+		
+		
+	Death.fire:
+	Death.Flames:
+	Death.Burn:
+		TNT1 A 0;
+		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("BurningBaron", 0, 10);
+	Stop;
+		
+	Death.Shrink:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 1 A_PlaySound("Shrink", 3);
+/*		TNT1 A 0 A_SpawnItemEx("CyberBaronShrinkFX1", 0, 0,  5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX2", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX3", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX4", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX5", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX6", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX7", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("LilCyberBaron", 1);*/
+	stop;
+		
+
+
+		
+
+	CurbstompMarine:
+		TNT1 A 0 {self.binvulnerable = true;}
+		CB4F ABCC 6;
+		TNT1 A 0 A_playsound("cbaron/metal");
+		CB4F CC 5;
+		TNT1 A 0 A_PlaySound("BIGSCREA", 5);
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+		TNT1 AAAAAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		CB4F DC 1 BRIGHT;
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+		CB4F DCDCDCDC 1 BRIGHT
+		{
+			a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",30,19,0);
+			a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+			a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		}
+		CB4F DEDE 1 BRIGHT
+		{
+			a_spawnprojectile("CoolandNewFlameTrails", 14, 0, random(0, 360), 2, random(0, 360));
+			a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",30,19,0);
+			a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+			a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		}
+		CB4F DEEFDEDE 1 BRIGHT
+		{
+			a_spawnprojectile("CoolandNewFlameTrails", 14, 0, random(0, 360), 2, random(0, 360));
+			a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",30,19,0);
+			a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+			a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		}
+		CB4F EFEFEFEF 1 BRIGHT
+		{
+			a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+			a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+			a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		}
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+		TNT1 A 0 a_spawnprojectile("EnemyFlamethrowerMissile",30,19,0);
+		CB4F FGFGFGFGFGGH 1 BRIGHT
+		{
+			a_spawnprojectile("CoolandNewFlameTrails", 14, 0, random(0, 360), 2, random(0, 360));
+			a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",30,19,0);
+			a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+			a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		}
+		CB4F GHGH 1 BRIGHT
+		{
+			a_spawnprojectile("CoolandNewFlameTrails", 14, 0, random(0, 360), 2, random(0, 360));
+			a_spawnprojectile("EnemyFlamethrowerMissile",27,16,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",22,13,0);
+			a_spawnprojectile("EnemyFlamethrowerMissile",30,19,0);
+			a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+			a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		}
+
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedSkull", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		CB4F II 5;
+		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
+		TNT1 A 0 {self.binvulnerable = false;}
+		//TNT1 A 0 A_TakeInventory("Curbstomp_Marine",1);
+		TNT1 A 0 A_SpawnItem("CyberFriedMarine", 1);
+	Goto See;
+
+		
+	Possession:
+		TNT1 A 0 {self.binvulnerable = true;}
+		CBOS H 3;
+		CBOS H 3 A_Pain;
+ 		TNT1 A 0 {self.binvulnerable = false;}
+	Goto See;
+		
+		
+	Pain.ExtremePunches:
+		CBOS H 2;
+		TNT1 A 0 A_Pain;
+		TNT1 A 0 A_FaceTarget;
+		TNT1 A 0 A_Recoil(14);
+		CBOS H 11;
+	Goto See;
+		
+		
+	Death:
+		tnt1 a 0
+		{
+			A_Scream();
+			A_NoBlocking();
+			A_BossDeath();
+		}
+		TNT1 A 0 A_Jump(130, "Death2");
+		TNT1 A 0 A_Jump(32, "Death3");
+		CBOS JEFGHI 6;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		CY8D IIIIIIIIIIIII 4 a_spawnprojectile("brutal_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 60));
+		CY8D I -1;
+	Stop;
+		
+	Death2:
+		CY8D ABC 8;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		CY8D DDDDDDDDDDDD 2 a_spawnprojectile("brutal_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 60));
+		CY8D D -1;
+	Stop;
+		
+	Death3:
+		CBOS I 7 A_PlaySound("caco/shotx");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,42);
+		CBOS J 6;
+		EXPL AAA 0 a_spawnprojectile("CoolandNewFlameTrails", 14, 0, random(0, 360), 2, random(0, 360));
+		CBOS K 6 bright A_Playsound("world/barrelx");
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 A 0 A_SpawnItemEx("NewFireExplosionEffect",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAAAAAAA 0 a_spawnprojectile("brutal_LiquidBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("SuperWallredBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		CBOS LMN 2 bright;
+		CBOS OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CBOS O -1;
+	stop;
+		
+		
+	Death.Fatality:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("CyberBaronFatality1", 1);
+		TNT1 A 1 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+	Stop;
+		
+	Death.SSG:
+	Death.Cut:
+	Death.QuadBlast:
+	Death.Railgun:
+	Death.ExtremePunches:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath1", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 ;//a_spawnprojectile("Bloodmist", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Jump(118, "ChestCavity");
+		TNT1 AAAAAAAAA 0 ;//a_spawnprojectile("brutal_LiquidBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronOfHellTorso", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		CB4R LLL 7;
+		CB4R MNO 8;
+		TNT1 A 0 A_PlaySound("master/walk", 5);
+		CB4R O -1;
+	Stop;
+
+		
+	Death.CutLess:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(80, "Death");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_Jump(96, "ChestCavity");
+		TNT1 A 0 A_SpawnItem("DyingCyberBaron1");
+	Stop;
+
+	Death.Shotgun:
+		TNT1 A 0 A_JumpIfCloser(250, "Death.Blast");
+	Goto Death;
+
+	Death.Blast:
+	Death.Nailgun:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath1", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 ;//a_spawnprojectile("brutal_LiquidBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 ;//a_spawnprojectile("SuperWallBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 ;//a_spawnprojectile("Bloodmist", 49, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("_Instestin", 42, 0, random(150, 210), 2, random(0, 40));
+		TNT1 A 0 A_Jump(32, "ChestCavity");
+		C8FT JJJJJ 2 ;//a_spawnprojectile("brutal_LiquidBlood", 52, 0, random(0, 360), 2, random(30, 60));
+		CY8D EFGH 6;
+		TNT1 A 0 A_PlaySound("master/walk", 5);
+		TNT1 A 0 ;//A_SpawnItem("GrowingBloodPool");
+		CY8D IIIIIIIIIIIIIIIIIIIII 2 ;//a_spawnprojectile("brutal_LiquidBlood", 10, 0, random(0, 360), 2, random(30, 60));
+		CY8D I -1;
+	Stop;
+		
+	ChestCavity:
+		TNT1 A 0 A_SpawnItem("DyingCyberBaron3");
+	Stop;
+		
+	XDeath:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Bloodmist", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAA 0 ;//a_spawnprojectile("SuperWallBlood", 32, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronOfHellTorso", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 ;//a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath2", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath3", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//A_SpawnItem("PB_pot");
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 AAA 0 ;//a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_SpawnItemEx("NewFireExplosionEffect",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 ;//A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		CB4R DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CB4R D -1;
+	Stop;
+		
+		
+		
+	Death.Ice:
+	Death.Freeze:
+	Death.Frost:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		TNT1 A 0 {self.bSOLID = false;}
+		//TNT1 A 0 A_SpawnItem("FrozenCyberBaron");
+	Stop;
+		
+	Death.Head:
+		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_SpawnItem("BaronOfHellHeadExplode", 0, 62);
+		CB4R AB 6 ;//a_spawnprojectile("brutal_LiquidBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("Bloodmist", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		CB4R ACAB 5 ;//a_spawnprojectile("brutal_LiquidBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("Bloodmist", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,62);
+		CB4R ACAB 5 ;//a_spawnprojectile("brutal_LiquidBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("Bloodmist", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		CB4R AC 5 ;//a_spawnprojectile("brutal_LiquidBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		TNT1 A 0 A_SpawnItem("ShoqueAzul",1,62);
+		CB4R AB 5 ;//a_spawnprojectile("brutal_LiquidBlood", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("Bloodmist", 62, 0, random(0, 360), 2, random(0, 160));
+		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
+		TNT1 A 0 A_SpawnItemEx("NewFireExplosionEffect",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 ;//A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_PlaySound("FAREXPL", 3);
+		TNT1 AAAAAA 0 ;//a_spawnprojectile("Bloodmist", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronOfHellTorso", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AAAAA 0 ;//a_spawnprojectile("XDeath1", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 ;//a_spawnprojectile("XDeath2", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath3", 62, 0, random(0, 360), 2, random(0, 160));
+		CB4R DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));//A_BossDeath
+		CB4R D -1;
+	Stop;
+	}
+}          
+
+

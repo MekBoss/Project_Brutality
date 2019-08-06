@@ -1,5 +1,4 @@
-
-CLASS RevenantHead: LimbBase { 
+CLASS RevenantHead: Limbs_Base { 
 Default {
 	
 	damagefactor "Kick", 9.0;
@@ -61,7 +60,7 @@ States
 }
 
 
-CLASS GibHalfSkeleton: BigGibBase { 
+CLASS GibHalfSkeleton: gibs_base { 
 	Default {
 	
 	Radius 8;
@@ -93,7 +92,7 @@ CLASS GibHalfSkeleton: BigGibBase {
 
 
 	
-CLASS GibHalfSkeletonJustLegs: BigGibBase { 
+CLASS GibHalfSkeletonJustLegs: gibs_base { 
 	Default {
 	
 	Radius 8;

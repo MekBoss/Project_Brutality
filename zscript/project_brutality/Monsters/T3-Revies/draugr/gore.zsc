@@ -1,0 +1,53 @@
+
+CLASS FatalizedDraugr: DeadSkeleton
+{ 
+default
+{
+	Health 200;
+}
+States
+{
+	Spawn:
+		5KF2 Q 6;
+		5KF2 RRRRRRRRRRRR 2 a_spawnprojectile("Brutal_LiquidBlood2", 5, 2, random(0, 360), 2, random(60, 120));
+		5KF2 R -1;
+	Stop;
+
+	Death.Cutless:
+	Death.Cut:
+	Death: Death.Saw:
+	Death:
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
+	Stop;}}
+
+
+	
+CLASS GibHalfDraugr: gibs_base { 
+	Default {
+	
+	Radius 8;
+	damagefactor "Kick", 12.0;
+	damagefactor "ExtremePunches", 12.0;
+	damagefactor "Melee", 12.0;
+	damagefactor "Fatality", 12.0;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		BNP4 E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
+		BNP4 E -1;
+		Stop   ;
+	Death.Trample:
+	Death:
+		TNT1 A 0 A_SpawnItem("HellishMissileLauncher");
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath4", 5, 0, random(0, 360), 2, random(0, 160));
+		Stop;
+}}

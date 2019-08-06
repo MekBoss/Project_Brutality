@@ -281,7 +281,7 @@ States
 
 
 
-CLASS CyberdemonHead : pb_blood_and_gore_base//LimbBase
+CLASS CyberdemonHead : pb_blood_and_gore_base//Limbs_Base
 {
 Default
 {

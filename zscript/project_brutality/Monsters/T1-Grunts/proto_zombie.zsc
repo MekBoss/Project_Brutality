@@ -150,7 +150,7 @@ CLASS XDeathZombieLeg: XDeathArm1 {
 }
 
 
-CLASS Gib_ZombieLeg1: LimbBase { 
+CLASS Gib_ZombieLeg1: Limbs_Base { 
 	Default {
 	
 	Scale 1.1;
@@ -218,7 +218,7 @@ CLASS XDeathPlasmaZombieLeg: XDeathArm1 {
 }
 
 
-CLASS Gib_PlasmaZombieLeg: LimbBase { 
+CLASS Gib_PlasmaZombieLeg: Limbs_Base { 
 	Default {
 	Scale 1.1;
 	}
@@ -263,7 +263,7 @@ CLASS Gib_PlasmaZombieLeg: LimbBase {
 		
 }}
 
-CLASS GibZombieLegPart: TinyGib { 
+CLASS GibZombieLegPart: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -280,7 +280,7 @@ CLASS GibZombieLegPart: TinyGib {
 		Loop;
 }}
 
-CLASS GibZombieBoot: TinyGib { 
+CLASS GibZombieBoot: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -319,7 +319,7 @@ CLASS XDeathZombieLeg2: XDeathZombieLeg {
 }
 
 
-CLASS Gib_ZombieLeg2: LimbBase { 
+CLASS Gib_ZombieLeg2: Limbs_Base { 
 	Default {
 	
 	}
@@ -395,7 +395,7 @@ CLASS XDeathSargeLeg1: XDeathArm1 {
 	}
 }
 
-CLASS Gib_SargeLeg: LimbBase { 
+CLASS Gib_SargeLeg: Limbs_Base { 
 	Default {
 	
 	Scale 1.1;
@@ -438,7 +438,7 @@ CLASS Gib_SargeLeg: LimbBase {
 		
 }}
 
-CLASS GibSargeLegPart: TinyGib { 
+CLASS GibSargeLegPart: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -455,7 +455,7 @@ CLASS GibSargeLegPart: TinyGib {
 		Loop;
 }}
 
-CLASS GibSargeBoot: TinyGib { 
+CLASS GibSargeBoot: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -646,7 +646,7 @@ CLASS XDeathHalfHFQSZ : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfZombieMan: BigGibBase { 
+CLASS Gib_HalfZombieMan: gibs_base { 
 	Default {
 	
 	}
@@ -659,7 +659,7 @@ CLASS Gib_HalfZombieMan: BigGibBase {
 		POSX F -1;
 Stop;    }}
 	   
-CLASS Gib_HalfHelmetZombieMan: BigGibBase { 
+CLASS Gib_HalfHelmetZombieMan: gibs_base { 
 	Default {
 	
 	}
@@ -672,7 +672,7 @@ CLASS Gib_HalfHelmetZombieMan: BigGibBase {
 		4OSX F -1;
 Stop;    }}
 	   
-CLASS Gib_HalfHFQSZ: BigGibBase { 
+CLASS Gib_HalfHFQSZ: gibs_base { 
 	Default {
 	
 	}
@@ -685,7 +685,7 @@ CLASS Gib_HalfHFQSZ: BigGibBase {
 		QP3X G -1;
 Stop;    }}
 	   
-CLASS Gib_HalfZSpecOPs: BigGibBase { 
+CLASS Gib_HalfZSpecOPs: gibs_base { 
 	Default {
 	
 	}
@@ -732,7 +732,7 @@ CLASS XDeathHalfZombiemanNoArmNoHead : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfZombieManNoArmNoHead: BigGibBase { 
+CLASS Gib_HalfZombieManNoArmNoHead: gibs_base { 
 	Default {
 	
 	Scale 1.3;
@@ -779,7 +779,7 @@ CLASS XDeathHalfPlasmaZombiemanNoArmNoHead : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfPlasmaZombieManNoArmNoHead: BigGibBase { 
+CLASS Gib_HalfPlasmaZombieManNoArmNoHead: gibs_base { 
 	Default {
 	
 	Scale 1.3;
@@ -825,7 +825,7 @@ CLASS XDeathHalfLabGuyNoArmNoHead : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfLabguyNoArmNoHead: BigGibBase { 
+CLASS Gib_HalfLabguyNoArmNoHead: gibs_base { 
 	Default {
 	
 	Scale 1.3;
@@ -906,7 +906,7 @@ CLASS XDeathHalfChaingunMajorNoArmNoHead : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_HalfShotgunguyNoArmNoHead: BigGibBase { 
+CLASS Gib_HalfShotgunguyNoArmNoHead: gibs_base { 
 	Default {
 	
 	Scale 1.3;
@@ -919,7 +919,7 @@ CLASS Gib_HalfShotgunguyNoArmNoHead: BigGibBase {
 		SPSX O -1;
 Stop;    }}	
 	   
-CLASS Gib_HalfChaingunMajorNoArmNoHead: BigGibBase { 
+CLASS Gib_HalfChaingunMajorNoArmNoHead: gibs_base { 
 	Default {
 	
 	Scale 1.55;
@@ -964,7 +964,7 @@ CLASS XDeathHalfZombiemanDown : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfZombiemanDown: BigGibBase { 
+CLASS GibHalfZombiemanDown: gibs_base { 
 	Default {
 	
 	}
@@ -1045,7 +1045,7 @@ CLASS XDeathHalfPlasmaZombie2 : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfPlasmaZombie2: BigGibBase { 
+CLASS GibHalfPlasmaZombie2: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1090,7 +1090,7 @@ CLASS XDeathHalfSergeant2 : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfSergeant2: BigGibBase { 
+CLASS GibHalfSergeant2: gibs_base { 
 	Default {
 	
 	}
@@ -1134,7 +1134,7 @@ CLASS XDeathHalfHelmetSergeant : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfHelmetSergeant: BigGibBase { 
+CLASS GibHalfHelmetSergeant: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1231,7 +1231,7 @@ CLASS GibHalfChaingunGuy2: CurbstompedMarine {
 		Stop;
 }}
 ////////////////////////////////
-CLASS GibHalfHelmetChaingunGuy1: BigGibBase { 
+CLASS GibHalfHelmetChaingunGuy1: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1304,7 +1304,7 @@ CLASS XDeathHalfHelmetChaingunGuy2 : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfHelmetChaingunGuy2: BigGibBase { 
+CLASS GibHalfHelmetChaingunGuy2: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1346,7 +1346,7 @@ CLASS XDeathHalfZombieman2 : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfZombieman2: BigGibBase { 
+CLASS GibHalfZombieman2: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1387,7 +1387,7 @@ CLASS XDeathHalfHelmetZombieman2 : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfHelmetZombieman2: BigGibBase { 
+CLASS GibHalfHelmetZombieman2: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1397,7 +1397,7 @@ CLASS GibHalfHelmetZombieman2: BigGibBase {
 		4P2X G -1;
 Stop;    }}
 
-CLASS GibHalfSergeant: BigGibBase { 
+CLASS GibHalfSergeant: gibs_base { 
 	States
 	{
 	Spawn:
@@ -1458,7 +1458,7 @@ CLASS XDeathZombiemanHeadOnXDeath: XDeathZombieManHead {
 		Stop;
 }}
 
-CLASS ZombiemanHead: LimbBase { 
+CLASS ZombiemanHead: Limbs_Base { 
 	Default {
 	
 	damagefactor "Kick", 99.0;
@@ -1940,7 +1940,7 @@ CLASS XDeathChaingunguyHeadOnXDeath: XDeathChaingunguyHead {
 		Stop;
 }}
 
-CLASS ChaingunguyHead: LimbBase { 
+CLASS ChaingunguyHead: Limbs_Base { 
 	Default {
 	
 	damagefactor "Kick", 9.0;
@@ -2014,7 +2014,7 @@ CLASS ChaingunguyHead: LimbBase {
 		
 }}
 
-CLASS HelmetChaingunguyHead: LimbBase { 
+CLASS HelmetChaingunguyHead: Limbs_Base { 
 	Default {
 	
 	damagefactor "Kick", 9.0;
@@ -2144,7 +2144,7 @@ bounceFactor 0.4;
 	}
 }
 
-CLASS Gib_HFQSZ_Arm: LimbBase { 
+CLASS Gib_HFQSZ_Arm: Limbs_Base { 
 	Default {
 	
 	Scale 0.8;
@@ -2210,7 +2210,7 @@ CLASS XDeathHFQSZArm1Kicked: XDeathArm1 {
 	}
 }
 
-CLASS GibHFQSZArmPart: TinyGib { 
+CLASS GibHFQSZArmPart: gibs_base { 
 	Default {
  
     Scale 0.8;
@@ -2227,7 +2227,7 @@ QARM Z 1;
        Loop;
 }}
 
-CLASS GibHFQSZHand: TinyGib { 
+CLASS GibHFQSZHand: gibs_base { 
 	Default {
  
     Scale 0.8;
@@ -2277,7 +2277,7 @@ bounceFactor 0.4;
 	}
 }
 
-CLASS Gib_HFQSZLeg: LimbBase { 
+CLASS Gib_HFQSZLeg: Limbs_Base { 
 	Default {
 	
 	Scale 1.1;
@@ -2321,7 +2321,7 @@ CLASS Gib_HFQSZLeg: LimbBase {
 		
 }}
 
-CLASS GibHFQSZLegPart: TinyGib { 
+CLASS GibHFQSZLegPart: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -2338,7 +2338,7 @@ CLASS GibHFQSZLegPart: TinyGib {
 		Loop;
 }}
 
-CLASS GibHFQSZBoot: TinyGib { 
+CLASS GibHFQSZBoot: gibs_base { 
 	Default {
 	
 	Scale 1.1;
@@ -2437,7 +2437,7 @@ CLASS XDeathHalfHFQSZDown : pb_blood_and_gore_base {
 	}
 }
 
-CLASS GibHalfHFQSZDown: BigGibBase { 
+CLASS GibHalfHFQSZDown: gibs_base { 
 	States
 	{
 	Spawn:
@@ -2447,7 +2447,7 @@ CLASS GibHalfHFQSZDown: BigGibBase {
 		QZD1 H -1;
 Stop;    }}
 	   
-CLASS HFQSZFatality1Aftermath: BigGibBase { 
+CLASS HFQSZFatality1Aftermath: gibs_base { 
 	States
 	{
 	Spawn:
@@ -2458,7 +2458,7 @@ CLASS HFQSZFatality1Aftermath: BigGibBase {
 Stop;    }}
 	   
 
-CLASS GibHalfHFQSZ: BigGibBase { 
+CLASS GibHalfHFQSZ: gibs_base { 
 	States
 	{
 	Spawn:
@@ -3692,7 +3692,7 @@ States
 }
 }
 
-CLASS Gib_NewSergeantArm1: LimbBase { 
+CLASS Gib_NewSergeantArm1: Limbs_Base { 
 	Default {
  
     Scale 1.2;
@@ -3789,7 +3789,7 @@ bounceFactor 0.01;
 	}
 }
 
-CLASS Gib_NewSergeantUpperTorso: BigGibBase { 
+CLASS Gib_NewSergeantUpperTorso: gibs_base { 
 	Default {
 		
 		Scale 1.1;
@@ -3835,7 +3835,7 @@ CLASS XDeathNewSergeantLowerTorso : pb_blood_and_gore_base {
 	}
 }
 
-CLASS Gib_NewSergeantLowerTorso: BigGibBase { 
+CLASS Gib_NewSergeantLowerTorso: gibs_base { 
 	Default {
 		
 		Scale 1.1;
@@ -3879,7 +3879,7 @@ Death:
 }
 }
 
-CLASS Gib_NewSergeantLeg1: LimbBase { 
+CLASS Gib_NewSergeantLeg1: Limbs_Base { 
 	Default {
  
     Scale 1.35;

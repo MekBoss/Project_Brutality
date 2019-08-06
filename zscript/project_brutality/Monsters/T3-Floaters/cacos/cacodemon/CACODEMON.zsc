@@ -1,0 +1,514 @@
+//===========================================================================
+//
+// Cacodemon
+//
+//===========================================================================
+CLASS pb_Cacodemon : proto_head// Replaces Cacodemon
+{ 
+Default
+{
+	bloodtype "Blue_Blood";
+	+NOBLOODDECALS;
+	//SpawnID 19;
+	GibHealth 25;
+	damagefactor "Crush", 10.0;
+	damagefactor "SSG", 10.0;
+	damagefactor "killme", 0.0;
+	Radius 31;
+	Height 56;
+	Mass 400;
+	Speed 8;
+	Health 320;
+	PainChance 128;
+	PainChance "Kick", 255;
+	PainChance "ExtremePunches", 255;
+	PainChance "Avoid", 90;
+	PainChance "Saw", 255;
+	damagefactor "GibRemoving", 0.0;
+	Monster;
+	Scale 0.9;
+	+FLOAT +NOGRAVITY;
+	SeeSound "caco/sight";
+	PainSound "caco/pain";
+	DeathSound "caco/death";
+	ActiveSound "caco/active";
+	damagefactor "TeleportRemover", 0.0;
+	DamageFactor "CauseObjectsToSplash", 0.0;
+	Obituary "$OB_CACO";
+	HitObituary "$OB_CACOHIT";
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
+	
+	//DropItem "DemonStrengthRune", 5;
+	//DropItem "Demonpickup2", 25;
+	//DropItem "Demonpickup", 255;
+	PainChance "Stun", 255;
+
+	Species "FlyingBalls";
+
+	+DONTHARMSPECIES;
+	+DONTHARMCLASS;
+}
+
+States
+{	
+	Spawn:
+ 	watch:
+		HEAD A 10 A_Look();
+	loop;
+
+	See:
+		HEAD A 2 A_Chase();
+		HEAD AA 2 A_Chase(null,null);
+		TNT1 A 0 A_JumpIfCloser(99, "Melee");
+		TNT1 A 0 pb_monster_memory();
+	Loop;
+
+	SearchPlayer:
+		HEAD A 10 A_Look();
+		TNT1 A 0 {self.angle += randompick(-30, 30);}
+		HEAD AA 10 A_Look();
+		
+		
+		HEAD AAAAAAAAAA 2
+		{
+			A_Look();
+			A_Wander();
+		}
+	loop;
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+	Death.Shrink:
+		TNT1 A 1 A_PlaySound("Shrink", 3);
+/*		TNT1 A 0 A_SpawnItemEx("CacoShrinkFX1", 0, 0,  5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CacoShrinkFX2", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CacoShrinkFX3", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CacoShrinkFX4", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CacoShrinkFX5", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CacoShrinkFX6", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("CacoShrinkFX7", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("LilCaco", 1);*/
+	Stop;
+		
+	Pain.Avoid: 
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(255, "AvoidLeft", "AvoidRight");
+	AvoidLeft:
+		HEAD A 1 A_FaceTarget();
+		TNT1 A 0 ThrustThing(angle*256/360+192, 15, 0, 0);
+		HEAD A 5 A_FaceTarget();
+		Goto Missile;
+	AvoidRight:
+		HEAD A 1 A_FaceTarget();
+		TNT1 A 0 ThrustThing(angle*256/360+64, 15, 0, 0);
+		HEAD A 5 A_FaceTarget();
+	Goto Missile;
+
+
+		
+		
+	Missile:
+		TNT1 A 0 A_TakeInventory("EnemyMemory", 30);
+		TNT1 A 0 A_JumpIfCloser(140, "Melee");
+		TNT1 A 0 A_Jump(198, 3);
+	Goto Avoid;
+		TNT1 AAA 0;
+		HEAD B 4 A_FaceTarget();
+		HEAD C 4 A_FaceTarget();
+		HEAD D 4 BRIGHT a_spawnprojectile("CacodemonBall", 34, 0, 0, 0);
+	Goto See;
+		
+	Melee:
+		TNT1 A 0 A_Playsound("caco/melee");
+		HEAD B 4 A_Facetarget();
+		HEAD C 4 A_Recoil(-5);
+		TNT1 A 0 a_spawnprojectile("CacodemonBite", 34, 0, 0, 0);
+		//TNT1 A 0 A_JumpIfInventory("Fatality_Marine", 1, "FatalityMarine")
+		HEAD D 4;
+	Goto See;
+		
+	Pain:
+		HEAD E 3;
+		HEAD E 3 A_Pain();
+		HEAD F 6;
+	Goto See;
+		
+	Possession:
+		TNT1 A 0 A_SetInvulnerable();
+		HEAD E 3;
+		HEAD E 3 A_Pain();
+ 		TNT1 A 0 A_UnSetInvulnerable();
+	Goto See;
+		
+	Pain.Stun:
+		HEAD E 1 A_Pain();
+		HEAD EEEEEEEEEE 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		tnt1 a 0 a_jumpif(random(0, 10) < 7, "Pain.Stun");
+	Goto See;
+		
+	Pain.Kick:
+	Pain.ExtremePunches:
+		TNT1 A 0 A_FaceTarget();
+		HEAD E 6 A_Recoil(5);
+		HEAD E 6 A_Pain();
+		HEAD F 10;
+	Goto See;
+		
+	Pain:
+		HEAD E 3;
+		HEAD E 3 A_Pain();
+		TNT1 A 0 A_Jump(128, 3);
+		Goto Avoid;
+		TNT1 AAA 0;
+		HEAD F 6;
+		Goto See;
+
+	Avoid:
+		HEAD AAAABC 6
+		{
+			A_FastChase();
+			A_FaceTarget();
+		}
+		HEAD D 5 BRIGHT A_HeadAttack();
+	Goto See;
+		
+	Death.Shotgun:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpIfCloser(500, "Death.Brutal");
+	Death:
+		TNT1 A 0 A_Jump(118, "Death2", "Deathlulz");
+		HEAD G 3 A_Scream();
+		HEAD H 3 A_NoBlocking();
+		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		HEAD IJK 4;
+		//TNT1 A 0 A_SpawnItem("redBloodPool", 1);
+		HEAD L -1;
+		TNT1 A 0 A_SpawnItem("DeadCacoDemon1", 1);
+	Stop;
+		
+	Death2:
+		TNT1 A 0 a_spawnprojectile("CacoXDeath3", 50, 0, random(0, 360), 2, random(0, 160));
+		H3DC D 3 A_Scream();
+		H3DC E 3 A_NoBlocking();
+		TNT1 AAAA 0 ;//a_spawnprojectile("brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		H3DC FGHIJKL 3;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		H3DC L -1;
+	Stop;
+		
+	Deathlulz:
+		H3D2 A 6 A_Scream();
+		H3D2 B 6 A_NoBlocking();
+		H3D2 CD 6;
+		TNT1 AAAA 0 ;//a_spawnprojectile("brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		H3D2 E 6;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		H3D2 F -1;
+		TNT1 A 0 A_SpawnItem("DeadCacoDemon1", 1);
+	Stop;
+		
+	Death.Fatality:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Pain();
+		//TNT1 A 0 A_JumpIfIntargetInventory("FistsSelected", 1, 1);
+	Goto Death.SSG;
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		TNT1 A 0 A_Jump(128,5);
+		//TNT1 A 0 A_GiveToTarget("CacoDemonFatality", 1);
+	Stop;
+		TNT1 AAAAAAA 0;
+		//TNT1 A 0 A_GiveToTarget("CacoDemonFatality2", 1);
+		TNT1 A 1;
+		TNT1 A 0;
+	Stop;
+		
+	Death.tear:
+		TNT1 A 0 A_Jump(12, "DeathSawed2");
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_Scream();
+		TNT1 O 0 A_NoBlocking();
+		TNT1 AAAAA 0 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath4", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath3", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath4", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath6", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("CacoXDeath7", 50, 0, random(0, 360), 2, random(0, 160));
+		H3DC AB 9;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		TNT1 A 0 A_SpawnItem("SawedCacodemon", 1);
+	Stop;
+		
+	Death.cut:
+	Death.saw:
+		TNT1 A 0 A_Jump(119, "DeathSawed2");
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_Scream();
+		TNT1 O 0 A_NoBlocking();
+		TNT1 A 0 a_spawnprojectile("RipCaco", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(30, 150));
+		CACL A 1;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		TNT1 A 0 A_SpawnItem("DeadHalfCacoDemon", 1);
+	Stop;
+		
+	DeathSawed2:
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_Scream();
+		TNT1 O 0 A_NoBlocking();
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath4", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAA 0 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		H3DC MNOP 3 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		H3DC QR 3 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		//TNT1 A 0 A_SpawnItem("BlueBloodPool", 1);
+		H3DC R -1;
+	Stop;
+		
+	Death.cutless:
+		TNT1 O 0 A_Jump(64, 2);
+		Goto Death.Brutal;
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_Scream();
+		TNT1 O 0 A_NoBlocking();
+		TNT1 A 0 a_spawnprojectile("RipCaco", 0, 0, random(0, 360), 2, random(0, 160));
+		CACL A 1;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		TNT1 A 0 A_SpawnItem("DeadHalfCacoDemon", 1);
+	Stop;
+		
+	Death.Desintegrate:
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_NoBlocking();
+		C4CX ab 2;
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath4", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("CacoXDeath2", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath1", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AA 0 a_spawnprojectile("CacoXDeath3", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath4", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AAA 0 a_spawnprojectile("CacoXDeath5", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AAAA 0 a_spawnprojectile("CacoXDeath6", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AAAAAA 0 a_spawnprojectile("CacoXDeath7", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		C4CX c 2 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		C4CX d 2 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		C4CX ef 2 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		C4CX g 2 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		C4CX h 2 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		C4CX ijklmnopqr 2;
+		C4CX sssssssssssssssssssssssssssssssssssssssssssssssssssssss 5 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		C4CX s -1;
+	Stop;
+		
+	Death.Brutal:
+		TNT1 A 0 A_Jump(120, "DeathBrutal2");
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_Scream();
+		TNT1 O 0 A_NoBlocking();
+		//Bloodmist
+		TNT1 AAAAA 0 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 a_spawnprojectile("XDeath2", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 a_spawnprojectile("XDeath2", 25, 0, random(160, 210), 2, random(30, 60));
+		TNT1 A 0 a_spawnprojectile("XDeath3", 25, 0, random(160, 210), 2, random(30, 60));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath3", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath4", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath6", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("CacoXDeath7", 50, 0, random(0, 360), 2, random(0, 160));
+		CCD1 A 10;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		TNT1 A 0 A_SpawnItem("BrutalizedCacodemon1");
+	Stop;
+		
+	Death.Blast:
+		TNT1 A 0 A_Jump(64, "Death.SSG");
+	DeathBrutal2:
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 A 0 A_Scream();
+		TNT1 O 0 A_NoBlocking();
+		TNT1 AAAAA 0 a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 150));
+		TNT1 A 0 a_spawnprojectile("XDeath2", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 25, 0, random(160, 210), 2, random(30, 60));
+		TNT1 A 0 a_spawnprojectile("XDeath3", 25, 0, random(160, 210), 2, random(30, 60));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath3", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("CacoXDeath4", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath6", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("CacoXDeath7", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  A_SpawnItem("BloodPool", 1);
+		TNT1 A 0 A_SpawnItem("BrutalizedCacodemon2");
+	Stop;
+		
+		
+	Death.SuperPlasma:
+	Death.Plasma: Death.Plasma2:
+		TNT1 A 0;
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+		CACB A 10 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		CACB A 0; //a_spawnprojectile("XDeathBurnedBlueMeat1", 0, 0, random(0, 360), 2, random(0, 160));
+		CACB A 0; //a_spawnprojectile("XDeathBurnedBlueMeat1", 0, 0, random(0, 360), 2, random(0, 160));
+		CACB BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 8 a_spawnprojectile("ExplosionSmoke", 16, 0, random(0, 180), 2, random(0, 180));
+		CACB B -1;
+	Stop;
+	
+	
+	Death.Incinerate:
+		TNT1 A 0 A_Playsound("MELT");
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SetFloorClip();
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
+
+		C5CX AAAAABBBBCCCC 1 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionParticle", 36, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		TNT1 A 0 A_Playsound("SZZLL", 3);
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),20,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		C5CX DDDDDEEEEEFFFFF 1 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),16,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		C5CX GGFFGGFFGGFFGGFFGGFFGGFFGGFFGGFF 2 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		C5CX GGFFGGFFGGFFGGFF 2;
+		C5CX HHHHHHHHH 12 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		C5CX H -1;
+	Stop;
+	
+	Death.fire:
+	Death.Flames:
+	Death.Burn:
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0;
+		TNT1 A 0 A_Scream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_Playsound("props/redfire");
+		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItem("BurningCacoDemon");
+	Stop;
+	
+	XDeath:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 a_spawnprojectile("CacoXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+	Stop;
+	
+	Death.SSG:
+	Death.ExtremePunches:
+		TNT1 A 0;
+		CCD3 A 1 A_Pain();
+		TNT1 A 0 A_FaceTarget();
+		TNT1 A 0 A_Scream();
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(30, 150));
+		TNT1 AAAAAAAAAAAAA 0 ;//a_spawnprojectile("brutal_FlyingBlood", 50, 0, random(160, 200), 2, random(0, 50));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 25, 0, random(140, 230), 2, random(30, 60));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 25, 0, random(140, 230), 2, random(30, 60));
+		TNT1 AA 0 a_spawnprojectile("XDeath4", 25, 0, random(140, 230), 2, random(30, 60));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath2", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath1", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath3", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 A 0 a_spawnprojectile("CacoXDeath4", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AA 0 a_spawnprojectile("CacoXDeath5", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AAAA 0 a_spawnprojectile("CacoXDeath6", 50, 0, random(160, 200), 2, random(20, 40));
+		TNT1 AAAAAA 0 a_spawnprojectile("CacoXDeath7", 50, 0, random(160, 200), 2, random(20, 40));
+		CCD3 A 6 A_NoBlocking();
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		CCD3 B -1;
+	Stop;
+
+	Raise:
+		HEAD L 8 A_UnSetFloorClip();
+		HEAD KJIHG 8;
+	Goto See;
+
+	Crush:
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		CRS2 B 5;
+		TNT1 A 0;// A_SpawnItem("BlueBloodPool", 1);
+		CRS2 B -1;
+	Stop;
+	
+	Pain.KillMe:
+	Pain.Taunt:
+		TNT1 A 0;
+	Goto Missile;
+
+	Death.KillMe:
+	Death.Taunt:
+		TNT1 A 0 {self.bSOLID = false;}
+		TNT1 A 0 A_SpawnItem("CacoDemon");
+	Stop;
+
+	FatalityMarine:
+		CFPF A 1;
+		TNT1 A 0 A_PlaySound("DSFDTHE");
+		CFPF ABCBCBCBC 9
+		{
+			a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
+			a_spawnprojectile("PB_blood", 25, 0, random(0, 360), 2, random(0, 160));
+		}
+		TNT1 A 0 A_SpawnItem("PlayerJustGotCutInHalf", 1);
+	Goto See;
+	
+	Death.Ice:
+	Death.Freeze:
+	Death.Frost:
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		TNT1 A 0 {self.bSOLID = false;}
+		//TNT1 A 0 A_SpawnItem("FrozenCacodemon");
+	Stop;
+}
+
+
+}
+
+
+
+
+
+
+	
+	
+	
+	
