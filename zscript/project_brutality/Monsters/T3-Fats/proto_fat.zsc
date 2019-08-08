@@ -1,6 +1,10 @@
 class proto_fat : pb_monster_base
 {
-bool rage;
+protected bool rage;
+
+protected int cooldown;
+
+
 states
 {
 	Death.Blackhole:

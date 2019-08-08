@@ -897,7 +897,6 @@ States
 	Dead.ExplosiveImpact:
 		TNT1 AAAA 0 A_SpawnItem("Blood");
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
-		//TNT1 A 0 A_SpawnItem("Ploft");
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		RFR3 G -1;
 	stop;
@@ -905,7 +904,6 @@ States
 	Dead.Landmine:
 		TNT1 AAAA 0 A_SpawnItem("Blood");
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
-		//TNT1 A 0 A_SpawnItem("Ploft");
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		RFR4 E -1;
 	stop;

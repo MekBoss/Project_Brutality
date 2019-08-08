@@ -69,7 +69,6 @@ States
 	See:
 		TNT1 A 0;
 		TNT1 A 0 A_TakeInventory("EnemyMemory", 5);
-		TNT1 A 0 A_TakeInventory("MancubusFlamethrowerCooldown", 10);
 	LookingForPlayer:
 		TNT1 A 0 A_JumpIfInventory("EnemyMemory", 10, "ForgetTarget");
 		DAED AA 4 A_Chase;
@@ -205,7 +204,7 @@ States
 		TNT1 A 0 a_spawnprojectile("GreenCloudMissile_Enemy",30,25,0,0);
 		TNT1 A 0 a_spawnprojectile("DaedabusSwitchModeEffect", 34, 30, 0, 2, 0);
 		TNT1 A 0 a_spawnprojectile("DaedabusSwitchModeEffect", 34, -30, 0, 2, 0);
-		TNT1 A 0 A_GiveInventory("MancubusFlamethrowerCooldown", 1);
+		TNT1 A 0 {cooldown ++;}
 		DAED H 1 BRIGHT A_SpawnItemEx("Green_Flare", 0, 0, 0, 0, 0, 0, 0, 128);
 		TNT1 A 0 a_spawnprojectile("DaedabusSwitchModeEffect", 34, 30, 0, 2, 0);
 		TNT1 A 0 a_spawnprojectile("DaedabusSwitchModeEffect", 34, -30, 0, 2, 0);
@@ -226,7 +225,7 @@ States
 		TNT1 A 0 a_spawnprojectile("DaedabusSwitchModeEffect", 34, 30, 0, 2, 0);
 		TNT1 A 0 a_spawnprojectile("DaedabusSwitchModeEffect", 34, -30, 0, 2, 0);
 		DAED IG 2 A_FaceTarget;
-		TNT1 A 0 A_JumpIfInventory("MancubusFlamethrowerCooldown", 8, "See");
+		TNT1 A 0 {if(cooldown > 8) setstatelabel("See");}
 		TNT1 A 0 A_MonsterRefire(16, "See");
 		TNT1 A 0 A_JumpIfCloser(280, "Torch");
 		TNT1 A 0 A_JumpIfCloser(300, "See");
