@@ -87,7 +87,7 @@ States
 	Exist:
 		SFLY ABC 1
 		{
-			setorigin(pos + (frandom(-2,2), frandom(-1,1), frandom(-2,2), true);
+			setorigin(pos + (frandom(-2,2), frandom(-1,1), frandom(-2,2) ), true);
 		}
 	Loop;
 }
