@@ -62,38 +62,45 @@ States
 	Goto seecontinue;
 
 	See2:
-		TNT1 A 0;
-		TNT1 A 0 A_TakeInventory("EnemyMemory", 15);
 		tnt1 a 0
 		{
 			if(target is "proto_cyberdemon" || target is "proto_spider_mind")
 			{setstatelabel("CheckRetreat");}
 		}			
-	See3:
 	SeeContinue:
 		TNT1 A 0 pb_monster_memory();
-		BOS2 AAAA 2 A_Chase();
-		TNT1 A 0 A_PlaySound("knight/step",4);
-		BOS2 BBBBCCCC 2 A_Chase();		
-		TNT1 A 0 A_PlaySound("knight/step",4);
-		BOS2 DDDD 2 A_Chase();
+		BOS2 AAAABBBBZCCCCDDDDZ 2
+		{
+			A_Chase();
+			if(frame > 5) 
+			{
+				tics = 0;
+				A_PlaySound("knight/step",4);
+			}
+		}
 	Loop;
 
 	Melee:
-		BOS2 E 6 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("weapons/gswing");
-		BOS2 F 6 A_FaceTarget();
-		BOS2 G 6 A_SpawnProjectile("Knight_Attack",10,0,0,0);
+		BOS2 EFG 6
+		{
+			A_FaceTarget();
+			if(frame == 5) A_PlaySound("weapons/gswing");
+			if(frame == 6) A_SpawnProjectile("Knight_Attack",10,0,0,0);
+		}
 	Goto seecontinue;
 
 	Idle:
 	LookingForPlayer:
-		BOS2 BBBB 10 A_Look();
-		TNT1 A 0 {self.angle += randompick(-40, 40);}
-		BOS2 BBB 10 A_Look();
-		BOS2 BBB 10 A_Look();
-
-		BOS2 AABBCCDD 2
+		BOS2 BBBZBBBBBBB 10
+		{
+			A_Look();
+			if(frame > 3)
+			{
+				self.angle += randompick(-40, 40);
+				tics = 0;
+			}
+		}
+		BOS2 AAAABBBBCCCCDDDD 2
 		{
 			A_Look();
 			A_Recoil(-2);
@@ -105,15 +112,18 @@ States
 			
 			
 	Melee2:
-		BOS2 EF 8 A_FaceTarget();
-		BOS2 G 8 A_SpawnProjectile("Knight_Attack",10,0,0,0);
+		BOS2 EFG 8
+		{
+			A_FaceTarget();
+			if(frame == 6) A_SpawnProjectile("Knight_Attack",10,0,0,0);
+		}
 	Goto seecontinue;
 			
 	Missile:
 		TNT1 A 0 
 		{
 			vector3 vec_to = self.vec3to(target);
-			if((vec_to.x ** 2 + vec_to.y ** 2 + vec_to.z ** 2)  > 902500/*950 ^ 2*/ && random(0, 2) > 1 )
+			if((vec_to.x * vec_to.x + vec_to.y * vec_to.y + vec_to.z * vec_to.z)  > 902500/*950 ^ 2*/ && random(0, 2) > 1 )
 			{self.setstatelabel('CHARGE');}
 		}
 
@@ -138,7 +148,7 @@ States
 	CHARGE:
 		BSCG ABCD 4
 		{
-			if( (frame == 1 || frame == 3) && tics == 0)
+			if( (frame == 1 || frame == 3) )
 			{
 				A_PlaySound("knight/step",5);
 			}
@@ -176,7 +186,7 @@ States
 		BOS2 EFGEFGEFG 6
 		{
 			A_FaceTarget();
-			if(frame == 5 && tics == 0)
+			if(frame == 5)
 			{
 				A_SpawnProjectile("BaronBall", 36, 0, 0, 1);
 			}
@@ -222,13 +232,10 @@ States
 	Pain.Kick:
 	Pain.ExtremePunches:
 		TNT1 A 0 {self.bMISSILEMORE = true; self.bMISSILEEVENMORE = true;}
-		//TNT1 A 0 A_JumpIfInventory("StopKickingMyBallsMotherFucker", 1, "MissileInRage");
-		//TNT1 A 0 A_GiveInventory("StopKickingMyBallsMotherFucker", 1);
-		TNT1 A 0;
 		TNT1 A 0 {self.bNOPAIN = true; }
 		KNRJ ABCDABCDABCDABCD 4
 		{
-			if(frame == 2 && tics == 0)
+			if(frame == 2)
 			{
 				A_Pain();
 			}

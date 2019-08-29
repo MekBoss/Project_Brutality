@@ -25,7 +25,7 @@ States
 		BSA0 ABCBABCBABCBABCBABCBABCBABCBABCB 6
 		{
 			A_SpawnItem("brutal_LiquidBlood", 0, 30);
-			if(frame == 2 && tics == 0) {A_PlaySound("PSXDPN");}
+			if(frame == 2) {A_PlaySound("PSXDPN");}
 		}
 	Death:
 		TNT1 A 0 A_NoBlocking();
@@ -99,7 +99,7 @@ States
 	Spawn:
 		BSA0 NONP 5
 		{
-			if(frame == 15 && tics == 0) A_SpawnItem("brutal_LiquidBlood", 0, 30);
+			if(frame == 15) A_SpawnItem("brutal_LiquidBlood", 0, 30);
 		}
 	goto baron_bisected_pierced::spawn;
 		tnt1 a 0 a_jumpif(random(0, 10) > 7, "die");

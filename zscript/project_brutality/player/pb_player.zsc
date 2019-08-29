@@ -2427,9 +2427,9 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0; //A_TakeInventory("UndeadMarineFatality1",1);
 		TNT1 A 0; //A_TakeInventory("GoFatality", 1);
-		TNT1 A 0 ;//A_SpawnItem("GuttedUndeadMarineDude", 1);
 		TNT1 AAAAA 0 A_GiveInventory("HealthBonus",1);
 		TNT1 A 0 SetPlayerProperty(0,0,0);
+		TNT1 A 0 ;//A_SpawnItem("GuttedUndeadMarineDude", 1);
 		Goto Standstill;
 		
 	FatalityFleshWizard:

@@ -38,7 +38,7 @@ states
 		TNT1 AA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
 		TNT1 A 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 360));
 		TNT1 A 0 A_SpawnItem("Sparks");
-		PUFF A 0 bright A_PlaySound("ricochet/hit");
+		tnt1 A 0 bright A_PlaySound("ricochet/hit");
 		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4");
 	Spawn1:
@@ -68,15 +68,15 @@ states
 		TNT1 AA 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
 		TNT1 A 0 a_spawnprojectile("HitSpark", 2, 0, frandom(0,1)*frandom(0, 360), 2, frandom(0,1)*frandom(30, 160));
 		TNT1 A 0 A_SpawnItem("Sparks");
-		PUFF A 0 bright A_PlaySound("ricochet/hit");
+		tnt1 A 0 bright A_PlaySound("ricochet/hit");
 		IPF2 GGHH 1 bright A_SpawnItem("YellowFlareSmall", 0);
 		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(30, 160));
 	stop;
 		
 	SpawnWater:
 		TNT1 A 0;
-		TNT1 AAAAA 0 a_spawnprojectile("WaterParticleX", 8, 0, random(0, 360), 2, random(30, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("WaterParticleX", 24, 0, random(0, 360), 2, random(30, 160));
+		//TNT1 AAAAA 0 a_spawnprojectile("WaterParticleX", 8, 0, random(0, 360), 2, random(30, 160));
+		//TNT1 AAAAA 0 a_spawnprojectile("WaterParticleX", 24, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
 		TNT1 A 0 A_SpawnItem("WaterRicochet");
 		TNT1 A 0 A_PlaySound("water/bulletsplash", 1);
@@ -210,9 +210,9 @@ states
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("bigspl1", 1);
 		//TNT1 A 0 A_RadiusGive("WaterSplasherz", 90, RGF_PLAYERS, 1);
-		TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", 8, 0, random(0, 360), 2, random(30, 160));
+		//TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", 8, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", 14, 0, random(0, 360), 2, random(30, 160));
+		//TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", 14, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 20;
 		Stop;
 		
@@ -315,8 +315,8 @@ states
 		TNT1 A 0;
 		//TNT1 A 0 A_RadiusGive("WaterSplasherz", 215, RGF_PLAYERS, 1);
 		
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(50, 60), 0, random(0, 360), 2, random(10, 90));
-		TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90));
+		//TNT1 AAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(50, 60), 0, random(0, 360), 2, random(10, 90));
+		//TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90));
 		TNT1 A 0 A_SpawnItem("GiantWaterRicochet");
 		TNT1 A 4;
 		TNT1 A 0 A_SpawnItem("WaterSplashWaves");
@@ -428,7 +428,7 @@ Default {
   SpawnWater:
 	TNT1 A 0
 	TNT1 A 0 A_PlaySound("bigspl1")
-	TNT1 AAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(50, 60), 0, random(0, 360), 2, random(10, 90))
+	//TNT1 AAAAAAAAA 0 a_spawnprojectile("WaterParticleX", random(50, 60), 0, random(0, 360), 2, random(10, 90))
 	TNT1 AAAAAAAAAAAAAAAA 0 a_spawnprojectile("BlueLiquidParticleX", random(0, 60), 0, random(0, 360), 2, random(30, 90))
 	TNT1 A 20
 	Stop

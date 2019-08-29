@@ -511,8 +511,8 @@ States
 		TNT1 A 0 A_NoBLocking();
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(50, 130));
 		ZID9 C 2;
-		TNT1 A 0 A_SpawnItem("DeadZSPEC");
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		ZSP2 L -1;
 		Stop;
 		
 	FallingSuperDeath:
@@ -541,7 +541,7 @@ States
 		ZSP3 J 5 a_spawnprojectile("Brutal_LiquidBlood3", 15, 0, random(0, 360), 2, random(0, 40));
 		ZSP3 K 5 a_spawnprojectile("Brutal_LiquidBlood3", 15, 0, random(0, 360), 2, random(0, 40));
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
-		TNT1 A 0 A_SpawnItem("DeadZSPEC");
+		ZSP2 L -1;
 		Stop;
 	PinToWall:
 		TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
@@ -592,7 +592,7 @@ States
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
 		TNT1 A 0 A_PlaySound("BODYF",6);
-		TNT1 A 0 A_SpawnItem("DeadZSpecZSP4J");
+		ZSP4 J -1;
 		Stop;
 		
 	Death.Eat:
@@ -618,7 +618,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
-		TNT1 A 0 A_SpawnItem("DeadZSPEC", 1);
+		ZSP2 L -1;
 		Stop;
 		
 	Death.MinorLeg:
@@ -628,7 +628,7 @@ States
 		ZPO3 C 5 A_NoBlocking();
 		ZPO3 D 5;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
-		TNT1 A 0 A_SpawnItem("DeadZSPEC_NoLeg", 1);
+		QPO3 F -1;
 		Stop;
 	Death.Melee:
 		FID2 A 5 A_Scream();
@@ -648,7 +648,7 @@ States
 		ZPO3 B 3;
 		ZPO3 C 3 A_NoBlocking();
 		TNT1 A 0 A_PlaySound("BODYF",6);
-		TNT1 A 0 A_SpawnItem("DeadZSPEC_NoLeg");
+		QPO3 F -1;
 		Stop;
 		
 	LeaveCrawling:
@@ -688,7 +688,7 @@ States
 		ZSP5 DE 6;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_PlaySound("BODYF",6);
-		TNT1 A 0 A_SpawnItem("DeadZSpec_NoBrain", 1);
+		ZSP5 F -1;
 		Stop;
 		
 	Death.MinorHeadLong:
@@ -704,7 +704,7 @@ States
 		ZSP5 DE 6;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_PlaySound("BODYF",6);
-		TNT1 A 0 A_SpawnItem("DeadZSpec_NoBrain", 1);
+		ZSP5 F -1;
 		Stop;
 		
 	Death.headexplode:
@@ -802,7 +802,7 @@ States
 		Z2Z7 CCC 3 a_spawnprojectile("Brutal_LiquidBlood2", 26, 0, random(0, 360), 2, random(10, 40));
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		Z2Z7 DD 3 a_spawnprojectile("Brutal_LiquidBlood2", 6, 0, random(0, 360), 2, random(30, 60));
-		TNT1 A 0 A_SpawnItem("DeadZSpecZ2Z7E");
+		Z2Z7 E -1;
 		Stop;
 		
 	Death.Blast2:
@@ -823,7 +823,7 @@ States
 		ZSP5 III 1 a_spawnprojectile("Brutal_LiquidBlood2", 26, 0, random(0, 360), 2, random(10, 40));
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		ZSP5 JJ 3 a_spawnprojectile("Brutal_LiquidBlood2", 6, 0, random(0, 360), 2, random(30, 60));
-		TNT1 A 0 A_SpawnItem("DeadZSpecZSP5K");
+		ZSP5 K -1;
 		Stop;
 		
 	Death.Blast3:
@@ -845,7 +845,7 @@ States
 		Z2Z9 CCC 3 a_spawnprojectile("Brutal_LiquidBlood2", 26, 0, random(0, 360), 2, random(10, 40));
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		Z2Z9 DD 3 a_spawnprojectile("Brutal_LiquidBlood2", 6, 0, random(0, 360), 2, random(30, 60));
-		TNT1 A 0 A_SpawnItem("DeadZSpecZ2Z9E");//
+		Z2Z9 E -1;
 		Stop;
 		
 	Death.SSG:
@@ -1083,7 +1083,7 @@ States
 	TNT1 A 0 A_Stop();
 	TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 	Z2Z8 I 1;
-	TNT1 A 0 A_SpawnItem("DeadZSPEC_Z2Z8I");
+	Z2Z8 I -1;
 	Stop;
 	
 	BlownAwayRight:
@@ -1116,7 +1116,7 @@ States
 	TNT1 A 0 A_Stop();
 	TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 	Z2Z8 H 1;
-	TNT1 A 0 A_SpawnItem("DeadZSPEC_Z2Z8H");
+	Z2Z8 H -1;
 	Stop;
 	
 	Death.ExtremePunches:
@@ -1215,7 +1215,7 @@ States
 		ZSP2 KL 5;
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_PlaySound("BODYF",6);
-		TNT1 A 0 A_SpawnItem("DeadZSPEC");
+		ZSP2 L -1;
 	Stop;
 	
 	Death2:
@@ -1225,7 +1225,7 @@ States
 		ZSP5 OP 5;
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_PlaySound("BODYF",6);
-		TNT1 A 0 A_SpawnItem("DeadZSPEC_ZSP5P");
+		ZSP5 P -1;
 	Stop;
 	
 	Raise:

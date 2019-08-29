@@ -1,0 +1,204 @@
+CLASS DaedTrail : ACTOR { 
+	Default {
+	
+	Scale 0.65;
+	RenderStyle "Add";
+	Alpha 0.5;
+	+NoGravity;
+	+NoBlockMap;
+	+NoInteraction;
+	}
+  States
+  {
+	Spawn:
+	DAET ABCDE 2 Bright;
+	Stop;
+}
+}
+
+
+CLASS DaedFire : pb_projectile_base { 
+	Default {
+	
+	Radius 8;
+	Height 8;
+	Speed 22;
+	Fastspeed 23;
+	DamageFunction(random(27,31));
+	DamageType "Desintegrate";
+	PoisonDamage 1, 10, 9;
+	PoisonDamageType "Slime";
+	Projectile;
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	-THRUGHOST;
+	//RenderStyle "Add"
+	Scale 0.5;
+	DeathSound "Daedabus/impact";
+	SeeSound "Daedabus/gun";
+	Decal "Scorch";
+	}
+	States
+	{
+	Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Playsound("BGFLMBL", 6, 1, 1);
+	Spawn1:
+	Fly:
+	DB57 AB 1 BRIGHT A_Weave(4, 4, 0.3, 0.3);
+	TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1Green", random(1,-1), random(1,-1), random(1,-1), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	DB57 C 1 BRIGHT A_Weave(4, 4, 0.3, 0.3);
+	TNT1 A 0 A_SpawnItemEx("Green_FlareSmall", 0, 0, 0, 0, 0, 0, 0, 128);
+	Loop;
+	
+	Death:
+	TNT1 A 0 A_StopSound(6);
+	TNT1 A 0 A_PlaySound("misc/xdeath4f", 7);
+	TNT1 A 0 A_SpawnItem("NewAcidExplosionSmoke",0,0);
+	TNT1 A 0 a_spawnprojectile( "GreenCloudSmall", 12, 0, random( 0, 359 ), 2 );
+	TNT1 A 0 a_spawnprojectile( "GreenCloudSmall", 12, 0, random( 0, 359 ), 2 );
+	TNT1 AAA 0 A_SpawnItemEx("RealisticFireSparks1Green", random(1,-1), random(1,-1), random(1,-1), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	EXPG ABCDEFG 2 BRIGHT Light("BARONBALL") A_SpawnItem("Green_Flare",0,0);
+	TNT1 AAAA 19 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+	
+	XDeath:
+	TNT1 A 0 A_StopSound(6);
+	TNT1 A 0 A_SpawnItem("NewAcidExplosionSmoke",0,0);
+	TNT1 A 0 a_spawnprojectile( "GreenCloudSmall", 12, 0, random( 0, 359 ), 2 );
+	TNT1 A 0 a_spawnprojectile( "GreenCloudSmall", 12, 0, random( 0, 359 ), 2 );
+	TNT1 AAA 0 A_SpawnItemEx("RealisticFireSparks1Green", random(1,-1), random(1,-1), random(1,-1), random(-2, 2), random(-2, 2), random(-2, 2), 0, SXF_NOCHECKPOSITION, 0);
+	EXPG ABCDEFG 2 Light("BARONBALL") A_SpawnItem("Green_Flare",0,0);
+	Stop;
+}
+}
+	
+CLASS DaedabusGreenCloudSmall : pb_projectile_base { 
+	Default {
+	
+	Speed 10;
+	DamageType "Desintegrate";
+	}
+	States
+	{
+	Pain.Flames:
+	Pain.Fire:
+	Pain.Burn:
+	TNT1 A 0;
+	Goto Flames;
+	Flames:
+	TNT1 A 0 A_Explode;
+	TNT1 A 0 A_PlaySound("Afrit/Hellfire", 8);
+	TNT1 A 0 {self.bNOGRAVITY = false;}
+	TNT1 AAAA 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+	EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
+	EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	tnt1 ZZZ 0 BRIGHT a_spawnprojectile("CasingSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+	EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	EXPL A 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 90, 2, random(50, 130));
+	EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	EXPL AAA 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 270, 2, random(50, 130));
+	EXPL A 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 270, 2, random(50, 130));
+	EXPL AAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	EXPL A 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 270, 2, random(50, 130));
+	stop;
+	Spawn:
+	TNT1 A 0 A_Playsound("redburn");
+	GTXS ABCDE 7;
+	GTXS A 0 A_Explode( 3, 100 );
+	Loop;
+}
+}
+
+CLASS DaedabusGreenCloudMedium : pb_projectile_base { 
+	Default {
+	
+	Speed 10;
+	DamageType "Desintegrate";
+	}
+	States
+	{
+	Spawn:
+	TNT1 A 0 A_Playsound("redburn");
+	GTXM ABCDE 7;
+	GTXM A 0 A_Explode( 4, 135 );
+	Loop;
+
+	Pain.Flames:
+	Pain.Fire:
+	Pain.Burn:
+	TNT1 A 0 A_Explode;
+	TNT1 A 0 A_PlaySound("Afrit/Hellfire", 8);
+	TNT1 A 0 {self.bNOGRAVITY = false;}
+	TNT1 AAAA 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	EXPL AA 0 A_SpawnItem("ExplosionParticleSpawner");
+	EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	tnt1 ZZZ 0 BRIGHT a_spawnprojectile("CasingSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+	EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	EXPL A 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 90, 2, random(50, 130));
+	EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	EXPL AAA 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 270, 2, random(50, 130));
+	EXPL A 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 270, 2, random(50, 130));
+	EXPL AAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
+	EXPL A 0 a_spawnprojectile("FlyingBurningFuel", 12, 0, 270, 2, random(50, 130));
+	stop;
+}
+}
+
+
+CLASS DaedabusLiquidAcid: pb_projectile_base { 
+	Default {
+	
+	-NOCLIP;
+	-NOBLOCKMAP;
+	-NOGRAVITY;
+	+NOEXTREMEDEATH;
+	
+	Damage 0;
+	PoisonDamage 4, 6;
+	RenderStyle "Translucent";
+	Scale 0.5;
+	Alpha 0.85;
+	Speed 18;
+	Decal "Scorch";
+	SeeSound "redburn";//FLMFIRE1
+	DeathSound "blooddrip";
+	Radius 9;
+	Height 9;
+	gravity 0.2;
+	Damagetype "Desintegrate";
+	PoisonDamageType "Desintegrate";
+	//translation "168:191=112:127","16:47=120:127"
+Translation "0:255=%[0,0,0]:[0,1,0]";
+	}
+    States
+    {
+	
+Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128, "Spawn2", "Spawn3");
+	MSBL ABCDEFGH 2 BRIGHT;//A_SpawnItem("GreenBrutal_FlyingBloodTrails")
+	Loop;
+	
+Spawn2:
+	MSBU ABCDEFGH 2 BRIGHT;//A_SpawnItem("GreenBrutal_FlyingBloodTrails")
+	Loop;
+	
+Spawn3:
+	MSBZ ABCDEFGH 2 BRIGHT;//A_SpawnItem("GreenBrutal_FlyingBloodTrails")
+	Loop;
+	
+	
+	
+Death:
+Crash:
+XDeath:
+	TNT1 A 0 A_PlaySound("blooddrip", 6);
+	TNT1 A 0 A_Explode(2, 12, 1);
+	TNT1 AA 0 A_SpawnItemEx("PlasmaParticleSpawner", 0, 0, 0, 6, 6, 6, 0, 128);
+	XDT1 FGHIJKL 2;
+	TNT1 A 0;
+	Stop;
+}
+}

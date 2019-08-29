@@ -453,7 +453,6 @@ CLASS ThrownGrenade1 : ACTOR {
 		
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -15);
 		TNT1 A 0 a_spawnprojectile("BigRicoChet");
-		TNT1 A 0 A_SpawnItem("WhiteShockwave");
 		TNT1 A 0 a_spawnprojectile("SparkSpawner",0,0,frandom(0,359),2,-15);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -491,7 +490,6 @@ States    {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -15);
-		TNT1 A 0 A_SpawnItem("WhiteShockwave");
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -561,7 +559,6 @@ CLASS EnemyThrownGrenade : HandGrenadeAnother {
 		GRND G 25;
 		TNT1 A 0 A_StopSound(6);
 		EXPL A 0 Radius_Quake(2, 16, 0, 15, 0);//(intensity, duration, damrad, tremrad, tid)
-		TNT1 A 0 A_SpawnItem("WhiteShockwave");
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
 		TNT1 A 0 A_SpawnItemEx("NewGroundExplosionSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);

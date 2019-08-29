@@ -689,7 +689,7 @@ States
 		5KL9 CDED 7
 		{
 			a_spawnprojectile("Brutal_LiquidBlood2", 20, 12, random(0, 360), 2, random(0, 160));
-			if(frame == 3 && tics == 0) A_PlaySound("skeleton/pain");
+			if(frame == 3) A_PlaySound("skeleton/pain");
 		}
 		tnt1 a 0 a_jumpif(random(0, 10) < 7, "spawn");
 	Collapse:
@@ -836,7 +836,7 @@ States
 		DK4L DF 10
 		{
 			a_spawnprojectile("Brutal_LiquidBlood3", 10, 12, random(0, 360), 2, random(0, 160));
-			if(frame == 4 && tics == 0) A_PlaySound("skeleton/pain");
+			if(frame == 4) A_PlaySound("skeleton/pain");
 		}
 		tnt1 a 0 a_jumpif(random(0, 10) < 7, "spawn");
 	Collapse:

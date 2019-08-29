@@ -1,0 +1,119 @@
+class key_base : key
+{
+
+}
+
+
+ACTOR blue_card : CustomInventory Replaces BlueCard
+{
++FLOORCLIP
++DONTGIB
+Inventory.PickUpMessage "Picked up a blue keycard."
+Inventory.PickUpSound "PickUps/keycard"
+States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("EvidenceCheckerBlueKey", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		Exist:
+		BKEY A 10
+		BKEY B 10 BRIGHT
+		Loop
+	PickUp:
+		TNT1 A 1 A_GiveInventory("BlueCard",1)
+ 		Stop
+	}
+}
+
+ACTOR RedKeyCard : CustomInventory Replaces RedCard
+{
++FLOORCLIP
++DONTGIB
+Inventory.PickUpMessage "Picked up a red keycard."
+Inventory.PickUpSound "PickUps/keycard"
+States
+	{
+	Spawn:
+		RKEY A 10
+		RKEY B 10 BRIGHT
+		Loop
+	PickUp:
+		TNT1 A 1 A_GiveInventory("RedCard",1)
+ 		Stop
+	}
+}
+
+ACTOR YellowKeyCard : CustomInventory Replaces YellowCard
+{
++FLOORCLIP
++DONTGIB
+Inventory.PickUpMessage "Picked up a yellow keycard."
+Inventory.PickUpSound "PickUps/keycard"
+States
+	{
+	Spawn:
+		YKEY A 10
+		YKEY B 10 BRIGHT
+		Loop
+	PickUp:
+		TNT1 A 1 A_GiveInventory("YellowCard",1)
+ 		Stop
+	}
+}
+
+ACTOR BlueSkullKey : CustomInventory Replaces BlueSkull
+{
++FLOORCLIP
++DONTGIB
+Inventory.PickUpMessage "Picked up a blue skull key."
+Inventory.PickUpSound "PickUps/skullkey"
+States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("EvidenceCheckerBlueSkull", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+	Exist:
+		BSKU A 10
+		BSKU B 10 BRIGHT
+		Loop
+	PickUp:
+		TNT1 A 1 A_GiveInventory("BlueSkull",1)
+ 		Stop
+	}
+}
+
+ACTOR RedSkullKey : CustomInventory Replaces RedSkull
+{
++FLOORCLIP
++DONTGIB
+Inventory.PickUpMessage "Picked up a red skull key."
+Inventory.PickUpSound "PickUps/skullkey"
+States
+	{
+	Spawn:
+		RSKU A 10
+		RSKU B 10 BRIGHT
+		Loop
+	PickUp:
+		TNT1 A 1 A_GiveInventory("RedSkull",1)
+ 		Stop
+	}
+}
+
+ACTOR YellowSkullKey : CustomInventory Replaces YellowSkull
+{
++FLOORCLIP
++DONTGIB
+Inventory.PickUpMessage "Picked up a yellow skull key."
+Inventory.PickUpSound "PickUps/skullkey"
+States
+	{
+	Spawn:
+		YSKU A 10
+		YSKU B 10 BRIGHT
+		Loop
+	PickUp:
+		TNT1 A 1 A_GiveInventory("YellowSkull",1)
+ 		Stop
+	}
+}

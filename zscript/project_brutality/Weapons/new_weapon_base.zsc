@@ -169,7 +169,7 @@ protected void change_weapon_PSprite(string sprite_name = "")
 states
 {
 	bug:
-		tnt1 a 1 {console.printf("Something fuckup, tell to unique_user_name that %s weapon break", invoker.getclassname() );}
+		tnt1 a 1 {console.printf("Something fuckup, post bug report that %s weapon break", invoker.getclassname() );}
 		tnt1 a 0 {invoker.destroy(); return;}
 	stop;
 

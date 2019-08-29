@@ -35,8 +35,6 @@ States
 	Advance:
 		TNT1 A 0 {self.bNODROPOFF = false;}
 		TNT1 A 0 A_SpawnItemEx("FootStep", 0, 0, 10, 0, 0);
-		TNT1 A 0 A_JumpIfInventory("EnemyMemory", 15, "SearchForPlayer");
-		TNT1 A 0 A_GiveInventory("EnemyMemory", 1);
 		MGZM AABB 2 A_Chase();
 		TNT1 A 0 A_PlaySound("humans/step",3);
 		MGZM CCDD 2 A_Chase();
@@ -143,21 +141,6 @@ States
 		TNT1 A 0 A_Wander();
 		TNT1 A 0 A_Recoil(-1);
 
-/*		TNT1 A 0 A_Jump(128, "Idle");
-		MGZM A 4 A_Look();
-		TNT1 A 0 A_PlaySound("humans/step",3);
-		TNT1 A 0 A_Wander();
-		TNT1 A 0 A_Recoil(-1);
-		MGZM B 4 A_Look();
-		TNT1 A 0 A_Wander();
-		TNT1 A 0 A_Recoil(-1);
-		MGZM C 4 A_Look();
-		TNT1 A 0 A_PlaySound("humans/step",3);
-		TNT1 A 0 A_Wander();
-		TNT1 A 0 A_Recoil(-1);
-		MGZM D 4 A_Look();
-		TNT1 A 0 A_Wander();
-		TNT1 A 0 A_Recoil(-1);*/
 	Loop;
 		
 		

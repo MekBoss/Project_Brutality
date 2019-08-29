@@ -193,30 +193,25 @@ States
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 		TNT1 A 0 A_SpawnItem("tiny_hole_trailer",0,8,0);
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
-		//BHOL A 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 8, 0, 0, 0, 0, 128);
 		ORBP B 1 Bright;//A_RadiusThrust(-220,150)
 		TNT1 A 0 A_Explode(20,90,0);
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 		TNT1 A 0 A_SpawnItem("tiny_hole_trailer",0,8,0);
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
-		//BHOL A 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 8, 0, 0, 0, 0, 128);
 		ORBP C 1 Bright;//A_RadiusThrust(-220,150)
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 		TNT1 A 0 A_Explode(20,90,0);
 		TNT1 A 0 A_SpawnItem("tiny_hole_trailer",0,8,0);
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
-		//BHOL A 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 8, 0, 0, 0, 0, 128);
 		ORBP D 1 Bright;//A_RadiusThrust(-220,150)
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 		TNT1 A 0 A_Explode(20,90,0);
 		TNT1 A 0 A_SpawnItem("tiny_hole_trailer",0,8,0);
-		//BHOL A 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 8, 0, 0, 0, 0, 128);
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 		ORBP E 1 Bright;//A_RadiusThrust(-220,150)
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 		TNT1 A 0 A_Explode(20,90,0);
 		TNT1 A 0 A_SpawnItem("tiny_hole_trailer",0,8,0);
-		//BHOL A 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 8, 0, 0, 0, 0, 128);
 		TNT1 A 0 A_SpawnItemEx("PulseBeamLaser",random(3,-3),random(3,-3),4,0,0,0,0,SXF_TRANSFERPOINTERS,128);
 	loop;
 		

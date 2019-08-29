@@ -618,7 +618,7 @@ States
 	Spawn:
 		SKL9 CDED 7
 		{
-			if(frame == 2 && tics == 0) A_PlaySound("skeleton/pain");
+			if(frame == 2) A_PlaySound("skeleton/pain");
 			a_spawnprojectile("Brutal_LiquidBlood2", 20, 12, random(0, 360), 2, random(0, 160));
 		}
 		tnt1 a 0 a_jumpif(random(0, 10) < 7, "spawn");
@@ -708,7 +708,7 @@ States
 	Spawn:
 		SKL4 DF 10
 		{
-			if(frame == 3 && tics == 0) A_PlaySound("skeleton/pain");
+			if(frame == 3) A_PlaySound("skeleton/pain");
 			a_spawnprojectile("Brutal_LiquidBlood3", 10, 12, random(0, 360), 2, random(0, 160));
 		}
 		tnt1 a 0 a_jumpif(random(0, 10) < 7, "Spawn");	

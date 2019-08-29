@@ -69,7 +69,7 @@ States
 				case bfg : self.player.SetPsprite(PSP_FLASH, invoker.findstate("FlashReadyGreen") ); break; 
 				case guard : self.player.SetPsprite(PSP_FLASH, invoker.findstate("FlashReadyOrange") ); break; 
 				case laser : self.player.SetPsprite(PSP_FLASH, invoker.findstate("FlashReadyRed") ); break; 
-				default: console.printf("BFG overlay fuckup, tell user_name"); break;
+				default: console.printf("BFG overlay fuckup, bug report"); break;
 			}
 		}
 		4DBX ZZZZ 1
@@ -79,7 +79,7 @@ States
 				case bfg : self.Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("4dbx"); break; 
 				case laser : self.Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("5D5X"); break; 
 				case guard : self.Player.GetPSprite(PSP_WEAPON).sprite = getspriteindex("6DBX"); break; 
-				default: console.printf("BFG sprite fuckup, tell user_name"); break;
+				default: console.printf("BFG sprite fuckup, bug report"); break;
 			}
 			a_weaponready();
 		}
@@ -107,7 +107,7 @@ States
 				case bfg : invoker.actual_bfg_fire_mode = laser; break;
 				case laser : invoker.actual_bfg_fire_mode = guard; break; 
 				case guard : invoker.actual_bfg_fire_mode = bfg; break; 
-				default: console.printf("BFG mode change fuckup, tell user_name"); break;
+				default: console.printf("BFG mode change fuckup, bug report"); break;
 			}
 		}
 	Goto ready_loop;
@@ -121,7 +121,7 @@ States
 				case bfg : self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("Fire_BFG") ); break; 
 				case guard : self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("fire_guard") ); break;
 				case laser : self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("fire_laser") ); break;
-				default: console.printf("BFG fire fuckup, tell user_name"); break;
+				default: console.printf("BFG fire fuckup, bug report"); break;
 			}
 		}
 	Fire_BFG:
@@ -448,7 +448,7 @@ States
 				case bfg : self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("alt_BFG") ); break; 
 				case guard : self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("alt_guard") ); break; 
 				case laser : self.player.SetPsprite(PSP_WEAPON, invoker.resolvestate("alt_laser") ); break; 
-				default: console.printf("BFG fire fuckup, tell user_name"); break;
+				default: console.printf("BFG fire fuckup, bug report"); break;
 			}
 		}
 	alt_BFG:

@@ -456,7 +456,7 @@ CLASS FreezerBall : pb_projectile_base
 	States
 	{
 	Spawn:
-		FRPJ ABC 1 Bright;// A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), 0, 0, 0, 0, 128, 0);
+		FRPJ ABC 1 Bright;
 		TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 		TNT1 A 0 a_spawnprojectile("Icetracer", 0, 0, random(0, 360), 2, random(0, 360));
 		Loop;
@@ -468,7 +468,6 @@ CLASS FreezerBall : pb_projectile_base
 		BXPL A 0 Bright A_Explode(random(50,55), 315, 0);
 		BXPL AAAAAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
 		BXPL AAAAA 0 Bright A_SpawnItemEx("CryoSmoke3", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
-		//BXPL AAAAAAA 0 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
 		BXPL AAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
 		BXPL ABCDEFGH 1 Bright;
 		BXPL IJKLLM 1 Bright A_FadeOut(0.1);
@@ -591,7 +590,6 @@ CLASS CryoShot : FastProjectile {
 	States
 	{
 	Spawn:
-		//BSHT A 0 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(3,-3), random(3,-3), random(3,-3), 0, 0, 0, 0, 128, 0);
 		BSHT A 1 Bright A_SpawnItem("PlasmaFlare",0,0);
 		TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 		Loop;
@@ -602,7 +600,6 @@ CLASS CryoShot : FastProjectile {
 		BXPL A 0 Bright A_Explode(5, 8, 0);
 		BXPL A 0 Bright A_Explode(10, 16, 0);
 		BXPL AAA 0 Bright A_SpawnItemEx("MiniCryoSmoke1", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
-		//BXPL AA 0 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
 		BXPL A 0 Bright A_SpawnItemEx("MiniCryoSmoke1", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
 		BXPL ABCDEFGH 1 Bright;
 		BXPL IJKLLM 1 Bright A_FadeOut(0.1);

@@ -93,7 +93,7 @@ States
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
 			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
-			if(frame == 4 && tics == 0) a_spawnprojectile("HellFire", 44);
+			if(frame == 4) a_spawnprojectile("HellFire", 44);
 		}
 	Goto See;
 		
@@ -105,7 +105,7 @@ States
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
 			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
-			if(frame == 20 && tics == 5) A_CustomComboAttack("FireShot", 44, 10, "Baron/Melee");
+			if(frame == 20) A_CustomComboAttack("FireShot", 44, 10, "Baron/Melee");
 		}
 	Goto See;
 		
@@ -115,7 +115,7 @@ States
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
 			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
-			if(frame == 5 && tics == 5) a_spawnprojectile("Comet", 44);
+			if(frame == 5) a_spawnprojectile("Comet", 44);
 		}
 	Goto See;
 		

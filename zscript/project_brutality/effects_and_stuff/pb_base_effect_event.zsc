@@ -1,20 +1,6 @@
 //event which controll all effects(smoke/particle/etc)
 class pb_effect_event : eventhandler
 {
-enum effect_type
-{
-	sprite,
-	particle
-};
-
-//arrays for storing pointers to sprite a particle actors
-protected array<sprite_effect> sprite_actors;
-protected array<particle_effect> particle_actors;
-
-//special array type which contains thinkers which handle case of contaniou rays
-//like beam bfg
-protected array<thinker> continious_ray_handlers;
-
 //give pointer to this event to pb actors
 //so they can use functions of that event whenever they want
 override void worldthingspawned(worldevent e)
@@ -24,12 +10,75 @@ override void worldthingspawned(worldevent e)
 
 	if(e.thing is "pb_monster_base")
 	{pb_monster_base(e.thing).effects = self;}
-/*/
-	if(e.thing is "pb_projectile_base")
-	{ canonballs.push((pb_projectile_base)(e.thing) );}
-	/*/
 }
 
+//arrays for storing pointers to effect actors
+protected array<cheap_effect_base> effect_actors;
+
+
+
+//find free sprite or particle effect actor
+actor find_free_effect()
+{
+	int dd = self.effect_actors.size();
+
+	for(int i = 0; i <= dd; i++)
+	{
+		if(i == dd)
+		{
+			actor ss = actor.spawn("cheap_effect_base", pos:(0, 0, 0) );
+
+			effect_actors.push((cheap_effect_base)(ss) );
+			//since zscript compiler is stupid as fuck, it just bytecod interpreter
+			//all previous checks and actor type just too complicated for it
+			//so we need to ensure it that pushed actor match with array type
+			//to do so use(actor type)(pointer to actor)
+			//CAUTION space between )( break it
+			return ss; break;
+		}
+
+		if(self.effect_actors[i])
+		{
+			if(cheap_effect_base(self.effect_actors[i]).check_busyness() == false)
+			{
+				return self.effect_actors[i]; break; 
+			}
+		}
+	}
+
+	return null;
+}
+
+//simple function all sense of it check state and say into console if there are no such state
+void approve_state(actor subject = null, statelabel state_name = null)
+{
+	if(subject == null) {console.printf("there are no actor to change state"); return;}
+	if(state_name == null) {console.printf("there are no state to search"); return;}
+
+	let stt_lnk = subject.findstate(state_name);
+
+	if(stt_lnk == null) {console.printf("actor at %d %d %d dont have state", subject.pos.x, subject.pos.y, subject.pos.z ); return;}
+
+	subject.setstate(stt_lnk);
+}
+
+
+//here actually shows some mikle bay explosions
+actor show_some_effect(actor caller = null, statelabel effect_state = null)
+{
+	//effect must be "attached" to some actor
+	if(caller == null) {return null;}
+	
+	actor lin = find_free_effect();
+	approve_state(lin, effect_state);
+	lin.setorigin(caller.pos, false);
+	return lin;
+}
+
+
+//special array type which contains thinkers which handle case of contaniou rays
+//like beam bfg
+protected array<thinker> continious_ray_handlers;
 
 //find bored thinker to say it "draw some line, cmon"
 thinker find_free_line_handler()
@@ -56,93 +105,41 @@ thinker find_free_line_handler()
 	return null;
 }
 
-//find free sprite or particle effect actor
-actor find_free_effect_actor(effect_type what_effect = sprite)
-{
-	if(what_effect == sprite)
-	{
-		int dd = self.sprite_actors.size();
 
-		for(int i = 0; i <= dd; i++)
-		{
-			if(i == dd)
-			{
-				actor ss = actor.spawn("sprite_effect", pos:(0, 0, 0) );
-				sprite_actors.push((sprite_effect)(ss) );
-				//since zscript compiler is stupid as fuck, it just bytecod interpreter
-				//all previous checks and actor type just too complicated for it
-				//so we need to ensure it that pushed actor match with array type
-				//to do so use(actor type)(pointer to actor)
-				//CAUTION space between )( break it
-				return ss; break;
-			}
-			if(self.sprite_actors[i])
-			{
-				if(sprite_effect(self.sprite_actors[i]).check_busyness() == false)
-				{
-					return self.sprite_actors[i]; break; 
-				}
-			}
-		}
-	}
-
-	if(what_effect == particle)
-	{
-		int dd = self.particle_actors.size();
-
-		for(int i = 0; i <= dd; i++)
-		{
-			if(i == dd)
-			{
-				actor ss = actor.spawn("particle_effect", pos:(0, 0, 0) );
-				particle_actors.push((particle_effect)(ss) );
-				return ss; break;
-			}
-			if(self.particle_actors[i])
-			{
-				if(particle_effect(self.particle_actors[i]).check_busyness() == false)
-				{
-					return self.particle_actors[i]; break; 
-				}
-			}
-		}
-	}
-	return null;
-}
-
-//simple function all sense of it check state and say into console if there are no such state
-void approve_state(actor subject = null, statelabel state_name = null)
-{
-	if(subject == null) {console.printf("there are no actor to change state"); return;}
-	if(state_name == null) {console.printf("there are no state to search"); return;}
-
-	let stt_lnk = subject.findstate(state_name);
-
-	if(stt_lnk == null) {console.printf("actor at %d %d %d dont have state", subject.pos.x, subject.pos.y, subject.pos.z ); return;}
-
-	subject.setstate(stt_lnk);
-}
-
-//here actually shows some mikle bay explosions
-actor show_some_effect(actor caller = null, statelabel effect_state = null, vector3 eff_vel =(0,0,0) , effect_type effect_type = sprite)
-{
-	//effect must be "attached" to some actor
-	if(caller == null) {return null;}
-	
-	actor lin = find_free_effect_actor(effect_type);
-	approve_state(lin, effect_state);
-	lin.setorigin(caller.pos, false);
-	lin.vel = eff_vel;
-	return lin;
-}
 
 }
 
 //dummy class which serve only to combine all effects under one base
-class actual_effect_base : pb_special_effect_base {}
+class cheap_effect_base : pb_special_effect_base {}
 
-class sprite_effect : actual_effect_base {}
-class particle_effect : actual_effect_base {}
+class fire_effect : cheap_effect_base {}
+class particle_effect : cheap_effect_base {}
+
+class smoke_effect : cheap_effect_base
+{
+Default
+{
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	+DONTSPLASH;
+	+MISSILE;
+	+FORCEXYBILLBOARD;
+	+CLIENTSIDEONLY;
+	+NOINTERACTION;
+	+NOGRAVITY;
+	+THRUACTORS;
+	Radius 0;
+	Height 0;
+	Alpha 0.1;
+	RenderStyle "Translucent";
+	Scale 1;
+}
+
+}
+
+
+
+class sprite_effect : cheap_effect_base {}
 
 
 

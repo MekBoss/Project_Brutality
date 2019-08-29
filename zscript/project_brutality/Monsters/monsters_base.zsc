@@ -3,6 +3,15 @@ class pb_monster_base : actor
 //link to event which control effects
 eventhandler effects;
 
+protected thinker blooder;
+
+override void beginplay()
+{
+	super.beginplay();
+
+	blooder = new("goreer").goreer(self);
+}
+
 //handler for freeze/fatality/dismembering and other death types
 //where monster ripped to pieces
 protected bool frozen, dismembered, cant_resurrect;
@@ -147,7 +156,9 @@ protected void pb_monster_memory(statelabel idle_state = "idle")
 	{
 		memory_timer = 0;
 		a_cleartarget();
-		setstatelabel(idle_state);
+		state jump_to = findstate(idle_state);
+		if(jump_to == null) jump_to = findstate("see");
+		setstate(jump_to);
 	}
 }
 
@@ -164,5 +175,52 @@ protected void simple_death_handler()
 		a_setsize(default.radius, default.height / 10);
 }
 
+
+}
+
+
+
+
+class goreer : thinker
+{
+private actor target;
+
+private state cur_state;
+private string spawnable;
+private int period;
+private bool act;
+
+goreer goreer(actor type)
+{
+	target = type;
+	changestatnum(127);
+	return self;
+}
+
+void button()
+{
+	act = true;
+}
+
+override void tick()
+{
+	if(!target) self.destroy();
+	if(act)
+	{
+		if(cur_state == null) cur_state = target.curstate;
+		if(cur_state != target.curstate)
+		{
+			cur_state = null;
+			act = false;
+			spawnable = "";
+			period = -1;
+		}
+
+		if( (target.tics % period) == 0 && target.curstate == cur_state)
+		{
+			target.spawn(spawnable, target.pos).vel = (frandom(-5, 5),frandom(-5, 5), frandom(-5, 5) );
+		}
+	}
+}
 
 }

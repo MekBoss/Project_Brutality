@@ -86,7 +86,6 @@ States
 		TNT1 AAAA 0 a_spawnprojectile("Shrapnel", 64, 0, random(0, 360), 2, random(30, 60));
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ShrapnelParticle", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItem("WhiteShockwaveBig");
 		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX", 0, 0, 20);
 		TNT1 A 0 A_SpawnItemEx("SpawnedExplosion",0,0,15,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_NoBlocking;
@@ -95,7 +94,7 @@ States
 		
 		TNT1 AAAA 0 a_spawnprojectile("FireworkSFXType1", 64, 0, random(0, 360), 2, random(30, 60));
 		TNT1 AA 0 a_spawnprojectile("NewRocketExploFX", random(10, 20), 0, random(0, 360), 2, random(10, 90));
-		EXPL AA 0 a_spawnprojectile("BigBlackSmokeLarger", 20, 0, random(0, 360), 2, random(10, 90));
+		EXPL AA 0 a_spawnprojectile("BigBlackSmoke", 20, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AAA 0 a_spawnprojectile("BDExplosionparticles", 64, 0, random(0, 360), 2, random(40, 90));
 		TNT1 AAA 0 a_spawnprojectile("BDExplosionparticles", 64, 0, random(0, 360), 2, random(40, 90));
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);

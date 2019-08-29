@@ -1123,7 +1123,7 @@ CLASS CyberKnightFreezer: pb_projectile_base
 	States
 	{
 	Spawn:
-	FRPJ ABC 1 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), 0, 0, 0, 0, 128, 0) ;
+	FRPJ ABC 1 Bright;
 	TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 	TNT1 A 0 a_spawnprojectile("Icetracer", 0, 0, random(0, 360), 2, random(0, 360));
 	Loop;
@@ -1133,7 +1133,6 @@ CLASS CyberKnightFreezer: pb_projectile_base
 	BXPL A 0 Bright A_Explode(15, 16, 0);
 	TNT1 A 0 a_spawnprojectile("Blue_FlareSpawn",0,0,0,0);
 	BXPL AAA 0 Bright A_SpawnItemEx("MiniCryoSmoke1", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
-	BXPL AA 0 Bright A_SpawnItemEx("FreezerTrailSparksSmall", random(5,-5), random(5,-5), random(5,-5), random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
 	BXPL A 0 Bright A_SpawnItemEx("MiniCryoSmoke1", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64);
 	BXPL ABC 1 Bright;
 	BXPL DEFGHIJKLM 1 Bright A_FadeOut(0.1);

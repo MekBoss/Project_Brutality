@@ -1,0 +1,42 @@
+
+CLASS Demonicbullet: pb_projectile_base
+{ 
+Default {
+	Projectile;
+	+RANDOMIZE;
+	+FORCEXYBILLBOARD;
+	+DONTSPLASH;
+	+DONTHARMCLASS;
+	+BLOODSPLATTER;
+	+NOEXTREMEDEATH;
+	damage 3;
+	damagetype "fire";
+	radius 2;
+	height 0;
+	renderstyle "Add";
+	alpha 0.9;
+	scale .20;
+	speed 90;
+	DeathSound "Weapons/Demontech/Crash";
+	Decal "Scorch";
+}
+
+states
+{
+	Spawn:
+		PBAL HI 2 BRIGHT A_SpawnItem("Red_FlareVerySmall",0,0);
+		TNT1 A 0 a_spawnprojectile("RedTracerSmall", 0, 0, random(0, 360), 2, random(0, 360));
+	Loop;
+
+	Xdeath:
+		TNT1 A 0 A_SpawnItem("Hellrifle_Puff", 0);
+		TNT1 B 4;
+	Stop;
+	
+	Death:
+		TNT1 A 0 A_SpawnItem("Hellrifle_Puff", 0);
+		TNT1 B 4;
+		TNT2 AAAA 4 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
+	Stop;
+}
+}

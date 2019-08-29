@@ -1,0 +1,479 @@
+CLASS pb_Volcabus : proto_fat// replaces Fatso
+{ 
+Default
+{
+	Health 1050;
+	Radius 52;
+	Height 68;
+	Scale 1.15;
+	Mass 1000;
+	
+	//SpawnID 1720;
+	Speed 8;
+	damagefactor "Crush", 10.0;
+	damagefactor "Avoid", 0.0;
+	damagefactor "killme", 0.0;
+	PainChance "Kick", 255;
+	PainChance "Taunt", 255;
+	PainChance 38;
+	PainChance "Stun", 255;
+	BloodType "pb_blood";
+	SeeSound "Volcabus/sight";
+	PainSound "Volcabus/pain";
+	DeathSound "Volcabus/death";
+	ActiveSound "fatso/active";
+	damagefactor "Blood", 0.0; damagefactor "BlueBlood", 0.0; damagefactor "GreenBlood", 0.0;
+	damagefactor "HEAD", 3;
+
+	//DropItem "Demonpickup2", 50;
+	//DropItem "Demonpickup2", 50;
+	//DropItem "Demonpickup2", 50;
+	//DropItem "Demonpickup2", 250;
+	//DropItem "TimeSphere", 3;
+	//DropItem "DemonStrengthRune", 5;
+	//DropItem "DemonMorphRune", 5;
+	//DropItem "RageSphere", 4;
+	//DropItem "DoubleSphere", 4;
+	//DropItem "ShieldSphere", 3;
+
+	Species "BigFatAss";
+	+DONTHARMSPECIES;
+	+DONTHARMCLASS;
+	MONSTER;
+	+FLOORCLIP;
+	+BossDeath;
+	+DONTHARMCLASS;
+	Obituary "%o was forced into submission by a Volcabus.";
+}
+States
+{		
+	Death.Shrink:
+		TNT1 A 1 A_PlaySound("Shrink", 3);
+/*		TNT1 A 0 A_SpawnItemEx("VolcabusShrinkFX1", 0, 0,  5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("VolcabusShrinkFX2", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("VolcabusShrinkFX3", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("VolcabusShrinkFX4", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("VolcabusShrinkFX5", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("VolcabusShrinkFX6", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("VolcabusShrinkFX7", 0, 0, 5, 0, 0);
+		TNT1 A 1 A_SpawnItemEx("LilVolcabus", 1);*/
+	stop;
+		
+	Spawn:
+		TNT1 A 0;
+	Stand:
+		FAT2 B 10 A_Look;
+	Loop;
+		
+		//Pissed off
+	Pain.Taunt:
+		TNT1 A 0;
+		SPOS B 0 A_Pain;
+		TNT1 A 0 {self.bNOPAIN = true;}
+		TNT1 A 0 {self.bMISSILEMORE = true;}
+		TNT1 A 0 {self.bMISSILEEVENMORE = true;}
+		TNT1 A 0 A_PlaySound("Volcabus/attack");
+		F4T2 TUV 4 A_FaceTarget;
+		F4T2 WVUT 6;
+		TNT1 A 0 {self.rage = true;}
+	Goto See ;
+		
+		//Will need the v20 monster AI for the see state
+		//[NO!]
+	See:
+		FAT2 AA 4 A_Chase;
+		TNT1 A 0 A_PlaySound("knight/step",5);
+		FAT2 BBCCDD 4 A_Chase;
+		TNT1 A 0 A_PlaySound("knight/step",8);
+		FAT2 EEFF 4 A_Chase;
+	Loop;
+		
+		//Missile attack unfinished, these projectiles and fire patterns are place-holder
+		//again [NO]
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(200, "StompAttack");
+	MissileAttack:
+		FAT2 G 10 A_PlaySound("Volcabus/attack");
+		FAT2 GGGHIGHIGHIG 5
+		{
+			if( (frame != 9 || frame != 8) ) A_FaceTarget();
+			a_spawnprojectile("RedLightningTrial_Small",30,-25,10,0);
+			a_spawnprojectile("RedLightningTrial_Small",30,25,0,0);
+
+			if(frame == 7 && tics > 4)
+			{
+				tics = 3;
+				A_Playsound("Volcabus/cannon");
+				int shoot_mode = random (0, 2);
+				
+				switch (shoot_mode)
+				{
+					case 0: 
+						a_spawnprojectile("VolcabusBall",30,-25,10,0);
+					break;
+
+					case 1:
+						a_spawnprojectile("VolcabusBall",30,25,0,0);
+					break;
+
+					case 2:
+						a_spawnprojectile("VolcabusBall",30,-25,10,0);
+						a_spawnprojectile("VolcabusBall",30,25,0,0);
+					break;
+
+					default : console.printf("stop using memory editor to cheat, jeez..."); break;
+				}
+			}
+		}
+		FAT2 IG 4;
+	Goto See;
+		
+		
+		
+	StompAttack:
+		TNT1 A 0;
+		//TNT1 A 0 A_JumpIfInTargetInventory("IsPlayer", 1, 1);
+	Goto MissileAttack;
+		TNT1 A 0;
+		SPOS B 0 A_Pain;
+		F4T2 TUVUW 4 A_FaceTarget;
+		TNT1 A 0 A_GiveInventory("Enraged", 1);
+		FAT2 G 4 A_PlaySound("Volcabus/attack");
+		TNT1 A 0 A_FaceTarget;
+		FATO ABA 4 A_FaceTarget;
+		TNT1 A 0 ThrustThingZ(0,40,0,1);
+		TNT1 A 0 A_Recoil(-8);
+		TNT1 A 0 {self.bNOPAIN = true;}
+		FATO C 1 A_FaceTarget;
+	InAirStomp:
+		FATO C 5 A_JumpIf(vel.z == 0, "DoStomp");
+	Loop;
+		
+	DoStomp:
+		TNT1 A 0 A_PlaySound("CLAP", 2);
+		TNT1 A 0 a_spawnprojectile("Cyber_Step",10,0,0,0);
+		//TNT1 AAA 0 a_spawnprojectile("Knight_Slam",10,0,0,0);
+		TNT1 A 0 a_spawnprojectile("BigRicoChet");
+		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
+		TNT1 A 0 A_Stop;
+		FATO BA 4 A_FaceTarget;
+	Goto See;
+		
+	Possession:
+		TNT1 A 0 A_SetInvulnerable;
+		FAT2 J 3;
+		FAT2 J 3 A_Pain;
+ 		TNT1 A 0 A_UnSetInvulnerable;
+	Goto See;
+		
+	Pain.Stun:
+		FAT2 J 1 A_Pain;
+		FAT2 JJJJJJJJJJ 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		tnt1 a 0 a_jumpif(random(0, 10) < 7, "Pain.Stun");
+	Goto See;
+
+	Pain:
+		FAT2 J 3;
+		FAT2 J 3 A_Pain;
+	Goto See;
+		
+		
+	Pain.Kick:
+		TNT1 A 0 A_FaceTarget;
+		TNT1 A 0 A_Recoil(0.50);
+		FAT2 J 9 A_Pain ;
+		FAT2 J 8;
+	Goto See;
+		
+		//Knocked on his ass
+	Pain.Explosive:
+	Pain.ExtremePunches:
+	Pain.SSG:
+	Pain.Blackhole:
+	Pain.QuadShot:
+		TNT1 A 0 A_FaceTarget;
+		TNT1 A 0 {self.bNOPAIN = true;}
+		F4T2 P 4 ThrustThingZ(0,30,0,1);
+		F4T2 Q 4 A_Pain;
+		F4T2 RSSSS 4;
+		F4T2 R 4 A_Stop;
+		F4T2 QP 4;
+		TNT1 A 0 {self.bNOPAIN = false;}
+	Goto See;
+
+	//Various death animations
+	Death:
+		TNT1 A 0 A_Jump(128, "Death2", "Death3");
+	Death1:
+		F5T2 A 7;
+		F5T2 B 7 A_Scream;
+		F5T2 C 7 A_NoBlocking;
+		TNT1 A 0 A_Jump(44, "Suffer");
+		F5T2 DEF 6 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		F5T2 F 1 A_BossDeath   ;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		F5T2 F -1;
+	Stop;
+		
+	//Brutalize animation
+	Suffer:
+		TNT1 A 0 A_SpawnItem("DyingVolcabus");
+	Stop;
+		
+	Death2:
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		F4T2 F 7;
+		F4T2 G 7;
+		F4T2 H 7;
+		F4T2 IJK 6 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		F4T2 LMNO 5;
+		F4T2 O -1;
+	stop;
+		
+	Death3:
+		F4T2 A 7;
+		F4T2 B 7 A_Scream;
+		F4T2 C 7 A_NoBlocking;
+		F4T2 DE 6;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		F4T2 E 1 A_BossDeath;
+		F4T2 E -1;
+	Stop;
+		
+		//Burned to a crisp
+	Death.Fire:
+		TNT1 A 0 A_Jump(162, "DeathFireLong");
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 a_spawnprojectile("IncendiaryGrenadeExplosion", 35, 0, random(0, 360), 2, random(50, 130));
+		F7T2 BBBB 1 a_spawnprojectile("FlameTrails", 32, 0, random(0, 360), 2, random(70, 130));
+		EXPL AAAAAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+		F7T2 CCCCDDDD 1 a_spawnprojectile("FlameTrails", 22, 0, random(0, 360), 2, random(70, 130));
+		TNT1 A 0 A_Playsound("props/redfire");
+		F7T2 EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 10 a_spawnprojectile("BigBlackSmoke", 1, 0, random(0, 360), 2, random(0, 160));
+		F7T2 E -1;
+	Stop;
+		
+		//Burned alive and screaming(hilarious)
+	DeathFireLong:
+		TNT1 A 0;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("BurningVolcabus", 0, 10);
+	Stop;
+		
+		//Frozen
+	Death.Ice:
+	Death.Freeze:
+	Death.Frost:
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		TNT1 A 0 {self.bSOLID = false;}
+		//TNT1 A 0 A_SpawnItem("FrozenVolcabus");
+	Stop;
+		
+		//Stomach cut open
+	Death.cutless:
+		TNT1 A 0 A_Jump(128, "Death3");
+		TNT1 A 0 A_Jump(80,"Death1", "Death2");
+	Death.Cut:
+	Death.Saw:
+	Death.Tear:
+		F6T2 K 6;
+		F6T2 L 5 A_Scream;
+		TNT1 A 0 a_spawnprojectile("brutal_FlyingBlood", 75, 0, random(0, 360), 2, random(0, 160));
+		F6T2 M 5 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		F6T2 NOP 4 a_spawnprojectile("brutal_FlyingBlood", 75, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("RipGuts", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		F6T2 QRST 4 a_spawnprojectile("brutal_FlyingBlood", 75, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("MuchBlood", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		F6T2 T -1;
+	Stop;
+		
+		//Blasted Chest Open
+	Death.Shotgun:
+		TNT1 A 0 A_JumpIfCloser(250, 1);
+		Goto Death;
+		//TNT1 A 0 A_JumpIfInTargetInventory("SSGSelected", 1, "Death.Blast");
+	Goto Death;
+
+	Death.SSG:
+	Death.Blast:
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("xdeath2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("RipGuts", 25, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		F8T2 AAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 40, 0, random(0, 360), 2, random(30, 60));
+		F8T2 B 6 A_Scream;
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 25, 0, random(0, 360), 2, random(0, 160));
+		F8T2 C 6 A_NoBlocking;
+		F8T2 D 6 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		F8T2 E 6 A_BossDeath;
+		F8T2 EEEEEEEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 8, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		F8T2 E -1;
+		stop;
+
+	XDeath:
+	Death.QuadBlast:
+	Death.Explosives:
+	Death.ExplosiveImpact:
+	Death.Landmine:
+		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 75, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/gibbed");
+		FA72 A 6 A_Scream;
+		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 75, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathVolcabusArm", 20, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AA 0 a_spawnprojectile("brutal_FlyingBlood", 65, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
+		FA72 B 6 A_NoBlocking;
+		TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 65, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("RipGuts", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
+		FA72 C 6 A_BossDeath;
+		TNT1 AA 0 a_spawnprojectile("brutal_FlyingBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("MuchBlood", 48, 0, random(0, 360), 2, random(0, 160));
+		FA72 DE 8;
+		FA72 E -1;
+	Stop;
+		
+		//Head exploding death
+	Death.minorhead:
+	Death.head:
+		TNT1 AAAAAA 0 a_spawnprojectile("Xdeath1", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("SmallBrainPiece", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 a_spawnprojectile("Brains2", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Brains2", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0 a_spawnprojectile("Brains4", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("Brains4", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("VolcabusEyeballs", 62, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_Jump(66, "ChickenHead");
+		FA72 FFFFF 2 a_spawnprojectile("Brutal_LiquidBlood3", 71, 0, random(0, 360), 2, random(0, 160));
+		FA72 GGG 2 a_spawnprojectile("Brutal_LiquidBlood2", 67, 0, random(0, 360), 2, random(0, 160));
+		FA72 HHH 2 a_spawnprojectile("brutal_FlyingBlood", 58, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 58, 0, random(0, 360), 2, random(0, 160));
+		FA72 III 2 a_spawnprojectile("brutal_FlyingBlood", 44, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("knight/step",8);
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		FA72 JJJJJJJJJJJJJJJJJJ 2 a_spawnprojectile("Brutal_LiquidBlood2", 21, 0, random(0, 360), 2, random(0, 160));
+		FA72 J -1;
+	Stop;
+		
+	ChickenHead:
+		TNT1 A 0 A_PlaySound("misc/xdeath2c");
+		FA72 FFFFKKKKFFFFKKKKFFFFKKKKFFFFKKKKFFFFKKKKFFFFKKKK 2
+		{
+			a_spawnprojectile("Brutal_LiquidBlood2", 30, 0, random(0, 360), 2, random(10, 90));
+			A_PlaySound("misc/xdeath2c");
+		}
+
+		FA72 FFFFKKKKGGGHHH 2 a_spawnprojectile("Brutal_LiquidBlood2", 30, 0, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 58, 0, random(0, 360), 2, random(0, 160));
+		FA72 III 2 a_spawnprojectile("brutal_FlyingBlood", 44, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("knight/step",8);
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_BossDeath;
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		FA72 JJJJJJJJJJJJJJJJJJ 2 a_spawnprojectile("Brutal_LiquidBlood2", 21, 0, random(0, 360), 2, random(0, 160));
+		FA72 J -1;
+	Stop;
+		
+		
+	Death.Desintegrate:
+	Death.Plasma: Death.Plasma2:
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		F7T2 A 6 BRIGHT;
+		TNT1 AAA 0 a_spawnprojectile("brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		F7T2 B 4 BRIGHT A_SpawnItem("Blue_Flare",0,43);
+		EXPL AAAAAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+		F7T2 CD 4 BRIGHT A_SpawnItem("Blue_Flare",0,43);
+		F7T2 EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 10 a_spawnprojectile("Explosion_Smoke", 1, 0, random(0, 360), 2, random(0, 160));
+		F7T2 E -1;
+	Stop;
+	
+	Death.SuperPlasma:
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		XBRN BBCC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
+		TNT1 A 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
+	Stop;
+	
+	Death.GreenFire:
+		TNT1 A 0;
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_BossDeath;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("GreenFlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
+		XBRN AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
+	Stop;
+	
+	Death.Fatality:
+		TNT1 A 0  ;
+		TNT1 A 0 A_Jump(256, "Fatality2");
+	//Needs improvement, currently unused
+	Fatality1:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("VolcabusFatality", 1);
+		TNT1 A 1 A_BossDeath;
+		TNT1 A 0;
+	Stop;
+	
+	//Good enough animation
+	Fatality2:
+		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
+		//TNT1 A 0 A_GiveToTarget("VolcabusFatality2", 1);
+		TNT1 A 1 A_BossDeath;
+		TNT1 A 0;
+	Stop;
+	
+	Raise:
+		FAT2 RQPONMLK 5;
+	Goto See;
+}
+}

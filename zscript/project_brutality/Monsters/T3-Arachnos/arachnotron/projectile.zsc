@@ -1,0 +1,14 @@
+
+CLASS EnemyPlasmaBall : pb_projectile_base
+{ 
+Default
+{
+	DamageFunction(random(10,15));
+	DamageType "Plasma";
+	Species "NotMarines";
+	Speed 26;
+	-THRUACTORS;
+	-THRUSPECIES;
+}
+
+}

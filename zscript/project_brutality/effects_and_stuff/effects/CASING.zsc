@@ -121,28 +121,24 @@ States
 		Loop;
 	Rest2:
 		CAS3 J 900;
-		TNT1 A 0 A_JumpIfInventory("CasingsJanitor", 1, "Disappear");
 		loop;
 	Rest3:
 		CAS3 K 900;
 		Loop;
 	Rest4:
 		CAS3 L 900;
-		TNT1 A 0 A_JumpIfInventory("CasingsJanitor", 1, "Disappear");
 		Loop;
 	Rest5:
 		CAS3 M 900;
 		Loop;
 	Rest6:
 		CAS3 I 900;
-		TNT1 A 0 A_JumpIfInventory("CasingsJanitor", 1, "Disappear");
 		Loop;
 	Rest7:
 		CAS3 J 900;
 		Loop;
 	Rest8:
 		CAS3 K 900;
-		TNT1 A 0 A_JumpIfInventory("CasingsJanitor", 1, "Disappear");
 		Loop;
 		
 	Disappear:
@@ -1128,6 +1124,7 @@ Default {
 	PROJECTILE;
 	+NOCLIP;
 	+CLIENTSIDEONLY;
+	+nointeraction
 }
 States
 {

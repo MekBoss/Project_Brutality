@@ -512,8 +512,8 @@ States
 	Melee:
 	Crash:
 		TNT1 A 0;
-		PUFF A 0 A_PlaySound("player/cyborg/fist", 3);
-		PUFF A 0 A_PlaySound("AXEHIT", 3);
+		tnt1 A 0 A_PlaySound("player/cyborg/fist", 3);
+		tnt1 A 0 A_PlaySound("AXEHIT", 3);
 		TNT1 A 0 A_PlaySound("Machete/Yum", 6);
 		//TNT1 A 0 A_SpawnItemEx("PLOFT2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 Radius_Quake(2, 6, 0, 5, 0);//(intensity, duration, damrad, tremrad, tid)
@@ -569,7 +569,7 @@ States
 	Melee:
 	Crash:
 		TNT1 A 0;
-		PUFF A 0 A_PlaySound("AXEHIT", 3);
+		tnt1 A 0 A_PlaySound("AXEHIT", 3);
 		TNT1 A 0 A_PlaySound("Machete/Yum", 6);
 		//TNT1 A 0 A_SpawnItemEx("PLOFT2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItem("zscript_Axe");

@@ -1,0 +1,779 @@
+extend class fire_effect
+{
+
+States
+{
+	small_flame_trails:
+		TNT1 A 0  
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			bmissile = true;
+            double scal = frandom(0.1, 0.5);
+			scale =(scal, scal);
+		}
+		FRPR ABCDEFGH 3 BRIGHT;
+	goto reset_self_condition;
+
+	Flame_Trails:
+		TNT1 A 0  
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			bmissile = true;
+            double scal = frandom(0.1, 0.5);
+			scale =(scal, scal);
+		}
+		FX98 MNOPQ 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    FireBallExplosion:
+        tnt1 a 0
+        {
+            double scal = frandom(1.4, 1.8);
+            scale = (scal, scal);
+        }
+		FX98 ABCDEFGHIJKL 1 BRIGHT A_SpawnItem("YellowFlare",0,0);
+		FX98 MNOPQ 1;
+	goto reset_self_condition;
+
+
+    GreenFlameTrails:
+		TNT1 A 0 
+		{
+			double scal = frandom(0.3, 0.5);
+			scale =(scal, scal);
+		}
+		FRPG CDEFGH 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    BallGettingReadyGreen:
+		TNT1 A 0  
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+            double scal = frandom(1.4, 1.8);
+			scale =(scal, scal);
+		}
+		FRPG JK 3 BRIGHT;
+	goto reset_self_condition;
+
+
+    RealisticFireSparks1Green:
+		tnt1 a 0
+        {
+            A_SetRenderStyle(1, STYLE_Add);
+			scale =(1, -1);
+		}
+		SPGN ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT;
+		SPGM ABCDEFG 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    RealFlameTrailsGreen:
+		tnt1 a 0
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			scale = (1, 1);
+		}
+		FIRG AABBCCDEFGHII 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    BlueFlameTrails:
+		TNT1 A 0 
+		{
+			double scal = frandom(0.3, 0.5);
+			scale =(scal, scal);
+		}
+        FRPB CDEFGH 1 BRIGHT;
+	goto reset_self_condition;
+
+    ExplosionFlames:
+		tnt1 a 0 
+		{
+			double scal = frandom(0.9, 9.2);
+			scale =(scal, scal);
+		}
+		EXPL AA 3 BRIGHT A_SpawnItem("Red_Flare",0,0);
+		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+		EXPL BCDFGHI 3 BRIGHT;
+	goto reset_self_condition;
+
+
+    FastFlameTrails:
+		tnt1 a 0 
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+            bmissile = true;
+			double scal = frandom(0.9, 9.2);
+			scale =(scal, scal);
+		}
+		FRPR ABCDEFGH 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    ImBallGettingReady:
+		tnt1 a 0 
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			double scal = frandom(1.2, 1.4);
+			scale =(scal, scal);
+		}
+		FRFX AB 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    BallGettingReadyBlue:
+		tnt1 a 0 
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			double scal = frandom(1.4, 1.8);
+			scale =(scal, scal);
+		}
+		FRPB JK 3 BRIGHT;
+	goto reset_self_condition;
+
+
+    RealisticFireSparks1:
+		tnt1 a 0 
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			scale =(1, -1);
+		}
+		SPFN ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT;
+		SPFM ABCDEFG 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    RealisticFireSparks1Blue:
+		tnt1 a 0 
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			scale =(1, -1);
+            //translation = "112:127=[0,72,145]:[66,160,255]";
+		}
+        SPGN ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT;
+        SPGM ABCDEFG 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    RealFlameTrailsSmall:
+		tnt1 a 0
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+			scale =(1, -1);
+            //translation = "112:127=[0,72,145]:[66,160,255]";
+		}
+        TNT1 A 0 
+        {
+            double scal = frandom(0.8, 1.9);
+            scale =(scal, scal);
+        }
+        FIR1 AABBCCDEFGHII 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    RealFlameTrailsBlue:
+        FIRB AABBCCDEFGHII 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    CoolandNewFlameTrails3:
+        TNT1 A 0 
+        {
+            double scal = frandom(0.6, 0.8);
+            scale =(scal, scal);
+        }
+        FIR2 ABCDEF 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    CoolandNewFlameTrails:
+        TNT1 A 0 
+        {
+            double scal = frandom(0.3, 0.8);
+            scale =(scal, scal);
+            alpha = frandom(0.3, 1.1);
+        }
+        FIR3 BCDEFGHIJKLMNOP 1 BRIGHT { A_FadeOut(0.1); A_SetScale(Scale.X-0.03, Scale.y-0.03);}
+	goto reset_self_condition;
+
+
+    RevenantProjectileTrails:
+        TNT1 A 0 
+        {
+            double scal = frandom(0.2, 0.1);
+            scale = (scal, scal);
+        }
+        FRPR BCDEFGH 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    MinimalFlameTrails:
+        TNT1 A 0 
+		{
+            A_SetRenderStyle(1, STYLE_Add);
+            double scal = frandom(0.3, 0.5);
+            scale =(scal, scal);
+		}
+    	FIR1 FGGHHII 1 BRIGHT;
+	goto reset_self_condition;
+
+
+    FlamethrowerFireParticles:
+        DB54 ABCDEFGHIJKLMNOPQR 2 BRIGHT A_SpawnItem("Red_Flare", 0, 10);
+	goto reset_self_condition;
+
+
+
+    TinyBurningPiece:
+		tnt1 a 0 
+		{
+			double scal = frandom(0.5, 1.1);
+			scale =(scal, scal);
+		}
+		CFCF ABCDEFGHIJKL 1 BRIGHT
+        {if (frame == 5) A_Explode(2, 60);}
+		TNT1 A 0 A_Jump(24, "StopBurning");
+	Loop;
+	
+	StopBurning:
+		CFCF NOP 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 5);
+	goto reset_self_condition;
+
+
+    HeXenFlameTrails:
+        TNT1 A 0 
+        {
+            double scal = frandom(0.8, 1.2);
+            scale =(scal, scal);
+            alpha = 1;
+        }
+        CFFX ABCDEFGHJKLM 1 BRIGHT A_SpawnItem("Red_FlareSmall");
+	goto reset_self_condition;
+
+
+    BackblastFlames1:
+        TNT1 A 0 
+        {
+            double scal = frandom(0.4, 0.8);
+            scale =(scal, scal);
+            alpha = 1;
+        }
+        EXPL ABCDEFGHI 1 BRIGHT;
+	goto reset_self_condition;
+
+}
+
+}
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS BurningGroundHighDamage : ACTOR { 
+Default {
+
+
+Radius 1;
+Height 1;
+Speed 2;
+Damage 0;
++NOBLOCKMAP;
++NOTELEPORT;
++DONTSPLASH;
++CLIENTSIDEONLY;
++NOINTERACTION;
++NOCLIP;
++FORCEXYBILLBOARD;
+RenderStyle "Translucent";
+Damagetype "Fire";
+Scale 1.0;
+Alpha 1.0;
+Gravity 0.3;
+}
+States
+{
+Spawn:
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 AAA 4 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
+	TNT1 A 0 A_Explode(15, 90);
+
+	//TNT1 A 0 A_JumpIfInventory("Timer555", 9, "Death");
+	Loop;
+Death:
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 AAA 6 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
+	TNT1 A 0 A_Explode(10, 90);
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 AAA 8 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
+	TNT1 A 0 A_Explode(5, 90);
+	TNT1 BBBBBBBBB 16 a_spawnprojectile("BigBlackSmoke", 20, 0, random(0, 360), 2, random(60, 130));
+	Stop;
+}
+}
+
+
+CLASS BurningGroundLowDamage : ACTOR { 
+Default {
+	Radius 1;
+	Height 1;
+	Speed 2;
+	Damage 0;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	+DONTSPLASH;
+	+CLIENTSIDEONLY;
+	+NOINTERACTION;
+	+NOCLIP;
+	+FORCEXYBILLBOARD;
+	-NOGRAVITY;
+	RenderStyle "Translucent";
+	Damagetype "Fire";
+	Scale 1.0;
+	Alpha 1.0;
+	Gravity 0.3;
+}
+States
+{
+	Spawn:
+		TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+		TNT1 AAAAAA 4 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
+		tNT1 A 0 A_Explode(3, 90);
+		TNT1 A 0 A_jumpif(random(0, 10) < 6, "death");
+	Loop;
+Death:
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 AAA 6 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
+	TNT1 A 0 A_Explode(10, 90);
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 AAA 8 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
+	TNT1 A 0 A_Explode(5, 90);
+	TNT1 BBBBBBBBB 16 a_spawnprojectile("BigBlackSmoke", 20, 0, random(0, 360), 2, random(60, 130));
+	Stop;
+}
+}
+
+
+
+
+
+
+CLASS FlamethrowerMissile : ACTOR { 
+Default {
+Radius 2;
+Height 2;
+Speed 25;
+Damage 1;
++NOBLOCKMAP;
++NOTELEPORT;
++DONTSPLASH;
++MISSILE;
++FORCEXYBILLBOARD;
+Damage 1;
+-RIPPER;
++NOBLOOD;
++NOBLOODDECALS;
++BLOODLESSIMPACT;
+-BLOODSPLATTER;
+RenderStyle "Add";
+Damagetype "Fire";
+Scale 0.65;
+Alpha 1.0;
+Gravity 0;
+}
+States
+{
+Spawn:
+	TNT1 A 0;
+	FIR5 ABC 1 BRIGHT
+	{
+		A_SpawnItem("Red_FlareSmall", 0, 0);
+		a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 10));
+	}
+	DB54 Defghijkl 1 BRIGHT
+	{
+		A_SpawnItem("Red_FlareSmall", 0, 0);
+		a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 20));
+		A_Explode(3, 100, 0);
+	}
+	TNT1 A 0 A_Playsound("Afrit/Hellfire");
+	Stop;
+Death:
+	TNT1 A 0 A_Explode(35, 150, 0);
+	TNT1 A 0 A_Explode(3, 50);
+	TNT1 aA 0 A_SpawnItemEx("TinyBurningPiece", random(-25, 25), random(-15, 15));
+	EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
+	Stop;
+}
+}
+
+
+
+
+
+
+CLASS EnemyFlamethrowerMissile : ACTOR { 
+Default {
+Radius 2;
+Height 2;
+Speed 15;
+Damage 1;
++NOBLOCKMAP;
++NOTELEPORT;
++DONTSPLASH;
++MISSILE;
++FORCEXYBILLBOARD;
+Damage 1;
+-RIPPER;
++NOBLOOD;
++NOBLOODDECALS;
++BLOODLESSIMPACT;
+-BLOODSPLATTER;
+RenderStyle "Add";
+Damagetype "Fire";
+Scale 0.5;
+Alpha 1.0;
+Gravity 0;
+}
+States
+{
+	Spawn:
+		TNT1 A 0;
+		FIR5 ABC 1 BRIGHT
+		{
+			A_SpawnItem("Red_FlareSmall", 0, 0);
+			a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 10));
+		}
+		FIR3 BCDEFGHIJKL 1 BRIGHT
+		{
+			A_SpawnItem("Red_FlareSmall", 0, 0);
+			a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 20));
+			if(frame == 11) A_Explode(1, 80, 0);
+		}
+		TNT1 A 0 A_Playsound("Afrit/Hellfire");
+	Stop;
+
+	Death:
+		TNT1 A 0 A_Explode(1, 50);
+		TNT1 AA 0 A_SpawnItemEx("TinyBurningPiece", random(-25, 25), random(-15, 15));
+		EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
+	Stop;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS PentagramSpawner : ACTOR { 
+Default {
+
+
++NOBLOCKMAP;
++NOTELEPORT;
++DONTSPLASH;
++FORCEXYBILLBOARD;
++CLIENTSIDEONLY;
++NOCLIP;
+-NOGRAVITY;
+RenderStyle "Add";
+XScale 0.25;
+YScale 0.025;
+Alpha 1;
+Gravity 1;
+Radius 1;
+Height 1;
+}
+States
+{
+Spawn:
+	TNT1 A 1;
+	TNT1 AAAAA 2 A_SpawnItem("BurningPentagram");
+	TNT1 A 20;
+	TNT1 A 1 A_SpawnItem("PentagramOff");
+	TNT1 A 1;
+	Stop;
+}
+}
+
+
+
+CLASS BurningPentagram: PentagramSpawner { 
+Default {
+
+Alpha 0;
+}
+States
+{
+Spawn:
+	TNT1 A 0;
+	PNTG AAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeIn(0.02);
+	PNTG AAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeOut(0.02);
+	Stop;
+}
+}
+
+
+CLASS PentagramOff: PentagramSpawner { 
+Default {
+
+Renderstyle "Normal";
+}
+States
+{
+Spawn:
+	PNTG B 300;
+	PNTG B 1 A_FadeOut(0.02);
+	wait;
+}
+}
+
+
+
+
+
+
+
+
+
+
+CLASS FlyingLava: FlyingBurningFuel { 
+Default {
+
+Renderstyle "Add";
+Alpha 1.0;
+Gravity 1.0;
+Speed 1;
+Scale 0.74;
+Radius 14;
+Height 14;
+}
+States
+{
+	Spawn:
+		tnt1 a 0 
+		{
+			double scal = frandom(-1, 1);
+			scale = (scal, scal);
+			vel *= random(10, 20);
+		}
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater");
+	mini:
+		LAVA A 2;
+	Loop;
+	
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Playsound("SZZLL");
+		TNT1 A 0 A_Explode(32, 120, 1, 120);
+		EXPL AAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 1, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
+	Stop;
+}
+}	
+
+
+
+
+
+
+CLASS FlyingBurningFuel : ACTOR { 
+Default {
+
+Radius 8;
+Height 8;
+Speed 1;
+Scale 0.8;
++DONTTHRUST
+Damage 3;
++NOBLOCKMAP;
++MISSILE;
++NOTELEPORT;
++MOVEWITHSECTOR;
++RIPPER;
++BLOODLESSIMPACT;
+-DONTSPLASH;
++THRUGHOST;
+Damagetype "Fire";
+Decal "SmallerScorch";
+}
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "NULL");
+		tnt1 a 0 
+		{
+			vel *= random(1, 15);
+
+			double scal = frandom(0.6, 1);
+			scale =(scal, scal);
+		}
+		TNT1 A 2 a_spawnprojectile("FlameTrails", 0, 0, random(0, 360), 2, random(0, 180));
+	Loop;
+	Death:
+		TNT1 AAAAAA 0 a_spawnprojectile("FlameTrails", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItemEx("Barrel_explosion_Column",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_Playsound("props/redfire");
+		F1RE ABCDEFGHG 1 bright
+		{
+			A_SpawnItem("Red_FlareMedium",0,32);
+			a_spawnprojectile("ExplosionSmoke", 80, 0, random(0, 180), 2, random(0, 180));
+			if(frame == 7) A_Explode(16, 80, 0);
+			IF(frame == 0) A_Playsound("props/redfire");
+		}
+		F2RE ABCDEFGHG 1 bright
+		{
+			A_SpawnItem("Red_FlareMedium",0,32);
+			a_spawnprojectile("ExplosionSmoke", 80, 0, random(0, 180), 2, random(0, 180));
+			if(frame == 7) A_Explode(16, 80, 0);
+			IF(frame == 0) A_Playsound("props/redfire");
+		}
+		tnt1 a 0 a_jumjpif(random(0, 10) < 6, "Death");
+		TNT1 AAAAAA 3 BRIGHT a_spawnprojectile("RealFlameTrailsSmall", 2, 0, random(0, 360), 2, random(60, 130));
+		TNT1 AAAAA 3 BRIGHT a_spawnprojectile("MinimalFlameTrails", 2, 0, random(0, 360), 2, random(60, 130));
+		TNT1 AAA 8 BRIGHT a_spawnprojectile("MinimalFlameTrails", 2, 0, random(0, 360), 2, random(60, 130));
+	Stop;
+}
+}	
+
+
+//12 at begining
+CLASS SmallFireFocusSpawnerz: pb_special_effect_base { 
+States
+{
+	Spawn:
+		TNT1 A 1;
+		TNT1 A 0 A_Jump(128, 4);
+		TNT1 A 0 A_SpawnItemEx("Barrel_explosion_Column",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("SmallFireFocus24",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAA 0;
+	Stop;
+}
+}
+//100
+CLASS SmallFireFocusSpawnerz1: pb_special_effect_base { 
+States
+{
+	Spawn:
+		TNT1 A 1;
+		TNT1 A 0 A_SpawnItemEx("Barrel_explosion_Column",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("SmallFireFocus24",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	Stop;
+}
+}
+
+CLASS SmallFireFocus24: pb_special_effect_base { 
+Default {
+
+Alpha 0.9;
+RenderStyle "Translucent";
+Scale 0.6;
+}
+States
+{
+	Spawn:
+		FLME ABCDEFGHIJKLMN 1 BRIGHT
+		{
+			a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
+			A_SpawnItem("Red_FlareSmall", 0, 15);
+		}
+		tnt1 a 0 a_jumpif(random(0, 10) < 6, "spawn");
+	Stop;
+}
+}
+*/

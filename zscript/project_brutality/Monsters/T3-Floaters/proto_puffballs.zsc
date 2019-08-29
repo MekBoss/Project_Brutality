@@ -7,7 +7,6 @@ states
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_PlaySound("redburn",6,1,1);
 		TNT1 AAAAA 0;// a_spawnprojectile("brutal_FlyingBlood", 47, 0, random(0, 360), 2, random(30, 150));	
-		TNT1 AAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 36, 0, 0, 0, 0, 128);
 		tnt2 s 0 
 		{
 			name class_name = getclassname();
@@ -18,17 +17,17 @@ states
 				default : break;
 			}
 		}
-		ID54 AAABCDEFGH 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 36, 0, 0, 0, 0, 128);
+		ID54 AAABCDEFGH 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 	
 	lava_holed:
-		ID60 AAABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 30, 0, 0, 0, 0, 128);
+		ID60 AAABCDEFGHI 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;	
 
 	afrit_holed:
-		ID62 AAABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		ID62 AAABCDEFGHI 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 }
@@ -44,8 +43,7 @@ states
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_PlaySound("redburn",6,1,1);
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40) );		
-		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
-		ID59 AAABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		ID59 AAABCDEFGHI 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 }
@@ -88,8 +86,7 @@ states
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_PlaySound("redburn",6,1,1);
-		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 20, 0, 0, 0, 0, 128);
-		ID58 AAAABCDEF 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 20, 0, 0, 0, 0, 128);
+		ID58 AAAABCDEF 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 }

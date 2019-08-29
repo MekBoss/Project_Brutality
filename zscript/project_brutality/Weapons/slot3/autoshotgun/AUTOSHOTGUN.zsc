@@ -32,7 +32,10 @@ CLASS pb_AutoShotgun : weapon_slot_3_proto_class
 protected bool drum_upgrade, empty_magazine;
 
 Default {
+	Weapon.SlotNumber 3;
+	Weapon.slotpriority 0.2;
 	Weapon.SelectionOrder 1300;
+
 	Weapon.AmmoUse1 0;
 	Weapon.AmmoUse2 0;
 	Weapon.AmmoGive1 5;

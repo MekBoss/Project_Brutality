@@ -1087,7 +1087,7 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 		if(relat_pos.z > self.pos.z + height_above_floor &&
 		relat_pos.z < self.pos.z + height_above_floor + fuel_tank_height )
 		//hit tank, placeholder for now
-		{console.printf("destroy flamethrower gas canister");}
+		{console.printf("destroy flamethrower gas canister placeholder");}
 	}
 	//bullet dont hit gas tank, return default damage mobj
 	return super.DamageMobj(inflictor, source, damage, mod, flags ,angle);

@@ -1,25 +1,25 @@
 class proto_rev_class : pb_monster_base
 {
-bool jetpack;
+protected bool jetpack;
 default
 {
 	Radius 20;
 	Height 60;
+
+	speed 6;
 }
 states
 {
 	Death.Blackhole:
 		TNT1 A 0 {A_Scream(); A_NoBlocking();  A_PlaySound("redburn",6,1,1);}
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));		
-		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
-
 		TNT1 A 0 {if(jetpack == true) {self.setstatelabel("Death.BlackHole.Jetpack");} }
-		ID57 AABCDEFGHI 4;// A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		ID57 AABCDEFGHI 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 	
 	Death.Blackhole.jetpack:
-		ID68 AABCDEFGHI 4 A_SpawnItemEx("PurpleTrailSparks", 0, 0, 40, 0, 0, 0, 0, 128);
+		ID68 AABCDEFGHI 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
 

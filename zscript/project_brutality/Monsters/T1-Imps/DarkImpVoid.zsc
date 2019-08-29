@@ -213,60 +213,21 @@ States
 		//TNT1 A 0 a_spawnprojectile("MonsterTargetCheckFaster", 34, 0, 0, 0);
 		DRKV E 1 A_FaceTarget();
 		//TNT1 A 0 A_JumpIfInventory("CantFire",1, "Advancing");
-		DRKV E 2 A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, 18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, 18, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, -18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, -18, random(0, 140), 2, random(0, 160));
-		DRKV E 2 BRIGHT A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, 18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, 18, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, -18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, -18, random(0, 140), 2, random(0, 160));
-		DRKV E 2 A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, 18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, 18, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, -18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, -18, random(0, 140), 2, random(0, 160));
-		DRKV E 2 A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, 18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, 18, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 34, -18, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 33, -18, random(0, 140), 2, random(0, 160));
-		
-		DRKV F 2 A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, 22, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, 20, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, -20, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, -20, random(0, 140), 2, random(0, 160));
-		DRKV F 2 BRIGHT A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, 22, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, 20, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, -20, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, -20, random(0, 140), 2, random(0, 160));
-		DRKV F 2 A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, 22, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, 20, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, -20, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, -20, random(0, 140), 2, random(0, 160));
-		DRKV F 2 BRIGHT A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, 22, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, 20, random(0, 140), 2, random(0, 160));
-		TNT1 A 0 bright a_spawnprojectile("PurpleTrailSparks", 32, -20, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("BluePlasmaFireSmall", 31, -20, random(0, 140), 2, random(0, 160));
-		
+		DRKV EEEEFFFF 2
+		{
+			A_FaceTarget();
+			a_spawnprojectile("BluePlasmaFireSmall", 33, 18, random(0, 140), 2, random(0, 160));
+			a_spawnprojectile("BluePlasmaFireSmall", 33, -18, random(0, 140), 2, random(0, 160));
+		}
 		DRKV G 6 a_spawnprojectile("DarkNormal", 32, 0, 0);
 		TNT1 A 0 A_Jump(64, "See");
-		DRKV I 6 Bright A_FaceTarget();
-		DRKV J 6 Bright A_FaceTarget();
+		DRKV IJ 6 Bright A_FaceTarget();
 		DRKV K 6 Bright a_spawnprojectile("DarkStrong", 32, 0, 0);
 		TNT1 A 0 A_Jump(92, "See");
-		DRKV E 8 A_FaceTarget();
-		DRKV F 8 A_FaceTarget();
+		DRKV EF 8 A_FaceTarget();
 		DRKV G 6 a_spawnprojectile("DarkNormal", 32, 0, 0);
 		TNT1 A 0 A_Jump(112, "See");
-		DRKV I 8 Bright A_FaceTarget();
-		DRKV J 8 Bright A_FaceTarget();
+		DRKV IJ 8 Bright A_FaceTarget();
 		DRKV K 6 Bright a_spawnprojectile("DarkStrong", 32, 0, 0);
 	Goto SeeContinue;
 		

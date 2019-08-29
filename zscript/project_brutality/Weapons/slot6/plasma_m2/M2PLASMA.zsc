@@ -834,7 +834,6 @@ CLASS HeavyPlasmaBall: Plasma_ball {
 		DB20 ABCDEFGHIJLMNOPQRSTUVWXYZ 2 BRIGHT
 		{
 			A_SpawnItem("Blue_FlareSmall",0,0);
-			//A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 	}
 	Loop;
 	
@@ -843,7 +842,6 @@ CLASS HeavyPlasmaBall: Plasma_ball {
 		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFireSmall2", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile("SuperPlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAAAAA 0 ;//a_spawnprojectile("FreezerTrailSparksSmall", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(6,90,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
@@ -894,7 +892,6 @@ CLASS AltHeavyPlasmaBall: Plasma_ball {
 		DB20 ABCDEFGHIJLMNOPQRSTUVWXYZ 1 BRIGHT
 		{
 			A_SpawnItem("Blue_FlareSmall",0,0);
-			//A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 		}
 	Loop;
 	
@@ -904,7 +901,6 @@ CLASS AltHeavyPlasmaBall: Plasma_ball {
 		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFireSmall2", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile("SuperPlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
-		//TNT1 AAAAAAA 0 a_spawnprojectile("FreezerTrailSparksSmall", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(6,90,0);
 		TNT1 A 1 Light("LightningImpactLight");
 		TNT1 B 4;
@@ -1060,7 +1056,6 @@ CLASS LightningGunProjectile: FastProjectile {
 	Death:
 		TNT1 A 0 BRIGHT A_SpawnItem("LightningGunPuff",0);
 		TNT1 A 0 BRIGHT A_SpawnItem("Blue_Flare",0);
-		//TNT1 AA 0 A_SpawnItemEx("FreezerTrailSparksSmall", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0);
 		TNT1 A 0 A_explode(random(12,15), 80);
 		TNT1 AAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 1 Light("LightningImpactLight");

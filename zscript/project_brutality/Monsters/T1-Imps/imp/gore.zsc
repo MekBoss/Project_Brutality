@@ -1,0 +1,1089 @@
+
+
+
+CLASS ImpTorso : ACTOR { 
+Default 
+{
+Radius 0;
+Height 16;
+Scale 1.1;
+Mass 20;
+Health 50;
++SHOOTABLE;
+-SOLID;
++NOTELEPORT;
++FLOORCLIP;
++MOVEWITHSECTOR;
+damagefactor "Blood", 0.0;
+damagefactor "Trample", 0.0;
+}
+States
+{
+Spawn:
+BLUD C 0 A_Recoil(3);
+BLUD C 0 ThrustThing(random(0,255),random(1,5));
+BLUD C 0 ThrustThingZ(0,random(0,50),random(0,1),0);
+TNT1 A 0 A_SetInvulnerable();
+GORX B 10;
+TNT1 A 0 A_UnSetInvulnerable();
+Goto Dead;
+
+Dead:
+GORX B 10;
+Loop;
+Death:
+TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 180), 2, random(0, 180));
+TNT1 A 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 180), 2, random(0, 180));
+TNT1 A 0;
+Stop;
+Death.Plasma: Death.Plasma2:
+TNT1 A 0;
+TNT1 A 0 A_XScream();
+TNT1 A 0 A_NoBlocking();
+TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+TNT1 A 0;
+Stop;
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+CLASS DeadImp1: pb_blood_and_gore_base// Replaces DeadDoomImp
+{ 
+Default
+{
+Radius 12;
+Height 12;
++SHOOTABLE;
++NOTELEPORT;
++MOVEWITHSECTOR;
++CORPSE;
+-SOLID;
++FLOORCLIP;
++thrUACTORS;
++SHOOTABLE;
+damagefactor "Crush", 50.0;
+Mass 1000;
+Health 100;
+damagefactor "Blood", 0.0;
+damagefactor "Trample", 0.0;
+damagefactor "Melee", 10.0;
+damagefactor "Fatality", 10.0;
+damagefactor "Kick", 10.0;
+damagefactor "ExplosiveImpact", 10.0;
+}
+States
+{
+Spawn:
+TROO MMM 100;
+TROO MMM 2 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TROO M -1;
+stop;	Raise:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("TeleportFog");
+//TNT1 A 0 A_SpawnItem("Imp");
+stop;	Death:
+TNT1 A 0 A_Jump(128, "Death2");
+TNT1 A 0 a_spawnprojectile("XDeathImpArm", 5, 0, random(0, 360), 2, random(0, 160));
+POS3 A 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 1 A_SpawnItem("DeadImp_NoArm", 5);
+stop;	Death2:
+TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 5, 0, random(0, 360), 2, random(0, 160));
+SPOS A 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 1 A_SpawnItem("DeadImp_NoLeg", 5);
+stop;	Death.CutLess:
+Death.Cut:
+TNT1 A 1 A_SpawnItem("DeadImp_Half", 5);
+TNT1 A 0 a_spawnprojectile("RipImp", 0, 0, random(0, 360), 2, random(0, 160));
+stop;
+
+Death.Plasma: Death.Plasma2:
+TNT1 A 0;
+TNT1 A 0 A_XScream();
+TNT1 A 0 A_NoBlocking();
+TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+TNT1 A 0;
+Stop;
+
+XDeath:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+Death.Fatality:
+Death.Melee:
+Death.Kick:
+Death.ExplosiveImpact:
+Death.ExtremePunches:
+TNT1 A 0;
+TNT1 A 0;
+TNT1 A 0 ThrustThingZ(0,15,0,1);
+TNT1 A 0 A_FaceTarget();
+ID11 ABC 6;
+TNT1 A 1 A_SpawnItem("DeadImp1", 5);
+Stop;}}
+
+CLASS DeadImp_NoArm: DeadImp1 { 
+Default {Health 200;}
+States
+{
+Spawn:
+TR08 EEE 100;
+TRO8 E 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TR08 E -1;
+Stop   ;
+
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+Death.Fatality:
+Death.Melee:
+Death.Kick:
+Death.ExplosiveImpact:
+Death.ExtremePunches:
+TNT1 A 0;
+TNT1 A 0;
+TNT1 A 0 ThrustThingZ(0,15,0,1);
+TNT1 A 0 A_FaceTarget();
+IZD2 B 7;
+//TNT1 A 1 A_SpawnItem("BrutalizedImpStop", 5);
+stop;
+}}
+
+CLASS DeadImp_NoArmNoHead: DeadImp_NoArm { 
+Default {Health 200;} States{Spawn:
+TR08 GGG 125 ;
+TR08 GGGG 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TR08 G -1;
+Stop   ; 
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS DeadImp_NoArm2: DeadImp1 { 
+Default {Health 200;} States{Spawn:
+T408 EEE 110;
+T408 EEEE 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+T408 E -1;
+Stop;
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+Death.Fatality:
+Death.Melee:
+Death.Kick:
+Death.ExplosiveImpact:
+Death.ExtremePunches:
+TNT1 A 0;
+TNT1 A 0;
+TNT1 A 0 ThrustThingZ(0,15,0,1);
+TNT1 A 0 A_FaceTarget();
+IZD2 B 7;
+//TNT1 A 1 A_SpawnItem("BrutalizedImpStop", 5);
+stop; }}
+
+CLASS DeadImp_NoArmNoHead2: DeadImp_NoArm { 
+Default {Health 200;} States{Spawn:
+T408 GGG 105;
+T408 GGGG 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+T408 G -1;
+Stop   ; 
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS DeadImp_NoLeg: DeadImp1 { 
+Default {Health 200;}
+States
+{
+Spawn:
+TR09 E 145;
+TR09 EEEE 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TR09 E -1;
+Stop;
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+Death.Fatality:
+Death.Melee:
+Death.Kick:
+Death.ExplosiveImpact:
+Death.ExtremePunches:
+TNT1 A 0;
+TNT1 A 0;
+TNT1 A 0 ThrustThingZ(0,15,0,1);
+TNT1 A 0 A_FaceTarget();
+ID11 ABC 6;
+TNT1 A 1 A_SpawnItem("DeadImp_NoLeg", 5);
+Stop;
+}}
+
+
+CLASS DeadImp_NoHead: DeadImp1 { 
+Default {Health 200;} States{Spawn:
+TROH EEE 109;
+TROH E 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TROH E -1;
+Stop	;     	
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS DeadImp_MinorHeadDeadFront: DeadImp1 { 
+Default 
+
+{Health 200;} States{Spawn:
+TROH OOO 120;
+TROH OO 1;
+TROH O -1;
+Stop;}}
+
+CLASS DeadImpMinorHeadShot: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+TROO YYYY 145;
+TROO YYY 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TROO Y -1;
+Stop	;     	
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS DeadImp_Half: DeadImp1 { 
+Default {Health 200;} States{Spawn:
+TROG H -1;
+Stop;
+Death.Cut:
+Death.Cutless:	
+Death:
+Death.Fatality:
+Death.Melee:
+Death.Kick:
+Death.ExplosiveImpact:
+Death.ExtremePunches:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS impfacesorapedomgthisiscruel: DeadImp_Half { 
+Default 
+{Health 200;} States{Spawn:
+FTCI KKK 105;
+FTCI KKKK 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+FTCI K -1;
+Stop;
+}}	  
+
+
+CLASS StompedImp: DeadImp_NoHead { 
+Default 
+{Health 200;} States{Spawn:
+FTYI Z -1;
+Stop;
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+
+
+CLASS DeadImp_NoStomach: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+IMPC III 133;
+IMPC IIII 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+IMPC I -1;
+Stop;
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS DeadImp_NoStomach2: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+I9PC III 135;
+I9PC II 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+I9PC I -1;
+Stop   ; 
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+
+
+CLASS DeadImp_NoStomachNoHead: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+IMPC LLL 160;
+IMPC L 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+IMPC L -1;
+Stop;
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+CLASS DeadImp_NoStomachNoHead2: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+I9PC LLLL 109;
+I9PC LL 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+I9PC L -1;
+Stop ;
+
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+
+CLASS DeadImp_BaronFatality: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+3HF2 KKK 100;
+3HF2 KKKK 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+3HF2 K -1;
+Stop;
+}
+
+}	
+
+
+CLASS ImpMessyCorpse: DeadMarine { 
+Default 
+
+{Health 200;} States{Spawn:
+FTBI HHH 100;
+FTBI HH 2 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+FTBI H -1;
+Stop   ; 
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+
+CLASS DeadImpBloodLoss: DeadMarine { 
+Default 
+
+{Health 200;} States{Spawn:
+TROD JJJ 45;
+TROD JJ 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+TROD J -1;
+Stop;
+Death.Cut:        Death.Cutless:	        Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}	
+
+CLASS DeadImpJustLegsAreLeft: DeadImp_Half { 
+Default 
+{Health 300;} States{Spawn:
+IZD1 H -1;
+Stop;}}
+
+CLASS DeadImp_Slumped: pb_dismembered_monster_base { 
+Default 
+{
++NOPAIN
+Health 200;
+DamageFactor "Head", 15.0;
+Height 22;
+Radius 8;
+}
+
+States
+{	
+Spawn:
+TNT1 A 0;
+TNT1 A 0 A_Recoil(6);
+BR94 A 6;
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+BR94 A 16;
+Loop ;
+LayDown:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("DeadImp1");
+Stop;
+XDeath:
+Death.Explosives:
+Death.ExplosiveImpact:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ZombieXDeath");
+Stop;
+
+Death.Head:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItemEx("ImpHeadExplode", 0, 0, 22);
+TNT1 A 0 A_SpawnItem("DeadImp_Slumped_NoHead");
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
+TNT1 AA 0 a_spawnprojectile("XDeathImpArm", 40, 0, random(0, 360), 2, random(30, 90));
+TNT1 A 0 A_SpawnItemEx("ImpHeadExplode", 0, 0, 22);
+TNT1 A 0 A_SpawnItem("DeadImpJustLegsAreLeft");
+Stop;
+}}
+
+
+CLASS DeadImp_Slumped_NoHead: pb_dismembered_monster_base { 
+Default 
+{
++NOPAIN;
+Height 22;
+}
+States{Spawn:
+TNT1 A 0;
+BR94 B 100;
+Loop ;
+XDeath:
+Death.Explosives:
+Death.ExplosiveImpact:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ZombieXDeath");
+Stop;
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
+TNT1 AA 0 a_spawnprojectile("XDeathImpArm", 40, 0, random(0, 360), 2, random(30, 90));
+TNT1 A 0 A_SpawnItem("DeadImpJustLegsAreLeft");
+Stop;
+}}
+
+CLASS RocketImpVictim : ACTOR
+{ 
+Default 
+{
+Radius 10;
+Height 8;
+Projectile;
+Speed 20;
+Damage 35;
+DamageType "ExplosiveImpact";
+MeleeDamage 0;
+Gravity 0.00;
+-NOGRAVITY;
++EXTREMEDEATH;
++BLOODSPLATTER;
++FORCEXYBILLBOARD;
++ALLOWPARTICLES;
+SeeSound "weapons/RLL";
+DeathSound "Explosion";
+Obituary "$OB_MPROCKET";
+Decal "Scorch";
+}
+
+States
+{
+Spawn:
+T0KT AB 4 Bright A_FaceTarget();
+TNT1 A 0 A_PlaySound("weapons/rocketloop",6,1,1);
+TNT1 A 0 A_PlaySound("imp/pain",7,2,1);
+TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater");
+TNT1 A 0 A_SpawnItem("RocketFlare",-20,0);
+TNT1 A 0 a_spawnprojectile("brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AA 0 a_spawnprojectile("brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 A 0 a_spawnprojectile("Explosion_Smoke", 2, 0, random(160, 210), 2, random(-30, 30));
+TNT1 A 0 A_SpawnItem("ExplosionSmoke");
+Loop;
+
+SpawnUnderwater:
+TNT1 A 0 {self.bNOGRAVITY = false;}
+TNT1 A 0 A_SpawnItem("RocketFlare",-20,0);
+TNT1 A 0 a_spawnprojectile("underwater_bubles", 0, 0, random(0, 360), 2, random(0, 180));
+Goto Spawn;
+
+Death:
+EXPL A 0 Radius_Quake(2, 16, 0, 15, 0);
+TNT1 A 0 A_StopSound(6);
+TNT1 A 0 A_AlertMonsters();
+TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+TNT1 A 0 a_spawnprojectile("ImpXDeath", 0, 0, random(0, 360), 2, random(0, 160));
+TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
+TNT1 AA 0 a_spawnprojectile("xdeath2", 0, 0, random(0, 360), 2, random(0, 160));
+TNT1 AAA 0 a_spawnprojectile("xdeath2", 0, 0, random(0, 360), 2, random(0, 160));
+TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+TNT1 AAAAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+EXPL AAAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+TNT1 A 1;
+TNT1 A 0 A_PlaySound("FAREXPL", 3);
+TNT1 AAAAAAAAAAAAA 3 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));
+Stop;
+}
+}
+
+CLASS DeadImp1MeleeDeath : pb_blood_and_gore_base
+{ 
+
+States
+{
+Spawn:
+FID3 EEEEEEEEEEEEEEEEEEEEEE 18;
+FID3 EEE 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+FID3 E -1;
+Stop;
+Raise:
+FID3 E 5;
+FID3 DCB 5;
+//TNT1 A 0 A_SpawnItem("Imp", 3);
+Stop;
+Death:
+TNT1 A 0 A_Jump(128, "Death2");
+TNT1 A 0 a_spawnprojectile("XDeathImpArm", 5, 0, random(0, 360), 2, random(0, 160));
+POS3 A 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 1 A_SpawnItem("DeadImp_NoArm", 5);
+Stop;
+Death2:
+TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 5, 0, random(0, 360), 2, random(0, 160));
+SPOS A 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 1 A_SpawnItem("DeadImp_NoLeg", 5);
+Stop;
+Death.CutLess:
+Death.Saw:
+TNT1 A 1 A_SpawnItem("DeadImp_Half", 5);
+TNT1 A 0 a_spawnprojectile("RipImp", 0, 0, random(0, 360), 2, random(0, 160));
+Stop;
+Death.Plasma: Death.Plasma2:
+TNT1 A 0;
+TNT1 A 0 A_XScream();
+TNT1 A 0 A_NoBlocking();
+TNT1 AAA 0 a_spawnprojectile("brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
+TNT1 A 0;
+Stop;
+XDeath:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 AA 0 a_spawnprojectile("xdeath3", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 AAAA 0 a_spawnprojectile("xdeath2", 22, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 AA 0 a_spawnprojectile("xdeath2", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 AAAAAA 0 a_spawnprojectile("xdeath4", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+Death.Fatality:
+Death.Melee:
+Death.Kick:
+Death.ExplosiveImpact:
+Death.ExtremePunches:
+TNT1 A 0;
+TNT1 A 0;
+TNT1 A 0 ThrustThingZ(0,15,0,1);
+TNT1 A 0 A_FaceTarget();
+ID30 ABC 6;
+TNT1 A 1 A_SpawnItem("DeadImp1MeleeDeath", 5);
+Stop;}}
+
+CLASS DeadImp_NoHead_Fatalized: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+
+TROH PPP 45;
+TROH PPP 3 A_SpawnItemEx("SwarmFly", frandom(-16,16), frandom(-16,16), frandom(-16,16) );
+TROH P -1;
+Stop;
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 AA 0 a_spawnprojectile("xdeath1", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 AAA 0 a_spawnprojectile("xdeath4", 32, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;}}
+
+
+
+
+
+CLASS DeadImpTR06K: DeadImp1 { 
+
+States{Spawn:
+TR06 K -1;
+Stop ;
+
+Death:
+TNT1 A 0 A_SpawnItem("RipImp", 0, 10);
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_Half");
+TNT1 A 0 A_NoBlocking();
+Stop;
+}}
+
+
+
+CLASS DeadImpTR06V: DeadImp1 { 
+States{Spawn:
+TR06 V -1;
+Stop;
+
+Death:
+TNT1 A 0 A_SpawnItem("RipImp", 0, 10);
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_Half");
+TNT1 A 0 A_NoBlocking();
+Stop;}}
+
+
+CLASS DeadImpTRO3E: DeadImp1 { 
+States{Spawn:
+TRO3 E -1;
+Stop ;
+
+Death:
+TNT1 A 0 a_spawnprojectile("XDeathHalfImpUpperPart32", 32, 0, random(0, 360), 2, random(10, 60));
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_Half");
+TNT1 A 0 A_NoBlocking();
+Stop;
+}}	
+
+
+CLASS DeadImpTRO4E: DeadImp1 { 
+States{Spawn:
+TRO4 E -1;
+Stop;
+
+Death:
+TNT1 A 0 a_spawnprojectile("XDeathHalfImpUpperPart32", 32, 0, random(0, 360), 2, random(10, 60));
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_Half");
+TNT1 A 0 A_NoBlocking();
+Stop;}}	
+
+
+CLASS DeadImpIZD1H: DeadImp_Half { 
+States{Spawn:
+IZD1 H -1;
+Stop; }}	
+
+
+CLASS DeadImpID17G: DeadImp1 { 
+States{Spawn:
+ID17 G -1;
+Stop;
+
+Death:
+TNT1 A 0 a_spawnprojectile("XDeathHalfImpUpperPart32", 32, 0, random(0, 360), 2, random(10, 60));
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 a_spawnprojectile("XDeathImpLeg", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 A_SpawnItem("RipGuts", 0, 10);
+TNT1 A 0 A_NoBlocking();
+Stop;}}	
+
+
+
+CLASS DeadImpIZD3D: DeadImp1 { 
+States{Spawn:
+IZD3 D -1;
+Stop;
+
+Death:
+TNT1 A 0 a_spawnprojectile("XDeathHalfImpUpperPart32", 32, 0, random(0, 360), 2, random(10, 60));
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 AA 0 a_spawnprojectile("XDeathImpLeg", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 A_SpawnItem("RipGuts", 0, 10);
+TNT1 A 0 A_NoBlocking();
+Stop;}}		
+
+CLASS DeadImpTROOY: DeadImp1 { 
+States{Spawn:
+TROO Y -1;
+Stop;		
+}}
+
+CLASS DeadImpTRO4M: DeadImp1 { 
+States{Spawn:
+TRO4 M -1;
+Stop;		
+}}
+
+CLASS DeadImpT6SWG: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+T6SW G -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpT6SWN: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+T6SW N -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpT5SWG: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+T5SW G -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpT55WG: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+T55W G -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpT55WN: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+T55W N -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpT5SWN: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+T5SW N -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpTR0HE: DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+TR0H E -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImp_NoHead");
+Stop;
+}}
+
+CLASS DeadImpIXD1H : DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+IXD1 H -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImpIZD1H");
+Stop;
+}}
+
+CLASS DeadImpIXD4L : DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+IXD4 L -1;
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("MeatDeathSmall", 0, 10);
+TNT1 A 0 A_SpawnItem("DeadImpIZD1H");
+Stop;
+}}
+
+CLASS DeadImpTR03E : DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+TR03 E -1;
+Stop;
+
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+}}
+
+CLASS DeadImpTR04E : DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+TR04 E -1;
+Stop;
+
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+}}
+
+CLASS DeadImpTR04J : DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+TR04 J -1;
+Stop;
+
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+}}
+
+CLASS DeadImpTROGE  : DeadImp1 { 
+Default 
+{Health 200;} States{Spawn:
+TROG E  -1;
+Stop;
+
+Death:
+TNT1 A 0 A_SpawnItem("GibsZ");
+TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+Stop;
+}}
+
+CLASS DeadImp_Pinned: pb_dismembered_monster_base
+{
+Default 
+{
++NOPAIN
++NOGRAVITY
+Health 200;
+DamageFactor "Head", 15.0;
+Height 40;
+Radius 6;
+}
+States{Spawn:
+TNT1 A 0;
+TNT1 A 0 A_PlaySound("Weapons/NailHitBleed");
+TNT1 A 0 A_Recoil(15);
+PIN6 AA 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_Recoil(10);
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_Recoil(10);
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_Recoil(10);
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_Recoil(10);
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_Recoil(10);
+PIN6 A 4 a_spawnprojectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+TNT1 A 0 A_Jump(36, "SlideDown");
+JustHangThere:
+TNT1 A 0 A_Recoil(6);
+PIN6 A 6;
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+PIN6 A 16;
+Loop;
+
+SlideDown:
+TNT1 A 0 A_Recoil(6);
+TNT1 A 0 ThrustThingZ(0, 6, 1, 0);
+PIN6 A 6;
+TNT1 A 0 A_JumpIf(vel.z < 2, "SlumpSittingDown");
+TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+PIN6 A 12;
+Loop;
+
+SlumpSittingDown:
+TNT1 A 0 A_SpawnItemEx("DeadImp_Slumped", 10);
+Stop;
+
+LayDown:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("DeadImp1");
+Stop;
+
+XDeath:
+Death.Explosives:
+Death.ExplosiveImpact:
+TNT1 A 0 A_NoBlocking();
+TNT1 A 0 A_SpawnItem("ImpXDeath");
+Stop;
+
+Death:
+TNT1 A 0 A_NoBlocking();
+TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+TNT1 AAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
+TNT1 AA 0 a_spawnprojectile("XDeathImpArm", 35, 0, random(0, 360), 2, random(0, 160));
+TNT1 A 0 A_SpawnItemEx("ImpHeadExplode", 0, 0, 22);
+TNT1 A 0 A_SpawnItem("DeadImpJustLegsAreLeft");
+Stop;
+}
+
+}

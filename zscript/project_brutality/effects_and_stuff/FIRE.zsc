@@ -492,128 +492,18 @@ Spawn:
 
 CLASS SmallFireFocus24: pb_special_effect_base { 
 Default {
-
-Alpha 0.9;
-RenderStyle "Translucent";
-Scale 0.6;
+	Alpha 0.9;
+	RenderStyle "Translucent";
+	Scale 0.6;
 }
 States
 {
-Spawn:
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME A 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME BCD 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME E 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
-	FLME FGH 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME I 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME JKL 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	FLME M 1 BRIGHT a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(60, 130));
-	FLME N 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 15);
-	TNT1 AAAAA 3 BRIGHT a_spawnprojectile("MinimalFlameTrails", 2, 0, random(0, 360), 2, random(60, 130));
-	TNT1 AAA 8 BRIGHT a_spawnprojectile("MinimalFlameTrails", 2, 0, random(0, 360), 2, random(60, 130));
+	Spawn:
+		FLME ABCDEFGHIMN 1 BRIGHT
+		{
+			a_spawnprojectile("MinimalFlameTrails", 24, 0, random(0, 360), 2, random(70, 110));
+			A_SpawnItem("Red_FlareSmall", 0, 15);
+		}
 	Stop;
 }
 }
@@ -782,20 +672,20 @@ Gravity 0.3;
 States
 {
 Spawn:
-	TNT1 A 0 a_spawnprojectile("MediumBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
 	TNT1 AAA 4 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
 	TNT1 A 0 A_Explode(15, 90);
 
 	//TNT1 A 0 A_JumpIfInventory("Timer555", 9, "Death");
 	Loop;
 Death:
-	TNT1 A 0 a_spawnprojectile("MediumBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
 	TNT1 AAA 6 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
 	TNT1 A 0 A_Explode(10, 90);
-	TNT1 A 0 a_spawnprojectile("MediumBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
 	TNT1 AAA 8 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
 	TNT1 A 0 A_Explode(5, 90);
-	TNT1 BBBBBBBBB 16 a_spawnprojectile("MediumBlackSmoke", 20, 0, random(0, 360), 2, random(60, 130));
+	TNT1 BBBBBBBBB 16 a_spawnprojectile("BigBlackSmoke", 20, 0, random(0, 360), 2, random(60, 130));
 	Stop;
 }
 }
@@ -803,43 +693,40 @@ Death:
 
 CLASS BurningGroundLowDamage : ACTOR { 
 Default {
-
-
-Radius 1;
-Height 1;
-Speed 2;
-Damage 0;
-+NOBLOCKMAP;
-+NOTELEPORT;
-+DONTSPLASH;
-+CLIENTSIDEONLY;
-+NOINTERACTION;
-+NOCLIP;
-+FORCEXYBILLBOARD;
--NOGRAVITY;
-RenderStyle "Translucent";
-Damagetype "Fire";
-Scale 1.0;
-Alpha 1.0;
-Gravity 0.3;
+	Radius 1;
+	Height 1;
+	Speed 2;
+	Damage 0;
+	+NOBLOCKMAP;
+	+NOTELEPORT;
+	+DONTSPLASH;
+	+CLIENTSIDEONLY;
+	+NOINTERACTION;
+	+NOCLIP;
+	+FORCEXYBILLBOARD;
+	-NOGRAVITY;
+	RenderStyle "Translucent";
+	Damagetype "Fire";
+	Scale 1.0;
+	Alpha 1.0;
+	Gravity 0.3;
 }
 States
 {
 Spawn:
-	TNT1 A 0 a_spawnprojectile("MediumBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
 	TNT1 AAAAAA 4 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
-	TNT1 A 0 A_Explode(3, 90);
-	//TNT1 A 0 A_GiveInventory("Timer555", 1);
-	//TNT1 A 0 A_JumpIfInventory("Timer555", 9, "Death");
+	tNT1 A 0 A_Explode(3, 90);
+	TNT1 A 0 A_jumpif(random(0, 10) < 6, "death");
 	Loop;
 Death:
-	TNT1 A 0 a_spawnprojectile("MediumBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
 	TNT1 AAA 6 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
 	TNT1 A 0 A_Explode(10, 90);
-	TNT1 A 0 a_spawnprojectile("MediumBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
+	TNT1 A 0 a_spawnprojectile("BigBlackSmoke", 40, 0, random(0, 360), 2, random(60, 130));
 	TNT1 AAA 8 a_spawnprojectile("CoolandNewFlameTrails", 2, 0, random(0, 360), 2, random(0, 90));
 	TNT1 A 0 A_Explode(5, 90);
-	TNT1 BBBBBBBBB 16 a_spawnprojectile("MediumBlackSmoke", 20, 0, random(0, 360), 2, random(60, 130));
+	TNT1 BBBBBBBBB 16 a_spawnprojectile("BigBlackSmoke", 20, 0, random(0, 360), 2, random(60, 130));
 	Stop;
 }
 }
@@ -851,8 +738,6 @@ Death:
 
 CLASS FlamethrowerMissile : ACTOR { 
 Default {
-
-
 Radius 2;
 Height 2;
 Speed 25;
@@ -878,37 +763,23 @@ States
 {
 Spawn:
 	TNT1 A 0;
-	FIR5 ABC 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	FIR3 A 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 10));
-	DB54 D 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 20));
-	TNT1 A 0 A_Explode(3, 100, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 30));
-	DB54 E 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 40));
-	DB54 F 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 50));
-	DB54 G 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	TNT1 A 0 A_Explode(3, 100, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(-10, 60));
-	DB54 H 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(-50, 70));
-	DB54 I 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(-60, 80));
-	DB54 J 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	TNT1 A 0 A_Explode(3, 100, 0);
-	EXPL A 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, 0, 2, random(10, 20));
-	DB54 KL 1 BRIGHT A_SpawnItem("Red_Flare", 0, 0);
-	TNT1 A 0 A_Explode(3, 150, 0);
-	EXPL A 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
+	FIR5 ABC 1 BRIGHT
+	{
+		A_SpawnItem("Red_FlareSmall", 0, 0);
+		a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 10));
+	}
+	DB54 Defghijkl 1 BRIGHT
+	{
+		A_SpawnItem("Red_FlareSmall", 0, 0);
+		a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 20));
+		A_Explode(3, 100, 0);
+	}
 	TNT1 A 0 A_Playsound("Afrit/Hellfire");
 	Stop;
 Death:
 	TNT1 A 0 A_Explode(35, 150, 0);
 	TNT1 A 0 A_Explode(3, 50);
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-25, 25), random(-15, 15));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+	TNT1 aA 0 A_SpawnItemEx("TinyBurningPiece", random(-25, 25), random(-15, 15));
 	EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
 	Stop;
 }
@@ -944,39 +815,27 @@ Gravity 0;
 }
 States
 {
-Spawn:
-	TNT1 A 0;
-	FIR5 ABC 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	FIR3 A 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 10));
-	FIR3 B 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 20));
-	TNT1 A 0 A_Explode(1, 80, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 30));
-	FIR3 D 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 40));
-	FIR3 E 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 50));
-	FIR3 F 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	TNT1 A 0 A_Explode(1, 80, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(-10, 60));
-	FIR3 G 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(-50, 70));
-	FIR3 H 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	EXPL A 0 a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(-60, 80));
-	FIR3 I 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 0);
-	TNT1 A 0 A_Explode(1, 80, 0);
-	EXPL A 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, 0, 2, random(10, 20));
-	FIR3 JKL 1 BRIGHT A_SpawnItem("Red_Flare", 0, 0);
-	TNT1 A 0 A_Explode(1, 125, 0);
-	EXPL A 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
-	TNT1 A 0 A_Playsound("Afrit/Hellfire");
+	Spawn:
+		TNT1 A 0;
+		FIR5 ABC 1 BRIGHT
+		{
+			A_SpawnItem("Red_FlareSmall", 0, 0);
+			a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 10));
+		}
+		FIR3 BCDEFGHIJKL 1 BRIGHT
+		{
+			A_SpawnItem("Red_FlareSmall", 0, 0);
+			a_spawnprojectile("CoolandNewFlameTrails", 6, 0, 0, 2, random(0, 20));
+			A_Explode(1, 80, 0);
+		}
+		TNT1 A 0 A_Playsound("Afrit/Hellfire");
 	Stop;
-Death:
-	TNT1 A 0 A_Explode(1, 50);
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-25, 25), random(-15, 15));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
-	EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
+
+	Death:
+		TNT1 A 0 A_Explode(1, 50);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-25, 25), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		EXPL AA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(10, 90));
 	Stop;
 }
 }
@@ -1001,24 +860,20 @@ Scale 1.1;
 }
 States
 {
-Spawn:
-	tnt1 a 0 nodelay
-	{
-		double scal = frandom(0.5, 1.1);
-		scale =(scal, scal);
-	}
-	CFCF ABC 1 BRIGHT;// A_SpawnItem("Red_FlareSmall", 0, 5)
-	CFCF D 1;
-	TNT1 A 0 A_Explode(2, 60);
-	CFCF EFG 1 BRIGHT;// A_SpawnItem("Red_FlareSmall", 0, 5)
-	CFCF H 1;
-	CFCF IJK 1 BRIGHT;// A_SpawnItem("Red_FlareSmall", 0, 5)
-	CFCF L 1;
-	TNT1 A 0 A_Jump(24, "StopBurning");
+	Spawn:
+		tnt1 a 0 nodelay
+		{
+			double scal = frandom(0.5, 1.1);
+			scale =(scal, scal);
+		}
+		CFCF ABCD 1 BRIGHT;
+		TNT1 A 0 A_Explode(2, 60);
+		CFCF EFGHIJKL 1 BRIGHT;
+		TNT1 A 0 A_Jump(24, "StopBurning");
 	Loop;
 	
-StopBurning:
-	CFCF NOP 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 5);
+	StopBurning:
+		CFCF NOP 1 BRIGHT A_SpawnItem("Red_FlareSmall", 0, 5);
 	Stop;
 }
 }
@@ -1126,8 +981,8 @@ States
 {
 Spawn:
 	PNTG B 300;
-	PNTG BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_FadeOut(0.02);
-	Stop;
+	PNTG B 1 A_FadeOut(0.02);
+	wait;
 }
 }
 
@@ -1153,23 +1008,24 @@ Height 14;
 }
 States
 {
-Spawn:
-	tnt1 a 0 nodelay
-	{
-		double scal = frandom(-1, 1);
-		scale =(scal, scal);
-		vel *= random(10, 20);
-	}
-	TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater");
-	LAVA A 2;
+	Spawn:
+		tnt1 a 0 nodelay
+		{
+			double scal = frandom(-1, 1);
+			scale = (scal, scal);
+			vel *= random(10, 20);
+		}
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater");
+	mini:
+		LAVA A 2;
 	Loop;
 	
-Death:
-	TNT1 A 0;
-	TNT1 A 0 A_Playsound("SZZLL");
-	TNT1 A 0 A_Explode(32, 120, 1, 120);
-	EXPL AAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 1, 0, random(0, 360), 2, random(0, 360));
-	TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Playsound("SZZLL");
+		TNT1 A 0 A_Explode(32, 120, 1, 120);
+		EXPL AAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 1, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
 	Stop;
 }
 }	
@@ -1211,26 +1067,8 @@ Alpha 1.0;
 States
 {
 Spawn:
-	tnt1 A 0;
 	TNT1 A 2;
 	EXPL ABCDEFGHI 1 BRIGHT;
 	Stop;
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

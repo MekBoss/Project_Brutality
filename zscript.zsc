@@ -18,6 +18,20 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 #include "zscript/project_brutality/effects_and_stuff/effects/explosives.zsc"
 
+#include "zscript/project_brutality/effects_and_stuff/fire_effects.zsc"
+#include "zscript/project_brutality/effects_and_stuff/particle_effects.zsc"
+#include "zscript/project_brutality/effects_and_stuff/smoke_effects.zsc"
+
+
+
+
+
+
+
+
+
+
+
 
 
 #include "zscript/project_brutality/effects_and_stuff/effects/flares/flares.zsc"
@@ -216,21 +230,11 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //-----------------------------------------------------------------------
 
 
-//розібрати цей срач тут
-//якщо SwitchableDecoration обовязково HeadshotTarget
-#include "zscript/project_brutality/monsters/fatality_sump/imps/d_d_imp.zsc"
-#include "zscript/project_brutality/monsters/fatality_sump/imps/imp.zsc"
-#include "zscript/project_brutality/monsters/fatality_sump/imps/savage_imp.zsc"
-
-#include "zscript/project_brutality/monsters/fatality_sump/zombie/shotguner.zsc"
-#include "zscript/project_brutality/monsters/fatality_sump/zombie/major.zsc"
-#include "zscript/project_brutality/monsters/fatality_sump/zombie/m_last_stand.zsc"
-#include "zscript/project_brutality/monsters/fatality_sump/zombie/zombies.zsc"
-#include "zscript/project_brutality/monsters/fatality_sump/zombie/zombie_d.zsc"
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅ SwitchableDecoration пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HeadshotTarget
 
 
 
-#include "zscript/project_brutality/monsters/fatality_sump/d_guy_1.zsc"
 
 
 
@@ -247,7 +251,11 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/T1-Grunts/DemonTechTroop.zsc"
 //privates
 #include "zscript/project_brutality/monsters/T1-Grunts/private/private_base.zsc"
-#include "zscript/project_brutality/monsters/T1-Grunts/private/zombiemen.zsc"
+
+#include "zscript/project_brutality/monsters/T1-Grunts/private/zombieman/zombiemen.zsc"
+#include "zscript/project_brutality/monsters/T1-Grunts/private/zombieman/guro.zsc"
+
+
 #include "zscript/project_brutality/monsters/T1-Grunts/private/ZombiemanVariants.zsc"
 #include "zscript/project_brutality/monsters/T1-Grunts/private/CarbineZombie.zsc"
 #include "zscript/project_brutality/monsters/T1-Grunts/private/MinigunGuy.zsc"
@@ -276,7 +284,10 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //pimp my imp
 #include "zscript/project_brutality/monsters/T1-Imps/proto_imp.zsc"
 //pimped imps
-#include "zscript/project_brutality/monsters/T1-Imps/imp.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/imp/imp.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/imp/gore.zsc"
+#include "zscript/project_brutality/monsters/T1-Imps/imp/projectile.zsc"
+
 #include "zscript/project_brutality/monsters/T1-Imps/impvariants.zsc"
 #include "zscript/project_brutality/monsters/T1-Imps/impvariant1.zsc"
 #include "zscript/project_brutality/monsters/T1-Imps/impvariant2.zsc"
@@ -289,11 +300,19 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //pinky base
 #include "zscript/project_brutality/monsters/T2-Pinkies/proto_pinky.zsc"
 ///
-#include "zscript/project_brutality/monsters/T2-Pinkies/BULL_DEMON.zsc"
-#include "zscript/project_brutality/monsters/T2-Pinkies/spectre.zsc"
-#include "zscript/project_brutality/monsters/T2-Pinkies/meandemon.zsc"
-#include "zscript/project_brutality/monsters/T2-Pinkies/mechdemon.zsc"
-#include "zscript/project_brutality/monsters/T2-Pinkies/voidspectre.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/pinky/BULL_DEMON.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/pinky/guro.zsc"
+
+#include "zscript/project_brutality/monsters/T2-Pinkies/mech/mechdemon.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/mech/guro.zsc"
+
+#include "zscript/project_brutality/monsters/T2-Pinkies/voidspectre/voidspectre.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/voidspectre/guro.zsc"
+
+#include "zscript/project_brutality/monsters/T2-Pinkies/spectre/spectre.zsc"
+
+#include "zscript/project_brutality/monsters/T2-Pinkies/mean/meandemon.zsc"
+#include "zscript/project_brutality/monsters/T2-Pinkies/mean/guro.zsc"
 
 //SPOOKY SCARY SKELETON
 #include "zscript/project_brutality/monsters/T3-Revies/proto_skeleton.zsc"
@@ -345,18 +364,40 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 //fatso base
 #include "zscript/project_brutality/monsters/T3-Fats/proto_fat.zsc"
 //
-#include "zscript/project_brutality/monsters/T3-Fats/MANCUBUS.zsc"
-#include "zscript/project_brutality/monsters/T3-Fats/Daedabus.zsc"
-#include "zscript/project_brutality/monsters/T3-Fats/Volcabus.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/MANCUBUS/MANCUBUS.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/MANCUBUS/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/MANCUBUS/projectile.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Fats/Daedabus/Daedabus.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/Daedabus/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/Daedabus/projectile.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Fats/Volcabus/Volcabus.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/Volcabus/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Fats/Volcabus/projectile.zsc"
 
 //arachnotron base
 #include "zscript/project_brutality/monsters/T3-Arachnos/proto_spider.zsc"
 //spiders....why does it have to be spiders
-#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnotron.zsc"
-#include "zscript/project_brutality/monsters/T3-Arachnos/Aracnorb.zsc"
-#include "zscript/project_brutality/monsters/T3-Arachnos/InfernalArachnotron.zsc"
-#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnophyte.zsc"
-#include "zscript/project_brutality/monsters/T3-Arachnos/EliteArachnotron.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnophyte/Arachnophyte.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnophyte/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnophyte/projectile.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnotron/Arachnotron.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnotron/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Arachnotron/projectile.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Arachnos/Aracnorb/Aracnorb.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Aracnorb/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/Aracnorb/projectile.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Arachnos/InfernalArachnotron/InfernalArachnotron.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/InfernalArachnotron/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/InfernalArachnotron/projectile.zsc"
+
+#include "zscript/project_brutality/monsters/T3-Arachnos/EliteArachnotron/EliteArachnotron.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/EliteArachnotron/guro.zsc"
+#include "zscript/project_brutality/monsters/T3-Arachnos/EliteArachnotron/projectile.zsc"
 
 //barons and knight base
 #include "zscript/project_brutality/monsters/t4-nobles/proto_noble.zsc"
@@ -434,26 +475,16 @@ class crutch : inventory
 default
 {+noclip +nointeraction}
 
-states {spawn: tnt1 a 1 {console.printf("quick crutch");} stop; } 
+states {spawn: tnt1 a 1 {console.printf("quick crutch %s", getclassname() );} stop; } 
 }
 
 //now that a lots of crutches
-class GreenExplosionFire : crutch {}
-class MancubusSwitchModeEffect : crutch{}
-class BFGAltShockWave : crutch{}
-class DaedabusSwitchModeEffect : crutch{}
-class WhiteShockwave : crutch{}
 class ThrowedBarrel : crutch{}
-class FreezerTrailSparksSmall : crutch{}
+
 class ThrowedSergeantPiece : crutch{}
-class PurpleTrailSparks : crutch{}
-class PurpleTrailSparkssmall : crutch{}
 class ThrowedZombieMan2 : crutch{}
 class ThrowedSergeant2 : crutch{}
 class ThrowedImp2 : crutch{}
-class GreenTrailSparks : crutch{}
-class BFGAltTrail : crutch{}
-class WhiteShockwaveBig : crutch{}
 
 class HasIncendiaryWeapon : inventory
 {states {spawn: tnt1 a 10 {console.printf("quick crutch");} stop; } }
@@ -461,20 +492,9 @@ class HasPlasmaWeapon : HasIncendiaryWeapon {}
 class  HasCutingWeapon  : HasIncendiaryWeapon {}
 class  PhantasmFatality  : HasIncendiaryWeapon {}
 class  ArachnoGun  : HasIncendiaryWeapon {}
-class CasingsJanitor : HasIncendiaryWeapon {}
 class CrueltyBonus5Health : HasIncendiaryWeapon {}
 
 
-class BFGAltShockWave_grenade : actor
-{
-states
-{
-	spawn:
-		tnt1 a 100 {console.printf("quick crutch in sgl code, fix it");}
-	stop;
-}
-
-}
 
 class GreenTrailSparks_grenade : actor
 {
@@ -486,5 +506,7 @@ states
 }
 
 }
+
+class greenspark : actor {}
 
 class NewRocketExploFX_grenade : GreenTrailSparks_grenade {}

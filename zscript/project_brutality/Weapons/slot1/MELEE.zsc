@@ -681,7 +681,7 @@ States
 		PTG1 CDEFGHIJ 1;
 		TNT1 A 0 A_PlaySound("skeleton/swing");
 		TNT1 A 0 A_Giveinventory("Punching",1);
-		PTG1 K 1 a_fireprojectile("SergeantHeadThrown", 0, 0, 0, 0);
+		PTG1 K 1 a_fireprojectile("XDeathSergeantHead", 0, 0, 0, 0);
 		PTG1 LMNOP 1;
 		TNT1 A 0 A_TakeInventory("ShotgunguyHead",1);
 		Goto Ready+8;

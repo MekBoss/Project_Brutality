@@ -5,7 +5,7 @@ Default
 	Radius 20;
 	Height 16;
 	Inventory.Pickupmessage "$GOTARMBONUS";
-	Inventory.Icon "HELBh0";
+	Inventory.Icon "HELBH0";
 	Armor.Savepercent 33.335;
 	Armor.Saveamount 2;
 	Armor.Maxsaveamount 9999;
@@ -18,7 +18,6 @@ Default
 	States
 	{
 	spawn: 
-		TNT1 A 0;
 		HELB ABCDEFGHGFEDCB 3;
 	loop;
 }

@@ -648,7 +648,7 @@ States
 	Death.decaptate:
 		TNT1 AAAAA 0 A_SpawnProjectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
-		TNT1 A 0 A_SpawnItemEx("XDeathChaingunguyHeadBeheaded", 50, 0, random(0, 360), 2, random(40, 90));
+		TNT1 A 0 A_SpawnItemEx("XDeathChaingunguyHead", 50, 0, random(0, 360), 2, random(40, 90));
 		CP04 GGGGGGG 2 A_SpawnProjectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(60, 120));
 		CP04 HHHH 2 A_SpawnProjectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 A_XScream();
@@ -743,7 +743,7 @@ States
 		TNT1 A 0 A_SpawnProjectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 {self.bNOBLOCKMONST = true;}
-		TNT1 A 0 A_SpawnItemEx("XDeathChaingunguyHeadBeheaded", 50, 0, random(0, 360), 2, random(40, 90));
+		TNT1 A 0 A_SpawnItemEx("XDeathChaingunguyHead", 50, 0, random(0, 360), 2, random(40, 90));
 		TNT1 AAAA 0 A_SpawnProjectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
 		TNT1 AAAA 0 A_SpawnProjectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));

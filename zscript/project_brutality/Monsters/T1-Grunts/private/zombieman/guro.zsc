@@ -1,0 +1,422 @@
+
+CLASS ZombiemanTorso : pb_blood_and_gore_base
+{ 
+Default
+{	
+	Radius 12;
+	Height 12;
+	Scale 0.98;
+	Mass 800;
+	damagefactor "Crush", 50.0;
+	damagefactor "Blood", 0.0;
+	damagefactor "Trample", 0.0;
+	//+NORADIUSDMG
+	+NOPAIN;
+	+CORPSE;
+}
+
+States
+{
+	Spawn:
+		BLUD C 0 A_Recoil(3);
+		BLUD C 0 ThrustThing(random(0,255),random(1,5));
+		BLUD C 0 ThrustThingZ(0,random(0,50),random(0,1),0);
+		TNT1 A 0 {self.bInvulnerable = true;}
+		GORX A 10;
+		TNT1 A 0 {self.bInvulnerable = false;}
+		GORX A -1;
+	stop;
+
+	Crush:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("pb_FlyingBloodTrail8", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		POSC A 5;
+		POSC A -1;
+	Stop;
+
+	Raise:
+		TNT1 A 2 A_SpawnProjectile("RealFlameTrailsSmall", 6, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnItem("PentagramSpawner", 0, 60);
+		TNT1 A 2 A_SpawnProjectile("RealFlameTrailsSmall", 6, 0, random(0, 360), 2, random(70, 110));
+		TNT1 A 0 A_SpawnItem("PentagramSpawner", 0, 60);
+		TNT1 A 0 A_SpawnItem("TeleportFog");
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("pb_Zombie_Man");
+	Stop;		
+}
+
+}
+
+CLASS DeadZombieman_Slumped: ZombiemanTorso
+{ 
+Default
+{	
+	+NOPAIN;
+	Health 200;
+	DamageFactor "Head", 15.0;
+	Height 22;
+	Radius 6;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_Recoil(6);
+		BR92 A 6;
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		TNT1 A 0 ;//A_SpawnItemEx("HeadshotTarget20", 0, 0, 22);
+		BR92 A 16;
+	Loop ;
+
+	LayDown:
+		TNT1 A 0 A_NoBlocking();
+		POSS L -1;
+	Stop;
+	XDeath:
+	Death.Explosives:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("ZombieXDeath");
+	Stop;		
+	Death.Head:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItemEx("ZombiemanHeadExplode", 0, 0, 22);
+		BR92 B -1;
+	Stop;		
+	Death:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAA 0 A_SpawnProjectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 A_SpawnProjectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 A_SpawnProjectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAA 0 A_SpawnProjectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AA 0 A_SpawnProjectile("XDeathArm1", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 A_SpawnItemEx("ZombiemanHeadExplode", 0, 0, 22);
+		POSX E -1;
+	Stop;}}
+
+
+		
+CLASS DeadZombieman_Pinned: ZombiemanTorso
+{ 
+Default
+{	
+	+NOPAIN;
+	+NOGRAVITY;
+	Health 200;
+	DamageFactor "Head", 15.0;
+	Height 40;
+	Radius 6;
+}
+
+States
+{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_Recoil(15);
+		PIN1 AA 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_Recoil(10);
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_Recoil(10);
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_Recoil(10);
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_Recoil(10);
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_Recoil(10);
+		PIN1 A 4 A_SpawnProjectile("Brutal_LiquidBlood3", 25, random(-2,2), random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		TNT1 A 0 A_Jump(36, "SlideDown");
+	JustHangThere:
+		TNT1 A 0 A_Recoil(6);
+		PIN1 A 6;
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		PIN1 A 16;
+	Loop;
+		
+	SlideDown:
+		TNT1 A 0 A_Recoil(6);
+		TNT1 A 0 ThrustThingZ(0, 6, 1, 0);
+		PIN1 A 6;
+		TNT1 A 0 A_JumpIf(vel.z < 2, "SlumpSittingDown");
+		TNT1 A 0 A_JumpIf(vel.x < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y < 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.x > 0, "LayDown");
+		TNT1 A 0 A_JumpIf(vel.y > 0, "LayDown");
+		PIN1 A 12;
+	Loop;
+		
+	SlumpSittingDown:
+		TNT1 A 0 A_SpawnItemEx("DeadZombieman_Slumped", 10);
+	Stop;
+	
+	LayDown:
+		TNT1 A 0 A_NoBlocking();
+		POSS L -1;
+	Stop;
+	
+	XDeath:
+	Death.Explosives:
+	Death.ExplosiveImpact:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 A 0 A_SpawnItem("ZombieXDeath");
+	Stop;
+	
+	Death:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAA 0 A_SpawnProjectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 A_SpawnProjectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 A_SpawnProjectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 A_SpawnProjectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAA 0 A_SpawnProjectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 AA 0 A_SpawnProjectile("XDeathArm1", 40, 0, random(0, 360), 2, random(30, 90));
+		TNT1 A 0 A_SpawnItemEx("ZombiemanHeadExplode", 0, 0, 22);
+		POSX E -1;
+	Stop;
+}}
+
+
+CLASS DeadZombieMan_Blasted: actor { 
+
+States{	
+	Spawn:
+		ZXZ2 E -1;
+	Stop;		
+	Death:
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AA 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnProjectile("XDeathArm1", 15, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAA 0 A_SpawnProjectile("BloodMist", 15, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItem("DeadZombieman_NoHeadNoArm");
+	Stop;		
+}}
+
+
+
+CLASS ZombieMan_DeathOther: ZombieMan_DeathMinorLeg { 
+States
+{
+	Spawn:
+		PNDT V 5 a_spawnprojectile("MuchBlood", 40, 0, random(0, 360), 2, random(0, 160));
+		PNDT W 5;
+		TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
+		PNDT X 5;
+		PNDT Y 5;
+	DieNow:
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		PNDT Z 1 A_SpawnItem("Zombieman_DeathPNDT");
+		stop;
+			
+	Death:
+		TNT1 A 0 A_JumpIfHealthLower(-70, "Death.SSG");
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 30, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0 a_spawnprojectile("XDeathArm1", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		PND1 X 5 A_XScream;
+		PND1 Y 5 A_NoBlocking;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		PND1 Z 5 A_SpawnItem("DeadZombieMan_NoArm3");
+		stop;
+			
+	Death.SSG:
+	Death.Blast:
+		PND2 W 3 A_XScream;
+		PND2 X 5 A_NoBlocking;
+		PND2 Y 5;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		PND2 Z -1;
+		stop;
+}
+}
+
+
+CLASS ZombieMan_DeathOther2: ZombieMan_DeathMinorLeg { 
+States
+{
+	Spawn:
+		TNT1 A 0 A_Recoil(1);
+		PSSR A 6 ;
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 36, 0, random(0, 360), 2, random(0, 160));
+		PSSR BCD 6;
+	DieNow:
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		PSSR E -1;
+		Stop ;
+			
+	Death:
+		TNT1 A 0 A_JumpIfHealthLower(-50, "Death.Blast");
+		TNT1 A 0 a_spawnprojectile("XDeathArm1", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
+		ZZD2 BCD 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		ZZD3 D -1;
+		Stop ;
+			
+	Death.Shotgun:
+		TNT1 A 0 A_Jump(42, "Death.Shotgunontheface");
+		TNT1 A 0 A_JumpIfCloser(80, "Death.Blast");
+		TNT1 A 0 A_JumpIfCloser(320, "Death.Shotgunontheface");
+		Goto Death;
+			
+	Death.Shotgunontheface:
+		TNT1 A 0;
+		TNT1 A 0 {self.bSLIDESONWALLS = false;}
+		TNT1 A 0 {self.bNOBLOCKMONST = true;}
+		//TNT1 A 0 A_Jump(160, "DeathShotgunFly");
+			
+		TNT1 A 0 A_stop;
+		TNT1 A 0 A_Pain;
+		POSS H 1 A_FaceTarget;
+		TNT1 A 0 A_Recoil(13);
+		TNT1 A 0 ThrustThingZ(0,20,0,1);
+		TNT1 A 0 A_JumpIf(vel.y == 0, "DeathShotgunFly");
+		TNT1 A 0 A_Jump(128, "DeathShotgunontheface2");
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_NoBlocking;
+		POS4 ABCD 4 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		POS4 EFGHIJ 4 A_JumpIf((vel.Y == 0), "DSFstop");
+		Goto DSFstop+1;
+			
+	DSFstop:
+		TNT1 A 0 A_Explode(20,30, 0);
+		TNT1 A 0 A_stop;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		POS4 J -1;
+	Stop;
+			
+	DeathShotgunontheface2:
+		TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 35, 0, random(0, 360), 2, random(0, 160));
+		POS4 KLMN 4 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		POS4 OPQRST 4 A_JumpIf((vel.Y == 0), "DSFstop2");
+		Goto DSFstop2+1;
+			
+	DSFstop2:
+		TNT1 A 0 A_Explode(20,30, 0);
+		TNT1 A 0 A_stop;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		POS4 T -1;
+	Stop;
+			
+			
+	DeathShotgunFly:
+		TNT1 A 0 {self.bNODROPOFF = false;}
+		TNT1 A 0 {self.bSLIDESONWALLS = false;}
+		TNT1 A 0 ThrustThingZ(0,30,0,1);
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_FaceTarget;
+		TNT1 A 0 A_Recoil(6);
+		POS4 U 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf((vel.Y == 0), "TakeASit");
+		POS4 U 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf((vel.Y == 0), "TakeASit");
+		POS4 V 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_JumpIf((vel.Y == 0), "TakeASit");
+		POS4 W 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		POS4 X 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		POS4 Y 5 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		POSS L -1;
+	Stop;
+
+	TakeASit:
+		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 6, 0, random(170, 190), 2, random(0, 40));
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		POS4 U 5;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		TNT1 A 0 A_SpawnItemEx("DeadZombieman_Slumped", 10);
+		stop;
+			
+	Death.Blast:
+	Death.Railgun:
+		TNT1 A 0;
+		TNT1 A 0 A_FaceTarget;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Jump(128, "Death.Blast2");
+		TNT1 A 0 A_Scream;
+		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("BloodMist", 40, 0, random(0, 360), 2, random(30, 90));
+		ZXZ1 A 0 A_stop;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		ZXZ1 CCCC 3 a_spawnprojectile("Brutal_FlyingBlood", 26, 0, random(0, 360), 2, random(10, 40));
+		ZXZ1 DD 3 a_spawnprojectile("Brutal_FlyingBlood", 6, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		ZXZ1 E -1;
+		Stop ;
+			
+	Death.Blast2:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 a_spawnprojectile("XDeathArm1", 42, 0, random(0, 360), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 32, 0, random(150, 210), 2, random(0, 40));
+		TNT1 AAA 0 a_spawnprojectile("Xdeath3", 16, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AA 0 a_spawnprojectile("Xdeath2", 16, 0, random(130, 210), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAA 0 a_spawnprojectile("BloodMist", 40, 0, random(0, 360), 2, random(30, 90));
+		ZXZ2 A 0 A_stop;
+		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
+		ZXZ2 GGGGG 3 a_spawnprojectile("Brutal_FlyingBlood", 31, 0, random(0, 360), 2, random(10, 40));
+		ZXZ2 HHHH 3 a_spawnprojectile("Brutal_FlyingBlood", 26, 0, random(0, 360), 2, random(10, 40));
+		ZXZ2 II 3 a_spawnprojectile("Brutal_FlyingBlood", 6, 0, random(0, 360), 2, random(30, 60));
+		TNT1 A 0 A_PlaySound("BODYF",6);
+		ZXZ2 J -1;
+		Stop ;
+}
+}
+
