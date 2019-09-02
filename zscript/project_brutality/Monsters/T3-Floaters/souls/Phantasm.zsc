@@ -39,14 +39,16 @@ Default
 States
 {
 	Spawn:
- 		TNT1 A 0;
-		STLK A 2 BRIGHT A_Look;
-		TNT1 A 0 A_SpawnItem("Green_FlareSmall", 0, 24);
-		STLK A 0 a_spawnprojectile("RealFlameTrailsGreen", 24, 0, random(0, 360), 2, random(0, 160));
-	Goto Spawn+2;
+		STLK A 2 BRIGHT
+		{
+			A_Look();
+			A_SpawnItem("Green_FlareSmall", 0, 24);
+			a_spawnprojectile("RealFlameTrailsGreen", 24, 0, random(0, 360), 2, random(0, 160));
+		}
+	loop;
 	
 	See:
-		STLK AAAA 1 BRIGHT
+		STLK A 1 BRIGHT
 		{
 			A_Chase();
 			a_spawnprojectile("Green_FlareSmall", 24, 0, random(0, 360), 2, random(0, 160));

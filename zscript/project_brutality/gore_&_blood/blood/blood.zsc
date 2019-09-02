@@ -387,15 +387,13 @@ States
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(230, "null");
-		BLCD GGHHIIJJKKLLMMNNOO 1 {vel.z += 50;}
+		BLCD GGHHIIJJKKLLMMNNOO 1;// {vel.z += 50;}
 		TNT1 A 0 {self.bCEILINGHUGGER = false;}
 		TNT1 A 0 {self.bNOGRAVITY = false;}
 		TNT1 A 0 {self.bDONTTHRUST = false;}
 		TNT1 A 0 {self.bCEILINGHUGGER = false;}
-		BPDL A 0 {vel.z += 50;}
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 	BDFC_loop:
-		BLUD Z -1;
+		BLUD Z -1 a_queuecorpse();
 	stop;
 	}
 }

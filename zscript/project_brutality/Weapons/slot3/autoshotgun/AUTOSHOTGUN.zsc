@@ -290,7 +290,7 @@ States
 	Goto default_ready;
 		AUSR IJK 1;
 		TNT1 A 0 A_PlaySound("insertshell");
-		AUSR L 1 ;
+		AUSR L 1;
 		AUSR M 1;
 		AUSR NOP 1;
 		TNT1 A 0 {invoker.reload_weapon_magazine("pb_Shells", "AutoShotgunAmmo");}

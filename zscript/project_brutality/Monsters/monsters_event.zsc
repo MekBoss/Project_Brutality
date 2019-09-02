@@ -66,6 +66,9 @@
 			PistolStart
 		case 675:
 			ReplaceBrutalOnly*/
+
+
+
 class monster_handle_event : eventhandler
 {
 
@@ -92,111 +95,93 @@ string return_random_replacement(string base_class = "")
 
 override void CheckReplacement(ReplaceEvent e)
 {
-/*	spawn custom monsters using this event
-/in this example it replaces all doom imps to medikits
-	if(e.Replacee is "doomimp")
-	{
-		e.IsFinal = true;
-		means "nothing can override this replacement...except another such event"
-		mostly used to prevent zscript/decorate replacing by "class name : actor replaces another_name" and acs
-		e.Replacement = "medikit";
-	}*/
-	//add more monster here
+	if(e.Replacee is "pb_monster_base") return;
 
-	if(e.Replacee is "zombieman")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("private_base");
-	}
+	string nam = e.Replacee.getclassname();
 
-	if(e.Replacee is "shotgunguy")
+	switch(name(nam) )
 	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("sergeant_base");
-	}
+		default: console.printf("no corespondig monster for replace");break;
 
-	if(e.Replacee is "chaingunguy")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("commando_base");
-	}
+		case 'zombieman' :
+			e.Replacement = return_random_replacement("private_base");
+			e.IsFinal = true;
+		break;
 
-	if(e.Replacee is "doomimp")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_imp_class");
-	}
+		case 'shotgunguy' :
+			e.Replacement = return_random_replacement("sergeant_base");
+			e.IsFinal = true;
+		break;
 
-	if(e.Replacee is "demon")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_pinky");
-	}
+		case 'chaingunguy' :
+			e.Replacement = return_random_replacement("commando_base");
+			e.IsFinal = true;
+		break;
 
-	if(e.Replacee is "arachnotron")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_spider");
-	}
+		case 'doomimp':
+			e.Replacement = return_random_replacement("proto_imp_class");
+			e.IsFinal = true;
+		break;
 
-	if(e.Replacee is "fatso")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_fat");
-	}
+		case 'demon':
+			e.Replacement = return_random_replacement("proto_pinky");
+			e.IsFinal = true;
+		break;
+
+ 		case 'arachnotron' :
+			e.Replacement = return_random_replacement("proto_spider");
+			e.IsFinal = true;
+		break;
+
+		case 'fatso' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_fat");
+		break;
 	
-	if(e.Replacee is "painelemental")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_pain");
-	}
+		case 'painelemental' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_pain");
+		break;
+
+		case 'cacodemon' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_head");
+		break;
+
+		case 'lostsoul' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_skull");
+		break;
+
+		case 'revenant' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_rev_class");
+		break;
+
+		case 'hellknight' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("knight_base");
+		break;
+
+		case 'baronofhell' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("baron_base");
+		break;
+
+		case 'archvile' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_arch_vile");
+		break;
+
+		case 'Cyberdemon' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_cyberdemon");
+		break;
 	
-	if(e.Replacee is "cacodemon")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_head");
-	}
-
-	if(e.Replacee is "lostsoul")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_skull");
-	}
-
-	if(e.Replacee is "revenant")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_rev_class");
-	}
-
-	if(e.Replacee is "hellknight")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("knight_base");
-	}
-
-	if(e.Replacee is "baronofhell")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("baron_base");
-	}
-
-	if(e.Replacee is "archvile")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_arch_vile");
-	}
-
-	if(e.Replacee is "Cyberdemon")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_cyberdemon");
-	}
-	
-	if(e.Replacee is "spidermastermind")
-	{
-		e.IsFinal = true;
-		e.Replacement = return_random_replacement("proto_spider_mind");
+		case 'spidermastermind' :
+			e.IsFinal = true;
+			e.Replacement = return_random_replacement("proto_spider_mind");
+		break;
 	}
 }
 

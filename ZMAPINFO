@@ -1,7 +1,13 @@
 gameinfo
 {
-	addeventhandlers="monster_handle_event", "MBlurHandler", "weapon_specific_event",
-	"player_movement_event", "pb_effect_event", "pb_blood_and_gore_event", "armor_spawner"
+	addeventhandlers=
+   "monster_handle_event"
+   ,"MBlurHandler"
+   ,"weapon_specific_event"
+   ,"player_movement_event"
+   ,"pb_effect_event"
+   ,"pb_blood_and_gore_event"
+   ,"armor_spawner"
 }
 
 map TITLEMAP "PB_Introduction"

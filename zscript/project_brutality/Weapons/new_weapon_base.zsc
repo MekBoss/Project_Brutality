@@ -204,8 +204,7 @@ states
 	Goto bug;
 
 
-////////////////////////////////////////////////////////////////////////////
-//			knife combo begins
+	//knife combo begins
 	quick_melee:
 		TNT1 A 0
 		{
@@ -412,8 +411,7 @@ states
 		}
 		//TNT1 A 0 A_JumpIfInventory("Kicking",1,"KickRight");
 	Goto bug;
-////////////////////////////////////////////////////////////////////////////
-//			knife combo ends
+	//knife combo ends
 
 
 
@@ -554,6 +552,10 @@ states
 
 }
 
+
+
+
+
 //event which detect special key press and if its true set wepon state to defined state
 //like kick or throw grenade
 //also support all other weapon related stuff like replacing weapons and ammo
@@ -616,31 +618,37 @@ override void NetworkProcess(ConsoleEvent e)
 }
 
 //replce ammo around weapon spawning spot to more or less correspinded to that weapon
+/*
+якогось чорта багує в рядку з "e.thing.distance2dsquared(something) <= 200 * 200"
 override void worldthingspawned(worldevent e)
 {
 	if(level.time <= 3 && e.thing is "pb_weapon_base")
 	{
 		ThinkerIterator ammo_checker = ThinkerIterator.Create("pb_ammo_proto_class", 105);
 		
-		pb_ammo_proto_class something;
+		pb_ammo_proto_class something = null;
+		
 		while(something = pb_ammo_proto_class(ammo_checker.Next() ) )
 		{
-			if(e.thing.distance2dsquared(something) <= 200**2)
+			if(something != null)
 			{
-				class<ammo> ammo_type = weapon(e.thing).default.ammotype1;
-				
-				if(something.getclass() == ammo_type) {return;}
-				//ammo dont match, so dotn check it here
-				if( random(0,100) <= 70)
+				if(e.thing.distance2dsquared(something) <= 200 * 200)
 				{
-					actor.spawn(ammo_type.getclassname(), pos: e.thing.pos);
-					e.thing.destroy();
+					class<ammo> ammo_type = weapon(e.thing).default.ammotype1;
+					
+					if(something.getclass() == ammo_type) {return;}
+					//ammo dont match, so dotn check it here
+					if( random(0,100) <= 70)
+					{
+						actor.spawn(ammo_type.getclassname(), pos: e.thing.pos);
+						e.thing.destroy();
+					}
 				}
 			}
 		}
 	}	
 }
-
+*/
 
 string return_random_weapon_related_replacement(string base_class = "")
 {
@@ -723,11 +731,14 @@ override void CheckReplacement(ReplaceEvent e)
 
 
 	if(e.Replacee is "ammo" && !(e.Replacee is "pb_ammo_proto_class") )
-	{//replace all doom related instances of ammo with pb equvalents
-	//probably this nned to be redone in future, to replace ALL ammo on map, even custom
-	//but that probably can break map scripts
+	{
+		//replace all doom related instances of ammo with pb equvalents
+		//probably this ned to be redone in future, to replace ALL ammo on map, even custom
+		//but that probably can break map scripts
+
 		switch( name(e.Replacee.getclassname() ) )
-		{//all pb ammo defenition contains in dedicated file inside slot 'x' folder
+		{
+			//all pb ammo defenition contains in dedicated file inside slot 'x' folder
 			case 'clip' : 
 				if(random(0,100) > 70)
 				{

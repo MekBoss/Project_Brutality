@@ -174,9 +174,16 @@ states
             double scal = frandom(0.3, 0.4);
 			self.scale =(scal, scal);
 
-			array<string> it = {"JNK1", "JNK2", "JNK3"};
-			string picker = it[random(0, 2)];
-			sprite = getspriteindex(picker);
+			int it = random(0, 2);
+			switch(it)
+			{
+				case 0 : sprite = getspriteindex("JNK1"); break;
+				case 1 : sprite = getspriteindex("JNK2"); break;
+				case 2 : sprite = getspriteindex("JNK3"); break;
+				default : break;
+			}
+			
+			bnointeraction = false;
 		}
 	ms_loop:
 		"####" ABCDEFGH 3  {if(vel == (0, 0, 0) ) setstatelabel("ms_Death");}
