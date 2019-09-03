@@ -99,7 +99,7 @@ protected void reload_weapon_magazine(string ammo_pool = "", string magazine_poo
 	if(main_ammo == null)
 	{console.printf("there is no %s ammo in player inventory", magazine_pool); return;}
 
-	while((actual_ammo).amount <(actual_ammo).maxamount &&(main_ammo).amount > 0)
+	while( (actual_ammo).amount < (actual_ammo).maxamount && (main_ammo).amount > 0)
 	{
 		actual_ammo.amount ++;
 		main_ammo.amount --;

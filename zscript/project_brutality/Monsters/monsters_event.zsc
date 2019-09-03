@@ -71,19 +71,56 @@
 
 class monster_handle_event : eventhandler
 {
+protected array<class<pb_monster_base> > pb_monsters_replacer;
+
+protected bool pb_is_contain_class(string class_name = "")
+{
+	if(class_name == "") return false;
+
+	for(int i = 0; i < pb_monsters_replacer.size(); i++)
+	{
+		if(pb_monsters_replacer[i] is class_name && !(pb_monsters_replacer[i].getclassname() == class_name) )
+		{
+			//at least one iteration with such class type already add all childs to list
+			return true;
+			break;
+		}
+	}
+	return false;
+}
 
 //return one random names of monsters inherited from base_class
-string return_random_replacement(string base_class = "")
+protected string return_random_replacement(string base_class = "")
 {
 	if(base_class == "") {console.printf("base class for spawning is not defined at all"); return "Unknown";}
 	
-	int sz = allactorclasses.size();
 	array<string> names; names.clear();
-	for(int i; i < sz; i++)
+	int sz = 0;
+
+	if(pb_monsters_replacer.size() > 0 && pb_is_contain_class(base_class) )
 	{
-		if(allactorclasses[i] is base_class && !(allactorclasses[i].getclassname() == base_class) )
-		{names.push(allactorclasses[i].getclassname() ); }
+		for(int i = 0; i < pb_monsters_replacer.size(); i++)
+		{
+			if(pb_monsters_replacer[i] is base_class && !(pb_monsters_replacer[i].getclassname() == base_class) )
+			{
+				names.push(pb_monsters_replacer[i].getclassname() ); 
+			}
+		}
 	}
+
+	else
+	{
+		sz = allactorclasses.size();
+		for(int i = 0; i < sz; i++)
+		{
+			if(allactorclasses[i] is base_class && !(allactorclasses[i].getclassname() == base_class) )
+			{
+				pb_monsters_replacer.push(allactorclasses[i]);
+				names.push(allactorclasses[i].getclassname() );
+			}
+		}
+	}
+	
 	sz = names.size();
 	
 	if(sz <= 0) {console.printf("actor base %s dont exist", base_class); return "Unknown";}
@@ -96,6 +133,8 @@ string return_random_replacement(string base_class = "")
 override void CheckReplacement(ReplaceEvent e)
 {
 	if(e.Replacee is "pb_monster_base") return;
+
+	if(GetDefaultByType(e.Replacee).bismonster != true) return;
 
 	string nam = e.Replacee.getclassname();
 

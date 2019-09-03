@@ -1,4 +1,4 @@
-class pb_Shells : Ammo
+class pb_Shells : pb_ammo_proto_class
 {
 default
 {

@@ -17,7 +17,7 @@ states
 
 
     ExplosionParticle:
-		tnt1 a 0 nodelay
+		tnt1 a 0
 		{
 			double scal = frandom(0.05, 0.27);
 			self.scale =(scal, scal);

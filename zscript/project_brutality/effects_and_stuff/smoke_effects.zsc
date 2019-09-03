@@ -20,7 +20,7 @@ states
 
 
 	Explosion_Smoke:
-		TNT1 A 0 nodelay
+		TNT1 A 0
 		{
 			int scal = frandom(0.1, 1.5);
 			self.scale =(scal, scal);
