@@ -10,15 +10,26 @@ override void worldthingspawned(worldevent e)
 
 	if(e.thing is "pb_monster_base")
 	{pb_monster_base(e.thing).effects = self;}
+
+	if(e.thing is "pb_projectile_base")
+	{pb_monster_base(e.thing).effects = self;}
 }
 
 //arrays for storing pointers to effect actors
-protected array<cheap_effect_base> effect_actors;
+private array<cheap_effect_base> effect_actors;
 
-
+//spawn prof the beginning some effects
+override void worldloaded(worldevent e)
+{
+	for(int i = 0; i < 100; i++)
+	{
+		effect_actors.push( (cheap_effect_base)(actor.spawn("cheap_effect_base", (0, 0, 0) ) ) );
+		cheap_effect_base(effect_actors[i-1]).set_event(self);
+	}
+}
 
 //find free sprite or particle effect actor
-actor find_free_effect()
+private actor find_free_effect()
 {
 	int dd = self.effect_actors.size();
 
@@ -28,12 +39,14 @@ actor find_free_effect()
 		{
 			actor ss = actor.spawn("cheap_effect_base", pos:(0, 0, 0) );
 
+			cheap_effect_base(ss).set_event(self);
 			effect_actors.push((cheap_effect_base)(ss) );
 			//since zscript compiler is stupid as fuck, it just bytecod interpreter
 			//all previous checks and actor type just too complicated for it
 			//so we need to ensure it that pushed actor match with array type
 			//to do so use(actor type)(pointer to actor)
 			//CAUTION space between )( break it
+
 			return ss; break;
 		}
 
@@ -50,7 +63,7 @@ actor find_free_effect()
 }
 
 //simple function all sense of it check state and say into console if there are no such state
-void approve_state(actor subject = null, statelabel state_name = null)
+private void approve_state(actor subject = null, statelabel state_name = null)
 {
 	if(subject == null) {console.printf("there are no actor to change state"); return;}
 	if(state_name == null) {console.printf("there are no state to search"); return;}
@@ -64,14 +77,16 @@ void approve_state(actor subject = null, statelabel state_name = null)
 
 
 //here actually shows some mikle bay explosions
-actor show_some_effect(actor caller = null, statelabel effect_state = null)
+actor show_some_effect(actor caller = null, statelabel effect_state = null, vector3 offset = (0,0,0), vector3 speed = (0, 0, 0), double size = 1 )
 {
-	//effect must be "attached" to some actor
-	if(caller == null) {return null;}
+	//effect must be "attached" to actor
+	if(caller == null || effect_state == null) {return null;}
 	
 	actor lin = find_free_effect();
 	approve_state(lin, effect_state);
-	lin.setorigin(caller.pos, false);
+	lin.setorigin(caller.pos + offset, false);
+	lin.vel = speed;
+	lin.scale = (size, size);
 	return lin;
 }
 
@@ -109,8 +124,102 @@ thinker find_free_line_handler()
 
 }
 
+
+//base class for reusing effects in effect event
+class pb_special_effect_base : actor
+{
+protected bool show_something;
+protected state off_state, reset_cond;
+protected eventhandler effect_event;
+
+void set_event(eventhandler en)
+{
+	if(en is 'pb_effect_event') effect_event = en;
+}
+
+override void beginplay()
+{
+	super.beginplay();
+	off_state = findstate("off");
+	reset_cond = findstate("reset_self_condition");
+}
+
+bool check_busyness()
+{
+	return show_something;
+}
+
+
+override int SpecialMissileHit (Actor victim)
+{
+	vel = (0, 0, 0);
+	return 1;
+}
+
+override void tick()
+{
+	super.tick();
+	if(curstate != off_state || curstate != reset_cond)
+	{
+		show_something = true;
+	}
+}
+
+
+default
+{+nointeraction; +noclip; +nogravity; +notonautomap; radius 1; height 1;}
+
+states
+{
+	spawn:
+	off:
+		tnt1 a -1;
+	stop;
+
+	reset_self_condition:
+		tnt1 a 0
+		{
+			self.scale =(1, 1);
+			self.vel = (0, 0, 0);
+			show_something = false;
+			alpha = 1;
+		}
+	goto off;
+}
+
+}
+
+
+
+
 //dummy class which serve only to combine all effects under one base
+
 class cheap_effect_base : pb_special_effect_base {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class fire_effect : cheap_effect_base {}
 class particle_effect : cheap_effect_base {}
@@ -125,21 +234,12 @@ Default
 	+MISSILE;
 	+FORCEXYBILLBOARD;
 	+CLIENTSIDEONLY;
-	+NOINTERACTION;
-	+NOGRAVITY;
-	+THRUACTORS;
-	Radius 0;
-	Height 0;
 	Alpha 0.1;
 	RenderStyle "Translucent";
 	Scale 1;
 }
 
 }
-
-
-
-class sprite_effect : cheap_effect_base {}
 
 
 

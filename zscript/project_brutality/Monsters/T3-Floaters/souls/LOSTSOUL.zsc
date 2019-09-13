@@ -159,7 +159,13 @@ States
 		TNT1 AAAA 0 a_spawnprojectile("SmallLSpart1", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 a_spawnprojectile("CoolandNewFlameTrails", 12, 0, random(0, 360), 2, random(0, 160));
 		LSOL G 0 BRIGHT A_Scream();
-		EXPL AA 0 A_SpawnItem("ExplosionParticleSpawner");
+		TNT1 A 0
+		{
+			for (int i = 0; i < 20; i++)
+			{
+				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
+			}
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		EXPL AAAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 32, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
@@ -338,7 +344,13 @@ States
 		TNT1 A 1;
 		TNT1 A 0 A_PlaySound("Skull/Death");
 		EXPL AAAAAAAAAAAAAAAA 0 a_spawnprojectile("FlameTrails", 6, 0, random(0, 360), 2, random(0, 360));
-		EXPL A 0 A_SpawnItemEx("ExplosionParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 0);
+		TNT1 A 0
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
+			}
+		}
 		TNT1 AAA 0 a_spawnprojectile("LSpart1", 42, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("LSpart1", 42, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 a_spawnprojectile("LSpart1", 42, 0, random(0, 360), 2, random(0, 160));

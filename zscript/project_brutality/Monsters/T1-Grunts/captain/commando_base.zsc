@@ -140,7 +140,7 @@ CLASS BrutalizedHelmetCommando1 : BrutalizedCommando1 {
 			Goto Spawn;
 			
 		Death:
-			TNT1 A 0 a_spawnprojectile("MuchBlood", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 a 0 {pb_blood_and_gore_event.much_blood(self);}
 			TNT1 A 0 a_spawnprojectile("XDeathChainArm", 45, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 a_spawnprojectile("XDeath1", 45, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 A_PlaySound("chainguy/death");
@@ -232,7 +232,7 @@ CLASS BrutalizedChaingunCommando1 : SwitchableDecoration {
 			TNT1 AA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(20, 90));
 			TNT1 AA 0 a_spawnprojectile("Xdeath2", 16, 0, random(130, 210), 2, random(0, 40));
 			TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-			TNT1 AAA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 a 0 {pb_blood_and_gore_event.much_blood(self);}
 			TNT1 A 0 a_spawnprojectile("XDeathChainArm", 35, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 			TNT1 A 0 A_Recoil(4);
@@ -542,7 +542,7 @@ CLASS BrutalizedHelmetChaingunCommando1 : SwitchableDecoration {
 		TNT1 AA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AA 0 a_spawnprojectile("Xdeath2", 16, 0, random(130, 210), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 a 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 a_spawnprojectile("XDeathChainArm", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_Recoil(4);
@@ -661,7 +661,7 @@ Default {
 		Goto Spawn;
 		
 	Death:
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 a 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 a_spawnprojectile("XDeathChainArm", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath1", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_PlaySound("chainguy/death");
@@ -807,11 +807,11 @@ CLASS ZombiemanSaciLol: ZombiemanGotHisLegBlowed {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_PlaySound("BURNZOM");
-		Goto Suffer;
 		
 	Suffer:
 		ZL1E ABC 3;
-		TNT1 A 0 A_SpawnItem("BloodDying", 0, 30);
+
+		TNT1 a 0 {pb_blood_and_gore_event.die_condition(self);}
 		ZL1E DDDD 1 A_Chase(null, null);
 		
 

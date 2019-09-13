@@ -27,7 +27,7 @@ CLASS CacoXdeath1 : ACTOR {
 	Spawn:
  		TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		CCP1 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+		CCP1 A 4 {pb_blood_and_gore_event.big_blood(self);}
 		Loop;
 	Death:
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
@@ -56,7 +56,7 @@ CLASS CacoXdeath2: CacoXDeath1 {
     Spawn:
          TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP1 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP1 A 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop;
 	
     Death:
@@ -85,7 +85,7 @@ CLASS CacoXdeath3: CacoXDeath1 {
     Spawn:
          TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP2 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP2 A 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop;
     Death:
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
@@ -111,7 +111,7 @@ CLASS CacoXdeath4: CacoXDeath1 {
     Spawn:
          TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP2 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP2 A 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop;
     Death:
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
@@ -136,7 +136,7 @@ CLASS CacoXdeath5: CacoXDeath1 {
     Spawn:
          TNT1 AAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP3 A 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP3 A 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop;
     Death:
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
@@ -162,7 +162,7 @@ Gravity 0.6;
     Spawn:
          TNT1 AAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP4 ABCDEFG 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP4 ABCDEFG 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop;
     Death:
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 ;//a_spawnprojectile("Blue_Flyingpb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
@@ -190,11 +190,11 @@ Speed 16;
     Spawn:
  	TNT1 A 0 A_Jump(128, "Spawn2");
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP5 C 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP5 C 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop;
 	Spawn2:
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        CCP5 D 4 ;//a_spawnprojectile("BlueBrutal_FlyingBloodTrails",0,0,180,2);
+        CCP5 D 4 {pb_blood_and_gore_event.big_blood(self);}
         Loop	;
     Death:
 	TNT1 A 0;

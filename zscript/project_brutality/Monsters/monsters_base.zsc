@@ -40,6 +40,41 @@ protected string blood_color, blood_size;
 Property blood_color : blood_color;
 Property blood_size : blood_size;
 
+
+//handling of ammo and weapon spawning after monster death
+protected class<actor> weapon_type;
+
+Property weapon_type : weapon_type;
+
+//true weapon, false ammo
+protected bool chose_what_spawn()
+{
+	if(random(0, 10) > 7) {return true;}
+	return false;
+}
+
+protected void spawn_reward()
+{
+	if(random(0, 10) < 6) return;
+	if( chose_what_spawn() && weapon_type != null)
+	{
+		spawn(weapon_type, self.pos + (0, 0, default.height/2) );
+	}
+	else
+	{
+		actor amo = spawn(weapon(getdefaultbytype(weapon_type) ).AmmoType1,  + (0, 0, default.height/2) );
+		if(random(0, 1) == 1) inventory(amo).amount += random(0, inventory(amo).amount);
+	}
+}
+
+override void Die(Actor source, Actor inflictor, int dmgflags, Name MeansOfDeath)
+{
+	spawn_reward();
+	super.Die(source, inflictor, dmgflags);
+}
+
+
+
 default
 {
 	pb_monster_base.headshot_multiplier 1;
@@ -49,6 +84,8 @@ default
 	
 	pb_monster_base.blood_color "";//by default it "null", empty string
 	pb_monster_base.blood_size "";//same for size
+
+	pb_monster_base.weapon_type '';//weapon type must be defined in 'final' monster definition
 }
 
 enum blood_colors
@@ -125,12 +162,6 @@ override double GetDeathHeight()
 	if(DamageType == 'Ice' || DamageType == 'Freeze' || DamageType == 'Chill')
 	{return default.height;}
 	return super.GetDeathHeight();
-}
-
-override void Die(Actor source, Actor inflictor, int dmgflags, Name MeansOfDeath)
-{
-	//default
-	super.die(source, inflictor, dmflags, MeansOfDeath);
 }
 
 //virtual which return state corresponding to damage

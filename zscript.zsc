@@ -18,9 +18,10 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 #include "zscript/project_brutality/effects_and_stuff/effects/explosives.zsc"
 
-#include "zscript/project_brutality/effects_and_stuff/fire_effects.zsc"
-#include "zscript/project_brutality/effects_and_stuff/particle_effects.zsc"
-#include "zscript/project_brutality/effects_and_stuff/smoke_effects.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects_main/fire_effects.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects_main/particle_effects.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects_main/smoke_effects.zsc"
+#include "zscript/project_brutality/effects_and_stuff/effects_main/explosion_effects.zsc"
 
 
 
@@ -73,8 +74,6 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/effects_and_stuff/effects/fireworks/barrel.zsc"
 
 
-
-#include "zscript/project_brutality/effects_and_stuff/effects/teleports.zsc"
 
 #include "zscript/project_brutality/effects_and_stuff/fire.zsc"
 
@@ -453,6 +452,10 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 #include "zscript/project_brutality/monsters/Tz-Bosses/MASTERMIND.zsc"
 #include "zscript/project_brutality/monsters/Tz-Bosses/Demolisher.zsc"
 #include "zscript/project_brutality/monsters/Tz-Bosses/JUGGERNAUT.zsc"
+
+#include "zscript/project_brutality/monsters/Tz-Bosses/projectiles.zsc"
+
+
 //#include "zscript/project_brutality/monsters/Tz-Bosses/BossBrain.zsc"
 //#include "zscript/project_brutality/monsters/Tz-Bosses/Abomination.zsc"
 //#include "zscript/project_brutality/monsters/Tz-Bosses/Motherdemon.zsc"

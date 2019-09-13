@@ -1,6 +1,6 @@
 class SOF_SMG : weapon_slot_2_proto_class
 {
-bool iron_sight, akimbo;
+PROTECTED bool iron_sight, akimbo;
 
 Default
 {

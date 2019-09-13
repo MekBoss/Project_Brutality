@@ -65,57 +65,7 @@ States
 
 
 
-
-
-CLASS SpawnedExplosion : ACTOR { 
-Default {
-	
-	+NOCLIP;
-	+NOGRAVITY;
-}
-states
-{
-	Spawn:
-		TNT1 A 2;
-		TNT1 A 2 A_PlaySound("FAREXPL");
-		TNT1 A 0 A_PlaySound("Explosion", 1);
-		EXPL A 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
-		EXPL A 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
-		Stop;
-}
-}
-
-
-
-
-
-
-CLASS SpawnedFlamers : ACTOR { 
-Default {
-	
-	+NOCLIP;
-	+NOGRAVITY;
-	DamageType "Flames";
-}
-states
-{
-	Spawn:
-		TNT1 A 2;
-		TNT1 A 0 A_Explode(12,40);
-		TNT1 AAAA 0 a_spawnprojectile("CoolandNewFlameTrails", 0, 0, random(0, 360), 2, random(0, 360));
-		Stop;
-}
-}
-
-
-
-
-
-
-
-
+ 
 CLASS FireworkSFXType1 : ACTOR { 
 Default {
 	
@@ -135,7 +85,10 @@ States
 	Spawn:
 		TNT1 A 0 A_SpawnItem("FlameTrails");
 		TNT1 A 1 A_SpawnItem("Red_FlareSmall");
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 2, 0, random(0, 360), 2, random(0, 290));
+		tnt1 a 0
+		{
+			//effects.show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 A 1 A_SpawnItem("Red_FlareSmall");
 		Loop;
 		
@@ -156,17 +109,48 @@ States
 		TNT1 A 1;
 		EXPL A 0 Radius_Quake(2, 100, 0, 22, 0);
 		TNT1 AAA 0 a_spawnprojectile("FireworkSFXType1", 64, 0, random(0, 360), 2, random(30, 60));
-		TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(80, 90));
-		TNT1 AAA 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(0, 40));
+		TNT1 A 0
+		{
+			for(int i = 0; i < 4; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 10;
 		TNT1 AAAA 0 a_spawnprojectile("FireworkSFXType1", 94, 0, random(0, 360), 2, random(30, 60));
 		EXPL A 0 Radius_Quake(3, 100, 0, 22, 0);
-		TNT1 A 0 a_spawnprojectile("SpawnedExplosion",10, 0, random(0, 360), 2, random(80, 90));
+		TNT1 A 0
+		{
+			for(int i = 0; i < 2; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 10;
 		TNT1 AAAAAAA 0 a_spawnprojectile("FireworkSFXType1", 128, 0, random(0, 360), 2, random(30, 60));
 		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
-		TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, random(80, 90));
-		TNT1 A 0 a_spawnprojectile("SpawnedExplosion", 10, 0, random(0, 360), 2, 90);
+		TNT1 A 0
+		{
+			for(int i = 0; i < 4; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 200;
 		Stop;
 }

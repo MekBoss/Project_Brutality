@@ -115,36 +115,15 @@ States
 			a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
 		}
 		HELN HH 3 A_FaceTarget;
-		HELN G 1 A_VileTarget;
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
-		HELN G 3 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
-		HELN H 3 A_FaceTarget;
-		HELN G 1 A_VileTarget;
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
-		HELN G 3 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		HELN H 3 A_FaceTarget;
-		HELN G 1 A_VileTarget;
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
-		HELN G 3 A_FaceTarget;
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, -35, random(0, 40), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
+		HELN GGHGGHGGH 3
+		{
+			if(frame == 6) A_VileTarget();
+			A_FaceTarget();
+			a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
+			a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
+			a_spawnprojectile("ExplosionParticle", 85, -35, random(0, 40), 2, random(0, 160));
+			a_spawnprojectile("ExplosionParticle", 85, 35, random(0, 40), 2, random(0, 160));
+		}
 		HELN H 3 A_FaceTarget;
 		
 		HELN IJ 4 BRIGHT A_FaceTarget;
@@ -157,9 +136,7 @@ States
 
 		HELN G 0 A_VileStart;
 		HELN G 10 A_FaceTarget;
-		HELN G 1 A_VileTarget;
-		HELN G 7 A_VileTarget;
-		HELN G 1 A_VileTarget;
+		HELN GGG 3 A_VileTarget;
 
 		HELN GHH 3
 		{
@@ -341,7 +318,7 @@ States
 		TNT1 A 0 A_PlaySound("gore/headshot", 2);
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 68, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 68, 0, random(0, 360), 2, random(60, 120));
-		TNT1 AAAA 0 a_spawnprojectile("MuchBlood", 68, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPiece", 68, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("Teeth", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("Brains2", 68, 0, random(0, 360), 2, random(0, 160));
@@ -374,7 +351,7 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("MuchBlood", 0, 40);
+		TNT1 A 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 A_NoBlocking;
 		XVIP ABCDEFGHIJKLMNOPQ 2;
@@ -418,7 +395,7 @@ States
 		TNT1 AAA 0 a_spawnprojectile("XDeath2", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 AAA 0 a_spawnprojectile("XDeath3", 52, 0, random(0, 360), 2, random(60, 120));
 		TNT1 AA 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("MuchBlood", 0, 40);
+		TNT1 A 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));

@@ -254,12 +254,12 @@ States
 		Stop;
 	LotsOfBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 	AbsurdBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 }
 }

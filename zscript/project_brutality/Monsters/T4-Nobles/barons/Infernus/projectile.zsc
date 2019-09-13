@@ -1,5 +1,5 @@
 
-CLASS BruiserBall : ACTOR { 
+CLASS BruiserBall : pb_projectile_base { 
 	Default {
 	Radius 12;
 	Height 18;
@@ -40,7 +40,10 @@ States
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 AAAA 19 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
 	Stop;
 		
@@ -52,7 +55,10 @@ States
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-5, 5), random(-5, 5));
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 180), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 	Stop;
 	}
 }
@@ -92,7 +98,10 @@ CLASS BruiserBallBig:BruiserBall {
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
 		TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 	Stop;
@@ -108,7 +117,10 @@ CLASS BruiserBallBig:BruiserBall {
 		TNT1 A 0 A_SpawnItem("BigRicoChet", 0, -30);
 		TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		tnt1 AAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 19 a_spawnprojectile("ExplosionSmoke", 1, 0, random(0, 360), 2, random(0, 160));
@@ -188,7 +200,7 @@ States
 	}
 }
 
-CLASS BruiserSpike : ACTOR { 
+CLASS BruiserSpike : pb_projectile_base { 
 	Default {
 	Scale 0.8;
 	Radius 6;
@@ -208,10 +220,10 @@ CLASS BruiserSpike : ACTOR {
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		SPIK A 1 A_PlaySound("superbaron/spike");
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
-		TNT1 AA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAA 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		SPIK BC 1;
 		SPIK D 1 Radius_Quake(2,5,0,2,0);
 		SPIK EF 1;

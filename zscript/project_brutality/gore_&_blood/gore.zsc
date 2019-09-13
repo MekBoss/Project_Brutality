@@ -145,39 +145,6 @@ States
 }
 	
 
-
-
-
-CLASS Brutal_FlyingBloodTrails : pb_blood_and_gore_base
-{ 
-Default
-{
-	Decal "BrutalBloodSplat";
-	Alpha 0.4;
-	+FORCEXYBILLBOARD;
-	+GHOST;
-	+NOBLOCKMAP;
-	Gravity 0.05;
-	+NOCLIP;
-	+DontSplash;
-	-EXPLODEONWATER;
-	-ALLOWPARTICLES;
-	+CLIENTSIDEONLY;
-	-NOGRAVITY;
-	Scale 1.2;
-	}
-	states
-	{
-	Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		//BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.01)
-		TNT1 AAAAAA 0 a_spawnprojectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 180));
-		//BLOD A 0 A_SpawnItem("Big_Blood", 0, 10)
-		stop;
-	}
-}
-
-
 // Blood trails spawned by FlyingBlood
 CLASS pb_FlyingBloodTrail8 : pb_blood_and_gore_base { 
 Default {
@@ -222,7 +189,6 @@ states
 {
 Spawn:
 	TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-	TNT1 A 0;
 	TNT1 A 0 Thing_ChangeTid(0,386);
 	BLOD ABCD 2;
 	stop;
@@ -292,8 +258,6 @@ States
 		TNT1 A 0 nodelay
 		{
 			gravity = frandom(0.4, 1);
-
-
 		}
 		BLOD A 4 a_spawnprojectile("XDeath1Trail", 0, 0, random(0, 360), 2, random(0, 360));
 	Loop;
@@ -426,8 +390,8 @@ States
 }
 
 CLASS XDeath4b: XDeath2 { 
-	Default {
-	
+Default
+{
 	SeeSound "misc/xdeath4";
 	DeathSound "misc/xdeath3";
 	Scale 1.0;
@@ -610,7 +574,9 @@ States
 		XDT5 I -1;
 	Stop;
 
-	Death.plasma: Death.Burn: Death.Flames:    
+	Death.plasma:
+	Death.Burn:
+	Death.Flames:    
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
 		TNT1 A 0 a_spawnprojectile("XDeathBurnedArm", 2, 0, random(0, 360), 2, 270)    ;
@@ -662,7 +628,7 @@ CLASS XDeathArm1Kicked: XDeathArm1 {
 		TNT1 A 0;
         TNT1 A 0 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
-	XARM ABCD 6 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+		XARM ABCD 6 a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
 	Goto Spawn+3;
 	}
 }
@@ -872,7 +838,6 @@ CLASS XDeathMeat2 : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death");
 		XDT5 D 2;
-		Goto Death;
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_QueueCorpse;
@@ -1277,7 +1242,7 @@ CLASS BurningFlyingMeatPiece : pb_blood_and_gore_base {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
 		XME1 ABCD 2 a_spawnprojectile("FlameTrails", 2, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
+		TNT1 A 0 {pb_blood_and_gore_event.big_blood(self);}
 		Loop;
 	Death:
 		XME1 E 1 A_SpawnItem("PB_Blood_Spot",0,0,0,1);
@@ -1678,12 +1643,12 @@ States
 		Stop;
 	LotsOfBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 	AbsurdBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 }
 }
@@ -1738,12 +1703,12 @@ States
 		Stop;
 	LotsOfBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 	AbsurdBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 }
 }

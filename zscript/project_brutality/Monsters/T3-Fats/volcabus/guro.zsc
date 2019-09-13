@@ -35,7 +35,7 @@ States
 	TNT1 AA 0 a_spawnprojectile("brutal_FlyingBlood", 55, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AA 0 a_spawnprojectile("XDeath3", 0, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
-	TNT1 AAAAAAAA 0 a_spawnprojectile("MuchBlood", 48, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 	FA72 DE 8;
 	FA72 E -1;
 }}
@@ -65,7 +65,7 @@ States
 	TNT1 AA 0 a_spawnprojectile("XDeath2", 0, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AAAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
 	F6T2 QRST 4 a_spawnprojectile("brutal_FlyingBlood", 75, 0, random(0, 360), 2, random(0, 160));
-	TNT1 AAAAAAAA 0 a_spawnprojectile("MuchBlood", 48, 0, random(0, 360), 2, random(0, 160));
+	TNT1 AAAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 	TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 	F6T2 T -1;
 	Stop;

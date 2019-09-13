@@ -3,7 +3,17 @@ states
 {
 	Spawn:
 		TNT1 A 1;
-		TNT1 AAAA 0 a_spawnprojectile("WaterParticleXSpawner", 0, 0, random(0, 360), 2, random(60, 130));
+		TNT1 A 0 
+		{
+			for(int i = 0; i < 15; i++)
+			{
+				for(int j = 0; j < 20; j++)
+				{
+					a_spawnprojectile("LiquidParticleX", 0, 0, random(0, 360), 2, random(0, 360));
+				}
+				A_SpawnItem("WaterSplashWaves");
+			}
+		}
 		TNT1 AAAAA 0 a_spawnprojectile("underwater_bubles", 0, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAA 0 a_spawnprojectile("GunFireSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 a_spawnprojectile("GunFireSmoke", 0, 0, random(0, 360), 2, random(0, 360));
@@ -18,8 +28,13 @@ CLASS UnderwaterHitPuff : pb_special_effect_base {
 states
 {
 	Spawn:
-		TNT1 A 1;
-		TNT1 A 0 a_spawnprojectile("WaterParticleXTinySpawner", 0, 0, random(0, 360), 2, random(60, 130));
+		TNT1 A 1
+		{
+			for(int j = 0; j < 10; j++)
+			{
+				a_spawnprojectile("LiquidParticleX", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 0 a_spawnprojectile("underwater_bubles", 0, 0, random(0, 360), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("underwater_bubles", 0, 0, random(0, 360), 2, random(180, 360));
 	Stop;

@@ -37,7 +37,7 @@ CLASS PoorMechPinkyLostHisArm: Demon {
 	TNT1 AA 0 a_spawnprojectile("XDeathBrain2", 60, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AA 0 a_spawnprojectile("XDeath3", random(45, 55), random(5, -5), random(160, 200), 2, random(-10, 10));
 	TNT1 AA 0 a_spawnprojectile("XDeath2", random(45, 55), random(5, -5), random(160, 200), 2, random(-10, 10));
-	TNT1 A 0 a_spawnprojectile("MuchBlood", 60, 0, random(0, 360), 2, random(0, 160));
+	TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 	TNT1 A 0 a_spawnprojectile("PinkyHeadPiece", 52, 0, random(0, 360), 2, random(0, 160));
 	//TNT1 A 0 a_spawnprojectile("PinkyJaw", 52, 0, random(0, 360), 2, random(0, 160));
 	TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));

@@ -112,13 +112,21 @@ States
 		ARA2 B 6
         {
             a_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		    A_SpawnItem("Spark_UpOnce", 0, 15);
+			{
+				A_PlaySound("Sparks/Spawn");
+				for(int i = 0; i < 30; i++)
+				{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+			}
 		    A_SpawnItem("ShoqueAzul", 0, 17);
         }
         ARAC XXXXBBXBBXBBXBBXBBXBB 6
         {
             a_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		    A_SpawnItem("Spark_UpOnce", 0, 15);
+			{
+				A_PlaySound("Sparks/Spawn");
+				for(int i = 0; i < 30; i++)
+				{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+			}
 		    A_SpawnItem("ShoqueAzul", 0, 17);
         }
 	Death:

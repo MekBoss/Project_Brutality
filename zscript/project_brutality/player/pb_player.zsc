@@ -847,7 +847,7 @@ class BrutalDoomer: Doomer
 		tnt1 AA 0 A_SpawnProjectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160));
 		tnt1 AA 0 A_SpawnProjectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160));
 		tnt1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 60, 0, random(0, 360), 2, random(0, 160));
-		tnt1 AA 0 A_SpawnProjectile("MuchBlood", 1, 0, random(0, 360), 2, random(0, 160));
+		tnt1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		tnt1 A 0 A_SpawnProjectile("XdeathChainArm", 42, 0, random(0, 360), 2, random(0, 160));
 		tnt1 A 0 A_SpawnProjectile("XdeathChainLeg", 42, 0, random(0, 360), 2, random(0, 160));
 		tnt1 A 0 A_SpawnProjectile("XDeathOrgan1", 42, 0, random(0, 360), 2, random(0, 160));
@@ -926,8 +926,7 @@ class BrutalDoomer: Doomer
 //		EXPL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("BFGDeathParticleFast", 0, 0, random(0, 360), 2, random(0, 360));
 //		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("PEPart2SuperFast", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("MuchMeatDeath", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 A_SpawnProjectile("UltraGoreSPawner", 30, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 A_SpawnProjectile("UltraGoreSpawner", 30, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAA 0 {pb_blood_and_gore_event.ultra_gore_spawner(self);}
 		TNT1 AAAAAAAA 0 A_SpawnProjectile("Bloodmist", 30, 0, random(0, 360), 2, random(70, 90));
 		TNT1 AAAAAAAAAAAAAAA 0 A_SpawnProjectile("Bloodmist", 100, 0, random(0, 360), 2, random(20, 90));
 		SPFD MMMMMMM 5;
@@ -1336,7 +1335,7 @@ class BrutalDoomer: Doomer
 		TNT1 AAA 0 A_SpawnProjectile("XDeath1", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("XDeath4", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("XDeath5", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		FSF4 K 3 A_PlaySound("misc/gibbed");
 		FSF4 L 1 A_StopSound(3);
 		FSF4 L 1 A_PlaySound("CSAWSTAT");
@@ -1775,7 +1774,7 @@ class BrutalDoomer: Doomer
 		
 		TNT1 A 0 A_PlaySound("misc/gibbed", 3);
 		TNT1 AAAAAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 A_SpawnProjectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("Bloodmist", 50, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 50, 0, random(0, 360), 2, random(-5, 5));
@@ -1818,9 +1817,14 @@ class BrutalDoomer: Doomer
 		FCY1 P 15;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/gibbed", 3);
-		TNT1 AAA 0 A_SpawnItem("Spark_UpOnce",0,65);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 90; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		//TNT1 A 0 A_SpawnItemEx("ShoqueAzul", 1, 1, 38);
-		TNT1 AAAA 0 A_SpawnProjectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 45, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("Bloodmist", 50, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 52, 0, random(0, 360), 2, random(20, 90));
@@ -1865,8 +1869,18 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_SpawnProjectile("GunFireSmoke", 34, -10, 15, 0);
 		TNT1 A 0 A_SpawnProjectile("Red_FlareSpawn", 34, -10, 15, 0);
 		FCY1 ST 3;
-		//TNT1 AA 0 A_SpawnProjectile("SpawnedExplosion", 30, 4, random(0, 360), 2, random(0, 180));
-		//TNT1 AAAA 0 A_SpawnProjectile("SpawnedExplosion", 40, 4, random(0, 360), 2, random(0, 180));
+		TNT1 A 0
+		{
+			for(int i = 0; i < 5; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 AAAAAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAAAAAAAAA 0 A_SpawnProjectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAAAAA 0 A_SpawnProjectile("SuperWallRedBlood", 40, 0, random(0, 360), 2, random(-5, 5));
@@ -1904,42 +1918,77 @@ class BrutalDoomer: Doomer
 		FCY2 DEF 4;
 		TNT1 A 0 A_PlaySound("misc/gibbed", 4);
 		TNT1 AAAAAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 49, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		FCY2 G 7;
-		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 65, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 90; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		//TNT1 A 0 A_SpawnItemEx("ShoqueAzul", 1, 1, 38);
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		FCY2 H 4;
-		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 65, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 90; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		//TNT1 A 0 A_SpawnItemEx("ShoqueAzul", 1, 1, 38);
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		FCY2 I 4;
 		TNT1 A 0 A_PlaySound("HKPAIN", 3);
-		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 55, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		FCY2 J 4;
-		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 55, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		FCY2 I 4;
-		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 55, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		//TNT1 A 0 A_SpawnItemEx("ShoqueAzul", 1, 1, 38);
 		TNT1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		FCY2 H 4;
 		
 		FCY2 I 3;
 		TNT1 A 0 A_PlaySound("HKPAIN", 5);
-		TNT1 AAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 55, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		FCY2 J 3;
 		TNT1 A 0 A_PlaySound("EYEPULL", 4);
 		//TNT1 A 0 A_SpawnItemEx("ShoqueAzul", 1, 1, 38);
-		TNT1 AAAAAA 0 A_SpawnItemEx("Spark_UpOnce", 0, 15, 15, 55, 1, 1, 1, SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 42, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("XDeath1", 42, 0, random(0, 360), 2, random(0, 160));
@@ -2060,20 +2109,20 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 A_PlaySound("BURNZOM", 4);
 		
-		C8MF BB 2 A_SpawnProjectile("MuchBlood", 50, 9, random(0, 360), 2, random(0, 160));
+		C8MF BB 2 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_PlaySound("player/cyborg/fist");
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		
-		C8MF CC 2 A_SpawnProjectile("MuchBlood", 50, 9, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		C8MF CC 2 {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_PlaySound("grunt/death",7);
 		TNT1 A 0 A_PlaySound("player/cyborg/fist");
 		
 		
-		C8MF D 3 A_SpawnProjectile("MuchBlood", 50, 9, random(0, 360), 2, random(0, 160));
+		C8MF D 3 {pb_blood_and_gore_event.much_blood(self);}
 		//	TNT1 A 0 A_PlaySound("DSSALUTE")
-		TNT1 A 0 A_SpawnProjectile("MuchBlood", 50, 9, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_PlaySound("misc/xdeath2");
 		
 		C8MF EF 4 A_SpawnProjectile("XDeath1", 32, 0, random(170, 190), 2, random(0, 40));
@@ -3414,21 +3463,21 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("misc/xdeath4c", 5);
 		FRSA DD 6 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("BURNZOM", 2);
 		FRSA EEE 7 A_PlaySound("misc/xdeath4c", 3);
 		TNT1 AAAAAAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAAAAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		FRSA FFF 6 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAAAAAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/gibbed", 7);
 		FRSA G 12 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAAAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		
 		TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 		TNT1 A 0; //A_TakeInventory("SergeantFatality6",1);
@@ -3448,28 +3497,28 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/gibbed", 7);
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT B 2 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT B 2 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/gibbed", 5);
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT B 2 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT B 2 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		
 		C8FT C 6;
@@ -3478,7 +3527,7 @@ class BrutalDoomer: Doomer
 		TNT1 AAA 0 A_SpawnProjectile("XDeath2", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("XDeath3", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 2, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAAAAAAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		C8FT D 12;
 		
 		TNT1 A 0; //A_TakeInventory("GoFatality", 1);
@@ -3496,21 +3545,21 @@ class BrutalDoomer: Doomer
 		//////////////////////////////////////////////////////
 		TNT1 A 0 A_PlaySound("player/cyborg/fist", 4);
 		C8FT E 5;
-		TNT1 AAAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		C8FT FF 6;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("NECK_BRK", 8);
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT F 6;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("NECK_BRK", 7);
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT F 6;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("NECK_BRK", 6);
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("pb_FlyingBloodTrail", 56, 0, random(0, 360), 2, random(0, 360));
 		C8FT F 6;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
@@ -3518,12 +3567,12 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("HEADRIP", 4);
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 0));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 A_SpawnProjectile("MuchBlood", 27, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 AAAAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AA 0 A_SpawnProjectile("XDeath3", 50, 0, random(0, 360), 2, random(0, 160));
 		C8FT GH 6;
 		TNT1 AAA 0 A_SpawnProjectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 0));
-		C8FT HHHHHH 2 A_SpawnProjectile("MuchBlood", 31, 0, random(0, 360), 2, random(0, 160));
+		C8FT HHHHHH 2 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0; //A_TakeInventory("GoFatality", 1);
 		TNT1 A 0; //A_TakeInventory("CyberBaronFatality2",1);
 		TNT1 AAAAA 0 A_GiveInventory("HealthBonus",5);
@@ -3993,7 +4042,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("misc/gibbed", 4);
 		TNT1 A 0 A_PlaySound("NECK_BRK", 5);
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 10, 5, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("XDeath1", 10, 5, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 37, 3, random(0, 360), 2, random(0, 160));
 		D1F1 UVWWX 4 A_SpawnProjectile("Brutal_FlyingBlood", 14, 0, random(0, 360), 2, random(0, 160));
@@ -4017,7 +4066,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/xdeath2c", 2);
 		TNT1 A 0 A_SpawnProjectile("Teeth", 10, -6, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 8, -15, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 14, -8, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 12, -2, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("xdeath2", 16, -5, random(0, 360), 2, random(0, 160));
@@ -4034,7 +4083,7 @@ class BrutalDoomer: Doomer
 		D1F2 A 3;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/xdeath2c", 4);
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 8, -15, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 14, -8, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 12, -2, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("xdeath2", 16, 0, random(0, 360), 2, random(0, 160));
@@ -4048,7 +4097,7 @@ class BrutalDoomer: Doomer
 		D1F2 A 3;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		TNT1 A 0 A_PlaySound("misc/xdeath2c", 4);
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 8, -15, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 14, -8, random(0, 360), 2, random(0, 160));
 		TNT1 AAAA 0 A_SpawnProjectile("PlayerFlyingBlood", 12, -2, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("xdeath2", 16, 0, random(0, 360), 2, random(0, 160));
@@ -4078,7 +4127,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("weapons/fistwhoosh", 3);
 		D2F1 A 2;
 		TNT1 A 0 A_PlaySound("EYEPULL", 4);
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 42, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 46, 0, random(0, 360), 2, random(60, 120));
 		TNT1 A 0 A_SpawnProjectile("xdeath2", 16, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
@@ -4115,9 +4164,9 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("dimp/death", 3);
 		D2F1 IJIJIJ 1;
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 46, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 50, -2, random(0, 360), 2, random(60, 120));
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 40, -3, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_SpawnProjectile("xdeath2", 16, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("XDeath2", 16, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("XDeath1", 10, 0, random(0, 360), 2, random(0, 160));
@@ -4224,7 +4273,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("EYEPULL", 1);
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 40, 8, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 40, 8, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 55, 2, random(0, 360), 2, random(0, 160));
 		IN1F GH 6;
 		TNT1 A 0 A_PlaySound("misc/xdeath2c");
@@ -4255,7 +4304,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0; //ACS_Execute(583, 0, 0, 0, 0);
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 40, 8, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("PlayerFlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 40, -3, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TA1F BCDDDDDD 3;
 		TA1F E 5;
 		FATF E 0 A_PlaySound("misc/gibbed",4);
@@ -4266,7 +4315,7 @@ class BrutalDoomer: Doomer
 		TNT1 AA 0 A_SpawnProjectile("XDeath3", 10, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 20, 8, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 50, -2, random(0, 360), 2, random(60, 120));
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 40, -3, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TA1F FGHHHHHHHHH 3 A_SpawnProjectile("Brutal_LiquidBlood2", 25, 2, random(0, 360), 2, random(0, 160));
 		TNT1 A 0; //A_TakeInventory("TriteElementalFatality", 1);
 		TNT1 A 0; //A_TakeInventory("GoFatality", 1);
@@ -4305,7 +4354,7 @@ class BrutalDoomer: Doomer
 		FD3M FG 3;
 		TNT1 AAAAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 8, 8, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 12, 10, random(0, 360), 2, random(60, 120));
-		TNT1 AAA 0 A_SpawnProjectile("MuchBlood", 13, 6, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAA 0 A_SpawnProjectile("xdeath1", 12, 6, random(0, 360), 2, random(0, 160));
 		FD3M H 6 A_PlaySound("misc/gibbed",1);
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 28, 5, random(0, 360), 2, random(0, 160));
@@ -4338,7 +4387,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("Paladin/Sight", 5);
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 48, 9, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 45, 11, random(0, 360), 2, random(60, 120));
-		TNT1 A 0 A_SpawnProjectile("MuchBlood", 53, 11, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AA 0 A_SpawnProjectile("xdeath1", 52, 11, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("Teeth", 59, 12, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("XDeath3", 59, 12, random(0, 360), 2, random(0, 160));
@@ -4348,7 +4397,7 @@ class BrutalDoomer: Doomer
 		TNT1 A 0 A_PlaySound("barrel/pain", 1);
 		TNT1 AAA 0 A_SpawnProjectile("Brutal_FlyingBlood", 50, 8, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 A_SpawnProjectile("Brutal_LiquidBlood2", 50, 11, random(0, 360), 2, random(60, 120));
-		TNT1 AA 0 A_SpawnProjectile("MuchBlood", 47, 13, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 A_SpawnProjectile("Teeth", 59, 12, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 A_SpawnProjectile("XDeath3", 49, 8, random(0, 360), 2, random(0, 160));
 		CP1F LMN 4;
@@ -4392,7 +4441,12 @@ class BrutalDoomer: Doomer
 		//////////////////////////////////////////////////////
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
 		ARF3 ABABABABABABAB 2;
-		tnt1 A 0 A_SpawnItem("Spark_UpOnce",0,60);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		ARF3 CD 3;
 		tnt1 A 0 A_PlaySound("baby/death");
 		ARF3 EFFFF 3;
@@ -4643,7 +4697,12 @@ class BrutalDoomer: Doomer
 		ARF5 ABABABABABABAB 2;
 		TNT1 A 0 A_PlaySound("BONEBRK3", 3);
 		TNT1 A 0 A_QuakeEx(4, 4, 4, 24, 0, 960);
-		tnt1 A 0 A_SpawnItem("Spark_UpOnce",0,60);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		ARF5 CD 3;
 		tnt1 A 0 A_PlaySound("baby/death");
 		ARF5 EFFFF 3;

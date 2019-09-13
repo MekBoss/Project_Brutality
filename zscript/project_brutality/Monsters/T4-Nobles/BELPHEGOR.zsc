@@ -251,7 +251,7 @@ States
 		//TNT1 AAAA 0 a_spawnprojectile("SuperWallredBlood", 46, 0, random(170, 190), 2, random(0, 40));
 		BRUD M 6 ;//a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAA 0 ;//a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		BRUD NOP 7;// a_spawnprojectile("MuchBloodGreen", 62, 0, random(0, 360), 2, random(0, 160));
+		BRUD NOP 7  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAAA 0 a_spawnprojectile("RevenantDust2", 30, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("Instestin2", 32, 0, random(0, 360), 2, random(0, 160));
@@ -328,7 +328,7 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		BS3F L 17;
@@ -337,7 +337,7 @@ States
 		EXPL A 0 Radius_Quake(2, 24, 0, 15, 0);
 		TNT1 AAAAA 0 ;//a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		BS3F NNOOOO 3;
@@ -346,7 +346,7 @@ States
 		TNT1 AAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
 		TNT1 AAAAA 0 ;//a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 ;//a_spawnprojectile("XDeath3", 5, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 ;//a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("PlayerFlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
 		BS3F QRRRRR 5;
@@ -445,7 +445,7 @@ States
 	Spawn:
 		TNT1 AAAAAA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
 		BS4F JK 7;
-		TNT1 AAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		BS4F L -1;
 	Stop;
 	

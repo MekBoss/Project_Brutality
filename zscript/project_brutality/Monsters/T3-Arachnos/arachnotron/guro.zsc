@@ -133,7 +133,7 @@ States
 {
     Spawn:
 	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-        ID22 ABCD 2 A_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
+        ID22 ABCD 2 {pb_blood_and_gore_event.big_blood(self);}
 	Loop;
 
 	Death:
@@ -176,7 +176,7 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		ID22 ABCD 2 A_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
+		ID22 ABCD 2 {pb_blood_and_gore_event.big_blood(self);}
 	Loop;
 
 	Death:
@@ -282,31 +282,66 @@ Default {
 	{
 	Spawn:
 		ARF2 Y 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		ARF2 YY 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		ARF2 YY 2 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		ARF2 YY 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		ARF2 YY 4 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Y 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		ARF2 ZZ 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Z 6 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		ARF2 YY 2 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 A_SpawnItem("Spark_UpOnce", 0, 15);
+		TNT1 A 0
+		{
+			A_PlaySound("Sparks/Spawn");
+			for(int i = 0; i < 30; i++)
+			{a_spawnprojectile("pb_Spark", 0.0, 0, random(0, 360), 2, random(67, 113));}
+		}
 		TNT1 A 0 A_SpawnItem("ShoqueAzul", 0, 17);
 		ARF2 Z 1 A_spawnprojectile("ExplosionSmoke", 30, 0, random(0, 360), 2, random(70, 110));
 		TNT1 A 0 A_SpawnItemEx("NoLegsSpider", 0, 1, 1, 1, 1);

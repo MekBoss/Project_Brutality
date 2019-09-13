@@ -3,8 +3,8 @@ CLASS pb_Minigun_Guy : pb_zombie_man //Replaces ZombieMan
 	//SpawnID 1170;
 Default
 {	
-//	//DropItem "NewClipBox", 50;
-//	//DropItem "DropedMinigun";
+	pb_monster_base.weapon_type 'maxi_gun';
+
 	Obituary "%o became a Minigun Zombie's target practice.";
 }
 

@@ -205,13 +205,33 @@ States
 	Goto See2;
 		
 	Death:
-		4NNI HHHHH 2 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
- 		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
-		TNT1 AAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 90, 0, random(0, 360), 2, random(0, 180));
+		4NNI HHHHH 2
+		{
+			for(int i = 0; i < 2; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
+		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
+		TNT1 A 0
+		{
+			for(int i = 0; i < 8; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
+		TNT1 AAAAAAAAAA 0 {pb_blood_and_gore_event.ultra_gore_spawner(self);}
 		TNT1 A 0 a_spawnprojectile("CyberdemonHead", 120, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 90, 0, random(0, 360), 2, random(0, 180));
 		TNT1 A 0 a_spawnprojectile("cyberdemon_death", 0, 0, random(0, 360), 2, random(0, 160));
 		4NNI I 5 A_Scream();
 		4NNI JKL 1;
@@ -229,14 +249,21 @@ States
 		TNT1 A 0 A_SpawnItem("ShoqueAzul");
 		TNT1 A 0 A_PlaySound("caco/shotx");
 		TNT1 AAAAAAAAA 0 a_spawnprojectile("XDeath1", 120, 0, random(0, 360), 2, random(0, 180));
- 		CYBB AAAAA 8 A_SpawnItem("MuchBlood", 0, 120);
-		CYBB ABCABCB 8 A_SpawnItem("MuchBlood", 0, 120);
+ 		CYBB AAAAAABCABCB 8 {pb_blood_and_gore_event.much_blood(self);}
 		EXPL A 0 Radius_Quake(6, 100, 0, 22, 0);
-		TNT1 AAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAA 0 ;//a_spawnprojectile("SpawnedExplosion", 90, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAA 0 a_spawnprojectile("UltraGoreSPawner", 90, 0, random(0, 360), 2, random(0, 180));
-		
-		TNT1 AAAAAA 0 a_spawnprojectile("UltraGoreSpawner", 90, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0
+		{
+			for(int i = 0; i < 8; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
+		TNT1 AAAAAAAAAA 0 {pb_blood_and_gore_event.ultra_gore_spawner(self);}
 		TNT1 A 0 a_spawnprojectile("cyberdemon_death", 0, 0, random(0, 360), 2, random(0, 160));
 		CYBR I 0 A_Fall();
 		CYBR JKL 0;

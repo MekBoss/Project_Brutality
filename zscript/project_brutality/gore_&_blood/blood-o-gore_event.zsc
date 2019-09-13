@@ -21,6 +21,93 @@ override void worldthingdied(worldevent e)
 	if(e.thing) {}
 }
 
+
+static void die_condition(actor caller)
+{
+	if(caller)
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			caller.a_spawnprojectile("named_BloodTr", 7, 0, random(0, 360), 2, random(0, 180));
+			caller.a_spawnprojectile("named_BloodTr", 0, 0, random(0, 180), 2, random(0, 180));
+			caller.a_spawnprojectile("named_BloodTr", 0, 0, random(0, 360), 2, random(0, 360));
+		}
+		caller.a_spawnprojectile("CeilBloodSpot", -1, 0, random(0, 360), 2, random(50, 130));
+		caller.a_spawnprojectile("WallRedBlood", 0, 0, random(0, 360), 2, random(0, 160));
+		caller.A_SpawnItem("BloodHit");
+		caller.A_SpawnItem("Brutal_FlyingBlood");
+	}
+}
+
+//{pb_blood_and_gore_event.much_blood(self);}
+static void much_blood(actor caller)
+{
+	if(caller)
+	{
+		for(int i = 0; i < 10; i++)
+		{
+			caller.a_spawnprojectile("named_BloodTr", 15, 0, random(0, 360), 2, random(0, 160));
+			caller.a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 360), 2, random(0, 360));
+			caller.a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, 180);
+			if(i < 3)
+			{
+				caller.a_spawnprojectile("Brutal_FlyingBlood", 0, 0, random(0, 360), 2, random(0, 160));
+				caller.a_spawnprojectile("Bloodmist", 20, 0, random(0, 360), 2, random(30, 90));
+			}
+		}
+	}
+}
+
+
+//{pb_blood_and_gore_event.big_blood(self);}
+static void big_blood(actor caller)
+{
+	if(caller)
+	{
+		for(int i = 0; i < 18; i++)
+		{
+			if(i < 6) caller.a_spawnprojectile("pb_FlyingBloodTrail", 15, 0, random(0, 360), 2, random(0, 180));
+			caller.a_spawnprojectile("pb_FlyingBloodTrail", 0, 0, random(0, 180), 2, random(0, 180));
+		}
+	}
+}
+
+//{pb_blood_and_gore_event.blood_trails(self);}
+static void blood_trails(actor caller)
+{
+	if(caller)
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			caller.a_spawnprojectile("named_BloodTr", 0, 0, random(0, 180), 2, random(0, 180));
+		}
+	}
+}
+
+//{pb_blood_and_gore_event.gore_spawner_2(self);}
+static void gore_spawner_2(actor caller)
+{
+	if(caller)
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			caller.A_SpawnItem("SuperGore");
+		}
+	}
+}
+
+//{pb_blood_and_gore_event.ultra_gore_spawner(self);}
+static void ultra_gore_spawner(actor caller)
+{
+	if(caller)
+	{
+		for(int i = 0; i < 10; i++)
+		{
+			caller.A_SpawnItem("SuperGore");
+		}
+	}
+}
+
 }
 
 
@@ -176,7 +263,7 @@ states
 		TNT1 AAA 0 a_spawnprojectile("Bloodmist", 7, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AA 0 a_spawnprojectile("SuperGoreMistSmall", 0, 0, random(0, 360), 2, random(10, 90));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("SuperGoreSpawner2", 0, 0, random(0, 360), 2, random(10, 90));
+		TNT1 A 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		BLHT ABCDEFG 1;
 		BLHT GGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.05);
 		Stop ;

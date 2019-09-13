@@ -19,6 +19,9 @@ Default
 	Obituary "%o was splattered by a Quad-Shotgun Zombie";
 
 	DamageFactor "Blood", 0.0; DamageFactor "BlueBlood", 0.0; DamageFactor "GreenBlood", 0.0;
+
+	pb_monster_base.weapon_type 'SSG';
+
 //	//DropItem "NewShell";
 //	//DropItem "DropedSSG";
 //	//DropItem "DropedGrenade", 5;
@@ -325,7 +328,7 @@ States
 		QSZM H 1 A_FaceTarget();
 		TNT1 A 0 A_Recoil(12);
 		TNT1 A 0 ThrustThingZ(0,20,0,1);
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 35, 0, random(0, 360), 2, random(0, 160));
 		Goto Death;
 		
@@ -341,7 +344,7 @@ States
 		TNT1 A 0 A_Jump(128, "Death.Arm");
 		TNT1 A 0 ThrustThingZ(0,40,0,1);
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZArm1", 35, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_Scream();
 		QXXZ EF 15;
 		TNT1 A 0 A_NoBlocking();
@@ -469,7 +472,7 @@ States
 		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_NoBlocking();
-		QPDH ABBC 10 a_spawnprojectile("MuchBlood", 30, 0, random(0, 360), 2, random(0, 160));
+		QPDH ABBC 10  {pb_blood_and_gore_event.much_blood(self);}
 		QPDH CDE 8;
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
@@ -481,10 +484,10 @@ States
 		TNT1 AAAAAAA 0 a_spawnprojectile("Blood", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_PlaySound("misc/xdeath4");
 		TNT1 A 0 a_spawnprojectile("XDeathHFQSZHead", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 40, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_XScream();
 		TNT1 A 0 A_NoBlocking();
-		QPDH AABBBC 8 a_spawnprojectile("MuchBlood", 30, 0, random(0, 360), 2, random(0, 160));
+		QPDH AABBBC 8  {pb_blood_and_gore_event.much_blood(self);}
 		QPDH CDE 8;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_PlaySound("BODYF",6);
@@ -508,7 +511,7 @@ States
 		Goto Death.Massacre;
 		
 	Death.Tear:
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_XScream();
 		TNT1 O 0 A_NoBlocking();
 		QP3X AA 8;
@@ -712,33 +715,19 @@ States
 		TNT1 A 0 A_Stop();
 		TNT1 A 0 A_Playsound("MELT");
 		TNT1 A 0 A_NoBlocking();
-		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticle", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAAAA 0 a_spawnprojectile("ExplosionParticle", 32, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAAAAAAA 0 {pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");}
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
 		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN KKKKK 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("ExplosionParticle", 36, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN LLLLL 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("ExplosionParticle", 28, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),24,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN CCCCC 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("ExplosionParticle", 36, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_Playsound("SZZLL", 3);
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),20,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN DDDDD 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),16,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN EEEEE 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("ExplosionParticle", 12, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),12,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN FFFFF 1 BRIGHT Light("IncinerationGlow") a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
-		Z8RN GGGG 2 Light("IncinerationGlow");
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		Z8RN HHHH 2 Light("IncinerationGlow") a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		Z8RN KKKKKLLLLLCCCCCDDDDDEEEEEFFFFFGGGGHHHH 1 BRIGHT Light("IncinerationGlow")
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+			if(frame > 20) A_Playsound("SZZLL", 3);
+		}
 		Z8RN HHHHHH 12 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
 		Z8RN H -1;
 	Stop;
@@ -832,7 +821,7 @@ States
 	Dead.ExplosiveImpact:
 		//TNT1 A 0 A_SpawnItem("VeryFuckedUpBrutalizedHFQSZLeg");
 		//TNT1 A 0 A_SpawnItem("Ploft");
-		TNT1 A 0 A_SpawnItem("MuchBlood");
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_PlaySound("BODYF",6);
 	Stop;
 	
@@ -933,7 +922,7 @@ States
 	Dead.Landmine:
 		TNT1 A 0 A_SpawnItem("DeadHFQSZ_NoLeg", 1);
 		//TNT1 A 0 A_SpawnItem("Ploft");
-		TNT1 A 0 A_SpawnItem("MuchBlood");
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_PlaySound("BODYF",6);
 	Stop;
 	

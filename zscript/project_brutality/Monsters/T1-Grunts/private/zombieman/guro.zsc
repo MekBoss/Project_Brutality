@@ -233,7 +233,7 @@ CLASS ZombieMan_DeathOther: ZombieMan_DeathMinorLeg {
 States
 {
 	Spawn:
-		PNDT V 5 a_spawnprojectile("MuchBlood", 40, 0, random(0, 360), 2, random(0, 160));
+		PNDT V 5  {pb_blood_and_gore_event.much_blood(self);}
 		PNDT W 5;
 		TNT1 A 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
 		PNDT X 5;
@@ -275,7 +275,7 @@ States
 	Spawn:
 		TNT1 A 0 A_Recoil(1);
 		PSSR A 6 ;
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 36, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		PSSR BCD 6;
 	DieNow:
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
@@ -311,7 +311,7 @@ States
 		TNT1 A 0 A_JumpIf(vel.y == 0, "DeathShotgunFly");
 		TNT1 A 0 A_Jump(128, "DeathShotgunontheface2");
 		TNT1 A 0 A_Scream;
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 35, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_NoBlocking;
 		POS4 ABCD 4 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
@@ -328,7 +328,7 @@ States
 	Stop;
 			
 	DeathShotgunontheface2:
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 35, 0, random(0, 360), 2, random(0, 160));
 		POS4 KLMN 4 a_spawnprojectile("Brutal_FlyingBlood", 15, 0, random(0, 360), 2, random(0, 40));
 		POS4 OPQRST 4 A_JumpIf((vel.Y == 0), "DSFstop2");

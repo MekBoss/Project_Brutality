@@ -72,7 +72,7 @@ States
 		{
 			A_Chase();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
-			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 		}
 	Loop;
 		
@@ -82,7 +82,7 @@ States
 		{
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
-			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 		}
 		FRIT U 6 Bright A_CustomComboAttack("AfritBall", 44, 10, "Baron/Melee");
 	Goto See;
@@ -92,7 +92,7 @@ States
 		{
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
-			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 			if(frame == 4) a_spawnprojectile("HellFire", 44);
 		}
 	Goto See;
@@ -104,7 +104,7 @@ States
 		{
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
-			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 			if(frame == 20) A_CustomComboAttack("FireShot", 44, 10, "Baron/Melee");
 		}
 	Goto See;
@@ -114,7 +114,7 @@ States
 		{
 			A_FaceTarget();
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
-			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 			if(frame == 5) a_spawnprojectile("Comet", 44);
 		}
 	Goto See;
@@ -123,7 +123,7 @@ States
 		FRIT HH 4 Bright
 		{
 			a_spawnprojectile("BurnParticles", 15 ,0, random(0, 360), 2, random(50, 130));
-			a_spawnprojectile("ExplosionParticle", 20, 0, random(0, 360), 2, random(50, 130));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 		}
 		FRIT H 1 Bright A_Pain();
 	Goto See;
@@ -152,7 +152,7 @@ States
 		
 	Death.Dropdown:
 		FRI1 A 6 Bright A_Scream;
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		FRI1 B 6 Bright A_NoBlocking;
 		FRI1 CD 6 Bright;
 		TNT1 A 0 A_SpawnItem("DeadAfrit");

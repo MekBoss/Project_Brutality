@@ -26,7 +26,6 @@ States
 {
 Spawn:
 	TNT1 AA 1 a_spawnprojectile("YellowFlareSmallB",-5,0,-85,0,random(-10,10));
-	//TNT1 AA 0 a_spawnprojectile("OrangeLensFlareAlt",2,0,0,0,0)
 	Stop;
 }
 }
@@ -55,6 +54,7 @@ Default {
 scale 0.15;
 }
 }
+
 CLASS YellowLensFlareAlt : Flare_General { 
 Default {
 

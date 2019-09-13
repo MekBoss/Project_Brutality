@@ -9,8 +9,13 @@ Default {
 states
 {
 	Spawn:
-		TNT1 AAAAAAAAAAAA 0 A_SpawnItem("SpawnSlimeParticleX");
-		TNT1 AAAA 1 A_SpawnItem("SpawnSlimeParticleX");
+		TNT1 a 1 
+		{
+			for(int i = 0; i < 30; i++)
+			{
+				a_spawnprojectile("SlimeParticleXNEW", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 12;
 		TNT1 A 0 A_SpawnItem("NukageSplashWaves");
 		TNT1 A 16;
@@ -35,15 +40,6 @@ States
 }
 }
 
-CLASS SpawnSlimeParticleX : pb_special_effect_base { 
-states
-{
-	Spawn:
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SlimeParticleXNEW", 0, 0, random(0, 360), 2, random(0, 360));
-	Stop;
-}
-}
-
 CLASS SlimeSplashWaves : pb_special_effect_base { 
 States
 {
@@ -59,37 +55,6 @@ States
 }
 
 
-
-CLASS SludgeParticleXSpawner : pb_special_effect_base { 
-Default {
-	speed 40;
-	renderstyle "Add";
-	alpha 0.9;
-	scale .15;
-}
-states
-{
-	Spawn:
-		TNT1 AAAAAAAAAAAA 0 A_SpawnItem("SpawnSludgeParticleX");
-		TNT1 AAAA 1 A_SpawnItem("SpawnSludgeParticleX");
-		TNT1 A 12;
-		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
-		TNT1 A 16;
-		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
-		TNT1 A 16;
-		TNT1 A 0 A_SpawnItem("SlimeSplashWaves");
-	Stop;
-}
-}
-
-CLASS SpawnSludgeParticleX : pb_special_effect_base { 
-states
-{
-	Spawn:
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SludgeParticleX", 0, 0, random(0, 360), 2, random(0, 360));
-	Stop;
-}
-}
 
 
 CLASS SludgeParticleX : pb_special_effect_base { 
@@ -128,8 +93,6 @@ States
 		TNT1 A 1;
 		//TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0);
 		TNT1 A 1;
-		Goto Stand;
-	Stand:
 		L1QU ABCDDDDDDD 4;
 		Stop;
 	Death:

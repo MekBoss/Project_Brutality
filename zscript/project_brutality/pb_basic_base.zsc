@@ -4,6 +4,8 @@ class pb_projectile_base : fastprojectile
 //storing interpolation data for effect event
 vector3 prev_pos;
 
+eventhandler effects;
+
 override void tick()
 {
 	super.tick();
@@ -104,68 +106,10 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 
 
 
-//base class for reusing effects in effect event
-class pb_special_effect_base : actor
-{
-protected bool show_something;
-protected state off_state, reset_cond;
-
-override void beginplay()
-{
-	super.beginplay();
-	off_state = findstate("off");
-	reset_cond = findstate("reset_self_condition");
-}
-
-bool check_busyness()
-{
-	return show_something;
-}
-
-
-override int SpecialMissileHit (Actor victim)
-{
-	vel = (0, 0, 0);
-	return 1;
-}
-
-override void tick()
-{
-	super.tick();
-	if(curstate != off_state || curstate != reset_cond)
-	{
-		show_something = true;
-	}
-}
-
-
-default
-{+nointeraction; +noclip; +nogravity; +notonautomap; radius 1; height 1;}
-
-states
-{
-	spawn:
-	off:
-		tnt1 a -1;
-	stop;
-
-	reset_self_condition:
-		tnt1 a 0
-		{
-			self.scale =(1, 1);
-			self.vel = (0, 0, 0);
-			show_something = false;
-			alpha = 1;
-		}
-	goto off;
-}
-
-}
 
 
 class pb_decoration_base : actor {}
 
-class pb_puff : pb_special_effect_base {}
 
 
 

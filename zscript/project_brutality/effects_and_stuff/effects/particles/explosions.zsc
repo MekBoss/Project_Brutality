@@ -51,35 +51,3 @@ States
 	loop;
 }
 }
-
-
-CLASS ExplosionParticleSpawner : pb_particle { 
-States
-{
-	Spawn:
-		TNT1 A 0;
-		TNT1 AAAAA 0 a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAA 0 a_spawnprojectile("pb_particle", 0, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 1;
-		Stop;
-}
-}
-
-
-
-
-CLASS HeavyAssExplosionFireball : pb_particle { 
-Default {
-	Alpha 0.60;
-	RenderStyle "Translucent";
-	Scale 2.5;
-}
-States
-{
-	Spawn:
-		tnt1 A 0;
-		EXF4 ABCDEFGHIJKLMNOP 1 BRIGHT A_SpawnItem("Red_Flare");
-		Stop;
-}
-}
-

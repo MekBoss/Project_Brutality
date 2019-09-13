@@ -132,7 +132,7 @@ States
 	Death:
 	Death.Bullet:
 		TNT1 A 0 A_ChangeFlag("USESPECIAL", 0);
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		PLAY H 10 A_PlayerScream();
 		
 		PLAY I 10 A_NoBlocking();
@@ -148,7 +148,7 @@ States
 		TNT1 A 0 A_GiveToTarget("EatMe",1);
 		TNT1 A 0 a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL1 A 10 A_XScream();
 		XPL1 B 20 A_NoBlocking();
 		TNT1 A 0 A_SpawnItem("RemoveMarine");
@@ -166,15 +166,15 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("RipGuts", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfMarine", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL2 A 10 A_XScream();
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL2 B 20 A_NoBlocking();
 		TNT1 A 0 A_SpawnItem("RemoveMarine");
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL2 C 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL2 DE 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL2 C 10  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL2 DE 10  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_SpawnItem("PB_pot");
 		XPL2 E -1;
 		Stop;
@@ -200,36 +200,36 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("RipGuts", 50, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathHalfMarine", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL2 A 10 A_XScream();
 		TNT1 A 0 A_SpawnItem("RemoveMarine");
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL2 B 20 A_NoBlocking();
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL2 C 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL2 DE 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL2 C 10  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL2 DE 10  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_SpawnItem("PB_pot");
 		XPL2 E -1;
 		Stop;
 		
 	Death.Rip:
 		TNT1 A 0 A_ChangeFlag("USESPECIAL", 0);
-		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL3 A 10 A_XScream();
-		TNT1 AAAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL3 B 20 A_NoBlocking();
 		TNT1 A 0 A_SpawnItem("RemoveMarine");
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL3 C 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL3 D 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL3 E 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL3 F 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		XPL3 F 10 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL3 C 10  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL3 D 10  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL3 E 10  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL3 F 10  {pb_blood_and_gore_event.much_blood(self);}
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
+		XPL3 F 10  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_SpawnItem("PB_pot");
 		XPL3 F -1;
 		Stop;
@@ -290,24 +290,24 @@ States
 		
 	Death.Rape:
 		TNT1 A 0 A_ChangeFlag("USESPECIAL", 0);
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAAAAAAAAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL4 A 20 A_XScream();
 		TNT1 A 0 a_spawnprojectile("XDeath1", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath2", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath3", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeath4", 1, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL4 B 20 A_NoBlocking();
 		TNT1 A 0 A_SpawnItem("RemoveMarine");
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL4 C 20;
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL4 D 20;
-		TNT1 AAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL4 E 20;
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XPL4 F 20;
-		TNT1 AAAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_SpawnItem("PB_pot");
 		XPL4 F -1;
 		Stop;

@@ -77,6 +77,7 @@ override void beginplay()
 //weapon special check fro event, first one for dual check, second for special
 virtual bool, bool weapon_dual_and_special()
 {return false, false; }
+
 //weapon special function prototype
 virtual void activate_special()
 {}

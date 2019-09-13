@@ -1,4 +1,5 @@
-//Fuck this weapon, seriously. Will need to revisit this weapon and rewrite it like the fists...	
+//Fuck this weapon, seriously. Will need to revisit this weapon and rewrite it like the fists...
+//dont know who you are, but I agrreed
 class Cha_in_saw : PB_weapon_base //replaces Chainsaw
 {
 default

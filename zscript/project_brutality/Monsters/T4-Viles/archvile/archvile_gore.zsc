@@ -44,12 +44,12 @@ States
 		
 	LotsOfBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 	AbsurdBlood:
 		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
 		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperGoreSpawner2", 64, 0, random(0, 360), 2, random(20, 40));
+		TNT1 AAAAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
 		Stop;
 }
 }
@@ -648,7 +648,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath3", 52, 0, random(0, 360), 2, random(30, 120));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathOrgan1", 24, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("MuchBlood", 0, 40);
+		TNT1 A 0 {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
 		TNT1 AAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(60, 120));
@@ -1021,7 +1021,7 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		VIGP A 4 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
+		VIGP A 4 {pb_blood_and_gore_event.big_blood(self);}
 	Loop;
 
 	Death:
@@ -1060,7 +1060,7 @@ States
 {
 	Spawn:
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash");
-		VIGP C 4 a_spawnprojectile("Brutal_FlyingBloodTrails",0,0,180,2);
+		VIGP C 4 {pb_blood_and_gore_event.big_blood(self);}
 	Loop;
 
 	Death:

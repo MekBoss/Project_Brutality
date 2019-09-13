@@ -104,8 +104,8 @@ States
 		FATT GGGGGGGGGGGG 2
 		{
 			A_FaceTarget();
-			a_spawnprojectile("explosionparticle", 34, 30, 0, 2, 0);
-			a_spawnprojectile("explosionparticle", 34, -30, 0, 2, 0);
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 		}
 	Torch:
 		FATT GHIGH 1
@@ -115,8 +115,8 @@ States
 			if( (frame % 2) == 0) cooldown ++;
 			a_spawnprojectile("EnemyFlamethrowerMissile",30,-25,10,0);
 			a_spawnprojectile("EnemyFlamethrowerMissile",30,25,0,0);
-			a_spawnprojectile("explosionparticle", 34, 30, 0, 2, 0);
-			a_spawnprojectile("explosionparticle", 34, -30, 0, 2, 0);
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 		}
 		TNT1 A 0 A_JumpIf(cooldown > 8, "See");
 		TNT1 A 0 A_JumpIfCloser(320, "Torch");
@@ -246,7 +246,7 @@ States
 		FATK A 6;
 		FATK B 6 A_Scream();
 		FATK C 6 A_NoBlocking();
-		FATK DEF 6 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		FATK DEF 6  {pb_blood_and_gore_event.much_blood(self);}
 		FATK F 1 A_BossDeath  ();
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_SpawnItem("DeadFat", 1);
@@ -265,7 +265,7 @@ States
 		FAT3 K 6;
 		FAT3 L 6 A_Scream();
 		FAT3 M 6 A_NoBlocking();
-		FAT3 NOP 6 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		FAT3 NOP 6  {pb_blood_and_gore_event.much_blood(self);}
 		FAT3 Q 6;
 		FAT3 R 6 A_BossDeath();
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
@@ -287,14 +287,14 @@ States
 		
 	Death.Tear:
 		TNT1 O 0 A_Jump(128, "DeathGutted");
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_Scream();
 		TNT1 O 0 A_NoBlocking();
-		FAT2 KL 5 a_spawnprojectile("MuchBlood", 75, 0, random(0, 360), 2, random(0, 160));
+		FAT2 KL 5  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("RipGuts", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath1", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_BossDeath();
-		FAT2 MNOP 5 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		FAT2 MNOP 5  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_SpawnItem("NoGutsFatso", 1);
 	Stop;
@@ -307,7 +307,7 @@ States
 		XFAT AB 4;
 		TNT1 A 0 A_Scream();
 		TNT1 O 0 A_NoBlocking();
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("RipGuts", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
@@ -329,7 +329,7 @@ States
 		TNT1 A 0 A_BossDeath();
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 a_spawnprojectile("XDeathMancubusArm", 30, 0, random(0, 360), 2, random(50, 130));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		XFT1 AAAAAAAA 1 a_spawnprojectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(30, 50));
 		TNT1 A 0 A_SpawnItem("DyingFatso01");
@@ -340,7 +340,7 @@ States
 		TNT1 A 0 A_Scream();
 		TNT1 A 0 A_NoBlocking();
 		TNT1 A 0 A_BossDeath();
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		MXD1 AABBBBBBCCCCCCCDDDDDDDEEEEEEEFFFFFFGGGGGGGHHHHHHHIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1
 		{
 			a_spawnprojectile("Brutal_LiquidBlood2", 40, 0, random(0, 360), 2, random(30, 60));
@@ -369,9 +369,9 @@ States
 		TNT1 AAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		FAT5 AAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 40, 0, random(0, 360), 2, random(30, 60));
 		FAT5 B 6 A_Scream();
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 25, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		FAT5 C 6 A_NoBlocking();
-		FAT5 D 6 a_spawnprojectile("MuchBlood", 15, 0, random(0, 360), 2, random(0, 160));
+		FAT5 D 6  {pb_blood_and_gore_event.much_blood(self);}
 		FAT5 E 6 A_BossDeath();
 		FAT5 EEEEEEEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 8, 0, random(0, 360), 2, random(30, 60));
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
@@ -389,7 +389,7 @@ States
 	DeathSSG1:
 		TNT1 A 0;
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AA 0 a_spawnprojectile("XDeathMancubusArm", 30, 0, random(0, 360), 2, random(50, 130));
 		XFT2 AAAAAAAAAAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(30, 50));
 		XFT2 BC 5;
@@ -401,7 +401,7 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItem("MancubusHeadExplode", 0, 50);
 		TNT1 AA 0 a_spawnprojectile("XDeathMancubusArm", 30, 0, random(0, 360), 2, random(50, 130));
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		XFT3 AAAAAAAAAAAAAAAAAAAAAAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(30, 50));
 		XFT3 BC 6;
@@ -459,7 +459,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeathMancubusHead", 20, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("XDeath2", 20, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 a_spawnprojectile("XDeath3", 20, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		XFBT A 6 A_Scream();
 		XFBT B 6 A_NoBlocking();
 		XFBT CDEF 6 A_BossDeath();
@@ -547,8 +547,17 @@ States
 		TNT1 A 0;
 		TNT1 A 0 A_StopSound(6);
 		TNT1 AAAA 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		EXPL A 0 A_SpawnItem("ExplosionParticleSpawner");
-		TNT1 AAA 0 A_SpawnItemEx("ExplosionParticle", random(12,-12), random(12,-12), random(2,12), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
+			}
+		}
+		TNT1 AAA 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		EXPL AAA 0 a_spawnprojectile("FlamethrowerFireParticles", 6, 0, random(0, 360), 2, random(0, 90));
 		//TNT1 AA 0 a_spawnprojectile("FireworkSFXType1", 0, 0, random(0, 360), 2, random(30, 60));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
@@ -1208,7 +1217,7 @@ Default
        Death:
         TNT1 A 0 A_SpawnItem("GutsPile");
 	 TNT1 A 0 A_NoBlocking;
-	 TNT1 AAA 0 a_spawnprojectile("UltraGoreSpawner", 5, 0, random(0, 360), 2, random(30, 60));
+	 TNT1 AAA 0 {pb_blood_and_gore_event.ultra_gore_spawner(self);}
 	 TNT1 AAAA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
 	 TNT1 AAAA 0 a_spawnprojectile("XDeath2", 25, 0, random(0, 360), 2, random(0, 160));
 	 TNT1 AAAA 0 a_spawnprojectile("XDeath3", 25, 0, random(0, 360), 2, random(0, 160));
@@ -1324,7 +1333,7 @@ States
 		TNT1 A 0 A_NoBlocking;
 		TNT1 A 0 A_PlaySound("fatso/pain");
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 A 0 a_spawnprojectile("XDeathMancubusArm", 30, 0, random(0, 360), 2, random(50, 130));
 		XFT2 AAAAAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(30, 50));
 		TNT1 A 0 A_SpawnItem("DyingFatso02");
@@ -1351,7 +1360,7 @@ Health 130;
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItem("MancubusHeadExplode", 0, 50);
-		TNT1 A 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
 		XFT3 AAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(30, 50));
 		TNT1 A 0 A_SpawnItem("DyingFatso03");
@@ -1379,7 +1388,7 @@ Default {
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItem("RipGuts", 0, 40);
-		TNT1 AAA 0 a_spawnprojectile("MuchBlood", 55, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAA 0 a_spawnprojectile("XDeath2", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAA 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AA 0 a_spawnprojectile("XDeath4", 40, 0, random(0, 360), 2, random(0, 160));

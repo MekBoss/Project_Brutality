@@ -4,9 +4,9 @@
 
 CLASS Maxi_Gun : weapon_slot_4_proto_class
 {
-bool upgrade, barrel_spins, choose_upgraded_version;
+protected bool upgrade, barrel_spins, choose_upgraded_version;
 
-int temperature;
+protected int temperature;
 
 Default
 {

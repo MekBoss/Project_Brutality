@@ -1,0 +1,81 @@
+
+CLASS MeatShieldTracer: Tracer { 
+Default {
+	
+	+BLOODSPLATTER;
+	+THRUACTORS;
+	-DONTSPLASH;
+	speed 100;
+	damagefunction(random(20,25));
+	Decal "BulletDecalNew1";
+	//DamageType "FriendBullet"
+	DamageType "Bullet";
+}
+States
+{
+	Spawn:
+		TRAC A 1 BRIGHT;
+		TNT1 A 0 {self.bTHRUACTORS = false;}
+	Fly:
+		TRAC A 1 BRIGHT;
+	Loop;
+
+	Death:
+		TNT1 A 1 A_SpawnItem("HitPuff");
+	Stop;
+}
+}
+
+CLASS MeatShieldShotgunTracer1: Tracer { 
+Default {
+	
+	+BLOODSPLATTER;
+	+THRUACTORS;
+	-DONTSPLASH;
+	speed 100;
+	damagefunction(random(20,25));
+	Decal "BulletDecalNew1";
+	damagetype "Cutless";
+}
+States
+{
+	Death:
+		TNT1 A 1 A_SpawnItem("HitPuff");
+		Stop;
+		
+	Spawn:
+		TRAC A 1 BRIGHT;
+		TNT1 A 0 {self.bTHRUACTORS = false;}
+		Goto Fly;
+	Fly:
+		TRAC A 1 BRIGHT;
+		Loop;
+}
+}
+
+CLASS MeatShieldShotgunTracer2: Tracer { 
+Default {
+	
+	+BLOODSPLATTER;
+	+THRUACTORS;
+	-DONTSPLASH;
+	speed 100;
+	damagefunction(random(20,25));
+	Decal "BulletDecalNew1";
+	damagetype "Shotgun";
+}
+States
+{
+	Death:
+		TNT1 A 1 A_SpawnItem("HitPuff");
+		Stop;
+		
+	Spawn:
+		TRAC A 1 BRIGHT;
+		TNT1 A 0 {self.bTHRUACTORS = false;}
+		Goto Fly;
+	Fly:
+		TRAC A 1 BRIGHT;
+		Loop;
+}
+}

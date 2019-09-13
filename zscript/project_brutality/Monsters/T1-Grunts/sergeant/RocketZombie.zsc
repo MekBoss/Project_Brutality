@@ -2,6 +2,7 @@ CLASS pb_Rocket_Zombie: pb_Shotgun_Guy// Replaces ShotgunGuy
 { 
 Default
 {
+	//бля а тут ракета спавниться....знову перероблювати все, ААААААААААААААААААААААААААААА
 	//DropItem "RocketAmmo";
 	//SpawnID 1260;
 	+NOTARGET;
@@ -158,16 +159,15 @@ States
 		TNT1 A 0 A_StopSound(4);
 		EXPL A 0 Radius_Quake(2, 54, 0, 15, 0);
 		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX", 0, 0, 0);
-		TNT1 A 0 a_spawnprojectile("MetalShard1", 5, 0, random(0, 360), 2, random(30, 160));
-		TNT1 A 0 a_spawnprojectile("MetalShard1", 5, 0, random(0, 360), 2, random(30, 160));
-		TNT1 A 0 a_spawnprojectile("MetalShard1", 5, 0, random(0, 360), 2, random(30, 160));
+		TNT1 AAA 0 a_spawnprojectile("MetalShard1", 5, 0, random(0, 360), 2, random(30, 160));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_Explode(25, 100, damagetype:"ExplosiveImpact");
-		TNT1 AA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAA 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 A 0 A_QuakeEx(1, 1, 1, 12, 0, 420, "", 0);
-		
+
 		TNT1 AAAAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		EXPL AAA 0 a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAA 1 a_spawnprojectile("ExplosionSmoke", 2, 0, random(0, 360), 2, random(0, 360));

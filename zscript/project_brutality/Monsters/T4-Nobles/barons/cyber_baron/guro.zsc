@@ -67,7 +67,18 @@ States
 		TNT1 A 0 A_NoBlocking;
 		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
 		TNT1 A 0 A_SpawnItemEx("NewFireExplosionEffect",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 ;//A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			for(int i = 0; i < 2; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
 		TNT1 AAAAA 0 ;//a_spawnprojectile("Bloodmist", 52, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronOfHellTorso", 52, 0, random(0, 360), 2, random(0, 160));
@@ -179,7 +190,18 @@ CLASS DyingCyberBaron2 : ACTOR {
 		TNT1 A 0 A_NoBlocking;
 		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
 		TNT1 A 0 A_SpawnItemEx("NewFireExplosionEffect",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 ;//A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			for(int i = 0; i < 2; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
 		TNT1 AAAAA 0 ;//a_spawnprojectile("Bloodmist", 52, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronOfHellTorso", 0, 0, random(0, 360), 2, random(0, 160));
@@ -202,7 +224,18 @@ CLASS DyingCyberBaron2 : ACTOR {
 		TNT1 A 0 A_NoBlocking;
 		EXPL A 0 Radius_Quake(3, 60, 0, 11, 0);
 		TNT1 A 0 A_SpawnItemEx("NewFireExplosionEffect",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 ;//A_SpawnItemEx("SpawnedExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			for(int i = 0; i < 2; i++)
+			{
+				A_PlaySound("FAREXPL");
+				A_PlaySound("Explosion", 1);
+				a_spawnprojectile("CasingSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
+				A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+				a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
+			}
+		}
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
 		TNT1 AAAAAA 0 ;//a_spawnprojectile("Bloodmist", 62, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 ;//a_spawnprojectile("XDeathBaronOfHellTorso", 0, 0, random(0, 360), 2, random(0, 160));

@@ -603,9 +603,7 @@ TNT1 AAAA 0 a_spawnprojectile("brutal_FlyingBloodFaster", 32, 0, random(170, 190
 TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 TNT1 AAAAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 TNT1 AAAAAAA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
-TNT1 AAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
-TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
-TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
 TNT1 AAAAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 EXPL AAAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 TNT1 A 1;

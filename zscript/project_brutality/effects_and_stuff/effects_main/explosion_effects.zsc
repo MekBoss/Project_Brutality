@@ -1,0 +1,30 @@
+extend class cheap_effect_base
+{
+states
+{
+    NewRocketExploFX:
+		TNT1 A 0 A_PlaySound("FAREXPL");
+		TNT1 A 0 A_Jump(256, "NREFX_1", "NREFX_2", "NREFX_3", "NREFX_4", "NREFX_5");
+
+	NREFX_1:
+		X006 ABCDEFGHIJKLMNOP 1 bright;
+	goto reset_self_condition;
+
+	NREFX_2:
+		X003 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 bright;
+	goto reset_self_condition;
+
+	NREFX_3:
+		X004 ABCDEFGHIJKLMNOPQ 1 bright;
+	goto reset_self_condition;
+
+	NREFX_4:
+		X001 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 bright;//excavator
+	goto reset_self_condition;
+
+	NREFX_5:
+		X005 ABCDEFGHIJKLMNOPQRSTUVWX 1 bright;
+	goto reset_self_condition;
+
+}
+}

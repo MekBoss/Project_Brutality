@@ -12,7 +12,7 @@ enum shotgun_ammo_type
 	dragon = 2
 };
 
-shotgun_ammo_type actual_shotgun_ammo_type;
+protected shotgun_ammo_type actual_shotgun_ammo_type;
 
 bool iron_sight, dragon_upgrade;
 
@@ -135,11 +135,13 @@ States
 			int force = CountInv("PowerStrength");
 			A_SetPitch(pitch - 2 + force);
 			A_SetAngle(angle - 2 + force);
-
+			{pb_effect_event(invoker.effects).show_some_effect(self, "ShotgunParticles");}
+			/*
 			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
 			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
 			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
-			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));			
+			a_fireprojectile("ShotgunParticles", random(-17,17), 0, -1, random(-17,17));
+			*/			
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 			a_fireprojectile("GunFireSmoke", 0, 0, 0, 0, 0, 0);
 		}
@@ -849,8 +851,14 @@ CLASS DragonBreath : pb_projectile_base
 		TNT1 A 0 A_Playsound("Afrit/Hellfire");
 		TNT1 A 0 A_Explode(21, 66, 0);
 		TNT1 AAAA 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		EXPL A 0 A_SpawnItemEx("ExplosionParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		EXPL AAAAAAAAAAA 0 a_spawnprojectile("ShotgunParticles", 6, 0, random(0, 360), 2, random(0, 90));//ShotgunParticles
+		TNT1 A 0
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
+			}
+		}
+		EXPL AAAAAAAAAAA 0 {pb_effect_event(effects).show_some_effect(self, "ShotgunParticles");}
 		TNT1 A 0 A_Jump(76, 2, 3);
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
@@ -894,7 +902,10 @@ CLASS DragonsBreathTracer: pb_projectile_base
 	Spawn:
 		DBAC A 3 BRIGHT;
 		TNT1 A 0 A_SpawnItemEx("ShotgunParticles", random(8,-8), random(8,-8), random(8,-8), 0, 0, 0, 0, 128, 0);
-		TNT1 A 0 A_SpawnItemEx("ExplosionParticle", random(8,-8), random(8,-8), random(19,-19), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		Loop;
 	Death:
 	XDeath:

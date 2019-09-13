@@ -1,4 +1,4 @@
-CLASS MeleePuff : pb_puff { 
+CLASS MeleePuff : cheap_effect_base { 
 Default
 {
 	renderstyle "Translucent";
@@ -109,7 +109,7 @@ states
 
 
 //For Revenant's laser pointer
-CLASS nullPuff: pb_puff { 
+CLASS nullPuff: cheap_effect_base { 
 Default {
 	renderstyle "Translucent";
 	alpha 1.0;
@@ -166,7 +166,7 @@ Default {
 
 }
 
-CLASS HitPuff : pb_puff// Replaces BulletPuff { 
+CLASS HitPuff : cheap_effect_base// Replaces BulletPuff { 
 {
 Default {
 	renderstyle "Translucent";
@@ -298,13 +298,12 @@ States
 		TNT1 A 0 A_Playsound("explosion/deepimpact", 3);
 		TNT1 A 0 A_PlaySound("FAREXPL", 1);
 		tnt1 A 0 Radius_Quake(4, 10, 0, 15, 0);
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("ExplosionParticle", 0, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+		{
+			pb_effect_event(effect_event).show_some_effect(self, "ExplosionParticle");
+		}
 		tnt1 AAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAA 0 a_spawnprojectile("FireworkSFXType1", 2, 0, random(0, 360), 2, random(10, 80));
-		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 a_spawnprojectile("BluePlasmaFire", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAAAA 0 a_spawnprojectile("BluePlasmaParticle", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 ABCDE 2 BRIGHT A_SpawnItem("Blue_Flare" ,0);
@@ -486,7 +485,7 @@ CLASS UnmakerPuff : HellRifle_Puff2 {
 Default
 { Scale 2.25; } }
 
-class HellRifle_Puff : pb_puff
+class HellRifle_Puff : cheap_effect_base
 {
 default{
 	+NOBLOCKMAP;
@@ -509,7 +508,7 @@ States
 }
 }
 
-class GreenPlasma_Puff : pb_puff
+class GreenPlasma_Puff : cheap_effect_base
 {
 default{
 	+NOBLOCKMAP;
@@ -562,7 +561,7 @@ class FakeSSawPuff: SSawPuff
 { default{ +THRUGHOST;} }
 
 
-class PuffSmoke : pb_puff
+class PuffSmoke : cheap_effect_base
 {
 default {
 	+MISSILE;
@@ -603,7 +602,7 @@ states
 }
 }
 
-class LavaStep : pb_puff
+class LavaStep : cheap_effect_base
 {
 default
 {
@@ -630,9 +629,10 @@ states
 {
 	Spawn:
 		TNT1 A 0;
-		TNT1 A 0;
-		EXPL A 0 A_SpawnItem("ExplosionParticle");//BurningEmberParticlesFloating
-		TNT1 A 0 a_spawnprojectile("ExplosionParticle", 10, 0, random(0, 180), 2, random(10, 90));
+		TNT1 AA 0
+		{
+			pb_effect_event(effect_event).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 A 0 A_SetScale(0.28, 0.22);
 		INFE ABCDEFGHIJKLMNOPQR 1 BRIGHT;
 		INFE ST 1 BRIGHT a_spawnprojectile("rocket_trail_darker", 32, 0, random(160, 210), 2, random(10, 90));
@@ -663,38 +663,5 @@ states
 		TNT1 AAAAA 0;
 		FX57 ABCDEFGHIJ 1 bright;
 		stop;
-}
-}
-
-
-
-//Siphon Grenade Stuff
-class SiphonPuff : BulletPuff
-{
-default {
-	+NOBLOCKMAP;
-	+NOGRAVITY;
-	+NOEXTREMEDEATH;
-	+PUFFONACTORS;
-	+BLOODLESSIMPACT;
-	+FORCEXYBILLBOARD;
-	+DONTSPLASH;
-	//renderstyle "Add"
-	renderstyle "Add";
-	Scale 0.65;
-	Damage 0;
-	Damagetype "Siphon";
-}
-States
-{
-	Spawn:
-	Death:
-	Melee:
-	XDeath:
-		TNT1 A 0;
-		DB26 I 1;
-		DB26 JKLM 1 bright Light("IncinerationGlow");
-		DB26 NOPQRSTUV 1 bright;
-		Stop;
 }
 }

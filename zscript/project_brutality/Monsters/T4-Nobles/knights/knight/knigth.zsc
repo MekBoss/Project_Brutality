@@ -655,7 +655,10 @@ States
 		TNT1 A 0 A_Stop;
 		TNT1 A 0 A_Playsound("MELT");
 		TNT1 A 0 A_NoBlocking();
-		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("ExplosionParticle", 32, 0, random(0, 360), 2, random(0, 360));
+		TNT1 AAAAAAAAAAAA 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
 		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
@@ -663,18 +666,12 @@ States
 		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
 		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
 
-		B4UD AAAABBBBCCCCC 1 BRIGHT Light("IncinerationGlow")
+		B4UD AAAABBBBCCCCCDDDDDEEEEEFFFFFGGGG 1 BRIGHT Light("IncinerationGlow")
 		{
-			A_SpawnProjectile("ExplosionParticle", 36 - (frame * 4), 0, random(0, 360), 2, random(0, 160));
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+			if(frame > 20) A_Playsound("SZZLL", 3);
 		}
-		TNT1 A 0 A_Playsound("SZZLL", 3);
-		B4UD DDDDDEEEEEFFFFFGGGG 1 BRIGHT Light("IncinerationGlow")
-		{
-			A_SpawnProjectile("ExplosionParticle", 20 - (frame * 4), 0, random(0, 360), 2, random(0, 160));
-			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),16,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		}
-		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
 
 		B4UD HHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGG 2 BRIGHT Light("IncinerationGlow")
 		{
@@ -714,7 +711,7 @@ States
 		TNT1 A 0 A_SpawnProjectile("Brains4", 11, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnProjectile("Brains4", 11, 0, random(0, 360), 2, random(0, 160));
 		TNT1 AAAAA 0 A_SpawnProjectile("Xdeath1", 1, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 A_SpawnProjectile("muchblood", 1, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAA 0  {pb_blood_and_gore_event.much_blood(self);}
 		TNT1 AAAAAA 0 A_SpawnProjectile("Bloodmist", 1, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_SpawnItemEx("SplatteredSmall", 0);
 		KTFP IJ 2;

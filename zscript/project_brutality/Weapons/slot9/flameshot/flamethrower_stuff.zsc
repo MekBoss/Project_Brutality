@@ -73,7 +73,10 @@ CLASS BigFireBallWithGravity: BigFireBall {
 	Spawn1:
 		TNT1 A 0;
 		BLHD CD 1 BRIGHT A_SpawnItem("CoolandNewFlameTrails");
-		TNT1 A 0 A_SpawnItemEx("explosionparticle", random(7,-7), random(7,-7), random(8,-8), 0, 0, 0, 0, 128, 0);
+		TNT1 A 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		TNT1 A 0 a_spawnprojectile("ExplosionSmoke", 2, 0, random(70, 110), 2, random(0, 360));
 	Loop;
 
