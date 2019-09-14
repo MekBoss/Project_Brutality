@@ -145,12 +145,6 @@ states
  		TNT1 A 0 A_UnSetInvulnerable;
 	Goto See2;
 		
-	Pain.Stun:
-		LMWZ IIIIIIIIII 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		LMWZ I 1 A_Pain;
-		tnt1 a 0 a_jumpif(random(0, 10), "Pain.Stun");
-	Goto See;
-		
 	Death:
 		LMWZ J 6 A_Scream;
 		LMWZ K 6 A_NoBlocking;

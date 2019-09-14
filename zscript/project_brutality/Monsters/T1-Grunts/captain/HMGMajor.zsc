@@ -16,17 +16,6 @@ Default
 
 States
 {
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("ChaingunMajorShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ChaingunMajorShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ChaingunMajorShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ChaingunMajorShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ChaingunMajorShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ChaingunMajorShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ChaingunMajorShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilChaingunMajor", 1);*/
-	stop;
 
 	Spawn:
 		TNT1 A 0;
@@ -194,22 +183,6 @@ States
 		CPS2 G 3 A_Pain();
  		TNT1 A 0 A_UnSetInvulnerable();
 	Goto SeeContinue;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		CPS2 G 1 A_Pain();
-		CPS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		CPS2 G 1 A_Pain();
-		CPS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		CPS2 G 1 A_Pain();
-		CPS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		CPS2 G 1 A_Pain();
-		CPS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		CPS2 G 1 A_Pain();
-		CPS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		CPS2 G 1 A_Pain();
-		Goto See;
 		
 	Pain:
 	Pain.Melee:

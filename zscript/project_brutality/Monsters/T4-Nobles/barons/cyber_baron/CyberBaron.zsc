@@ -114,19 +114,10 @@ states
 
 
 	Pain:
-		TNT1 A 0 A_PlaySound("caco/shotx");
-		CBOS H 2;
+		CBOS H 2 A_PlaySound("caco/shotx");
 		CBOS H 2 A_Pain;
 	Goto See;
 
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		CBOS H 1 A_Pain;
-		CBOS HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		CBOS H 1 A_Pain;
-		tnt1 a 0 a_jumpif(random(0,10) < 7, "Pain.Stun");
-	Goto See;
 
 
 
@@ -176,19 +167,6 @@ states
 		TNT1 A 0 A_SpawnItem("BurningBaron", 0, 10);
 	Stop;
 		
-	Death.Shrink:
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 A_BossDeath;
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("CyberBaronShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("CyberBaronShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilCyberBaron", 1);*/
-	stop;
 		
 
 

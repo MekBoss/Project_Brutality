@@ -95,18 +95,6 @@ States
 
 
 
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("ZSpecOpsShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZSpecOpsShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZSpecOpsShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZSpecOpsShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZSpecOpsShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZSpecOpsShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZSpecOpsShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilZSpecOps", 1);*/
-	stop;
-		
 	FallBack:
 		TNT1 A 0 A_CheckSight("Advance");
 		TNT1 A 0 {self.bNODROPOFF = true;}
@@ -428,22 +416,6 @@ States
 		ZSP2 G 3 A_Pain();
  		TNT1 A 0 A_UnSetInvulnerable();
 	Goto See;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		ZSP2 G 1 A_Pain();
-		ZSP2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZSP2 G 1 A_Pain();
-		ZSP2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZSP2 G 1 A_Pain();
-		ZSP2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZSP2 G 1 A_Pain();
-		ZSP2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZSP2 G 1 A_Pain();
-		ZSP2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZSP2 G 1 A_Pain();
-		Goto See;
 		
 		
 	pain.ExplosiveImpact:

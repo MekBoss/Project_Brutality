@@ -58,22 +58,9 @@ Default
 
 States
 {
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("HellTrooperShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellTrooperShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellTrooperShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellTrooperShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellTrooperShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellTrooperShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellTrooperShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilHellTrooper", 1);*/
-	stop;
 		
 	Spawn:
 		TNT1 A 0;
-		//TNT1 A 0 A_GiveInventory("SKHellTrooper", 1);
- 		//TNT1 A 0 {ammo_amount -= 2;}//A_GiveInventory("ZombieManAmmo", random(1,10));
 		HTWA B 1 {self.ammo_amount = random(0, max_magazine_size); }
 	Stand:
 		TNT1 A 0 ;
@@ -83,26 +70,14 @@ States
 	See:
 		//TNT1 A 0 A_takeInventory("SKHellTrooper", 1);
 		
-		TNT1 A 0 ;
 		HTWA AA 2 A_Chase();
 		TNT1 A 0 A_Recoil(-1);
 		
-		TNT1 A 0 ;
 		HTWA AA 2 A_Chase();
 		TNT1 A 0 A_PlaySound("humans/step",0);
-		TNT1 A 0 ;
-		HTWA BB 2 A_Chase();
-		TNT1 A 0 ;
-		HTWA BB 2 A_Chase();
-		TNT1 A 0 ;
-		HTWA CC 2 A_Chase();
-		TNT1 A 0 ;
-		HTWA CC 2 A_Chase();
+		HTWA BBBBCCCC 2 A_Chase();
 		TNT1 A 0 A_PlaySound("humans/step",0);
-		TNT1 A 0 ;
-		HTWA DD 2 A_Chase();
-		TNT1 A 0 ;
-		HTWA DD 2 A_Chase();
+		HTWA DDDD 2 A_Chase();
 		TNT1 A 0 A_PlaySound("humans/step",0);
 		
 		
@@ -285,21 +260,24 @@ States
 		TNT1 A 0;
 	Stop;
 		
+//original definition have G frame
+//	Pain.Stun:
+//		HTD1 G 1 A_Pain();
 	Pain:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 7);
-		TNT1 A 0 ;
-		TNT1 A 0 a_spawnprojectile("brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
-		HTPA A 3;
-		TNT1 A 0 ;
+		HTPA A 3
+		{
+			if(countinv("IsDown") > 0) setstate(curstate+3);
+			else a_spawnprojectile("brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
+		}
 		HTPA A 3 A_Pain();
-		Goto See;
+	Goto See;
 		TNT1 AAAA 0;
 		HTD1 G 4;
 		TNT1 A 0 A_Pain();
 		HT11 SSST 10;
 		TNT1 A 0 A_TakeInventory("IsDown", 1);
-		Goto See;
-		
+	Goto See;
+
 	Possession:
 		TNT1 A 0 A_SetInvulnerable();
 		HTD1 G 3;
@@ -307,27 +285,6 @@ States
  		TNT1 A 0 A_UnSetInvulnerable();
 		Goto See;
 		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		TNT1 A 0 ;
-		HTD1 G 1 A_Pain();
-		HTD1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		TNT1 A 0 ;
-		HTD1 G 1 A_Pain();
-		HTD1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		TNT1 A 0 ;
-		HTD1 G 1 A_Pain();
-		HTD1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		TNT1 A 0 ;
-		HTD1 G 1 A_Pain();
-		HTD1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		TNT1 A 0 ;
-		HTD1 G 1 A_Pain();
-		HTD1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		TNT1 A 0 ;
-		HTD1 G 1 A_Pain();
-		Goto See;
 		
 	Pain.Melee:
 		TNT1 A 0;

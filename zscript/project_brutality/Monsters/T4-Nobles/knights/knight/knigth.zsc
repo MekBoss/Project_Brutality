@@ -205,8 +205,7 @@ States
 	Goto JustMissile+5;
 			
 	Pain:
-		TNT1 A 0 A_TakeInventory("StopKickingMyBallsMotherFucker", 1);
-		BOS2 H 3;
+		BOS2 H 3 A_TakeInventory("StopKickingMyBallsMotherFucker", 1);
 		BOS2 H 3 A_Pain();
 	Goto seecontinue;
 			
@@ -217,17 +216,6 @@ States
  		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 			
-	Pain.Stun:
-		BOS2 H 1 A_Pain();
-		BOS2 HHHHHHHHHH 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		tnt1 a 0 
-		{
-			if(random(0, 10) > 7)
-			{
-				setstatelabel("see");
-			}
-		}
-	loop;
 			
 	Pain.Kick:
 	Pain.ExtremePunches:
@@ -720,18 +708,6 @@ States
 		TNT1 A 0 {self.bInvulnerable = false;}
 		//TNT1 A 0 A_SpawnItem("CurbstompedMarine", 1);
 	Goto seecontinue;
-			
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("HellKnightShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellKnightShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilHellKnight", 1);*/
-	stop;
 
 	Death.Fatality:
 		TNT1 A 0 A_Pain();

@@ -55,15 +55,20 @@ protected bool chose_what_spawn()
 
 protected void spawn_reward()
 {
-	if(random(0, 10) < 6) return;
-	if( chose_what_spawn() && weapon_type != null)
+	if(random(0, 10) < 5) return;
+	if(weapon_type != null)
 	{
-		spawn(weapon_type, self.pos + (0, 0, default.height/2) );
-	}
-	else
-	{
-		actor amo = spawn(weapon(getdefaultbytype(weapon_type) ).AmmoType1,  + (0, 0, default.height/2) );
-		if(random(0, 1) == 1) inventory(amo).amount += random(0, inventory(amo).amount);
+		if( chose_what_spawn() )
+		{
+			spawn(weapon_type, self.pos + (0, 0, default.height/2) );
+		}
+		else
+		{
+			class<Ammo> amo = weapon(getdefaultbytype(weapon_type) ).AmmoType1;
+			if(amo == null) return;
+			inventory am = (inventory)(spawn(amo,  + (0, 0, default.height/2) ) );
+			if(random(0, 1) == 1) inventory(am).amount += random(0, inventory(am).amount);
+		}
 	}
 }
 
@@ -98,9 +103,10 @@ enum blood_colors
 //since all green/blue blood sprites ARE translated default blood sprites
 //this function handle it wihtout copypaste blood definition three times with new translate field
 protected actor pb_spawn_blood(
-blood_colors collor = 0, string actor_type = "Unknown", double height = 0, double angle = 0, double pitch = 0)
+blood_colors collor = 0, string actor_type = "Unknown", vector3 offset = (0, 0, 0), vector3 speed = (0, 0, 0) )
 {
-	actor qqqq = a_spawnprojectile(actor_type, height, 0, angle, 2, pitch);
+	actor qqqq = spawn(actor_type, pos+offset);
+	qqqq.vel = speed;
 	switch(collor)
 	{
 		case blue: qqqq.A_SetTranslation("blood_to_Blue"); break;
@@ -110,7 +116,7 @@ blood_colors collor = 0, string actor_type = "Unknown", double height = 0, doubl
 	return qqqq;
 }
 
-//internal gzdoom handler for damaging actors
+//internal gzdoom function for damaging actors
 override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Flags,Double angle)
 {	//check if monster actually alive
 	if(self.bkilled == false)
@@ -135,14 +141,16 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 			{//check for arrow in the knee
 				return super.DamageMobj(inflictor, source, new_damage, 'leg', flags ,angle);
 			}
+
+			if((inflictor is "PB_player_pawn_base" || source is "PB_player_pawn_base") && self.target == null)
+			{
+				console.printf("here, probably, must be shown some fatality");
+				//fatality placeholder
+			}
+
 			return new_damage;
 		}
 
-		if((inflictor is "PB_player_pawn_base" || source is "PB_player_pawn_base") && self.target == null)
-		{
-			console.printf("here, probably, must be shown some fatality");
-			//fatality placeholder
-		}
 		return super.DamageMobj(inflictor, source, damage, mod, flags, angle);
 	}
 	else
@@ -170,13 +178,6 @@ virtual protected state pb_get_death_state()
 	return null;
 }
 
-states
-{
-	Death.Massacre:
-	stop;
-}
-
-
 //how much time monster seeek it target before forgeting
 protected int memory_timer;
 const max_memory = 20;
@@ -196,16 +197,51 @@ protected void pb_monster_memory(statelabel idle_state = "idle")
 //for gibbing death
 protected void simple_death_handler()
 {
-		health += 200;
-		self.bDONTTHRUST = true;
-		self.bNOPAIN = true;
-		self.bNODROPOFF = false;
-		self.bSLIDESONWALLS = true;
-		self.bsolid = false;
-		self.bshootable = true;
-		a_setsize(default.radius, default.height / 10);
+	health += 200;
+	self.bDONTTHRUST = true;
+	self.bNOPAIN = true;
+	self.bNODROPOFF = false;
+	self.bSLIDESONWALLS = true;
+	self.bsolid = false;
+	self.bcorpse = true;
+	self.bshootable = true;
+	a_setsize(default.radius, default.height / 10);
 }
 
+
+states
+{
+	Pain.Stun:
+		tnt1 a 0
+		{
+			state default_pain = findstate("pain");
+			//it vorc!!!!!!!!!!
+			sprite = default_pain.sprite;
+			frame = default_pain.frame;
+		}
+	stun_pain_loop:
+		"####" "#" 1 A_Pain();
+		"####" "##########" 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
+		tnt1 a 0 a_jumpif(random(0, 10) < 7, "stun_pain_loop");
+		tnt1 a 0 setstate(findstate("see") );
+
+
+
+	Death.Shrink:
+		"####" "#" 0 A_PlaySound("Shrink", 3);
+	shrink_loop:
+		"####" "#" 1
+		{
+			scale -= (0.01, 0.01);
+			a_setsize(default.radius * scale.x, default.height * scale.x);
+			if(scale.x > 0.2) setstatelabel("shrink_loop");
+		}
+	stop;
+
+	//kill monsters cheat
+	Death.Massacre:
+	stop;
+}
 
 }
 

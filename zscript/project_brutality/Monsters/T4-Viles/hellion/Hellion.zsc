@@ -247,12 +247,6 @@ States
  		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 		
-	Pain.Stun:
-		HELN MMMMMMMMMM 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		HELN M 1 A_Pain;
-		tnt1 a 0 a_jumpif(random(0, 10) < 7, "pain.stun");
-	Goto See;
-		
 		
 	Death.Ice:
 	Death.Freeze:
@@ -372,19 +366,7 @@ States
 		XVIP QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 10 a_spawnprojectile("Explosion_Smoke", 15, 0, random(0, 360), 2, random(70, 130));
 		XVIP Q -1;
 	Stop;
-	
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("HellionShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellionShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellionShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellionShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellionShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellionShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("HellionShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilHellion", 1);*/
-	stop;
-	
+
 	Death.SSG:
 	Death.Blast:
 		TNT1 A 0 A_XScream;

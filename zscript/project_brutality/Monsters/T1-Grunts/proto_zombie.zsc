@@ -7371,9 +7371,7 @@ CLASS ZombiemanGotHisLegBlowed: DyingZombiemanNoArm {
 			TNT1 A 0 A_NoBlocking;
 			ID11 KL 15;
 			TNT1 A 0 A_SpawnItem("DeadZombieman_NoLeg");
-			stop;
-			
-			
+		stop;
 	}
 }
 	

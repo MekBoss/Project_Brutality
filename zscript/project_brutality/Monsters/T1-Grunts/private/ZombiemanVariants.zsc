@@ -335,22 +335,6 @@ States
 		POSS L -1;
 	Stop;
 			
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		PSPO G 1 A_Pain();
-		PSPO GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		PSPO G 1 A_Pain();
-		PSPO GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		PSPO G 1 A_Pain();
-		PSPO GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		PSPO G 1 A_Pain();
-		PSPO GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		PSPO G 1 A_Pain();
-		PSPO GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		PSPO G 1 A_Pain();
-	Goto See;
-
 	Possession:
 		TNT1 A 0 A_SetInvulnerable();
 		PSPO G 3;
@@ -394,19 +378,6 @@ States
 		//TNT1 A 0 A_GiveToTarget("ZombieManFatality6", 1);
 	Stop;
 		
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("PistolZombiemanShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("PistolZombiemanShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("PistolZombiemanShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("PistolZombiemanShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("PistolZombiemanShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("PistolZombiemanShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("PistolZombiemanShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilPistolZombieMan", 1);*/
-	stop;
-
-			
 	FallingSuperDeath:
 		TNT1 A 0;
 		TNT1 A 0 A_XScream();
@@ -416,7 +387,7 @@ States
 	Goto Death.ExplosiveImpact+1;
 			
 	Pain:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 6);
+		PSPO G 0 A_JumpIfInventory("IsDown", 1, 6);
 		TNT1 A 0 a_spawnprojectile("brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		PSPO G 3;
 		PSPO G 3 A_Pain();
@@ -520,36 +491,6 @@ States
 		9OS2 G 3 A_Pain();
  		TNT1 A 0 {self.bINVULNERABLE = false;}
 		Goto See;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		9OS2 G 1 A_Pain();
-		9OS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		9OS2 G 1 A_Pain();
-		9OS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		9OS2 G 1 A_Pain();
-		9OS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		9OS2 G 1 A_Pain();
-		9OS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		9OS2 G 1 A_Pain();
-		9OS2 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		9OS2 G 1 A_Pain();
-	Goto See;
-		
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-//		TNT1 A 0 A_SpawnItemEx("PistolZombieman2ShrinkFX1", 0, 0,  5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("PistolZombieman2ShrinkFX2", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("PistolZombieman2ShrinkFX3", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("PistolZombieman2ShrinkFX4", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("PistolZombieman2ShrinkFX5", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("PistolZombieman2ShrinkFX6", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("PistolZombieman2ShrinkFX7", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("LilPistolZombieMan2", 1);
-	stop;
-		///////////////////////////////////////////
-		
 		
 	Spawn:
 		TNT1 A 0;
@@ -888,7 +829,7 @@ States
 	Goto Death.ExplosiveImpact+1;
 		
 	Pain:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 6);
+		9OS2 G 0 A_JumpIfInventory("IsDown", 1, 6);
 		TNT1 A 0 a_spawnprojectile("brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		9OS2 G 3;
 		9OS2 G 3 A_Pain();
@@ -1390,35 +1331,7 @@ States
 		ZPV1 A 3 A_Pain();
  		TNT1 A 0 {self.bINVULNERABLE = false;}
 	Goto See;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		ZPV1 A 1 A_Pain();
-		ZPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZPV1 A 1 A_Pain();
-		ZPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZPV1 A 1 A_Pain();
-		ZPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZPV1 A 1 A_Pain();
-		ZPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZPV1 A 1 A_Pain();
-		ZPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		ZPV1 A 1 A_Pain();
-		Goto See;
-		
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-//		TNT1 A 0 A_SpawnItemEx("HelmetZombieManShrinkFX1", 0, 0,  5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("HelmetZombieManShrinkFX2", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("HelmetZombieManShrinkFX3", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("HelmetZombieManShrinkFX4", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("HelmetZombieManShrinkFX5", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("HelmetZombieManShrinkFX6", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("HelmetZombieManShrinkFX7", 0, 0, 5, 0, 0);
-//		TNT1 A 1 A_SpawnItemEx("LilHelmetZombieMan", 1);
-	stop;		
-		
+	
 	SearchForPlayer:
 	Idle:
 		TNT1 A 0 A_JumpIfHealthLower(1, "Death");
@@ -1970,7 +1883,7 @@ States
 	Stop;
 		
 	Pain:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 8);
+		ZPV1 A 0 A_JumpIfInventory("IsDown", 1, 8);
 		ZPV1 A 5;
 		ZPV1 A 5 A_Pain();
 		Goto see;
@@ -2076,17 +1989,6 @@ Default {
 
 States
 {
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("ZombieMarineDudeShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZombieMarineDudeShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZombieMarineDudeShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZombieMarineDudeShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZombieMarineDudeShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZombieMarineDudeShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("ZombieMarineDudeShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilZombieMarineDude", 1);*/
-	stop;
 
 	Spawn:
 		UDM2 AB 10 {A_Look();}

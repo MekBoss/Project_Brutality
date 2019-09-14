@@ -68,23 +68,6 @@ States
 
 
 
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("BeamRevenantShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("BeamRevenantShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("BeamRevenantShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("BeamRevenantShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("BeamRevenantShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("BeamRevenantShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("BeamRevenantShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilBeamRevenant", 1);*/
-	stop;
-		
-		
-
-
-
-		
 	SpecialDeath:
 		TNT1 AAA 0 a_spawnprojectile("XDeath1", 30, 0, random(0, 360), 2, random(0, 360));
 		TNT1 AAA 0 a_spawnprojectile("RevenantDust", 30, 0, random(0, 360), 2, random(0, 360));
@@ -119,12 +102,6 @@ States
  		TNT1 A 0 {self.binvulnerable = false;}
 	Goto See;
 
-	Pain.Stun:
-		R4SK LLLLLLLLLL 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		R4SK L 1 A_Pain();
-		tntq a 0 a_jumpif(random(0, 10) < 7, "Pain.Stun");
-	Goto See;
-		
 	Pain.Kick:
 	Pain.ExtremePunches:
 		TNT1 A 0 A_FaceTarget();

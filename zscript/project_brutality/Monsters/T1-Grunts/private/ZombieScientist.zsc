@@ -94,41 +94,12 @@ States
 
 
 	
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		SCZA G 1 A_Pain();
-		SCZA GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SCZA G 1 A_Pain();
-		SCZA GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SCZA G 1 A_Pain();
-		SCZA GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SCZA G 1 A_Pain();
-		SCZA GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SCZA G 1 A_Pain();
-		SCZA GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SCZA G 1 A_Pain();
-		Goto See;
-		
 	Possession:
 		TNT1 A 0 A_SetInvulnerable();
 		SCZA G 3;
 		SCZA G 3 A_Pain();
  		TNT1 A 0 A_UnSetInvulnerable();
 		Goto See;
-		
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("LabguyShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LabguyShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LabguyShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LabguyShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LabguyShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LabguyShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LabguyShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilLabguy", 1);*/
-		stop;
-		
 		
 	SpawnWithChainsaw:
 		TNT1 A 0 {self.bTHRUACTORS = true;}
@@ -302,9 +273,8 @@ States
 	Stop;
 		
 	Pain:
-		TNT1 A 0;
 		//TNT1 A 0 A_JumpIfInventory("SKLabguy", 1, "StealthKill");
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 7);
+		SCZA G 0 A_JumpIfInventory("IsDown", 1, 7);
 		TNT1 A 0 a_spawnprojectile("brutal_FlyingBlood", 35, 0, random(0, 360), 2, random(0, 160));
 		SCZA G 3;
 		SCZA G 3 A_Pain();

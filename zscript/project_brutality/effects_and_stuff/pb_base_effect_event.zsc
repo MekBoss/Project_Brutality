@@ -12,7 +12,7 @@ override void worldthingspawned(worldevent e)
 	{pb_monster_base(e.thing).effects = self;}
 
 	if(e.thing is "pb_projectile_base")
-	{pb_monster_base(e.thing).effects = self;}
+	{pb_projectile_base(e.thing).effects = self;}
 }
 
 //arrays for storing pointers to effect actors
@@ -21,7 +21,7 @@ private array<cheap_effect_base> effect_actors;
 //spawn prof the beginning some effects
 override void worldloaded(worldevent e)
 {
-	for(int i = 0; i < 100; i++)
+	for(int i = 1; i < 100; i++)
 	{
 		effect_actors.push( (cheap_effect_base)(actor.spawn("cheap_effect_base", (0, 0, 0) ) ) );
 		cheap_effect_base(effect_actors[i-1]).set_event(self);
@@ -83,6 +83,9 @@ actor show_some_effect(actor caller = null, statelabel effect_state = null, vect
 	if(caller == null || effect_state == null) {return null;}
 	
 	actor lin = find_free_effect();
+	if(lin == null)
+		return null;
+
 	approve_state(lin, effect_state);
 	lin.setorigin(caller.pos + offset, false);
 	lin.vel = speed;

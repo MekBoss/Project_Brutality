@@ -1,5 +1,6 @@
 class pb_Shells : pb_ammo_proto_class
 {
+
 default
 {
 	Inventory.PickUpSound "misc/shell_PickUp";

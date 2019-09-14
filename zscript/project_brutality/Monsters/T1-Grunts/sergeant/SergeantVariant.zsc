@@ -49,20 +49,6 @@ States
 		//TNT1 A 0 A_GiveToTarget("RiotSergeantFatality1", 1);
 		Stop;
 
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("Sergeant2ShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilSergeant", 1);*/
-	stop;
-		//////////////////////////////////////
-		
-		
 	FallBack:
 		TNT1 A 0 A_CheckSight("Advance");
 		TNT1 A 0 {self.bNODROPOFF = true;}
@@ -229,7 +215,7 @@ States
 	Pain:
 	Pain.Avoid: 
 	Pain.Kick:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 6);
+		RPSZ D 0 A_JumpIfInventory("IsDown", 1, 6);
 		//TNT1 A 0 A_TakeInventory("SKShotgunGuy", 1);
 		RPSZ D 4 A_Pain();
 		RPSZ CBA 3;
@@ -251,22 +237,6 @@ States
 		RPSZ A 3;
 		RPSZ A 3 A_Pain();
  		TNT1 A 0 A_UnSetInvulnerable();
-		Goto See;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		RPSZ D 1 A_Pain();
-		RPSZ DDDDDDDDDD 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		RPSZ D 1 A_Pain();
-		RPSZ DDDDDDDDDD 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		RPSZ D 1 A_Pain();
-		RPSZ DDDDDDDDDD 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		RPSZ D 1 A_Pain();
-		RPSZ DDDDDDDDDD 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		RPSZ D 1 A_Pain();
-		RPSZ DDDDDDDDDD 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		RPSZ D 1 A_Pain();
 		Goto See;
 		
 	Death.Ice:
@@ -293,18 +263,6 @@ Default
 
 States
 {	
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("Sergeant2ShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilSergeant2", 1);*/
-	stop;
-		//////////////////////////////////////
 	Pain.Avoid: 
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(255, "AvoidLeft", "AvoidRight");
@@ -983,7 +941,7 @@ States
 		
 		
 	Pain:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 6);
+		SPV1 A 0 A_JumpIfInventory("IsDown", 1, 6);
 		//TNT1 A 0 A_TakeInventory("SKShotgunGuy", 1);
 		SPV1 A 3;
 		Goto SeeContinue;
@@ -1000,22 +958,6 @@ States
 		SPV1 A 3;
 		SPV1 A 3 A_Pain();
  		TNT1 A 0 A_UnSetInvulnerable();
-		Goto See;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		SPV1 A 1 A_Pain();
-		SPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SPV1 A 1 A_Pain();
-		SPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SPV1 A 1 A_Pain();
-		SPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SPV1 A 1 A_Pain();
-		SPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SPV1 A 1 A_Pain();
-		SPV1 AAAAAAAAAA 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SPV1 A 1 A_Pain();
 		Goto See;
 		
 	Death.Ice:
@@ -1083,42 +1025,13 @@ override int DamageMobj(Actor inflictor, Actor source,int damage,Name mod,int Fl
 
 States
 {
-	Death.Shrink:
-		TNT1 A 1 A_PlaySound("Shrink", 3);
-/*		TNT1 A 0 A_SpawnItemEx("Sergeant2ShrinkFX1", 0, 0,  5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX2", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX3", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX4", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX5", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX6", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("Sergeant2ShrinkFX7", 0, 0, 5, 0, 0);
-		TNT1 A 1 A_SpawnItemEx("LilSergeant2", 1);**/
-	stop;
-		
 	Possession:
 		TNT1 A 0 A_SetInvulnerable();
 		SFV1 G 3;
 		SFV1 G 3 A_Pain();
  		TNT1 A 0 A_UnSetInvulnerable();
 		Goto See;
-		
-	Pain.Stun:
-		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("StunElectrocute", random(-4, 4), random(-4, 4),  random(16, 32), 0, 0);
-		SFV1 G 1 A_Pain();
-		SFV1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SFV1 G 1 A_Pain();
-		SFV1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SFV1 G 1 A_Pain();
-		SFV1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SFV1 G 1 A_Pain();
-		SFV1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SFV1 G 1 A_Pain();
-		SFV1 GGGGGGGGGG 3 A_SpawnItemEx("StunElectrocute", random(-12, 12), random(-12, 12),  random(16, 52), 0, 0);
-		SFV1 G 1 A_Pain();
-		Goto See;
-		
-		//////////////////////////////////////
+
 	Pain.Avoid: 
 		TNT1 A 0;
 		TNT1 A 0;//A_Jump(255, "AvoidLeft", "AvoidRight")
@@ -1347,7 +1260,7 @@ States
 		
 		
 	Pain:
-		TNT1 A 0 A_JumpIfInventory("IsDown", 1, 6);
+		SFV1 G 0 A_JumpIfInventory("IsDown", 1, 6);
 		//TNT1 A 0 A_TakeInventory("SKShotgunGuy", 1);
 		SFV1 G 3 A_Pain();
 		Goto SeeContinue;

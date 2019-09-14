@@ -7,29 +7,18 @@ default
 	proto_zombieman_class.max_magazine_size 20;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+protected void freeze_death()
+{
+	self.frozen = true;
+	health += 150;
+	self.bshootable = true;
+	self.bNOPAIN = true;
+	a_setsize(default.radius, default.height);
+}
 //templates for all general private states
 states
 {
+/*
 	//freeze templates
 	Death.Ice:
 	Death.Freeze:
@@ -37,12 +26,8 @@ states
 		TNT1 A 0 
 		{
 			if(self.bkilled == true) console.printf("ded");
-			self.frozen = true;
-			health += 150;
-			//self.bsolid = false;
-			self.bshootable = true;
-			self.bNOPAIN = true;
-			a_setsize(default.radius, default.height);//A_NoBlocking();
+			freeze_death();
+
 			self_type = getclassname();
 
 			switch(self_type)
@@ -80,6 +65,7 @@ states
 		//TNT1 A 0 A_SpawnItem("FrozenChainsawZombie");
 		//TNT1 A 0 A_SpawnItem("FrozenZSpecOp");
 	Stop;
+	*/
 
 
 
@@ -133,13 +119,14 @@ states
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		POSS KL 4;
 	goto st_zomb_ded;//they use same 'actual dead' actor type
+
 	zomb_ded://zombie, pistol zombie and minigun zombie
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		POS4 UUVWXY 5;
 	st_zomb_ded://DeadZombieman1
 		
 		
-		tnt1 a 1 {console.printf("zombie kick/melee state template");}
+		POSS L -1 {console.printf("zombie kick/melee state template");}
 	stop;
 	
 	zomb_carb_ded:
