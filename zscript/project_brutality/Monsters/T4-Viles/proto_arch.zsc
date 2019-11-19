@@ -20,6 +20,32 @@ states
 		"####" AabBCcdDEefFGghHiI 2;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
+
+
+	//arch
+	Death.Fire:
+		TNT1 A 0
+		{
+			A_Scream();
+			A_NoBlocking();
+			A_Playsound("props/redfire");
+			a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+			a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+			a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+			a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		}
+		XVIP ABCDEFGHIJKLMNOPQ 2;
+		XVIP QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 2 a_spawnprojectile("FlameTrails", 15, 0, random(0, 360), 2, random(70, 130));
+		XVIP QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 10 a_spawnprojectile("Explosion_Smoke", 15, 0, random(0, 360), 2, random(70, 130));
+		XVIP Q -1;
+	Stop;
+
+	//flash
+		CARB MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM 2 a_spawnprojectile("FlameTrails", 15, 0, random(0, 360), 2, random(70, 130));
+		CARB MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM 10 a_spawnprojectile("Explosion_Smoke", 15, 0, random(0, 360), 2, random(70, 130));
+		CARB M -1;
+	Stop;
+
 }
 
 }

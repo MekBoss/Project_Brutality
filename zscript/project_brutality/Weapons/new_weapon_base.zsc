@@ -26,7 +26,7 @@ void pb_set_spec_wep_state(string command)
 		case 'do_kick' : kick = true; break;
 		case 'throw_grenade' : grenade_out = true; break;
 		//something fuckup handle it here
-		default : break;
+		default : console.printf("try set not existing weapon state in %s", getclassname() ); break;
 	}
 }
 
@@ -115,7 +115,7 @@ protected void set_weapon_state(statelabel state_name = null)
 
 	weapon wepon = player.ReadyWeapon;
 	if(wepon == null)
-	{console.printf("ready weapons dont exist, how do you managed to do this?"); return;}
+	{console.printf("ready weapons dont exist, how do you managed to call this message?"); return;}
 
 	if(player.findPsprite(psp_weapon) == null)
 	{ console.printf("%s PSprite dont exist", player.ReadyWeapon.getclassname() ); return; }
@@ -130,6 +130,9 @@ protected void set_weapon_state(statelabel state_name = null)
 //same but for overlays
 protected void set_overlay_layer(int overlay_number = 0, statelabel state_name = null)
 {
+	if(state_name == null)
+		return;
+
 	if(overlay_number >= -2 && overlay_number <= 2)
 	{ console.printf("unsafe overlay number %i", overlay_number); return;}
 	
@@ -138,7 +141,7 @@ protected void set_overlay_layer(int overlay_number = 0, statelabel state_name =
 	
 	weapon wepon = player.ReadyWeapon;
 	if(wepon == null)
-	{console.printf("ready weapons dont exist, how do you managed to do this?"); return;}
+	{console.printf("ready weapons dont exist, how do you managed to call this message?"); return;}
 
 	state new_state = wepon.findstate(state_name);
 	if(new_state == null)
@@ -153,6 +156,9 @@ protected void set_overlay_layer(int overlay_number = 0, statelabel state_name =
 //change weapons player sprite on screen
 protected void change_weapon_PSprite(string sprite_name = "")
 {
+	if(sprite_name == "")
+		return;
+
 	let player = owner.player;
 	if(player == null) {console.printf("player dont exist, function 'change sprite', weapon %s", self.getclassname() ); return;}
 	
@@ -167,6 +173,31 @@ protected void change_weapon_PSprite(string sprite_name = "")
 	gun.sprite = sprite_number;
 }
 
+protected void pb_knife_attack()
+{
+	FLineTraceData knife_swing;
+
+	LineTrace(owner.player.mo.angle, 50, owner.player.mo.pitch,
+	offsetz: owner.player.viewz - owner.player.mo.Pos.Z, data: knife_swing);
+	
+	if(knife_swing.hittype == TRACE_HitNone){return;}
+
+	if(knife_swing.hitactor != null)
+	{
+		int dam = random(11, 33) * (1 + owner.countinv("PowerStrength") );
+		knife_swing.hitactor.damagemobj(owner, owner, dam, 'cut', 0, 0);
+		A_PlaySound("Machete/Yum", 3);
+	}
+
+	if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
+	|| knife_swing.hittype == TRACE_HitWall)
+	{
+		spawn("SSawPuff3", pos:knife_swing.HitLocation);
+	}
+}
+
+//commented a_jumps and similar are reminders of how it
+//must/should/would work in original PB version
 states
 {
 	bug:
@@ -175,8 +206,7 @@ states
 	stop;
 
 	//note, it is important to use "get p(layer) sprite" function to switch state back to normal
-	//if not used, and used "goto ready;" instead, weapon try to jump to state
-	//defined in this base class, which is not defined
+	//"goto state name;" is a static jump i.e. it jump to ready state defined in this class
 	//this lead to inf. loop cycle, preventing from switching or droping such weapon
 	Throw_Grenade:
 		TNT1 A 0 {A_StopSound(6); A_ZoomFactor(1.0); invoker.in_specific_state = true;}
@@ -227,25 +257,8 @@ states
 		TNT1 A 0 
 		{
 			A_ZoomFactor(1.055);
-			
-			FLineTraceData knife_swing;
-			LineTrace(self.player.mo.angle, 50, self.player.mo.pitch,
-			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: knife_swing);
-			
-			if(knife_swing.hittype == TRACE_HitNone){return;}
 
-			if(knife_swing.hitactor != null)
-			{
-				int dam = random(11, 33) *(1 + countinv("PowerStrength") );
-				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
-				A_PlaySound("Machete/Yum", 3);
-			}
-
-			if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
-			|| knife_swing.hittype == TRACE_HitWall)
-			{
-				spawn("SSawPuff3", pos:knife_swing.HitLocation);
-			}
+			invoker.pb_knife_attack();
 		}
 		MC3S EF 1 A_SetPitch(+1 + pitch);
 		TNT1 A 0 A_ZoomFactor(1.025);
@@ -270,24 +283,7 @@ states
 		TNT1 A 0 A_PlaySound("weapons/fistwhoosh", 5);
 		pun4 F 1
 		{
-			FLineTraceData knife_swing;
-			LineTrace(self.player.mo.angle + frandom(-0.5, 0.5), 50, self.player.mo.pitch,
-			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: knife_swing);
-			
-			if(knife_swing.hittype == TRACE_HitNone){return;}
-
-			if(knife_swing.hitactor != null)
-			{
-				int dam = random(11, 33) *(1 + countinv("PowerStrength") );
-				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
-				A_PlaySound("Machete/Yum", 3);
-			}
-
-			if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
-			|| knife_swing.hittype == TRACE_HitWall)
-			{
-				spawn("SSawPuff3", pos:knife_swing.HitLocation);
-			}
+			invoker.pb_knife_attack();
 		}
 		pun4 GHI 1;
 		pun4 JKL 1;// A_JumpIfInventory("Kicking",1,"KickLeft");
@@ -315,24 +311,7 @@ states
 		{
 			A_SetPitch(-3 + pitch); A_ZoomFactor(1.055);
 			
-			FLineTraceData knife_swing;
-			LineTrace(self.player.mo.angle + frandom(-0.5, 0.5), 50, self.player.mo.pitch,
-			offsetz: self.player.viewz - self.player.mo.Pos.Z, data: knife_swing);
-			
-			if(knife_swing.hittype == TRACE_HitNone){return;}
-
-			if(knife_swing.hitactor != null)
-			{
-				int dam = random(11, 33) *(1 + countinv("PowerStrength") );
-				knife_swing.hitactor.damagemobj(self, self, dam, 'cut', 0, 0);
-				A_PlaySound("Machete/Yum", 3);
-			}
-
-			if(knife_swing.hittype == TRACE_HitFloor || knife_swing.hittype == TRACE_HitCeiling
-			|| knife_swing.hittype == TRACE_HitWall)
-			{
-				spawn("SSawPuff3", pos:knife_swing.HitLocation);
-			}
+			invoker.pb_knife_attack();
 		}
 		MC1S EF 1 A_SetPitch(+1 + pitch);
 		TNT1 A 0 A_ZoomFactor(1.025);
@@ -423,9 +402,9 @@ states
 			invoker.in_specific_state = true;
 			A_Overlay(-10, "FirstPersonLegsHide");
 			A_ZoomFactor(1.0);
-		//tnt1 a 0 A_JumpIf(momZ > 0, "AirKick");
-		//tnt1 a 0 A_JumpIf(momZ < 0, "AirKick");
-		//tnt1 a 0 A_JumpIf(Height < 54, "SlideKick");
+			//tnt1 a 0 A_JumpIf(momZ > 0, "AirKick");
+			//tnt1 a 0 A_JumpIf(momZ < 0, "AirKick");
+			//tnt1 a 0 A_JumpIf(Height < 54, "SlideKick");
 			A_PlaySound("KICK", 6);
 			SetPlayerProperty(0,1,0);
 			A_GunFlash("FlashKicking");
@@ -448,9 +427,9 @@ states
 		}
 		KIC1 C 1
 		{
+			A_SetAngle(+0.5 + angle);
 			A_SetAngle(-0.5 + angle);
 			A_ZoomFactor(0.965);
-			A_SetAngle(+0.5 + angle);
 			A_SetRoll(roll-1);
 		}
 		KIC1 D 1 {A_SetPitch(+1.25 + pitch); A_ZoomFactor(0.950);}

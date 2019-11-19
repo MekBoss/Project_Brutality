@@ -257,19 +257,27 @@ Stop;
 }}
 
 
-CLASS DeadImp_NoHead: DeadImp1 { 
-Default {Health 200;} States{Spawn:
-TROH EEE 109;
-TROH E 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
-TROH E -1;
-Stop	;     	
-Death:
-TNT1 A 0 A_SpawnItem("GibsZ");
-TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
-TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
-TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
-TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
-Stop;}}
+CLASS DeadImp_NoHead : DeadImp1
+{ 
+    Default {Health 200;}
+States
+{
+    Spawn:
+        TROH EEE 109;
+        TROH E 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+        TROH E -1;
+    Stop;
+     	
+    Death:
+        TNT1 A 0 A_SpawnItem("GibsZ");
+        TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
+        TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+        TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+        TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
+    Stop;
+}
+
+}
 
 CLASS DeadImp_MinorHeadDeadFront: DeadImp1 { 
 Default 
@@ -432,21 +440,6 @@ TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
 Stop;}}
 
 
-CLASS DeadImpBloodLoss: DeadMarine { 
-Default 
-
-{Health 200;} States{Spawn:
-TROD JJJ 45;
-TROD JJ 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
-TROD J -1;
-Stop;
-Death.Cut:        Death.Cutless:	        Death:
-TNT1 A 0 A_SpawnItem("GibsZ");
-TNT1 AA 0 a_spawnprojectile("XDeath1", 5, 0, random(0, 360), 2, random(0, 160));
-TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
-TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
-TNT1 A 0 a_spawnprojectile("XDeath2", 5, 0, random(0, 360), 2, random(0, 160));
-Stop;}}	
 
 CLASS DeadImpJustLegsAreLeft: DeadImp_Half { 
 Default 

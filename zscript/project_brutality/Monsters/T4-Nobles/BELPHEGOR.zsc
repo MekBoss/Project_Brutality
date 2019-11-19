@@ -175,19 +175,11 @@ States
 		BOS3 L -1;
 	stop;
 		
-	Death.Ice:
-	Death.Freeze:
-	Death.Frost:
-		TNT1 A 0 {self.bSHOOTABLE = false; self.bSOLID = false;}
-		//TNT1 A 0 A_SpawnItem("FrozenBelphegor");
-	stop;
-		
 	Death.SSG:
 	Death.Explosive:
 	Death.Blast:
 	Death.Cut:
 	Death.Saw:
-	Death.Massacre:
 	Death.QuadBlast:
 	Death.ExtremePunches:
 	XDeath:
@@ -242,38 +234,6 @@ States
 		BRUD TUV 6;
 		BRUD WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
 		BRUD W -1;
-	stop;
-		
-	Death.GreenFire:
-		TNT1 A 0;
-		TNT1 A 0 A_XScream();
-		TNT1 A 0 A_NoBlocking();
-		TNT1 A 0 A_BossDeath();
-		//TNT1 AAAA 0 a_spawnprojectile("Green_Blood", 30, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("GreenFlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
-		XBRN AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
-	stop;
-		
-	Death.SuperPlasma:
-		TNT1 A 0;
-		TNT1 A 0 A_XScream();
-		TNT1 A 0 A_NoBlocking();
-		TNT1 A 0 A_BossDeath();
-		//TNT1 AAAA 0 a_spawnprojectile("Green_Blood", 30, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 ;//a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 ;//a_spawnprojectile("XDeathHellKnightArm", 62, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 ;//a_spawnprojectile("XDeathHellKnightLeg", 32, 0, random(0, 360), 2, random(0, 160));
-		XBRN BB 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
-		TNT1 A 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-		XBRN CC 2 BRIGHT A_SpawnItem("Blue_Flare",0,43);
-		TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0;
 	stop;
 		
 	Death.Fatality:

@@ -102,14 +102,236 @@ states
        M31T CCCCCDDDDDEEEEEFFFFGGGGHHHHIIIIJJJJKKKKKKKKKKKKK 2 a_spawnprojectile("Brutal_LiquidBlood3", 15, 0, random(0, 360), 2, random(0, 40));
        M31T K -1;
 	Stop;
-}
+
+
+	//loading of imp no head sprites
+	TROH a 0;//default imp
+	D1S9 a 0;//blcak imps
+	2ROH a 0;//savage
+	T5DJ a 0;//variant 1
+	shot_head:
+		tnt1 a 0
+		{
+			switch(getclassname() )
+			{
+				case 'pb_imp': sprite = getspriteindex("TROH"); break;
+
+				case 'pb_Void_Dark_Imp':
+				case 'pb_NamiDarkImp':
+				case 'pb_Nether_Dark_Imp':
+				case 'pb_STDarkImp': sprite = getspriteindex("D1S9"); break;
+
+				case 'pb_Savage_Imp': sprite = getspriteindex("2ROH"); break;
+
+				case 'pb_DNImp_Variant1': sprite = getspriteindex("T5DJ"); break;
+
+				default : sprite = getspriteindex("TROH"); break;
+			}
+		}
+		"####" A 0 a_jump(128, "NO_HEAD_LOOP");
+
+	//head explode states	
+	head_explode:
+		"####" AAAA 2 a_spawnprojectile("Brutal_LiquidBlood2", 50, 0, random(0, 360), 2, random(60, 120));
+		"####" A 0 A_NoBlocking();
+		"####" BBBB 2 a_spawnprojectile("Brutal_LiquidBlood2", 40, 0, random(0, 360), 2, random(60, 120));
+		"####" A 0 A_XScream();
+		"####" CCCCCCCC 2 a_spawnprojectile("Brutal_LiquidBlood2", 30, 0, random(0, 360), 2, random(60, 120));
+		"####" DDD 2 a_spawnprojectile("Brutal_LiquidBlood2", 20, 0, random(0, 360), 2, random(60, 120));
+		"####" A 0 A_SpawnItem("GrowingBloodPool");
+	goto no_head_ded;
+
+
+
+	NO_HEAD_LOOP:
+		"####" A 0 A_PlaySound("misc/xdeath2c");
+		"####" FFFGGGHHHIII 2 a_spawnprojectile("Brutal_LiquidBlood2", 30, 0, random(0, 360), 2, random(10, 90));
+		"####" a 0 a_jumpif(random(0, 10) > 5, "NO_HEAD_LOOP");
+
+		"####" CCCCCCCC 2 a_spawnprojectile("Brutal_LiquidBlood2", 30, 0, random(0, 360), 2, random(60, 120));
+		"####" DDD 2 a_spawnprojectile("Brutal_LiquidBlood2", 20, 0, random(0, 360), 2, random(60, 120));
+		"####" A 0 A_SpawnItem("GrowingBloodPool");
+	no_head_ded:
+		"####" EEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 15, 0, random(0, 360), 2, random(15, 40));
+		"####" e -1;
+	stop;
+
+
+
+	Death.Plasma: Death.Plasma2:
+		TNT1 A 0 {self.bNOGRAVITY = false;}
+		TNT1 A 0 {self.bTHRUSPECIES = false;}
+		TNT1 A 0 {self.bCEILINGHUGGER = false;}
+		TNT1 A 0 A_Jump(96, "OtherPlasmaDeath");
+		TNT1 A 0 A_Stop();
+		TNT1 A 0 A_PlaySound("plasmaflesh");
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1Blue",random(-2,2),random(-2,2),18,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		TNT1 AAAA 0 a_spawnprojectile("BluePlasmaFire", 42, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("SuperGoreMistSmall", 32, 0, random(0, 360), 2, random(10, 90));
+		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(0, 360), 2, random(0, 180));
+		PBR1 B 6 A_NoBlocking();
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1Blue",random(-2,2),random(-2,2),10,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItem("Barrel_explosion_Column");
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
+		PBR1 CCDD 3 a_spawnprojectile("BluePlasmaFire", 32, 0, random(0, 360), 2, random(0, 180));
+		PBR1 EEFF 3;
+		PBR1 GG 3;
+		PBR1 H -1;
+	Stop;
+	
+	//imp variant 1
+	//	T5D4 BCDEFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 6 A_NoBlocking();
+	//imp variant 3
+	// T4D4 BCDEFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 6 A_NoBlocking();
+	OtherPlasmaDeath:
+		IMPP A 3 A_PlaySound("plasmaflesh");
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 33, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAA 0 a_spawnprojectile("BluePlasmaFire", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 31, 0, random(0, 360), 2, random(0, 180));
+		IMPP B 6 A_NoBlocking();
+		TNT1 AAAAAAA 0 a_spawnprojectile("SmallBrainPiece", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_PlaySound("misc/xdeath4");
+		TNT1 AAAAA 0 a_spawnprojectile("SmallBrainPiece", 48, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAA 0 a_spawnprojectile("SmallBrainPieceFast", random(45, 55), random(5, -5), random(170, 190), 2, random(-10, 10));
+		TNT1 AAA 0 a_spawnprojectile("Brains4", 52, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("SuperWallRedBlood", 46, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAAAAAAAA 0 a_spawnprojectile("PB_blood", 50, 0, random(0, 360), 2, random(0, 160));
+		IMPP CDE 6;
+		IMPP FFFFFFFFFFFFFFFFFFFFFFFFFFFFF 8 a_spawnprojectile("ExplosionSmoke", 10, 0, random(0, 360), 2, random(0, 160));
+		IMPP F -1;
+	stop;
+
+
+
+
+	Death.Incinerate:
+		TNT1 A 0;
+		TNT1 A 0 A_Stop();
+		TNT1 A 0 A_Playsound("MELT");
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAAAAAAAA 0 {pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");}
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		T6SB AAAAAABBBBBzCCCCCDDDDDEEEEEFFFFFzGGGGHHHH 1 BRIGHT Light("IncinerationGlow")
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+			if(frame > 20) A_Playsound("SZZLL", 3);
+		}
+		T6SB HHIIHHIIHHIIHHIHHIIHHIIHHIIHHIII 2 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		T6SB HHIIHHIIHHIIHHII 2;
+		T6SB JJJJJJJ 12 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		T6SB J -1;
+	Stop;
+
+
+	//all imps use same sprites here
+	Death.fire:
+	Death.Flames:
+	Death.Burn:
+		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		
+		tnt1 a 0 a_jump(55, "insta_fire_death");
+	fire_death_loop:
+		TRBR AAABBBCCCDDD 1
+		{
+			A_Wander();
+			A_Recoil(-1);
+			a_spawnprojectile("BurnParticles", 20, 0, random(0, 360), 2, random(50, 130));
+			a_spawnprojectile("ExplosionParticle", 40, 0, random(0, 360), 2, random(50, 130));
+			A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		}
+		tnt1 a 0 a_jumpif(random(0, 10) > 7, "fire_death_loop" );
+
+
+		tnt1 a 0 a_jump(126, "insta_fire_death");
+	fire_butterfly:
+		IZD4 CCCDDD 2 a_spawnprojectile("BurnParticles", 25, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 A_PlaySound("imp/pain");
+		tnt1 a 0 a_jumpif(random(0, 10) < 7, "fire_butterfly");
+	goto corpse_on_fire;
+		
+	insta_fire_death:
+		DRKS IIIJJJJJKKKKKKLLLLLL 1
+		{
+			a_spawnprojectile("FlameTrails", 25, 0, random(0, 360), 2, random(50, 130));
+			a_spawnprojectile("BurnParticles", random(25, 32), 0, random(0, 360), 2, random(50, 130));
+		}
+		TNT1 A 0 A_Playsound("props/redfire");
+	corpse_on_fire:
+		BOSB FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 a_spawnprojectile("FlameTrails", 15, 0, random(0, 360), 2, random(50, 130));
+		BOSB FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 20 a_spawnprojectile("Explosion_Smoke", 25, 0, random(0, 360), 2, random(70, 110));
+		BOSB F -1;
+	Stop;
+		
+
+	//loading sprite names for infarction state
+	D1S8 ABCD 6;
+	TROD GHIJ 5;
+	T5DB ABCD 6;
+	T3DB ABCD 6;
+	2ROD ABCD 6;
+	Myocardial_infarction:
+		TNT1 A 0
+		{
+			A_Scream();
+			A_NoBlocking();
+
+			switch((name)(getclassname() ))
+			{
+				case 'pb_NamiDarkImp' :
+				case 'pb_Nether_Dark_Imp' :
+				case 'pb_STDarkImp' :
+				case 'pb_Void_Dark_Imp' :
+					sprite = getspriteindex("D1S8"); break;
+
+				case 'pb_imp' :
+					sprite = getspriteindex("trod"); break;
+				
+				case 'pb_DNImp_Variant1' :
+					sprite = getspriteindex("T5DB"); break;
+
+				case 'DNImpVariant2' :
+					sprite = getspriteindex("T3DB"); break;
+					
+				case 'pb_Savage_Imp' :
+					sprite = getspriteindex("2ROD"); break;
+				default : break;
+			}
+		}
+		"####" A 0 A_SpawnItem("GrowingBloodPool");
+		"####" EFEFEFEFEFEFEFEFEFEFEFEF 10;
+		"####" A 0
+		{
+			A_NoBlocking();
+			//because they uses default imp sprites here
+			if(getclassname() == 'DNImpVariant2' || getclassname() == 'pb_DNImp_Variant1')
+				sprite = getspriteindex("trod");
+		}
+		"####" GHIJ 5;
+		"####" JJ 1 A_SpawnItemEx("SwarmFly",frandom(-16,16),frandom(-16,16),frandom(-16,16));
+	    "####" J -1;
+	stop;
+
 
 }
 
-
-
-
-
+}
 
 
 
@@ -2343,54 +2565,6 @@ CLASS DyingImpNoLeg : SwitchableDecoration {
 
 
 
-CLASS ImpDyingOfBloodLoss: switchabledecoration { 
-	Default {
-	
-	Radius 16;
-	Height 28;
-	Health 10;
-	+NOPAIN;
-	-COUNTKILL;
-	+SHOOTABLE;
-	+usespecial;
-	Activation THINGSPEC_Activate | THINGSPEC_ThingTargets | THINGSPEC_NoDeathSpecial;
-	}
-	States
-	{
-	
-	Death.Fatality:
-	Death.SuperPunch:
-	Death.ExtremePunches:
-	Pain.Fatality:
-	Active:
-		TNT1 A 1 A_FaceTarget;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 ;//A_GiveToTarget("HasImpShield = true;}
-		TNT1 A 0 ;//A_GiveToTarget("GotMeatShield = true;}
-		TROD F 8;
-		stop;
-		
-	Spawn:
-		TROD E 1;
-		TROD EFEFEFEFEFEFEFEFEFEFEFEF 10;
-		Goto Colapse;
-	Death:
-		TNT1 A 0;
-		stop;//Goto DeathNoGuts;
-		
-	Death.Shotgun:
-		TNT1 A 0;
-		TNT1 A 0 A_JumpIfCloser(150, "Death.Shotgunontheface");
-		stop;//Goto DeathNoGuts;
-		
-	Colapse:
-		TNT1 A 0;
-		TNT1 A 0 A_NoBlocking;
-		TROD GHIJ 5;
-		TNT1 A 0 A_SpawnItem("DeadImpBloodLoss", 5);
-		stop;
-}
-}
 
 
 CLASS ImpSaciLol: DyingImpNoLeg { 

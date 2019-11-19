@@ -233,7 +233,7 @@ States
 		TNT1 A 0 A_SpawnItem("PB_pot");
 		XPL3 F -1;
 		Stop;
-	Death.Massacre:
+
 	Death.Explosives:
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("USESPECIAL", 0);

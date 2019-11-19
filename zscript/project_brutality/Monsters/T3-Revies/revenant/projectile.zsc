@@ -64,7 +64,8 @@ States
 }
 }
 
-CLASS RevenantMissile : ACTOR { 
+CLASS RevenantMissile : pb_projectile_base
+{ 
 Default {
 	//SpawnID 53;
 	Radius 4;
@@ -104,7 +105,10 @@ States
 			}
 		}
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 {self.bSHOOTABLE = false;}

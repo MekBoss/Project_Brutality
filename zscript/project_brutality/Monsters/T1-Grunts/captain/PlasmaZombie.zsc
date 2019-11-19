@@ -669,17 +669,7 @@ States
 		TNT1 A 0 A_JumpIfInventory("IsDown", 1, "Death.Down");
 		TNT1 A 0 A_Jump(8, "Death.Arm");
 		TNT1 A 0 A_Jump(54, "Death.Rare");
-		TNT1 A 0 A_Jump(96, "Death.Massacre");
 		TNT1 A 0 A_Jump(16, "Death.Tear");
-		Goto Death.Massacre;
-		
-	Death.Massacre:
-		TNT1 A 0;
-		TNT1 A 0 A_FaceTarget();
-		TNT1 A 0 A_Scream();
-		TNT1 O 0 A_NoBlocking();
-		TNT1 A 0 A_SpawnItem("BrutalizedPlasmaZombie", 1);
-		Stop;
 		
 	Death.ExplosiveImpact:
 		//TNT1 A 0 A_JumpIfInTargetInventory("SSGSelected", 1, "Death.SSG");
@@ -766,13 +756,6 @@ States
 		Stop;
 		
 		
-	Death.Ice:
-	Death.Freeze:
-	Death.Frost:
-		TNT1 A 0 {self.bSHOOTABLE = false;}
-		TNT1 A 0 {self.bSOLID = false;}
-		//TNT1 A 0 A_SpawnItem("FrozenPlasmaZombie");
-	Stop;
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		FPZ2 J -1;
 	Stop;

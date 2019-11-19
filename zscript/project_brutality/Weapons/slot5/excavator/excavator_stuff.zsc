@@ -77,7 +77,10 @@ States
 		TNT1 AAAAA 0 a_spawnprojectile("ExplosionFlames", 12, 0, random(0, 360), 2, random(0, 360));
 		tnn1 AAAAA 0 a_spawnprojectile("ExplosionSmoke", 12, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
-		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);
 		TNT1 A 0 A_PlaySound("FAREXPL", 3);
@@ -145,7 +148,10 @@ CLASS ExcavatorDrill : pb_projectile_base {
 			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
 		}
 		TNT1 AAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
-		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
 		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
@@ -214,7 +220,10 @@ CLASS DropShotExplode : pb_projectile_base {
 		TNT1 AAAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmoke", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_Explode(3,9, damagetype:"CauseWaterSplash");
-		TNT1 A 0 a_spawnprojectile("NewRocketExploFX", random(1,5), random(-10,10), random(0, 360), 2, random(0, 360));
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		
 		TNT1 A 0 A_Explode(525, 240, 0,0, 100,0,0,"None","Explosive");
 		TNT1 A 0 A_Playsound("excavator/explode", 1);

@@ -132,6 +132,7 @@ protected string return_random_replacement(string base_class = "")
 
 override void CheckReplacement(ReplaceEvent e)
 {
+	//dont replace own monsters
 	if(e.Replacee is "pb_monster_base") return;
 
 	if(GetDefaultByType(e.Replacee).bismonster != true) return;
@@ -140,7 +141,10 @@ override void CheckReplacement(ReplaceEvent e)
 
 	switch(name(nam) )
 	{
-		default: console.printf("no corespondig monster for replace");break;
+		default:
+			e.Replacement = e.Replacee;
+			//console.printf("no corespondig monster for replace");
+		break;
 
 		case 'zombieman' :
 			e.Replacement = return_random_replacement("private_base");

@@ -414,6 +414,7 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 
 #include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberKnight/CyberKnight.zsc"
+#include "zscript/project_brutality/monsters/T4-Nobles/knights/CyberKnight/guro.zsc"
 
 
 //barons
@@ -466,9 +467,6 @@ const  VIEW_HEIGHT = 61.0;	//The approximate hight of the player's view
 
 
 
-
-
-
 ////zone of crutches
 class CurbstompedMarine : actor {}
 //separately, because with it bounded, non obvious much of a times, too much actors
@@ -478,7 +476,7 @@ class crutch : inventory
 default
 {+noclip +nointeraction}
 
-states {spawn: tnt1 a 1 {console.printf("quick crutch %s", getclassname() );} stop; } 
+states {spawn: XXX1 a 1 {console.printf("quick crutch %s", getclassname() );} stop; } 
 }
 
 //now that a lots of crutches
@@ -509,7 +507,3 @@ states
 }
 
 }
-
-class greenspark : actor {}
-
-class NewRocketExploFX_grenade : GreenTrailSparks_grenade {}

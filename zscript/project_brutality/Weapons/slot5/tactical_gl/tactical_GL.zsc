@@ -371,7 +371,10 @@ Default {
 		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 22, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_Explode(150, 180, damagetype:"Explosionimpact");
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 1;
 		TNT1 AAAAAAAAAAAAAAAAAA 0 
 		{
@@ -556,7 +559,10 @@ States
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 1;
 		TNT1 AAAAAAAAA 0 
 		{
@@ -690,7 +696,10 @@ States
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 1;
 		TNT1 AAAAAAAAA 0 
 		{
@@ -860,7 +869,10 @@ States
 		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 22, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 1;
 		TNT1 AAAAAAAAA 0 
 		{
@@ -1013,7 +1025,10 @@ Default
 		TNT1 AAA 0 a_spawnprojectile("ExplosionSmoke", 22, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("StickyExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX_grenade", 0, 0, 0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 1;
 		TNT1 AAAAAAAAA 0 
 		{

@@ -8,7 +8,7 @@ CLASS RevenantBalls66: RevenantBalls {
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 ThrustThingZ(0,random(20, 0),0,1);
-		Goto Spawn1;
+		Goto super::Spawn;
 	}
 }
 
@@ -51,7 +51,7 @@ cLASS RevenantRocketFire1823 : Inventory {
 	}
 }
 
-CLASS DoomerRevenantSeeker2 : RevenantSeeker { 
+CLASS DoomerRevenantSeeker2 : pb_projectile_base { 
 	Default {
 	
 	Damage 26;
@@ -85,7 +85,10 @@ CLASS DoomerRevenantSeeker2 : RevenantSeeker {
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		BFE1 A 0 Bright A_Explode(18, 120, 1);
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0
 		{
@@ -101,7 +104,7 @@ CLASS DoomerRevenantSeeker2 : RevenantSeeker {
 	}
 }
 
-CLASS DoomerRevenantSeeker3 : RevenantSeeker { 
+CLASS DoomerRevenantSeeker3 : pb_projectile_base { 
 	Default {
 	
 	Damage 27;
@@ -131,7 +134,10 @@ CLASS DoomerRevenantSeeker3 : RevenantSeeker {
 		
 	Death:
 		EXPL A 0 Radius_Quake(2, 54, 0, 15, 0);
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_SpawnItemEx("Underwater_Explosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 A 0 A_SpawnItemEx("crutch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
@@ -151,7 +157,7 @@ CLASS DoomerRevenantSeeker3 : RevenantSeeker {
 	}
 }
 
-CLASS DoomerRevenantMissile2 : RevenantMissile { 
+CLASS DoomerRevenantMissile2 : pb_projectile_base { 
 	Default {
 	
 	Damage 27;
@@ -177,7 +183,10 @@ CLASS DoomerRevenantMissile2 : RevenantMissile {
 		}
 		
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 10;
@@ -185,8 +194,9 @@ CLASS DoomerRevenantMissile2 : RevenantMissile {
 	}
 }
 
-CLASS DoomerRevenantMissile3 : RevenantMissile { 
-	Default {
+CLASS DoomerRevenantMissile3 : pb_projectile_base
+{
+Default {
 	
 	Damage 27;
 	Speed 35;
@@ -210,7 +220,10 @@ CLASS DoomerRevenantMissile3 : RevenantMissile {
 		}
 		
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 10;
@@ -218,7 +231,7 @@ CLASS DoomerRevenantMissile3 : RevenantMissile {
 	}
 }
 
-CLASS MiniMissile1 : RevenantMissile { 
+CLASS MiniMissile1 : pb_projectile_base { 
 	Default {
 	
 	DamageFunction(random(32,34));
@@ -242,7 +255,10 @@ CLASS MiniMissile1 : RevenantMissile {
 		}
 		
 		EXPL A 0;
-		TNT1 A 0 A_SpawnItemEx("NewRocketExploFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "NewRocketExploFX");
+		}
 		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 		TNT1 AAAA 0 a_spawnprojectile("ExplosionFlames", 0, 0, random(0, 360), 2, random(0, 360));
 		TNT1 A 10;

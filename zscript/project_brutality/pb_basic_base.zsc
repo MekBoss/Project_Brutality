@@ -22,7 +22,7 @@ vector3 start_pos;
 }
 
 
-//body base
+//body parts base
 class pb_dismembered_monster_base : actor
 {}
 

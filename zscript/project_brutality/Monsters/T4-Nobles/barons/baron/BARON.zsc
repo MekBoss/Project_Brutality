@@ -1,4 +1,4 @@
-CLASS pb_Baron_of_Hell : Baron_guts_death_right
+CLASS pb_Baron_of_Hell : baron_base
 { 
 Default
 {
@@ -20,7 +20,6 @@ Default
 	PainChance "Cut", 100;
 	PainChance "Kick", 100;
 	PainChance "ExtremePunches", 224;
-	PainChance "CallingTheBaronAFaggot", 255;
 	PainChance "Head", 120;
 	PainChance 25;
 	PainChance "Explosive", 255;
@@ -69,7 +68,6 @@ States
 		BTS3 CBA 1;
 		TNT1 A 0 HealThing(200);
 	See2:
-	See4:
 		TNT1 A 0 pb_monster_memory();
 		BOSS AA 3 A_Chase();
 		TNT1 A 0 A_PlaySound("baron/step", 5);
@@ -87,9 +85,9 @@ States
 		
 	Idle:
 	LookingForPlayer:
-		BOSS BBB 10 A_Look();
+		BOSS BBBBB 10 A_Look();
 		TNT1 A 0 {self.angle += randompick(-40, 40);}
-		BOSS BBBBBB 10 A_Look();
+		BOSS BBBBB 10 A_Look();
 		BOSS AA 2
 		{
 			A_Look();
@@ -117,7 +115,6 @@ States
 			{setstatelabel("CheckRetreat");}
 		}
 		TNT1 A 0 A_FaceTarget();
-		TNT1 A 0 a_spawnprojectile("BaronAttackOnBarrel",10,0,0,0);
 		BOSS E 1;
 		//TNT1 A 0 A_JumpIfInventory("HasExplosiveBarrel", 1, "MissileBarrel");
 		BOSS E 6;
@@ -153,17 +150,9 @@ States
 			if(target is "proto_cyberdemon" || target is "proto_spider_mind")
 			{setstatelabel("CheckRetreat");}
 		}
-		//TNT1 A 0 A_TakeInventory("StopKickingMyBallsMotherFucker", 1)
-		//TNT1 A 0 A_JumpIfInventory("ZombiemanFatality", 1, "FatalityZombieman");
-		//TNT1 A 0 A_JumpIfInTargetInventory("TypeZombieman", 1, "See2");
-		//TNT1 A 0 A_JumpIfInTargetInventory("TypeSergeant", 1, "See2");
 		TNT1 A 0 A_Jump(64, "SpecialAttack");
-		//TNT1 A 0 A_TakeInventory("CantFire", 1);
 		TNT1 A 0 A_JumpIfCloser(900, 3);
-		//TNT1 A 0 a_spawnprojectile("MonsterTargetCheck", 34, 0, 0, 0);
-		//TNT1 A 0 a_spawnprojectile("MonsterTargetCheckFaster", 34, 0, 0, 0);
 		BOSS F 3 A_FaceTarget();
-		//TNT1 A 0 A_JumpIfInventory("CantFire",1, "See4");
 		BOSS EEEEE 2
 		{
 			A_FaceTarget();
@@ -172,8 +161,6 @@ States
 		}
 		BOSS F 3 A_FaceTarget();
 		BOSS G 8 a_spawnprojectile("BaronBall", 36, 0, 0, 1);
-		//BOSS G 8 a_spawnprojectile("ThrowedZombieMan2", 36, 0, 0, 1)
-		//TNT1 A 0 A_TakeInventory("ComingToGetTheBarrel", 1);
 	Goto See2;
 		
 	SpecialAttack:
@@ -187,18 +174,18 @@ States
 			a_spawnprojectile("BallGettingReadygreen", 79, -40, random(0, 140), 2, random(0, 160));
 			a_spawnprojectile("FlameTrails", 78, -40, random(0, 360), 2, random(70, 110));
 		}
-
-
 		BOSS QQ 3
 		{
 			A_FaceTarget();
 			a_spawnprojectile("FlameTrails", 58, 30, random(0, 360), 2, random(70, 110));
 			a_spawnprojectile("FlameTrails", 58, -30, random(0, 360), 2, random(70, 110));
 		}
-		BOSS Q 3 A_FaceTarget();
-		TNT1 A 0 bright a_spawnprojectile("FlameTrails", 48, 30, random(0, 360), 2, random(70, 110));
-		TNT1 A 0 bright a_spawnprojectile("FlameTrails", 48, -30, random(0, 360), 2, random(70, 110));
-
+		BOSS Q 3
+		{
+			A_FaceTarget();
+			a_spawnprojectile("FlameTrails", 48, 30, random(0, 360), 2, random(70, 110));
+			a_spawnprojectile("FlameTrails", 48, -30, random(0, 360), 2, random(70, 110));
+		}
 		BOSS R 6
 		{
 			a_spawnprojectile("BaronBall", 36, 15, 0, 11);
@@ -207,7 +194,6 @@ States
 			a_spawnprojectile("BaronBall", 36, 15, 22, 11);
 			a_spawnprojectile("BaronBall", 36, 15, -22, 11);
 		}
-		//TNT1 A 0 A_TakeInventory("ComingToGetTheBarrel", 1);
 	Goto See2;
 
 
@@ -232,20 +218,13 @@ States
 		
 	Retreat:
 		TNT1 A 0 A_SpawnItemEx("FootStep", 0, 0);
-		BOSS DDDD 2 {A_Recoil(2);A_FaceTarget();}
-		BOSS CCCC 2 {A_Recoil(2);A_FaceTarget();}
-		BOSS BBBB 2 {A_Recoil(2);A_FaceTarget();}
-		BOSS AAAA 2 {A_Recoil(2);A_FaceTarget();}
+		BOSS DDDDCCCCBBBBAAAA 2 {A_Recoil(2);A_FaceTarget();}
 	Goto Missile+5;
-		//ComingToGetTheBarrel
-	Pain.CallingTheBaronAFaggot:
-		//TNT1 A 0 A_GiveInventory("ComingToGetTheBarrel", 1);
-	Goto See2;
 		
 	MissileBarrel:
 		BOBA A 1 {A_Chase(null,null); self.bNOPAIN = true;}
 		BOBA ABC 4;
-		BOBA D 1 {A_PlaySound("baron/sight"); }//A_SpawnItem("BaronHoldingBarrel", 0, 76,0);}
+		BOBA D 1 {A_PlaySound("baron/sight"); }
 		BOBA D 8;
 		BOBA E 16;
 		BOBA D 8;		
@@ -342,11 +321,11 @@ States
 	Stop;
 		
 	XDeath:
+		BXDE B 0 A_xScream();
+		BXDE C 0 A_BossDeath();
+		BXDE D 0 A_NoBlocking();
 		TNT1 A 0 a_spawnprojectile("BaronXDeath", 0, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 a_spawnprojectile("XDeathBaronHead5", 62, 0, random(0, 360), 2, random(0, 160));
-		BXDE B  0 A_xScream();
-		BXDE C  0 A_BossDeath();
-		BXDE D  0 A_NoBlocking();
 	Stop;
 
 	Death.ExplosiveImpact:
@@ -362,7 +341,7 @@ States
 	Death.ExplosiveImpact1:
 		BOH3 A  8 A_Scream();
 		BOH3 B  8 A_NoBlocking();
-		BOH3 CCCCCC  8 A_CheckFloor("Land1");
+		BOH3 C 8 gibbed_falling();
 	Land1:
 		TNT1 A 0 A_SpawnItem("DeadBaronExplosiveImpact1", 1);
 	Stop;
@@ -370,39 +349,9 @@ States
 	Death.ExplosiveImpact2:
 		BOH3 E  8 A_Scream();
 		BOH3 F  8 A_NoBlocking();
-		BOH3 GGGGGG  8 A_CheckFloor("Land2");
-	Goto Land2;
-		
+		BOH3 G 8 gibbed_falling();
 	Land2:
 		TNT1 A 0 A_SpawnItem("DeadBaronExplosiveImpact2", 1);
-	Stop;
-		
-	Death.Desintegrate:
-		TNT1 A 0 A_BossDeath();
-		TNT1 A 0 A_Scream();
-		TNT1 A 0 A_NoBlocking();
-		
-		TNT1 AAAA 0 a_spawnprojectile("SuperWallredBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 40, 0, random(0, 360), 2, random(30, 90));
-		
-		TNT1 AAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAA 0 a_spawnprojectile("SuperWallredBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		BRUD LM 5 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		BRUD NOP 5  {pb_blood_and_gore_event.much_blood(self);}
-		TNT1 AAAAA 0 a_spawnprojectile("brutal_LiquidBlood", 15, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAA 0 a_spawnprojectile("RevenantDust2", 30, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAAA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		BRUD QRS 5 a_spawnprojectile("XDeath1", 40, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		BRUD TUV 5;
-		BRUD WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
-		BRUD W -1;
 	Stop;
 		
 	Death.Cut:
@@ -571,23 +520,6 @@ States
 		TNT1 A 0 A_BossDeath();
 	Stop;
 
-	Death.SuperPlasma:
-	Death.Plasma: Death.Plasma2:
-		TNT1 A 0;
-		TNT1 A 0 A_BossDeath();
-		TNT1 A 0 A_Scream();
-		TNT1 A 0 A_NoBlocking();
-		TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		BOSC ABC 7 a_spawnprojectile("ExplosionSmoke", 28, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-		BOSC DEF 7 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 180), 2, random(0, 180));
-		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
-		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 8 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
-		BOSB E -1;
-	Stop;
-	
 	Death.Fire:
 		TNT1 A 0;
 		TNT1 A 0 A_XScream();
@@ -598,58 +530,6 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
 		EXPL AAAAAAAAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FlameTrails", 50, 0, random(0, 360), 2, random(0, 360));
 		XBRN AAAA 2 BRIGHT A_SpawnItem("Green_Flare",0,43);
-	Stop;
-	
-	Death.Incinerate:
-		TNT1 A 0 A_Stop();
-		TNT1 A 0 A_Playsound("MELT");
-		TNT1 A 0 A_NoBlocking();
-		tnt1 AAAAAAAAAAAAAAAAAAa 0
-		{
-			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
-		}
-		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAA 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 45));
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
-		TNT1 AA 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),40,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		B4UD AAAABBBBCCCCCDDDDDEEEEEFFFFFGGGG 1 BRIGHT Light("IncinerationGlow")
-		{
-			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
-			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-			if(frame > 20) A_Playsound("SZZLL", 3);
-		}
-		B4UD HHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGGHHGG 2 BRIGHT Light("IncinerationGlow")
-		{
-			a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
-			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
-		}
-		B4UD IIIIIII 12 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
-		B4UD I -1;
-	Stop;
-	
-	
-	Death.fire:
-	Death.Flames:
-	Death.Burn:
-		//TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
-		TNT1 A 0 A_Jump(189, "Fire2");
-		TNT1 A 0 A_BossDeath();
-		TNT1 A 0 A_Scream();
-		TNT1 A 0 A_NoBlocking();
-		BOSB AAAABBBBCCCCDDDD 2 a_spawnprojectile("FlameTrails", 45 - (frame * 10), 0, random(0, 360), 2, random(50, 130));
-		TNT1 A 0 A_Playsound("props/redfire");
-		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 a_spawnprojectile("FlameTrails", 25, 0, random(0, 360), 2, random(50, 130));
-		BOSB EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 10 a_spawnprojectile("Explosion_Smoke", 25, 0, random(0, 360), 2, random(70, 110));
-		BOSB E -1;
-	Stop;
-	
-	Fire2:
-		TNT1 A 0;
-		TNT1 A 0 A_Scream();
-		TNT1 A 0 A_BossDeath();
-		TNT1 A 0 A_NoBlocking();
-		TNT1 A 0 A_SpawnItem("BurningBaron", 0, 10);
 	Stop;
 	
 	Raise:
@@ -756,16 +636,6 @@ States
 	Death.Taunt:
 		TNT1 A 0 {self.bSOLID = false;}
 		TNT1 A 0 A_SpawnItem("BaronOfHell");
-	Stop;
-	
-	Death.Ice:
-	Death.Freeze:
-	Death.Frost:
-		TNT1 A 0 A_BossDeath();
-		TNT1 A 0 A_NoBlocking();
-		TNT1 A 0 {self.bSHOOTABLE = false;}
-		TNT1 A 0 {self.bSOLID = false;}
-		//TNT1 A 0 A_SpawnItem("FrozenBaronOfHell");
 	Stop;
 	
 	Crush:

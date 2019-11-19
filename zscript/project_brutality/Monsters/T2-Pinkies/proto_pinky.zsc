@@ -10,14 +10,297 @@ states
 		ID53 AAABCDEFGHI 4;
 		TNT1 A 0 A_StopSound(2);
 	Stop;
-}
+
+
+	Death.Incinerate:
+		TNT1 A 0 A_Playsound("MELT");
+		TNT1 A 0 A_NoBlocking;
+		TNT1 AAAAAA 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
+		TNT1 A 0 A_SpawnItemEx("ExplosionFlareSpawner",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-15, 15), random(-15, 15));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-35, 35), random(-35, 35));
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random(-45, 45), random(-45, 35));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 28, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 40, 0, random(0, 360), 2, random(0, 180));
+		TNT1 A 0 A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),32,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		S6RN AAAAABBBBBzCCCCCDDDDDEEEEEFFFFFzGGGGHHHH 1 BRIGHT Light("IncinerationGlow")
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),28,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+			if(frame > 20)
+			{
+				A_Playsound("SZZLL", 3);
+				frame = 0;
+			}
+		}
+		S6RN HHIIHHIIHHIIHHIIHHIIHHIIHHIIHHII 2 BRIGHT Light("IncinerationGlow")
+		{
+			a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+			A_SpawnItemEx("RealisticFireSparks1",random(-2,2),random(-2,2),8,0,0,0,0,SXF_NOCHECKPOSITION  ,0);
+		}
+		S6RN HHIIHHIIHHIIHHII 2;
+		S6RN JJJJJJJ 12 a_spawnprojectile("ExplosionSmoke", 14, 0, random(0, 360), 2, random(0, 160));
+		S6RN J -1;
+	Stop;
+	
+
+	Death.fire:
+	Death.Flames:
+	Death.Burn:
+		//TNT1 A 0 A_JumpIfIntargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate");
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_SpawnItemEx("BurningDemon",0,0,8,0,0,0,0,288);
+	Stop;
+	
+
+
+	Death.SuperPlasma:
+	Death.Plasma: Death.Plasma2:
+		TNT1 A 0;
+		TNT1 A 0 A_XScream();
+		TNT1 A 0 A_NoBlocking();
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAAAAAAAAAAAAAAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 180));
+		TNT1 AAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedDemonLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		SPRG ABCDEF 6
+		{
+			if(getclassname() == 'pb_void_spectre') frame += 6;// so it would be GHIJK
+		}
+		CARB JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 10
+		{
+			a_spawnprojectile("Explosion_Smoke", 25, 0, random(0, 360), 2, random(70, 110));
+			if(getclassname() == 'pb_void_spectre') frame += 8;//from J to R
+		}
+		CARB J -1;
+	Stop;
+
+
+	XDeath:
+	DEath.Explosive:
+		TNT1 A 0 A_XScream;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_FaceTarget;
+		TNT1 AAA 0 a_spawnprojectile("XDeath1", 42, 0, random(0, 190), 2, random(10, 60));
+		TNT1 AAAA 0 a_spawnprojectile("XDeath3", 42, 0, random(0, 190), 2, random(10, 60));
+		TNT1 AAA 0 a_spawnprojectile("XDeath2", 42, 0, random(0, 190), 2, random(10, 60));
+		TNT1 A 0 a_spawnprojectile("XDeath4", 42, 0, random(0, 190), 2, random(10, 60));
+		TNT1 A 0 A_SpawnItem("BloodSplasher3");
+		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
+		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		//TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("PB_pot");
+		TNT1 A 0 a_spawnprojectile("XDeathStomach", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathBullLeg12", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("XDeathPinkyDemonHead", 42, 0, random(0, 360), 2, random(0, 160));
+		
+		TNT1 A 1;
+		TNT1 A 2;
+		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
+	Stop;
+	
 
 }
 
+}
 
 
 
 
+CLASS BurningDemon: actor { 
+States
+{
+	Spawn:
+		//just demon
+		//SBRG
+		//demon 2
+		//CRB7
+		//Void
+		//CRB8
+		//mean 
+		//CRB9
+		
+		TNT1 A 0
+		{
+			A_PlaySound("BURNZOM");
+			switch(getclassname())
+			{
+				case 'pb_Bull_Demon' : sprite = getspriteindex("SBRG"); break;
+				case 'pb_Mech_Demon' : sprite = getspriteindex("CRB7"); break;
+				case 'pb_void_spectre' : sprite = getspriteindex("CRB8"); break;
+				case 'pb_Demon_X' : sprite = getspriteindex("CRB9"); break;
+				
+				default: break;
+			}
+		}
+	living_torch:
+		"####" AAABBBCCCDDD 1
+		{
+			A_Wander();
+			A_Recoil(-1);
+			a_spawnprojectile("BurnParticles", 20, 0, random(0, 360), 2, random(50, 130));
+			a_spawnprojectile("ExplosionParticle", 40, 0, random(0, 360), 2, random(50, 130));
+		}
+		tnt1 a 0 a_jumpif(random(0, 10) > 3, "living_torch");
+		
+	Death:
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_Scream;
+		TNT1 A 0 A_playsound("demon/pain");
+		P1N7 AAABBBzCCCDDDzCCCDDDzCCCDDDzCCCDDDzCCCDDD 3
+		{
+			a_spawnprojectile("FlameTrails", 30, 0, random(0, 360), 2, random(50, 130));
+			if(frame > 20)
+			{
+				A_playsound("demon/pain");
+				tics = 0;
+			}
+		}
+	goto burned_demon;
+		
+	XDeath:
+	Death.SSG:
+	Death.Explosive:
+		TNT1 A 0 A_NOBlocking;
+		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedDemonLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("MuchMeatDeath", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("BurningFlyingMeatPiece", 64, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+	Stop;
+
+		//demon 2
+		//CRB7
+		
+		CRB7 MNOP 3
+		{
+			A_Wander();
+			a_spawnprojectile("BurnParticles", 25, 0, random(0, 360), 2, random(50, 130));
+		}
+		tnt1 a 0 a_jumpif(random(0, 10) < 3, "Death");
+	Loop;
+		
+	Death:
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		TNT1 A 0 A_Jump(96, "Death2");
+		CRB7 Q 2;
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_playsound("demon/death");
+		CRB7 QQQQRRRR 2 a_spawnprojectile("BurnParticles", 35, 0, random(0, 360), 2, random(50, 130));
+		goto burned_demon;
+		
+	Death2:
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_playsound("demon/pain");
+	dd2_loop:
+		P1N7 AAABBBCCCDDD 3 a_spawnprojectile("FlamethrowerFireParticles", 20, 0, random(0, 360), 2, random(50, 130));
+		TNT1 A 0 A_playsound("demon/pain");
+		tnt1 a 0 a_jumpif(random(0, 10) < 7, "dd2_loop");
+
+		TNT1 A 0 A_playsound("demon/death",5);
+		goto burned_demon;
+		
+	XDeath:
+	Death.SSG:
+	Death.Explosive:
+		TNT1 A 0 A_NOBlocking;
+		TNT1 AAAAAA 0 bright a_spawnprojectile("SuperGoreSpawner", 5, 0, random(0, 360), 2, random(30, 180));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AA 0 a_spawnprojectile("XDeathBurnedDemonLeg", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 a_spawnprojectile("MuchMeatDeath", 35, 0, random(0, 360), 2, random(0, 160));
+		TNT1 AAAAAA 0 a_spawnprojectile("BurningFlyingMeatPiece", 64, 0, random(0, 360), 2, random(0, 160));
+		TNT1 A 0 A_SpawnItem("CrueltyBonus5Health");
+		Stop;
+
+
+
+
+
+		//mean 
+		//CRB9
+		CRB9 MNOP 3
+		{
+			A_Wander();
+			a_spawnprojectile("BurnParticles", random(24,26), random(-4,4), random(0, 360), 2, random(50, 130));
+		}
+		TNT1 A 0 A_playsound("demon/pain");
+	Death:
+		CRB9 Q  2
+		{
+			self.bSHOOTABLE = false;
+			A_NoBlocking();
+			A_playsound("demon/death");
+		}
+		CRB9 QQQQRRRR 2 a_spawnprojectile("BurnParticles", 26, 0, random(0, 360), 2, random(50, 130));
+	Stop;
+
+
+	//Void
+	//CRB8
+		CRB8 MNOP 3
+		{
+			A_Wander();
+			a_spawnprojectile("BurnParticles", random(24,26), random(-4,4), random(0, 360), 2, random(50, 130));
+		}
+		TNT1 A 0 A_playsound("demon/pain");
+		tnt1 q 0 a_jump(33, 1);
+	Loop;
+	
+		TNT1 A 0 {self.bSHOOTABLE = false;}
+		CRB8 Q 2
+		{
+			A_NoBlocking();
+			A_Scream();
+			A_playsound("demon/death");
+		}
+		CRB8 QQQQRRRR 2 a_spawnprojectile("BurnParticles", 26, 0, random(0, 360), 2, random(50, 130));
+
+
+
+	//burned demon
+	burned_demon:
+		TNT1 A 0 A_Playsound("props/redfire");
+		tnt1 a 0
+		{
+			switch( random(0,1) )
+			{
+				case 0 : sprite = getspriteindex("carb"); frame = 9; break;
+				case 1 : sprite = getspriteindex("P1N7"); frame = 4; break;
+			}
+		}
+		"####" "############################################################################" 2
+		{
+			a_spawnprojectile("FlameTrails", 25, 0, random(0, 360), 2, random(50, 130));
+			a_spawnprojectile("BurnParticles", 32, 0, random(0, 360), 2, random(50, 130));
+		}
+		"####" "############################################################################" 2
+		{
+			tics = random(15, 25);
+			a_spawnprojectile("Explosion_Smoke", 35, 0, random(0, 360), 2, random(70, 110));
+		}
+		"####" "#" -1;
+	Stop;
+}
+}
 
 
 
@@ -1175,63 +1458,6 @@ CLASS Gib_HalfVoidSpectre: gibs_base {
 Stop;    }}
 
 
-CLASS BullXDeath : pb_blood_and_gore_base { 
-Default {
-	
-	Radius 1;
-	Height 1;
-	Scale 0.8;
-	Speed 0;
-	Mass 1;
-	Decal "BloodSuper";
-	BounceFactor 0.5;
-	+DOOMBOUNCE;
-	+MISSILE;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	+MOVEWITHSECTOR;
-	+NOGRAVITY;
-	+NOCLIP;
-	+DONTSPLASH;
-}
-States
-{
-	Spawn:
-		TNT1 A 0 A_SpawnItem("BloodSplasher3");
-		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("CeilBloodSpot", 0, 0, random(0, 360), 2, random(50, 130));
-		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
-		//TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeath4b", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 A_SpawnItem("PB_pot");
-		TNT1 A 0 a_spawnprojectile("XDeathStomach", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBullLeg12", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathDemonArm", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathPinkyDemonHead", 42, 0, random(0, 360), 2, random(0, 160));
-		
-		TNT1 A 1;
-		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		Stop;
-		
-	LowBlood:
-		TNT1 A 2;
-		Stop;
-	LotsOfBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
-		Stop;
-	AbsurdBlood:
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AAAAAAAAAAAA 0 a_spawnprojectile("SuperGoreMist", 24, 0, random(0, 360), 2, random(30, 90));
-		TNT1 AAAAAAAA 0 {pb_blood_and_gore_event.gore_spawner_2(self);}
-		Stop;
-}
-}
 
 CLASS BloodDemonXDeath : pb_blood_and_gore_base { 
 Default {
@@ -1291,50 +1517,6 @@ States
 }
 }
 
-CLASS VoidSpectreXDeath : pb_blood_and_gore_base { 
-Default {
-	
-	Radius 1;
-	Height 1;
-	Scale 0.8;
-	Speed 0;
-	Mass 1;
-	Decal "GreenBloodSuper";
-	BounceFactor 0.5;
-	+DOOMBOUNCE;
-	+MISSILE;
-	+NOBLOCKMAP;
-	+NOTELEPORT;
-	+MOVEWITHSECTOR;
-	+NOGRAVITY;
-	+NOCLIP;
-	+DONTSPLASH;
-}
-States
-{
-	Spawn:
-		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 30, 0, random(0, 360), 2, random(20, 90));
-		TNT1 AA 0 a_spawnprojectile("XDeath1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeath2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeath3", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeath4", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAAAA 0 a_spawnprojectile("WallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
-		
-		TNT1 A 0 A_SpawnItem("PB_pot");
-		TNT1 A 0 a_spawnprojectile("XDeathStomachGreen", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathVoidSpectreLeg", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathVoidSpectreArm", 32, 0, random(0, 360), 2, random(0, 160));
-		
-		//TNT1 AA 0 a_spawnprojectile("Instestin", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreEyeball", 42, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathVoidSpectreHead", 42, 0, random(0, 360), 2, random(0, 160));
-		
-		TNT1 A 1;
-		TNT1 A 2;
-		TNT1 AAAAAAAAAAAAAA 0 a_spawnprojectile("BloodMist", 30, 0, random(0, 360), 2, random(20, 90));
-		Stop;
-}
-}
 
 
 CLASS XDeathBurnedDemonArm : XDeathBurnedLeg { 

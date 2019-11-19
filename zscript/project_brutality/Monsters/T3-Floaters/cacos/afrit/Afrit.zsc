@@ -160,7 +160,6 @@ States
 	XDeath:
 	Death.Cut:
 	Death.Saw:
-	Death.Massacre:
 		TNT1 A 0 a_spawnprojectile("AfritXDeath", 0, 0, random(0, 360), 2, random(0, 160));
 		BXDE A  0;
 		BXDE B  0 A_Scream;
@@ -176,14 +175,6 @@ States
 		//TNT1 A 0 A_GiveToTarget("GoFatality", 1);
 		TNT1 A 0 A_Jump(256, "Death.Fatality3");//"Death.Fatality1",
 	Goto Death.Fatality3;
-		
-	Death.Ice:
-	Death.Freeze:
-	Death.Frost:
-		TNT1 A 0 {self.bSHOOTABLE = false;}
-		TNT1 A 0 {self.bSOLID = false;}
-		//TNT1 A 0 A_SpawnItem("FrozenAfrit");
-	Stop;
 		
 	Death.Fatality3:
 		TNT1 A 0 A_Scream;

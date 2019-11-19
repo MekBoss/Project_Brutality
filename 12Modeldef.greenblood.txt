@@ -187,7 +187,7 @@ Model GreenPB_pot      // Name of actor in DECORATE
    Scale 80.0 80.0 80.0            // Scale values
    ZOffset 0.5
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
-}*/
+}
 
 Model Green_BloodSpot      // Name of actor in DECORATE
 {
@@ -378,3 +378,5 @@ Model GreenPB_pot      // Name of actor in DECORATE
    ZOffset 0.5
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
 }
+
+*/

@@ -21,9 +21,9 @@ private array<cheap_effect_base> effect_actors;
 //spawn prof the beginning some effects
 override void worldloaded(worldevent e)
 {
-	for(int i = 1; i < 100; i++)
+	for(uint i = 1; i < 100; i++)
 	{
-		effect_actors.push( (cheap_effect_base)(actor.spawn("cheap_effect_base", (0, 0, 0) ) ) );
+		effect_actors.push( (cheap_effect_base)(actor.spawn("cheap_effect_base", (double.infinity, double.infinity, double.infinity) ) ) );
 		cheap_effect_base(effect_actors[i-1]).set_event(self);
 	}
 }
@@ -33,7 +33,7 @@ private actor find_free_effect()
 {
 	int dd = self.effect_actors.size();
 
-	for(int i = 0; i <= dd; i++)
+	for(uint i = 0; i <= dd; i++)
 	{
 		if(i == dd)
 		{
@@ -103,7 +103,7 @@ thinker find_free_line_handler()
 {
 	int dd = self.continious_ray_handlers.size();
 
-	for(int i = 0; i <= dd; i++)
+	for(uint i = 0; i <= dd; i++)
 	{
 		if(i == dd)
 		{
@@ -184,8 +184,11 @@ states
 		{
 			self.scale =(1, 1);
 			self.vel = (0, 0, 0);
+			setorigin( (double.infinity, double.infinity, double.infinity), false );
 			show_something = false;
 			alpha = 1;
+			for(uint i = 0; i < 10; i++)
+				a_stopsound(i);
 		}
 	goto off;
 }

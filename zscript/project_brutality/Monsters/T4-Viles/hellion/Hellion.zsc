@@ -248,14 +248,6 @@ States
 	Goto See;
 		
 		
-	Death.Ice:
-	Death.Freeze:
-	Death.Frost:
-		TNT1 A 0 {self.bSHOOTABLE= false;}
-		TNT1 A 0 {self.bSOLID= false;}
-		//TNT1 A 0 A_SpawnItem("FrozenHellion");
-	Stop;
-		
 	Death:
 		TNT1 A 0 A_FadeIn(1.0, FALSE);
 		TNT1 A 0 A_Jump(164, "Death2", "Death3");

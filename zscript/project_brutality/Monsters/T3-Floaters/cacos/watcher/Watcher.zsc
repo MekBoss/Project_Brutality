@@ -127,7 +127,6 @@ States
 		WAT5 G -1;
 		stop;
 		
-	Death.Massacre:
 	Death.Saw:
 	Death.Cut:
 	Death.Tear:
@@ -145,37 +144,7 @@ States
 		TNT1 AA 0 a_spawnprojectile("XDeath2", 45, 0, random(0, 360), 2, random(0, 160));
 		WAT4 G -1;
 		stop;
-		
-	Death.Greenfire:
-	Death.Plasma: Death.Plasma2:
-		TNT1 A 0;
-		TNT1 A 0 A_Scream;
-		TNT1 A 0 A_NoBlocking;
-		EXPL AAAAA 0 a_spawnprojectile("ExplosionSmoke", 32, 0, random(0, 360), 2, random(0, 360));
-		EXPL AAA 0 a_spawnprojectile("ExplosionSmoke", 24, 0, random(0, 180), 2, random(0, 180));
-		TNT1 AAAAAAAAA 0 a_spawnprojectile("Ashes2", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathBurnedBlueMeat1", 0, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("XDeathBurnedBlueMeat1", 0, 0, random(0, 360), 2, random(0, 160));
-	Stop;
 	
-	
-	Death.SuperPlasma:
-	TNT1 A 0;
-	TNT1 A 0 A_XScream;
-	TNT1 A 0 A_NoBlocking;
-		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("Ashes1", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAA 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("pb_blood", 30, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AAAAA 0 a_spawnprojectile("PlasmaParticleX", 48, 0, random(0, 360), 2, random(0, 360));
-		TNT1 AAA 0 a_spawnprojectile("PlasmaParticleX", 42, 0, random(0, 360), 2, random(0, 360));
-	Stop;
 	
 	Death.SuperPunch:
 	Death.Blast:

@@ -91,35 +91,12 @@ States
 		DIAB E 10 {A_FaceTarget(); A_VileStart();}
 		DIAB EEE 3 A_VileTarget("ArchvileFire2");
 
-		DIAB EF 3 BRIGHT
+		DIAB EFEEFEEFEEFEEFE 3 BRIGHT
 		{
 			A_FaceTarget();
 			a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
 			a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		}
-		DIAB E 1 A_VileTarget("ArchvileFire2");
-
-		DIAB EF 3 
-		{
-			A_FaceTarget();
-			a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-			a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		}
-		DIAB E 1 A_VileTarget("ArchvileFire2");
-
-		DIAB EF 3 BRIGHT
-		{
-			A_FaceTarget();
-			a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-			a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
-		}
-		DIAB E 1 A_VileTarget("ArchvileFire2");
-
-		DIAB EF 3 BRIGHT
-		{
-			A_FaceTarget();
-			a_spawnprojectile("FlameTrails", 85, 35, random(0, 40), 2, random(0, 160));
-			a_spawnprojectile("FlameTrails", 85, -35, random(0, 40), 2, random(0, 160));
+			A_VileTarget("ArchvileFire2");
 		}
 
 		DIAB JKLMN 3 BRIGHT A_FaceTarget;
@@ -189,11 +166,7 @@ States
 		TNT1 A 0 a_spawnprojectile("XDeath3", 40, 0, random(0, 360), 2, random(50, 90));
 		TNT1 A 0 A_Jump(130, "Head2");
 		VID2 A 3;
-		VID2 BC 7 a_spawnprojectile("Bloodmist", 58, 0, random(0, 360), 2, random(0, 160));
-		TNT1 AA 0 a_spawnprojectile("Bloodmist", 50, 0, random(0, 360), 2, random(0, 160));
-		VID2 D 6 a_spawnprojectile("Bloodmist", 45, 0, random(0, 360), 2, random(0, 160));
-		VID2 E 6 a_spawnprojectile("Bloodmist", 36, 0, random(0, 360), 2, random(0, 160));
-		VID2 F 6 a_spawnprojectile("Bloodmist", 20, 0, random(0, 360), 2, random(0, 160));
+		VID2 BCDEF 6 a_spawnprojectile("Bloodmist", 20, 0, random(0, 360), 2, random(0, 160));
 		TNT1 A 0 A_PlaySound("BODYF",6);
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool");
 		TNT1 A 0 A_SpawnItem("DeadArchvileVID2F");
@@ -260,9 +233,8 @@ States
 		TNT1 A 0 a_spawnprojectile("archvile_severed_arm", 42, 0, random(150, 210), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("Archvile_severed_Head", 52, 0, random(150, 210), 2, random(0, 40));
 		TNT1 AAA 0 a_spawnprojectile("Xdeath3", 26, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 38, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 38, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 38, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 38, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		D2AX N 8 A_Stop;
@@ -285,9 +257,8 @@ States
 		TNT1 A 0 a_spawnprojectile("archvile_severed_torso", 45, 0, random(150, 210), 2, random(0, 40));
 		TNT1 A 0 a_spawnprojectile("Archvile_severed_Head", 52, 0, random(150, 210), 2, random(0, 40));
 		TNT1 AAA 0 a_spawnprojectile("Xdeath3", 26, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
+		TNT1 AAAAAAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBloodFaster", 32, 0, random(170, 190), 2, random(0, 40));
-		TNT1 AAAA 0 a_spawnprojectile("Brutal_FlyingBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("SuperWallRedBlood", 32, 0, random(170, 190), 2, random(0, 40));
 		TNT1 AAAA 0 a_spawnprojectile("Bloodmist", 44, 0, random(0, 360), 2, random(30, 90));
 		D2AX EEEEEEEE 2 a_spawnprojectile("Brutal_LiquidBlood2", 38, 0, random(0, 360), 2, random(0, 160));
@@ -340,7 +311,6 @@ States
 		TNT1 AAA 0 {pb_blood_and_gore_event.much_blood(self);}
 		VID2 HHIJ 5;
 		TNT1 A 0 A_SpawnItem("DyingArchvileNoArm");
-		TNT1 A -1;
 	Stop;
 		
 	Death.Tear:
@@ -410,20 +380,7 @@ States
 		XVIP Q -1;
 	Stop;
 	
-	Death.Fire:
-		TNT1 A 0;
-		TNT1 A 0 A_Scream;
-		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 A_Playsound("props/redfire");
-		TNT1 AAA 0 a_spawnprojectile("Brutal_FlyingBlood", 50, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		TNT1 A 0 a_spawnprojectile("XDeathBurnedMeat", 32, 0, random(0, 360), 2, random(0, 160));
-		XVIP ABCDEFGHIJKLMNOPQ 2;
-		XVIP QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 2 a_spawnprojectile("FlameTrails", 15, 0, random(0, 360), 2, random(70, 130));
-		XVIP QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 10 a_spawnprojectile("Explosion_Smoke", 15, 0, random(0, 360), 2, random(70, 130));
-		XVIP Q -1;
-	Stop;
+
 
 	Death.Fatality:
 		TNT1 A 0 A_Pain;
@@ -458,13 +415,6 @@ States
 		TNT1 A 0 A_SpawnItem("pb_Arch_Vile");
 	Stop;
 	
-	Death.Ice:
-	Death.Freeze:
-	Death.Frost:
-		TNT1 A 0 {self.bSHOOTABLE = false;}
-		TNT1 A 0 {self.bSOLID = false;}
-		//TNT1 A 0 A_SpawnItem("FrozenArchvile");
-	Stop;
 }
 
 }

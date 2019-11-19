@@ -1,3 +1,4 @@
+/*
 Model BDECDestroyedCar      // Name of actor in DECORATE
 {
    Path "models/decoration"    // Path to model in PK3
@@ -285,3 +286,4 @@ Model BDECWhiteFlareLargeFLAT      // Name of actor in DECORATE
    ZOffset -0.1
    FrameIndex LENS A 0 0         // The sprite lump, sprite frame, model index, frame number
 }
+*/

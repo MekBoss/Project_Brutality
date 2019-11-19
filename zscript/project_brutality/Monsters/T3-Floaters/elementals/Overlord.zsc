@@ -247,7 +247,10 @@ states
 				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
 			}
 		}
-		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FireBallExplosion", 6, 0, random(0, 360), 2, random(0, 360));
+		EXPL AAAAAAAAAAAAAAAAA 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		OVER P 0 bright a_spawnprojectile("OverBigArm2",40,40,90,2,random(-1,1));
 		OVER P 0 bright a_spawnprojectile("OverSmallArm1",100,-30,-90,2,random(-15,15));
 		OVER P 0 bright a_spawnprojectile("OverSmallArm1",100,30,90,2,random(-15,15));
@@ -830,9 +833,6 @@ DeathSound "monster/hadexp";
 		HADE GFE 4 Bright;
 		HADE RSTUVWX 4 Bright;
 		Stop;
-	Death.Ice:
-		"####" "#" 0 {self.bNOGRAVITY = FALSE;}
-	Goto GenericFreezeDeath;
 }
 }
 
@@ -921,7 +921,10 @@ States
 				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
 			}
 		}
-		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FireBallExplosion", 6, 0, random(0, 360), 2, random(0, 360));
+		EXPL AAAAAAAAAAAAAAAAA 0 
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		OVER P 0 bright a_spawnprojectile("OverBigArm2",40,40,90,2,random(-1,1));
 		OVER P 0 bright a_spawnprojectile("OverSmallArm1",100,-30,-90,2,random(-15,15));
 		OVER P 0 bright a_spawnprojectile("OverSmallArm1",100,30,90,2,random(-15,15));
@@ -974,7 +977,10 @@ States
 				a_spawnprojectile("pb_particle", 0, 0, random(0, 360), 2, random(0, 180));
 			}
 		}
-		EXPL AAAAAAAAAAAAAAAAA 0 a_spawnprojectile("FireBallExplosion", 6, 0, random(0, 360), 2, random(0, 360));
+		EXPL AAAAAAAAAAAAAAAAA 0
+		{
+			pb_effect_event(effects).show_some_effect(self, "ExplosionParticle");
+		}
 		OVER P 0 bright a_spawnprojectile("OverBigArm2",40,40,90,2,random(-1,1));
 		OVER P 0 bright a_spawnprojectile("OverSmallArm1",100,-30,-90,2,random(-15,15));
 		OVER P 0 bright a_spawnprojectile("OverSmallArm1",100,30,90,2,random(-15,15));

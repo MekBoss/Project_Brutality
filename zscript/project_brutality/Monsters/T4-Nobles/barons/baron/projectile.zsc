@@ -27,14 +27,6 @@ CLASS BaronAttack: BaronBall {
 	}
 }
 
-
-CLASS BaronAttackOnbarrel: BaronAttack { 
-	Default {
-	DamageType "BHFTOnBarrel";
-	Damage 1;
-	}
-}
-
 CLASS DeadBaronExplosiveImpact2: actor//DeadKnight
 { 
 	States{Spawn:        BOH3 H -1;
@@ -44,29 +36,3 @@ CLASS DeadBaronExplosiveImpact1: actor//DeadKnight
 { 
 States{Spawn:        BOH3 D -1;
 Stop;}}
-
-CLASS CallingTheBaronAFaggot: BaronBall { 
-	Default {
-	
-	Radius 4;
-	Height 4;
-	DamageType "CallingTheBaronAFaggot";
-	Projectile;
-	+RANDOMIZE;
-	+FORCEXYBILLBOARD;
-	+THRUGHOST;
-	RenderStyle "Add";
-	Alpha 0.6;
-	DamageFunction(random(2, 3));
-	Speed 32;
-	SeeSound "none";
-	DeathSound "none";
-	Decal "none";
-}
-States
-{
-	Spawn:
-		TNT1 A 6;
-	Stop;
-}
-}
